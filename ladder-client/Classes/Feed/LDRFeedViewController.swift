@@ -1,8 +1,8 @@
 import UIKit
 
 
-/// MARK: - ViewController
-class ViewController: UIViewController {
+/// MARK: - LDRFeedViewController
+class LDRFeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
