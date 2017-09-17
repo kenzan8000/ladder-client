@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eh9-jM-YgD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,7 +64,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9iC-Tf-AR6"/>
+                    <navigationItem key="navigationItem" id="9iC-Tf-AR6">
+                        <barButtonItem key="leftBarButtonItem" id="YaO-Vb-8QX"/>
+                        <barButtonItem key="rightBarButtonItem" id="Fnd-Au-HYm"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leftBarButtonItem" destination="YaO-Vb-8QX" id="gzk-hk-lMe"/>
+                        <outlet property="rightBarButtonItem" destination="Fnd-Au-HYm" id="UAk-Nr-Rc4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t51-nM-wXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
