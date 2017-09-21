@@ -7,6 +7,7 @@ class LDRFeedViewController: UIViewController {
     // MARK: - properties
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var tableView: UITableView!
 
 
     // MARK: - life cycle
@@ -70,3 +71,21 @@ class LDRFeedViewController: UIViewController {
 
 }
 
+
+/// MARK: - UITableViewDelegate, UITableViewDataSource
+extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = LDRFeedTableViewCell.ldr_cell()
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
