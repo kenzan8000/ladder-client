@@ -65,9 +65,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9iC-Tf-AR6">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" id="YaO-Vb-8QX"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Dor-3P-6y6">
+                            <rect key="frame" x="127" y="7" width="121" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title=""/>
+                                <segment title=""/>
+                            </segments>
+                            <color key="tintColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="segmentedControlValueChangedWithSegmentedControl:" destination="191-BL-53J" eventType="valueChanged" id="tlE-Gt-qFB"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" id="Fnd-Au-HYm"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="Dor-3P-6y6" id="O3i-kO-hHf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t51-nM-wXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
