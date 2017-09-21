@@ -5,24 +5,25 @@ import UIKit
 class LDRFeedViewController: UIViewController {
 
     // MARK: - properties
-    @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
 
 
     // MARK: - life cycle
+
     override func loadView() {
         super.loadView()
 
         // bar button items
-        self.leftBarButtonItem.setBackgroundImage(
-            IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.gray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
-            for: .normal,
-            barMetrics: .defaultPrompt
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.gray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.touchedUpInside)
         )
-        self.rightBarButtonItem.setBackgroundImage(
-            IonIcons.image(withIcon: ion_ios_settings, iconColor: UIColor.gray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
-            for: .normal,
-            barMetrics: .defaultPrompt
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(withIcon: ion_ios_gear_outline, iconColor: UIColor.gray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.touchedUpInside)
         )
     }
 
@@ -34,5 +35,11 @@ class LDRFeedViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+
+    /// MARK: - event listener
+
+    func touchedUpInside(barButtonItem: UIBarButtonItem) {
+
+    }
 }
 
