@@ -12,11 +12,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fPQ-m8-Bfx">
             <objects>
-                <tabBarController id="eh9-jM-YgD" sceneMemberID="viewController">
+                <tabBarController id="eh9-jM-YgD" customClass="LDRTabBarController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="MsQ-Ga-9VC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="fdt-RO-Gol" kind="relationship" relationship="viewControllers" id="Gij-jr-dqW"/>
@@ -27,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="289" y="324"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="yDn-ZY-ie4">
             <objects>
                 <navigationController id="fdt-RO-Gol" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="m8k-k5-1EV"/>
+                    <tabBarItem key="tabBarItem" title="" id="m8k-k5-1EV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2pF-l0-wRp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,11 +95,11 @@
             </objects>
             <point key="canvasLocation" x="1797.5999999999999" y="-72.413793103448285"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="PeR-Re-1sh">
             <objects>
                 <navigationController id="Mny-lh-EwW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DGK-Qf-bgc"/>
+                    <tabBarItem key="tabBarItem" title="" id="DGK-Qf-bgc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KDi-Io-o0p">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
