@@ -4,8 +4,17 @@ import UIKit
 /// MARK: - LDRPinViewController
 class LDRPinViewController: UIViewController {
 
+    // MARK: - properties
+
+    @IBOutlet weak var tableView: UITableView!
+
+
+    // MARK: - life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = "0 pins"
 
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -43,3 +52,23 @@ class LDRPinViewController: UIViewController {
 
 }
 
+
+/// MARK: - UITableViewDelegate, UITableViewDataSource
+extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = 5
+        self.navigationItem.title = "\(count) pins"
+        return count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = LDRPinTableViewCell.ldr_cell()
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
