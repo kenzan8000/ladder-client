@@ -1,18 +1,24 @@
 PODS:
-  - ionicons (2.0.3)
+  - DACircularProgress (2.3.1)
+  - ionicons (2.1.1)
   - ISHTTPOperation (1.2.0)
+  - LGRefreshView (1.0.5):
+    - DACircularProgress (~> 2.3.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - ionicons
   - ISHTTPOperation
+  - LGRefreshView
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  ionicons: 630bcd2c2970741c3359e3a35ad544e71d3c086b
   ISHTTPOperation: dfe4b6b2b3d7803688b22df2c46ea9827081e723
+  LGRefreshView: 34746afadbd23de8d1449cab15f3d89269645d43
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 2ba9bc7b08cc02971bb92bade475c950dab43fa7
+PODFILE CHECKSUM: 52d98d2d42ab69646e8b42d8d0ad07bf2d5e5ce9
 
 COCOAPODS: 1.2.0

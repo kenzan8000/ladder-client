@@ -337,6 +337,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/ionicons/ionicons\"",
 					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
+					"\"$(PODS_ROOT)/LGRefreshView/LGRefreshView\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -385,6 +386,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/ionicons/ionicons\"",
 					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
+					"\"$(PODS_ROOT)/LGRefreshView/LGRefreshView\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;

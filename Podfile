@@ -9,6 +9,9 @@ target target_name do
   # font
   pod 'ionicons'
 
+  # ui
+  pod 'LGRefreshView'
+
   # json parser
   pod 'SwiftyJSON'
 

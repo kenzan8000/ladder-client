@@ -6,6 +6,7 @@ class LDRPinViewController: UIViewController {
 
     // MARK: - properties
 
+    var refreshView: LGRefreshView!
     @IBOutlet weak var tableView: UITableView!
 
 
@@ -29,6 +30,19 @@ class LDRPinViewController: UIViewController {
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
         )
+        // refreshView
+        self.refreshView = LGRefreshView(scrollView: self.tableView)
+        self.refreshView.tintColor = UIColor.gray
+        self.refreshView.backgroundColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
+            self.refreshView.trigger(animated: true)
+            DispatchQueue.main.asyncAfter(
+                deadline: DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+                execute: { [unowned self] () -> Void in
+                    self.refreshView.endRefreshing()
+                }
+            )
+        }
     }
 
     override func didReceiveMemoryWarning() {
