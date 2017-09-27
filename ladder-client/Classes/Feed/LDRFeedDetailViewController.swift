@@ -6,6 +6,10 @@ class LDRFeedDetailViewController: UIViewController {
 
     // MARK: - properties
 
+    @IBOutlet weak var headerButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+
 
     /// MARK: - class method
 
@@ -26,7 +30,7 @@ class LDRFeedDetailViewController: UIViewController {
 
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_arrow_back, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
@@ -37,6 +41,9 @@ class LDRFeedDetailViewController: UIViewController {
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
+        // back and next button
+        self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+        self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
     }
 
     override func viewDidLoad() {
