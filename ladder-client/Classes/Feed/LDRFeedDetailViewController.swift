@@ -83,6 +83,21 @@ class LDRFeedDetailViewController: UIViewController {
         }
     }
 
+    /**
+     * called when touched up inside
+     * @param button UIButton
+     **/
+    @IBAction func buttonTouchedUpInside(button: UIButton) {
+        if button == self.headerButton {
+        }
+        if button == self.backButton {
+            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
+        }
+        if button == self.nextButton {
+            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
+        }
+    }
+
 }
 
 
