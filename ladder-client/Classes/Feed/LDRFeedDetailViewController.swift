@@ -43,6 +43,20 @@ class LDRFeedDetailViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -56,10 +70,20 @@ class LDRFeedDetailViewController: UIViewController {
      **/
     func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
-            self.navigationController!.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
         }
+    }
+
+}
+
+
+/// MARK: - UIGestureRecognizerDelegate
+extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
 }
