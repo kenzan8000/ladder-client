@@ -110,6 +110,7 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController!.show(LDRFeedDetailViewController.ldr_viewController(), sender: nil)
     }
 
 }

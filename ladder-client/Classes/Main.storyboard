@@ -89,11 +89,30 @@
                     <connections>
                         <outlet property="segmentedControl" destination="Dor-3P-6y6" id="O3i-kO-hHf"/>
                         <outlet property="tableView" destination="JBj-yR-edb" id="UGD-iR-Nwd"/>
+                        <segue destination="dvw-dD-UAu" kind="show" id="7xF-P0-PtI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t51-nM-wXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1797.5999999999999" y="-72.413793103448285"/>
+        </scene>
+        <!--Feed Detail View Controller-->
+        <scene sceneID="tal-pG-hpV">
+            <objects>
+                <viewController storyboardIdentifier="LDRFeedDetailViewController" id="dvw-dD-UAu" customClass="LDRFeedDetailViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pd0-m7-jQI"/>
+                        <viewControllerLayoutGuide type="bottom" id="zua-MC-T9f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bZF-xU-PgO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WsJ-2m-0hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2521" y="-72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PeR-Re-1sh">

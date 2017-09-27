@@ -14,7 +14,6 @@ class LDRPinViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationItem.title = "0 pins"
 
         // bar button items
