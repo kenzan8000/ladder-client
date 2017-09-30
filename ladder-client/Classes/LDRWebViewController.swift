@@ -1,24 +1,23 @@
 import UIKit
+import WebKit
 
 
-/// MARK: - LDRFeedDetailViewController
-class LDRFeedDetailViewController: UIViewController {
+/// MARK: - LDRWebViewController
+class LDRWebViewController: UIViewController {
 
     // MARK: - properties
 
-    @IBOutlet weak var headerButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var webView: WKWebView!
 
 
     /// MARK: - class method
 
     /**
      * get viewController
-     * @return LDRFeedDetailViewController
+     * @return LDRWebViewController
      **/
-    class func ldr_viewController() -> LDRFeedDetailViewController {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewController.self)) as! LDRFeedDetailViewController
+    class func ldr_viewController() -> LDRWebViewController {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRWebViewController.self)) as! LDRWebViewController
         return vc
     }
 
@@ -41,9 +40,8 @@ class LDRFeedDetailViewController: UIViewController {
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
-        // back and next button
-        self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
-        self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+
+        self.webView.load(URLRequest(url: URL(string: "https://google.com")!))
     }
 
     override func viewDidLoad() {
@@ -83,29 +81,11 @@ class LDRFeedDetailViewController: UIViewController {
         }
     }
 
-    /**
-     * called when touched up inside
-     * @param button UIButton
-     **/
-    @IBAction func buttonTouchedUpInside(button: UIButton) {
-        if button == self.headerButton {
-            let viewController = LDRWebViewController.ldr_viewController()
-            viewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.show(viewController, sender: nil)
-        }
-        if button == self.backButton {
-            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
-        }
-        if button == self.nextButton {
-            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
-        }
-    }
-
 }
 
 
 /// MARK: - UIGestureRecognizerDelegate
-extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
+extension LDRWebViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

@@ -82,6 +82,10 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+
+        let viewController = LDRWebViewController.ldr_viewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.show(viewController, sender: nil)
     }
 
 }
