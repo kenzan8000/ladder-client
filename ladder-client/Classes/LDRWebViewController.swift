@@ -8,6 +8,7 @@ class LDRWebViewController: UIViewController {
     // MARK: - properties
 
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var progressView: UIProgressView!
 
 
     /// MARK: - class method
@@ -19,6 +20,14 @@ class LDRWebViewController: UIViewController {
     class func ldr_viewController() -> LDRWebViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRWebViewController.self)) as! LDRWebViewController
         return vc
+    }
+
+
+    /// MARK: - destruction
+
+    deinit {
+        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        self.webView.removeObserver(self, forKeyPath: "loading")
     }
 
 
@@ -41,7 +50,11 @@ class LDRWebViewController: UIViewController {
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
 
-        self.webView.load(URLRequest(url: URL(string: "https://google.com")!))
+        // progress bar
+        self.webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
+        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+
+        self.load(urlString: "https://google.com")
     }
 
     override func viewDidLoad() {
@@ -66,6 +79,20 @@ class LDRWebViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress"{
+            self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
+        }else if keyPath == "loading"{
+            UIApplication.shared.isNetworkActivityIndicatorVisible = self.webView.isLoading
+            if self.webView.isLoading {
+                self.progressView.setProgress(0.1, animated: true)
+            }
+            else {
+                self.progressView.setProgress(0.0, animated: false)
+            }
+        }
+    }
+
 
     /// MARK: - event listener
 
@@ -81,6 +108,17 @@ class LDRWebViewController: UIViewController {
         }
     }
 
+
+    // MARK: - public api
+
+    /**
+     * load url
+     * @param urlString String
+     **/
+    func load(urlString: String) {
+        self.webView.load(URLRequest(url: URL(string: urlString)!))
+    }
+
 }
 
 
@@ -89,6 +127,21 @@ extension LDRWebViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+
+}
+
+
+/// MARK: - WKNavigationDelegate
+extension LDRWebViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
     }
 
 }
