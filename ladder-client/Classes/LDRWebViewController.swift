@@ -7,6 +7,7 @@ class LDRWebViewController: UIViewController {
 
     // MARK: - properties
 
+    var refreshView: LGRefreshView!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var progressView: UIProgressView!
 
@@ -54,6 +55,15 @@ class LDRWebViewController: UIViewController {
         self.webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
         self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
 
+        // refreshView
+        self.refreshView = LGRefreshView(scrollView: self.webView.scrollView)
+        self.refreshView.tintColor = UIColor.gray
+        self.refreshView.backgroundColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
+            self.refreshView.trigger(animated: true)
+            self.webView.reload()
+        }
+
         self.load(urlString: "https://google.com")
     }
 
@@ -79,15 +89,20 @@ class LDRWebViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+
+    /// MARK: - ovserver
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "estimatedProgress"{
+        if keyPath == "estimatedProgress" {
             self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
-        }else if keyPath == "loading"{
+        }
+        else if keyPath == "loading" {
             UIApplication.shared.isNetworkActivityIndicatorVisible = self.webView.isLoading
             if self.webView.isLoading {
                 self.progressView.setProgress(0.1, animated: true)
             }
             else {
+                self.refreshView.endRefreshing()
                 self.progressView.setProgress(0.0, animated: false)
             }
         }
@@ -127,21 +142,6 @@ extension LDRWebViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
-    }
-
-}
-
-
-/// MARK: - WKNavigationDelegate
-extension LDRWebViewController: WKNavigationDelegate {
-
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-    }
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
     }
 
 }
