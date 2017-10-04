@@ -368,6 +368,37 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVT-Ny-cu9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nD8-bM-NZO">
+                                        <rect key="frame" x="0.0" y="457" width="375" height="210"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Eg-TY-hMl">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="3o9-vL-tFK" id="xqs-4f-FPH"/>
+                                                    <outlet property="delegate" destination="3o9-vL-tFK" id="2qF-vV-4Gh"/>
+                                                </connections>
+                                            </pickerView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qI-hJ-Qgz">
+                                                <rect key="frame" x="0.0" y="161" width="375" height="48"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                <state key="normal" title="close"/>
+                                                <connections>
+                                                    <action selector="buttonTouchedUpInsideButton:" destination="3o9-vL-tFK" eventType="touchUpInside" id="StJ-Ew-WPq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -378,6 +409,10 @@
                         <outlet property="urlDomainTextField" destination="8Ta-pc-lub" id="B55-Hv-Gc1"/>
                         <outlet property="urlProtocolButton" destination="Tap-3V-pOW" id="qlD-lb-4zn"/>
                         <outlet property="urlProtocolImageView" destination="f8Q-Na-5yK" id="80f-TR-6yg"/>
+                        <outlet property="urlProtocolPickerBackgroundView" destination="nD8-bM-NZO" id="skp-gc-g9N"/>
+                        <outlet property="urlProtocolPickerButton" destination="1qI-hJ-Qgz" id="K3e-1G-9oO"/>
+                        <outlet property="urlProtocolPickerOverlayView" destination="zVT-Ny-cu9" id="ioC-Q9-3ke"/>
+                        <outlet property="urlProtocolPickerView" destination="1Eg-TY-hMl" id="G1P-vs-YDh"/>
                         <outlet property="usernameTextField" destination="WC5-I2-Xg4" id="iXI-vM-NUK"/>
                     </connections>
                 </viewController>
