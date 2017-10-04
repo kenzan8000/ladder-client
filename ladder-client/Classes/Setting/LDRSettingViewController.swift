@@ -22,6 +22,7 @@ class LDRSettingViewController: UIViewController {
 
     // MARK: - properties
 
+    @IBOutlet weak var urlProtocolImageView: UIImageView!
     @IBOutlet weak var urlProtocolButton: UIButton!
     @IBOutlet weak var urlDomainTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -41,6 +42,9 @@ class LDRSettingViewController: UIViewController {
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
         )
+
+        // image view
+        self.urlProtocolImageView.image = IonIcons.image(withIcon: ion_arrow_down_b, iconColor: UIColor.darkGray, iconSize: 24, imageSize: CGSize(width: 24, height: 24))
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +73,6 @@ class LDRSettingViewController: UIViewController {
             self.navigationController?.dismiss(animated: true, completion: {});
         }
         else if button == self.urlProtocolButton {
-            self.navigationController?.dismiss(animated: true, completion: {});
         }
     }
 
