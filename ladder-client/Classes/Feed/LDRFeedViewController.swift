@@ -80,6 +80,7 @@ class LDRFeedViewController: UIViewController {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
         }
     }
 

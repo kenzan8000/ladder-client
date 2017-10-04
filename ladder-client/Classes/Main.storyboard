@@ -94,6 +94,7 @@
                         <outlet property="segmentedControl" destination="Dor-3P-6y6" id="O3i-kO-hHf"/>
                         <outlet property="tableView" destination="JBj-yR-edb" id="UGD-iR-Nwd"/>
                         <segue destination="dvw-dD-UAu" kind="show" id="7xF-P0-PtI"/>
+                        <segue destination="men-ZL-n6k" kind="presentation" id="uMW-qc-B7s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t51-nM-wXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -254,14 +255,51 @@
                     <connections>
                         <outlet property="tableView" destination="CoV-mq-MhW" id="gcY-Rn-xuF"/>
                         <segue destination="xZQ-eZ-wCd" kind="show" id="eRG-ek-xkm"/>
+                        <segue destination="men-ZL-n6k" kind="presentation" id="JAy-FL-v8y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQi-6b-bdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1797.5999999999999" y="626.53673163418296"/>
         </scene>
+        <!--Setting Navigation Controller-->
+        <scene sceneID="QJX-g1-brE">
+            <objects>
+                <navigationController storyboardIdentifier="LDRSettingNavigationController" id="men-ZL-n6k" customClass="LDRSettingNavigationController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qS7-AM-w4T">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3o9-vL-tFK" kind="relationship" relationship="rootViewController" id="0Fu-MQ-Nd8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9kk-mn-hJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2521" y="1422"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="BPJ-m5-qN8">
+            <objects>
+                <viewController id="3o9-vL-tFK" customClass="LDRSettingViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tgT-Lh-pO5"/>
+                        <viewControllerLayoutGuide type="bottom" id="RQk-Xl-aIU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8wo-pK-PpH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z5K-A5-Nwu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="otS-FG-DRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3278" y="1422"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="uMW-qc-B7s"/>
         <segue reference="eRG-ek-xkm"/>
     </inferredMetricsTieBreakers>
 </document>

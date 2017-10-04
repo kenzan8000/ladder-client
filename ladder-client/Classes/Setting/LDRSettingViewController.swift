@@ -1,6 +1,22 @@
 import UIKit
 
 
+/// MARK: - LDRSettingNavigationController
+class LDRSettingNavigationController: UINavigationController {
+
+    /// MARK: - class method
+
+    /**
+     * get navigationController
+     * @return LDRSettingNavigationController
+     **/
+    class func ldr_navigationController() -> LDRSettingNavigationController {
+        let nc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRSettingNavigationController.self)) as! LDRSettingNavigationController
+        return nc
+    }
+}
+
+
 /// MARK: - LDRSettingViewController
 class LDRSettingViewController: UIViewController {
 
@@ -53,6 +69,7 @@ class LDRSettingViewController: UIViewController {
             self.navigationController?.dismiss(animated: true, completion: {});
         }
         else if button == self.urlProtocolButton {
+            self.navigationController?.dismiss(animated: true, completion: {});
         }
     }
 
