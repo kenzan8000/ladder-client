@@ -40,6 +40,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2pF-l0-wRp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="191-BL-53J" kind="relationship" relationship="rootViewController" id="c1S-Up-BhX"/>
@@ -269,6 +273,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qS7-AM-w4T">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="3o9-vL-tFK" kind="relationship" relationship="rootViewController" id="0Fu-MQ-Nd8"/>
@@ -301,23 +309,14 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tap-3V-pOW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="https://" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZP-hL-qji">
                                         <rect key="frame" x="20" y="39" width="80" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" title="https://">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonTouchedUpInsideButton:" destination="3o9-vL-tFK" eventType="touchUpInside" id="emB-7e-HSg"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f8Q-Na-5yK">
-                                        <rect key="frame" x="20" y="42" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reader.livedoor.com" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Ta-pc-lub">
                                         <rect key="frame" x="100" y="39" width="255" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -368,37 +367,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVT-Ny-cu9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nD8-bM-NZO">
-                                        <rect key="frame" x="0.0" y="457" width="375" height="210"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Eg-TY-hMl">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="3o9-vL-tFK" id="xqs-4f-FPH"/>
-                                                    <outlet property="delegate" destination="3o9-vL-tFK" id="2qF-vV-4Gh"/>
-                                                </connections>
-                                            </pickerView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qI-hJ-Qgz">
-                                                <rect key="frame" x="0.0" y="161" width="375" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                                <state key="normal" title="close"/>
-                                                <connections>
-                                                    <action selector="buttonTouchedUpInsideButton:" destination="3o9-vL-tFK" eventType="touchUpInside" id="StJ-Ew-WPq"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -407,12 +375,6 @@
                         <outlet property="loginButton" destination="zde-YW-lQ7" id="Jky-EO-V2M"/>
                         <outlet property="passwordTextField" destination="0WW-rr-x0j" id="Uh9-D3-Npi"/>
                         <outlet property="urlDomainTextField" destination="8Ta-pc-lub" id="B55-Hv-Gc1"/>
-                        <outlet property="urlProtocolButton" destination="Tap-3V-pOW" id="qlD-lb-4zn"/>
-                        <outlet property="urlProtocolImageView" destination="f8Q-Na-5yK" id="80f-TR-6yg"/>
-                        <outlet property="urlProtocolPickerBackgroundView" destination="nD8-bM-NZO" id="skp-gc-g9N"/>
-                        <outlet property="urlProtocolPickerButton" destination="1qI-hJ-Qgz" id="K3e-1G-9oO"/>
-                        <outlet property="urlProtocolPickerOverlayView" destination="zVT-Ny-cu9" id="ioC-Q9-3ke"/>
-                        <outlet property="urlProtocolPickerView" destination="1Eg-TY-hMl" id="G1P-vs-YDh"/>
                         <outlet property="usernameTextField" destination="WC5-I2-Xg4" id="iXI-vM-NUK"/>
                     </connections>
                 </viewController>
@@ -422,7 +384,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uMW-qc-B7s"/>
+        <segue reference="JAy-FL-v8y"/>
         <segue reference="eRG-ek-xkm"/>
     </inferredMetricsTieBreakers>
 </document>
