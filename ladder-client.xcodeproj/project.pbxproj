@@ -25,6 +25,8 @@
 		E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */; };
 		E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */; };
 		E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */; };
+		E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8DA511F92CE17002CAD69 /* CoreData.framework */; };
+		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
 		E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */; };
 		E6FFD66B1F6DEB7900AD947E /* LDRPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFD6691F6DEB7900AD947E /* LDRPinViewController.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +54,8 @@
 		E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRSettingViewController.swift; sourceTree = "<group>"; };
 		E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewController.swift; sourceTree = "<group>"; };
 		E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
+		E6D8DA511F92CE17002CAD69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
 		E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedViewController.swift; sourceTree = "<group>"; };
 		E6FFD6691F6DEB7900AD947E /* LDRPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */,
 				8CB4B4A05F4346E4D068905E /* Pods_ladder_client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +163,7 @@
 		E6FFD6661F6DEB7900AD947E /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
 				E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */,
 				E60D63D01F73ABB400D4C01F /* LDRFeedTableViewCell.swift */,
 				E60D63CF1F73ABB400D4C01F /* LDRFeedTableViewCell.xib */,
@@ -181,6 +187,7 @@
 		F35B2A1F15EE5610A5B8F095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E6D8DA511F92CE17002CAD69 /* CoreData.framework */,
 				9089F3FDFE5515AF9B9502BC /* Pods_ladder_client.framework */,
 			);
 			name = Frameworks;
@@ -320,6 +327,7 @@
 				E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */,
 				E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */,
 				E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */,
+				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
 				E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */,
 				E60D63D21F73ABB400D4C01F /* LDRFeedTableViewCell.swift in Sources */,
 				E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */,

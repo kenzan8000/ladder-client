@@ -16,7 +16,7 @@ struct LDRNotificationCenter {
 
 /// MARK: - Error
 enum LDRError: Error {
-//    case abc
+    case DeleteModelsFailed
 }
 
 

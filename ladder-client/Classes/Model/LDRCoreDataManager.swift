@@ -28,7 +28,7 @@ class LDRCoreDataManager {
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = documentsDirectories[documentsDirectories.count - 1] as NSURL
-        let storeURL = documentsDirectory.appendingPathComponent("LDRsModel.sqlite")
+        let storeURL = documentsDirectory.appendingPathComponent("LDRModel.sqlite")
 
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         do {
