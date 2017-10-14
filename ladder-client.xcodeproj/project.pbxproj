@@ -20,6 +20,8 @@
 		E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */; };
 		E6A4F7901F74E524001BE38F /* LDRFeedViewForHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */; };
 		E6A4F7911F74E524001BE38F /* LDRFeedViewForHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4F78F1F74E524001BE38F /* LDRFeedViewForHeader.swift */; };
+		E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */; };
+		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
 		E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */; };
 		E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */; };
 		E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */; };
@@ -45,6 +47,8 @@
 		E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladder-client-Bridging-Header.h"; sourceTree = "<group>"; };
 		E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRFeedViewForHeader.xib; sourceTree = "<group>"; };
 		E6A4F78F1F74E524001BE38F /* LDRFeedViewForHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedViewForHeader.swift; sourceTree = "<group>"; };
+		E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRCoreDataManager.swift; sourceTree = "<group>"; };
+		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
 		E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRSettingViewController.swift; sourceTree = "<group>"; };
 		E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewController.swift; sourceTree = "<group>"; };
 		E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 				E6FFD6661F6DEB7900AD947E /* Feed */,
 				E6FFD6681F6DEB7900AD947E /* Pin */,
 				E6C7B3601F849286000EFCE6 /* Setting */,
+				E6C32EE01F92CC610052DDE3 /* Model */,
 				E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */,
 			);
 			path = Classes;
@@ -131,6 +136,15 @@
 				E60230BD1F5E54860052F762 /* Resources */,
 			);
 			path = "ladder-client";
+			sourceTree = "<group>";
+		};
+		E6C32EE01F92CC610052DDE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */,
+				E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E6C7B3601F849286000EFCE6 /* Setting */ = {
@@ -302,6 +316,7 @@
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
+				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
 				E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */,
 				E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */,
 				E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */,
@@ -310,6 +325,7 @@
 				E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */,
 				E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */,
 				E6A4F7911F74E524001BE38F /* LDRFeedViewForHeader.swift in Sources */,
+				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E6FFD66B1F6DEB7900AD947E /* LDRPinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +505,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */,
+			);
+			currentVersion = E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */;
+			path = LDRModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E6690C481F5E537D0065B7B5 /* Project object */;
 }
