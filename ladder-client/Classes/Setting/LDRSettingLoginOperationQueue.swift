@@ -55,6 +55,9 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             return
         }
 
+        let memberSidRequest = NSMutableURLRequest(url: memberSidUrl!)
+        let sessionRequest = NSMutableURLRequest(url: URL(url: sessionUrl!, parameters: ["livedoor_id": username!, "password": password!])!)
+        let readerSidRequest = NSMutableURLRequest(url: readerSidUrl!)
     }
 
 }

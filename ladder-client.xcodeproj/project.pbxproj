@@ -16,6 +16,7 @@
 		E60D63D21F73ABB400D4C01F /* LDRFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D01F73ABB400D4C01F /* LDRFeedTableViewCell.swift */; };
 		E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */; };
 		E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618BBC01F805302006B593E /* LDRWebViewController.swift */; };
+		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674B5081F74EE3600D05461 /* LDRTabBarController.swift */; };
 		E67EB2FB1F78C8CF00C7940B /* LDRPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */; };
@@ -47,6 +48,7 @@
 		E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
 		E618BBC01F805302006B593E /* LDRWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRWebViewController.swift; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E674B5081F74EE3600D05461 /* LDRTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRTabBarController.swift; sourceTree = "<group>"; };
 		E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRPinTableViewCell.xib; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E66EF8581F945EE20073C44B /* URL+Queries.swift */,
 				E6BCD0181F944CA200B2E7E6 /* Reachability.h */,
 				E6BCD0191F944CA200B2E7E6 /* Reachability.m */,
 			);
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
+				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
