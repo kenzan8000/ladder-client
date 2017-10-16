@@ -26,30 +26,32 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     /**
      * start login
+     * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func start() {
+    func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // no internet connection
         if Reachability.forInternetConnection().currentReachabilityStatus() == NotReachable {
-            //LDRError.notReachable
+            completionHandler(json: nil, error: LDRError.notReachable)
             return
         }
-
-        // no username
+        // invalid username
         let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
         if username == nil {
-            //LDRError.invalidUsername
+            completionHandler(json: nil, error: LDRError.invalidUsername)
             return
         }
-        // no password
+        // invalid password
         let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
         if password == nil {
-            //LDRError.invalidPassword
+            completionHandler(json: nil, error: LDRError.invalidPassword)
             return
         }
-        // no ldrurl
-        let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
-        if ldrUrlString == nil {
-            //LDRError.invalidLdrUrl
+        // invalid url
+        let memberSidUrl = LDRUrl(path: LDR.API.index)
+        let sessionUrl = LDRUrl(path: LDR.API.login)
+        let readerSidUrl = LDRUrl(path: LDR.API.loginIndex)
+        if memberSidUrl == nil || sessionUrl == nil || readerSidUrl == nil {
+            completionHandler(json: nil, error: LDRError.invalidLdrUrl)
             return
         }
 

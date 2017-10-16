@@ -28,6 +28,16 @@ enum LDRError: Error {
 }
 
 
+/// MARK: - LDR
+struct LDR {
+    struct API {
+        static let index =                  "/"
+        static let login =                  "/login"
+        static let loginIndex =             "/login/index"
+    }
+}
+
+
 /// MARK: - function
 
 /**
@@ -51,4 +61,16 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
     let classString = NSStringFromClass(classType)
     let range = classString.range(of: ".")
     return classString.substring(from: range!.upperBound)
+}
+
+/**
+ * return ldr url
+ *
+ * @param path path string
+ * @return URL?
+ */
+func LDRUrl(path: String) -> URL? {
+    let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+    if ldrUrlString == nil { return nil }
+    return URL(string: ldrUrlString! + "/path")
 }

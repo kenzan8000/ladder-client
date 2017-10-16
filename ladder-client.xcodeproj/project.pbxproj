@@ -16,6 +16,7 @@
 		E60D63D21F73ABB400D4C01F /* LDRFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D01F73ABB400D4C01F /* LDRFeedTableViewCell.swift */; };
 		E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */; };
 		E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618BBC01F805302006B593E /* LDRWebViewController.swift */; };
+		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674B5081F74EE3600D05461 /* LDRTabBarController.swift */; };
 		E67EB2FB1F78C8CF00C7940B /* LDRPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */; };
 		E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */; };
@@ -27,7 +28,6 @@
 		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
 		E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */; };
 		E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */; };
-		E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */; };
 		E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8DA511F92CE17002CAD69 /* CoreData.framework */; };
 		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
 		E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */; };
@@ -47,6 +47,7 @@
 		E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
 		E618BBC01F805302006B593E /* LDRWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRWebViewController.swift; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E674B5081F74EE3600D05461 /* LDRTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRTabBarController.swift; sourceTree = "<group>"; };
 		E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRPinTableViewCell.xib; sourceTree = "<group>"; };
 		E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinTableViewCell.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
 		E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRSettingViewController.swift; sourceTree = "<group>"; };
 		E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewController.swift; sourceTree = "<group>"; };
-		E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E6D8DA511F92CE17002CAD69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
 		E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedViewController.swift; sourceTree = "<group>"; };
@@ -94,15 +94,15 @@
 			children = (
 				E60230B71F5E54740052F762 /* AppDelegate.swift */,
 				E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */,
-				E674B5081F74EE3600D05461 /* LDRTabBarController.swift */,
-				E6D8B95B1F7B819A0099F653 /* LDRBlinkView.swift */,
-				E618BBC01F805302006B593E /* LDRWebViewController.swift */,
 				E60230B81F5E54740052F762 /* Main.storyboard */,
 				E6FFD6661F6DEB7900AD947E /* Feed */,
 				E6FFD6681F6DEB7900AD947E /* Pin */,
 				E6C7B3601F849286000EFCE6 /* Setting */,
 				E6C32EE01F92CC610052DDE3 /* Model */,
 				E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */,
+				E674AB401F94588D00348C98 /* UIKit+Extension */,
+				E674B5081F74EE3600D05461 /* LDRTabBarController.swift */,
+				E618BBC01F805302006B593E /* LDRWebViewController.swift */,
 				E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */,
 			);
 			path = Classes;
@@ -149,6 +149,14 @@
 				E60230BD1F5E54860052F762 /* Resources */,
 			);
 			path = "ladder-client";
+			sourceTree = "<group>";
+		};
+		E674AB401F94588D00348C98 /* UIKit+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E674AB411F94588D00348C98 /* LDRBlinkView.swift */,
+			);
+			path = "UIKit+Extension";
 			sourceTree = "<group>";
 		};
 		E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */ = {
@@ -345,7 +353,6 @@
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
 				E60763991F9452D70012A910 /* LDRSettingLoginOperationQueue.swift in Sources */,
-				E6D8B95C1F7B819B0099F653 /* LDRBlinkView.swift in Sources */,
 				E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */,
 				E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */,
 				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
@@ -356,6 +363,7 @@
 				E6A4F7911F74E524001BE38F /* LDRFeedViewForHeader.swift in Sources */,
 				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E6FFD66B1F6DEB7900AD947E /* LDRPinViewController.swift in Sources */,
+				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,
 				E6BCD01A1F944CA200B2E7E6 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
