@@ -19,6 +19,8 @@
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674B5081F74EE3600D05461 /* LDRTabBarController.swift */; };
+		E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */; };
+		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
 		E67EB2FB1F78C8CF00C7940B /* LDRPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */; };
 		E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */; };
 		E6A4F7901F74E524001BE38F /* LDRFeedViewForHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */; };
@@ -51,6 +53,10 @@
 		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E674B5081F74EE3600D05461 /* LDRTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRTabBarController.swift; sourceTree = "<group>"; };
+		E676000A1F9481DA000A7B16 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftyJSON.h; path = "ladder-client/Classes/SwiftyJSON/Source/SwiftyJSON.h"; sourceTree = SOURCE_ROOT; };
+		E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "ladder-client/Classes/SwiftyJSON/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
+		E676000F1F94855E000A7B16 /* LDROperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDROperation.h; sourceTree = "<group>"; };
+		E67600101F94855F000A7B16 /* LDROperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDROperation.m; sourceTree = "<group>"; };
 		E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRPinTableViewCell.xib; sourceTree = "<group>"; };
 		E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinTableViewCell.swift; sourceTree = "<group>"; };
 		E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladder-client-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 				E6C32EE01F92CC610052DDE3 /* Model */,
 				E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */,
 				E674AB401F94588D00348C98 /* UIKit+Extension */,
+				E67600091F9481B2000A7B16 /* SwiftyJSON */,
 				E674B5081F74EE3600D05461 /* LDRTabBarController.swift */,
 				E618BBC01F805302006B593E /* LDRWebViewController.swift */,
 				E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */,
@@ -161,10 +168,22 @@
 			path = "UIKit+Extension";
 			sourceTree = "<group>";
 		};
+		E67600091F9481B2000A7B16 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				E676000A1F9481DA000A7B16 /* SwiftyJSON.h */,
+				E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */ = {
 			isa = PBXGroup;
 			children = (
 				E66EF8581F945EE20073C44B /* URL+Queries.swift */,
+				E676000F1F94855E000A7B16 /* LDROperation.h */,
+				E67600101F94855F000A7B16 /* LDROperation.m */,
 				E6BCD0181F944CA200B2E7E6 /* Reachability.h */,
 				E6BCD0191F944CA200B2E7E6 /* Reachability.m */,
 			);
@@ -353,6 +372,7 @@
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
 				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
+				E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
@@ -365,6 +385,7 @@
 				E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */,
 				E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */,
 				E6A4F7911F74E524001BE38F /* LDRFeedViewForHeader.swift in Sources */,
+				E67600111F94855F000A7B16 /* LDROperation.m in Sources */,
 				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E6FFD66B1F6DEB7900AD947E /* LDRPinViewController.swift in Sources */,
 				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,

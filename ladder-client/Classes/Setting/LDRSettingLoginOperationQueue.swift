@@ -29,21 +29,16 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        // no internet connection
-        if Reachability.forInternetConnection().currentReachabilityStatus() == NotReachable {
-            completionHandler(json: nil, error: LDRError.notReachable)
-            return
-        }
         // invalid username
         let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
         if username == nil {
-            completionHandler(json: nil, error: LDRError.invalidUsername)
+            completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
         let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
         if password == nil {
-            completionHandler(json: nil, error: LDRError.invalidPassword)
+            completionHandler(nil, LDRError.invalidPassword)
             return
         }
         // invalid url
@@ -51,7 +46,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         let sessionUrl = LDRUrl(path: LDR.API.login)
         let readerSidUrl = LDRUrl(path: LDR.API.loginIndex)
         if memberSidUrl == nil || sessionUrl == nil || readerSidUrl == nil {
-            completionHandler(json: nil, error: LDRError.invalidLdrUrl)
+            completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
