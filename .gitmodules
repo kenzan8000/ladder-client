@@ -1,0 +1,3 @@
+[submodule "ladder-client/Classes/SwiftyJSON"]
+	path = ladder-client/Classes/SwiftyJSON
+	url = https://github.com/SwiftyJSON/SwiftyJSON.git
