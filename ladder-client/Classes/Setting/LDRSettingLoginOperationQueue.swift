@@ -2,44 +2,16 @@
 class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - property
-    var username: String = ""
-    var password: String = ""
+
+    static let sharedInstance = LDRSettingLoginOperationQueue()
 
 
     /// MARK: - initialization
 
-    /**
-     * create login operation
-     * @param username ldr username string
-     * @param password ldr password string
-     */
-    init(username: string, password: string) {
-        VGMapDataDownloadOperationQueue.default().maxConcurrentOperationCount = 1
-/*
-        // request
-        let queries = [ "auth" : VGFirebase.Database.AuthToken ]
-        let request = NSMutableURLRequest(url: URL(
-                URLString: VGFirebase.API.DataJSON,
-                queries: queries as Dictionary<String, String>
-            )!
-        )
-        // execute
-        let operation = ISHTTPOperation(
-            request: request as URLRequest!,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                var responseJSON = JSON([:])
-                if object != nil { responseJSON = JSON(data: object as! Data) }
+    override init() {
+        super.init()
 
-                DispatchQueue.main.async { [unowned self] in
-                    if error != nil { self.errorDownloading(error: error!); return }
-
-                    self.updateModels(json: responseJSON, error: error)
-                }
-            }
-        )
-        VGMapDataDownloadOperationQueue.default().addOperation(operation!)
-*/
-        self.init()
+        LDRSettingLoginOperationQueue.default().maxConcurrentOperationCount = 1
     }
 
 
@@ -47,6 +19,40 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     deinit {
         LDRSettingLoginOperationQueue.default().cancelAllOperations()
+    }
+
+
+    /// MARK: - public api
+
+    /**
+     * start login
+     **/
+    func start() {
+        // no internet connection
+        if Reachability.forInternetConnection().currentReachabilityStatus() == NotReachable {
+            //LDRError.notReachable
+            return
+        }
+
+        // no username
+        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        if username == nil {
+            //LDRError.invalidUsername
+            return
+        }
+        // no password
+        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        if password == nil {
+            //LDRError.invalidPassword
+            return
+        }
+        // no ldrurl
+        let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+        if ldrUrlString == nil {
+            //LDRError.invalidLdrUrl
+            return
+        }
+
     }
 
 }

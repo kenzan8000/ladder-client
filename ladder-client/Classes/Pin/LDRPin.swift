@@ -86,7 +86,7 @@ class LDRPin: NSManagedObject {
             for model in models { context.delete(model) }
             try context.save()
         }
-        catch { return LDRError.DeleteModelsFailed }
+        catch { return LDRError.deleteModelsFailed }
 
         return nil
     }

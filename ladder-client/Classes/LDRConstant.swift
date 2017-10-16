@@ -1,22 +1,30 @@
 /// MARK: - User Defaults
 
 struct LDRUserDefaults {
-    // uuid
     static let uuid                             = "LDRUserDefaults.uuid"
+    static let username                         = "LDRUserDefaults.username"
+    static let password                         = "LDRUserDefaults.password"
+    static let ldrUrlString                     = "LDRUserDefaults.ldrUrlString"
 }
 
 
 /// MARK: - NotificationCenter
 
 struct LDRNotificationCenter {
-    // tutorial
-    static let doneTutorial                     = Notification.Name("LDRNotificationCenter.doneTutorial")
+    //static let = Notification.Name("LDRNotificationCenter.")
 }
 
 
 /// MARK: - Error
 enum LDRError: Error {
-    case DeleteModelsFailed
+    // core data
+    case deleteModelsFailed
+    // internet connection
+    case notReachable
+    // login
+    case invalidUsername
+    case invalidPassword
+    case invalidLdrUrl
 }
 
 
