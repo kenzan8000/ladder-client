@@ -50,9 +50,42 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             return
         }
 
+        // get member_sid
         let memberSidRequest = NSMutableURLRequest(url: memberSidUrl!)
+        self.addOperation(LDROperation(
+            request: memberSidRequest as URLRequest!,
+            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                DispatchQueue.main.async { [unowned self] in
+                    if error != nil { completionHandler(nil, error!) }
+                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                }
+            }
+        ))
+
+        // get cookies .LRC, .LH, .LL
         let sessionRequest = NSMutableURLRequest(url: URL(url: sessionUrl!, parameters: ["livedoor_id": username!, "password": password!])!)
+        self.addOperation(LDROperation(
+            request: sessionRequest as URLRequest!,
+            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                DispatchQueue.main.async { [unowned self] in
+                    if error != nil { completionHandler(nil, error!) }
+                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                }
+            }
+        ))
+
+        // get reader_sid
         let readerSidRequest = NSMutableURLRequest(url: readerSidUrl!)
+        self.addOperation(LDROperation(
+            request: readerSidRequest as URLRequest!,
+            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                DispatchQueue.main.async { [unowned self] in
+                    if error != nil { completionHandler(nil, error!) }
+                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                    completionHandler(nil, nil)
+                }
+            }
+        ))
     }
 
 }
