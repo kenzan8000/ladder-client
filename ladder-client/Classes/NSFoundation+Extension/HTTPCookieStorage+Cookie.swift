@@ -28,18 +28,20 @@ extension HTTPCookieStorage {
     }
 
     /**
-     * add cookie by url response
+     * add cookies by url response
      * @param httpUrlResponse HTTPURLResponse
      **/
-    func addCookie(httpUrlResponse: HTTPURLResponse) {
+    func addCookies(httpUrlResponse: HTTPURLResponse?) {
+        if httpUrlResponse == nil { return }
+
         var headerFields: [String: String] = [:]
-        for (key, value) in httpUrlResponse.allHeaderFields {
+        for (key, value) in httpUrlResponse!.allHeaderFields {
             if !(key is String) { continue }
             if !(value is String) { continue }
             headerFields[key as! String] = value as? String
         }
-        if httpUrlResponse.url == nil { return }
-        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: httpUrlResponse.url!)
+        if httpUrlResponse!.url == nil { return }
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: httpUrlResponse!.url!)
         for cookie in cookies { HTTPCookieStorage.shared.setCookie(cookie) }
     }
 

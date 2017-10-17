@@ -74,3 +74,18 @@ func LDRUrl(path: String) -> URL? {
     if ldrUrlString == nil { return nil }
     return URL(string: ldrUrlString! + "/path")
 }
+
+/**
+ * return domain
+ * @return String?
+ */
+func LDRDomain() -> String? {
+    let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+    if ldrUrlString == nil { return nil }
+    let url = URL(string: ldrUrlString!)
+    let host = url?.host
+    if host == nil { return nil }
+    let path = url?.path
+    if path == nil { return host! }
+    return host! + path!
+}

@@ -4,6 +4,11 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     /// MARK: - property
 
     static let sharedInstance = LDRSettingLoginOperationQueue()
+    var username: String?
+    var password: String?
+    var memberSidUrl: URL?
+    var sessionUrl: URL?
+    var readerSidUrl: URL?
 
 
     /// MARK: - initialization
@@ -30,26 +35,41 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      **/
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
-        if username == nil {
+        self.username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        if self.username == nil {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
-        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
-        if password == nil {
+        self.password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        if self.password == nil {
             completionHandler(nil, LDRError.invalidPassword)
             return
         }
         // invalid url
-        let memberSidUrl = LDRUrl(path: LDR.API.index)
-        let sessionUrl = LDRUrl(path: LDR.API.login)
-        let readerSidUrl = LDRUrl(path: LDR.API.loginIndex)
-        if memberSidUrl == nil || sessionUrl == nil || readerSidUrl == nil {
+        self.memberSidUrl = LDRUrl(path: LDR.API.index)
+        self.sessionUrl = LDRUrl(path: LDR.API.login)
+        self.readerSidUrl = LDRUrl(path: LDR.API.loginIndex)
+        let domain = LDRDomain()
+        if self.memberSidUrl == nil || self.sessionUrl == nil || self.readerSidUrl == nil || domain == nil {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
+        // stop all network connections
+        LDRSettingLoginOperationQueue.default().cancelAllOperations()
+        // delete cookies
+        let cookieNames = ["member_sid", ".LRC", ".LH", ".LL", "reader_sid"]
+        for cookieName in cookieNames {
+            HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: domain!)
+        }
+
+        self.requestMemberSid(completionHandler: completionHandler)
+
+    }
+
+
+    func requestMemberSid(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // get member_sid
         let memberSidRequest = NSMutableURLRequest(url: memberSidUrl!)
         self.addOperation(LDROperation(
@@ -57,23 +77,29 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!) }
-                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: response)
+                    self.requestSession(completionHandler: completionHandler)
                 }
             }
         ))
+    }
 
+    func requestSession(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // get cookies .LRC, .LH, .LL
-        let sessionRequest = NSMutableURLRequest(url: URL(url: sessionUrl!, parameters: ["livedoor_id": username!, "password": password!])!)
+        let sessionRequest = NSMutableURLRequest(url: URL(url: sessionUrl!, parameters: ["livedoor_id": self.username!, "password": self.password!])!)
         self.addOperation(LDROperation(
             request: sessionRequest as URLRequest!,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!) }
-                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: response)
+                    self.requestReaderSid(completionHandler: completionHandler)
                 }
             }
         ))
+    }
 
+    func requestReaderSid(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // get reader_sid
         let readerSidRequest = NSMutableURLRequest(url: readerSidUrl!)
         self.addOperation(LDROperation(
@@ -81,7 +107,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!) }
-                    //if object != nil { responseJSON = JSON(data: object as! Data) }
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: response)
                     completionHandler(nil, nil)
                 }
             }
