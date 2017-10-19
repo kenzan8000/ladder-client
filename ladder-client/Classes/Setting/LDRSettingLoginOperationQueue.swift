@@ -3,7 +3,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - property
 
-    static let sharedInstance = LDRSettingLoginOperationQueue()
+    static let shared = LDRSettingLoginOperationQueue()
     var username: String?
     var password: String?
     var memberSidUrl: URL?
@@ -57,6 +57,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         }
 
         // stop all network connections
+        LDRFeedOperationQueue.default().cancelAllOperations()
         LDRSettingLoginOperationQueue.default().cancelAllOperations()
         // delete cookies
         let cookieNames = ["member_sid", ".LRC", ".LH", ".LL", "reader_sid"]
