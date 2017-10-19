@@ -1,9 +1,9 @@
-// MARK: - LDRFeedOperationQueue
-class LDRFeedOperationQueue: ISHTTPOperationQueue {
+// MARK: - LDRPinOperationQueue
+class LDRPinOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - property
 
-    static let shared = LDRFeedOperationQueue()
+    static let shared = LDRPinOperationQueue()
 
 
     /// MARK: - initialization
@@ -11,14 +11,14 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     override init() {
         super.init()
 
-        LDRFeedOperationQueue.default().maxConcurrentOperationCount = 5
+        LDRPinOperationQueue.default().maxConcurrentOperationCount = 1
     }
 
 
     /// MARK: - destruction
 
     deinit {
-        LDRFeedOperationQueue.default().cancelAllOperations()
+        LDRPinOperationQueue.default().cancelAllOperations()
     }
 
 
@@ -29,7 +29,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        LDRFeedOperationQueue.default().cancelAllOperations()
+        LDRPinOperationQueue.default().cancelAllOperations()
     }
 
 }

@@ -58,6 +58,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
         // stop all network connections
         LDRFeedOperationQueue.default().cancelAllOperations()
+        LDRPinOperationQueue.default().cancelAllOperations()
         LDRSettingLoginOperationQueue.default().cancelAllOperations()
         // delete cookies
         let cookieNames = ["member_sid", ".LRC", ".LH", ".LL", "reader_sid"]
