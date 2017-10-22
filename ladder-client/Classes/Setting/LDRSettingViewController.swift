@@ -45,6 +45,13 @@ class LDRSettingViewController: UIViewController {
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
         )
 
+        // text fields
+        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        if username != nil { self.usernameTextField.text = username! }
+        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        if password != nil { self.passwordTextField.text = password! }
+        let urlDomain = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+        if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +77,11 @@ class LDRSettingViewController: UIViewController {
      **/
     @IBAction func buttonTouchedUpInside(button: UIButton) {
         if button == self.loginButton {
+            UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
+            UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
+            UserDefaults.standard.setValue(self.urlDomainTextField.text, forKey: LDRUserDefaults.ldrUrlString)
+            UserDefaults.standard.synchronize()
+
             self.navigationController?.dismiss(animated: true, completion: {});
         }
     }
