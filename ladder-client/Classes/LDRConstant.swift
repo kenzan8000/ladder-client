@@ -25,15 +25,16 @@ enum LDRError: Error {
     case invalidUsername
     case invalidPassword
     case invalidLdrUrl
+    // html parse
+    case htmlParseFailed
 }
 
 
 /// MARK: - LDR
 struct LDR {
     struct API {
-        static let index =                  "/"
         static let login =                  "/login"
-        static let loginIndex =             "/login/index"
+        static let session =                "/session"
     }
 }
 
@@ -72,20 +73,6 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
 func LDRUrl(path: String) -> URL? {
     let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
     if ldrUrlString == nil { return nil }
-    return URL(string: ldrUrlString! + "/path")
+    return URL(string: "https://" + ldrUrlString! + "\(path)")
 }
 
-/**
- * return domain
- * @return String?
- */
-func LDRDomain() -> String? {
-    let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
-    if ldrUrlString == nil { return nil }
-    let url = URL(string: ldrUrlString!)
-    let host = url?.host
-    if host == nil { return nil }
-    let path = url?.path
-    if path == nil { return host! }
-    return host! + path!
-}

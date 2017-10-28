@@ -14,6 +14,8 @@ target target_name do
 
   # json parser
   pod 'SwiftyJSON'
+  # html parser
+  pod "HTMLReader"
 
   # network
   pod 'ISHTTPOperation'

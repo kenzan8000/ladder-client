@@ -82,7 +82,16 @@ class LDRSettingViewController: UIViewController {
             UserDefaults.standard.setValue(self.urlDomainTextField.text, forKey: LDRUserDefaults.ldrUrlString)
             UserDefaults.standard.synchronize()
 
-            self.navigationController?.dismiss(animated: true, completion: {});
+            LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+
+                if error != nil {
+                    let alertController = UIAlertController(title: "", message: "\(error!)", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: {})
+                }
+            })
+
+            //self.navigationController?.dismiss(animated: true, completion: {});
         }
     }
 

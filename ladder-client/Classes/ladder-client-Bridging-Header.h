@@ -1,5 +1,6 @@
 #import "IonIcons-iOS.h"
 #import "SwiftyJSON.h"
+#import "HTMLReader.h"
 #import "ISHTTPOperation.h"
 #import "Reachability.h"
 #import "LDROperation.h"
