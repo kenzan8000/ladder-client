@@ -42,7 +42,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
         if self.password == nil { completionHandler(nil, LDRError.invalidPassword); return }
         // invalid url
-        self.loginUrl = LDRUrl(path: LDR.API.login, params: ["username": self.username!, "password": self.password!])
+        self.loginUrl = LDRUrl(path: LDR.login, params: ["username": self.username!, "password": self.password!])
         if self.loginUrl == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
 
         // delete cookies
