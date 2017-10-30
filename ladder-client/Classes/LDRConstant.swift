@@ -25,8 +25,7 @@ enum LDRError: Error {
     case invalidUsername
     case invalidPassword
     case invalidLdrUrl
-    // html parse
-    case htmlParseFailed
+    case invalidAuthenticityToken
 }
 
 
@@ -34,7 +33,6 @@ enum LDRError: Error {
 struct LDR {
     struct API {
         static let login =                  "/login"
-        static let session =                "/session"
     }
 }
 
@@ -67,12 +65,20 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
 /**
  * return ldr url
  *
- * @param path path string
+ * @param path path String
+ * @param params url parameters Hash
  * @return URL?
  */
-func LDRUrl(path: String) -> URL? {
+func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
     let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
     if ldrUrlString == nil { return nil }
-    return URL(string: "https://" + ldrUrlString! + "\(path)")
+    var url = URL(string: "https://" + ldrUrlString! + "\(path)")
+    if url != nil && params.count > 0 {
+        var urlComponents = URLComponents(url: url!, resolvingAgainstBaseURL: false)
+        let queryItems = params.map { return URLQueryItem(name: "\($0)", value: "\($1)") }
+        urlComponents?.queryItems = queryItems
+        url = urlComponents?.url
+    }
+    return url
 }
 
