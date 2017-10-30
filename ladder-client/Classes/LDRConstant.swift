@@ -5,6 +5,7 @@ struct LDRUserDefaults {
     static let username                         = "LDRUserDefaults.username"
     static let password                         = "LDRUserDefaults.password"
     static let ldrUrlString                     = "LDRUserDefaults.ldrUrlString"
+    static let apiKey                           = "LDRUserDefaults.apiKey"
 }
 
 

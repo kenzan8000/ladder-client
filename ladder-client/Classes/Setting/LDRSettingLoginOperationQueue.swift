@@ -84,7 +84,12 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         let jsContext = JSContext()!
                         jsContext.evaluateScript(jsText)
                         jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
-                        jsContext.evaluateScript("getApiKey();").toString()
+
+                        let apiKey = jsContext.evaluateScript("getApiKey();").toString()
+                        UserDefaults.standard.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
+                        UserDefaults.standard.synchronize()
+
+                        //UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
                     }
                 }
             }
