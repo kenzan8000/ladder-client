@@ -71,26 +71,24 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     if !(object is Data) { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
                     if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
-                    let str = String(data: object as! Data, encoding: String.Encoding.utf8)
-                    LDRLOG(str!)
-
                     // parse html
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
                     let form = document.firstNode(matchingSelector: "script")
                     for child in form!.children {
                         if !(child is HTMLNode) { continue }
 
+                        // parse ApiKey
                         let jsText = (child as! HTMLNode).textContent
                         let jsContext = JSContext()!
                         jsContext.evaluateScript(jsText)
                         jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
-
+                        // save ApiKey
                         let apiKey = jsContext.evaluateScript("getApiKey();").toString()
                         UserDefaults.standard.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
                         UserDefaults.standard.synchronize()
-
-                        //UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+                        break
                     }
+                    completionHandler(nil, nil)
                 }
             }
         ))

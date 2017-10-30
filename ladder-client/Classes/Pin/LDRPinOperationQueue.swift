@@ -11,7 +11,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
     override init() {
         super.init()
 
-        LDRPinOperationQueue.default().maxConcurrentOperationCount = 1
+        LDRPinOperationQueue.default().maxConcurrentOperationCount = 3
     }
 
 
@@ -24,12 +24,12 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - public api
 
-    /**
-     * start
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
-    func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        LDRPinOperationQueue.default().cancelAllOperations()
-    }
+//    /**
+//     * start
+//     * @param completionHandler (json: JSON?, error: Error?) -> Void
+//     **/
+//    func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+//        LDRPinOperationQueue.default().cancelAllOperations()
+//    }
 
 }
