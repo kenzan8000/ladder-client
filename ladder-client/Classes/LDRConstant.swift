@@ -35,6 +35,7 @@ enum LDRError: Error {
 /// MARK: - LDR
 struct LDR {
     static let login =                      "/login"
+    static let session =                    "/session"
     struct api {
         static let subs =                   "/api/subs"
         static let unread =                 "/api/unread"

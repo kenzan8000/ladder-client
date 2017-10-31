@@ -12,14 +12,10 @@ extension Dictionary {
      * @return Data?
      **/
     func HTTPBodyValue() -> Data? {
-        var queryCount = 0
-        var HTTPBodyString = ""
-        for (key, value) in self {
-            let keyValue = "\("\(key)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))=\("\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
-            HTTPBodyString = HTTPBodyString + ((queryCount == 0) ? "?\(keyValue)" : "&\(keyValue)")
-            queryCount = queryCount + 1
-        }
-        return HTTPBodyString.data(using: .utf8)
+        var data: Data? = nil
+        do { data = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted) }
+        catch { data = nil }
+        return data
     }
 
 }
