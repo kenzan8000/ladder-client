@@ -83,9 +83,10 @@ class LDRSettingViewController: UIViewController {
             UserDefaults.standard.synchronize()
 
             LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+                LDRFeedOperationQueue.shared.start(completionHandler: { (json: JSON?, error: Error?) -> Void in
+                })
+                self.navigationController?.dismiss(animated: true, completion: {});
             })
-
-            self.navigationController?.dismiss(animated: true, completion: {});
         }
     }
 

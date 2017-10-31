@@ -27,6 +27,8 @@ enum LDRError: Error {
     case invalidPassword
     case invalidLdrUrl
     case invalidAuthenticityToken
+    // api
+    case invalidApiKey
 }
 
 

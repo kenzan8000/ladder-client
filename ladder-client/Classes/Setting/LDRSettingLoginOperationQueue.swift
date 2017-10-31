@@ -7,9 +7,6 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     /// MARK: - property
 
     static let shared = LDRSettingLoginOperationQueue()
-    var username: String?
-    var password: String?
-    var loginUrl: URL?
 
 
     /// MARK: - initialization
@@ -17,14 +14,14 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     override init() {
         super.init()
 
-        LDRSettingLoginOperationQueue.default().maxConcurrentOperationCount = 1
+        self.maxConcurrentOperationCount = 1
     }
 
 
     /// MARK: - destruction
 
     deinit {
-        LDRSettingLoginOperationQueue.default().cancelAllOperations()
+        self.cancelAllOperations()
     }
 
 
@@ -36,33 +33,23 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      **/
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        self.username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
-        if self.username == nil { completionHandler(nil, LDRError.invalidUsername); return }
+        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        if username == nil { completionHandler(nil, LDRError.invalidUsername); return }
         // invalid password
-        self.password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
-        if self.password == nil { completionHandler(nil, LDRError.invalidPassword); return }
+        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        if password == nil { completionHandler(nil, LDRError.invalidPassword); return }
         // invalid url
-        self.loginUrl = LDRUrl(path: LDR.login, params: ["username": self.username!, "password": self.password!])
-        if self.loginUrl == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-
+        let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
+        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
         // delete cookies
-        for cookieName in ["_fastladder_session"] {
-            HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: self.loginUrl!.host!)
-        }
-
+        for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
         // stop all network connections
         LDRFeedOperationQueue.default().cancelAllOperations()
         LDRPinOperationQueue.default().cancelAllOperations()
-        LDRSettingLoginOperationQueue.default().cancelAllOperations()
+        self.cancelAllOperations()
 
-        self.requestLogin(completionHandler: completionHandler)
-    }
-
-
-    func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        if self.loginUrl == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-
-        let request = NSMutableURLRequest(url: self.loginUrl!)
+        // request
+        let request = NSMutableURLRequest(url: url!)
         self.addOperation(LDROperation(
             request: request as URLRequest!,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
@@ -93,5 +80,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             }
         ))
     }
+
+    /// MARK: - private api
 
 }
