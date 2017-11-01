@@ -59,13 +59,11 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.addOperation(LDROperation(
             request: request as URLRequest!,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                var json = JSON([:])
+                var json = JSON([])
                 do {
                     if object != nil {
-                        LDRLOG(response!.allHeaderFields)
                         let jsonString = try String(data: object as! Data, encoding: .utf8)
                         json = try JSON(string: jsonString)
-                        LDRLOG(json)
                     }
                 }
                 catch let e { completionHandler(nil, e); return }

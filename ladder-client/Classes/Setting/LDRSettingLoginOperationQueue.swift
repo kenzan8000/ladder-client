@@ -38,9 +38,9 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.cancelAllOperations()
 
         // delete cookies
-        let url = LDRUrl(path: LDR.login)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-        for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
+        //let url = LDRUrl(path: LDR.login)
+        //if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        //for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
 
         // request login
         self.requestLogin(completionHandler: completionHandler)
@@ -70,7 +70,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
                     if !(object is Data) { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
-                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     // parse html
                     var authenticityToken: String? = nil
@@ -121,25 +121,25 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
                     if !(object is Data) { completionHandler(nil, LDRError.invalidApiKey); return }
-                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     var apiKey = "undefined"
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
                     let scripts = document.nodes(matchingSelector: "script")
                     for script in scripts {
-                    for child in script.children {
-                        if !(child is HTMLNode) { continue }
+                        for child in script.children {
+                            if !(child is HTMLNode) { continue }
 
-                        // parse ApiKey
-                        let jsText = (child as! HTMLNode).textContent
-                        let jsContext = JSContext()!
-                        jsContext.evaluateScript(jsText)
-                        jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
-                        // save ApiKey
-                        apiKey = jsContext.evaluateScript("getApiKey();").toString()
-                        if apiKey == "undefined" { continue }
-                        break
-                    }
+                            // parse ApiKey
+                            let jsText = (child as! HTMLNode).textContent
+                            let jsContext = JSContext()!
+                            jsContext.evaluateScript(jsText)
+                            jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
+                            // save ApiKey
+                            apiKey = jsContext.evaluateScript("getApiKey();").toString()
+                            if apiKey == "undefined" { continue }
+                            break
+                        }
                         if apiKey != "undefined" { break }
                     }
                     if apiKey == "undefined" { completionHandler(nil, LDRError.invalidApiKey); return }
