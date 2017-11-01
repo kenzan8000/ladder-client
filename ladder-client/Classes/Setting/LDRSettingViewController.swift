@@ -138,7 +138,9 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.startAnimating()
         self.navigationItem.rightBarButtonItem = nil
         LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-            if error == nil { self.navigationController?.dismiss(animated: true, completion: {}); }
+            if error == nil {
+                self.navigationController?.dismiss(animated: true, completion: {});
+            }
             else {
                 self.endLogin()
                 // display error

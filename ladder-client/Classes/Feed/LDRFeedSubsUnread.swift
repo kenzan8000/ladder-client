@@ -11,6 +11,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     @NSManaged var rate: NSNumber
     @NSManaged var folder: String
 
+    @NSManaged var title: String
     @NSManaged var link: String
     @NSManaged var feedlink: String
     @NSManaged var icon: String
@@ -74,6 +75,33 @@ class LDRFeedSubsUnread: NSManagedObject {
         catch { models = [] }
 
         return models
+    }
+
+    /**
+     * save
+     * @param json JSON
+     * @return Error?
+     */
+    class func save(json: JSON) -> Error? {
+        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+
+        let items = json.arrayValue
+        for item in items {
+            let model = NSEntityDescription.insertNewObject(forEntityName: "LDRFeedSubsUnread", into: context) as! LDRFeedSubsUnread
+            model.subscribeId = item["subscribe_id"].stringValue
+            model.rate = NSNumber(value: item["rate"].intValue)
+            model.folder = item["folder"].stringValue
+            model.title = item["title"].stringValue
+            model.link = item["link"].stringValue
+            model.feedlink = item["feedlink"].stringValue
+            model.icon = item["icon"].stringValue
+            model.unreadCount = NSNumber(value: item["unread_count"].intValue)
+        }
+
+        do { try context.save() }
+        catch { return LDRError.saveModelsFailed }
+
+        return nil
     }
 
     /**

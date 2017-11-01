@@ -62,8 +62,9 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                 var json = JSON([])
                 do {
                     if object != nil {
-                        let jsonString = try String(data: object as! Data, encoding: .utf8)
-                        json = try JSON(string: jsonString)
+                        //let jsonString = try String(data: object as! Data, encoding: .utf8)
+                        //json = try JSON(string: jsonString)
+                        json = try JSON(data: object as! Data)
                     }
                 }
                 catch let e { completionHandler(nil, e); return }

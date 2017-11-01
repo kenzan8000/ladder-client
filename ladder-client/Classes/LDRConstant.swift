@@ -20,6 +20,7 @@ struct LDRNotificationCenter {
 enum LDRError: Error {
     // core data
     case deleteModelsFailed
+    case saveModelsFailed
     // internet connection
     case notReachable
     // login
