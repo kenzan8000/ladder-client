@@ -19,7 +19,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     /// MARK: - destruction
 
     deinit {
-        LDRFeedOperationQueue.default().cancelAllOperations()
+        self.cancelAllOperations()
     }
 
 

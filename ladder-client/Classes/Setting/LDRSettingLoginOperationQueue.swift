@@ -33,8 +33,8 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      **/
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // stop all network connections
-        LDRFeedOperationQueue.default().cancelAllOperations()
-        LDRPinOperationQueue.default().cancelAllOperations()
+        LDRFeedOperationQueue.shared.cancelAllOperations()
+        LDRPinOperationQueue.shared.cancelAllOperations()
         self.cancelAllOperations()
 
         // delete cookies
@@ -76,6 +76,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     var authenticityToken: String? = nil
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
                     let form = document.firstNode(matchingSelector: "form")
+                    if form == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
                     for child in form!.children {
                         if !(child is HTMLElement) { continue }
                         if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
@@ -126,6 +127,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     var apiKey = "undefined"
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
                     let scripts = document.nodes(matchingSelector: "script")
+                    if scripts == nil { completionHandler(nil, LDRError.invalidApiKey); return }
                     for script in scripts {
                         for child in script.children {
                             if !(child is HTMLNode) { continue }

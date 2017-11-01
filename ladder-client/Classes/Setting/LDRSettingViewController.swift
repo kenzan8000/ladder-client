@@ -29,6 +29,7 @@ class LDRSettingViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     //
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
 
 
     // MARK: - life cycle
@@ -56,6 +57,9 @@ class LDRSettingViewController: UIViewController {
         loginButtonMaskLayer.path = UIBezierPath(roundedRect: self.loginButton.bounds, cornerRadius: 4).cgPath
         self.loginButton.layer.mask = loginButtonMaskLayer
 
+        // login indicator view hidden
+        self.loginActivityIndicatorView.isHidden = true
+
         // text fields
         let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
         if username != nil { self.usernameTextField.text = username! }
@@ -80,10 +84,7 @@ class LDRSettingViewController: UIViewController {
         if barButtonItem == self.navigationItem.rightBarButtonItem {
             if self.isLogingIn() { return }
 
-            UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
-            UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
-            UserDefaults.standard.setValue(self.urlDomainTextField.text, forKey: LDRUserDefaults.ldrUrlString)
-            UserDefaults.standard.synchronize()
+            self.saveSettings()
 
             self.navigationController?.dismiss(animated: true, completion: {});
         }
@@ -97,10 +98,7 @@ class LDRSettingViewController: UIViewController {
         if button == self.loginButton {
             if self.isLogingIn() { return }
 
-            UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
-            UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
-            UserDefaults.standard.setValue(self.urlDomainTextField.text, forKey: LDRUserDefaults.ldrUrlString)
-            UserDefaults.standard.synchronize()
+            self.saveSettings()
 
             self.startLogin()
         }
@@ -113,15 +111,38 @@ class LDRSettingViewController: UIViewController {
     /// MARK: - private api
 
     /**
+     * save settings
+     **/
+    private func saveSettings() {
+        UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
+        UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
+        var urlDomain = self.urlDomainTextField.text
+        if urlDomain is String {
+             while urlDomain!.characters.last == "/" {
+                urlDomain = String(urlDomain!.characters.dropLast(1))
+            }
+
+        }
+        UserDefaults.standard.setValue(urlDomain, forKey: LDRUserDefaults.ldrUrlString)
+        UserDefaults.standard.synchronize()
+    }
+
+    /**
      * start login
      **/
     private func startLogin() {
-        self.loginButton.alpha = 0.35
+        self.loginButton.setTitleColor(UIColor.clear, for: .normal)
+        self.loginButton.setTitleColor(UIColor.clear, for: .selected)
+        self.loginButton.setTitleColor(UIColor.clear, for: .highlighted)
+        self.loginActivityIndicatorView.isHidden = false
+        self.loginActivityIndicatorView.startAnimating()
         self.navigationItem.rightBarButtonItem = nil
         LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-            self.endLogin()
             if error == nil {
                 self.navigationController?.dismiss(animated: true, completion: {});
+            }
+            else {
+                self.endLogin()
             }
         })
     }
@@ -130,7 +151,11 @@ class LDRSettingViewController: UIViewController {
      * end login
      **/
     private func endLogin() {
-        self.loginButton.alpha = 1.0
+        self.loginButton.setTitleColor(UIColor.darkGray, for: .normal)
+        self.loginButton.setTitleColor(UIColor.lightGray, for: .selected)
+        self.loginButton.setTitleColor(UIColor.lightGray, for: .highlighted)
+        self.loginActivityIndicatorView.isHidden = true
+        self.loginActivityIndicatorView.stopAnimating()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
@@ -144,8 +169,7 @@ class LDRSettingViewController: UIViewController {
      * @return Bool
      **/
     private func isLogingIn() -> Bool {
-        if self.loginButton.alpha < 0.9 { return true }
-        return false
+        return !(self.loginActivityIndicatorView.isHidden)
     }
 
 }

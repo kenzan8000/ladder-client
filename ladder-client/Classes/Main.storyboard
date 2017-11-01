@@ -361,18 +361,22 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="disabled">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="selected">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="buttonTouchedUpInsideButton:" destination="3o9-vL-tFK" eventType="touchUpInside" id="62a-kw-7Wp"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cmw-5u-nJ7">
+                                        <rect key="frame" x="175" y="26" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -381,6 +385,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Z5K-A5-Nwu"/>
                     <connections>
+                        <outlet property="loginActivityIndicatorView" destination="cmw-5u-nJ7" id="Rtx-Kq-ADi"/>
                         <outlet property="loginButton" destination="zde-YW-lQ7" id="Jky-EO-V2M"/>
                         <outlet property="passwordTextField" destination="0WW-rr-x0j" id="Uh9-D3-Npi"/>
                         <outlet property="urlDomainLabel" destination="sZP-hL-qji" id="e2l-mE-nHI"/>
