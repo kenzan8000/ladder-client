@@ -53,10 +53,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
         let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
-        if username == nil { completionHandler(nil, LDRError.invalidUsername); return }
+        if username == nil || username!.characters.count < 3 { completionHandler(nil, LDRError.invalidUsername); return }
         // invalid password
         let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
-        if password == nil { completionHandler(nil, LDRError.invalidPassword); return }
+        if password == nil || password!.characters.count < 3 { completionHandler(nil, LDRError.invalidPassword); return }
         // invalid url
         let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
         //let url = LDRUrl(path: LDR.login)

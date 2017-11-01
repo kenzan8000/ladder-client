@@ -93,3 +93,14 @@ func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
     return url
 }
 
+/**
+ * return error message
+ *
+ * @param error Error?
+ * @return error message string
+ */
+func LDRErrorMessage(error: Error?) -> String {
+    if error == nil { return "Unknown Error" }
+    if !(error is LDRError) { return "\(error!.localizedDescription)" }
+    return "\(String(describing: error!))"
+}
