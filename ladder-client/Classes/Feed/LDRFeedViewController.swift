@@ -14,6 +14,11 @@ class LDRFeedViewController: UIViewController {
     }
     @IBOutlet weak var tableView: UITableView!
 
+    var subsunreads: [LDRFeedSubsUnread] = []
+    var rates: [Int] = []
+    var folders: [String] = []
+
+
     // MARK: - life cycle
 
     override func loadView() {
@@ -54,6 +59,8 @@ class LDRFeedViewController: UIViewController {
                 }
             )
         }
+
+        self.reloadData()
     }
 
     override func viewDidLoad() {
@@ -72,7 +79,7 @@ class LDRFeedViewController: UIViewController {
      * @param segmentedControl UISegmentedControl
      **/
     @IBAction func segmentedControlValueChanged(segmentedControl: UISegmentedControl) {
-
+        self.reloadData()
     }
 
     /**
@@ -87,6 +94,22 @@ class LDRFeedViewController: UIViewController {
         }
     }
 
+
+    /// MARK: - public api
+
+    /**
+     * update subsunread models and tableView
+     **/
+    func reloadData() {
+        self.subsunreads = LDRFeedSubsUnread.fetch(segment: self.segmentedControl.selectedSegmentIndex)
+        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+            self.rates = LDRFeedSubsUnread.getRates(subsunreads: self.subsunreads)
+        }
+        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+            self.folders = LDRFeedSubsUnread.getFolders(subsunreads: self.subsunreads)
+        }
+        self.tableView.reloadData()
+    }
 }
 
 
@@ -95,24 +118,50 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.segmentedControl.selectedSegmentIndex == segment.rate {
+            return self.rates.count
         }
-        return 2
+        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+            return self.folders.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.segmentedControl.selectedSegmentIndex == segment.rate {
+            return LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
         }
-        return 5
+        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+            return LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = LDRFeedViewForHeader.ldr_view()
         headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: headerView.frame.size.height)
+        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+            headerView.titleLabel.text = LDRFeedSubsUnread.getRateName(rate: self.rates[section])
+        }
+        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+            headerView.titleLabel.text = self.folders[section]
+        }
         return headerView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = LDRFeedTableViewCell.ldr_cell()
+        var index = 0
+        for section in 0 ..< indexPath.section {
+            if self.segmentedControl.selectedSegmentIndex == segment.rate {
+                index = index + LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
+            }
+            else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+                index = index + LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
+            }
+        }
+        index = index + indexPath.row
+        cell.nameLabel.text = self.subsunreads[index].title
+
         return cell
     }
 
