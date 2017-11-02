@@ -74,17 +74,6 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
                     // parse html
                     let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
-                    //var authenticityToken: String? = nil
-                    //let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
-                    //let form = document.firstNode(matchingSelector: "form")
-                    //if form == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
-                    //for child in form!.children {
-                    //    if !(child is HTMLElement) { continue }
-                    //    if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
-                    //    if !((child as! HTMLElement)["value"] is String) { continue }
-                    //    authenticityToken = (child as! HTMLElement)["value"] as! String
-                    //    break
-                    //}
                     if authenticityToken == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
 
                     self.requestSession(authenticityToken: authenticityToken!, completionHandler: completionHandler)

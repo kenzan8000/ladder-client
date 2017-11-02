@@ -33,6 +33,7 @@
 		E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */; };
 		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
 		E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */; };
+		E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */; };
 		E6D1CF561F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */; };
 		E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8DA511F92CE17002CAD69 /* CoreData.framework */; };
 		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
@@ -75,6 +76,7 @@
 		E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRCoreDataManager.swift; sourceTree = "<group>"; };
 		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
 		E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRSettingViewController.swift; sourceTree = "<group>"; };
+		E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
 		E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewController.swift; sourceTree = "<group>"; };
 		E6D8DA511F92CE17002CAD69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				E69C865A1F98670E00EF525B /* LDRFeedOperationQueue.swift */,
 				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
+				E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */,
 				E6FFD6671F6DEB7900AD947E /* LDRFeedViewController.swift */,
 				E60D63D01F73ABB400D4C01F /* LDRFeedTableViewCell.swift */,
 				E60D63CF1F73ABB400D4C01F /* LDRFeedTableViewCell.xib */,
@@ -388,6 +391,7 @@
 				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
 				E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */,
+				E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,

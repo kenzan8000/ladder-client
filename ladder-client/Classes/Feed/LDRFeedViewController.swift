@@ -15,6 +15,7 @@ class LDRFeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var subsunreads: [LDRFeedSubsUnread] = []
+    var unreads: [LDRFeedUnread] = []
     var rates: [Int] = []
     var folders: [String] = []
 
@@ -60,7 +61,7 @@ class LDRFeedViewController: UIViewController {
             )
         }
 
-        self.reloadData()
+        self.reloadData(isNew: true)
     }
 
     override func viewDidLoad() {
@@ -79,7 +80,7 @@ class LDRFeedViewController: UIViewController {
      * @param segmentedControl UISegmentedControl
      **/
     @IBAction func segmentedControlValueChanged(segmentedControl: UISegmentedControl) {
-        self.reloadData()
+        self.reloadData(isNew: false)
     }
 
     /**
@@ -98,10 +99,43 @@ class LDRFeedViewController: UIViewController {
     /// MARK: - public api
 
     /**
-     * update subsunread models and tableView
+     * get index
+     * @param indexPath IndexPath
+     * @return Int
      **/
-    func reloadData() {
+    func getIndex(indexPath: IndexPath) -> Int {
+        var index = 0
+        for section in 0 ..< indexPath.section {
+            if self.segmentedControl.selectedSegmentIndex == segment.rate {
+                index = index + LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
+            }
+            else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+                index = index + LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
+            }
+        }
+        index = index + indexPath.row
+        return index
+    }
+
+    /**
+     * update subsunread models and tableView
+     * @param isNew Bool
+     **/
+    func reloadData(isNew: Bool) {
         self.subsunreads = LDRFeedSubsUnread.fetch(segment: self.segmentedControl.selectedSegmentIndex)
+        if isNew {
+            self.unreads = []
+            for subsunread in self.subsunreads { self.unreads.append(LDRFeedUnread(subscribeId: subsunread.subscribeId)) }
+        }
+        else {
+            var newUnreads: [LDRFeedUnread] = []
+            for subsunread in self.subsunreads {
+                if let i = self.unreads.index(where: { $0.subscribeId ==  subsunread.subscribeId }) {
+                    newUnreads.append(self.unreads[i])
+                }
+            }
+            self.unreads = newUnreads
+        }
         if self.segmentedControl.selectedSegmentIndex == segment.rate {
             self.rates = LDRFeedSubsUnread.getRates(subsunreads: self.subsunreads)
         }
@@ -150,23 +184,32 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = LDRFeedTableViewCell.ldr_cell()
-        var index = 0
-        for section in 0 ..< indexPath.section {
-            if self.segmentedControl.selectedSegmentIndex == segment.rate {
-                index = index + LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
-            }
-            else if self.segmentedControl.selectedSegmentIndex == segment.folder {
-                index = index + LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
-            }
-        }
-        index = index + indexPath.row
+        let index = self.getIndex(indexPath: indexPath)
         cell.nameLabel.text = self.subsunreads[index].title
+        cell.unreadCountLabel.text = "\(self.subsunreads[index].unreadCountValue)"
+        cell.setUIState(self.unreads[index].state)
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+
+        let index = self.getIndex(indexPath: indexPath)
+        switch self.unreads[index].state {
+            case LDRFeedTableViewCell.state.unloaded:
+                return
+            case LDRFeedTableViewCell.state.unread:
+                self.unreads[index].state = LDRFeedTableViewCell.state.read
+            case LDRFeedTableViewCell.state.read:
+                self.unreads[index].state = LDRFeedTableViewCell.state.read
+            case LDRFeedTableViewCell.state.noUnread:
+                return
+            default:
+                return
+        }
+        let cell = self.tableView.cellForRow(at: indexPath)
+        if cell != nil { (cell as! LDRFeedTableViewCell).setUIState(self.unreads[index].state) }
 
         let viewController = LDRFeedDetailViewController.ldr_viewController()
         viewController.hidesBottomBarWhenPushed = true
