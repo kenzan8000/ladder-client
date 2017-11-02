@@ -54,6 +54,29 @@ class LDRFeedSubsUnread: NSManagedObject {
     }
 
     /**
+     * count number of the rate
+     * @param subsunreads [LDRFeedSubsUnread]
+     * @param rate the rate
+     * @return Int
+     **/
+    class func countOfTheRate(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
+        let filtered = subsunreads.filter { $0.rateValue == rate }
+        return filtered.count
+    }
+
+    /**
+     * count number of the folder
+     * @param subsunreads [LDRFeedSubsUnread]
+     * @param folder the folder
+     * @return Int
+     **/
+    class func countOfTheFloder(subsunreads: [LDRFeedSubsUnread], folder: String) -> Int {
+        let filtered = subsunreads.filter { $0.folder == folder }
+        return filtered.count
+    }
+
+
+    /**
      * fetch from coredata
      * @return [LDRFeedSubsUnread]
      */

@@ -8,8 +8,11 @@ class LDRFeedViewController: UIViewController {
 
     var refreshView: LGRefreshView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    struct segment {
+        static let rate = 0
+        static let folder = 1
+    }
     @IBOutlet weak var tableView: UITableView!
-
 
     // MARK: - life cycle
 
@@ -19,11 +22,11 @@ class LDRFeedViewController: UIViewController {
         // segmented control
         self.segmentedControl.setImage(
             IonIcons.image(withIcon: ion_ios_star_outline, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
-            forSegmentAt: 0
+            forSegmentAt: segment.rate
         )
         self.segmentedControl.setImage(
             IonIcons.image(withIcon: ion_ios_folder_outline, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
-            forSegmentAt: 1
+            forSegmentAt: segment.folder
         )
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -91,10 +94,14 @@ class LDRFeedViewController: UIViewController {
 extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        }
         return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        }
         return 5
     }
 

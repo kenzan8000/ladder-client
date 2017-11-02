@@ -73,17 +73,18 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     // parse html
-                    var authenticityToken: String? = nil
-                    let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
-                    let form = document.firstNode(matchingSelector: "form")
-                    if form == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
-                    for child in form!.children {
-                        if !(child is HTMLElement) { continue }
-                        if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
-                        if !((child as! HTMLElement)["value"] is String) { continue }
-                        authenticityToken = (child as! HTMLElement)["value"] as! String
-                        break
-                    }
+                    let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
+                    //var authenticityToken: String? = nil
+                    //let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
+                    //let form = document.firstNode(matchingSelector: "form")
+                    //if form == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
+                    //for child in form!.children {
+                    //    if !(child is HTMLElement) { continue }
+                    //    if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
+                    //    if !((child as! HTMLElement)["value"] is String) { continue }
+                    //    authenticityToken = (child as! HTMLElement)["value"] as! String
+                    //    break
+                    //}
                     if authenticityToken == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
 
                     self.requestSession(authenticityToken: authenticityToken!, completionHandler: completionHandler)
@@ -124,8 +125,14 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     if !(object is Data) { completionHandler(nil, LDRError.invalidApiKey); return }
                     //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
+                    let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
+                    if authenticityToken != nil { completionHandler(nil, LDRError.invalidPassword); return }
+
                     var apiKey = "undefined"
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
+
+                    LDRLOG(String(data: object as! Data, encoding: .utf8)!)
+
                     let scripts = document.nodes(matchingSelector: "script")
                     if scripts == nil { completionHandler(nil, LDRError.invalidApiKey); return }
                     for script in scripts {
@@ -157,5 +164,25 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
 
     /// MARK: - private api
+
+    /**
+     * get authenticity_token by html data
+     * @param data Data
+     * @return authenticity_token String?
+     **/
+    private func getAuthencityToken(htmlData: Data) -> String? {
+        var authenticityToken: String? = nil
+        let document = HTMLDocument(data: htmlData, contentTypeHeader: nil)
+        let form = document.firstNode(matchingSelector: "form")
+        if form == nil { return authenticityToken }
+        for child in form!.children {
+            if !(child is HTMLElement) { continue }
+            if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
+            if !((child as! HTMLElement)["value"] is String) { continue }
+            authenticityToken = (child as! HTMLElement)["value"] as! String
+            break
+        }
+        return authenticityToken
+    }
 
 }
