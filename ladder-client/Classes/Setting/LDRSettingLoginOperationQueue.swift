@@ -144,10 +144,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     UserDefaults.standard.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
                     UserDefaults.standard.synchronize()
                     completionHandler(nil, nil)
+                    NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
                 }
             }
         ))
-
     }
 
 

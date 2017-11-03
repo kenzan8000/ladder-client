@@ -12,7 +12,8 @@ struct LDRUserDefaults {
 /// MARK: - NotificationCenter
 
 struct LDRNotificationCenter {
-    //static let = Notification.Name("LDRNotificationCenter.")
+    static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
+    static let didGetUnread = Notification.Name("LDRNotificationCenter.didGetUnread")
 }
 
 

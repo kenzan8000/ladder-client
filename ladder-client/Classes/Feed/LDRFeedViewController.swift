@@ -20,6 +20,13 @@ class LDRFeedViewController: UIViewController {
     var folders: [String] = []
 
 
+    /// MARK: - destruction
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+
     // MARK: - life cycle
 
     override func loadView() {
@@ -53,13 +60,12 @@ class LDRFeedViewController: UIViewController {
         self.refreshView.backgroundColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)
-            DispatchQueue.main.asyncAfter(
-                deadline: DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
-                execute: { [unowned self] () -> Void in
-                    self.refreshView.endRefreshing()
-                }
-            )
+            self.requestSubs()
         }
+
+        // notification
+        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didGetUnread), name: LDRNotificationCenter.didGetUnread, object: nil)
 
         self.reloadData(isNew: true)
     }
@@ -89,9 +95,33 @@ class LDRFeedViewController: UIViewController {
      **/
     func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
+            self.requestSubs()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
             self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+        }
+    }
+
+
+    /// MARK: - notification
+
+    /**
+     * called when did login
+     * @param notification NSNotification
+     **/
+    func didLogin(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.requestSubs()
+        }
+    }
+
+    /**
+     * called when did get unread
+     * @param notification NSNotification
+     **/
+    func didGetUnread(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.reloadVisibleCells()
         }
     }
 
@@ -118,6 +148,28 @@ class LDRFeedViewController: UIViewController {
     }
 
     /**
+     * request subs
+     **/
+    func requestSubs() {
+        LDRFeedOperationQueue.shared.requestSubs(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+            self.refreshView.endRefreshing()
+
+            if error != nil { return }
+
+            // delete and save model
+            var modelError: Error? = nil
+            modelError = LDRFeedSubsUnread.delete()
+            if modelError != nil { return }
+
+            if json == nil { return }
+            modelError = LDRFeedSubsUnread.save(json: json!)
+            if modelError != nil { return }
+
+            self.reloadData(isNew: true)
+        })
+    }
+
+    /**
      * update subsunread models and tableView
      * @param isNew Bool
      **/
@@ -125,7 +177,11 @@ class LDRFeedViewController: UIViewController {
         self.subsunreads = LDRFeedSubsUnread.fetch(segment: self.segmentedControl.selectedSegmentIndex)
         if isNew {
             self.unreads = []
-            for subsunread in self.subsunreads { self.unreads.append(LDRFeedUnread(subscribeId: subsunread.subscribeId)) }
+            for subsunread in self.subsunreads {
+                let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)
+                self.unreads.append(unread)
+                unread.request()
+            }
         }
         else {
             var newUnreads: [LDRFeedUnread] = []
@@ -144,6 +200,21 @@ class LDRFeedViewController: UIViewController {
         }
         self.tableView.reloadData()
     }
+
+    /**
+     * update visible tableview cells
+     **/
+    func reloadVisibleCells() {
+        let indexPaths = self.tableView.indexPathsForVisibleRows
+        if indexPaths == nil { return }
+        for indexPath in indexPaths! {
+            let cell = self.tableView.cellForRow(at: indexPath)
+            if cell == nil { continue }
+            let index = self.getIndex(indexPath: indexPath)
+            (cell as! LDRFeedTableViewCell).setUIState(self.unreads[index].state)
+        }
+    }
+
 }
 
 

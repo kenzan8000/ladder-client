@@ -10,6 +10,13 @@ class LDRPinViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
 
+    /// MARK: - destruction
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+
     // MARK: - life cycle
 
     override func viewDidLoad() {
@@ -43,6 +50,9 @@ class LDRPinViewController: UIViewController {
                 }
             )
         }
+
+        // notification
+        NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +74,15 @@ class LDRPinViewController: UIViewController {
         }
     }
 
+
+    /// MARK: - notification
+
+    /**
+     * called when did login
+     * @param notification NSNotification
+     **/
+    func didLogin(notification: NSNotification) {
+    }
 
 }
 

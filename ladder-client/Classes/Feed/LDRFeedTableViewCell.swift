@@ -59,8 +59,8 @@ class LDRFeedTableViewCell: UITableViewCell {
         }
 
         if color != nil {
-            self.nameLabel.tintColor = color!
-            self.unreadCountLabel.tintColor = color!
+            self.nameLabel.textColor = color!
+            self.unreadCountLabel.textColor = color!
         }
     }
 
