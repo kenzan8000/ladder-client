@@ -14,6 +14,7 @@ struct LDRUserDefaults {
 struct LDRNotificationCenter {
     static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
     static let didGetUnread = Notification.Name("LDRNotificationCenter.didGetUnread")
+    static let didGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError")
 }
 
 
@@ -27,8 +28,9 @@ enum LDRError: Error {
     // login
     case invalidUsername
     case invalidPassword
-    case invalidUsernameOrPassword
     case invalidLdrUrl
+    case invalidUsernameOrPassword
+    case invalidUrlOrUsernameOrPassword
     case invalidAuthenticityToken
     // api
     case invalidApiKey

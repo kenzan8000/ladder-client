@@ -66,6 +66,7 @@ class LDRFeedViewController: UIViewController {
         // notification
         NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didGetUnread), name: LDRNotificationCenter.didGetUnread, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
 
         self.reloadData(isNew: true)
     }
@@ -122,6 +123,25 @@ class LDRFeedViewController: UIViewController {
     func didGetUnread(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.reloadVisibleCells()
+        }
+    }
+
+    /**
+     * called when did get invalid url or username or password error
+     * @param notification NSNotification
+     **/
+    func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            if self.navigationController != self.navigationController!.tabBarController!.viewControllers![self.navigationController!.tabBarController!.selectedIndex] { return }
+
+            // display error
+            let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
+            let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: { [unowned self] in
+                self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+            })
         }
     }
 
