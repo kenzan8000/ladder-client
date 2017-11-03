@@ -1,4 +1,5 @@
 import UIKit
+import WebKit
 
 
 /// MARK: - LDRFeedDetailViewController
@@ -9,6 +10,10 @@ class LDRFeedDetailViewController: UIViewController {
     @IBOutlet weak var headerButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var webView: WKWebView!
+
+    var unread: LDRFeedUnread?
+    var index = 0
 
 
     /// MARK: - class method
@@ -44,6 +49,8 @@ class LDRFeedDetailViewController: UIViewController {
         // back and next button
         self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
         self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+
+        self.loadUnreadItem()
     }
 
     override func viewDidLoad() {
@@ -89,18 +96,60 @@ class LDRFeedDetailViewController: UIViewController {
      **/
     @IBAction func buttonTouchedUpInside(button: UIButton) {
         if button == self.headerButton {
+            if self.unread == nil { return }
+            if self.index < 0 { return }
+            if self.index >= self.unread!.items.count { return }
+
             let viewController = LDRWebViewController.ldr_viewController()
             viewController.hidesBottomBarWhenPushed = true
+            viewController.initialUrl = self.unread!.getLink(at: self.index)
             self.navigationController?.show(viewController, sender: nil)
         }
         if button == self.backButton {
-            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
+            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
+            else { self.loadUnreadItem() }
+
         }
         if button == self.nextButton {
-            LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08)
+            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
+            else { self.loadUnreadItem() }
         }
     }
 
+
+    /// MARK: - public api
+
+    /**
+     * load unread item
+     **/
+    func loadUnreadItem() {
+        if self.unread == nil { return }
+
+        self.title = self.unread!.getTitle(at: self.index)
+
+        self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
+
+        var html = ""
+        let body = self.unread!.getBody(at: self.index)
+        if body != nil { html = html + "\(body!)" }
+        let link = self.unread!.getLink(at: self.index)
+        self.webView.loadHTMLString(html, baseURL: link)
+    }
+
+    /**
+     * add index
+     * @param value Int
+     * @return Bool if could add or not
+     **/
+    func addIndexIfPossible(value: Int) -> Bool {
+        if self.unread == nil { return false }
+
+        let newValue = self.index + value
+        if newValue < 0 { return false }
+        if newValue >= self.unread!.items.count { return false }
+        self.index = newValue
+        return true
+    }
 }
 
 

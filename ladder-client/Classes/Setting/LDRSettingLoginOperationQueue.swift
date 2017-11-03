@@ -38,9 +38,9 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.cancelAllOperations()
 
         // delete cookies
-        //let url = LDRUrl(path: LDR.login)
-        //if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-        //for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
+        let url = LDRUrl(path: LDR.login)
+        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
 
         // request login
         self.requestLogin(completionHandler: completionHandler)
@@ -70,7 +70,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
                     if !(object is Data) { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
-                    //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     // parse html
                     let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
@@ -111,7 +111,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
                     if !(object is Data) { completionHandler(nil, LDRError.invalidApiKey); return }
-                    //if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
                     if authenticityToken != nil { completionHandler(nil, LDRError.invalidUsernameOrPassword); return }

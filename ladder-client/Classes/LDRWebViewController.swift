@@ -11,6 +11,8 @@ class LDRWebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var progressView: UIProgressView!
 
+    var initialUrl: URL?
+
 
     /// MARK: - class method
 
@@ -64,7 +66,7 @@ class LDRWebViewController: UIViewController {
             self.webView.reload()
         }
 
-        self.load(urlString: "https://google.com")
+        self.load(url: self.initialUrl)
     }
 
     override func viewDidLoad() {
@@ -128,10 +130,10 @@ class LDRWebViewController: UIViewController {
 
     /**
      * load url
-     * @param urlString String
+     * @param url URL?
      **/
-    func load(urlString: String) {
-        self.webView.load(URLRequest(url: URL(string: urlString)!))
+    func load(url: URL?) {
+        if url != nil { self.webView.load(URLRequest(url: url!)) }
     }
 
 }

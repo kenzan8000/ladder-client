@@ -37,4 +37,55 @@ class LDRFeedUnread {
             }
         )
     }
+
+    /**
+     * request touch_all
+     **/
+    func requestTouchAll() {
+/*
+        LDRFeedOperationQueue.shared.requestTouchAll(
+            subscribeId: self.subscribeId,
+            completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+            }
+        )
+*/
+    }
+
+
+    /**
+     * get title at index
+     * @return String?
+     **/
+    func getTitle(at index: Int) -> String? {
+        if index < 0 { return nil }
+        if index >= self.items.count { return nil }
+
+        let item = self.items[index]
+        return item["title"].stringValue
+    }
+
+    /**
+     * get link at index
+     * @return URL?
+     **/
+    func getLink(at index: Int) -> URL? {
+        if index < 0 { return nil }
+        if index >= self.items.count { return nil }
+
+        let item = self.items[index]
+        return URL(string: item["link"].stringValue)
+    }
+
+    /**
+     * get body at index
+     * @return String?
+     **/
+    func getBody(at index: Int) -> String? {
+        if index < 0 { return nil }
+        if index >= self.items.count { return nil }
+
+        let item = self.items[index]
+        return item["body"].stringValue
+    }
+
 }

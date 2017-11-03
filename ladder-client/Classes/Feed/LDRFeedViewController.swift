@@ -292,6 +292,7 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             case LDRFeedTableViewCell.state.unread:
                 self.unreads[index].state = LDRFeedTableViewCell.state.read
+                self.unreads[index].requestTouchAll()
             case LDRFeedTableViewCell.state.read:
                 self.unreads[index].state = LDRFeedTableViewCell.state.read
             case LDRFeedTableViewCell.state.noUnread:
@@ -304,6 +305,7 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
         let viewController = LDRFeedDetailViewController.ldr_viewController()
         viewController.hidesBottomBarWhenPushed = true
+        viewController.unread = self.unreads[index]
         self.navigationController?.show(viewController, sender: nil)
     }
 

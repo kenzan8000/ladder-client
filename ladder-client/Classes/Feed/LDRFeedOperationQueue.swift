@@ -56,6 +56,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.addOperation(LDROperation(
             request: request as URLRequest!,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
                 var json = JSON([])
                 do {
                     if object != nil {
@@ -103,6 +104,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.addOperation(LDROperation(
             request: request as URLRequest!,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
                 var json = JSON([])
                 do {
                     if object != nil {
@@ -123,7 +125,6 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                 }
             }
         ))
-
     }
 
     /**
@@ -133,6 +134,45 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
      **/
     func requestTouchAll(subscribeId: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         self.maxConcurrentOperationCount = 5
+
+        // invalid ApiKey
+        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        // invalid url
+        let url = LDRUrl(path: LDR.api.touch_all)
+        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+
+        // request
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.httpBody = ["ApiKey": apiKey!, "subscribe_id": subscribeId].HTTPBodyValue()
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
+
+        self.addOperation(LDROperation(
+            request: request as URLRequest!,
+            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                var json = JSON([])
+                do {
+                    if object != nil {
+                        json = try JSON(data: object as! Data)
+                    }
+                }
+                catch {
+                    self.cancelAllOperations()
+                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    NotificationCenter.default.post(name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+                    completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                    return
+                }
+                DispatchQueue.main.async { [unowned self] in
+                    if error != nil { completionHandler(nil, error!); return }
+
+                    completionHandler(json, nil)
+                }
+            }
+        ))
     }
 
 }
