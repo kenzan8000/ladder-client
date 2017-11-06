@@ -48,6 +48,7 @@ struct LDR {
         struct pin {
             static let add =                "/api/pin/add"
             static let remove =             "/api/pin/remove"
+            static let all =                "/api/pin/all"
         }
     }
 }

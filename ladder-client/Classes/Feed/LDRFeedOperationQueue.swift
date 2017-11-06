@@ -31,7 +31,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     }
 
     /**
-     * request subs
+     * request api/subs
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
     func requestSubs(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
@@ -52,6 +52,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
+        //request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,
@@ -80,7 +81,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     }
 
     /**
-     * request unread
+     * request api/unread
      * @param subscribeId String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
@@ -100,6 +101,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!, "subscribe_id": subscribeId].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
+        //request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,
@@ -128,7 +130,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     }
 
     /**
-     * request touch_all
+     * request api/touch_all
      * @param subscribeId String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
@@ -148,6 +150,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!, "subscribe_id": subscribeId].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
+        //request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,

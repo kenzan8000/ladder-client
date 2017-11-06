@@ -25,6 +25,7 @@
 		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
 		E67EB2FB1F78C8CF00C7940B /* LDRPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */; };
 		E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */; };
+		E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */; };
 		E69C865B1F98670E00EF525B /* LDRFeedOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedOperationQueue.swift */; };
 		E6A4F7901F74E524001BE38F /* LDRFeedViewForHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */; };
 		E6A4F7911F74E524001BE38F /* LDRFeedViewForHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4F78F1F74E524001BE38F /* LDRFeedViewForHeader.swift */; };
@@ -66,6 +67,7 @@
 		E67600101F94855F000A7B16 /* LDROperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDROperation.m; sourceTree = "<group>"; };
 		E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRPinTableViewCell.xib; sourceTree = "<group>"; };
 		E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinTableViewCell.swift; sourceTree = "<group>"; };
+		E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cookie.swift"; sourceTree = "<group>"; };
 		E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ladder-client-Bridging-Header.h"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedOperationQueue.swift; sourceTree = "<group>"; };
 		E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRFeedViewForHeader.xib; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				E66EF8581F945EE20073C44B /* URL+Queries.swift */,
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
+				E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */,
 				E676000F1F94855E000A7B16 /* LDROperation.h */,
 				E67600101F94855F000A7B16 /* LDROperation.m */,
 				E6BCD0181F944CA200B2E7E6 /* Reachability.h */,
@@ -392,6 +395,7 @@
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
 				E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */,
 				E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */,
+				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E618BBC11F805302006B593E /* LDRWebViewController.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
