@@ -34,7 +34,7 @@ class LDRFeedSubsUnread: NSManagedObject {
      * @return Int
      */
     class func count() -> Int {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
@@ -123,7 +123,7 @@ class LDRFeedSubsUnread: NSManagedObject {
 //     * @return [LDRFeedSubsUnread]
 //     */
 //    class func fetch() -> [LDRFeedSubsUnread] {
-//        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+//        let context = LDRCoreDataManager.shared.managedObjectContext
 //
 //        // make fetch request
 //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
@@ -146,7 +146,7 @@ class LDRFeedSubsUnread: NSManagedObject {
      * @return [LDRFeedSubsUnread]
      */
     class func fetch(segment: Int) -> [LDRFeedSubsUnread] {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
@@ -176,7 +176,7 @@ class LDRFeedSubsUnread: NSManagedObject {
      * @return Error?
      */
     class func save(json: JSON) -> Error? {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         let items = json.arrayValue
         for item in items {
@@ -202,7 +202,7 @@ class LDRFeedSubsUnread: NSManagedObject {
      * @return Error?
      */
     class func delete() -> Error? {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")

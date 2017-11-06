@@ -9,6 +9,8 @@ class LDRPinViewController: UIViewController {
     var refreshView: LGRefreshView!
     @IBOutlet weak var tableView: UITableView!
 
+    var pins: [LDRPin] = []
+
 
     /// MARK: - destruction
 
@@ -43,16 +45,15 @@ class LDRPinViewController: UIViewController {
         self.refreshView.backgroundColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)
-            DispatchQueue.main.asyncAfter(
-                deadline: DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
-                execute: { [unowned self] () -> Void in
-                    self.refreshView.endRefreshing()
-                }
-            )
+            self.requestPinAll()
         }
 
         // notification
         NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+
+
+        self.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,8 +83,60 @@ class LDRPinViewController: UIViewController {
      * @param notification NSNotification
      **/
     func didLogin(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.requestPinAll()
+        }
     }
 
+    /**
+     * called when did get invalid url or username or password error
+     * @param notification NSNotification
+     **/
+    func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            if self.navigationController != self.navigationController!.tabBarController!.viewControllers![self.navigationController!.tabBarController!.selectedIndex] { return }
+
+            // display error
+            let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
+            let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: { [unowned self] in
+                self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+            })
+        }
+    }
+
+
+    /// MARK: - public api
+
+    /**
+     * request pin/all
+     **/
+    func requestPinAll() {
+        LDRPinOperationQueue.shared.requestPinAll(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+            self.refreshView.endRefreshing()
+
+            if error != nil { return }
+
+            // delete and save model
+            var modelError: Error? = nil
+            modelError = LDRPin.deleteAll()
+            if modelError != nil { return }
+
+            if json == nil { return }
+            modelError = LDRPin.save(json: json!)
+            if modelError != nil { return }
+        })
+    }
+
+    /**
+     * reload data on tableView
+     **/
+    func reloadData() {
+        self.pins = LDRPin.fetch()
+        self.tableView.reloadData()
+    }
 }
 
 
@@ -91,21 +144,39 @@ class LDRPinViewController: UIViewController {
 extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = 5
+        let count = self.pins.count
         self.navigationItem.title = "\(count) pins"
         return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = LDRPinTableViewCell.ldr_cell()
+        cell.nameLabel.text = self.pins[indexPath.row].title
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
+        let pin = self.pins[indexPath.row]
+
+        // delete model on fastladder
+/*
+        if pin.linkUrl != nil {
+            LDRPinOperationQueue.shared.requestPinRemove(
+                link: pin.linkUrl!,
+                completionHandler: { (json: JSON?, error: Error?) -> Void in }
+            )
+        }
+*/
+        // delete local model
+        LDRPin.delete(pin: pin)
+        self.reloadData()
+
+        // browser
         let viewController = LDRWebViewController.ldr_viewController()
         viewController.hidesBottomBarWhenPushed = true
+        viewController.initialUrl = pin.linkUrl
         self.navigationController?.show(viewController, sender: nil)
     }
 

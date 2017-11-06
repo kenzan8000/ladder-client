@@ -5,7 +5,7 @@ import CoreData
 class LDRCoreDataManager {
 
     /// MARK: - class method
-    static let sharedInstance = LDRCoreDataManager()
+    static let shared = LDRCoreDataManager()
 
 
     /// MARK: - property

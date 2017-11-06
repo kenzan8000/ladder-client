@@ -23,7 +23,7 @@ class LDRPin: NSManagedObject {
      * @return Int
      */
     class func count() -> Int {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
@@ -47,7 +47,7 @@ class LDRPin: NSManagedObject {
      * @return [LDRPin]
      */
     class func fetch() -> [LDRPin] {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
@@ -67,11 +67,33 @@ class LDRPin: NSManagedObject {
     }
 
     /**
+     * save
+     * @param json JSON
+     * @return Error?
+     */
+    class func save(json: JSON) -> Error? {
+        let context = LDRCoreDataManager.shared.managedObjectContext
+
+        let items = json.arrayValue
+        for item in items {
+            let model = NSEntityDescription.insertNewObject(forEntityName: "LDRPin", into: context) as! LDRPin
+            model.createdOn = item["created_on"].stringValue
+            model.title = item["title"].stringValue
+            model.link = item["link"].stringValue
+        }
+
+        do { try context.save() }
+        catch { return LDRError.saveModelsFailed }
+
+        return nil
+    }
+
+    /**
      * delete
      * @return Error?
      */
-    class func delete() -> Error? {
-        let context = LDRCoreDataManager.sharedInstance.managedObjectContext
+    class func deleteAll() -> Error? {
+        let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
@@ -95,5 +117,37 @@ class LDRPin: NSManagedObject {
 
         return nil
     }
+
+    /**
+     * delete
+     * @param pin LDRPin to delete
+     * @return Error?
+     */
+    class func delete(pin: LDRPin) -> Error? {
+        let context = LDRCoreDataManager.shared.managedObjectContext
+
+        // make fetch request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
+        let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
+        fetchRequest.entity = entity
+        fetchRequest.fetchBatchSize = 20
+        let predicates: [NSPredicate] = [NSPredicate(format: "(link = %@)", pin.link)]
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        // return models
+        var models: [LDRPin] = []
+        do { models = try context.fetch(fetchRequest) as! [LDRPin] }
+        catch { models = [] }
+
+        do {
+            for model in models { context.delete(model) }
+            try context.save()
+        }
+        catch { return LDRError.deleteModelsFailed }
+
+        return nil
+    }
+
 
 }
