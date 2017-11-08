@@ -88,6 +88,17 @@ class LDRFeedDetailViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            if self.unread == nil { return }
+            let title = self.unread!.getTitle(at: self.index)!
+            let link = self.unread!.getLink(at: self.index)!
+            let error = LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString)
+            if error == nil {
+                LDRPinOperationQueue.shared.requestPinAdd(
+                    link: link,
+                    title: title,
+                    completionHandler: { (json: JSON?, error: Error?) -> Void in }
+                )
+            }
         }
     }
 

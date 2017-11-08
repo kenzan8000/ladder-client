@@ -53,12 +53,21 @@ class LDRPinViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
 
-        self.reloadData()
         self.requestPinAll()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

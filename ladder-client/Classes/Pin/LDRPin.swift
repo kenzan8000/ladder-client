@@ -68,6 +68,27 @@ class LDRPin: NSManagedObject {
 
     /**
      * save
+     * @param createdOn String
+     * @param title String
+     * @param link String
+     * @return Error?
+     */
+    class func saveByAttributes(createdOn: String, title: String, link: String) -> Error? {
+        let context = LDRCoreDataManager.shared.managedObjectContext
+
+        let model = NSEntityDescription.insertNewObject(forEntityName: "LDRPin", into: context) as! LDRPin
+        model.createdOn = ""
+        model.title = title
+        model.link = link
+
+        do { try context.save() }
+        catch { return LDRError.saveModelsFailed }
+
+        return nil
+    }
+
+    /**
+     * save
      * @param json JSON
      * @return Error?
      */
