@@ -176,49 +176,11 @@
                         <outlet property="headerButton" destination="174-oe-b6X" id="wL0-cy-ZG8"/>
                         <outlet property="nextButton" destination="DxL-li-ttm" id="4eN-tR-5TJ"/>
                         <outlet property="webView" destination="hgc-fT-UVC" id="AZw-4M-oX3"/>
-                        <segue destination="xZQ-eZ-wCd" kind="show" id="2Mt-53-LMH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsJ-2m-0hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2520.8000000000002" y="-72.413793103448285"/>
-        </scene>
-        <!--Web View Controller-->
-        <scene sceneID="33T-L1-W9i">
-            <objects>
-                <viewController storyboardIdentifier="LDRWebViewController" id="xZQ-eZ-wCd" customClass="LDRWebViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hUu-Qw-cYA"/>
-                        <viewControllerLayoutGuide type="bottom" id="Tb7-QY-Qr2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mgh-F4-mLW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUa-5W-Rvz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CVv-88-Hys">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="progressView" destination="CVv-88-Hys" id="HoI-hu-cfA"/>
-                        <outlet property="webView" destination="KUa-5W-Rvz" id="icu-ra-rKD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4ah-1H-IAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3356" y="276.61169415292358"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PeR-Re-1sh">
@@ -268,7 +230,6 @@
                     <navigationItem key="navigationItem" id="jI9-IQ-4Wf"/>
                     <connections>
                         <outlet property="tableView" destination="CoV-mq-MhW" id="gcY-Rn-xuF"/>
-                        <segue destination="xZQ-eZ-wCd" kind="show" id="eRG-ek-xkm"/>
                         <segue destination="men-ZL-n6k" kind="presentation" id="JAy-FL-v8y"/>
                     </connections>
                 </viewController>
@@ -410,6 +371,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JAy-FL-v8y"/>
-        <segue reference="2Mt-53-LMH"/>
     </inferredMetricsTieBreakers>
 </document>

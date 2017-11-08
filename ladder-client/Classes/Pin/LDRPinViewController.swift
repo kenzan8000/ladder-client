@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 
 /// MARK: - LDRPinViewController
@@ -69,6 +70,7 @@ class LDRPinViewController: UIViewController {
      **/
     func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
+            self.requestPinAll()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
             self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
@@ -127,6 +129,7 @@ class LDRPinViewController: UIViewController {
             if json == nil { return }
             modelError = LDRPin.save(json: json!)
             if modelError != nil { return }
+            self.reloadData()
         })
     }
 
@@ -160,24 +163,24 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
         let pin = self.pins[indexPath.row]
 
-        // delete model on fastladder
-/*
         if pin.linkUrl != nil {
+/*
+            // delete model on fastladder
             LDRPinOperationQueue.shared.requestPinRemove(
                 link: pin.linkUrl!,
                 completionHandler: { (json: JSON?, error: Error?) -> Void in }
             )
-        }
 */
+            // browser
+            let viewController = SFSafariViewController(url: pin.linkUrl!)
+            viewController.hidesBottomBarWhenPushed = true
+            viewController.dismissButtonStyle = .close
+            self.present(viewController, animated: true, completion: {})
+        }
+
         // delete local model
         LDRPin.delete(pin: pin)
         self.reloadData()
-
-        // browser
-        let viewController = LDRWebViewController.ldr_viewController()
-        viewController.hidesBottomBarWhenPushed = true
-        viewController.initialUrl = pin.linkUrl
-        self.navigationController?.show(viewController, sender: nil)
     }
 
 }

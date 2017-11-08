@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import SafariServices
 
 
 /// MARK: - LDRFeedDetailViewController
@@ -100,10 +101,14 @@ class LDRFeedDetailViewController: UIViewController {
             if self.index < 0 { return }
             if self.index >= self.unread!.items.count { return }
 
-            let viewController = LDRWebViewController.ldr_viewController()
-            viewController.hidesBottomBarWhenPushed = true
-            viewController.initialUrl = self.unread!.getLink(at: self.index)
-            self.navigationController?.show(viewController, sender: nil)
+            // browser
+            let url = self.unread!.getLink(at: self.index)
+            if url != nil {
+                let viewController = SFSafariViewController(url: url!)
+                viewController.hidesBottomBarWhenPushed = true
+                viewController.dismissButtonStyle = .close
+                self.present(viewController, animated: true, completion: {})
+            }
         }
         if button == self.backButton {
             if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
