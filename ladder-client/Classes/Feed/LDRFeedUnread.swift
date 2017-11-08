@@ -42,13 +42,11 @@ class LDRFeedUnread {
      * request touch_all
      **/
     func requestTouchAll() {
-/*
         LDRFeedOperationQueue.shared.requestTouchAll(
             subscribeId: self.subscribeId,
             completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
             }
         )
-*/
     }
 
 

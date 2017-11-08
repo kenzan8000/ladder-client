@@ -22,8 +22,8 @@ class LDRPinViewController: UIViewController {
 
     // MARK: - life cycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
 
         self.navigationItem.title = "0 pins"
 
@@ -53,8 +53,12 @@ class LDRPinViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
 
-
         self.reloadData()
+        self.requestPinAll()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
@@ -164,13 +168,11 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
         let pin = self.pins[indexPath.row]
 
         if pin.linkUrl != nil {
-/*
             // delete model on fastladder
             LDRPinOperationQueue.shared.requestPinRemove(
                 link: pin.linkUrl!,
                 completionHandler: { (json: JSON?, error: Error?) -> Void in }
             )
-*/
             // browser
             let viewController = SFSafariViewController(url: pin.linkUrl!)
             viewController.hidesBottomBarWhenPushed = true
