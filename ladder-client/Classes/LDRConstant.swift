@@ -6,6 +6,7 @@ struct LDRUserDefaults {
     static let password                         = "LDRUserDefaults.password"
     static let ldrUrlString                     = "LDRUserDefaults.ldrUrlString"
     static let apiKey                           = "LDRUserDefaults.apiKey"
+    static let session                          = "LDRUserDefaults.session"
 }
 
 
@@ -51,6 +52,8 @@ struct LDR {
             static let all =                "/api/pin/all"
         }
     }
+
+    static let cookieName = "_fastladder_session"
 }
 
 

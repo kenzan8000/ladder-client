@@ -40,7 +40,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // delete cookies
         let url = LDRUrl(path: LDR.login)
         if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-        for cookieName in ["_fastladder_session"] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
+        for cookieName in [LDR.cookieName] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
 
         // request login
         self.requestLogin(completionHandler: completionHandler)
@@ -118,8 +118,6 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
                     var apiKey = "undefined"
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
-
-                    LDRLOG(String(data: object as! Data, encoding: .utf8)!)
 
                     let scripts = document.nodes(matchingSelector: "script")
                     if scripts == nil { completionHandler(nil, LDRError.invalidApiKey); return }

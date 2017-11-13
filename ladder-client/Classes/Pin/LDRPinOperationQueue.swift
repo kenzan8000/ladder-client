@@ -44,7 +44,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        //request.setCookies()
+        request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,
@@ -91,7 +91,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!, "link": link.absoluteString].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        //request.setCookies()
+        request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,
@@ -137,7 +137,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        //request.setCookies()
+        request.setCookies()
 
         self.addOperation(LDROperation(
             request: request as URLRequest!,

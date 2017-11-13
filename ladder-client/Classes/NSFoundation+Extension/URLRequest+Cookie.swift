@@ -15,7 +15,8 @@ extension MutableURLRequest {
 
         var value = ""
         for cookie in cookies! {
-            value = "\(value)\(cookie.name)=\(cookie.domain);"
+            if !(cookie.domain.hasSuffix(self.url!.host!)) { continue }
+            value = "\(value)\(cookie.name)=\(cookie.value);"
         }
         self.setValue(value, forHTTPHeaderField: "Cookie")
     }

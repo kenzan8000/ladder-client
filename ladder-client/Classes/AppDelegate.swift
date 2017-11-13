@@ -11,6 +11,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     /// MARK: - delegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // remember last session
+        let url = LDRUrl(path: LDR.login)
+        if url != nil && url!.host != nil {
+            let session = UserDefaults.standard.string(forKey: LDRUserDefaults.session)
+            if session != nil {
+                let cookies = HTTPCookie.cookies(withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session!)"], for: url!)
+                for cookie in cookies { HTTPCookieStorage.shared.setCookie(cookie) }
+            }
+        }
+
         return true
     }
 

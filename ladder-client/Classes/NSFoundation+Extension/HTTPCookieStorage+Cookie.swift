@@ -42,7 +42,15 @@ extension HTTPCookieStorage {
         }
         if httpUrlResponse!.url == nil { return }
         let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: httpUrlResponse!.url!)
-        for cookie in cookies { HTTPCookieStorage.shared.setCookie(cookie) }
+        for cookie in cookies {
+            HTTPCookieStorage.shared.setCookie(cookie)
+
+            let url = LDRUrl(path: LDR.login)
+            if url != nil && cookie.domain.hasSuffix(url!.host!) {
+                UserDefaults.standard.setValue(cookie.value, forKey: LDRUserDefaults.session)
+                UserDefaults.standard.synchronize()
+            }
+        }
     }
 
     /**
