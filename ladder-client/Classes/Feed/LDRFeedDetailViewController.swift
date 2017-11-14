@@ -35,6 +35,8 @@ class LDRFeedDetailViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
+        self.webView.navigationDelegate = self
+
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
@@ -115,12 +117,7 @@ class LDRFeedDetailViewController: UIViewController {
 
             // browser
             let url = self.unread!.getLink(at: self.index)
-            if url != nil {
-                let viewController = SFSafariViewController(url: url!)
-                viewController.hidesBottomBarWhenPushed = true
-                viewController.dismissButtonStyle = .close
-                self.present(viewController, animated: true, completion: {})
-            }
+            if url != nil { self.presentSafari(url: url!) }
         }
         if button == self.backButton {
             if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
@@ -135,6 +132,17 @@ class LDRFeedDetailViewController: UIViewController {
 
 
     /// MARK: - public api
+
+    /**
+     * present safari
+     * @param url URL
+     **/
+    func presentSafari(url: URL) {
+        let viewController = SFSafariViewController(url: url)
+        viewController.hidesBottomBarWhenPushed = true
+        viewController.dismissButtonStyle = .close
+        self.present(viewController, animated: true, completion: {})
+    }
 
     /**
      * load unread item
@@ -175,6 +183,35 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+
+}
+
+/// MARK: - WKNavigationDelegate
+extension LDRFeedDetailViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        switch navigationAction.navigationType {
+            case .formSubmitted:
+                break
+            case .backForward:
+                break
+            case .reload:
+                break
+            case .formResubmitted:
+                break
+            case .other:
+                break
+            case .linkActivated:
+                decisionHandler(.cancel)
+                guard let url = navigationAction.request.url else {
+                    decisionHandler(.cancel)
+                    return
+                }
+                self.presentSafari(url: url)
+                return
+        }
+        decisionHandler(.allow)
     }
 
 }
