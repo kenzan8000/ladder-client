@@ -1,6 +1,7 @@
 import UIKit
 import WebKit
 import SafariServices
+import SwiftyJSON
 
 
 /// MARK: - LDRFeedDetailViewController

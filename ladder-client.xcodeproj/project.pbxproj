@@ -20,7 +20,6 @@
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E674B5091F74EE3600D05461 /* LDRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674B5081F74EE3600D05461 /* LDRTabBarController.swift */; };
-		E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */; };
 		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
 		E67EB2FB1F78C8CF00C7940B /* LDRPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */; };
 		E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */; };
@@ -60,8 +59,6 @@
 		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E674B5081F74EE3600D05461 /* LDRTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRTabBarController.swift; sourceTree = "<group>"; };
-		E676000A1F9481DA000A7B16 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftyJSON.h; path = "ladder-client/Classes/SwiftyJSON/Source/SwiftyJSON.h"; sourceTree = SOURCE_ROOT; };
-		E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "ladder-client/Classes/SwiftyJSON/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
 		E676000F1F94855E000A7B16 /* LDROperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDROperation.h; sourceTree = "<group>"; };
 		E67600101F94855F000A7B16 /* LDROperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDROperation.m; sourceTree = "<group>"; };
 		E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDRPinTableViewCell.xib; sourceTree = "<group>"; };
@@ -121,7 +118,6 @@
 				E6C32EE01F92CC610052DDE3 /* Model */,
 				E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */,
 				E674AB401F94588D00348C98 /* UIKit+Extension */,
-				E67600091F9481B2000A7B16 /* SwiftyJSON */,
 				E674B5081F74EE3600D05461 /* LDRTabBarController.swift */,
 				E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */,
 			);
@@ -177,16 +173,6 @@
 				E674AB411F94588D00348C98 /* LDRBlinkView.swift */,
 			);
 			path = "UIKit+Extension";
-			sourceTree = "<group>";
-		};
-		E67600091F9481B2000A7B16 /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				E676000A1F9481DA000A7B16 /* SwiftyJSON.h */,
-				E676000B1F9481DA000A7B16 /* SwiftyJSON.swift */,
-			);
-			name = SwiftyJSON;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */ = {
@@ -392,7 +378,6 @@
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
 				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
-				E676000C1F9481DA000A7B16 /* SwiftyJSON.swift in Sources */,
 				E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */,
 				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
@@ -532,10 +517,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
-					"\"$(PODS_ROOT)/HTMLReader/Sources/include\"",
-					"\"$(PODS_ROOT)/LGRefreshView/LGRefreshView\"",
-					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 					"\"$(PODS_ROOT)/ionicons/ionicons\"",
+					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ladder-client/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -575,10 +558,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
-					"\"$(PODS_ROOT)/HTMLReader/Sources/include\"",
-					"\"$(PODS_ROOT)/LGRefreshView/LGRefreshView\"",
-					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 					"\"$(PODS_ROOT)/ionicons/ionicons\"",
+					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ladder-client/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

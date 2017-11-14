@@ -1,4 +1,5 @@
 import CoreData
+import SwiftyJSON
 
 
 /// MARK: - LDRPin

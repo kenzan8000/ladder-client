@@ -1,3 +1,6 @@
+import SwiftyJSON
+
+
 /// MARK: - LDRFeedUnread
 class LDRFeedUnread {
 
