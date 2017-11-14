@@ -154,9 +154,10 @@ class LDRFeedDetailViewController: UIViewController {
 
         self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
 
-        var html = ""
+        var html = "<html><style>body { font-size: 2.4em; }</style><body>"
         let body = self.unread!.getBody(at: self.index)
         if body != nil { html = html + "\(body!)" }
+        html = html + "</body></html>"
         let link = self.unread!.getLink(at: self.index)
         self.webView.loadHTMLString(html, baseURL: link)
     }
