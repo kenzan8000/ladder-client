@@ -94,13 +94,15 @@ class LDRFeedDetailViewController: UIViewController {
             if self.unread == nil { return }
             let title = self.unread!.getTitle(at: self.index)!
             let link = self.unread!.getLink(at: self.index)!
-            let error = LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString)
-            if error == nil {
-                LDRPinOperationQueue.shared.requestPinAdd(
-                    link: link,
-                    title: title,
-                    completionHandler: { (json: JSON?, error: Error?) -> Void in }
-                )
+            if !(LDRPin.alreadySavedPin(link: link.absoluteString, title: title)) {
+                let error = LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString)
+                if error == nil {
+                    LDRPinOperationQueue.shared.requestPinAdd(
+                        link: link,
+                        title: title,
+                        completionHandler: { (json: JSON?, error: Error?) -> Void in }
+                    )
+                }
             }
         }
     }

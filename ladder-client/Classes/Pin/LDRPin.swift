@@ -68,6 +68,33 @@ class LDRPin: NSManagedObject {
     }
 
     /**
+     * already saved the pin?
+     * @param link String
+     * @param title String
+     * @return BOOL
+     */
+    class func alreadySavedPin(link: String, title: String) -> Bool {
+        let context = LDRCoreDataManager.shared.managedObjectContext
+
+        // make fetch request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
+        let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
+        fetchRequest.entity = entity
+        fetchRequest.fetchBatchSize = 20
+        let predicates: [NSPredicate] = [NSPredicate(format: "(link = %@)", link), NSPredicate(format: "(title = %@)", title)]
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        // return count
+        var count = 0
+        do { count = try context.count(for: fetchRequest) }
+        catch { count = 0 }
+
+        return (count > 0)
+    }
+
+
+    /**
      * save
      * @param createdOn String
      * @param title String
