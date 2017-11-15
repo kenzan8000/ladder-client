@@ -160,7 +160,7 @@ class LDRFeedDetailViewController: UIViewController {
 
         self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
 
-        var html = "<html><style>body { font-size: 2.4em; }</style><body>"
+        var html = "<html><style>html { width: 100%; } body { font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; }</style><body>"
         let body = self.unread!.getBody(at: self.index)
         if body != nil { html = html + "\(body!)" }
         html = html + "</body></html>"
