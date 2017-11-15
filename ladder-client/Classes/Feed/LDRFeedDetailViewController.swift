@@ -2,6 +2,7 @@ import UIKit
 import WebKit
 import SafariServices
 import SwiftyJSON
+import KSToastView
 
 
 /// MARK: - LDRFeedDetailViewController
@@ -94,6 +95,9 @@ class LDRFeedDetailViewController: UIViewController {
             if self.unread == nil { return }
             let title = self.unread!.getTitle(at: self.index)!
             let link = self.unread!.getLink(at: self.index)!
+
+            KSToastView.ks_showToast("Added a pin\n\(title)", duration: 2.0)
+
             if !(LDRPin.alreadySavedPin(link: link.absoluteString, title: title)) {
                 let error = LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString)
                 if error == nil {

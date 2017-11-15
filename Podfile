@@ -11,6 +11,7 @@ target target_name do
 
   # ui
   pod 'LGRefreshView'
+  pod 'KSToastView'
 
   # json parser
   pod 'SwiftyJSON'
