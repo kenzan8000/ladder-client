@@ -20,6 +20,9 @@ target target_name do
 
   # network
   pod 'ISHTTPOperation'
+
+  # firebase
+  pod 'Firebase/Core'
 end
 
 post_install do |installer|

@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 
 /// MARK: - AppDelegate
@@ -11,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     /// MARK: - delegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+
         // remember last session
         let url = LDRUrl(path: LDR.login)
         if url != nil && url!.host != nil {

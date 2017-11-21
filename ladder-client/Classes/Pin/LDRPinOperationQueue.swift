@@ -67,7 +67,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async { Void in
                     if error != nil { completionHandler(nil, error!); return }
 
                     completionHandler(json, nil)
@@ -114,7 +114,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async { Void in
                     if error != nil { completionHandler(nil, error!); return }
 
                     completionHandler(json, nil)
@@ -160,7 +160,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async { Void in
                     if error != nil { completionHandler(nil, error!); return }
 
                     completionHandler(json, nil)
