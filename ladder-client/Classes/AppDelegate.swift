@@ -12,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     /// MARK: - delegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // firebase
         FirebaseApp.configure()
 
         // remember last session

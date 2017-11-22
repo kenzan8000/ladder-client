@@ -21,3 +21,4 @@ Thumbs.db
 *.app
 Pods/*
 ladder-client/Resources/Certificates/*
+ladder-client/Classes/LDRConstant-Private.swift

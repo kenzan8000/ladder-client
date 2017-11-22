@@ -126,12 +126,12 @@ class LDRFeedDetailViewController: UIViewController {
             if url != nil { self.presentSafari(url: url!) }
         }
         if button == self.backButton {
-            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.5), count: 1, interval: 0.08) }
             else { self.loadUnreadItem() }
 
         }
         if button == self.nextButton {
-            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.3), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.5), count: 1, interval: 0.08) }
             else { self.loadUnreadItem() }
         }
     }
@@ -155,6 +155,9 @@ class LDRFeedDetailViewController: UIViewController {
      **/
     func loadUnreadItem() {
         if self.unread == nil { return }
+
+        self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
+        self.nextButton.alpha = (self.index < self.unread!.items.count-1) ? 1.0 : 0.5
 
         self.title = self.unread!.getTitle(at: self.index)
 
