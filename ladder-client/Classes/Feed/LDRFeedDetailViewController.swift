@@ -10,6 +10,8 @@ class LDRFeedDetailViewController: UIViewController {
 
     // MARK: - properties
 
+    @IBOutlet weak var detailView: UIView!
+
     @IBOutlet weak var headerButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -78,6 +80,11 @@ class LDRFeedDetailViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.detailView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.detailView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
     }
 
 

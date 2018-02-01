@@ -72,6 +72,11 @@ class LDRPinViewController: UIViewController {
         self.reloadData()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.tableView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.tableView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -23,6 +23,8 @@ class LDRSettingViewController: UIViewController {
 
     // MARK: - properties
 
+    @IBOutlet weak var settingView: UIView!
+
     @IBOutlet weak var urlDomainLabel: UILabel!
     @IBOutlet weak var urlDomainTextField: UITextField!
     //
@@ -68,6 +70,11 @@ class LDRSettingViewController: UIViewController {
         if password != nil { self.passwordTextField.text = password! }
         let urlDomain = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
         if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.settingView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.settingView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
     }
 
     override func didReceiveMemoryWarning() {
