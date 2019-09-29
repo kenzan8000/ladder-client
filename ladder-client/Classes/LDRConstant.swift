@@ -7,6 +7,7 @@ struct LDRUserDefaults {
     static let ldrUrlString                     = "LDRUserDefaults.ldrUrlString"
     static let apiKey                           = "LDRUserDefaults.apiKey"
     static let session                          = "LDRUserDefaults.session"
+    static let darkMode                         = "LDRUserDefaults.darkMode"
 }
 
 
@@ -79,7 +80,8 @@ func LDRLOG(_ body: Any) {
 func LDRNSStringFromClass(_ classType: AnyClass) -> String {
     let classString = NSStringFromClass(classType)
     let range = classString.range(of: ".")
-    return classString.substring(from: range!.upperBound)
+    //return classString.substring(from: range!.upperBound)
+    return String(classString[range!.upperBound...])
 }
 
 /**

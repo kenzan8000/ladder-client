@@ -33,7 +33,7 @@ class LDRFeedUnread {
         LDRFeedOperationQueue.shared.requestUnread(
             subscribeId: self.subscribeId,
             completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-                if json != nil && json!["items"] != nil { self.items = json!["items"].arrayValue }
+                if json != nil && json?["items"] != nil { self.items = json!["items"].arrayValue }
                 if self.items.count == 0 { self.state = LDRFeedTableViewCell.state.noUnread }
                 else { self.state = LDRFeedTableViewCell.state.unread }
                 NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
@@ -47,7 +47,7 @@ class LDRFeedUnread {
     func requestTouchAll() {
         LDRFeedOperationQueue.shared.requestTouchAll(
             subscribeId: self.subscribeId,
-            completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+            completionHandler: { (json: JSON?, error: Error?) -> Void in
             }
         )
     }

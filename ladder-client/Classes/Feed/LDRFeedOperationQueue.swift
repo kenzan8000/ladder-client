@@ -59,7 +59,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.setCookies()
 
         self.addOperation(LDROperation(
-            request: request as URLRequest!,
+            request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
                 var json = JSON([])
@@ -75,9 +75,8 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async {
                     if error != nil { completionHandler(nil, error!); return }
-
                     completionHandler(json, nil)
                 }
             }
@@ -108,7 +107,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.setCookies()
 
         self.addOperation(LDROperation(
-            request: request as URLRequest!,
+            request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
                 var json = JSON([])
@@ -124,9 +123,8 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async {
                     if error != nil { completionHandler(nil, error!); return }
-
                     completionHandler(json, nil)
                 }
             }
@@ -157,7 +155,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         request.setCookies()
 
         self.addOperation(LDROperation(
-            request: request as URLRequest!,
+            request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
                 var json = JSON([])
@@ -173,9 +171,8 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async {
                     if error != nil { completionHandler(nil, error!); return }
-
                     completionHandler(json, nil)
                 }
             }

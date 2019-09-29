@@ -101,7 +101,7 @@ class LDRFeedViewController: UIViewController {
      * called when touched up inside
      * @param barButtonItem UIBarButtonItem
      **/
-    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestSubs()
         }
@@ -116,8 +116,8 @@ class LDRFeedViewController: UIViewController {
     /**
      * called when did login
      * @param notification NSNotification
-     **/
-    func didLogin(notification: NSNotification) {
+     @objc     **/
+    @objc func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.requestSubs()
         }
@@ -126,8 +126,8 @@ class LDRFeedViewController: UIViewController {
     /**
      * called when did get unread
      * @param notification NSNotification
-     **/
-    func didGetUnread(notification: NSNotification) {
+     @objc     **/
+    @objc func didGetUnread(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.reloadVisibleCells()
         }
@@ -137,7 +137,7 @@ class LDRFeedViewController: UIViewController {
      * called when did get invalid url or username or password error
      * @param notification NSNotification
      **/
-    func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
+    @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             if self.navigationController != self.navigationController!.tabBarController!.viewControllers![self.navigationController!.tabBarController!.selectedIndex] { return }
 
@@ -213,7 +213,7 @@ class LDRFeedViewController: UIViewController {
         else {
             var newUnreads: [LDRFeedUnread] = []
             for subsunread in self.subsunreads {
-                if let i = self.unreads.index(where: { $0.subscribeId ==  subsunread.subscribeId }) {
+                if let i = self.unreads.firstIndex(where: { $0.subscribeId ==  subsunread.subscribeId }) {
                     newUnreads.append(self.unreads[i])
                 }
             }

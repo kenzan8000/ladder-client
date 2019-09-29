@@ -19,8 +19,8 @@ extension URL {
             if i == 0 { string += "?" }
             else { string += "&" }
 
-            let encodedKey = NSString(string: key).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) as String!
-            let encodedValue = NSString(string: value).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) as String!
+            let encodedKey = NSString(string: key).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) as String?
+            let encodedValue = NSString(string: value).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) as String?
             string += encodedKey! + "=" + encodedValue!
             i += 1
         }

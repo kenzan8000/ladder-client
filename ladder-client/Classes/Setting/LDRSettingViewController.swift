@@ -125,9 +125,9 @@ class LDRSettingViewController: UIViewController {
         UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
         UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
         var urlDomain = self.urlDomainTextField.text
-        if urlDomain is String {
-             while urlDomain!.characters.last == "/" {
-                urlDomain = String(urlDomain!.characters.dropLast(1))
+        if urlDomain != nil {
+             while urlDomain!.hasSuffix("/") {
+                urlDomain = String(urlDomain!.dropLast(1))
             }
 
         }

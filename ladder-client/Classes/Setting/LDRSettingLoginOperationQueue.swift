@@ -68,7 +68,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // request
         let request = NSMutableURLRequest(url: url!)
         self.addOperation(LDROperation(
-            request: request as URLRequest!,
+            request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
@@ -109,7 +109,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         self.addOperation(LDROperation(
-            request: request as URLRequest!,
+            request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if error != nil { completionHandler(nil, error!); return }
@@ -167,8 +167,8 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         for child in form!.children {
             if !(child is HTMLElement) { continue }
             if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
-            if !((child as! HTMLElement)["value"] is String) { continue }
-            authenticityToken = (child as! HTMLElement)["value"] as! String
+            if !((child as! HTMLElement)["value"] != nil) { continue }
+            authenticityToken = (child as! HTMLElement)["value"]
             break
         }
         return authenticityToken
