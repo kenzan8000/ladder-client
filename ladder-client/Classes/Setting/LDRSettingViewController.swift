@@ -88,13 +88,13 @@ class LDRSettingViewController: UIViewController {
      * called when touched up inside
      * @param barButtonItem UIBarButtonItem
      **/
-    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.rightBarButtonItem {
             if self.isLogingIn() { return }
 
             self.saveSettings()
 
-            self.navigationController?.dismiss(animated: true, completion: {});
+            self.navigationController?.dismiss(animated: true, completion: {})
         }
     }
 
