@@ -94,7 +94,7 @@ class LDRFeedDetailViewController: UIViewController {
      * called when touched up inside
      * @param barButtonItem UIBarButtonItem
      **/
-    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.navigationController?.popViewController(animated: true)
         }
