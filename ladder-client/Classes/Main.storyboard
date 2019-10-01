@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eh9-jM-YgD">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" name="Background1"/>
+                        <color key="barTintColor" name="Background2"/>
                     </tabBar>
                     <connections>
                         <segue destination="fdt-RO-Gol" kind="relationship" relationship="viewControllers" id="Gij-jr-dqW"/>
@@ -36,8 +35,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2pF-l0-wRp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="Background1"/>
-                        <color key="barTintColor" name="Background1"/>
+                        <color key="backgroundColor" name="Background2"/>
+                        <color key="barTintColor" name="Background2"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" name="Text1"/>
@@ -66,7 +65,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="32" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="JBj-yR-edb">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Background1"/>
+                                <color key="backgroundColor" name="Background2"/>
                                 <connections>
                                     <outlet property="dataSource" destination="191-BL-53J" id="nwA-PN-7Ek"/>
                                     <outlet property="delegate" destination="191-BL-53J" id="ARC-eT-kJr"/>
@@ -78,7 +77,7 @@
                     <navigationItem key="navigationItem" id="9iC-Tf-AR6">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" id="YaO-Vb-8QX"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Dor-3P-6y6">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Dor-3P-6y6">
                             <rect key="frame" x="127" y="6" width="121" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -147,7 +146,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal">
-                                                    <color key="titleColor" name="Text2"/>
+                                                    <color key="titleColor" name="Text1"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonTouchedUpInsideButton:" destination="dvw-dD-UAu" eventType="touchUpInside" id="XnV-BG-t4q"/>
@@ -158,29 +157,29 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal">
-                                                    <color key="titleColor" name="Text2"/>
+                                                    <color key="titleColor" name="Text1"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonTouchedUpInsideButton:" destination="dvw-dD-UAu" eventType="touchUpInside" id="a8v-mP-eJP"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="Background2"/>
+                                        <color key="backgroundColor" name="Background3"/>
                                     </view>
                                     <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgc-fT-UVC">
                                         <rect key="frame" x="0.0" y="32" width="375" height="522"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" name="Background1"/>
+                                        <color key="backgroundColor" name="Background2"/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
                                 </subviews>
-                                <color key="backgroundColor" name="Background1"/>
+                                <color key="backgroundColor" name="Background2"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="Background1"/>
+                        <color key="backgroundColor" name="Background2"/>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="7Ol-1q-BK7" id="5X7-4d-PYE"/>
@@ -202,8 +201,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KDi-Io-o0p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="Background1"/>
-                        <color key="barTintColor" name="Background1"/>
+                        <color key="backgroundColor" name="Background2"/>
+                        <color key="barTintColor" name="Background2"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" name="Text1"/>
@@ -232,7 +231,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-mq-MhW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Background1"/>
+                                <color key="backgroundColor" name="Background2"/>
                                 <connections>
                                     <outlet property="dataSource" destination="3Pp-hj-lkg" id="B8H-N6-c0I"/>
                                     <outlet property="delegate" destination="3Pp-hj-lkg" id="dzn-7Y-7Ra"/>
@@ -259,7 +258,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="Background1"/>
-                        <color key="barTintColor" name="Background1"/>
+                        <color key="barTintColor" name="Background2"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" name="Text1"/>
@@ -375,10 +374,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" name="Background1"/>
+                                <color key="backgroundColor" name="Background2"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="Background1"/>
+                        <color key="backgroundColor" name="Background2"/>
                     </view>
                     <navigationItem key="navigationItem" id="Z5K-A5-Nwu"/>
                     <connections>
@@ -410,13 +409,10 @@
             <color red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Text1">
-            <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="Text2">
-            <color red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uMW-qc-B7s"/>
+        <segue reference="JAy-FL-v8y"/>
     </inferredMetricsTieBreakers>
 </document>
