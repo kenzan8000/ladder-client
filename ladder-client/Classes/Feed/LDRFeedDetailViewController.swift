@@ -42,20 +42,20 @@ class LDRFeedDetailViewController: UIViewController {
 
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_pin, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_pin, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         // back and next button
-        self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
-        self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.darkGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+        self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+        self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
 
         self.loadUnreadItem()
     }
@@ -133,12 +133,12 @@ class LDRFeedDetailViewController: UIViewController {
             if url != nil { self.presentSafari(url: url!) }
         }
         if button == self.backButton {
-            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.5), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor.systemGray6.withAlphaComponent(0.5), count: 1, interval: 0.08) }
             else { self.loadUnreadItem() }
 
         }
         if button == self.nextButton {
-            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor(white: 1.0, alpha: 0.5), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor.systemGray6.withAlphaComponent(0.5), count: 1, interval: 0.08) }
             else { self.loadUnreadItem() }
         }
     }
@@ -170,7 +170,9 @@ class LDRFeedDetailViewController: UIViewController {
 
         self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
 
-        var html = "<html><style>html { width: 100%; } body { font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; }</style><body>"
+        let backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
+        let color = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
+        var html = "<html><style>html { width: 100%; \(backgroundColor) \(color) } body { font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; } a { color: #5555ff; }</style><body>"
         let body = self.unread!.getBody(at: self.index)
         if body != nil { html = html + "\(body!)" }
         html = html + "</body></html>"

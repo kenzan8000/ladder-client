@@ -44,7 +44,7 @@ class LDRSettingViewController: UIViewController {
 
         // bar button items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
@@ -165,13 +165,13 @@ class LDRSettingViewController: UIViewController {
      * end login
      **/
     private func endLogin() {
-        self.loginButton.setTitleColor(UIColor.darkGray, for: .normal)
-        self.loginButton.setTitleColor(UIColor.lightGray, for: .selected)
-        self.loginButton.setTitleColor(UIColor.lightGray, for: .highlighted)
+        self.loginButton.setTitleColor(UIColor.systemGray, for: .normal)
+        self.loginButton.setTitleColor(UIColor.systemGray5, for: .selected)
+        self.loginButton.setTitleColor(UIColor.systemGray5, for: .highlighted)
         self.loginActivityIndicatorView.isHidden = true
         self.loginActivityIndicatorView.stopAnimating()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)

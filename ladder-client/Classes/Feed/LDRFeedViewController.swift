@@ -36,30 +36,30 @@ class LDRFeedViewController: UIViewController {
 
         // segmented control
         self.segmentedControl.setImage(
-            IonIcons.image(withIcon: ion_ios_star_outline, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            IonIcons.image(withIcon: ion_ios_star_outline, iconColor: UIColor.systemGray3, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             forSegmentAt: segment.rate
         )
         self.segmentedControl.setImage(
-            IonIcons.image(withIcon: ion_ios_folder_outline, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            IonIcons.image(withIcon: ion_ios_folder_outline, iconColor: UIColor.systemGray3, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             forSegmentAt: segment.folder
         )
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_gear_outline, iconColor: UIColor.darkGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(withIcon: ion_ios_gear_outline, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
-        self.refreshView.tintColor = UIColor.gray
-        self.refreshView.backgroundColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        self.refreshView.tintColor = UIColor.systemGray2
+        self.refreshView.backgroundColor = UIColor.systemGray6
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)
             self.requestSubs()

@@ -48,13 +48,13 @@ class LDRFeedTableViewCell: UITableViewCell {
     func setUIState(_ s: Int) {
         var color: UIColor? = nil
         if s == LDRFeedTableViewCell.state.unloaded {
-            color = UIColor.lightGray
+            color = UIColor.systemGray4
         }
         else if s == LDRFeedTableViewCell.state.unread {
-            color = UIColor.blue
+            color = UIColor.systemBlue
         }
         else if s == LDRFeedTableViewCell.state.read || s == LDRFeedTableViewCell.state.noUnread {
-            color = UIColor.gray
+            color = UIColor.systemGray2
             self.unreadCountLabel.text = ""
         }
 
