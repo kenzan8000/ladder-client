@@ -21,4 +21,5 @@ Thumbs.db
 *.app
 Pods/*
 ladder-client/Resources/Certificates/*
+ladder-client/Resources/Plists/GoogleService-Info.plist
 ladder-client/Classes/LDRConstant-Private.swift
