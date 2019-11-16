@@ -103,6 +103,7 @@ class LDRFeedDetailViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.titleLabel.textColor = UIColor(named: "Text1")
+        self.loadUnreadItem()
     }
 
 
