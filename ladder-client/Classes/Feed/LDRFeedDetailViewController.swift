@@ -16,7 +16,9 @@ class LDRFeedDetailViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var webView: WKWebView!
-
+    
+    var titleLabel: UILabel!
+    
     var unread: LDRFeedUnread?
     var index = 0
 
@@ -57,6 +59,16 @@ class LDRFeedDetailViewController: UIViewController {
         self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
         self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
 
+        let w = (self.navigationController?.navigationBar.frame.width)! - 2.0*(self.navigationItem.leftBarButtonItem?.image?.size.width)!
+        let h = (self.navigationController?.navigationBar.frame.height)!
+        let label = UILabel(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h)))
+        label.numberOfLines = 3
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = UIColor(named: "Text1")
+        label.font = label.font.withSize(12)
+        self.titleLabel = label
+        self.navigationItem.titleView = label
+        
         self.loadUnreadItem()
     }
 
@@ -74,6 +86,7 @@ class LDRFeedDetailViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
+        self.titleLabel = nil
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -85,6 +98,11 @@ class LDRFeedDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.detailView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.detailView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.titleLabel.textColor = UIColor(named: "Text1")
     }
 
 
@@ -166,7 +184,8 @@ class LDRFeedDetailViewController: UIViewController {
         self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
         self.nextButton.alpha = (self.index < self.unread!.items.count-1) ? 1.0 : 0.5
 
-        self.title = self.unread!.getTitle(at: self.index)
+        //self.title = self.unread!.getTitle(at: self.index)
+        self.titleLabel.text = self.unread!.getTitle(at: self.index)
 
         self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
 
