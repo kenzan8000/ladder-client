@@ -11,18 +11,26 @@ import MobileCoreServices
 
 class ActionViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var label: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        // Get the item[s] we're handling from the extension context.
-        
-        // For example, look for an image and place it into an image view.
-        // Replace this with something appropriate for the type[s] your extension supports.
-        var imageFound = false
         for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
             for provider in item.attachments! {
+                if provider.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+                    weak var weakActivityIndicatorView = self.activityIndicatorView
+                    provider.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil, completionHandler: { (data, error) in
+                        OperationQueue.main.addOperation {
+                            if let url = data as? URL {
+                                print(url)
+                                weakActivityIndicatorView?.startAnimating()
+                            }
+                        }
+                    })
+                }
+                /*
                 if provider.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
                     // This is an image. We'll load it, then place it in our image view.
                     weak var weakImageView = self.imageView
@@ -39,18 +47,12 @@ class ActionViewController: UIViewController {
                     imageFound = true
                     break
                 }
-            }
-            
-            if (imageFound) {
-                // We only handle one image, so stop looking for more.
-                break
+                */
             }
         }
     }
 
     @IBAction func done() {
-        // Return any edited content to the host app.
-        // This template doesn't do anything, so we just echo the passed in items.
         self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
     }
 
