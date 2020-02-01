@@ -25,6 +25,8 @@ class ActionViewController: UIViewController {
                         OperationQueue.main.addOperation {
                             if let url = data as? URL {
                                 print(url)
+                                //let ldrUrlString = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
+                                //print(ldrUrlString)
                                 weakActivityIndicatorView?.startAnimating()
                             }
                         }
