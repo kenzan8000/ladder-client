@@ -44,7 +44,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 1
 
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.subs, params: ["unread": "1"])
@@ -92,7 +92,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.unread)
@@ -140,7 +140,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.touch_all)

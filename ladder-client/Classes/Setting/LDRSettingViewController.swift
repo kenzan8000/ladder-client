@@ -64,11 +64,11 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.isHidden = true
 
         // text fields
-        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
         if username != nil { self.usernameTextField.text = username! }
-        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
         if password != nil { self.passwordTextField.text = password! }
-        let urlDomain = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+        let urlDomain = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
         if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
     }
 
@@ -122,8 +122,8 @@ class LDRSettingViewController: UIViewController {
      * save settings
      **/
     private func saveSettings() {
-        UserDefaults.standard.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
-        UserDefaults.standard.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
+        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
+        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
         var urlDomain = self.urlDomainTextField.text
         if urlDomain != nil {
              while urlDomain!.hasSuffix("/") {
@@ -131,8 +131,8 @@ class LDRSettingViewController: UIViewController {
             }
 
         }
-        UserDefaults.standard.setValue(urlDomain, forKey: LDRUserDefaults.ldrUrlString)
-        UserDefaults.standard.synchronize()
+        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(urlDomain, forKey: LDRUserDefaults.ldrUrlString)
+        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
     }
 
     /**

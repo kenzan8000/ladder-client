@@ -1,6 +1,7 @@
 /// MARK: - User Defaults
 
 struct LDRUserDefaults {
+    static let suiteName                        = "group.ladder-pin"
     static let uuid                             = "LDRUserDefaults.uuid"
     static let username                         = "LDRUserDefaults.username"
     static let password                         = "LDRUserDefaults.password"
@@ -92,7 +93,7 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
  * @return URL?
  */
 func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
-    let ldrUrlString = UserDefaults.standard.string(forKey: LDRUserDefaults.ldrUrlString)
+    let ldrUrlString = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
     if ldrUrlString == nil { return nil }
     var url = URL(string: "https://" + ldrUrlString! + "\(path)")
     if url != nil && params.count > 0 {

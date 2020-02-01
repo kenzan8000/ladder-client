@@ -55,10 +55,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      **/
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
         if username == nil || username! == "" { completionHandler(nil, LDRError.invalidUsername); return }
         // invalid password
-        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
         if password == nil || password! == "" { completionHandler(nil, LDRError.invalidPassword); return }
         // invalid url
         let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
@@ -93,10 +93,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      **/
     func requestSession(authenticityToken: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults.standard.string(forKey: LDRUserDefaults.username)
+        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
         if username == nil || username! == "" { completionHandler(nil, LDRError.invalidUsername); return }
         // invalid password
-        let password = UserDefaults.standard.string(forKey: LDRUserDefaults.password)
+        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
         if password == nil || password! == "" { completionHandler(nil, LDRError.invalidPassword); return }
         // invalid url
         let url = LDRUrl(path: LDR.session)
@@ -142,8 +142,8 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     }
                     if apiKey == "undefined" { completionHandler(nil, LDRError.invalidApiKey); return }
 
-                    UserDefaults.standard.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
-                    UserDefaults.standard.synchronize()
+                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
+                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
                     completionHandler(nil, nil)
                     NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
                 }

@@ -36,7 +36,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
      **/
     func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.add)
@@ -82,7 +82,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
      **/
     func requestPinRemove(link: URL, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.remove)
@@ -127,7 +127,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
      **/
     func requestPinAll(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = UserDefaults.standard.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
         if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.all)
