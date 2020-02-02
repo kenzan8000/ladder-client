@@ -83,7 +83,6 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                 }
             }
         ))
-
     }
 
     /**

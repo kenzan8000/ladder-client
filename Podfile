@@ -25,6 +25,13 @@ target target_name do
   pod 'Firebase/Core'
 end
 
+target_name = 'app-extension'
+
+target target_name do
+  # html parser
+  pod "HTMLReader"
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|

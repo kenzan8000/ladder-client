@@ -81,7 +81,7 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - DACircularProgress
     - Firebase
     - FirebaseAnalytics
@@ -121,6 +121,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 72743f4d2d1cf4d3052d8ed6e9842802d787240e
+PODFILE CHECKSUM: 47811c9f934e92bfbf3dd91e5ae07d0a5411189e
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
