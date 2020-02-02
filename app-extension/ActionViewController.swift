@@ -191,6 +191,9 @@ class ActionViewController: UIViewController {
     
     private func operationDidFail(error: Error) {
         self.label.text = error.localizedDescription
+        if let e = error as? LDRError {
+            self.label.text = "Check out your ladder-client settings and try again."
+        }
         self.activityIndicatorView.stopAnimating()
         self.activityIndicatorView.isHidden = true
     }
