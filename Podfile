@@ -28,6 +28,8 @@ end
 target_name = 'app-extension'
 
 target target_name do
+  # json parser
+  pod 'SwiftyJSON'
   # html parser
   pod "HTMLReader"
 end

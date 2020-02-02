@@ -1,6 +1,7 @@
 import UIKit
 import JavaScriptCore
 import MobileCoreServices
+import SwiftyJSON
 import HTMLReader
 
 class ActionViewController: UIViewController {
@@ -122,6 +123,42 @@ class ActionViewController: UIViewController {
 
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
+                    self.requestPinAdd(link: self.url!, title: "\(self.url!.host)", completionHandler: completionHandler)
+                }
+            }
+        )
+    }
+    
+    func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ error: Error?) -> Void) {
+        // invalid ApiKey
+        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
+        // invalid url
+        let url = LDRUrl(path: LDR.api.pin.add)
+        if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
+
+        // request
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
+        request.setCookies()
+
+        URLSession.shared.dataTask(
+            with: request as URLRequest,
+            completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in                OperationQueue.main.addOperation {
+                    if error != nil { completionHandler(error!); return }
+                    if data == nil { completionHandler(LDRError.invalidApiKey); return }
+                    if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
+                
+                    do {
+                        try JSON(data: data!)
+                    }
+                    catch {
+                        completionHandler(LDRError.invalidUrlOrUsernameOrPassword)
+                        return
+                    }
                     completionHandler(nil)
                 }
             }
