@@ -39,6 +39,8 @@ enum LDRError: Error {
     case invalidAuthenticityToken
     // api
     case invalidApiKey
+    // app extension
+    case invalidPinUrl
 }
 
 

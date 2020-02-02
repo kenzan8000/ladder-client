@@ -13,29 +13,51 @@ class ActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        var noUrlInfo = true
         for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
             for provider in item.attachments! {
                 if provider.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+                    noUrlInfo = false
                     provider.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil, completionHandler: { (data, error) in
                         OperationQueue.main.addOperation { [unowned self] in
                             if let e = error {
+                                self.operationDidFail(error: e)
                                 return
                             }
                             if let url = data as? URL {
                                 self.url = url
+                                self.activityIndicatorView.isHidden = false
                                 self.activityIndicatorView.startAnimating()
+                                self.start(completionHandler: { [unowned self] (_ error: Error?) -> Void in
+                                    if let e = error {
+                                        self.operationDidFail(error: e)
+                                    }
+                                    else {
+                                        self.operationDidSucceed()
+                                    }
+                                })
+                                
                             }
                             else {
+                                self.operationDidFail(error: LDRError.invalidPinUrl)
                             }
                         }
                     })
                 }
             }
         }
+        if noUrlInfo {
+            self.operationDidFail(error: LDRError.invalidPinUrl)
+        }
     }
 
     @IBAction func done() {
         self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
+    }
+    
+    
+    func start(completionHandler: @escaping (_ error: Error?) -> Void) {
+        self.requestLogin(completionHandler: completionHandler)
     }
     
     func requestLogin(completionHandler: @escaping (_ error: Error?) -> Void) {
@@ -52,6 +74,7 @@ class ActionViewController: UIViewController {
 
         // request
         let request = NSMutableURLRequest(url: url!)
+        
         URLSession.shared.dataTask(
             with: request as URLRequest,
             completionHandler: { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
@@ -67,7 +90,7 @@ class ActionViewController: UIViewController {
                     self.requestSession(authenticityToken: authenticityToken!, completionHandler: completionHandler)
                 }
             }
-        )
+        ).resume()
     }
     
     func requestSession(authenticityToken: String, completionHandler: @escaping (_ error: Error?) -> Void) {
@@ -123,10 +146,10 @@ class ActionViewController: UIViewController {
 
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
-                    self.requestPinAdd(link: self.url!, title: "\(self.url!.host)", completionHandler: completionHandler)
+                self.requestPinAdd(link: self.url!, title: self.url!.host!+self.url!.path, completionHandler: completionHandler)
                 }
             }
-        )
+        ).resume()
     }
     
     func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ error: Error?) -> Void) {
@@ -162,7 +185,19 @@ class ActionViewController: UIViewController {
                     completionHandler(nil)
                 }
             }
-        )
+        ).resume()
+    }
+
+    
+    private func operationDidFail(error: Error) {
+        self.label.text = error.localizedDescription
+        self.activityIndicatorView.stopAnimating()
+        self.activityIndicatorView.isHidden = true
+    }
+    
+    private func operationDidSucceed() {
+        self.activityIndicatorView.stopAnimating()
+        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
     }
     
     private func getAuthencityToken(htmlData: Data) -> String? {
