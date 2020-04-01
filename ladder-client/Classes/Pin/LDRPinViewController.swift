@@ -1,7 +1,7 @@
-import UIKit
+import LGRefreshView
 import SafariServices
 import SwiftyJSON
-import LGRefreshView
+import UIKit
 
 
 /// MARK: - LDRPinViewController

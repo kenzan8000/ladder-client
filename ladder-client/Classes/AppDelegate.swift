@@ -1,5 +1,5 @@
-import UIKit
 import Firebase
+import UIKit
 
 
 /// MARK: - AppDelegate

@@ -1,8 +1,8 @@
-import UIKit
+import HTMLReader
 import JavaScriptCore
 import MobileCoreServices
 import SwiftyJSON
-import HTMLReader
+import UIKit
 
 class ActionViewController: UIViewController {
 

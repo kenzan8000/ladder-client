@@ -7,13 +7,11 @@
  */
 
 #import <arpa/inet.h>
+#import <CoreFoundation/CoreFoundation.h>
 #import <ifaddrs.h>
 #import <netdb.h>
-#import <sys/socket.h>
 #import <netinet/in.h>
-
-#import <CoreFoundation/CoreFoundation.h>
-
+#import <sys/socket.h>
 #import "Reachability.h"
 
 #pragma mark IPv6 Support
