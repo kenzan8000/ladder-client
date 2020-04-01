@@ -1,6 +1,6 @@
-import UIKit
-import SwiftyJSON
 import LGRefreshView
+import SwiftyJSON
+import UIKit
 
 
 /// MARK: - LDRFeedViewController

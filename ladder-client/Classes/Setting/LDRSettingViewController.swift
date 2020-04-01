@@ -1,5 +1,5 @@
-import UIKit
 import SwiftyJSON
+import UIKit
 
 
 /// MARK: - LDRSettingNavigationController

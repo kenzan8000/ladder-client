@@ -1,8 +1,8 @@
-import UIKit
-import WebKit
+import KSToastView
 import SafariServices
 import SwiftyJSON
-import KSToastView
+import UIKit
+import WebKit
 
 
 /// MARK: - LDRFeedDetailViewController
