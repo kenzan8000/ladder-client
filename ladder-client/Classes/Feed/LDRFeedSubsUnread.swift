@@ -19,13 +19,8 @@ class LDRFeedSubsUnread: NSManagedObject {
 
     @NSManaged var unreadCount: NSNumber
 
-    var rateValue: Int {
-        return self.rate.intValue
-    }
-
-    var unreadCountValue: Int {
-        return self.unreadCount.intValue
-    }
+    var rateValue: Int { return self.rate.intValue }
+    var unreadCountValue: Int { return self.unreadCount.intValue }
 
 
     /// MARK: - class method
@@ -100,7 +95,6 @@ class LDRFeedSubsUnread: NSManagedObject {
         var folders: [String] = []
         for subsunread in subsunreads {
             if folders.contains(subsunread.folder) { continue }
-            //if (folders.filter{ $0 == subsunread.folder }).count > 0 { continue }
             folders.append(subsunread.folder)
         }
         return folders
@@ -118,30 +112,7 @@ class LDRFeedSubsUnread: NSManagedObject {
         }
         return rateName
     }
-
-//    /**
-//     * fetch from coredata
-//     * @return [LDRFeedSubsUnread]
-//     */
-//    class func fetch() -> [LDRFeedSubsUnread] {
-//        let context = LDRCoreDataManager.shared.managedObjectContext
-//
-//        // make fetch request
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
-//        let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
-//        fetchRequest.entity = entity
-//        fetchRequest.fetchBatchSize = 20
-//        let predicates: [NSPredicate] = []
-//        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-//        fetchRequest.returnsObjectsAsFaults = false
-//
-//        // return models
-//        var models: [LDRFeedSubsUnread] = []
-//        do { models = try context.fetch(fetchRequest) as! [LDRFeedSubsUnread] }
-//        catch { models = [] }
-//
-//        return models
-//    }
+    
     /**
      * fetch from coredata
      * @return [LDRFeedSubsUnread]

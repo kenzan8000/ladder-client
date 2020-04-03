@@ -34,13 +34,23 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
      * @param title String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+    func requestPinAdd(
+        link: URL,
+        title: String,
+        completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
+    ) {
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.add)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -63,12 +73,18 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                 catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
-                    NotificationCenter.default.post(name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil { completionHandler(nil, error!); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
                     completionHandler(json, nil)
                 }
             }
@@ -80,10 +96,16 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
      * @param link URL
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func requestPinRemove(link: URL, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+    func requestPinRemove(
+        link: URL,
+        completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
+    ) {
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.remove)
         if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
@@ -128,10 +150,16 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
     func requestPinAll(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.all)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -154,12 +182,18 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                 catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
-                    NotificationCenter.default.post(name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil { completionHandler(nil, error!); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
                     completionHandler(json, nil)
                 }
             }

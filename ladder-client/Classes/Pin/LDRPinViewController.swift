@@ -31,13 +31,23 @@ class LDRPinViewController: UIViewController {
 
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_reload,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_gear_outline, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_gear_outline,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
@@ -45,15 +55,25 @@ class LDRPinViewController: UIViewController {
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
         self.refreshView.tintColor = UIColor.systemGray2
-        self.refreshView.backgroundColor = UIColor.systemGray5//(red: 248.0/255.0, green: 248.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        self.refreshView.backgroundColor = UIColor.systemGray5
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)
             self.requestPinAll()
         }
 
         // notification
-        NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRPinViewController.didLogin),
+            name: LDRNotificationCenter.didLogin,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+            object: nil
+        )
 
         self.requestPinAll()
     }
@@ -74,7 +94,12 @@ class LDRPinViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.tableView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.tableView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+        self.tableView.frame = CGRect(
+            x: 0,
+            y: self.view.safeAreaInsets.top,
+            width: self.tableView.frame.width,
+            height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        )
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +118,11 @@ class LDRPinViewController: UIViewController {
             self.requestPinAll()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
-            self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+            self.present(
+                LDRSettingNavigationController.ldr_navigationController(),
+                animated: true,
+                completion: {}
+            )
         }
     }
 
@@ -116,7 +145,9 @@ class LDRPinViewController: UIViewController {
      **/
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            if self.navigationController != self.navigationController!.tabBarController!.viewControllers![self.navigationController!.tabBarController!.selectedIndex] { return }
+            let viewControllers = self.navigationController!.tabBarController!.viewControllers!
+            let selectedIndex = self.navigationController!.tabBarController!.selectedIndex
+            if self.navigationController != viewControllers[selectedIndex] { return }
 
             // display error
             let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
@@ -124,7 +155,11 @@ class LDRPinViewController: UIViewController {
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: { [unowned self] in
-                self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+                self.present(
+                    LDRSettingNavigationController.ldr_navigationController(),
+                    animated: true,
+                    completion: {}
+                )
             })
         }
     }

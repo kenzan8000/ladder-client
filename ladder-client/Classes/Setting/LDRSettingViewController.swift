@@ -12,7 +12,12 @@ class LDRSettingNavigationController: UINavigationController {
      * @return LDRSettingNavigationController
      **/
     class func ldr_navigationController() -> LDRSettingNavigationController {
-        let nc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRSettingNavigationController.self)) as! LDRSettingNavigationController
+        let nc = UIStoryboard(
+            name: "Main",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: LDRNSStringFromClass(LDRSettingNavigationController.self)
+        ) as! LDRSettingNavigationController
         return nc
     }
 }
@@ -44,7 +49,12 @@ class LDRSettingViewController: UIViewController {
 
         // bar button items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_close_empty,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
@@ -52,12 +62,19 @@ class LDRSettingViewController: UIViewController {
 
         // url domain label rounded corner
         let urlDomainLabelMaskLayer = CAShapeLayer()
-        urlDomainLabelMaskLayer.path = UIBezierPath(roundedRect: self.urlDomainLabel.bounds, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: 4, height: 4)).cgPath
+        urlDomainLabelMaskLayer.path = UIBezierPath(
+            roundedRect: self.urlDomainLabel.bounds,
+            byRoundingCorners: [.topLeft, .bottomLeft],
+            cornerRadii: CGSize(width: 4, height: 4)
+        ).cgPath
         self.urlDomainLabel.layer.mask = urlDomainLabelMaskLayer
 
         // login button rounded corner
         let loginButtonMaskLayer = CAShapeLayer()
-        loginButtonMaskLayer.path = UIBezierPath(roundedRect: self.loginButton.bounds, cornerRadius: 4).cgPath
+        loginButtonMaskLayer.path = UIBezierPath(
+            roundedRect: self.loginButton.bounds,
+            cornerRadius: 4
+        ).cgPath
         self.loginButton.layer.mask = loginButtonMaskLayer
 
         // login indicator view hidden
@@ -74,7 +91,12 @@ class LDRSettingViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.settingView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.settingView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+        self.settingView.frame = CGRect(
+            x: 0,
+            y: self.view.safeAreaInsets.top,
+            width: self.settingView.frame.width,
+            height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        )
     }
 
     override func didReceiveMemoryWarning() {
@@ -171,7 +193,12 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.isHidden = true
         self.loginActivityIndicatorView.stopAnimating()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_close_empty, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_close_empty,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)

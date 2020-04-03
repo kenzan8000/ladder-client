@@ -21,7 +21,13 @@ class LDRPinTableViewCell: UITableViewCell {
      * @return LDRPinTableViewCell
      **/
     class func ldr_cell() -> LDRPinTableViewCell {
-        return UINib(nibName: LDRNSStringFromClass(LDRPinTableViewCell.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! LDRPinTableViewCell
+        return UINib(
+            nibName: LDRNSStringFromClass(LDRPinTableViewCell.self),
+            bundle: nil
+        ).instantiate(
+            withOwner: nil,
+            options: nil
+        )[0] as! LDRPinTableViewCell
     }
 
 

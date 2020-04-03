@@ -30,7 +30,12 @@ class LDRFeedDetailViewController: UIViewController {
      * @return LDRFeedDetailViewController
      **/
     class func ldr_viewController() -> LDRFeedDetailViewController {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewController.self)) as! LDRFeedDetailViewController
+        let vc = UIStoryboard(
+            name: "Main",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewController.self)
+        ) as! LDRFeedDetailViewController
         return vc
     }
 
@@ -44,24 +49,52 @@ class LDRFeedDetailViewController: UIViewController {
 
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_arrow_left,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_pin, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_pin,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         // back and next button
-        self.backButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
-        self.nextButton.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, iconColor: UIColor.systemGray, iconSize: 36, imageSize: CGSize(width: 36, height: 36)), for: .normal)
+        self.backButton.setImage(
+            IonIcons.image(
+                withIcon: ion_ios_arrow_left,
+                iconColor: UIColor.systemGray,
+                iconSize: 36,
+                imageSize: CGSize(width: 36, height: 36)
+            ),
+            for: .normal
+        )
+        self.nextButton.setImage(
+            IonIcons.image(
+                withIcon: ion_ios_arrow_right,
+                iconColor: UIColor.systemGray,
+                iconSize: 36,
+                imageSize: CGSize(width: 36, height: 36)
+            ),
+            for: .normal
+        )
 
-        let w = (self.navigationController?.navigationBar.frame.width)! - 2.0*(self.navigationItem.leftBarButtonItem?.image?.size.width)!
+        let w = (self.navigationController?.navigationBar.frame.width)! -
+            2.0 * (self.navigationItem.leftBarButtonItem?.image?.size.width)!
         let h = (self.navigationController?.navigationBar.frame.height)!
-        let label = UILabel(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h)))
+        let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h))
+        let label = UILabel(frame: frame)
         label.numberOfLines = 3
         label.lineBreakMode = .byWordWrapping
         label.textColor = UIColor(named: "Text1")
@@ -97,7 +130,12 @@ class LDRFeedDetailViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.detailView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.detailView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+        self.detailView.frame = CGRect(
+            x: 0,
+            y: self.view.safeAreaInsets.top,
+            width: self.detailView.frame.width,
+            height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        )
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -152,12 +190,26 @@ class LDRFeedDetailViewController: UIViewController {
             if url != nil { self.presentSafari(url: url!) }
         }
         if button == self.backButton {
-            if !(self.addIndexIfPossible(value: -1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor.systemGray6.withAlphaComponent(0.5), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: -1)) {
+                LDRBlinkView.show(
+                    on: UIApplication.shared.windows[0],
+                    color: UIColor.systemGray6.withAlphaComponent(0.5),
+                    count: 1,
+                    interval: 0.08
+                )
+            }
             else { self.loadUnreadItem() }
 
         }
         if button == self.nextButton {
-            if !(self.addIndexIfPossible(value: 1)) { LDRBlinkView.show(on: UIApplication.shared.windows[0], color: UIColor.systemGray6.withAlphaComponent(0.5), count: 1, interval: 0.08) }
+            if !(self.addIndexIfPossible(value: 1)) {
+                LDRBlinkView.show(
+                    on: UIApplication.shared.windows[0],
+                    color: UIColor.systemGray6.withAlphaComponent(0.5),
+                    count: 1,
+                    interval: 0.08
+                )
+            }
             else { self.loadUnreadItem() }
         }
     }
@@ -183,7 +235,7 @@ class LDRFeedDetailViewController: UIViewController {
         if self.unread == nil { return }
 
         self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
-        self.nextButton.alpha = (self.index < self.unread!.items.count-1) ? 1.0 : 0.5
+        self.nextButton.alpha = (self.index < self.unread!.items.count - 1) ? 1.0 : 0.5
 
         //self.title = self.unread!.getTitle(at: self.index)
         self.titleLabel.text = self.unread!.getTitle(at: self.index)
@@ -220,7 +272,10 @@ class LDRFeedDetailViewController: UIViewController {
 /// MARK: - UIGestureRecognizerDelegate
 extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
+    ) -> Bool {
         return true
     }
 
@@ -229,7 +284,11 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 /// MARK: - WKNavigationDelegate
 extension LDRFeedDetailViewController: WKNavigationDelegate {
 
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy
+    ) -> Swift.Void) {
         switch navigationAction.navigationType {
             case .formSubmitted:
                 break
@@ -249,6 +308,8 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
                 }
                 self.presentSafari(url: url)
                 return
+        @unknown default:
+            return
         }
         decisionHandler(.allow)
     }

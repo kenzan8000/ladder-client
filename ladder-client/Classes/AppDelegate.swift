@@ -11,18 +11,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     /// MARK: - delegate
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // firebase
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        // init firebase
         FirebaseApp.configure()
 
         // remember last session
-        let url = LDRUrl(path: LDR.login)
-        if url != nil && url!.host != nil {
-            let session = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.session)
-            if session != nil {
-                let cookies = HTTPCookie.cookies(withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session!)"], for: url!)
-                for cookie in cookies { HTTPCookieStorage.shared.setCookie(cookie) }
-            }
+        guard let url = LDRUrl(path: LDR.login) else { return true }
+        if url.host == nil { return true }
+        let session = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.session)
+        if session == nil { return true }
+        let cookies = HTTPCookie.cookies(
+            withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session!)"],
+            for: url
+        )
+        for cookie in cookies {
+            HTTPCookieStorage.shared.setCookie(cookie)
         }
 
         return true
