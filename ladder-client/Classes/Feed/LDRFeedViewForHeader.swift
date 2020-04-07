@@ -1,3 +1,5 @@
+import UIKit
+
 /// MARK: - LDRFeedViewForHeader
 class LDRFeedViewForHeader: UIView {
 
@@ -13,7 +15,13 @@ class LDRFeedViewForHeader: UIView {
      * @return LDRFeedViewForHeader
      **/
     class func ldr_view() -> LDRFeedViewForHeader {
-        return UINib(nibName: LDRNSStringFromClass(LDRFeedViewForHeader.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! LDRFeedViewForHeader
+        return UINib(
+            nibName: LDRNSStringFromClass(LDRFeedViewForHeader.self),
+            bundle: nil
+        ).instantiate(
+            withOwner: nil,
+            options: nil
+        )[0] as! LDRFeedViewForHeader
     }
 
 

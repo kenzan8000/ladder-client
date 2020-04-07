@@ -36,22 +36,42 @@ class LDRFeedViewController: UIViewController {
 
         // segmented control
         self.segmentedControl.setImage(
-            IonIcons.image(withIcon: ion_ios_star_outline, iconColor: UIColor.systemGray3, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            IonIcons.image(
+                withIcon: ion_ios_star_outline,
+                iconColor: UIColor.systemGray3,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             forSegmentAt: segment.rate
         )
         self.segmentedControl.setImage(
-            IonIcons.image(withIcon: ion_ios_folder_outline, iconColor: UIColor.systemGray3, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            IonIcons.image(
+                withIcon: ion_ios_folder_outline,
+                iconColor: UIColor.systemGray3,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             forSegmentAt: segment.folder
         )
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_reload, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_reload,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(withIcon: ion_ios_gear_outline, iconColor: UIColor.systemGray, iconSize: 32, imageSize: CGSize(width: 32, height: 32)),
+            image: IonIcons.image(
+                withIcon: ion_ios_gear_outline,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
             style: .plain,
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
@@ -66,9 +86,24 @@ class LDRFeedViewController: UIViewController {
         }
 
         // notification
-        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didLogin), name: LDRNotificationCenter.didLogin, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didGetUnread), name: LDRNotificationCenter.didGetUnread, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError), name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didLogin),
+            name: LDRNotificationCenter.didLogin,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didGetUnread),
+            name: LDRNotificationCenter.didGetUnread,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+            object: nil
+        )
 
         self.reloadData(isNew: true)
     }
@@ -79,7 +114,12 @@ class LDRFeedViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.tableView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top, width: self.tableView.frame.width, height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
+        self.tableView.frame = CGRect(
+            x: 0,
+            y: self.view.safeAreaInsets.top,
+            width: self.tableView.frame.width,
+            height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        )
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,7 +146,11 @@ class LDRFeedViewController: UIViewController {
             self.requestSubs()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
-            self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
+            self.present(
+                LDRSettingNavigationController.ldr_navigationController(),
+                animated: true,
+                completion: {}
+            )
         }
     }
 
@@ -139,16 +183,26 @@ class LDRFeedViewController: UIViewController {
      **/
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            if self.navigationController != self.navigationController!.tabBarController!.viewControllers![self.navigationController!.tabBarController!.selectedIndex] { return }
+            let viewControllers = self.navigationController!.tabBarController!.viewControllers
+            let selectedIndex = self.navigationController!.tabBarController!.selectedIndex
+            if viewControllers?[selectedIndex] != self.navigationController { return }
 
             // display error
             let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
             let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(action)
-            self.present(alertController, animated: true, completion: { [unowned self] in
-                self.present(LDRSettingNavigationController.ldr_navigationController(), animated: true, completion: {})
-            })
+            self.present(
+                alertController,
+                animated: true,
+                completion: { [unowned self] in
+                    self.present(
+                        LDRSettingNavigationController.ldr_navigationController(),
+                        animated: true,
+                        completion: {}
+                    )
+                }
+            )
         }
     }
 
@@ -164,10 +218,18 @@ class LDRFeedViewController: UIViewController {
         var index = 0
         for section in 0 ..< indexPath.section {
             if self.segmentedControl.selectedSegmentIndex == segment.rate {
-                index = index + LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
+                let offset = LDRFeedSubsUnread.countOfTheRate(
+                    subsunreads: self.subsunreads,
+                    rate: self.rates[section]
+                )
+                index = index + offset
             }
             else if self.segmentedControl.selectedSegmentIndex == segment.folder {
-                index = index + LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
+                let offset = LDRFeedSubsUnread.countOfTheFloder(
+                    subsunreads: self.subsunreads,
+                    folder: self.folders[section]
+                )
+                index = index + offset
             }
         }
         index = index + indexPath.row
@@ -178,22 +240,27 @@ class LDRFeedViewController: UIViewController {
      * request subs
      **/
     func requestSubs() {
-        LDRFeedOperationQueue.shared.requestSubs(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-            self.refreshView.endRefreshing()
+        LDRFeedOperationQueue.shared.requestSubs(
+            completionHandler: {
+                [unowned self] (
+                    json: JSON?,
+                    error: Error?
+                ) -> Void in
+                    self.refreshView.endRefreshing()
+                    if error != nil { return }
+                
+                    // delete and save model
+                    var modelError: Error? = nil
+                    modelError = LDRFeedSubsUnread.delete()
+                    if modelError != nil { return }
 
-            if error != nil { return }
+                    if json == nil { return }
+                    modelError = LDRFeedSubsUnread.save(json: json!)
+                    if modelError != nil { return }
 
-            // delete and save model
-            var modelError: Error? = nil
-            modelError = LDRFeedSubsUnread.delete()
-            if modelError != nil { return }
-
-            if json == nil { return }
-            modelError = LDRFeedSubsUnread.save(json: json!)
-            if modelError != nil { return }
-
-            self.reloadData(isNew: true)
-        })
+                    self.reloadData(isNew: true)
+            }
+        )
     }
 
     /**
@@ -201,7 +268,9 @@ class LDRFeedViewController: UIViewController {
      * @param isNew Bool
      **/
     func reloadData(isNew: Bool) {
-        self.subsunreads = LDRFeedSubsUnread.fetch(segment: self.segmentedControl.selectedSegmentIndex)
+        self.subsunreads = LDRFeedSubsUnread.fetch(
+            segment: self.segmentedControl.selectedSegmentIndex
+        )
         if isNew {
             self.unreads = []
             for subsunread in self.subsunreads {
@@ -232,9 +301,10 @@ class LDRFeedViewController: UIViewController {
      * update visible tableview cells
      **/
     func reloadVisibleCells() {
-        let indexPaths = self.tableView.indexPathsForVisibleRows
-        if indexPaths == nil { return }
-        for indexPath in indexPaths! {
+        guard let indexPaths = self.tableView.indexPathsForVisibleRows else {
+            return
+        }
+        for indexPath in indexPaths {
             let cell = self.tableView.cellForRow(at: indexPath)
             if cell == nil { continue }
             let index = self.getIndex(indexPath: indexPath)

@@ -43,7 +43,9 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // delete cookies
         let url = LDRUrl(path: LDR.login)
         if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
-        for cookieName in [LDR.cookieName] { HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!) }
+        for cookieName in [LDR.cookieName] {
+            HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!)
+        }
 
         // request login
         self.requestLogin(completionHandler: completionHandler)
@@ -56,14 +58,23 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
         let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
-        if username == nil || username! == "" { completionHandler(nil, LDRError.invalidUsername); return }
+        if username == nil || username! == "" {
+            completionHandler(nil, LDRError.invalidUsername)
+            return
+        }
         // invalid password
         let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
-        if password == nil || password! == "" { completionHandler(nil, LDRError.invalidPassword); return }
+        if password == nil || password! == "" {
+            completionHandler(nil, LDRError.invalidPassword)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
         //let url = LDRUrl(path: LDR.login)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -71,13 +82,22 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
-                    if error != nil { completionHandler(nil, error!); return }
-                    if !(object is Data) { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
+                    if !(object is Data) {
+                        completionHandler(nil, LDRError.invalidAuthenticityToken)
+                        return
+                    }
                     if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     // parse html
                     let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
-                    if authenticityToken == nil { completionHandler(nil, LDRError.invalidAuthenticityToken); return }
+                    if authenticityToken == nil {
+                        completionHandler(nil, LDRError.invalidAuthenticityToken)
+                        return
+                    }
 
                     self.requestSession(authenticityToken: authenticityToken!, completionHandler: completionHandler)
                 }
@@ -90,16 +110,28 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
      * @param authenticityToken String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func requestSession(authenticityToken: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+    func requestSession(
+        authenticityToken: String,
+        completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
+    ) {
         // invalid username
         let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
-        if username == nil || username! == "" { completionHandler(nil, LDRError.invalidUsername); return }
+        if username == nil || username! == "" {
+            completionHandler(nil, LDRError.invalidUsername)
+            return
+        }
         // invalid password
         let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
-        if password == nil || password! == "" { completionHandler(nil, LDRError.invalidPassword); return }
+        if password == nil || password! == "" {
+            completionHandler(nil, LDRError.invalidPassword)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.session)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -111,18 +143,26 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
-                    if error != nil { completionHandler(nil, error!); return }
-                    if !(object is Data) { completionHandler(nil, LDRError.invalidApiKey); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
+                    if !(object is Data) {
+                        completionHandler(nil, LDRError.invalidApiKey)
+                        return
+                    }
                     if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
 
                     let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
-                    if authenticityToken != nil { completionHandler(nil, LDRError.invalidUsernameOrPassword); return }
+                    if authenticityToken != nil {
+                        completionHandler(nil, LDRError.invalidUsernameOrPassword)
+                        return
+                    }
 
                     var apiKey = "undefined"
                     let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
 
                     let scripts = document.nodes(matchingSelector: "script")
-                    if scripts == nil { completionHandler(nil, LDRError.invalidApiKey); return }
                     for script in scripts {
                         for child in script.children {
                             if !(child is HTMLNode) { continue }
@@ -139,7 +179,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         }
                         if apiKey != "undefined" { break }
                     }
-                    if apiKey == "undefined" { completionHandler(nil, LDRError.invalidApiKey); return }
+                    if apiKey == "undefined" {
+                        completionHandler(nil, LDRError.invalidApiKey)
+                        return
+                    }
 
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
                     UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()

@@ -45,10 +45,16 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.subs, params: ["unread": "1"])
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -76,7 +82,10 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil { completionHandler(nil, error!); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
                     completionHandler(json, nil)
                 }
             }
@@ -88,15 +97,24 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
      * @param subscribeId String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func requestUnread(subscribeId: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+    func requestUnread(
+        subscribeId: String,
+        completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
+    ) {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.unread)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        if url == nil {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
         let request = NSMutableURLRequest(url: url!)
@@ -124,7 +142,10 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil { completionHandler(nil, error!); return }
+                    if error != nil {
+                        completionHandler(nil, error!)
+                        return
+                    }
                     completionHandler(json, nil)
                 }
             }
@@ -136,12 +157,18 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
      * @param subscribeId String
      * @param completionHandler (json: JSON?, error: Error?) -> Void
      **/
-    func requestTouchAll(subscribeId: String, completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
+    func requestTouchAll(
+        subscribeId: String,
+        completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
+    ) {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
-        if apiKey == nil || apiKey == "" { completionHandler(nil, LDRError.invalidApiKey); return }
+        if apiKey == nil || apiKey == "" {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
         // invalid url
         let url = LDRUrl(path: LDR.api.touch_all)
         if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
