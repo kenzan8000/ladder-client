@@ -2,7 +2,7 @@ import NotificationCenter
 
 /// MARK: - User Defaults
 
-struct LDRUserDefaults {
+enum LDRUserDefaults {
     static let suiteName                        = "group.ladder-pin"
     static let uuid                             = "LDRUserDefaults.uuid"
     static let username                         = "LDRUserDefaults.username"
@@ -16,7 +16,7 @@ struct LDRUserDefaults {
 
 /// MARK: - NotificationCenter
 
-struct LDRNotificationCenter {
+enum LDRNotificationCenter {
     static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
     static let didGetUnread = Notification.Name("LDRNotificationCenter.didGetUnread")
     static let didGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError")
@@ -45,14 +45,14 @@ enum LDRError: Error {
 
 
 /// MARK: - LDR
-struct LDR {
+enum LDR {
     static let login =                      "/login"
     static let session =                    "/session"
-    struct api {
+    enum api {
         static let subs =                   "/api/subs"
         static let unread =                 "/api/unread"
         static let touch_all =              "/api/touch_all"
-        struct pin {
+        enum pin {
             static let add =                "/api/pin/add"
             static let remove =             "/api/pin/remove"
             static let all =                "/api/pin/all"
