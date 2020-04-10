@@ -5,7 +5,7 @@ class LDRFeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var unreadCountLabel: UILabel!
-    struct state {
+    enum state {
         static let unloaded = 0
         static let unread = 1
         static let read = 2

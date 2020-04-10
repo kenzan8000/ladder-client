@@ -10,7 +10,7 @@ class LDRFeedViewController: UIViewController {
 
     var refreshView: LGRefreshView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    struct segment {
+    enum segment {
         static let rate = 0
         static let folder = 1
     }
