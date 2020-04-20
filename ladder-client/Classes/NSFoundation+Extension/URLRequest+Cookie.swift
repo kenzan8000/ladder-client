@@ -6,9 +6,7 @@ extension MutableURLRequest {
 
     /// MARK: - public api
 
-    /**
-     * set cookies
-     */
+    /// set cookies to http header
     func setCookies() {
         let cookies = HTTPCookieStorage.shared.cookies
         if cookies == nil { return }

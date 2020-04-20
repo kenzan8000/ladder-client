@@ -5,13 +5,12 @@ import Foundation
 extension URL {
 
     /// MARK: - Initialization
-
-    /**
-     * create URL with parameters
-     * @param URL URL
-     * @param parameters Hash representing url parameters
-     * @return NSURL
-     */
+    
+    /// create URL with url queries
+    ///
+    /// - Parameters:
+    ///   - url: base url
+    ///   - parameters: url queries
     init?(url: URL, parameters: Dictionary<String, String>) {
         var string = url.absoluteString
         var i: Int = 0

@@ -26,18 +26,16 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - public api
 
-    /**
-     * start
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    /// start operation
+    ///
+    /// - Parameter completionHandler: handler called when completed the operation
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         self.requestSubs(completionHandler: completionHandler)
     }
 
-    /**
-     * request api/subs
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    /// request api/subs
+    ///
+    /// - Parameter completionHandler: handler called when completed the request
     func requestSubs(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // stop all feed operations
         self.cancelAllOperations()
@@ -92,11 +90,11 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         ))
     }
 
-    /**
-     * request api/unread
-     * @param subscribeId String
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    /// request api/unread
+    ///
+    /// - Parameters:
+    ///   - subscribeId: subscribe id
+    ///   - completionHandler: handler called when completed the request
     func requestUnread(
         subscribeId: String,
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
@@ -152,11 +150,11 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         ))
     }
 
-    /**
-     * request api/touch_all
-     * @param subscribeId String
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+     /// request api/touch_all
+     ///
+     /// - Parameters:
+     ///   - subscribeId: subscribe id
+     ///   - completionHandler: handler called when completed the request
     func requestTouchAll(
         subscribeId: String,
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void

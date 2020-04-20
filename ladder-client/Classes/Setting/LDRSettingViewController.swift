@@ -6,11 +6,10 @@ import UIKit
 class LDRSettingNavigationController: UINavigationController {
 
     /// MARK: - class method
-
-    /**
-     * get navigationController
-     * @return LDRSettingNavigationController
-     **/
+    
+    /// returns  navigation controller object
+    ///
+    /// - Returns: navigation controller object
     class func ldr_navigationController() -> LDRSettingNavigationController {
         let nc = UIStoryboard(
             name: "Main",
@@ -105,11 +104,10 @@ class LDRSettingViewController: UIViewController {
 
 
     /// MARK: - event listener
-
-    /**
-     * called when touched up inside
-     * @param barButtonItem UIBarButtonItem
-     **/
+    ///
+    /// called when touched up inside
+    ///
+    /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.rightBarButtonItem {
             if self.isLogingIn() { return }
@@ -120,10 +118,9 @@ class LDRSettingViewController: UIViewController {
         }
     }
 
-    /**
-     * called when touched up inside
-     * @param button UIButton
-     **/
+    /// called when touched up inside
+    ///
+    /// - Parameter button: UIButton for the event
     @IBAction func buttonTouchedUpInside(button: UIButton) {
         if button == self.loginButton {
             if self.isLogingIn() { return }
@@ -139,10 +136,8 @@ class LDRSettingViewController: UIViewController {
 
 
     /// MARK: - private api
-
-    /**
-     * save settings
-     **/
+    ///
+    /// save the current settings
     private func saveSettings() {
         UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
         UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
@@ -156,10 +151,8 @@ class LDRSettingViewController: UIViewController {
         UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(urlDomain, forKey: LDRUserDefaults.ldrUrlString)
         UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
     }
-
-    /**
-     * start login
-     **/
+    
+    /// start login
     private func startLogin() {
         self.loginButton.setTitleColor(UIColor.clear, for: .normal)
         self.loginButton.setTitleColor(UIColor.clear, for: .selected)
@@ -182,10 +175,8 @@ class LDRSettingViewController: UIViewController {
             }
         })
     }
-
-    /**
-     * end login
-     **/
+    
+    /// end login
     private func endLogin() {
         self.loginButton.setTitleColor(UIColor.systemGray, for: .normal)
         self.loginButton.setTitleColor(UIColor.systemGray5, for: .selected)
@@ -204,11 +195,10 @@ class LDRSettingViewController: UIViewController {
             action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
         )
     }
-
-    /**
-     * check if app is loging in now?
-     * @return Bool
-     **/
+    
+    /// returns if loging in now
+    /// 
+    /// - Returns: Bool value if loging in now
     private func isLogingIn() -> Bool {
         return !(self.loginActivityIndicatorView.isHidden)
     }

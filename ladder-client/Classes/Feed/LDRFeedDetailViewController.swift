@@ -24,11 +24,10 @@ class LDRFeedDetailViewController: UIViewController {
 
 
     /// MARK: - class method
-
-    /**
-     * get viewController
-     * @return LDRFeedDetailViewController
-     **/
+    
+    /// returns view controller object
+    ///
+    /// - Returns: view controller object
     class func ldr_viewController() -> LDRFeedDetailViewController {
         let vc = UIStoryboard(
             name: "Main",
@@ -146,11 +145,10 @@ class LDRFeedDetailViewController: UIViewController {
 
 
     /// MARK: - event listener
-
-    /**
-     * called when touched up inside
-     * @param barButtonItem UIBarButtonItem
-     **/
+    
+    /// Descalled when touched up insidecription
+    ///
+    /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.navigationController?.popViewController(animated: true)
@@ -174,11 +172,10 @@ class LDRFeedDetailViewController: UIViewController {
             }
         }
     }
-
-    /**
-     * called when touched up inside
-     * @param button UIButton
-     **/
+    
+    /// called when touched up inside
+    ///
+    /// - Parameter button: UIButton for the event
     @IBAction func buttonTouchedUpInside(button: UIButton) {
         if button == self.headerButton {
             if self.unread == nil { return }
@@ -217,10 +214,9 @@ class LDRFeedDetailViewController: UIViewController {
 
     /// MARK: - public api
 
-    /**
-     * present safari
-     * @param url URL
-     **/
+    /// present safari view controller
+    ///
+    /// - Parameter url: url opened on safari view controller
     func presentSafari(url: URL) {
         let viewController = SFSafariViewController(url: url)
         viewController.hidesBottomBarWhenPushed = true
@@ -228,9 +224,7 @@ class LDRFeedDetailViewController: UIViewController {
         self.present(viewController, animated: true, completion: {})
     }
 
-    /**
-     * load unread item
-     **/
+    /// load unread item as static html on the view
     func loadUnreadItem() {
         if self.unread == nil { return }
 
@@ -252,11 +246,10 @@ class LDRFeedDetailViewController: UIViewController {
         self.webView.loadHTMLString(html, baseURL: link)
     }
 
-    /**
-     * add index
-     * @param value Int
-     * @return Bool if could add or not
-     **/
+    /// add the value to current index
+    ///
+    /// - Parameter value: value (-1: previous page or 1: next page)
+    /// - Returns: true if the result index is valid, no if not valid
     func addIndexIfPossible(value: Int) -> Bool {
         if self.unread == nil { return false }
 

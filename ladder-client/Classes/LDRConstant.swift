@@ -60,36 +60,31 @@ enum LDR {
 
 /// MARK: - function
 
-/**
- * display log
- *
- * @param body log
- */
+/// display log
+///
+/// - Parameter body: body of log
 func LDRLOG(_ body: Any) {
 #if DEBUG
     print(body)
 #endif
 }
 
-/**
- * return class name
- *
- * @param classType classType
- * @return class name
- */
+/// returns class name
+///
+/// - Parameter classType: type of class
+/// - Returns: name of class
 func LDRNSStringFromClass(_ classType: AnyClass) -> String {
     let classString = NSStringFromClass(classType)
     let range = classString.range(of: ".")
     return String(classString[range!.upperBound...])
 }
 
-/**
- * return ldr url
- *
- * @param path path String
- * @param params url parameters Hash
- * @return URL?
- */
+/// returns built ldr url
+///
+/// - Parameters:
+///   - path: path of url
+///   - params: quries of url
+/// - Returns: built ldr url
 func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
     if params.count == 0 { return nil }
     let ldrUrlString = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
@@ -101,12 +96,10 @@ func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
     return urlComponents?.url
 }
 
-/**
- * return error message
- *
- * @param error Error?
- * @return error message string
- */
+/// returns error message
+///
+/// - Parameter error: error
+/// - Returns: error message
 func LDRErrorMessage(error: Error?) -> String {
     if error == nil { return "Unknown Error" }
     if !(error is LDRError) { return "\(error!.localizedDescription)" }

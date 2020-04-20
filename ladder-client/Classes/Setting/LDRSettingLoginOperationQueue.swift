@@ -30,10 +30,9 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     /// MARK: - public api
 
-    /**
-     * start login
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    /// start login
+    ///
+    /// - Parameter completionHandler: handler called when operation ends
     func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // stop all network connections
         LDRFeedOperationQueue.shared.cancelAllOperations()
@@ -50,11 +49,10 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // request login
         self.requestLogin(completionHandler: completionHandler)
     }
-
-    /**
-     * request login
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    
+    /// request login
+    ///
+    /// - Parameter completionHandler: handler called when request ends
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
         let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
@@ -104,12 +102,12 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             }
         ))
     }
-
-    /**
-     * request session
-     * @param authenticityToken String
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    
+    /// request session
+    ///
+    /// - Parameters:
+    ///   - authenticityToken: authenticity token
+    ///   - completionHandler: handler called when request ends
     func requestSession(
         authenticityToken: String,
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
@@ -195,12 +193,11 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
 
     /// MARK: - private api
-
-    /**
-     * get authenticity_token by html data
-     * @param data Data
-     * @return authenticity_token String?
-     **/
+   
+    /// returns authenticity_token from html
+    ///
+    /// - Parameter htmlData: data of html that contains authenticity_token
+    /// - Returns: authenticity_token
     private func getAuthencityToken(htmlData: Data) -> String? {
         var authenticityToken: String? = nil
         let document = HTMLDocument(data: htmlData, contentTypeHeader: nil)

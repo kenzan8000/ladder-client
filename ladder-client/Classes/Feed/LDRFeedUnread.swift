@@ -13,10 +13,9 @@ class LDRFeedUnread {
 
     /// MARK: - initialization
 
-    /**
-     * init
-     * @param subscribeId String
-     */
+    /// initializer
+    ///
+    /// - Parameter subscribeId: subscribe id
     init(subscribeId: String) {
         self.subscribeId = subscribeId
         self.items = []
@@ -26,9 +25,7 @@ class LDRFeedUnread {
 
     /// MARK: - public api
 
-    /**
-     * request unread
-     **/
+    /// request unread api
     func request() {
         LDRFeedOperationQueue.shared.requestUnread(
             subscribeId: self.subscribeId,
@@ -41,9 +38,7 @@ class LDRFeedUnread {
         )
     }
 
-    /**
-     * request touch_all
-     **/
+    /// request touch_all api
     func requestTouchAll() {
         LDRFeedOperationQueue.shared.requestTouchAll(
             subscribeId: self.subscribeId,
@@ -52,10 +47,10 @@ class LDRFeedUnread {
     }
 
 
-    /**
-     * get title at index
-     * @return String?
-     **/
+    /// returns title of unread feed at index
+    ///
+    /// - Parameter index: index of unread feed
+    /// - Returns: title of unread feed or nil if not existed
     func getTitle(at index: Int) -> String? {
         if index < 0 { return nil }
         if index >= self.items.count { return nil }
@@ -63,11 +58,11 @@ class LDRFeedUnread {
         let item = self.items[index]
         return item["title"].stringValue
     }
-
-    /**
-     * get link at index
-     * @return URL?
-     **/
+    
+    /// returns link of unread feed at index
+    ///
+    /// - Parameter index: index of unread feed
+    /// - Returns: link of unread feed or nil if not existed
     func getLink(at index: Int) -> URL? {
         if index < 0 { return nil }
         if index >= self.items.count { return nil }
@@ -76,10 +71,10 @@ class LDRFeedUnread {
         return URL(string: item["link"].stringValue)
     }
 
-    /**
-     * get body at index
-     * @return String?
-     **/
+    /// returns body of unread feed at index
+    ///
+    /// - Parameter index: index of unread feed
+    /// - Returns: body of unread feed
     func getBody(at index: Int) -> String? {
         if index < 0 { return nil }
         if index >= self.items.count { return nil }

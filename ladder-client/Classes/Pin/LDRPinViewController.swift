@@ -108,11 +108,10 @@ class LDRPinViewController: UIViewController {
 
 
     /// MARK: - event listener
-
-    /**
-     * called when touched up inside
-     * @param barButtonItem UIBarButtonItem
-     **/
+    
+    /// called when touched up inside
+    ///
+    /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestPinAll()
@@ -128,21 +127,19 @@ class LDRPinViewController: UIViewController {
 
 
     /// MARK: - notification
-
-    /**
-     * called when did login
-     * @param notification NSNotification
-     **/
+    
+    /// called when user did login
+    ///
+    /// - Parameter notification: NSNotification happened when user did login
     @objc func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.requestPinAll()
         }
     }
-
-    /**
-     * called when did get invalid url or username or password error
-     * @param notification NSNotification
-     **/
+    
+    /// called when user did get invalid url or username or password error
+    ///
+    /// - Parameter notification: NSNotification happened when user did get invalid url or username or password error
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             let viewControllers = self.navigationController!.tabBarController!.viewControllers!
@@ -166,10 +163,8 @@ class LDRPinViewController: UIViewController {
 
 
     /// MARK: - public api
-
-    /**
-     * request pin/all
-     **/
+    
+    /// request pin/all api
     func requestPinAll() {
         LDRPinOperationQueue.shared.requestPinAll(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
             self.refreshView.endRefreshing()
@@ -188,9 +183,7 @@ class LDRPinViewController: UIViewController {
         })
     }
 
-    /**
-     * reload data on tableView
-     **/
+    /// reload data on tableView
     func reloadData() {
         self.pins = LDRPin.fetch()
         self.tableView.reloadData()

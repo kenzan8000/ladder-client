@@ -129,18 +129,16 @@ class LDRFeedViewController: UIViewController {
 
     /// MARK: - event listener
 
-    /**
-     * called when value changed
-     * @param segmentedControl UISegmentedControl
-     **/
+    /// called when value changed
+    ///
+    /// - Parameter segmentedControl: UISegmentedControl for the event
     @IBAction func segmentedControlValueChanged(segmentedControl: UISegmentedControl) {
         self.reloadData(isNew: false)
     }
 
-    /**
-     * called when touched up inside
-     * @param barButtonItem UIBarButtonItem
-     **/
+    /// called when touched up inside
+    ///
+    /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestSubs()
@@ -157,30 +155,27 @@ class LDRFeedViewController: UIViewController {
 
     /// MARK: - notification
 
-    /**
-     * called when did login
-     * @param notification NSNotification
-     @objc     **/
+    /// called when did login
+    ///
+    /// - Parameter notification: notification happened when user did login
     @objc func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.requestSubs()
         }
     }
 
-    /**
-     * called when did get unread
-     * @param notification NSNotification
-     @objc     **/
+    /// called when did get unread
+    ///
+    /// - Parameter notification: notification happened when user did get new unread
     @objc func didGetUnread(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.reloadVisibleCells()
         }
     }
 
-    /**
-     * called when did get invalid url or username or password error
-     * @param notification NSNotification
-     **/
+    /// called when user did get invalid url or username or password error
+    ///
+    /// - Parameter notification: notification happened when user did get invalid url or username or password error
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             let viewControllers = self.navigationController!.tabBarController!.viewControllers
@@ -209,11 +204,10 @@ class LDRFeedViewController: UIViewController {
 
     /// MARK: - public api
 
-    /**
-     * get index
-     * @param indexPath IndexPath
-     * @return Int
-     **/
+    /// returns index int from index path on feed view controller
+    ///
+    /// - Parameter indexPath: IndexPath object
+    /// - Returns: index int from index path
     func getIndex(indexPath: IndexPath) -> Int {
         var index = 0
         for section in 0 ..< indexPath.section {
@@ -236,9 +230,7 @@ class LDRFeedViewController: UIViewController {
         return index
     }
 
-    /**
-     * request subs
-     **/
+    /// request subs api
     func requestSubs() {
         LDRFeedOperationQueue.shared.requestSubs(
             completionHandler: {
@@ -263,10 +255,9 @@ class LDRFeedViewController: UIViewController {
         )
     }
 
-    /**
-     * update subsunread models and tableView
-     * @param isNew Bool
-     **/
+    /// update subsunread models and tableView
+    ///
+    /// - Parameter isNew: if newly adding LDRFeedUnread
     func reloadData(isNew: Bool) {
         self.subsunreads = LDRFeedSubsUnread.fetch(
             segment: self.segmentedControl.selectedSegmentIndex
@@ -297,9 +288,7 @@ class LDRFeedViewController: UIViewController {
         self.tableView.reloadData()
     }
 
-    /**
-     * update visible tableview cells
-     **/
+    /// update visible tableview cells
     func reloadVisibleCells() {
         guard let indexPaths = self.tableView.indexPathsForVisibleRows else {
             return
