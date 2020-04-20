@@ -15,11 +15,10 @@ class LDRPin: NSManagedObject {
 
 
     /// MARK: - class method
-
-    /**
-     * count from coredata
-     * @return Int
-     */
+    
+    /// returns count of model from coredata
+    ///
+    /// - Returns: count of model
     class func count() -> Int {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -39,11 +38,10 @@ class LDRPin: NSManagedObject {
 
         return count
     }
-
-    /**
-     * fetch from coredata
-     * @return [LDRPin]
-     */
+    
+    /// fetch models from coredata
+    ///
+    /// - Returns: models
     class func fetch() -> [LDRPin] {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -63,13 +61,13 @@ class LDRPin: NSManagedObject {
 
         return models
     }
-
-    /**
-     * already saved the pin?
-     * @param link String
-     * @param title String
-     * @return BOOL
-     */
+    
+    /// returns if the ldr pin is already saved
+    ///
+    /// - Parameters:
+    ///   - link: link url string
+    ///   - title: title of pin
+    /// - Returns: Bool value if the ldr pin is already saved
     class func alreadySavedPin(link: String, title: String) -> Bool {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -98,6 +96,14 @@ class LDRPin: NSManagedObject {
      * @param link String
      * @return Error?
      */
+    
+    /// save pin
+    ///
+    /// - Parameters:
+    ///   - createdOn: string representing date the pin is created
+    ///   - title: title of pin
+    ///   - link: link url string of pin
+    /// - Returns: model saving error or nil if succeeded
     class func saveByAttributes(createdOn: String, title: String, link: String) -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -117,6 +123,11 @@ class LDRPin: NSManagedObject {
      * @param json JSON
      * @return Error?
      */
+     
+     /// save pin
+     ///
+    /// - Parameter json: json params representing pin model
+    /// - Returns: model saving error or nil if succeeded
     class func save(json: JSON) -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -134,10 +145,9 @@ class LDRPin: NSManagedObject {
         return nil
     }
 
-    /**
-     * delete
-     * @return Error?
-     */
+    /// delete all pins
+    ///
+    /// - Returns: model deletion error or nil if succeeded
     class func deleteAll() -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -164,11 +174,10 @@ class LDRPin: NSManagedObject {
         return nil
     }
 
-    /**
-     * delete
-     * @param pin LDRPin to delete
-     * @return Error?
-     */
+    /// delete pin
+    ///
+    /// - Parameter pin: pin you want to delete
+    /// - Returns: model deletion error or nil if succeeded
     class func delete(pin: LDRPin) -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 

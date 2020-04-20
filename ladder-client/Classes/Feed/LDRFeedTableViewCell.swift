@@ -14,19 +14,17 @@ class LDRFeedTableViewCell: UITableViewCell {
 
 
     /// MARK: - class method
-
-    /**
-     * return cell height
-     * @return CGFloat
-     **/
+    
+    /// returns cell height
+    ///
+    /// - Returns: cell height
     class func ldr_height() -> CGFloat {
         return 64.0
     }
 
-    /**
-     * get cell
-     * @return LDRFeedTableViewCell
-     **/
+    /// returns cell object
+    ///
+    /// - Returns: cell object
     class func ldr_cell() -> LDRFeedTableViewCell {
         return UINib(nibName: LDRNSStringFromClass(LDRFeedTableViewCell.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! LDRFeedTableViewCell
     }
@@ -45,6 +43,10 @@ class LDRFeedTableViewCell: UITableViewCell {
      * set ui state
      * @param state Int
      **/
+    
+    /// set ui state (unloaded, unread, read)
+    ///
+    /// - Parameter s: state (unloaded, unread, read)
     func setUIState(_ s: Int) {
         var color: UIColor? = nil
         if s == LDRFeedTableViewCell.state.unloaded {

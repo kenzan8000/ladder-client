@@ -7,19 +7,17 @@ class LDRPinTableViewCell: UITableViewCell {
 
 
     /// MARK: - class method
-
-    /**
-     * return cell height
-     * @return CGFloat
-     **/
+    
+    /// returns cell height
+    ///
+    /// - Returns: cell height
     class func ldr_height() -> CGFloat {
         return 64.0
     }
-
-    /**
-     * get cell
-     * @return LDRPinTableViewCell
-     **/
+    
+    /// returns cell object
+    ///
+    /// - Returns: cell object
     class func ldr_cell() -> LDRPinTableViewCell {
         return UINib(
             nibName: LDRNSStringFromClass(LDRPinTableViewCell.self),

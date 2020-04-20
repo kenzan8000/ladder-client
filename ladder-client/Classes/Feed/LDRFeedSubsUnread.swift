@@ -25,10 +25,9 @@ class LDRFeedSubsUnread: NSManagedObject {
 
     /// MARK: - class method
 
-    /**
-     * count from coredata
-     * @return Int
-     */
+    /// returns model count from coredata
+    ///
+    /// - Returns: count
     class func count() -> Int {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -49,33 +48,32 @@ class LDRFeedSubsUnread: NSManagedObject {
         return count
     }
 
-    /**
-     * count number of the rate
-     * @param subsunreads [LDRFeedSubsUnread]
-     * @param rate the rate
-     * @return Int
-     **/
+    /// returns count of model by the rate
+    ///
+    /// - Parameters:
+    ///   - subsunreads: subsunread models
+    ///   - rate: rate star
+    /// - Returns: count of model by the rate
     class func countOfTheRate(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
         let filtered = subsunreads.filter { $0.rateValue == rate }
         return filtered.count
     }
 
-    /**
-     * count number of the folder
-     * @param subsunreads [LDRFeedSubsUnread]
-     * @param folder the folder
-     * @return Int
-     **/
+    /// returns count of model by the folder
+    ///
+    /// - Parameters:
+    ///   - subsunreads: subsunread models
+    ///   - folder: folder name
+    /// - Returns: count of model by the folder
     class func countOfTheFloder(subsunreads: [LDRFeedSubsUnread], folder: String) -> Int {
         let filtered = subsunreads.filter { $0.folder == folder }
         return filtered.count
     }
 
-    /**
-     * get rates
-     * @param subsunreads [LDRFeedSubsUnread]
-     * @return [Int]
-     **/
+    /// returns rates of subsunread models
+    ///
+    /// - Parameter subsunreads: subsunread models
+    /// - Returns: rates of subsunread models
     class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [Int] {
         var rates: [Int] = []
         for subsunread in subsunreads {
@@ -86,11 +84,10 @@ class LDRFeedSubsUnread: NSManagedObject {
         return rates
     }
 
-    /**
-     * get folders
-     * @param subsunreads [LDRFeedSubsUnread]
-     * @return [String]
-     **/
+    /// returns folder names
+    ///
+    /// - Parameter subsunreads: subsunread models
+    /// - Returns: folder names
     class func getFolders(subsunreads: [LDRFeedSubsUnread]) -> [String] {
         var folders: [String] = []
         for subsunread in subsunreads {
@@ -100,11 +97,10 @@ class LDRFeedSubsUnread: NSManagedObject {
         return folders
     }
 
-    /**
-     * get rate name
-     * @param rate Int
-     * @return String
-     **/
+    /// returns  rate name (stars)
+    ///
+    /// - Parameter rate: how many stars
+    /// - Returns: rate name (stars)
     class func getRateName(rate: Int) -> String {
         var rateName = ""
         for i in 0 ..< 5 {
@@ -113,10 +109,10 @@ class LDRFeedSubsUnread: NSManagedObject {
         return rateName
     }
     
-    /**
-     * fetch from coredata
-     * @return [LDRFeedSubsUnread]
-     */
+    /// fetch models from coredata
+    ///
+    /// - Parameter segment: search condition -> rate or folder
+    /// - Returns: models from coredata
     class func fetch(segment: Int) -> [LDRFeedSubsUnread] {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -141,12 +137,10 @@ class LDRFeedSubsUnread: NSManagedObject {
         return models
     }
 
-
-    /**
-     * save
-     * @param json JSON
-     * @return Error?
-     */
+    /// save model
+    ///
+    /// - Parameter json: json representing the model
+    /// - Returns: error of saving the model or no error if succeeded
     class func save(json: JSON) -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
@@ -169,10 +163,9 @@ class LDRFeedSubsUnread: NSManagedObject {
         return nil
     }
 
-    /**
-     * delete
-     * @return Error?
-     */
+    /// delete all models
+    ///
+    /// - Returns: deletion error or nil if succeeded
     class func delete() -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 

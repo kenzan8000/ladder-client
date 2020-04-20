@@ -10,10 +10,9 @@ class LDRFeedViewForHeader: UIView {
 
     /// MARK: - class method
 
-    /**
-     * get view
-     * @return LDRFeedViewForHeader
-     **/
+    /// returns view object
+    ///
+    /// - Returns: view object
     class func ldr_view() -> LDRFeedViewForHeader {
         return UINib(
             nibName: LDRNSStringFromClass(LDRFeedViewForHeader.self),

@@ -27,13 +27,13 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
 
 
     /// MARK: - public api
-
-    /**
-     * request api/pin/add
-     * @param link URL
-     * @param title String
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    
+    /// request api/pin/add api
+    ///
+    /// - Parameters:
+    ///   - link: pin url
+    ///   - title: pin title
+    ///   - completionHandler: handler called when request ends
     func requestPinAdd(
         link: URL,
         title: String,
@@ -91,11 +91,11 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         ))
     }
 
-    /**
-     * request api/pin/remove
-     * @param link URL
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    /// request api/pin/remove api
+    ///
+    /// - Parameters:
+    ///   - link: pin url
+    ///   - completionHandler: handler called when request ends
     func requestPinRemove(
         link: URL,
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
@@ -142,11 +142,10 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             }
         ))
     }
-
-    /**
-     * request api/pin/all
-     * @param completionHandler (json: JSON?, error: Error?) -> Void
-     **/
+    
+    /// request api/pin/all api
+    ///
+    /// - Parameter completionHandler: handler called when request ends
     func requestPinAll(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
         let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
