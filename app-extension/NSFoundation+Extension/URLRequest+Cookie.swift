@@ -2,14 +2,14 @@ import Foundation
 
 
 /// MARK: - MutableURLRequest+Cookie
-extension MutableURLRequest {
+extension URLRequest {
 
     /// MARK: - public api
 
     /**
      * set cookies
      */
-    func setCookies() {
+    mutating func setCookies() {
         let cookies = HTTPCookieStorage.shared.cookies
         if cookies == nil { return }
 
