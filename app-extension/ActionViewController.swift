@@ -73,10 +73,10 @@ class ActionViewController: UIViewController {
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
+        let request = URLRequest(url: url!)
         
         URLSession.shared.dataTask(
-            with: request as URLRequest,
+            with: request,
             completionHandler: { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 OperationQueue.main.addOperation { [unowned self] in
                     if error != nil { completionHandler(error!); return }
@@ -105,7 +105,7 @@ class ActionViewController: UIViewController {
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
+        var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.httpBody = ["username": username!, "password": password!, "authenticity_token": authenticityToken].HTTPBodyValue()
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
@@ -161,7 +161,7 @@ class ActionViewController: UIViewController {
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
+        var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
