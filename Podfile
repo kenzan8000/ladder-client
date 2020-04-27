@@ -20,6 +20,7 @@ target target_name do
 
   # network
   pod 'ISHTTPOperation'
+  pod 'Alamofire'
 
   # firebase
   pod 'Firebase/Core'
