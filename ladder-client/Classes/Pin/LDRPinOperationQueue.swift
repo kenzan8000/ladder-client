@@ -1,3 +1,4 @@
+import Alamofire
 import ISHTTPOperation
 import SwiftyJSON
 
@@ -46,29 +47,38 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        let url = LDRUrl(path: LDR.api.pin.add)
-        if url == nil {
+        guard let url = LDRUrl(path: LDR.api.pin.add) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        request.setCookies()
+        var headers = HTTPHeaders()
+        if let cookieHeader = URLRequest.getCookies(host: url.host) {
+            headers.add(cookieHeader)
+        }
+        headers.add(name: "Content-Type", value: "application/json")
+        let httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
+        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        guard var request = try? URLRequest(
+            url: url,
+            method: HTTPMethod(rawValue: "POST"),
+            headers: headers
+        ) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
+        request.httpBody = httpBody
 
         self.addOperation(LDROperation(
-            request: request as URLRequest?,
+            request: request,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                if let r = response {
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                }
                 var json = JSON([])
                 do {
-                    if object != nil {
-                        json = try JSON(data: object as! Data)
-                    }
+                    json = try JSON(data: object as! Data)
                 }
                 catch {
                     self.cancelAllOperations()
@@ -81,8 +91,8 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil {
-                        completionHandler(nil, error!)
+                    if let e = error {
+                        completionHandler(nil, e)
                         return
                     }
                     completionHandler(json, nil)
@@ -107,36 +117,54 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        let url = LDRUrl(path: LDR.api.pin.remove)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        guard let url = LDRUrl(path: LDR.api.pin.remove) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.httpBody = ["ApiKey": apiKey!, "link": link.absoluteString].HTTPBodyValue()
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        request.setCookies()
+        var headers = HTTPHeaders()
+        if let cookieHeader = URLRequest.getCookies(host: url.host) {
+            headers.add(cookieHeader)
+        }
+        headers.add(name: "Content-Type", value: "application/json")
+        let httpBody = ["ApiKey": apiKey!, "link": link.absoluteString].HTTPBodyValue()
+        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        guard var request = try? URLRequest(
+            url: url,
+            method: HTTPMethod(rawValue: "POST"),
+            headers: headers
+        ) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
+        request.httpBody = httpBody
 
         self.addOperation(LDROperation(
-            request: request as URLRequest?,
+            request: request,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                if let r = response {
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                }
                 var json = JSON([])
                 do {
-                    if object != nil {
-                        json = try JSON(data: object as! Data)
-                    }
+                    json = try JSON(data: object as! Data)
                 }
                 catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
-                    NotificationCenter.default.post(name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError, object: nil)
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
                     completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil { completionHandler(nil, error!); return }
+                    if let e = error {
+                        completionHandler(nil, e)
+                        return
+                    }
                     completionHandler(json, nil)
                 }
             }
@@ -154,29 +182,38 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        let url = LDRUrl(path: LDR.api.pin.all)
-        if url == nil {
+        guard let url = LDRUrl(path: LDR.api.pin.all) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        request.setCookies()
-
+        var headers = HTTPHeaders()
+        if let cookieHeader = URLRequest.getCookies(host: url.host) {
+            headers.add(cookieHeader)
+        }
+        headers.add(name: "Content-Type", value: "application/json")
+        let httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
+        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        guard var request = try? URLRequest(
+            url: url,
+            method: HTTPMethod(rawValue: "POST"),
+            headers: headers
+        ) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
+        request.httpBody = httpBody
+        
         self.addOperation(LDROperation(
-            request: request as URLRequest?,
+            request: request,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                if let r = response {
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                }
                 var json = JSON([])
                 do {
-                    if object != nil {
-                        json = try JSON(data: object as! Data)
-                    }
+                    json = try JSON(data: object as! Data)
                 }
                 catch {
                     self.cancelAllOperations()
@@ -189,8 +226,8 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     return
                 }
                 DispatchQueue.main.async {
-                    if error != nil {
-                        completionHandler(nil, error!)
+                    if let e = error {
+                        completionHandler(nil, e)
                         return
                     }
                     completionHandler(json, nil)

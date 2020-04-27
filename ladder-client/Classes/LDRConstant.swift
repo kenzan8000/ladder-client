@@ -86,7 +86,7 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
 ///   - params: quries of url
 /// - Returns: built ldr url
 func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
-    if params.count == 0 { return nil }
+    //if params.count == 0 { return nil }
     let ldrUrlString = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
     if ldrUrlString == nil { return nil }
     guard let url = URL(string: "https://" + ldrUrlString! + "\(path)") else { return nil }

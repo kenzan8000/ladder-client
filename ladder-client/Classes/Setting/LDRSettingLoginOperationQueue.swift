@@ -1,3 +1,4 @@
+import Alamofire
 import HTMLReader
 import ISHTTPOperation
 import JavaScriptCore
@@ -67,37 +68,42 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
-        //let url = LDRUrl(path: LDR.login)
-        if url == nil {
+        guard let url = LDRUrl(
+            path: LDR.login,
+            params: ["username": username!, "password": password!]
+        ) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
+        let request = URLRequest(url: url)
         self.addOperation(LDROperation(
             request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
-                    if error != nil {
-                        completionHandler(nil, error!)
+                    if let e = error {
+                        completionHandler(nil, e)
                         return
                     }
                     if !(object is Data) {
                         completionHandler(nil, LDRError.invalidAuthenticityToken)
                         return
                     }
-                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    if let r = response {
+                        HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                    }
 
                     // parse html
-                    let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
-                    if authenticityToken == nil {
+                    guard let authenticityToken = self.getAuthencityToken(htmlData: object as! Data) else {
                         completionHandler(nil, LDRError.invalidAuthenticityToken)
                         return
                     }
 
-                    self.requestSession(authenticityToken: authenticityToken!, completionHandler: completionHandler)
+                    self.requestSession(
+                        authenticityToken: authenticityToken,
+                        completionHandler: completionHandler
+                    )
                 }
             }
         ))
@@ -125,34 +131,43 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        let url = LDRUrl(path: LDR.session)
-        if url == nil {
+        guard let url = LDRUrl(path: LDR.session) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.httpBody = ["username": username!, "password": password!, "authenticity_token": authenticityToken].HTTPBodyValue()
-        if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        var headers = HTTPHeaders()
+        headers.add(name: "Content-Type", value: "application/json")
+        let httpBody = ["username": username!, "password": password!, "authenticity_token": authenticityToken].HTTPBodyValue()
+        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        guard var request = try? URLRequest(
+            url: url,
+            method: HTTPMethod(rawValue: "POST"),
+            headers: headers
+        ) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
+        request.httpBody = httpBody
+        
         self.addOperation(LDROperation(
             request: request as URLRequest?,
             handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
-                    if error != nil {
-                        completionHandler(nil, error!)
+                    if let e = error {
+                        completionHandler(nil, e)
                         return
                     }
                     if !(object is Data) {
                         completionHandler(nil, LDRError.invalidApiKey)
                         return
                     }
-                    if response != nil { HTTPCookieStorage.shared.addCookies(httpUrlResponse: response) }
+                    if let r = response {
+                        HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                    }
 
-                    let authenticityToken = self.getAuthencityToken(htmlData: object as! Data)
-                    if authenticityToken != nil {
+                    if let _ = self.getAuthencityToken(htmlData: object as! Data) {
                         completionHandler(nil, LDRError.invalidUsernameOrPassword)
                         return
                     }
