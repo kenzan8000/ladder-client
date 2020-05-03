@@ -1,16 +1,18 @@
+import KeychainAccess
 import NotificationCenter
 
 /// MARK: - User Defaults
 
-enum LDRUserDefaults {
-    static let suiteName                        = "group.ladder-pin"
-    static let uuid                             = "LDRUserDefaults.uuid"
-    static let username                         = "LDRUserDefaults.username"
-    static let password                         = "LDRUserDefaults.password"
-    static let ldrUrlString                     = "LDRUserDefaults.ldrUrlString"
-    static let apiKey                           = "LDRUserDefaults.apiKey"
-    static let session                          = "LDRUserDefaults.session"
-    static let darkMode                         = "LDRUserDefaults.darkMode"
+enum LDRKeychain {
+    static let serviceName = "org.kenzan8000.ladder-client"
+    static let suiteName = "group.ladder-pin"
+    static let uuid = "LDRKeychain.uuid"
+    static let username = "LDRKeychain.username"
+    static let password = "LDRKeychain.password"
+    static let ldrUrlString = "LDRKeychain.ldrUrlString"
+    static let apiKey = "LDRKeychain.apiKey"
+    static let session = "LDRKeychain.session"
+    static let darkMode = "LDRKeychain.darkMode"
 }
 
 
@@ -97,9 +99,14 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
  * @return URL?
  */
 func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
-    let ldrUrlString = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
-    if ldrUrlString == nil { return nil }
-    var url = URL(string: "https://" + ldrUrlString! + "\(path)")
+    guard let ldrUrlString = Keychain(
+        service: LDRKeychain.serviceName,
+        accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.ldrUrlString] else {
+        return nil
+    }
+    
+    var url = URL(string: "https://" + ldrUrlString + "\(path)")
     if url != nil && params.count > 0 {
         var urlComponents = URLComponents(url: url!, resolvingAgainstBaseURL: false)
         let queryItems = params.map { return URLQueryItem(name: "\($0)", value: "\($1)") }

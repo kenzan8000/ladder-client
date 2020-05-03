@@ -1,5 +1,6 @@
 import Alamofire
 import ISHTTPOperation
+import KeychainAccess
 import SwiftyJSON
 
 
@@ -41,7 +42,10 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return
@@ -111,7 +115,10 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return
@@ -176,7 +183,10 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
     /// - Parameter completionHandler: handler called when request ends
     func requestPinAll(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return

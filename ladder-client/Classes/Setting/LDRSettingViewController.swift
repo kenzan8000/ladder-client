@@ -1,3 +1,4 @@
+import KeychainAccess
 import SwiftyJSON
 import UIKit
 
@@ -83,7 +84,10 @@ class LDRSettingViewController: UIViewController {
         self.usernameTextField.textContentType = .username
         self.usernameTextField.keyboardType = .alphabet
         self.passwordTextField.textContentType = .password
-        let urlDomain = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
+        let urlDomain = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.ldrUrlString]
         if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
         self.urlDomainTextField.keyboardType = .URL
     }
@@ -139,8 +143,15 @@ class LDRSettingViewController: UIViewController {
     ///
     /// save the current settings
     private func saveSettings() {
-        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.usernameTextField.text, forKey: LDRUserDefaults.username)
-        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(self.passwordTextField.text, forKey: LDRUserDefaults.password)
+        Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.username] = self.usernameTextField.text
+        Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.password] = self.passwordTextField.text
+        
         var urlDomain = self.urlDomainTextField.text
         if urlDomain != nil {
              while urlDomain!.hasSuffix("/") {
@@ -148,8 +159,10 @@ class LDRSettingViewController: UIViewController {
             }
 
         }
-        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(urlDomain, forKey: LDRUserDefaults.ldrUrlString)
-        UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
+        Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.ldrUrlString] = urlDomain
     }
     
     /// start login

@@ -22,6 +22,9 @@ target target_name do
   pod 'ISHTTPOperation'
   pod 'Alamofire'
 
+  # key chain
+  pod 'KeychainAccess'
+
   # firebase
   pod 'Firebase/Core'
 end
@@ -33,6 +36,8 @@ target target_name do
   pod 'SwiftyJSON'
   # html parser
   pod "HTMLReader"
+  # key chain
+  pod 'KeychainAccess'
 end
 
 post_install do |installer|
