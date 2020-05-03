@@ -1,4 +1,5 @@
 import Foundation
+import KeychainAccess
 
 
 /// MARK: - HTTPCookieStorage+Cookie
@@ -47,10 +48,10 @@ extension HTTPCookieStorage {
 
             let url = LDRUrl(path: LDR.login)
             if url != nil && cookie.domain.hasSuffix(url!.host!) {
-                UserDefaults(suiteName: LDRUserDefaults.suiteName)?.set(cookie.value, forKey: LDRUserDefaults.session)
-                UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
-                //UserDefaults.standard.setValue(cookie.value, forKey: LDRUserDefaults.session)
-                //UserDefaults.standard.synchronize()
+                Keychain(
+                    service: LDRKeychain.serviceName,
+                    accessGroup: LDRKeychain.suiteName
+                )[LDRKeychain.session] = cookie.value
             }
         }
     }

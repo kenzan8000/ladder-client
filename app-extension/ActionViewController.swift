@@ -1,5 +1,6 @@
 import HTMLReader
 import JavaScriptCore
+import KeychainAccess
 import MobileCoreServices
 import SwiftyJSON
 import UIKit
@@ -62,10 +63,16 @@ class ActionViewController: UIViewController {
     
     func requestLogin(completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
+        let username = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.username]
         if username == nil || username! == "" { completionHandler(LDRError.invalidUsername); return }
         // invalid password
-        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
+        let password = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
         let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
@@ -95,10 +102,16 @@ class ActionViewController: UIViewController {
     
     func requestSession(authenticityToken: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
+        let username = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.username]
         if username == nil || username! == "" { completionHandler(LDRError.invalidUsername); return }
         // invalid password
-        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
+        let password = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
         let url = LDRUrl(path: LDR.session)
@@ -143,8 +156,11 @@ class ActionViewController: UIViewController {
                     }
                     if apiKey == "undefined" { completionHandler(LDRError.invalidApiKey); return }
 
-                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
-                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
+                    Keychain(
+                        service: LDRKeychain.serviceName,
+                        accessGroup: LDRKeychain.suiteName
+                    )[LDRKeychain.apiKey] = apiKey
+                
                 self.requestPinAdd(link: self.url!, title: self.url!.host!+self.url!.path, completionHandler: completionHandler)
                 }
             }
@@ -153,7 +169,10 @@ class ActionViewController: UIViewController {
     
     func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
         // invalid url
         let url = LDRUrl(path: LDR.api.pin.add)
