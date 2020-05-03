@@ -36,6 +36,8 @@ target target_name do
   pod 'SwiftyJSON'
   # html parser
   pod "HTMLReader"
+  # key chain
+  pod 'KeychainAccess'
 end
 
 post_install do |installer|
