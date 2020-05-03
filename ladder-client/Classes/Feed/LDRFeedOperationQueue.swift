@@ -1,5 +1,6 @@
 import Alamofire
 import ISHTTPOperation
+import KeychainAccess
 import SwiftyJSON
 
 
@@ -43,7 +44,10 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 1
 
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return
@@ -115,7 +119,10 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return
@@ -187,7 +194,10 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.apiKey)
+        let apiKey = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" {
             completionHandler(nil, LDRError.invalidApiKey)
             return

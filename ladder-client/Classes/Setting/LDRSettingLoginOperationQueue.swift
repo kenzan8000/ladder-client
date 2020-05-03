@@ -2,6 +2,7 @@ import Alamofire
 import HTMLReader
 import ISHTTPOperation
 import JavaScriptCore
+import KeychainAccess
 import SwiftyJSON
 
 
@@ -56,13 +57,19 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     /// - Parameter completionHandler: handler called when request ends
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
+        let username = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.username]
         if username == nil || username! == "" {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
-        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
+        let password = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.password]
         if password == nil || password! == "" {
             completionHandler(nil, LDRError.invalidPassword)
             return
@@ -119,13 +126,19 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid username
-        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
+        let username = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.username]
         if username == nil || username! == "" {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
-        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
+        let password = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+        )[LDRKeychain.password]
         if password == nil || password! == "" {
             completionHandler(nil, LDRError.invalidPassword)
             return
@@ -197,8 +210,11 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         return
                     }
 
-                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.setValue(apiKey, forKey: LDRUserDefaults.apiKey)
-                    UserDefaults(suiteName: LDRUserDefaults.suiteName)?.synchronize()
+                    Keychain(
+                        service: LDRKeychain.serviceName,
+                        accessGroup: LDRKeychain.suiteName
+                    )[LDRKeychain.apiKey] = apiKey
+                    
                     completionHandler(nil, nil)
                     NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
                 }

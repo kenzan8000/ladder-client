@@ -1,4 +1,5 @@
 import Firebase
+import KeychainAccess
 import UIKit
 
 
@@ -22,10 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // remember last session
         guard let url = LDRUrl(path: LDR.login) else { return true }
         if url.host == nil { return true }
-        let session = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.session)
-        if session == nil { return true }
+        guard let session = Keychain(
+            service: LDRKeychain.serviceName,
+            accessGroup: LDRKeychain.suiteName
+            )[LDRKeychain.session] else {
+            return true
+        }
         let cookies = HTTPCookie.cookies(
-            withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session!)"],
+            withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session)"],
             for: url
         )
         for cookie in cookies {
