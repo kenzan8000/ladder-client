@@ -22,6 +22,9 @@ target target_name do
   pod 'ISHTTPOperation'
   pod 'Alamofire'
 
+  # key chain
+  pod 'KeychainAccess'
+
   # firebase
   pod 'Firebase/Core'
 end

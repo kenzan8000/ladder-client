@@ -64,6 +64,7 @@ PODS:
   - HTMLReader (2.1.5)
   - ionicons (2.1.1)
   - ISHTTPOperation (1.2.0)
+  - KeychainAccess (4.2.0)
   - KSToastView (0.5.7)
   - LGRefreshView (1.0.5):
     - DACircularProgress (~> 2.3.0)
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - HTMLReader
   - ionicons
   - ISHTTPOperation
+  - KeychainAccess
   - KSToastView
   - LGRefreshView
   - SwiftyJSON
@@ -102,6 +104,7 @@ SPEC REPOS:
     - HTMLReader
     - ionicons
     - ISHTTPOperation
+    - KeychainAccess
     - KSToastView
     - LGRefreshView
     - nanopb
@@ -124,12 +127,13 @@ SPEC CHECKSUMS:
   HTMLReader: 8056b3418baad09718902a1b39361c63b14a894f
   ionicons: 630bcd2c2970741c3359e3a35ad544e71d3c086b
   ISHTTPOperation: dfe4b6b2b3d7803688b22df2c46ea9827081e723
+  KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
   KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
   LGRefreshView: 34746afadbd23de8d1449cab15f3d89269645d43
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 265808e5e66cee1869c8572b2ead8eb4810dc049
+PODFILE CHECKSUM: 1d492ab57b1fece5a5c957af4b537c431f727426
 
 COCOAPODS: 1.7.5
