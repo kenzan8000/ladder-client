@@ -80,12 +80,12 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.isHidden = true
 
         // text fields
-        let username = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.username)
-        if username != nil { self.usernameTextField.text = username! }
-        let password = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.password)
-        if password != nil { self.passwordTextField.text = password! }
+        self.usernameTextField.textContentType = .username
+        self.usernameTextField.keyboardType = .alphabet
+        self.passwordTextField.textContentType = .password
         let urlDomain = UserDefaults(suiteName: LDRUserDefaults.suiteName)?.string(forKey: LDRUserDefaults.ldrUrlString)
         if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
+        self.urlDomainTextField.keyboardType = .URL
     }
 
     override func viewWillLayoutSubviews() {

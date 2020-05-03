@@ -124,7 +124,6 @@ class ActionViewController: UIViewController {
                     let document = HTMLDocument(data: data!, contentTypeHeader: nil)
 
                     let scripts = document.nodes(matchingSelector: "script")
-                    if scripts == nil { completionHandler(LDRError.invalidApiKey); return }
                     for script in scripts {
                         for child in script.children {
                             if !(child is HTMLNode) { continue }
@@ -191,7 +190,7 @@ class ActionViewController: UIViewController {
     
     private func operationDidFail(error: Error) {
         self.label.text = error.localizedDescription
-        if let e = error as? LDRError {
+        if error is LDRError {
             self.label.text = "Check out your ladder-client settings and try again."
         }
         self.activityIndicatorView.stopAnimating()
