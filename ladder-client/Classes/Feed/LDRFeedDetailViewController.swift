@@ -238,7 +238,7 @@ class LDRFeedDetailViewController: UIViewController {
 
         let backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
         let color = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
-        var html = "<html><style>html { width: 100%; \(backgroundColor) \(color) } body { font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; } a { color: #5555ff; }</style><body>"
+        var html = "<html><style>html { width: 100%; \(backgroundColor) \(color) } body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; } a { color: #5555ff; }</style><body>"
         let body = self.unread!.getBody(at: self.index)
         if body != nil { html = html + "\(body!)" }
         html = html + "</body></html>"
