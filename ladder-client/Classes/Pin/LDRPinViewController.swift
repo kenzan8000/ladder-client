@@ -54,7 +54,7 @@ class LDRPinViewController: UIViewController {
         )
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
-        self.refreshView.tintColor = UIColor.systemGray2
+        self.refreshView.tintColor = UIColor.systemBlue
         self.refreshView.backgroundColor = UIColor.systemGray5
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)
