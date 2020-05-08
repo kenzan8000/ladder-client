@@ -37,8 +37,8 @@ class LDRFeedViewController: UIViewController {
         // segmented control
         self.segmentedControl.setImage(
             IonIcons.image(
-                withIcon: ion_ios_star_outline,
-                iconColor: UIColor.systemGray3,
+                withIcon: ion_ios_star,
+                iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ),
@@ -46,8 +46,8 @@ class LDRFeedViewController: UIViewController {
         )
         self.segmentedControl.setImage(
             IonIcons.image(
-                withIcon: ion_ios_folder_outline,
-                iconColor: UIColor.systemGray3,
+                withIcon: ion_ios_folder,
+                iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ),
