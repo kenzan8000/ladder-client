@@ -1,6 +1,6 @@
 import KeychainAccess
 
-/// MARK: - User Defaults
+/// MARK: - Keychain
 
 enum LDRKeychain {
     static let serviceName = "org.kenzan8000.ladder-client"

@@ -16,34 +16,33 @@ class LDRTabBarController: UITabBarController {
             IonIcons.image(
                 withIcon: ion_social_rss,
                 iconColor: UIColor.systemGray,
-                iconSize: 36,
-                imageSize: CGSize(width: 36, height: 36)
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
             ),
             IonIcons.image(
                 withIcon: ion_pin,
                 iconColor: UIColor.systemGray,
-                iconSize: 36,
-                imageSize: CGSize(width: 36, height: 36)
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
             )
         ]
         let unselectedImages = [
             IonIcons.image(
                 withIcon: ion_social_rss,
                 iconColor: UIColor.systemGray5,
-                iconSize: 36,
-                imageSize: CGSize(width: 36, height: 36)
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
             ),
             IonIcons.image(
                 withIcon: ion_pin,
                 iconColor: UIColor.systemGray5,
-                iconSize: 36,
-                imageSize: CGSize(width: 36, height: 36)
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
             )
         ]
         for (i, item) in self.tabBar.items!.enumerated() {
             item.selectedImage = selectedImages[i];
             item.image = unselectedImages[i];
-            item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         }
     }
 
