@@ -21,7 +21,14 @@ class LDRFeedDetailViewController: UIViewController {
     
     var unread: LDRFeedUnread?
     var index = 0
-
+    
+    // let htmlBackgroundColor = "background: #\(UIColor.systemBackground.hexString!);"
+    // let htmlColor = "color: #\(UIColor.label.hexString!);"
+    // let htmlLinkColor = "color: #\(UIColor.link.hexString!);"
+    var htmlBackgroundColor = ""
+    var htmlColor = ""
+    var htmlLinkColor = ""
+    
 
     /// MARK: - class method
     
@@ -44,6 +51,10 @@ class LDRFeedDetailViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
+        self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
+        self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
+        self.htmlLinkColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #0a84ff;" : "color: #007aff;"
+        
         self.webView.navigationDelegate = self
 
         // bar button items
@@ -72,7 +83,7 @@ class LDRFeedDetailViewController: UIViewController {
         // back and next button
         self.backButton.setImage(
             IonIcons.image(
-                withIcon: ion_ios_arrow_left,
+                withIcon: ion_chevron_left,
                 iconColor: UIColor.systemGray,
                 iconSize: 36,
                 imageSize: CGSize(width: 36, height: 36)
@@ -81,7 +92,7 @@ class LDRFeedDetailViewController: UIViewController {
         )
         self.nextButton.setImage(
             IonIcons.image(
-                withIcon: ion_ios_arrow_right,
+                withIcon: ion_chevron_right,
                 iconColor: UIColor.systemGray,
                 iconSize: 36,
                 imageSize: CGSize(width: 36, height: 36)
@@ -231,14 +242,12 @@ class LDRFeedDetailViewController: UIViewController {
         self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
         self.nextButton.alpha = (self.index < self.unread!.items.count - 1) ? 1.0 : 0.5
 
-        //self.title = self.unread!.getTitle(at: self.index)
         self.titleLabel.text = self.unread!.getTitle(at: self.index)
 
         self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
 
-        let backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
-        let color = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
-        var html = "<html><style>html { width: 100%; \(backgroundColor) \(color) } body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 90%; margin-left: auto; margin-right: auto; margin-top: 1.0em; margin-bottom: 1.0em; } a { color: #5555ff; }</style><body>"
+        var html = "<html><style>html { width: 100%; \(self.htmlBackgroundColor) \(self.htmlColor) } body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; } a { \(self.htmlLinkColor) }</style><body>"
+
         let body = self.unread!.getBody(at: self.index)
         if body != nil { html = html + "\(body!)" }
         html = html + "</body></html>"
