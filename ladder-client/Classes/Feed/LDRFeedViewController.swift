@@ -56,7 +56,7 @@ class LDRFeedViewController: UIViewController {
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_reload,
+                withIcon: ion_android_refresh,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -67,7 +67,7 @@ class LDRFeedViewController: UIViewController {
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_gear_outline,
+                withIcon: ion_ios_gear,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -78,7 +78,7 @@ class LDRFeedViewController: UIViewController {
         )
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
-        self.refreshView.tintColor = UIColor.systemGray2
+        self.refreshView.tintColor = UIColor.systemBlue
         self.refreshView.backgroundColor = UIColor.systemGray6
         self.refreshView.refreshHandler = { [unowned self] (refreshView: LGRefreshView?) -> Void in
             self.refreshView.trigger(animated: true)

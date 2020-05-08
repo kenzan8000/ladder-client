@@ -32,7 +32,7 @@ class LDRPinViewController: UIViewController {
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_reload,
+                withIcon: ion_android_refresh,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -43,7 +43,7 @@ class LDRPinViewController: UIViewController {
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_gear_outline,
+                withIcon: ion_ios_gear,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)

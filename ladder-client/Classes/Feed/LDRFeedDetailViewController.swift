@@ -15,6 +15,7 @@ class LDRFeedDetailViewController: UIViewController {
     @IBOutlet weak var headerButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    
     @IBOutlet weak var webView: WKWebView!
     
     var titleLabel: UILabel!
@@ -316,4 +317,6 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    }
 }
