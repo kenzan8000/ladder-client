@@ -6,6 +6,9 @@ use_frameworks!
 project target_name
 
 target target_name do
+  # lint
+  pod 'SwiftLint'
+
   # font
   pod 'ionicons'
 
@@ -32,6 +35,9 @@ end
 target_name = 'app-extension'
 
 target target_name do
+  # lint
+  pod 'SwiftLint'
+
   # json parser
   pod 'SwiftyJSON'
   # html parser
