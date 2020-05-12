@@ -1,14 +1,14 @@
 import CoreData
 
 
-/// MARK: - LDRCoreDataManager
+// MARK: - LDRCoreDataManager
 class LDRCoreDataManager {
 
-    /// MARK: - class method
+    // MARK: - class method
     static let shared = LDRCoreDataManager()
 
 
-    /// MARK: - property
+    // MARK: - property
     var managedObjectModel: NSManagedObjectModel {
         let modelURL = Bundle.main.url(forResource: "LDRModel", withExtension: "momd")
         return NSManagedObjectModel(contentsOf: modelURL!)!
@@ -46,7 +46,7 @@ class LDRCoreDataManager {
     }
 
 
-    /// MARK: - initialization
+    // MARK: - initialization
     init() {
     }
 

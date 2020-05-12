@@ -1,10 +1,10 @@
 import Foundation
 
 
-/// MARK: - NSURL+Queries
+// MARK: - NSURL+Queries
 extension URL {
 
-    /// MARK: - Initialization
+    // MARK: - Initialization
     
     /// create URL with url queries
     ///
@@ -28,5 +28,5 @@ extension URL {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 }

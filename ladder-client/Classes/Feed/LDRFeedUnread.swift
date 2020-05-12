@@ -1,17 +1,17 @@
 import SwiftyJSON
 
 
-/// MARK: - LDRFeedUnread
+// MARK: - LDRFeedUnread
 class LDRFeedUnread {
 
-    /// MARK: - property
+    // MARK: - property
 
     var subscribeId: String
     var items: [JSON]
     var state: Int
 
 
-    /// MARK: - initialization
+    // MARK: - initialization
 
     /// initializer
     ///
@@ -19,11 +19,11 @@ class LDRFeedUnread {
     init(subscribeId: String) {
         self.subscribeId = subscribeId
         self.items = []
-        self.state = LDRFeedTableViewCell.state.unloaded
+        self.state = LDRFeedTableViewCell.State.unloaded
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// request unread api
     func request() {
@@ -31,8 +31,8 @@ class LDRFeedUnread {
             subscribeId: self.subscribeId,
             completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
                 if json != nil && json?["items"] != nil { self.items = json!["items"].arrayValue }
-                if self.items.count == 0 { self.state = LDRFeedTableViewCell.state.noUnread }
-                else { self.state = LDRFeedTableViewCell.state.unread }
+                if self.items.isEmpty { self.state = LDRFeedTableViewCell.State.noUnread }
+                else { self.state = LDRFeedTableViewCell.State.unread }
                 NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
             }
         )

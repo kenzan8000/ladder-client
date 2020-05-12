@@ -4,7 +4,7 @@ import SwiftyJSON
 import UIKit
 
 
-/// MARK: - LDRPinViewController
+// MARK: - LDRPinViewController
 class LDRPinViewController: UIViewController {
 
     // MARK: - properties
@@ -15,7 +15,7 @@ class LDRPinViewController: UIViewController {
     var pins: [LDRPin] = []
 
 
-    /// MARK: - destruction
+    // MARK: - destruction
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -107,7 +107,7 @@ class LDRPinViewController: UIViewController {
     }
 
 
-    /// MARK: - event listener
+    // MARK: - event listener
     
     /// called when touched up inside
     ///
@@ -117,8 +117,11 @@ class LDRPinViewController: UIViewController {
             self.requestPinAll()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                return
+            }
             self.present(
-                LDRSettingNavigationController.ldr_navigationController(),
+                vc,
                 animated: true,
                 completion: {}
             )
@@ -126,7 +129,7 @@ class LDRPinViewController: UIViewController {
     }
 
 
-    /// MARK: - notification
+    // MARK: - notification
     
     /// called when user did login
     ///
@@ -152,8 +155,11 @@ class LDRPinViewController: UIViewController {
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: { [unowned self] in
+                guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                    return
+                }
                 self.present(
-                    LDRSettingNavigationController.ldr_navigationController(),
+                    vc,
                     animated: true,
                     completion: {}
                 )
@@ -162,7 +168,7 @@ class LDRPinViewController: UIViewController {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
     
     /// request pin/all api
     func requestPinAll() {
@@ -191,7 +197,7 @@ class LDRPinViewController: UIViewController {
 }
 
 
-/// MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -201,7 +207,9 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = LDRPinTableViewCell.ldr_cell()
+        guard let cell = LDRPinTableViewCell.ldr_cell() else {
+            return UITableViewCell()
+        }
         cell.nameLabel.text = self.pins[indexPath.row].title
         return cell
     }

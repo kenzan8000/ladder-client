@@ -1,4 +1,4 @@
-/// MARK: - LDRBlinkView
+// MARK: - LDRBlinkView
 class LDRBlinkView: UIView {
 
     // MARK: - properties
@@ -7,7 +7,7 @@ class LDRBlinkView: UIView {
     var blinkInterval = 0.08
 
 
-    /// MARK: - class method
+    // MARK: - class method
 
     /// show the blink view
     ///
@@ -29,7 +29,7 @@ class LDRBlinkView: UIView {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// start animation
     func startBlinking() {

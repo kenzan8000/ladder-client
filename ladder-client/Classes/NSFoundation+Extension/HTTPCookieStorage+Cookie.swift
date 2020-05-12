@@ -2,10 +2,10 @@ import Foundation
 import KeychainAccess
 
 
-/// MARK: - HTTPCookieStorage+Cookie
+// MARK: - HTTPCookieStorage+Cookie
 extension HTTPCookieStorage {
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// check if having the cookie
     ///
@@ -38,17 +38,21 @@ extension HTTPCookieStorage {
 
         var headerFields: [String: String] = [:]
         for (key, value) in response.allHeaderFields {
-            if !(key is String) { continue }
-            if !(value is String) { continue }
-            headerFields[key as! String] = value as? String
+            if let k = key as? String, let v = value as? String {
+                headerFields[k] = v
+            }
         }
-        if response.url == nil { return }
-        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: response.url!)
+        guard let responseUrl = response.url else {
+            return
+        }
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl)
         for cookie in cookies {
             HTTPCookieStorage.shared.setCookie(cookie)
 
-            let url = LDRUrl(path: LDR.login)
-            if url != nil && cookie.domain.hasSuffix(url!.host!) {
+            guard let url = LDRUrl(path: LDR.login), let host = url.host else {
+                continue
+            }
+            if cookie.domain.hasSuffix(host) {
                 Keychain(
                     service: LDRKeychain.serviceName,
                     accessGroup: LDRKeychain.suiteName

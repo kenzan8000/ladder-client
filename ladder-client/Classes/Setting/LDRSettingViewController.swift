@@ -3,27 +3,27 @@ import SwiftyJSON
 import UIKit
 
 
-/// MARK: - LDRSettingNavigationController
+// MARK: - LDRSettingNavigationController
 class LDRSettingNavigationController: UINavigationController {
 
-    /// MARK: - class method
+    // MARK: - class method
     
     /// returns  navigation controller object
     ///
     /// - Returns: navigation controller object
-    class func ldr_navigationController() -> LDRSettingNavigationController {
+    class func ldr_navigationController() -> LDRSettingNavigationController? {
         let nc = UIStoryboard(
             name: "Main",
             bundle: nil
         ).instantiateViewController(
             withIdentifier: LDRNSStringFromClass(LDRSettingNavigationController.self)
-        ) as! LDRSettingNavigationController
+        ) as? LDRSettingNavigationController
         return nc
     }
 }
 
 
-/// MARK: - LDRSettingViewController
+// MARK: - LDRSettingViewController
 class LDRSettingViewController: UIViewController {
 
     // MARK: - properties
@@ -107,7 +107,7 @@ class LDRSettingViewController: UIViewController {
     }
 
 
-    /// MARK: - event listener
+    // MARK: - event listener
     ///
     /// called when touched up inside
     ///
@@ -136,10 +136,10 @@ class LDRSettingViewController: UIViewController {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
 
-    /// MARK: - private api
+    // MARK: - private api
     ///
     /// save the current settings
     private func saveSettings() {

@@ -5,7 +5,7 @@ import UIKit
 import WebKit
 
 
-/// MARK: - LDRFeedDetailViewController
+// MARK: - LDRFeedDetailViewController
 class LDRFeedDetailViewController: UIViewController {
 
     // MARK: - properties
@@ -31,18 +31,18 @@ class LDRFeedDetailViewController: UIViewController {
     var htmlLinkColor = ""
     
 
-    /// MARK: - class method
+    // MARK: - class method
     
     /// returns view controller object
     ///
     /// - Returns: view controller object
-    class func ldr_viewController() -> LDRFeedDetailViewController {
+    class func ldr_viewController() -> LDRFeedDetailViewController? {
         let vc = UIStoryboard(
             name: "Main",
             bundle: nil
         ).instantiateViewController(
             withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewController.self)
-        ) as! LDRFeedDetailViewController
+        ) as? LDRFeedDetailViewController
         return vc
     }
 
@@ -156,7 +156,7 @@ class LDRFeedDetailViewController: UIViewController {
     }
 
 
-    /// MARK: - event listener
+    // MARK: - event listener
     
     /// Descalled when touched up insidecription
     ///
@@ -224,7 +224,7 @@ class LDRFeedDetailViewController: UIViewController {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// present safari view controller
     ///
@@ -238,21 +238,24 @@ class LDRFeedDetailViewController: UIViewController {
 
     /// load unread item as static html on the view
     func loadUnreadItem() {
-        if self.unread == nil { return }
+        guard let unreadItem = self.unread else {
+            return
+        }
 
         self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
-        self.nextButton.alpha = (self.index < self.unread!.items.count - 1) ? 1.0 : 0.5
+        self.nextButton.alpha = (self.index < unreadItem.items.count - 1) ? 1.0 : 0.5
 
-        self.titleLabel.text = self.unread!.getTitle(at: self.index)
+        self.titleLabel.text = unreadItem.getTitle(at: self.index)
 
-        self.headerButton.setTitle("\(self.index+1) / \(self.unread!.items.count)", for: .normal)
+        self.headerButton.setTitle("\(self.index+1) / \(unreadItem.items.count)", for: .normal)
 
         var html = "<html><style>html { width: 100%; \(self.htmlBackgroundColor) \(self.htmlColor) } body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; } a { \(self.htmlLinkColor) }</style><body>"
 
-        let body = self.unread!.getBody(at: self.index)
-        if body != nil { html = html + "\(body!)" }
-        html = html + "</body></html>"
-        let link = self.unread!.getLink(at: self.index)
+        if let body = unreadItem.getBody(at: self.index) {
+            html += "\(body)"
+        }
+        html += "</body></html>"
+        let link = unreadItem.getLink(at: self.index)
         self.webView.loadHTMLString(html, baseURL: link)
     }
 
@@ -272,7 +275,7 @@ class LDRFeedDetailViewController: UIViewController {
 }
 
 
-/// MARK: - UIGestureRecognizerDelegate
+// MARK: - UIGestureRecognizerDelegate
 extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(
@@ -284,7 +287,7 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 
 }
 
-/// MARK: - WKNavigationDelegate
+// MARK: - WKNavigationDelegate
 extension LDRFeedDetailViewController: WKNavigationDelegate {
 
     func webView(

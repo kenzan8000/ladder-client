@@ -3,15 +3,15 @@ import KeychainAccess
 import UIKit
 
 
-/// MARK: - AppDelegate
+// MARK: - AppDelegate
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    /// MARK: - property
+    // MARK: - property
     var window: UIWindow?
 
 
-    /// MARK: - life cycle
+    // MARK: - life cycle
     
     func application(
         _ application: UIApplication,

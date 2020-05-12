@@ -2,10 +2,10 @@ import CoreData
 import SwiftyJSON
 
 
-/// MARK: - LDRPin
+// MARK: - LDRPin
 class LDRPin: NSManagedObject {
 
-    /// MARK: - property
+    // MARK: - property
 
     @NSManaged var createdOn: String
     @NSManaged var link: String
@@ -14,7 +14,7 @@ class LDRPin: NSManagedObject {
     var linkUrl: URL? { return URL(string: self.link) }
 
 
-    /// MARK: - class method
+    // MARK: - class method
     
     /// returns count of model from coredata
     ///
@@ -32,11 +32,14 @@ class LDRPin: NSManagedObject {
         fetchRequest.returnsObjectsAsFaults = false
 
         // return count
-        var count = 0
-        do { count = try context.count(for: fetchRequest) }
-        catch { count = 0 }
+        var cnt = 0
+        do {
+            cnt = try context.count(for: fetchRequest)
+        } catch {
+            cnt = 0
+        }
 
-        return count
+        return cnt
     }
     
     /// fetch models from coredata
@@ -56,8 +59,11 @@ class LDRPin: NSManagedObject {
 
         // return models
         var models: [LDRPin] = []
-        do { models = try context.fetch(fetchRequest) as! [LDRPin] }
-        catch { models = [] }
+        do {
+            if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
+                models = fetchedModels
+            }
+        } catch { models = [] }
 
         return models
     }
@@ -81,11 +87,11 @@ class LDRPin: NSManagedObject {
         fetchRequest.returnsObjectsAsFaults = false
 
         // return count
-        var count = 0
-        do { count = try context.count(for: fetchRequest) }
-        catch { count = 0 }
+        var cnt = 0
+        do { cnt = try context.count(for: fetchRequest) }
+        catch { cnt = 0 }
 
-        return (count > 0)
+        return (cnt > 0)
     }
 
 
@@ -107,13 +113,21 @@ class LDRPin: NSManagedObject {
     class func saveByAttributes(createdOn: String, title: String, link: String) -> Error? {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
-        let model = NSEntityDescription.insertNewObject(forEntityName: "LDRPin", into: context) as! LDRPin
+        guard let model = NSEntityDescription.insertNewObject(
+            forEntityName: "LDRPin",
+            into: context
+        ) as? LDRPin else {
+            return nil
+        }
         model.createdOn = ""
         model.title = title
         model.link = link
 
-        do { try context.save() }
-        catch { return LDRError.saveModelsFailed }
+        do {
+            try context.save()
+        } catch {
+            return LDRError.saveModelsFailed
+        }
 
         return nil
     }
@@ -133,14 +147,22 @@ class LDRPin: NSManagedObject {
 
         let items = json.arrayValue
         for item in items {
-            let model = NSEntityDescription.insertNewObject(forEntityName: "LDRPin", into: context) as! LDRPin
+            guard let model = NSEntityDescription.insertNewObject(
+                forEntityName: "LDRPin",
+                into: context
+            ) as? LDRPin else {
+                continue
+            }
             model.createdOn = item["created_on"].stringValue
             model.title = item["title"].stringValue
             model.link = item["link"].stringValue
         }
 
-        do { try context.save() }
-        catch { return LDRError.saveModelsFailed }
+        do {
+            try context.save()
+        } catch {
+            return LDRError.saveModelsFailed
+        }
 
         return nil
     }
@@ -162,14 +184,20 @@ class LDRPin: NSManagedObject {
 
         // return models
         var models: [LDRPin] = []
-        do { models = try context.fetch(fetchRequest) as! [LDRPin] }
-        catch { models = [] }
+        do {
+            if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
+                models = fetchedModels
+            }
+        } catch {
+            models = []
+        }
 
         do {
             for model in models { context.delete(model) }
             try context.save()
+        } catch {
+            return LDRError.deleteModelsFailed
         }
-        catch { return LDRError.deleteModelsFailed }
 
         return nil
     }
@@ -192,17 +220,22 @@ class LDRPin: NSManagedObject {
 
         // return models
         var models: [LDRPin] = []
-        do { models = try context.fetch(fetchRequest) as! [LDRPin] }
-        catch { models = [] }
+        do {
+            if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
+                models = fetchedModels
+            }
+        } catch {
+            models = []
+        }
 
         do {
             for model in models { context.delete(model) }
             try context.save()
+        } catch {
+            return LDRError.deleteModelsFailed
         }
-        catch { return LDRError.deleteModelsFailed }
 
         return nil
     }
-
 
 }

@@ -1,4 +1,4 @@
-/// MARK: - LDRPinTableViewCell
+// MARK: - LDRPinTableViewCell
 class LDRPinTableViewCell: UITableViewCell {
 
     // MARK: - properties
@@ -6,7 +6,7 @@ class LDRPinTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
 
-    /// MARK: - class method
+    // MARK: - class method
     
     /// returns cell height
     ///
@@ -18,18 +18,18 @@ class LDRPinTableViewCell: UITableViewCell {
     /// returns cell object
     ///
     /// - Returns: cell object
-    class func ldr_cell() -> LDRPinTableViewCell {
+    class func ldr_cell() -> LDRPinTableViewCell? {
         return UINib(
             nibName: LDRNSStringFromClass(LDRPinTableViewCell.self),
             bundle: nil
         ).instantiate(
             withOwner: nil,
             options: nil
-        )[0] as! LDRPinTableViewCell
+        )[0] as? LDRPinTableViewCell
     }
 
 
-    /// MARK: - life cycle
+    // MARK: - life cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()

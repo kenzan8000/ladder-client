@@ -1,10 +1,10 @@
 import UIKit
 
 
-/// MARK: - UIColor+Hex
+// MARK: - UIColor+Hex
 extension UIColor {
     
-    /// MARK: - property
+    // MARK: - property
     
     var hexString: String? {
         var r: CGFloat = 0
@@ -19,7 +19,7 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
     
-    /// MARK: - initialization
+    // MARK: - initialization
     
     /// Initialization with hexdecimal String and alpha
     ///

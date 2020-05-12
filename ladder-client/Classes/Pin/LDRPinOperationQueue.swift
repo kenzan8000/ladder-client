@@ -7,12 +7,12 @@ import SwiftyJSON
 // MARK: - LDRPinOperationQueue
 class LDRPinOperationQueue: ISHTTPOperationQueue {
 
-    /// MARK: - property
+    // MARK: - property
 
     static let shared = LDRPinOperationQueue()
 
 
-    /// MARK: - initialization
+    // MARK: - initialization
 
     override init() {
         super.init()
@@ -21,14 +21,14 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
     }
 
 
-    /// MARK: - destruction
+    // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
     
     /// request api/pin/add api
     ///
@@ -51,7 +51,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.pin.add) else {
+        guard let url = LDRUrl(path: LDR.Api.Pin.add) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -82,7 +82,9 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()
@@ -124,7 +126,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.pin.remove) else {
+        guard let url = LDRUrl(path: LDR.Api.Pin.remove) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -155,7 +157,9 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()
@@ -192,7 +196,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.pin.all) else {
+        guard let url = LDRUrl(path: LDR.Api.Pin.all) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -223,7 +227,9 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()

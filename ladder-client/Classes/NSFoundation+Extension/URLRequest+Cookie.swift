@@ -2,10 +2,10 @@ import Alamofire
 import Foundation
 
 
-/// MARK: - URLRequest+Cookie
+// MARK: - URLRequest+Cookie
 extension URLRequest {
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// get cookies for http header
     ///

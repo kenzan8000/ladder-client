@@ -7,26 +7,26 @@ import SwiftyJSON
 // MARK: - LDRFeedOperationQueue
 class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
-    /// MARK: - property
+    // MARK: - property
 
     static let shared = LDRFeedOperationQueue()
 
 
-    /// MARK: - initialization
+    // MARK: - initialization
 
     override init() {
         super.init()
     }
 
 
-    /// MARK: - destruction
+    // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// start operation
     ///
@@ -53,7 +53,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.subs, params: ["unread": "1"]) else {
+        guard let url = LDRUrl(path: LDR.Api.subs, params: ["unread": "1"]) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -84,7 +84,9 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()
@@ -128,7 +130,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.unread) else {
+        guard let url = LDRUrl(path: LDR.Api.unread) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -159,7 +161,9 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()
@@ -203,7 +207,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.api.touch_all) else {
+        guard let url = LDRUrl(path: LDR.Api.touch_all) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -234,7 +238,9 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                 }
                 var json = JSON([])
                 do {
-                    json = try JSON(data: object as! Data)
+                    if let data = object as? Data {
+                        json = try JSON(data: data)
+                    }
                 }
                 catch {
                     self.cancelAllOperations()

@@ -2,10 +2,10 @@ import CoreData
 import SwiftyJSON
 
 
-/// MARK: - LDRFeedSubsUnread
+// MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {
 
-    /// MARK: - property
+    // MARK: - property
 
     @NSManaged var subscribeId: String
 
@@ -23,7 +23,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     var unreadCountValue: Int { return self.unreadCount.intValue }
 
 
-    /// MARK: - class method
+    // MARK: - class method
 
     /// returns model count from coredata
     ///
@@ -104,7 +104,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     class func getRateName(rate: Int) -> String {
         var rateName = ""
         for i in 0 ..< 5 {
-            rateName = ((rate >= 5-i) ? "★" : "☆") + rateName
+            rateName = ((rate >= 5 - i) ? "★" : "☆") + rateName
         }
         return rateName
     }
@@ -123,16 +123,30 @@ class LDRFeedSubsUnread: NSManagedObject {
         fetchRequest.fetchBatchSize = 20
         let predicates: [NSPredicate] = []
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        var sortDescriptor: NSSortDescriptor? = nil
-        if segment == LDRFeedViewController.segment.rate { sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false) }
-        else if segment == LDRFeedViewController.segment.folder { sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true) }
-        if sortDescriptor != nil { fetchRequest.sortDescriptors = [sortDescriptor!] }
+        
+        var sortDescriptor: NSSortDescriptor?
+        if segment == LDRFeedViewController.Segment.rate {
+            sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false)
+        } else if segment == LDRFeedViewController.Segment.folder {
+            sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true)
+        }
+        if let descriptor = sortDescriptor {
+            fetchRequest.sortDescriptors = [descriptor]
+        }
+        
         fetchRequest.returnsObjectsAsFaults = false
 
         // return models
         var models: [LDRFeedSubsUnread] = []
-        do { models = try context.fetch(fetchRequest) as! [LDRFeedSubsUnread] }
-        catch { models = [] }
+        do {
+            if let fetchedModels = try context.fetch(
+                fetchRequest
+            ) as? [LDRFeedSubsUnread] {
+                models = fetchedModels
+            }
+        } catch {
+            models = []
+        }
 
         return models
     }
@@ -146,7 +160,12 @@ class LDRFeedSubsUnread: NSManagedObject {
 
         let items = json.arrayValue
         for item in items {
-            let model = NSEntityDescription.insertNewObject(forEntityName: "LDRFeedSubsUnread", into: context) as! LDRFeedSubsUnread
+            guard let model = NSEntityDescription.insertNewObject(
+                forEntityName: "LDRFeedSubsUnread",
+                into: context
+            ) as? LDRFeedSubsUnread else {
+                continue
+            }
             model.subscribeId = item["subscribe_id"].stringValue
             model.rate = NSNumber(value: item["rate"].intValue)
             model.folder = item["folder"].stringValue
@@ -157,8 +176,11 @@ class LDRFeedSubsUnread: NSManagedObject {
             model.unreadCount = NSNumber(value: item["unread_count"].intValue)
         }
 
-        do { try context.save() }
-        catch { return LDRError.saveModelsFailed }
+        do {
+            try context.save()
+        } catch {
+            return LDRError.saveModelsFailed
+        }
 
         return nil
     }
@@ -180,14 +202,20 @@ class LDRFeedSubsUnread: NSManagedObject {
 
         // return models
         var models: [LDRFeedSubsUnread] = []
-        do { models = try context.fetch(fetchRequest) as! [LDRFeedSubsUnread] }
-        catch { models = [] }
+        do {
+            if let fetchedModels = try context.fetch(fetchRequest) as? [LDRFeedSubsUnread] {
+                models = fetchedModels
+            }
+        } catch {
+            models = []
+        }
 
         do {
             for model in models { context.delete(model) }
             try context.save()
+        } catch {
+            return LDRError.deleteModelsFailed
         }
-        catch { return LDRError.deleteModelsFailed }
 
         return nil
     }

@@ -1,10 +1,10 @@
 import Foundation
 
 
-/// MARK: - MutableURLRequest+Cookie
+// MARK: - MutableURLRequest+Cookie
 extension URLRequest {
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /**
      * set cookies

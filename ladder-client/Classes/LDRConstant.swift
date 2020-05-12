@@ -1,6 +1,6 @@
 import KeychainAccess
 
-/// MARK: - Keychain
+// MARK: - Keychain
 
 enum LDRKeychain {
     static let serviceName = "org.kenzan8000.ladder-client"
@@ -15,7 +15,7 @@ enum LDRKeychain {
 }
 
 
-/// MARK: - NotificationCenter
+// MARK: - NotificationCenter
 
 enum LDRNotificationCenter {
     static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
@@ -24,7 +24,7 @@ enum LDRNotificationCenter {
 }
 
 
-/// MARK: - Error
+// MARK: - Error
 enum LDRError: Error {
     // core data
     case deleteModelsFailed
@@ -43,15 +43,15 @@ enum LDRError: Error {
 }
 
 
-/// MARK: - LDR
+// MARK: - LDR
 enum LDR {
     static let login = "/login"
     static let session = "/session"
-    enum api {
+    enum Api {
         static let subs = "/api/subs"
         static let unread = "/api/unread"
         static let touch_all = "/api/touch_all"
-        enum pin {
+        enum Pin {
             static let add = "/api/pin/add"
             static let remove = "/api/pin/remove"
             static let all = "/api/pin/all"
@@ -61,7 +61,7 @@ enum LDR {
 }
 
 
-/// MARK: - function
+// MARK: - function
 
 /// display log
 ///

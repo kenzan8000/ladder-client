@@ -9,12 +9,12 @@ import SwiftyJSON
 // MARK: - LDRSettingLoginOperationQueue
 class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
-    /// MARK: - property
+    // MARK: - property
 
     static let shared = LDRSettingLoginOperationQueue()
 
 
-    /// MARK: - initialization
+    // MARK: - initialization
 
     override init() {
         super.init()
@@ -23,14 +23,14 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     }
 
 
-    /// MARK: - destruction
+    // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// start login
     ///
@@ -93,7 +93,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         completionHandler(nil, e)
                         return
                     }
-                    if !(object is Data) {
+                    guard let data = object as? Data else {
                         completionHandler(nil, LDRError.invalidAuthenticityToken)
                         return
                     }
@@ -102,7 +102,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     }
 
                     // parse html
-                    guard let authenticityToken = self.getAuthencityToken(htmlData: object as! Data) else {
+                    guard let authenticityToken = self.getAuthencityToken(htmlData: data) else {
                         completionHandler(nil, LDRError.invalidAuthenticityToken)
                         return
                     }
@@ -172,7 +172,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         completionHandler(nil, e)
                         return
                     }
-                    if !(object is Data) {
+                    guard let data = object as? Data else {
                         completionHandler(nil, LDRError.invalidApiKey)
                         return
                     }
@@ -180,22 +180,26 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                     }
 
-                    if let _ = self.getAuthencityToken(htmlData: object as! Data) {
+                    if let _ = self.getAuthencityToken(htmlData: data) {
                         completionHandler(nil, LDRError.invalidUsernameOrPassword)
                         return
                     }
 
                     var apiKey = "undefined"
-                    let document = HTMLDocument(data: object as! Data, contentTypeHeader: nil)
+                    let document = HTMLDocument(data: data, contentTypeHeader: nil)
 
                     let scripts = document.nodes(matchingSelector: "script")
                     for script in scripts {
                         for child in script.children {
-                            if !(child is HTMLNode) { continue }
+                            guard let htmlNode = child as? HTMLNode else {
+                                continue
+                            }
 
                             // parse ApiKey
-                            let jsText = (child as! HTMLNode).textContent
-                            let jsContext = JSContext()!
+                            let jsText = htmlNode.textContent
+                            guard let jsContext = JSContext() else {
+                                continue
+                            }
                             jsContext.evaluateScript(jsText)
                             jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
                             // save ApiKey
@@ -222,23 +226,25 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         ))
     }
 
-
-    /// MARK: - private api
+    // MARK: - private api
    
     /// returns authenticity_token from html
     ///
     /// - Parameter htmlData: data of html that contains authenticity_token
     /// - Returns: authenticity_token
     private func getAuthencityToken(htmlData: Data) -> String? {
-        var authenticityToken: String? = nil
+        var authenticityToken: String?
         let document = HTMLDocument(data: htmlData, contentTypeHeader: nil)
-        let form = document.firstNode(matchingSelector: "form")
-        if form == nil { return authenticityToken }
-        for child in form!.children {
-            if !(child is HTMLElement) { continue }
-            if (child as! HTMLElement)["name"] != "authenticity_token" { continue }
-            if !((child as! HTMLElement)["value"] != nil) { continue }
-            authenticityToken = (child as! HTMLElement)["value"]
+        guard let form = document.firstNode(matchingSelector: "form") else {
+            return authenticityToken
+        }
+        for child in form.children {
+            guard let htmlElement = child as? HTMLElement else {
+                continue
+            }
+            if htmlElement["name"] != "authenticity_token" { continue }
+            if !(htmlElement["value"] != nil) { continue }
+            authenticityToken = htmlElement["value"]
             break
         }
         return authenticityToken

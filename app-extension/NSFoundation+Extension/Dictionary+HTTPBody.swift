@@ -1,11 +1,11 @@
 import Foundation
 
 
-/// MARK: - Dictionary+HTTPBody
+// MARK: - Dictionary+HTTPBody
 extension Dictionary {
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /**
      * transform hash into Data for Request Body

@@ -3,14 +3,14 @@ import SwiftyJSON
 import UIKit
 
 
-/// MARK: - LDRFeedViewController
+// MARK: - LDRFeedViewController
 class LDRFeedViewController: UIViewController {
 
     // MARK: - properties
 
     var refreshView: LGRefreshView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    enum segment {
+    enum Segment {
         static let rate = 0
         static let folder = 1
     }
@@ -22,7 +22,7 @@ class LDRFeedViewController: UIViewController {
     var folders: [String] = []
 
 
-    /// MARK: - destruction
+    // MARK: - destruction
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -42,7 +42,7 @@ class LDRFeedViewController: UIViewController {
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ),
-            forSegmentAt: segment.rate
+            forSegmentAt: Segment.rate
         )
         self.segmentedControl.setImage(
             IonIcons.image(
@@ -51,7 +51,7 @@ class LDRFeedViewController: UIViewController {
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ),
-            forSegmentAt: segment.folder
+            forSegmentAt: Segment.folder
         )
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -127,7 +127,7 @@ class LDRFeedViewController: UIViewController {
     }
 
 
-    /// MARK: - event listener
+    // MARK: - event listener
 
     /// called when value changed
     ///
@@ -144,8 +144,11 @@ class LDRFeedViewController: UIViewController {
             self.requestSubs()
         }
         else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                return
+            }
             self.present(
-                LDRSettingNavigationController.ldr_navigationController(),
+                vc,
                 animated: true,
                 completion: {}
             )
@@ -153,7 +156,7 @@ class LDRFeedViewController: UIViewController {
     }
 
 
-    /// MARK: - notification
+    // MARK: - notification
 
     /// called when did login
     ///
@@ -191,8 +194,11 @@ class LDRFeedViewController: UIViewController {
                 alertController,
                 animated: true,
                 completion: { [unowned self] in
+                    guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                        return
+                    }
                     self.present(
-                        LDRSettingNavigationController.ldr_navigationController(),
+                        vc,
                         animated: true,
                         completion: {}
                     )
@@ -202,7 +208,7 @@ class LDRFeedViewController: UIViewController {
     }
 
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /// returns index int from index path on feed view controller
     ///
@@ -211,22 +217,22 @@ class LDRFeedViewController: UIViewController {
     func getIndex(indexPath: IndexPath) -> Int {
         var index = 0
         for section in 0 ..< indexPath.section {
-            if self.segmentedControl.selectedSegmentIndex == segment.rate {
+            if self.segmentedControl.selectedSegmentIndex == Segment.rate {
                 let offset = LDRFeedSubsUnread.countOfTheRate(
                     subsunreads: self.subsunreads,
                     rate: self.rates[section]
                 )
-                index = index + offset
+                index += offset
             }
-            else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+            else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
                 let offset = LDRFeedSubsUnread.countOfTheFloder(
                     subsunreads: self.subsunreads,
                     folder: self.folders[section]
                 )
-                index = index + offset
+                index += offset
             }
         }
-        index = index + indexPath.row
+        index += indexPath.row
         return index
     }
 
@@ -279,10 +285,10 @@ class LDRFeedViewController: UIViewController {
             }
             self.unreads = newUnreads
         }
-        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             self.rates = LDRFeedSubsUnread.getRates(subsunreads: self.subsunreads)
         }
-        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             self.folders = LDRFeedSubsUnread.getFolders(subsunreads: self.subsunreads)
         }
         self.tableView.reloadData()
@@ -294,53 +300,58 @@ class LDRFeedViewController: UIViewController {
             return
         }
         for indexPath in indexPaths {
-            let cell = self.tableView.cellForRow(at: indexPath)
-            if cell == nil { continue }
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? LDRFeedTableViewCell else {
+                continue
+            }
             let index = self.getIndex(indexPath: indexPath)
-            (cell as! LDRFeedTableViewCell).setUIState(self.unreads[index].state)
+            cell.setUIState(self.unreads[index].state)
         }
     }
 
 }
 
 
-/// MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             return self.rates.count
         }
-        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             return self.folders.count
         }
         return 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             return LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
         }
-        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             return LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
         }
         return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = LDRFeedViewForHeader.ldr_view()
+        guard let headerView = LDRFeedViewForHeader.ldr_view() else {
+            return nil
+        }
         headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: headerView.frame.size.height)
-        if self.segmentedControl.selectedSegmentIndex == segment.rate {
+        if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             headerView.titleLabel.text = LDRFeedSubsUnread.getRateName(rate: self.rates[section])
         }
-        else if self.segmentedControl.selectedSegmentIndex == segment.folder {
+        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             headerView.titleLabel.text = self.folders[section]
         }
         return headerView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = LDRFeedTableViewCell.ldr_cell()
+        guard let cell = LDRFeedTableViewCell.ldr_cell() else {
+            return UITableViewCell()
+        }
         let index = self.getIndex(indexPath: indexPath)
         cell.nameLabel.text = self.subsunreads[index].title
         cell.unreadCountLabel.text = "\(self.subsunreads[index].unreadCountValue)"
@@ -354,22 +365,25 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
         let index = self.getIndex(indexPath: indexPath)
         switch self.unreads[index].state {
-            case LDRFeedTableViewCell.state.unloaded:
+            case LDRFeedTableViewCell.State.unloaded:
                 return
-            case LDRFeedTableViewCell.state.unread:
-                self.unreads[index].state = LDRFeedTableViewCell.state.read
+            case LDRFeedTableViewCell.State.unread:
+                self.unreads[index].state = LDRFeedTableViewCell.State.read
                 self.unreads[index].requestTouchAll()
-            case LDRFeedTableViewCell.state.read:
-                self.unreads[index].state = LDRFeedTableViewCell.state.read
-            case LDRFeedTableViewCell.state.noUnread:
+            case LDRFeedTableViewCell.State.read:
+                self.unreads[index].state = LDRFeedTableViewCell.State.read
+            case LDRFeedTableViewCell.State.noUnread:
                 return
             default:
                 return
         }
-        let cell = self.tableView.cellForRow(at: indexPath)
-        if cell != nil { (cell as! LDRFeedTableViewCell).setUIState(self.unreads[index].state) }
+        if let cell = self.tableView.cellForRow(at: indexPath) as? LDRFeedTableViewCell {
+            cell.setUIState(self.unreads[index].state)
+        }
 
-        let viewController = LDRFeedDetailViewController.ldr_viewController()
+        guard let viewController = LDRFeedDetailViewController.ldr_viewController() else {
+            return
+        }
         viewController.hidesBottomBarWhenPushed = true
         viewController.unread = self.unreads[index]
         self.navigationController?.show(viewController, sender: nil)

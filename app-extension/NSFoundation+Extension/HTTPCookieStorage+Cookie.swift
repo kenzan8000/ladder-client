@@ -2,10 +2,10 @@ import Foundation
 import KeychainAccess
 
 
-/// MARK: - HTTPCookieStorage+Cookie
+// MARK: - HTTPCookieStorage+Cookie
 extension HTTPCookieStorage {
 
-    /// MARK: - public api
+    // MARK: - public api
 
     /**
      * check if has the cookie
