@@ -1,7 +1,6 @@
 import CoreData
 import SwiftyJSON
 
-
 // MARK: - LDRPin
 class LDRPin: NSManagedObject {
 
@@ -11,8 +10,7 @@ class LDRPin: NSManagedObject {
     @NSManaged var link: String
     @NSManaged var title: String
 
-    var linkUrl: URL? { return URL(string: self.link) }
-
+    var linkUrl: URL? { URL(string: self.link) }
 
     // MARK: - class method
     
@@ -88,20 +86,12 @@ class LDRPin: NSManagedObject {
 
         // return count
         var cnt = 0
-        do { cnt = try context.count(for: fetchRequest) }
-        catch { cnt = 0 }
+        do {
+            cnt = try context.count(for: fetchRequest)
+        } catch { cnt = 0 }
 
         return (cnt > 0)
     }
-
-
-    /**
-     * save
-     * @param createdOn String
-     * @param title String
-     * @param link String
-     * @return Error?
-     */
     
     /// save pin
     ///

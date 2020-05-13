@@ -3,8 +3,7 @@ class LDRPinTableViewCell: UITableViewCell {
 
     // MARK: - properties
 
-    @IBOutlet weak var nameLabel: UILabel!
-
+    @IBOutlet private weak var nameLabel: UILabel!
 
     // MARK: - class method
     
@@ -12,14 +11,14 @@ class LDRPinTableViewCell: UITableViewCell {
     ///
     /// - Returns: cell height
     class func ldr_height() -> CGFloat {
-        return 64.0
+        64.0
     }
     
     /// returns cell object
     ///
     /// - Returns: cell object
     class func ldr_cell() -> LDRPinTableViewCell? {
-        return UINib(
+        UINib(
             nibName: LDRNSStringFromClass(LDRPinTableViewCell.self),
             bundle: nil
         ).instantiate(
@@ -28,11 +27,15 @@ class LDRPinTableViewCell: UITableViewCell {
         )[0] as? LDRPinTableViewCell
     }
 
-
     // MARK: - life cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    // MARK: - public api
+    
+    func setName(_ name: String) {
+        self.nameLabel.text = name
+    }
 }
-

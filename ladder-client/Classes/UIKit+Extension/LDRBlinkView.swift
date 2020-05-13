@@ -6,7 +6,6 @@ class LDRBlinkView: UIView {
     var blinkCount = 1
     var blinkInterval = 0.08
 
-
     // MARK: - class method
 
     /// show the blink view
@@ -28,7 +27,6 @@ class LDRBlinkView: UIView {
         view.startBlinking()
     }
 
-
     // MARK: - public api
 
     /// start animation
@@ -48,7 +46,7 @@ class LDRBlinkView: UIView {
             animations: { [unowned self] in
                 self.alpha = 1.0
             },
-            completion: { [unowned self] finished in
+            completion: { [unowned self] _ in
                 self.blinkOff()
             }
         )
@@ -65,12 +63,14 @@ class LDRBlinkView: UIView {
             animations: { [unowned self] in
                 self.alpha = 0.0
             },
-            completion: { [unowned self] finished in
-                if self.blinkCount <= 0 { self.removeFromSuperview() }
-                else { self.blinkOn() }
+            completion: { [unowned self] _ in
+                if self.blinkCount <= 0 {
+                    self.removeFromSuperview()
+                } else {
+                    self.blinkOn()
+                }
             }
         )
     }
 
 }
-

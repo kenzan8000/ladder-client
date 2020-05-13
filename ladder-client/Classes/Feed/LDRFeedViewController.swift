@@ -2,32 +2,29 @@ import LGRefreshView
 import SwiftyJSON
 import UIKit
 
-
 // MARK: - LDRFeedViewController
 class LDRFeedViewController: UIViewController {
 
     // MARK: - properties
 
     var refreshView: LGRefreshView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
     enum Segment {
         static let rate = 0
         static let folder = 1
     }
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     var subsunreads: [LDRFeedSubsUnread] = []
     var unreads: [LDRFeedUnread] = []
     var rates: [Int] = []
     var folders: [String] = []
 
-
     // MARK: - destruction
 
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
 
     // MARK: - life cycle
 
@@ -126,13 +123,12 @@ class LDRFeedViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
     // MARK: - event listener
 
     /// called when value changed
     ///
     /// - Parameter segmentedControl: UISegmentedControl for the event
-    @IBAction func segmentedControlValueChanged(segmentedControl: UISegmentedControl) {
+    @IBAction private func segmentedControlValueChanged(segmentedControl: UISegmentedControl) {
         self.reloadData(isNew: false)
     }
 
@@ -142,8 +138,7 @@ class LDRFeedViewController: UIViewController {
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestSubs()
-        }
-        else if barButtonItem == self.navigationItem.rightBarButtonItem {
+        } else if barButtonItem == self.navigationItem.rightBarButtonItem {
             guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
                 return
             }
@@ -154,7 +149,6 @@ class LDRFeedViewController: UIViewController {
             )
         }
     }
-
 
     // MARK: - notification
 
@@ -181,9 +175,14 @@ class LDRFeedViewController: UIViewController {
     /// - Parameter notification: notification happened when user did get invalid url or username or password error
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            let viewControllers = self.navigationController!.tabBarController!.viewControllers
-            let selectedIndex = self.navigationController!.tabBarController!.selectedIndex
-            if viewControllers?[selectedIndex] != self.navigationController { return }
+            guard let nvc = self.navigationController, let tvc = nvc.tabBarController else {
+                return
+            }
+            let viewControllers = tvc.viewControllers
+            let selectedIndex = tvc.selectedIndex
+            if viewControllers?[selectedIndex] != self.navigationController {
+                return
+            }
 
             // display error
             let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
@@ -200,13 +199,12 @@ class LDRFeedViewController: UIViewController {
                     self.present(
                         vc,
                         animated: true,
-                        completion: {}
+                        completion: nil
                     )
                 }
             )
         }
     }
-
 
     // MARK: - public api
 
@@ -223,8 +221,7 @@ class LDRFeedViewController: UIViewController {
                     rate: self.rates[section]
                 )
                 index += offset
-            }
-            else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
+            } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
                 let offset = LDRFeedSubsUnread.countOfTheFloder(
                     subsunreads: self.subsunreads,
                     folder: self.folders[section]
@@ -245,16 +242,21 @@ class LDRFeedViewController: UIViewController {
                     error: Error?
                 ) -> Void in
                     self.refreshView.endRefreshing()
-                    if error != nil { return }
+                    if error != nil {
+                        return
+                    }
                 
                     // delete and save model
-                    var modelError: Error? = nil
-                    modelError = LDRFeedSubsUnread.delete()
-                    if modelError != nil { return }
+                    if LDRFeedSubsUnread.delete() != nil {
+                        return
+                    }
 
-                    if json == nil { return }
-                    modelError = LDRFeedSubsUnread.save(json: json!)
-                    if modelError != nil { return }
+                    guard let j = json else {
+                        return
+                    }
+                    if LDRFeedSubsUnread.save(json: j) != nil {
+                        return
+                    }
 
                     self.reloadData(isNew: true)
             }
@@ -275,11 +277,12 @@ class LDRFeedViewController: UIViewController {
                 self.unreads.append(unread)
                 unread.request()
             }
-        }
-        else {
+        } else {
             var newUnreads: [LDRFeedUnread] = []
             for subsunread in self.subsunreads {
-                if let i = self.unreads.firstIndex(where: { $0.subscribeId ==  subsunread.subscribeId }) {
+                if let i = self.unreads.firstIndex(where: {
+                    $0.subscribeId == subsunread.subscribeId
+                }) {
                     newUnreads.append(self.unreads[i])
                 }
             }
@@ -287,8 +290,7 @@ class LDRFeedViewController: UIViewController {
         }
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             self.rates = LDRFeedSubsUnread.getRates(subsunreads: self.subsunreads)
-        }
-        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
+        } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             self.folders = LDRFeedSubsUnread.getFolders(subsunreads: self.subsunreads)
         }
         self.tableView.reloadData()
@@ -310,15 +312,13 @@ class LDRFeedViewController: UIViewController {
 
 }
 
-
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             return self.rates.count
-        }
-        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
+        } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             return self.folders.count
         }
         return 0
@@ -327,8 +327,7 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
             return LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
-        }
-        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
+        } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             return LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
         }
         return 0
@@ -340,10 +339,9 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: headerView.frame.size.height)
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
-            headerView.titleLabel.text = LDRFeedSubsUnread.getRateName(rate: self.rates[section])
-        }
-        else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
-            headerView.titleLabel.text = self.folders[section]
+            headerView.setTitle(LDRFeedSubsUnread.getRateName(rate: self.rates[section]))
+        } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
+            headerView.setTitle(self.folders[section])
         }
         return headerView
     }
@@ -353,8 +351,7 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let index = self.getIndex(indexPath: indexPath)
-        cell.nameLabel.text = self.subsunreads[index].title
-        cell.unreadCountLabel.text = "\(self.subsunreads[index].unreadCountValue)"
+        cell.setTexts(name: self.subsunreads[index].title, unreadCount: "\(self.subsunreads[index].unreadCountValue)")
         cell.setUIState(self.unreads[index].state)
 
         return cell
@@ -365,17 +362,17 @@ extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
         let index = self.getIndex(indexPath: indexPath)
         switch self.unreads[index].state {
-            case LDRFeedTableViewCell.State.unloaded:
-                return
-            case LDRFeedTableViewCell.State.unread:
-                self.unreads[index].state = LDRFeedTableViewCell.State.read
-                self.unreads[index].requestTouchAll()
-            case LDRFeedTableViewCell.State.read:
-                self.unreads[index].state = LDRFeedTableViewCell.State.read
-            case LDRFeedTableViewCell.State.noUnread:
-                return
-            default:
-                return
+        case LDRFeedTableViewCell.State.unread:
+            self.unreads[index].state = LDRFeedTableViewCell.State.read
+            self.unreads[index].requestTouchAll()
+        case LDRFeedTableViewCell.State.read:
+            self.unreads[index].state = LDRFeedTableViewCell.State.read
+        case LDRFeedTableViewCell.State.unloaded:
+            return
+        case LDRFeedTableViewCell.State.noUnread:
+            return
+        default:
+            return
         }
         if let cell = self.tableView.cellForRow(at: indexPath) as? LDRFeedTableViewCell {
             cell.setUIState(self.unreads[index].state)

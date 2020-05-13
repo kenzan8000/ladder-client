@@ -1,12 +1,10 @@
 import CoreData
 
-
 // MARK: - LDRCoreDataManager
 class LDRCoreDataManager {
 
     // MARK: - class method
     static let shared = LDRCoreDataManager()
-
 
     // MARK: - property
     var managedObjectModel: NSManagedObjectModel {
@@ -16,7 +14,9 @@ class LDRCoreDataManager {
 
     private static var ldr_managedObjectContext: NSManagedObjectContext?
     var managedObjectContext: NSManagedObjectContext {
-        if let context = LDRCoreDataManager.ldr_managedObjectContext { return context }
+        if let context = LDRCoreDataManager.ldr_managedObjectContext {
+            return context
+        }
 
         let coordinator = self.persistentStoreCoordinator
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -44,7 +44,6 @@ class LDRCoreDataManager {
 
         return persistentStoreCoordinator
     }
-
 
     // MARK: - initialization
     init() {

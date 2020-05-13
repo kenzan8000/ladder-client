@@ -3,7 +3,6 @@ import ISHTTPOperation
 import KeychainAccess
 import SwiftyJSON
 
-
 // MARK: - LDRFeedOperationQueue
 class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
@@ -11,20 +10,17 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
     static let shared = LDRFeedOperationQueue()
 
-
     // MARK: - initialization
 
     override init() {
         super.init()
     }
 
-
     // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
-
 
     // MARK: - public api
 
@@ -44,11 +40,14 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 1
 
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
@@ -64,7 +63,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -78,7 +77,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -87,8 +86,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
@@ -121,11 +119,14 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
@@ -141,7 +142,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!, "subscribe_id": subscribeId].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey, "subscribe_id": subscribeId].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -155,7 +156,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -164,8 +165,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
@@ -198,16 +198,19 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 5
 
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.touch_all) else {
+        guard let url = LDRUrl(path: LDR.Api.touchAll) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -218,7 +221,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!, "subscribe_id": subscribeId].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey, "subscribe_id": subscribeId].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -232,7 +235,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -241,8 +244,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(

@@ -3,14 +3,12 @@ import ISHTTPOperation
 import KeychainAccess
 import SwiftyJSON
 
-
 // MARK: - LDRPinOperationQueue
 class LDRPinOperationQueue: ISHTTPOperationQueue {
 
     // MARK: - property
 
     static let shared = LDRPinOperationQueue()
-
 
     // MARK: - initialization
 
@@ -20,13 +18,11 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 3
     }
 
-
     // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
-
 
     // MARK: - public api
     
@@ -42,16 +38,19 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.Pin.add) else {
+        guard let url = LDRUrl(path: LDR.Api.pinAdd) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -62,7 +61,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey, "title": title, "link": link.absoluteString].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -76,7 +75,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
 
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -85,8 +84,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
@@ -117,16 +115,19 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.Pin.remove) else {
+        guard let url = LDRUrl(path: LDR.Api.pinRemove) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -137,7 +138,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!, "link": link.absoluteString].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey, "link": link.absoluteString].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -151,7 +152,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
 
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -160,8 +161,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
@@ -187,16 +187,19 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
     /// - Parameter completionHandler: handler called when request ends
     func requestPinAll(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid ApiKey
-        let apiKey = Keychain(
+        guard let apiKey = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey]
-        if apiKey == nil || apiKey == "" {
+        )[LDRKeychain.apiKey] else {
+            completionHandler(nil, LDRError.invalidApiKey)
+            return
+        }
+        if apiKey.isEmpty {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.Pin.all) else {
+        guard let url = LDRUrl(path: LDR.Api.pinAll) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -207,7 +210,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
             headers.add(cookieHeader)
         }
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["ApiKey": apiKey!].HTTPBodyValue()
+        let httpBody = ["ApiKey": apiKey].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -221,7 +224,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         
         self.addOperation(LDROperation(
             request: request,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -230,8 +233,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     if let data = object as? Data {
                         json = try JSON(data: data)
                     }
-                }
-                catch {
+                } catch {
                     self.cancelAllOperations()
                     LDRFeedOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(

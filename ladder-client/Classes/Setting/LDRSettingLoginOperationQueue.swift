@@ -5,14 +5,12 @@ import JavaScriptCore
 import KeychainAccess
 import SwiftyJSON
 
-
 // MARK: - LDRSettingLoginOperationQueue
 class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
 
     // MARK: - property
 
     static let shared = LDRSettingLoginOperationQueue()
-
 
     // MARK: - initialization
 
@@ -22,13 +20,11 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.maxConcurrentOperationCount = 1
     }
 
-
     // MARK: - destruction
 
     deinit {
         self.cancelAllOperations()
     }
-
 
     // MARK: - public api
 
@@ -42,10 +38,14 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.cancelAllOperations()
 
         // delete cookies
-        let url = LDRUrl(path: LDR.login)
-        if url == nil { completionHandler(nil, LDRError.invalidLdrUrl); return }
+        guard let url = LDRUrl(path: LDR.login) else {
+            completionHandler(nil, LDRError.invalidLdrUrl)
+            return
+        }
         for cookieName in [LDR.cookieName] {
-            HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: url!.host!)
+            if let host = url.host {
+                HTTPCookieStorage.shared.deleteCookie(name: cookieName, domain: host)
+            }
         }
 
         // request login
@@ -57,27 +57,33 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     /// - Parameter completionHandler: handler called when request ends
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         // invalid username
-        let username = Keychain(
+        guard let username = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username]
-        if username == nil || username! == "" {
+        )[LDRKeychain.username] else {
+            completionHandler(nil, LDRError.invalidUsername)
+            return
+        }
+        if username.isEmpty {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
-        let password = Keychain(
+        guard let password = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.password]
-        if password == nil || password! == "" {
+        )[LDRKeychain.password] else {
+            completionHandler(nil, LDRError.invalidPassword)
+            return
+        }
+        if password.isEmpty {
             completionHandler(nil, LDRError.invalidPassword)
             return
         }
         // invalid url
         guard let url = LDRUrl(
             path: LDR.login,
-            params: ["username": username!, "password": password!]
+            params: ["username": username, "password": password]
         ) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
@@ -87,7 +93,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         let request = URLRequest(url: url)
         self.addOperation(LDROperation(
             request: request as URLRequest?,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if let e = error {
                         completionHandler(nil, e)
@@ -126,20 +132,26 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         // invalid username
-        let username = Keychain(
+        guard let username = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username]
-        if username == nil || username! == "" {
+        )[LDRKeychain.username] else {
+            completionHandler(nil, LDRError.invalidUsername)
+            return
+        }
+        if username.isEmpty {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
         // invalid password
-        let password = Keychain(
+        guard let password = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.password]
-        if password == nil || password! == "" {
+        )[LDRKeychain.password] else {
+            completionHandler(nil, LDRError.invalidPassword)
+            return
+        }
+        if password.isEmpty {
             completionHandler(nil, LDRError.invalidPassword)
             return
         }
@@ -152,7 +164,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // request
         var headers = HTTPHeaders()
         headers.add(name: "Content-Type", value: "application/json")
-        let httpBody = ["username": username!, "password": password!, "authenticity_token": authenticityToken].HTTPBodyValue()
+        let httpBody = ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         guard var request = try? URLRequest(
             url: url,
@@ -166,7 +178,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         
         self.addOperation(LDROperation(
             request: request as URLRequest?,
-            handler:{ [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 DispatchQueue.main.async { [unowned self] in
                     if let e = error {
                         completionHandler(nil, e)
@@ -180,7 +192,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                         HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                     }
 
-                    if let _ = self.getAuthencityToken(htmlData: data) {
+                    if self.getAuthencityToken(htmlData: data) != nil {
                         completionHandler(nil, LDRError.invalidUsernameOrPassword)
                         return
                     }

@@ -16,7 +16,7 @@ extension UIColor {
         
         let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
         
-        return String(format:"#%06x", rgb)
+        return String(format: "#%06x", rgb)
     }
     
     // MARK: - initialization
@@ -34,7 +34,7 @@ extension UIColor {
             hexFormatted = String(hexFormatted.dropFirst())
         }
         assert(hexFormatted.count == 6, "Invalid hex code used.")
-        let filteredStr = hexString.filter{ "aAbBcCdDeEfF0123456789".contains($0) }
+        let filteredStr = hexString.filter { "aAbBcCdDeEfF0123456789".contains($0) }
         guard hexFormatted.count == filteredStr.count, hexString.count == 6 else {
             return nil
         }

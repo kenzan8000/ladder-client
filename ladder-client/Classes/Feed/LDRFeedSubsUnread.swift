@@ -1,7 +1,6 @@
 import CoreData
 import SwiftyJSON
 
-
 // MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {
 
@@ -19,9 +18,8 @@ class LDRFeedSubsUnread: NSManagedObject {
 
     @NSManaged var unreadCount: NSNumber
 
-    var rateValue: Int { return self.rate.intValue }
-    var unreadCountValue: Int { return self.unreadCount.intValue }
-
+    var rateValue: Int { self.rate.intValue }
+    var unreadCountValue: Int { self.unreadCount.intValue }
 
     // MARK: - class method
 
@@ -42,8 +40,9 @@ class LDRFeedSubsUnread: NSManagedObject {
 
         // return count
         var count = 0
-        do { count = try context.count(for: fetchRequest) }
-        catch { count = 0 }
+        do {
+            count = try context.count(for: fetchRequest)
+        } catch { count = 0 }
 
         return count
     }

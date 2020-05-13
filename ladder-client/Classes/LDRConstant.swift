@@ -14,7 +14,6 @@ enum LDRKeychain {
     static let darkMode = "LDRKeychain.darkMode"
 }
 
-
 // MARK: - NotificationCenter
 
 enum LDRNotificationCenter {
@@ -22,7 +21,6 @@ enum LDRNotificationCenter {
     static let didGetUnread = Notification.Name("LDRNotificationCenter.didGetUnread")
     static let didGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError")
 }
-
 
 // MARK: - Error
 enum LDRError: Error {
@@ -42,7 +40,6 @@ enum LDRError: Error {
     case invalidApiKey
 }
 
-
 // MARK: - LDR
 enum LDR {
     static let login = "/login"
@@ -50,16 +47,13 @@ enum LDR {
     enum Api {
         static let subs = "/api/subs"
         static let unread = "/api/unread"
-        static let touch_all = "/api/touch_all"
-        enum Pin {
-            static let add = "/api/pin/add"
-            static let remove = "/api/pin/remove"
-            static let all = "/api/pin/all"
-        }
+        static let touchAll = "/api/touch_all"
+        static let pinAdd = "/api/pin/add"
+        static let pinRemove = "/api/pin/remove"
+        static let pinAll = "/api/pin/all"
     }
     static let cookieName = "_fastladder_session"
 }
-
 
 // MARK: - function
 
@@ -78,8 +72,10 @@ func LDRLOG(_ body: Any) {
 /// - Returns: name of class
 func LDRNSStringFromClass(_ classType: AnyClass) -> String {
     let classString = NSStringFromClass(classType)
-    let range = classString.range(of: ".")
-    return String(classString[range!.upperBound...])
+    if let range = classString.range(of: ".") {
+        return String(classString[range.upperBound...])
+    }
+    return ""
 }
 
 /// returns built ldr url
@@ -88,7 +84,7 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
 ///   - path: path of url
 ///   - params: quries of url
 /// - Returns: built ldr url
-func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
+func LDRUrl(path: String, params: [String: String] = [:]) -> URL? {
     // if params.count == 0 { return nil }
     
     guard let ldrUrlString = Keychain(
@@ -98,9 +94,13 @@ func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
         return nil
     }
 
-    guard let url = URL(string: "https://" + ldrUrlString + "\(path)") else { return nil }
+    guard let url = URL(string: "https://" + ldrUrlString + "\(path)") else {
+        return nil
+    }
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    let queryItems = params.map { return URLQueryItem(name: "\($0)", value: "\($1)") }
+    let queryItems = params.map {
+        URLQueryItem(name: "\($0)", value: "\($1)")
+    }
     urlComponents?.queryItems = queryItems
     return urlComponents?.url
 }
@@ -110,7 +110,11 @@ func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
 /// - Parameter error: error
 /// - Returns: error message
 func LDRErrorMessage(error: Error?) -> String {
-    if error == nil { return "Unknown Error" }
-    if !(error is LDRError) { return "\(error!.localizedDescription)" }
-    return "\(String(describing: error!))"
+    guard let e = error else {
+        return "Unknown Error"
+    }
+    if !(e is LDRError) {
+        return "\(e.localizedDescription)"
+    }
+    return "\(String(describing: e))"
 }

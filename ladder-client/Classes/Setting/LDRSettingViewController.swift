@@ -2,7 +2,6 @@ import KeychainAccess
 import SwiftyJSON
 import UIKit
 
-
 // MARK: - LDRSettingNavigationController
 class LDRSettingNavigationController: UINavigationController {
 
@@ -22,23 +21,21 @@ class LDRSettingNavigationController: UINavigationController {
     }
 }
 
-
 // MARK: - LDRSettingViewController
 class LDRSettingViewController: UIViewController {
 
     // MARK: - properties
 
-    @IBOutlet weak var settingView: UIView!
+    @IBOutlet private weak var settingView: UIView!
 
-    @IBOutlet weak var urlDomainLabel: UILabel!
-    @IBOutlet weak var urlDomainTextField: UITextField!
+    @IBOutlet private weak var urlDomainLabel: UILabel!
+    @IBOutlet private weak var urlDomainTextField: UITextField!
     //
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var usernameTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     //
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var loginActivityIndicatorView: UIActivityIndicatorView!
-
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var loginActivityIndicatorView: UIActivityIndicatorView!
 
     // MARK: - life cycle
 
@@ -84,11 +81,12 @@ class LDRSettingViewController: UIViewController {
         self.usernameTextField.textContentType = .username
         self.usernameTextField.keyboardType = .alphabet
         self.passwordTextField.textContentType = .password
-        let urlDomain = Keychain(
+        if let urlDomain = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.ldrUrlString]
-        if urlDomain != nil { self.urlDomainTextField.text = urlDomain! }
+        )[LDRKeychain.ldrUrlString] {
+            self.urlDomainTextField.text = urlDomain
+        }
         self.urlDomainTextField.keyboardType = .URL
     }
 
@@ -106,7 +104,6 @@ class LDRSettingViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
     // MARK: - event listener
     ///
     /// called when touched up inside
@@ -114,20 +111,24 @@ class LDRSettingViewController: UIViewController {
     /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.rightBarButtonItem {
-            if self.isLogingIn() { return }
+            if self.isLogingIn() {
+                return
+            }
 
             self.saveSettings()
 
-            self.navigationController?.dismiss(animated: true, completion: {})
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
 
     /// called when touched up inside
     ///
     /// - Parameter button: UIButton for the event
-    @IBAction func buttonTouchedUpInside(button: UIButton) {
+    @IBAction private func buttonTouchedUpInside(button: UIButton) {
         if button == self.loginButton {
-            if self.isLogingIn() { return }
+            if self.isLogingIn() {
+                return
+            }
 
             self.saveSettings()
 
@@ -135,9 +136,7 @@ class LDRSettingViewController: UIViewController {
         }
     }
 
-
     // MARK: - public api
-
 
     // MARK: - private api
     ///
@@ -152,17 +151,15 @@ class LDRSettingViewController: UIViewController {
             accessGroup: LDRKeychain.suiteName
         )[LDRKeychain.password] = self.passwordTextField.text
         
-        var urlDomain = self.urlDomainTextField.text
-        if urlDomain != nil {
-             while urlDomain!.hasSuffix("/") {
-                urlDomain = String(urlDomain!.dropLast(1))
+        if var urlDomain = self.urlDomainTextField.text {
+             while urlDomain.hasSuffix("/") {
+                urlDomain = String(urlDomain.dropLast(1))
             }
-
+            Keychain(
+                service: LDRKeychain.serviceName,
+                accessGroup: LDRKeychain.suiteName
+            )[LDRKeychain.ldrUrlString] = urlDomain
         }
-        Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.ldrUrlString] = urlDomain
     }
     
     /// start login
@@ -175,9 +172,8 @@ class LDRSettingViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = nil
         LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
             if error == nil {
-                self.navigationController?.dismiss(animated: true, completion: {});
-            }
-            else {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            } else {
                 self.endLogin()
                 // display error
                 let message = LDRErrorMessage(error: error)
@@ -213,7 +209,7 @@ class LDRSettingViewController: UIViewController {
     /// 
     /// - Returns: Bool value if loging in now
     private func isLogingIn() -> Bool {
-        return !(self.loginActivityIndicatorView.isHidden)
+        !(self.loginActivityIndicatorView.isHidden)
     }
 
 }

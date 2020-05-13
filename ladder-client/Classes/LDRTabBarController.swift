@@ -1,11 +1,9 @@
 import UIKit
 
-
 // MARK: - LDRTabBarController
 class LDRTabBarController: UITabBarController {
 
     // MARK: - properties
-
 
     // MARK: - life cycle
 
@@ -40,9 +38,12 @@ class LDRTabBarController: UITabBarController {
                 imageSize: CGSize(width: 75, height: 75)
             )
         ]
-        for (i, item) in self.tabBar.items!.enumerated() {
-            item.selectedImage = selectedImages[i];
-            item.image = unselectedImages[i];
+        guard let items = self.tabBar.items else {
+            return
+        }
+        for (i, item) in items.enumerated() {
+            item.selectedImage = selectedImages[i]
+            item.image = unselectedImages[i]
         }
     }
 
@@ -53,6 +54,5 @@ class LDRTabBarController: UITabBarController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 
 }

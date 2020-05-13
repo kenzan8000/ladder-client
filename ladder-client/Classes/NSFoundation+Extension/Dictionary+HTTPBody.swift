@@ -1,9 +1,7 @@
 import Foundation
 
-
 // MARK: - Dictionary+HTTPBody
 extension Dictionary {
-
 
     // MARK: - public api
 
@@ -11,11 +9,11 @@ extension Dictionary {
     ///
     /// - Returns: Data for Request Body
     func HTTPBodyValue() -> Data? {
-        var data: Data? = nil
-        do { data = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted) }
-        catch { data = nil }
+        var data: Data?
+        do {
+            data = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        } catch { data = nil }
         return data
     }
 
 }
-

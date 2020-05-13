@@ -1,7 +1,6 @@
 import Alamofire
 import Foundation
 
-
 // MARK: - URLRequest+Cookie
 extension URLRequest {
 
@@ -15,11 +14,12 @@ extension URLRequest {
         guard let h = host else {
             return nil
         }
-        let cookies = HTTPCookieStorage.shared.cookies
-        if cookies == nil { return nil }
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            return nil
+        }
 
         var value = ""
-        for cookie in cookies! {
+        for cookie in cookies {
             if !(cookie.domain.hasSuffix(h)) { continue }
             value = "\(value)\(cookie.name)=\(cookie.value);"
         }

@@ -1,6 +1,5 @@
 import SwiftyJSON
 
-
 // MARK: - LDRFeedUnread
 class LDRFeedUnread {
 
@@ -9,7 +8,6 @@ class LDRFeedUnread {
     var subscribeId: String
     var items: [JSON]
     var state: Int
-
 
     // MARK: - initialization
 
@@ -22,7 +20,6 @@ class LDRFeedUnread {
         self.state = LDRFeedTableViewCell.State.unloaded
     }
 
-
     // MARK: - public api
 
     /// request unread api
@@ -30,9 +27,14 @@ class LDRFeedUnread {
         LDRFeedOperationQueue.shared.requestUnread(
             subscribeId: self.subscribeId,
             completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-                if json != nil && json?["items"] != nil { self.items = json!["items"].arrayValue }
-                if self.items.isEmpty { self.state = LDRFeedTableViewCell.State.noUnread }
-                else { self.state = LDRFeedTableViewCell.State.unread }
+                if let items = json?["items"] {
+                    self.items = items.arrayValue
+                }
+                if self.items.isEmpty {
+                    self.state = LDRFeedTableViewCell.State.noUnread
+                } else {
+                    self.state = LDRFeedTableViewCell.State.unread
+                }
                 NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
             }
         )
@@ -42,18 +44,21 @@ class LDRFeedUnread {
     func requestTouchAll() {
         LDRFeedOperationQueue.shared.requestTouchAll(
             subscribeId: self.subscribeId,
-            completionHandler: { (json: JSON?, error: Error?) -> Void in }
+            completionHandler: { _, _ in }
         )
     }
-
 
     /// returns title of unread feed at index
     ///
     /// - Parameter index: index of unread feed
     /// - Returns: title of unread feed or nil if not existed
     func getTitle(at index: Int) -> String? {
-        if index < 0 { return nil }
-        if index >= self.items.count { return nil }
+        if index < 0 {
+            return nil
+        }
+        if index >= self.items.count {
+            return nil
+        }
 
         let item = self.items[index]
         return item["title"].stringValue
@@ -64,8 +69,12 @@ class LDRFeedUnread {
     /// - Parameter index: index of unread feed
     /// - Returns: link of unread feed or nil if not existed
     func getLink(at index: Int) -> URL? {
-        if index < 0 { return nil }
-        if index >= self.items.count { return nil }
+        if index < 0 {
+            return nil
+        }
+        if index >= self.items.count {
+            return nil
+        }
 
         let item = self.items[index]
         return URL(string: item["link"].stringValue)
@@ -76,8 +85,12 @@ class LDRFeedUnread {
     /// - Parameter index: index of unread feed
     /// - Returns: body of unread feed
     func getBody(at index: Int) -> String? {
-        if index < 0 { return nil }
-        if index >= self.items.count { return nil }
+        if index < 0 {
+            return nil
+        }
+        if index >= self.items.count {
+            return nil
+        }
 
         let item = self.items[index]
         return item["body"].stringValue

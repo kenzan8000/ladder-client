@@ -3,24 +3,21 @@ import SafariServices
 import SwiftyJSON
 import UIKit
 
-
 // MARK: - LDRPinViewController
 class LDRPinViewController: UIViewController {
 
     // MARK: - properties
 
     var refreshView: LGRefreshView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     var pins: [LDRPin] = []
-
 
     // MARK: - destruction
 
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
 
     // MARK: - life cycle
 
@@ -106,7 +103,6 @@ class LDRPinViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
     // MARK: - event listener
     
     /// called when touched up inside
@@ -115,8 +111,7 @@ class LDRPinViewController: UIViewController {
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestPinAll()
-        }
-        else if barButtonItem == self.navigationItem.rightBarButtonItem {
+        } else if barButtonItem == self.navigationItem.rightBarButtonItem {
             guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
                 return
             }
@@ -127,7 +122,6 @@ class LDRPinViewController: UIViewController {
             )
         }
     }
-
 
     // MARK: - notification
     
@@ -145,9 +139,14 @@ class LDRPinViewController: UIViewController {
     /// - Parameter notification: NSNotification happened when user did get invalid url or username or password error
     @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            let viewControllers = self.navigationController!.tabBarController!.viewControllers!
-            let selectedIndex = self.navigationController!.tabBarController!.selectedIndex
-            if self.navigationController != viewControllers[selectedIndex] { return }
+            guard let nvc = self.navigationController, let tvc = nvc.tabBarController else {
+                return
+            }
+            let viewControllers = tvc.viewControllers
+            let selectedIndex = tvc.selectedIndex
+            if self.navigationController != viewControllers?[selectedIndex] {
+                return
+            }
 
             // display error
             let message = LDRErrorMessage(error: LDRError.invalidUrlOrUsernameOrPassword)
@@ -161,12 +160,11 @@ class LDRPinViewController: UIViewController {
                 self.present(
                     vc,
                     animated: true,
-                    completion: {}
+                    completion: nil
                 )
             })
         }
     }
-
 
     // MARK: - public api
     
@@ -175,16 +173,20 @@ class LDRPinViewController: UIViewController {
         LDRPinOperationQueue.shared.requestPinAll(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
             self.refreshView.endRefreshing()
 
-            if error != nil { return }
+            if error != nil {
+                return
+            }
 
             // delete and save model
-            var modelError: Error? = nil
-            modelError = LDRPin.deleteAll()
-            if modelError != nil { return }
-
-            if json == nil { return }
-            modelError = LDRPin.save(json: json!)
-            if modelError != nil { return }
+            if LDRPin.deleteAll() != nil {
+                return
+            }
+            guard let j = json else {
+                return
+            }
+            if LDRPin.save(json: j) != nil {
+                return
+            }
             self.reloadData()
         })
     }
@@ -195,7 +197,6 @@ class LDRPinViewController: UIViewController {
         self.tableView.reloadData()
     }
 }
-
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
@@ -210,7 +211,7 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = LDRPinTableViewCell.ldr_cell() else {
             return UITableViewCell()
         }
-        cell.nameLabel.text = self.pins[indexPath.row].title
+        cell.setName(self.pins[indexPath.row].title)
         return cell
     }
 
@@ -219,14 +220,14 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
         let pin = self.pins[indexPath.row]
 
-        if pin.linkUrl != nil {
+        if let linkUrl = pin.linkUrl {
             // delete model on fastladder
             LDRPinOperationQueue.shared.requestPinRemove(
-                link: pin.linkUrl!,
-                completionHandler: { (json: JSON?, error: Error?) -> Void in }
+                link: linkUrl,
+                completionHandler: { _, _ in }
             )
             // browser
-            let viewController = SFSafariViewController(url: pin.linkUrl!)
+            let viewController = SFSafariViewController(url: linkUrl)
             viewController.hidesBottomBarWhenPushed = true
             viewController.dismissButtonStyle = .close
             self.present(viewController, animated: true, completion: {})

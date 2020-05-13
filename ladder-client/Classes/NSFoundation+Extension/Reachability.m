@@ -75,8 +75,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		if (returnValue != NULL)
 		{
 			returnValue->_reachabilityRef = reachability;
-		}
-        else {
+		} else {
             CFRelease(reachability);
         }
 	}
@@ -96,8 +95,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		if (returnValue != NULL)
 		{
 			returnValue->_reachabilityRef = reachability;
-		}
-        else {
+		} else {
             CFRelease(reachability);
         }
 	}

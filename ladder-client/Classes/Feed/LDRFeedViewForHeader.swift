@@ -5,8 +5,7 @@ class LDRFeedViewForHeader: UIView {
 
     // MARK: - properties
 
-    @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet private weak var titleLabel: UILabel!
 
     // MARK: - class method
 
@@ -14,7 +13,7 @@ class LDRFeedViewForHeader: UIView {
     ///
     /// - Returns: view object
     class func ldr_view() -> LDRFeedViewForHeader? {
-        return UINib(
+        UINib(
             nibName: LDRNSStringFromClass(LDRFeedViewForHeader.self),
             bundle: nil
         ).instantiate(
@@ -23,11 +22,15 @@ class LDRFeedViewForHeader: UIView {
         )[0] as? LDRFeedViewForHeader
     }
 
-
     // MARK: - life cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    // MARK: - public apis
+    
+    func setTitle(_ title: String) {
+        self.titleLabel.text = title
+    }
 }
-

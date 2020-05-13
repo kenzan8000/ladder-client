@@ -2,14 +2,12 @@ import Firebase
 import KeychainAccess
 import UIKit
 
-
 // MARK: - AppDelegate
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - property
     var window: UIWindow?
-
 
     // MARK: - life cycle
     
@@ -21,8 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         // remember last session
-        guard let url = LDRUrl(path: LDR.login) else { return true }
-        if url.host == nil { return true }
+        guard let url = LDRUrl(path: LDR.login) else {
+            return true
+        }
+        if url.host == nil {
+            return true
+        }
         guard let session = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
@@ -56,4 +58,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

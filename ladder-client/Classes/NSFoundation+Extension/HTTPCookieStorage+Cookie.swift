@@ -1,7 +1,6 @@
 import Foundation
 import KeychainAccess
 
-
 // MARK: - HTTPCookieStorage+Cookie
 extension HTTPCookieStorage {
 
@@ -16,9 +15,10 @@ extension HTTPCookieStorage {
     func hasCookie(name: String, domain: String) -> Bool {
         var doesHave = false
 
-        let cookies = HTTPCookieStorage.shared.cookies
-        if cookies == nil { return doesHave }
-        for cookie in cookies! {
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            return doesHave
+        }
+        for cookie in cookies {
             if name != cookie.name { continue }
             if domain != cookie.domain { continue }
             doesHave = true
@@ -67,11 +67,11 @@ extension HTTPCookieStorage {
     ///   - name: cookie name
     ///   - domain: cookie domain
     func deleteCookie(name: String, domain: String) {
-        let cookies = HTTPCookieStorage.shared.cookies
-        if cookies == nil { return }
-
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            return
+        }
         var deletingCookies: [HTTPCookie] = []
-        for cookie in cookies! {
+        for cookie in cookies {
             if name != cookie.name { continue }
             if domain != cookie.domain { continue }
             deletingCookies.append(cookie)
@@ -89,10 +89,11 @@ extension HTTPCookieStorage {
     ///   - domain: cookie domain
     /// - Returns: string value of cookie or nil if not existed
     func value(name: String, domain: String) -> String? {
-        let cookies = HTTPCookieStorage.shared.cookies
-        if cookies == nil { return nil }
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            return nil
+        }
 
-        for cookie in cookies! {
+        for cookie in cookies {
             if name != cookie.name { continue }
             if domain != cookie.domain { continue }
             return cookie.value

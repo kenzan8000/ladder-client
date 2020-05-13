@@ -52,7 +52,7 @@ class ActionViewController: UIViewController {
         }
     }
 
-    @IBAction func done() {
+    @IBAction private func done() {
         self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
     }
     
@@ -189,12 +189,18 @@ class ActionViewController: UIViewController {
         URLSession.shared.dataTask(
             with: request as URLRequest,
             completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in                OperationQueue.main.addOperation {
-                    if error != nil { completionHandler(error!); return }
-                    if data == nil { completionHandler(LDRError.invalidApiKey); return }
+                    if let e = error {
+                        completionHandler(e)
+                        return
+                    }
+                    guard let d = data else {
+                        completionHandler(LDRError.invalidApiKey)
+                        return
+                    }
                     if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
                 
                     do {
-                        try JSON(data: data!)
+                        try JSON(data: d)
                     }
                     catch {
                         completionHandler(LDRError.invalidUrlOrUsernameOrPassword)

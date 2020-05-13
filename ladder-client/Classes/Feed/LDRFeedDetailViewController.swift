@@ -4,19 +4,18 @@ import SwiftyJSON
 import UIKit
 import WebKit
 
-
 // MARK: - LDRFeedDetailViewController
 class LDRFeedDetailViewController: UIViewController {
 
     // MARK: - properties
 
-    @IBOutlet weak var detailView: UIView!
+    @IBOutlet private weak var detailView: UIView!
 
-    @IBOutlet weak var headerButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private weak var headerButton: UIButton!
+    @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var nextButton: UIButton!
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet private weak var webView: WKWebView!
     
     var titleLabel: UILabel!
     
@@ -30,7 +29,6 @@ class LDRFeedDetailViewController: UIViewController {
     var htmlColor = ""
     var htmlLinkColor = ""
     
-
     // MARK: - class method
     
     /// returns view controller object
@@ -45,7 +43,6 @@ class LDRFeedDetailViewController: UIViewController {
         ) as? LDRFeedDetailViewController
         return vc
     }
-
 
     // MARK: - life cycle
 
@@ -101,17 +98,20 @@ class LDRFeedDetailViewController: UIViewController {
             for: .normal
         )
 
-        let w = (self.navigationController?.navigationBar.frame.width)! -
-            2.0 * (self.navigationItem.leftBarButtonItem?.image?.size.width)!
-        let h = (self.navigationController?.navigationBar.frame.height)!
-        let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h))
-        let label = UILabel(frame: frame)
-        label.numberOfLines = 3
-        label.lineBreakMode = .byWordWrapping
-        label.textColor = UIColor(named: "Text1")
-        label.font = label.font.withSize(12)
-        self.titleLabel = label
-        self.navigationItem.titleView = label
+        if let nvc = self.navigationController,
+            let leftBarButtonItem = self.navigationItem.leftBarButtonItem,
+            let leftBarButtonItemImage = leftBarButtonItem.image {
+            let w = (nvc.navigationBar.frame.width) - 2.0 * leftBarButtonItemImage.size.width
+            let h = nvc.navigationBar.frame.height
+            let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h))
+            let label = UILabel(frame: frame)
+            label.numberOfLines = 3
+            label.lineBreakMode = .byWordWrapping
+            label.textColor = UIColor(named: "Text1")
+            label.font = label.font.withSize(12)
+            self.titleLabel = label
+            self.navigationItem.titleView = label
+        }
         
         self.loadUnreadItem()
     }
@@ -155,7 +155,6 @@ class LDRFeedDetailViewController: UIViewController {
         self.loadUnreadItem()
     }
 
-
     // MARK: - event listener
     
     /// Descalled when touched up insidecription
@@ -164,11 +163,14 @@ class LDRFeedDetailViewController: UIViewController {
     @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.navigationController?.popViewController(animated: true)
-        }
-        else if barButtonItem == self.navigationItem.rightBarButtonItem {
-            if self.unread == nil { return }
-            let title = self.unread!.getTitle(at: self.index)!
-            let link = self.unread!.getLink(at: self.index)!
+        } else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            guard let unreadItem = self.unread else {
+                return
+            }
+            guard let title = unreadItem.getTitle(at: self.index),
+                let link = unreadItem.getLink(at: self.index) else {
+                return
+            }
 
             KSToastView.ks_showToast("Added a pin\n\(title)", duration: 2.0)
 
@@ -178,7 +180,7 @@ class LDRFeedDetailViewController: UIViewController {
                     LDRPinOperationQueue.shared.requestPinAdd(
                         link: link,
                         title: title,
-                        completionHandler: { (json: JSON?, error: Error?) -> Void in }
+                        completionHandler: { _, _ in }
                     )
                 }
             }
@@ -188,15 +190,22 @@ class LDRFeedDetailViewController: UIViewController {
     /// called when touched up inside
     ///
     /// - Parameter button: UIButton for the event
-    @IBAction func buttonTouchedUpInside(button: UIButton) {
+    @IBAction private func buttonTouchedUpInside(button: UIButton) {
         if button == self.headerButton {
-            if self.unread == nil { return }
-            if self.index < 0 { return }
-            if self.index >= self.unread!.items.count { return }
+            guard let unreadItem = self.unread else {
+                return
+            }
+            if self.index < 0 {
+                return
+            }
+            if self.index >= unreadItem.items.count {
+                return
+            }
 
             // browser
-            let url = self.unread!.getLink(at: self.index)
-            if url != nil { self.presentSafari(url: url!) }
+            if let url = unreadItem.getLink(at: self.index) {
+                self.presentSafari(url: url)
+            }
         }
         if button == self.backButton {
             if !(self.addIndexIfPossible(value: -1)) {
@@ -206,8 +215,7 @@ class LDRFeedDetailViewController: UIViewController {
                     count: 1,
                     interval: 0.08
                 )
-            }
-            else { self.loadUnreadItem() }
+            } else { self.loadUnreadItem() }
 
         }
         if button == self.nextButton {
@@ -218,11 +226,9 @@ class LDRFeedDetailViewController: UIViewController {
                     count: 1,
                     interval: 0.08
                 )
-            }
-            else { self.loadUnreadItem() }
+            } else { self.loadUnreadItem() }
         }
     }
-
 
     // MARK: - public api
 
@@ -233,7 +239,11 @@ class LDRFeedDetailViewController: UIViewController {
         let viewController = SFSafariViewController(url: url)
         viewController.hidesBottomBarWhenPushed = true
         viewController.dismissButtonStyle = .close
-        self.present(viewController, animated: true, completion: {})
+        self.present(
+            viewController,
+            animated: true,
+            completion: nil
+        )
     }
 
     /// load unread item as static html on the view
@@ -247,9 +257,13 @@ class LDRFeedDetailViewController: UIViewController {
 
         self.titleLabel.text = unreadItem.getTitle(at: self.index)
 
-        self.headerButton.setTitle("\(self.index+1) / \(unreadItem.items.count)", for: .normal)
-
-        var html = "<html><style>html { width: 100%; \(self.htmlBackgroundColor) \(self.htmlColor) } body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; } a { \(self.htmlLinkColor) }</style><body>"
+        self.headerButton.setTitle("\(self.index + 1) / \(unreadItem.items.count)", for: .normal)
+        
+        var html = "<html><style>"
+        html += "html { width: 100%; \(self.htmlBackgroundColor) \(self.htmlColor) }"
+        html += "body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; }"
+        html += "a { \(self.htmlLinkColor) }"
+        html += "</style><body>"
 
         if let body = unreadItem.getBody(at: self.index) {
             html += "\(body)"
@@ -264,16 +278,21 @@ class LDRFeedDetailViewController: UIViewController {
     /// - Parameter value: value (-1: previous page or 1: next page)
     /// - Returns: true if the result index is valid, no if not valid
     func addIndexIfPossible(value: Int) -> Bool {
-        if self.unread == nil { return false }
+        guard let unreadItem = self.unread else {
+            return false
+        }
 
         let newValue = self.index + value
-        if newValue < 0 { return false }
-        if newValue >= self.unread!.items.count { return false }
+        if newValue < 0 {
+            return false
+        }
+        if newValue >= unreadItem.items.count {
+            return false
+        }
         self.index = newValue
         return true
     }
 }
-
 
 // MARK: - UIGestureRecognizerDelegate
 extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
@@ -282,7 +301,7 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
         _ gestureRecognizer: UIGestureRecognizer,
         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
     ) -> Bool {
-        return true
+        true
     }
 
 }
@@ -296,24 +315,24 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
         decisionHandler: @escaping (WKNavigationActionPolicy
     ) -> Swift.Void) {
         switch navigationAction.navigationType {
-            case .formSubmitted:
-                break
-            case .backForward:
-                break
-            case .reload:
-                break
-            case .formResubmitted:
-                break
-            case .other:
-                break
-            case .linkActivated:
+        case .formSubmitted:
+            break
+        case .backForward:
+            break
+        case .reload:
+            break
+        case .formResubmitted:
+            break
+        case .other:
+            break
+        case .linkActivated:
+            decisionHandler(.cancel)
+            guard let url = navigationAction.request.url else {
                 decisionHandler(.cancel)
-                guard let url = navigationAction.request.url else {
-                    decisionHandler(.cancel)
-                    return
-                }
-                self.presentSafari(url: url)
                 return
+            }
+            self.presentSafari(url: url)
+            return
         @unknown default:
             return
         }
