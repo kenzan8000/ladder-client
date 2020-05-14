@@ -22,9 +22,6 @@ class LDRFeedDetailViewController: UIViewController {
     var unread: LDRFeedUnread?
     var index = 0
     
-    // let htmlBackgroundColor = "background: #\(UIColor.systemBackground.hexString!);"
-    // let htmlColor = "color: #\(UIColor.label.hexString!);"
-    // let htmlLinkColor = "color: #\(UIColor.link.hexString!);"
     var htmlBackgroundColor = ""
     var htmlColor = ""
     var htmlLinkColor = ""
@@ -50,7 +47,7 @@ class LDRFeedDetailViewController: UIViewController {
         super.loadView()
 
         self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
-        self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
+        self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E5E5EA;" : "color: #2c2c2e;"
         self.htmlLinkColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #0a84ff;" : "color: #007aff;"
         
         self.webView.navigationDelegate = self
@@ -260,9 +257,11 @@ class LDRFeedDetailViewController: UIViewController {
         self.headerButton.setTitle("\(self.index + 1) / \(unreadItem.items.count)", for: .normal)
         
         var html = "<html><style>"
-        html += "html { width: 100%; \(self.htmlBackgroundColor) \(self.htmlColor) }"
-        html += "body { font-family: -apple-system-ui-serif, ui-serif; font-size: 3.2em; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; }"
+        html += "html { width: 100% !important; \(self.htmlBackgroundColor) \(self.htmlColor) }"
+        html += "body { font-family: -apple-system-ui-serif, ui-serif !important; font-size: 3.2em !important; width: 100%; padding-left: 1.0em; padding-right: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; }"
         html += "a { \(self.htmlLinkColor) }"
+        html += "* { word-break: break-all !important; }"
+        html += "img { max-width: 100% !important; }"
         html += "</style><body>"
 
         if let body = unreadItem.getBody(at: self.index) {
@@ -308,7 +307,7 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 
 // MARK: - WKNavigationDelegate
 extension LDRFeedDetailViewController: WKNavigationDelegate {
-
+    
     func webView(
         _ webView: WKWebView,
         decidePolicyFor navigationAction: WKNavigationAction,
@@ -339,6 +338,12 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        if self.webView.isHidden {
+            self.webView.isHidden = false
+        }
     }
 }
