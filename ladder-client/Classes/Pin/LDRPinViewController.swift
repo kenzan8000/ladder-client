@@ -22,7 +22,7 @@ class LDRPinViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        // super.loadView()
+        super.loadView()
 
         self.navigationItem.title = "0 pins"
 

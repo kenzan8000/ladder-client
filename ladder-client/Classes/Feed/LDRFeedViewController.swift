@@ -29,7 +29,7 @@ class LDRFeedViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        // super.loadView()
+        super.loadView()
 
         // segmented control
         self.segmentedControl.setImage(

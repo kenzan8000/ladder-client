@@ -47,7 +47,7 @@ class LDRFeedDetailViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        // super.loadView()
+        super.loadView()
 
         self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
         self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
@@ -58,7 +58,7 @@ class LDRFeedDetailViewController: UIViewController {
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_arrow_left,
+                withIcon: ion_chevron_left,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -82,7 +82,7 @@ class LDRFeedDetailViewController: UIViewController {
         self.backButton.setImage(
             IonIcons.image(
                 withIcon: ion_chevron_left,
-                iconColor: UIColor.systemGray,
+                iconColor: UIColor.label,
                 iconSize: 36,
                 imageSize: CGSize(width: 36, height: 36)
             ),
@@ -91,7 +91,7 @@ class LDRFeedDetailViewController: UIViewController {
         self.nextButton.setImage(
             IonIcons.image(
                 withIcon: ion_chevron_right,
-                iconColor: UIColor.systemGray,
+                iconColor: UIColor.label,
                 iconSize: 36,
                 imageSize: CGSize(width: 36, height: 36)
             ),

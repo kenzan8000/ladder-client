@@ -47,7 +47,7 @@ class LDRSettingViewController: UIViewController {
         // bar button items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_close_empty,
+                withIcon: ion_android_close,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -198,7 +198,7 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.stopAnimating()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_close_empty,
+                withIcon: ion_android_close,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
