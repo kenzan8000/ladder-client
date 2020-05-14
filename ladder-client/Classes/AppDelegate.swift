@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
+        NotificationCenter.default.post(name: LDRNotificationCenter.willResignActive, object: nil)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -52,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationCenter.default.post(name: LDRNotificationCenter.didBecomeActive, object: nil)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -12,6 +12,12 @@ class LDRPinViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     var pins: [LDRPin] = []
+    
+    var didGoBackground = false
+    var didGoForeground = false
+    var neededToReload: Bool {
+        didGoBackground && didGoForeground
+    }
 
     // MARK: - destruction
 
@@ -69,6 +75,18 @@ class LDRPinViewController: UIViewController {
             self,
             selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError),
             name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.willResignActive),
+            name: LDRNotificationCenter.willResignActive,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didBecomeActive),
+            name: LDRNotificationCenter.didBecomeActive,
             object: nil
         )
 
@@ -165,11 +183,35 @@ class LDRPinViewController: UIViewController {
             }
         }
     }
-
+    
+    /// called when did get unread
+    ///
+    /// - Parameter notification: notification happened when application will resign active
+    @objc func willResignActive(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.didGoBackground = true
+        }
+    }
+    
+    /// called when did get unread
+    ///
+    /// - Parameter notification: notification happened when application did become active
+    @objc func didBecomeActive(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.didGoForeground = true
+            if self.neededToReload {
+                self.requestPinAll()
+            }
+        }
+    }
+    
     // MARK: - public api
     
     /// request pin/all api
     func requestPinAll() {
+        self.didGoForeground = false
+        self.didGoBackground = false
+
         LDRPinOperationQueue.shared.requestPinAll { [unowned self] (json: JSON?, error: Error?) -> Void in
             self.refreshView.endRefreshing()
             if let e = error {

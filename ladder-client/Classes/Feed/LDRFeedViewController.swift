@@ -19,6 +19,12 @@ class LDRFeedViewController: UIViewController {
     var unreads: [LDRFeedUnread] = []
     var rates: [Int] = []
     var folders: [String] = []
+    
+    var didGoBackground = false
+    var didGoForeground = false
+    var neededToReload: Bool {
+        didGoBackground && didGoForeground
+    }
 
     // MARK: - destruction
 
@@ -101,8 +107,20 @@ class LDRFeedViewController: UIViewController {
             name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.willResignActive),
+            name: LDRNotificationCenter.willResignActive,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didBecomeActive),
+            name: LDRNotificationCenter.didBecomeActive,
+            object: nil
+        )
 
-        self.reloadData(isNew: true)
+        self.requestSubs()
     }
 
     override func viewDidLoad() {
@@ -204,7 +222,28 @@ class LDRFeedViewController: UIViewController {
             }
         }
     }
-
+    
+    /// called when did get unread
+    ///
+    /// - Parameter notification: notification happened when application will resign active
+    @objc func willResignActive(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.didGoBackground = true
+        }
+    }
+    
+    /// called when did get unread
+    ///
+    /// - Parameter notification: notification happened when application did become active
+    @objc func didBecomeActive(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.didGoForeground = true
+            if self.neededToReload {
+                self.requestSubs()
+            }
+        }
+    }
+    
     // MARK: - public api
 
     /// returns index int from index path on feed view controller
@@ -234,6 +273,9 @@ class LDRFeedViewController: UIViewController {
 
     /// request subs api
     func requestSubs() {
+        self.didGoForeground = false
+        self.didGoBackground = false
+        
         LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
             self.refreshView.endRefreshing()
             if let e = error {
