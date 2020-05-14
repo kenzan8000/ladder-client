@@ -92,34 +92,34 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         // request
         let request = URLRequest(url: url)
         self.addOperation(LDROperation(
-            request: request as URLRequest?,
-            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                DispatchQueue.main.async { [unowned self] in
-                    if let e = error {
-                        completionHandler(nil, e)
-                        return
-                    }
-                    guard let data = object as? Data else {
-                        completionHandler(nil, LDRError.invalidAuthenticityToken)
-                        return
-                    }
-                    if let r = response {
-                        HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
-                    }
-
-                    // parse html
-                    guard let authenticityToken = self.getAuthencityToken(htmlData: data) else {
-                        completionHandler(nil, LDRError.invalidAuthenticityToken)
-                        return
-                    }
-
-                    self.requestSession(
-                        authenticityToken: authenticityToken,
-                        completionHandler: completionHandler
-                    )
+            request: request as URLRequest?
+        ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            DispatchQueue.main.async { [unowned self] in
+                if let e = error {
+                    LDRLOG(e.localizedDescription)
+                    completionHandler(nil, e)
+                    return
                 }
+                guard let data = object as? Data else {
+                    completionHandler(nil, LDRError.invalidAuthenticityToken)
+                    return
+                }
+                if let r = response {
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                }
+
+                // parse html
+                guard let authenticityToken = self.getAuthencityToken(htmlData: data) else {
+                    completionHandler(nil, LDRError.invalidAuthenticityToken)
+                    return
+                }
+
+                self.requestSession(
+                    authenticityToken: authenticityToken,
+                    completionHandler: completionHandler
+                )
             }
-        ))
+        })
     }
     
     /// request session
@@ -177,65 +177,64 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         request.httpBody = httpBody
         
         self.addOperation(LDROperation(
-            request: request as URLRequest?,
-            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
-                DispatchQueue.main.async { [unowned self] in
-                    if let e = error {
-                        completionHandler(nil, e)
-                        return
-                    }
-                    guard let data = object as? Data else {
-                        completionHandler(nil, LDRError.invalidApiKey)
-                        return
-                    }
-                    if let r = response {
-                        HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
-                    }
-
-                    if self.getAuthencityToken(htmlData: data) != nil {
-                        completionHandler(nil, LDRError.invalidUsernameOrPassword)
-                        return
-                    }
-
-                    var apiKey = "undefined"
-                    let document = HTMLDocument(data: data, contentTypeHeader: nil)
-
-                    let scripts = document.nodes(matchingSelector: "script")
-                    for script in scripts {
-                        for child in script.children {
-                            guard let htmlNode = child as? HTMLNode else {
-                                continue
-                            }
-
-                            // parse ApiKey
-                            let jsText = htmlNode.textContent
-                            guard let jsContext = JSContext() else {
-                                continue
-                            }
-                            jsContext.evaluateScript(jsText)
-                            jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
-                            // save ApiKey
-                            apiKey = jsContext.evaluateScript("getApiKey();").toString()
-                            if apiKey == "undefined" { continue }
-                            break
-                        }
-                        if apiKey != "undefined" { break }
-                    }
-                    if apiKey == "undefined" {
-                        completionHandler(nil, LDRError.invalidApiKey)
-                        return
-                    }
-
-                    Keychain(
-                        service: LDRKeychain.serviceName,
-                        accessGroup: LDRKeychain.suiteName
-                    )[LDRKeychain.apiKey] = apiKey
-                    
-                    completionHandler(nil, nil)
-                    NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
+            request: request as URLRequest?
+        ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            DispatchQueue.main.async { [unowned self] in
+                if let e = error {
+                    completionHandler(nil, e)
+                    return
                 }
+                guard let data = object as? Data else {
+                    completionHandler(nil, LDRError.invalidApiKey)
+                    return
+                }
+                if let r = response {
+                    HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                }
+
+                if self.getAuthencityToken(htmlData: data) != nil {
+                    completionHandler(nil, LDRError.invalidUsernameOrPassword)
+                    return
+                }
+
+                var apiKey = "undefined"
+                let document = HTMLDocument(data: data, contentTypeHeader: nil)
+
+                let scripts = document.nodes(matchingSelector: "script")
+                for script in scripts {
+                    for child in script.children {
+                        guard let htmlNode = child as? HTMLNode else {
+                            continue
+                        }
+
+                        // parse ApiKey
+                        let jsText = htmlNode.textContent
+                        guard let jsContext = JSContext() else {
+                            continue
+                        }
+                        jsContext.evaluateScript(jsText)
+                        jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
+                        // save ApiKey
+                        apiKey = jsContext.evaluateScript("getApiKey();").toString()
+                        if apiKey == "undefined" { continue }
+                        break
+                    }
+                    if apiKey != "undefined" { break }
+                }
+                if apiKey == "undefined" {
+                    completionHandler(nil, LDRError.invalidApiKey)
+                    return
+                }
+
+                Keychain(
+                    service: LDRKeychain.serviceName,
+                    accessGroup: LDRKeychain.suiteName
+                )[LDRKeychain.apiKey] = apiKey
+                
+                completionHandler(nil, nil)
+                NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
             }
-        ))
+        })
     }
 
     // MARK: - private api

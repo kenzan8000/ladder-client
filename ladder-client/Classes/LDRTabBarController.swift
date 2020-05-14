@@ -8,7 +8,7 @@ class LDRTabBarController: UITabBarController {
     // MARK: - life cycle
 
     override func loadView() {
-        super.loadView()
+        // super.loadView()
 
         let selectedImages = [
             IonIcons.image(

@@ -24,28 +24,25 @@ class LDRFeedUnread {
 
     /// request unread api
     func request() {
-        LDRFeedOperationQueue.shared.requestUnread(
-            subscribeId: self.subscribeId,
-            completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-                if let items = json?["items"] {
-                    self.items = items.arrayValue
-                }
-                if self.items.isEmpty {
-                    self.state = LDRFeedTableViewCell.State.noUnread
-                } else {
-                    self.state = LDRFeedTableViewCell.State.unread
-                }
-                NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
+        LDRFeedOperationQueue.shared.requestUnread(subscribeId: self.subscribeId) { [unowned self] (json: JSON?, error: Error?) -> Void in
+            if let e = error {
+                LDRLOG(e.localizedDescription)
             }
-        )
+            if let items = json?["items"] {
+                self.items = items.arrayValue
+            }
+            if self.items.isEmpty {
+                self.state = LDRFeedTableViewCell.State.noUnread
+            } else {
+                self.state = LDRFeedTableViewCell.State.unread
+            }
+            NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
+        }
     }
 
     /// request touch_all api
     func requestTouchAll() {
-        LDRFeedOperationQueue.shared.requestTouchAll(
-            subscribeId: self.subscribeId,
-            completionHandler: { _, _ in }
-        )
+        LDRFeedOperationQueue.shared.requestTouchAll(subscribeId: self.subscribeId) { _, _ in }
     }
 
     /// returns title of unread feed at index

@@ -170,10 +170,9 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.isHidden = false
         self.loginActivityIndicatorView.startAnimating()
         self.navigationItem.rightBarButtonItem = nil
-        LDRSettingLoginOperationQueue.shared.start(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
-            if error == nil {
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            } else {
+        LDRSettingLoginOperationQueue.shared.start { [unowned self] (json: JSON?, error: Error?) -> Void in
+            if let e = error {
+                LDRLOG(e.localizedDescription)
                 self.endLogin()
                 // display error
                 let message = LDRErrorMessage(error: error)
@@ -181,8 +180,13 @@ class LDRSettingViewController: UIViewController {
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
+            } else {
+                if let j = json {
+                    LDRLOG(j.debugDescription)
+                }
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }
-        })
+        }
     }
     
     /// end login

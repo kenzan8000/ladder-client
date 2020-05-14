@@ -200,7 +200,8 @@ class ActionViewController: UIViewController {
                     if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
                 
                     do {
-                        try JSON(data: d)
+                        let json = try JSON(data: d)
+                        LDRLOG(json.debugDescription)
                     }
                     catch {
                         completionHandler(LDRError.invalidUrlOrUsernameOrPassword)

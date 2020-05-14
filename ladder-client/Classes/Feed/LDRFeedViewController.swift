@@ -29,7 +29,7 @@ class LDRFeedViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        super.loadView()
+        // super.loadView()
 
         // segmented control
         self.segmentedControl.setImage(
@@ -191,18 +191,17 @@ class LDRFeedViewController: UIViewController {
             alertController.addAction(action)
             self.present(
                 alertController,
-                animated: true,
-                completion: { [unowned self] in
-                    guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
-                        return
-                    }
-                    self.present(
-                        vc,
-                        animated: true,
-                        completion: nil
-                    )
+                animated: true
+            ) { [unowned self] in
+                guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                    return
                 }
-            )
+                self.present(
+                    vc,
+                    animated: true,
+                    completion: nil
+                )
+            }
         }
     }
 
@@ -235,32 +234,25 @@ class LDRFeedViewController: UIViewController {
 
     /// request subs api
     func requestSubs() {
-        LDRFeedOperationQueue.shared.requestSubs(
-            completionHandler: {
-                [unowned self] (
-                    json: JSON?,
-                    error: Error?
-                ) -> Void in
-                    self.refreshView.endRefreshing()
-                    if error != nil {
-                        return
-                    }
-                
-                    // delete and save model
-                    if LDRFeedSubsUnread.delete() != nil {
-                        return
-                    }
-
-                    guard let j = json else {
-                        return
-                    }
-                    if LDRFeedSubsUnread.save(json: j) != nil {
-                        return
-                    }
-
-                    self.reloadData(isNew: true)
+        LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
+            self.refreshView.endRefreshing()
+            if let e = error {
+                LDRLOG(e.localizedDescription)
+                return
             }
-        )
+        
+            // delete and save model
+            if LDRFeedSubsUnread.delete() != nil {
+                return
+            }
+            guard let j = json else {
+                return
+            }
+            if LDRFeedSubsUnread.save(json: j) != nil {
+                return
+            }
+            self.reloadData(isNew: true)
+        }
     }
 
     /// update subsunread models and tableView

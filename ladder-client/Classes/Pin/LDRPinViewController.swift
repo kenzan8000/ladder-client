@@ -22,7 +22,7 @@ class LDRPinViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        super.loadView()
+        // super.loadView()
 
         self.navigationItem.title = "0 pins"
 
@@ -153,7 +153,7 @@ class LDRPinViewController: UIViewController {
             let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(action)
-            self.present(alertController, animated: true, completion: { [unowned self] in
+            self.present(alertController, animated: true) { [unowned self] in
                 guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
                     return
                 }
@@ -162,7 +162,7 @@ class LDRPinViewController: UIViewController {
                     animated: true,
                     completion: nil
                 )
-            })
+            }
         }
     }
 
@@ -170,10 +170,10 @@ class LDRPinViewController: UIViewController {
     
     /// request pin/all api
     func requestPinAll() {
-        LDRPinOperationQueue.shared.requestPinAll(completionHandler: { [unowned self] (json: JSON?, error: Error?) -> Void in
+        LDRPinOperationQueue.shared.requestPinAll { [unowned self] (json: JSON?, error: Error?) -> Void in
             self.refreshView.endRefreshing()
-
-            if error != nil {
+            if let e = error {
+                LDRLOG(e.localizedDescription)
                 return
             }
 
@@ -188,7 +188,7 @@ class LDRPinViewController: UIViewController {
                 return
             }
             self.reloadData()
-        })
+        }
     }
 
     /// reload data on tableView
@@ -222,19 +222,18 @@ extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
 
         if let linkUrl = pin.linkUrl {
             // delete model on fastladder
-            LDRPinOperationQueue.shared.requestPinRemove(
-                link: linkUrl,
-                completionHandler: { _, _ in }
-            )
+            LDRPinOperationQueue.shared.requestPinRemove(link: linkUrl) { _, _ in }
             // browser
             let viewController = SFSafariViewController(url: linkUrl)
             viewController.hidesBottomBarWhenPushed = true
             viewController.dismissButtonStyle = .close
-            self.present(viewController, animated: true, completion: {})
+            self.present(viewController, animated: true) {}
         }
 
         // delete local model
-        LDRPin.delete(pin: pin)
+        if let error = LDRPin.delete(pin: pin) {
+            LDRLOG(error.localizedDescription)
+        }
         self.reloadData()
     }
 

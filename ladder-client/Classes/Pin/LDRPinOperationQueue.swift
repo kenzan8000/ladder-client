@@ -74,8 +74,8 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = httpBody
 
         self.addOperation(LDROperation(
-            request: request,
-            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            request: request
+        ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -101,8 +101,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     }
                     completionHandler(json, nil)
                 }
-            }
-        ))
+        })
     }
 
     /// request api/pin/remove api
@@ -151,8 +150,8 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = httpBody
 
         self.addOperation(LDROperation(
-            request: request,
-            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            request: request
+        ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -178,8 +177,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     }
                     completionHandler(json, nil)
                 }
-            }
-        ))
+        })
     }
     
     /// request api/pin/all api
@@ -223,8 +221,8 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
         request.httpBody = httpBody
         
         self.addOperation(LDROperation(
-            request: request,
-            handler: { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
+            request: request
+        ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
                 if let r = response {
                     HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
                 }
@@ -250,7 +248,6 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                     }
                     completionHandler(json, nil)
                 }
-            }
-        ))
+        })
     }
 }

@@ -47,7 +47,7 @@ class LDRFeedDetailViewController: UIViewController {
     // MARK: - life cycle
 
     override func loadView() {
-        super.loadView()
+        // super.loadView()
 
         self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
         self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E0E0E0;" : "color: #333;"
