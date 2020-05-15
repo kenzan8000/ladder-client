@@ -109,7 +109,8 @@ class LDRSettingViewController: UIViewController {
     /// called when touched up inside
     ///
     /// - Parameter barButtonItem: UIBarButtonItem for the event
-    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc
+    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.rightBarButtonItem {
             if self.isLogingIn() {
                 return

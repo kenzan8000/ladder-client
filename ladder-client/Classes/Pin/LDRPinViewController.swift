@@ -64,31 +64,7 @@ class LDRPinViewController: UIViewController {
             self.requestPinAll()
         }
 
-        // notification
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRPinViewController.didLogin),
-            name: LDRNotificationCenter.didLogin,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError),
-            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.willResignActive),
-            name: LDRNotificationCenter.willResignActive,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.didBecomeActive),
-            name: LDRNotificationCenter.didBecomeActive,
-            object: nil
-        )
+        self.initNotifications()
 
         self.requestPinAll()
     }
@@ -126,7 +102,8 @@ class LDRPinViewController: UIViewController {
     /// called when touched up inside
     ///
     /// - Parameter barButtonItem: UIBarButtonItem for the event
-    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc
+    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestPinAll()
         } else if barButtonItem == self.navigationItem.rightBarButtonItem {
@@ -146,7 +123,8 @@ class LDRPinViewController: UIViewController {
     /// called when user did login
     ///
     /// - Parameter notification: NSNotification happened when user did login
-    @objc func didLogin(notification: NSNotification) {
+    @objc
+    func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.requestPinAll()
         }
@@ -155,7 +133,8 @@ class LDRPinViewController: UIViewController {
     /// called when user did get invalid url or username or password error
     ///
     /// - Parameter notification: NSNotification happened when user did get invalid url or username or password error
-    @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
+    @objc
+    func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             guard let nvc = self.navigationController, let tvc = nvc.tabBarController else {
                 return
@@ -187,7 +166,8 @@ class LDRPinViewController: UIViewController {
     /// called when did get unread
     ///
     /// - Parameter notification: notification happened when application will resign active
-    @objc func willResignActive(notification: NSNotification) {
+    @objc
+    func willResignActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.didGoBackground = true
         }
@@ -196,7 +176,8 @@ class LDRPinViewController: UIViewController {
     /// called when did get unread
     ///
     /// - Parameter notification: notification happened when application did become active
-    @objc func didBecomeActive(notification: NSNotification) {
+    @objc
+    func didBecomeActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.didGoForeground = true
             if self.neededToReload {
@@ -237,6 +218,36 @@ class LDRPinViewController: UIViewController {
     func reloadData() {
         self.pins = LDRPin.fetch()
         self.tableView.reloadData()
+    }
+    
+    // MARK: - private api
+    
+    /// Initialize notifications
+    func initNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRPinViewController.didLogin),
+            name: LDRNotificationCenter.didLogin,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.willResignActive),
+            name: LDRNotificationCenter.willResignActive,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didBecomeActive),
+            name: LDRNotificationCenter.didBecomeActive,
+            object: nil
+        )
     }
 }
 

@@ -52,29 +52,8 @@ class LDRFeedDetailViewController: UIViewController {
         
         self.webView.navigationDelegate = self
 
-        // bar button items
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(
-                withIcon: ion_chevron_left,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
-        )
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(
-                withIcon: ion_pin,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
-        )
+        self.initNavigationBar()
+        
         // back and next button
         self.backButton.setImage(
             IonIcons.image(
@@ -94,21 +73,6 @@ class LDRFeedDetailViewController: UIViewController {
             ),
             for: .normal
         )
-
-        if let nvc = self.navigationController,
-            let leftBarButtonItem = self.navigationItem.leftBarButtonItem,
-            let leftBarButtonItemImage = leftBarButtonItem.image {
-            let w = (nvc.navigationBar.frame.width) - 2.0 * leftBarButtonItemImage.size.width
-            let h = nvc.navigationBar.frame.height
-            let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h))
-            let label = UILabel(frame: frame)
-            label.numberOfLines = 3
-            label.lineBreakMode = .byWordWrapping
-            label.textColor = UIColor(named: "Text1")
-            label.font = label.font.withSize(12)
-            self.titleLabel = label
-            self.navigationItem.titleView = label
-        }
         
         self.loadUnreadItem()
     }
@@ -157,7 +121,8 @@ class LDRFeedDetailViewController: UIViewController {
     /// Descalled when touched up insidecription
     ///
     /// - Parameter barButtonItem: UIBarButtonItem for the event
-    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc
+    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.navigationController?.popViewController(animated: true)
         } else if barButtonItem == self.navigationItem.rightBarButtonItem {
@@ -293,6 +258,50 @@ class LDRFeedDetailViewController: UIViewController {
         }
         self.index = newValue
         return true
+    }
+    
+    // MARK: - public api
+    
+    /// Initialize Navigation Bar
+    private func initNavigationBar() {
+        // bar button items
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(
+                withIcon: ion_chevron_left,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+        )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(
+                withIcon: ion_pin,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+        )
+
+        if let nvc = self.navigationController,
+            let leftBarButtonItem = self.navigationItem.leftBarButtonItem,
+            let leftBarButtonItemImage = leftBarButtonItem.image {
+            let w = (nvc.navigationBar.frame.width) - 2.0 * leftBarButtonItemImage.size.width
+            let h = nvc.navigationBar.frame.height
+            let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: w, height: h))
+            let label = UILabel(frame: frame)
+            label.numberOfLines = 3
+            label.lineBreakMode = .byWordWrapping
+            label.textColor = UIColor(named: "Text1")
+            label.font = label.font.withSize(12)
+            self.titleLabel = label
+            self.navigationItem.titleView = label
+        }
     }
 }
 

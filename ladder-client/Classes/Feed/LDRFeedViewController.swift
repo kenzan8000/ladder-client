@@ -37,48 +37,8 @@ class LDRFeedViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        // segmented control
-        self.segmentedControl.setImage(
-            IonIcons.image(
-                withIcon: ion_ios_star,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            forSegmentAt: Segment.rate
-        )
-        self.segmentedControl.setImage(
-            IonIcons.image(
-                withIcon: ion_ios_folder,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            forSegmentAt: Segment.folder
-        )
-        // bar button items
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(
-                withIcon: ion_android_refresh,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
-        )
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: IonIcons.image(
-                withIcon: ion_ios_gear,
-                iconColor: UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
-        )
+        self.initNavigationBar()
+        
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
         self.refreshView.tintColor = UIColor.systemBlue
@@ -88,37 +48,7 @@ class LDRFeedViewController: UIViewController {
             self.requestSubs()
         }
 
-        // notification
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.didLogin),
-            name: LDRNotificationCenter.didLogin,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.didGetUnread),
-            name: LDRNotificationCenter.didGetUnread,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError),
-            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.willResignActive),
-            name: LDRNotificationCenter.willResignActive,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LDRFeedViewController.didBecomeActive),
-            name: LDRNotificationCenter.didBecomeActive,
-            object: nil
-        )
+        self.initNotifications()
 
         self.requestSubs()
     }
@@ -153,7 +83,8 @@ class LDRFeedViewController: UIViewController {
     /// called when touched up inside
     ///
     /// - Parameter barButtonItem: UIBarButtonItem for the event
-    @objc func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
+    @objc
+    func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestSubs()
         } else if barButtonItem == self.navigationItem.rightBarButtonItem {
@@ -173,7 +104,8 @@ class LDRFeedViewController: UIViewController {
     /// called when did login
     ///
     /// - Parameter notification: notification happened when user did login
-    @objc func didLogin(notification: NSNotification) {
+    @objc
+    func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.requestSubs()
         }
@@ -182,7 +114,8 @@ class LDRFeedViewController: UIViewController {
     /// called when did get unread
     ///
     /// - Parameter notification: notification happened when user did get new unread
-    @objc func didGetUnread(notification: NSNotification) {
+    @objc
+    func didGetUnread(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.reloadVisibleCells()
         }
@@ -191,7 +124,8 @@ class LDRFeedViewController: UIViewController {
     /// called when user did get invalid url or username or password error
     ///
     /// - Parameter notification: notification happened when user did get invalid url or username or password error
-    @objc func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
+    @objc
+    func didGetInvalidUrlOrUsernameOrPasswordError(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             guard let nvc = self.navigationController, let tvc = nvc.tabBarController else {
                 return
@@ -226,7 +160,8 @@ class LDRFeedViewController: UIViewController {
     /// called when did get unread
     ///
     /// - Parameter notification: notification happened when application will resign active
-    @objc func willResignActive(notification: NSNotification) {
+    @objc
+    func willResignActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.didGoBackground = true
         }
@@ -235,7 +170,8 @@ class LDRFeedViewController: UIViewController {
     /// called when did get unread
     ///
     /// - Parameter notification: notification happened when application did become active
-    @objc func didBecomeActive(notification: NSNotification) {
+    @objc
+    func didBecomeActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.didGoForeground = true
             if self.neededToReload {
@@ -344,6 +280,88 @@ class LDRFeedViewController: UIViewController {
         }
     }
 
+    // MARK: - private api
+    
+    /// Initialize Navigation Bar
+    private func initNavigationBar() {
+        // segmented control
+        self.segmentedControl.setImage(
+            IonIcons.image(
+                withIcon: ion_ios_star,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            forSegmentAt: Segment.rate
+        )
+        self.segmentedControl.setImage(
+            IonIcons.image(
+                withIcon: ion_ios_folder,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            forSegmentAt: Segment.folder
+        )
+        // bar button items
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(
+                withIcon: ion_android_refresh,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+        )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: IonIcons.image(
+                withIcon: ion_ios_gear,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+        )
+    }
+    
+    /// Initialize Notifications
+    private func initNotifications() {
+        // notification
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didLogin),
+            name: LDRNotificationCenter.didLogin,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didGetUnread),
+            name: LDRNotificationCenter.didGetUnread,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.willResignActive),
+            name: LDRNotificationCenter.willResignActive,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRFeedViewController.didBecomeActive),
+            name: LDRNotificationCenter.didBecomeActive,
+            object: nil
+        )
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
