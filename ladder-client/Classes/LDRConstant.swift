@@ -80,33 +80,6 @@ func LDRNSStringFromClass(_ classType: AnyClass) -> String {
     return ""
 }
 
-/// returns built ldr url
-///
-/// - Parameters:
-///   - path: path of url
-///   - params: quries of url
-/// - Returns: built ldr url
-func LDRUrl(path: String, params: [String: String] = [:]) -> URL? {
-    // if params.count == 0 { return nil }
-    
-    guard let ldrUrlString = Keychain(
-        service: LDRKeychain.serviceName,
-        accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.ldrUrlString] else {
-        return nil
-    }
-
-    guard let url = URL(string: "https://" + ldrUrlString + "\(path)") else {
-        return nil
-    }
-    var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    let queryItems = params.map {
-        URLQueryItem(name: "\($0)", value: "\($1)")
-    }
-    urlComponents?.queryItems = queryItems
-    return urlComponents?.url
-}
-
 /// returns error message
 ///
 /// - Parameter error: error

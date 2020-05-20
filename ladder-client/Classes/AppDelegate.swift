@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         // remember last session
-        guard let url = LDRUrl(path: LDR.login) else {
+        guard let url = LDRRequestHelper.createUrl(path: LDR.login) else {
             return true
         }
         if url.host == nil {

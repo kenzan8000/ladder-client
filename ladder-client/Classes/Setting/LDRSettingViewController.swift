@@ -1,4 +1,3 @@
-import KeychainAccess
 import SwiftyJSON
 import UIKit
 
@@ -81,12 +80,10 @@ class LDRSettingViewController: UIViewController {
         self.usernameTextField.textContentType = .username
         self.usernameTextField.keyboardType = .alphabet
         self.passwordTextField.textContentType = .password
-        if let urlDomain = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.ldrUrlString] {
+        if let urlDomain = LDRRequestHelper.getLDRDomain() {
             self.urlDomainTextField.text = urlDomain
         }
+        
         self.urlDomainTextField.keyboardType = .URL
     }
 
@@ -143,23 +140,15 @@ class LDRSettingViewController: UIViewController {
     ///
     /// save the current settings
     private func saveSettings() {
-        Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username] = self.usernameTextField.text
-        Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.password] = self.passwordTextField.text
+        if let username = self.usernameTextField.text {
+            LDRRequestHelper.setUsername(username)
+        }
+        if let password = self.passwordTextField.text {
+            LDRRequestHelper.setPassword(password)
+        }
         
-        if var urlDomain = self.urlDomainTextField.text {
-             while urlDomain.hasSuffix("/") {
-                urlDomain = String(urlDomain.dropLast(1))
-            }
-            Keychain(
-                service: LDRKeychain.serviceName,
-                accessGroup: LDRKeychain.suiteName
-            )[LDRKeychain.ldrUrlString] = urlDomain
+        if let urlDomain = self.urlDomainTextField.text {
+            LDRRequestHelper.setURLDomain(urlDomain)
         }
     }
     

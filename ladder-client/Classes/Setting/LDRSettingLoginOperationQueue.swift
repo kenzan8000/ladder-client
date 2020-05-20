@@ -2,7 +2,6 @@ import Alamofire
 import HTMLReader
 import ISHTTPOperation
 import JavaScriptCore
-import KeychainAccess
 import SwiftyJSON
 
 // MARK: - LDRSettingLoginOperationQueue
@@ -38,7 +37,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         self.cancelAllOperations()
 
         // delete cookies
-        guard let url = LDRUrl(path: LDR.login) else {
+        guard let url = LDRRequestHelper.createUrl(path: LDR.login) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
@@ -56,32 +55,16 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
     ///
     /// - Parameter completionHandler: handler called when request ends
     func requestLogin(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        // invalid username
-        guard let username = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username] else {
+        guard let username = LDRRequestHelper.getUsername() else {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
-        if username.isEmpty {
+        guard let password = LDRRequestHelper.getPassword() else {
             completionHandler(nil, LDRError.invalidUsername)
-            return
-        }
-        // invalid password
-        guard let password = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.password] else {
-            completionHandler(nil, LDRError.invalidPassword)
-            return
-        }
-        if password.isEmpty {
-            completionHandler(nil, LDRError.invalidPassword)
             return
         }
         // invalid url
-        guard let url = LDRUrl(
+        guard let url = LDRRequestHelper.createUrl(
             path: LDR.login,
             params: ["username": username, "password": password]
         ) else {
@@ -131,41 +114,23 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
         authenticityToken: String,
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
-        // invalid username
-        guard let username = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username] else {
+        guard let username = LDRRequestHelper.getUsername() else {
             completionHandler(nil, LDRError.invalidUsername)
             return
         }
-        if username.isEmpty {
+        guard let password = LDRRequestHelper.getPassword() else {
             completionHandler(nil, LDRError.invalidUsername)
-            return
-        }
-        // invalid password
-        guard let password = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.password] else {
-            completionHandler(nil, LDRError.invalidPassword)
-            return
-        }
-        if password.isEmpty {
-            completionHandler(nil, LDRError.invalidPassword)
             return
         }
         // invalid url
-        guard let url = LDRUrl(path: LDR.session) else {
+        guard let url = LDRRequestHelper.createUrl(path: LDR.session) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        var headers = HTTPHeaders()
-        headers.add(name: "Content-Type", value: "application/json")
         let httpBody = ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
-        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        let headers = LDRRequestHelper.createHttpHeader(httpBody: httpBody)
         guard var request = try? URLRequest(
             url: url,
             method: HTTPMethod(rawValue: "POST"),
@@ -226,10 +191,7 @@ class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
                     return
                 }
 
-                Keychain(
-                    service: LDRKeychain.serviceName,
-                    accessGroup: LDRKeychain.suiteName
-                )[LDRKeychain.apiKey] = apiKey
+                LDRRequestHelper.setApiKey(apiKey)
                 
                 completionHandler(nil, nil)
                 NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)

@@ -1,6 +1,5 @@
 import Alamofire
 import ISHTTPOperation
-import KeychainAccess
 import SwiftyJSON
 
 // MARK: - LDRFeedOperationQueue
@@ -39,32 +38,19 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         self.cancelAllOperations()
         self.maxConcurrentOperationCount = 1
 
-        // invalid ApiKey
-        guard let apiKey = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey] else {
+        guard let apiKey = LDRRequestHelper.getApiKey() else {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
-        if apiKey.isEmpty {
-            completionHandler(nil, LDRError.invalidApiKey)
-            return
-        }
-        // invalid url
-        guard let url = LDRUrl(path: LDR.Api.subs, params: ["unread": "1"]) else {
+
+        guard let url = LDRRequestHelper.createUrl(path: LDR.Api.subs, params: ["unread": "1"]) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        var headers = HTTPHeaders()
-        if let cookieHeader = URLRequest.getCookies(host: url.host) {
-            headers.add(cookieHeader)
-        }
-        headers.add(name: "Content-Type", value: "application/json")
         let httpBody = ["ApiKey": apiKey].HTTPBodyValue()
-        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        let headers = LDRRequestHelper.createCookieHttpHeader(url: url, httpBody: httpBody)
         guard var request = try? URLRequest(
             url: url,
             method: HTTPMethod(rawValue: "POST"),
@@ -116,33 +102,21 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
         completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void
     ) {
         self.maxConcurrentOperationCount = 5
-
-        // invalid ApiKey
-        guard let apiKey = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey] else {
+        
+        guard let apiKey = LDRRequestHelper.getApiKey() else {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
-        if apiKey.isEmpty {
-            completionHandler(nil, LDRError.invalidApiKey)
-            return
-        }
+        
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.unread) else {
+        guard let url = LDRRequestHelper.createUrl(path: LDR.Api.unread) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        var headers = HTTPHeaders()
-        if let cookieHeader = URLRequest.getCookies(host: url.host) {
-            headers.add(cookieHeader)
-        }
-        headers.add(name: "Content-Type", value: "application/json")
         let httpBody = ["ApiKey": apiKey, "subscribe_id": subscribeId].HTTPBodyValue()
-        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        let headers = LDRRequestHelper.createCookieHttpHeader(url: url, httpBody: httpBody)
         guard var request = try? URLRequest(
             url: url,
             method: HTTPMethod(rawValue: "POST"),
@@ -195,32 +169,20 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
     ) {
         self.maxConcurrentOperationCount = 5
 
-        // invalid ApiKey
-        guard let apiKey = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.apiKey] else {
+        guard let apiKey = LDRRequestHelper.getApiKey() else {
             completionHandler(nil, LDRError.invalidApiKey)
             return
         }
-        if apiKey.isEmpty {
-            completionHandler(nil, LDRError.invalidApiKey)
-            return
-        }
+        
         // invalid url
-        guard let url = LDRUrl(path: LDR.Api.touchAll) else {
+        guard let url = LDRRequestHelper.createUrl(path: LDR.Api.touchAll) else {
             completionHandler(nil, LDRError.invalidLdrUrl)
             return
         }
 
         // request
-        var headers = HTTPHeaders()
-        if let cookieHeader = URLRequest.getCookies(host: url.host) {
-            headers.add(cookieHeader)
-        }
-        headers.add(name: "Content-Type", value: "application/json")
         let httpBody = ["ApiKey": apiKey, "subscribe_id": subscribeId].HTTPBodyValue()
-        headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
+        let headers = LDRRequestHelper.createCookieHttpHeader(url: url, httpBody: httpBody)
         guard var request = try? URLRequest(
             url: url,
             method: HTTPMethod(rawValue: "POST"),
