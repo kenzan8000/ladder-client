@@ -5,31 +5,35 @@ target_name = 'ladder-client'
 use_frameworks!
 project target_name
 
-target target_name do
+def main_pods
   # lint
   pod 'SwiftLint'
-
   # font
   pod 'ionicons'
-
   # ui
   pod 'LGRefreshView'
   pod 'KSToastView'
-
   # json parser
   pod 'SwiftyJSON'
   # html parser
   pod "HTMLReader"
-
   # network
   pod 'ISHTTPOperation'
   pod 'Alamofire'
-
   # key chain
   pod 'KeychainAccess'
-
   # firebase
   pod 'Firebase/Core'
+end
+
+target target_name do
+  main_pods
+end
+
+target_name = 'ladder-clientTests'
+
+target target_name do
+  main_pods
 end
 
 target_name = 'app-extension'
@@ -37,7 +41,6 @@ target_name = 'app-extension'
 target target_name do
   # lint
   pod 'SwiftLint'
-
   # json parser
   pod 'SwiftyJSON'
   # html parser
