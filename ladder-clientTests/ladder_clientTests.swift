@@ -1,23 +1,25 @@
-//
-//  ladder_clientTests.swift
-//  ladder-clientTests
-//
-//  Created by Kenzan Hase on 5/19/20.
-//  Copyright © 2020 kenzan8000. All rights reserved.
-//
-
 import XCTest
+@testable import ladder_client
 
 class ladder_clientTests: XCTestCase {
 
     override func setUpWithError() throws {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
+    func testLogin() {
+        let promise = expectation(description: "Login Succeeded")
+        LDRSettingLoginOperationQueue.shared.start { (_, error) -> Void in
+            if let error = error {
+                XCTFail("Error: \(error.localizedDescription)")
+            } else {
+                promise.fulfill()
+            }
+        }
+        wait(for: [promise], timeout: 5)
+    }
 }

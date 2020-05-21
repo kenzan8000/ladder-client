@@ -89,7 +89,7 @@ class LDRRequestHelper: Any {
         guard let password = Keychain(
             service: LDRKeychain.serviceName,
             accessGroup: LDRKeychain.suiteName
-        )[LDRKeychain.username] else {
+        )[LDRKeychain.password] else {
             return nil
         }
         if password.isEmpty {
