@@ -73,13 +73,15 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     json = try JSON(data: data)
                 }
             } catch {
-                self.cancelAllOperations()
-                LDRPinOperationQueue.shared.cancelAllOperations()
-                NotificationCenter.default.post(
-                    name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
-                    object: nil
-                )
-                completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                DispatchQueue.main.async {
+                    self.cancelAllOperations()
+                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
+                    completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                }
                 return
             }
             DispatchQueue.main.async {
@@ -139,13 +141,15 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     json = try JSON(data: data)
                 }
             } catch {
-                self.cancelAllOperations()
-                LDRPinOperationQueue.shared.cancelAllOperations()
-                NotificationCenter.default.post(
-                    name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
-                    object: nil
-                )
-                completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                DispatchQueue.main.async {
+                    self.cancelAllOperations()
+                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
+                    completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                }
                 return
             }
             DispatchQueue.main.async {
@@ -205,13 +209,15 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
                     json = try JSON(data: data)
                 }
             } catch {
-                self.cancelAllOperations()
-                LDRPinOperationQueue.shared.cancelAllOperations()
-                NotificationCenter.default.post(
-                    name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
-                    object: nil
-                )
-                completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                DispatchQueue.main.async {
+                    self.cancelAllOperations()
+                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    NotificationCenter.default.post(
+                        name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
+                        object: nil
+                    )
+                    completionHandler(nil, LDRError.invalidUrlOrUsernameOrPassword)
+                }
                 return
             }
             DispatchQueue.main.async {
