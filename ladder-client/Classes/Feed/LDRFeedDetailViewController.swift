@@ -16,6 +16,7 @@ class LDRFeedDetailViewController: UIViewController {
     @IBOutlet private weak var nextButton: UIButton!
     
     @IBOutlet private weak var webView: WKWebView!
+    @IBOutlet private weak var webViewActivityIndicatorView: UIActivityIndicatorView!
     
     var titleLabel: UILabel!
     
@@ -354,7 +355,11 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {
-        if self.webView.isHidden {
+        if !self.webView.isHidden {
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
+            self.webViewActivityIndicatorView.isHidden = true
             self.webView.isHidden = false
         }
     }
