@@ -72,7 +72,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                         json = try JSON(data: data)
                     }
                 } catch {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [unowned self] in
                         self.cancelAllOperations()
                         LDRFeedOperationQueue.shared.cancelAllOperations()
                         NotificationCenter.default.post(
@@ -138,7 +138,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                         json = try JSON(data: data)
                     }
                 } catch {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [unowned self] in
                         self.cancelAllOperations()
                         LDRFeedOperationQueue.shared.cancelAllOperations()
                         NotificationCenter.default.post(
@@ -199,7 +199,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
                         json = try JSON(data: data)
                     }
                 } catch {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [unowned self] in
                         self.cancelAllOperations()
                         LDRFeedOperationQueue.shared.cancelAllOperations()
                         NotificationCenter.default.post(
