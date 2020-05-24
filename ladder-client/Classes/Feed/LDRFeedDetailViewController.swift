@@ -17,6 +17,7 @@ class LDRFeedDetailViewController: UIViewController {
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var webViewActivityIndicatorView: UIActivityIndicatorView!
+    var webViewDidFinishNavigation = false
     
     var titleLabel: UILabel!
     
@@ -47,7 +48,7 @@ class LDRFeedDetailViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #fff;"
+        self.htmlBackgroundColor = self.traitCollection.userInterfaceStyle == .dark ? "background: #333;" : "background: #e5e5eaff;"
         self.htmlColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #E5E5EA;" : "color: #2c2c2e;"
         self.htmlLinkColor = self.traitCollection.userInterfaceStyle == .dark ? "color: #0a84ff;" : "color: #007aff;"
         
@@ -355,12 +356,14 @@ extension LDRFeedDetailViewController: WKNavigationDelegate {
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {
-        if !self.webView.isHidden {
+        if self.webViewDidFinishNavigation {
             return
         }
+        self.webViewDidFinishNavigation = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
             self.webViewActivityIndicatorView.isHidden = true
             self.webView.isHidden = false
         }
+        usleep(300000)
     }
 }
