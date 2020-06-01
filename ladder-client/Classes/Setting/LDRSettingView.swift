@@ -6,39 +6,51 @@ struct LDRSettingView: View {
     @State private var password = ""
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 10) {
-            Text("URL")
+        VStack(alignment: .leading, spacing: 10) {
+            self.urlDomainForm()
+            Spacer()
+                .frame(height: 10)
+            self.usernamePasswordForm()
+            Spacer()
+                .frame(height: 10)
+            self.loginButton()
+        }
+            .padding(16)
+    }
+    
+    func urlDomainForm() -> some View {
+        Group {
+            Text("Your Fastladder URL:")
             HStack {
                 Text("https://")
                     .padding(6)
-                    .background(Color.gray)
+                    .border(Color.gray)
                 TextField("", text: $urlDomain)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            
-            Spacer()
-                .frame(height: 10)
-            
+        }
+    }
+    
+    func usernamePasswordForm() -> some View {
+        Group {
             TextField("username", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             SecureField("password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Spacer()
-                .frame(height: 10)
-            
-            HStack {
-                Button(
-                    action: { },
-                    label: { Text("Login") }
-                )
-                    .frame(width: 112)
-                    .padding(8)
-                    .border(Color.blue)
-            }
-            .frame(maxWidth: .infinity)
         }
-        .padding(16)
+    }
+    
+    func loginButton() -> some View {
+        HStack {
+            Button(
+                action: { },
+                label: { Text("Login") }
+            )
+                .frame(width: 112)
+                .padding(8)
+                .border(Color.blue)
+        }
+            .frame(maxWidth: .infinity)
     }
 }
 
