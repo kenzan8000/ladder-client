@@ -1,10 +1,11 @@
 import SwiftUI
 
-struct LDRSettingView: View {
+struct LDRLoginView: View {
     @State private var urlDomain = ""
     @State private var username = ""
     @State private var password = ""
-    
+    // @ObservedObject var loginViewModel : LDRLoginViewModel
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             self.urlDomainForm()
@@ -54,8 +55,8 @@ struct LDRSettingView: View {
     }
 }
 
-struct LDRSettingView_Previews: PreviewProvider {
+struct LDRLoginSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRSettingView()
+        LDRLoginView()
     }
 }
