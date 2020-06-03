@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - LDRLoginViewModel
 class LDRLoginViewModel: ObservableObject {
     
-    // MARK: - Model
+    // MARK: - model
     
     @Published private var login: LDRLogin<String> = LDRLoginViewModel.createLoginDomainUrl()
 
@@ -16,7 +16,7 @@ class LDRLoginViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Access to the Model
+    // MARK: - access to the model
     
     var urlDomain: String {
         login.loginParam.domainUrl
@@ -30,6 +30,17 @@ class LDRLoginViewModel: ObservableObject {
         login.loginParam.password
     }
     
-    // MARK: - Intent
+    // MARK: - intent
     
+    func update(domainUrl: String) {
+        login.update(domainUrl: domainUrl)
+    }
+    
+    func update(username: String) {
+        login.update(username: username)
+    }
+    
+    func update(password: String) {
+        login.update(password: password)
+    }
 }

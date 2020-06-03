@@ -1,10 +1,7 @@
 import SwiftUI
 
 struct LDRLoginView: View {
-    @State private var urlDomain = ""
-    @State private var username = ""
-    @State private var password = ""
-    // @ObservedObject var loginViewModel : LDRLoginViewModel
+    @ObservedObject var loginViewModel: LDRLoginViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -26,7 +23,13 @@ struct LDRLoginView: View {
                 Text("https://")
                     .padding(6)
                     .border(Color.gray)
-                TextField("", text: $urlDomain)
+                TextField(
+                    "",
+                    text: Binding<String>(
+                        get: { self.loginViewModel.urlDomain },
+                        set: { self.loginViewModel.update(domainUrl: $0) }
+                    )
+                )
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
@@ -34,9 +37,21 @@ struct LDRLoginView: View {
     
     func usernamePasswordForm() -> some View {
         Group {
-            TextField("username", text: $username)
+            TextField(
+                "username",
+                text: Binding<String>(
+                    get: { self.loginViewModel.username },
+                    set: { self.loginViewModel.update(username: $0) }
+                )
+            )
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            SecureField("password", text: $password)
+            SecureField(
+                "password",
+                text: Binding<String>(
+                    get: { self.loginViewModel.password },
+                    set: { self.loginViewModel.update(password: $0) }
+                )
+            )
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
@@ -57,6 +72,6 @@ struct LDRLoginView: View {
 
 struct LDRLoginSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRLoginView()
+        LDRLoginView(loginViewModel: LDRLoginViewModel())
     }
 }
