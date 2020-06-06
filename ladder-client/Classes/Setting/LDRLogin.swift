@@ -27,7 +27,7 @@ struct LDRLogin<LDRLoginDomainUrl> where LDRLoginDomainUrl: Equatable {
         loginParam.password = password
     }
     
-    // MARK: - mutating
+    // MARK: - LDRLoginParam
 
     struct LDRLoginParam {
         var domainUrl: LDRLoginDomainUrl

@@ -4,16 +4,31 @@ struct LDRLoginView: View {
     @ObservedObject var loginViewModel: LDRLoginViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            self.urlDomainForm()
-            Spacer()
-                .frame(height: 10)
-            self.usernamePasswordForm()
-            Spacer()
-                .frame(height: 10)
-            self.loginButton()
-        }
+        NavigationView {
+            VStack(alignment: .leading, spacing: 10) {
+                self.urlDomainForm()
+                Spacer()
+                    .frame(height: 10)
+                self.usernamePasswordForm()
+                Spacer()
+                    .frame(height: 10)
+                self.loginButton()
+            }
+            .frame(alignment: .top)
+            .navigationBarTitle("Login", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                },
+                label: {
+                    Image(uiImage: IonIcons.image(
+                        withIcon: ion_android_close,
+                        iconColor: UIColor.systemGray,
+                        iconSize: 32,
+                        imageSize: CGSize(width: 32, height: 32)
+                    ))
+                }
+            ))
             .padding(16)
+        }
     }
     
     func urlDomainForm() -> some View {
