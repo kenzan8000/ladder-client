@@ -18,6 +18,7 @@
 		E60D63D21F73ABB400D4C01F /* LDRFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D01F73ABB400D4C01F /* LDRFeedTableViewCell.swift */; };
 		E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */; };
 		E6241ECB1FA462C400DBA613 /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
+		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E66ACC351F986E45000B7EC5 /* LDRPinOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */; };
@@ -112,6 +113,7 @@
 		E61BD3032473C3DF00087CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62870DF1FB2D93D00584B90 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
 		E63B44A6248100830055AC71 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				E6C32EE01F92CC610052DDE3 /* Model */,
 				E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */,
 				E674AB401F94588D00348C98 /* UIKit+Extension */,
+				E6365963248CD46600FA3908 /* SwiftUI+Extension */,
 				E674B5081F74EE3600D05461 /* LDRTabBarController.swift */,
 				E696D9011F6F215E00DDB5D2 /* ladder-client-Bridging-Header.h */,
 			);
@@ -249,6 +252,14 @@
 				E61BD3032473C3DF00087CE1 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
+			sourceTree = "<group>";
+		};
+		E6365963248CD46600FA3908 /* SwiftUI+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
+			);
+			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
 		};
 		E6690C471F5E537D0065B7B5 = {
@@ -729,6 +740,7 @@
 				E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */,
 				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
+				E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
 				E60763991F9452D70012A910 /* LDRSettingLoginOperationQueue.swift in Sources */,
 				E6C1CA3D246562FA00839380 /* UIColor+Hex.swift in Sources */,

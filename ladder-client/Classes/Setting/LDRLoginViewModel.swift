@@ -30,6 +30,10 @@ class LDRLoginViewModel: ObservableObject {
         login.loginParam.password
     }
     
+    var isLogingingIn: Bool {
+        login.isLoginingIn
+    }
+    
     // MARK: - intent
     
     func update(domainUrl: String) {
@@ -42,5 +46,11 @@ class LDRLoginViewModel: ObservableObject {
     
     func update(password: String) {
         login.update(password: password)
+    }
+    
+    // MARK: - public api
+
+    func startLogin() {
+        login.startLogin()
     }
 }

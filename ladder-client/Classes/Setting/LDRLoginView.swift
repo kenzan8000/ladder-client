@@ -7,26 +7,14 @@ struct LDRLoginView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 10) {
                 self.urlDomainForm()
-                Spacer()
-                    .frame(height: 10)
+                Spacer().frame(height: 10)
                 self.usernamePasswordForm()
-                Spacer()
-                    .frame(height: 10)
+                Spacer().frame(height: 10)
                 self.loginButton()
             }
             .frame(alignment: .top)
             .navigationBarTitle("Login", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                },
-                label: {
-                    Image(uiImage: IonIcons.image(
-                        withIcon: ion_android_close,
-                        iconColor: UIColor.systemGray,
-                        iconSize: 32,
-                        imageSize: CGSize(width: 32, height: 32)
-                    ))
-                }
-            ))
+            .navigationBarItems(trailing: dismissButton())
             .padding(16)
         }
     }
@@ -36,8 +24,9 @@ struct LDRLoginView: View {
             Text("Your Fastladder URL:")
             HStack {
                 Text("https://")
-                    .padding(6)
-                    .border(Color.gray)
+                .padding(6)
+                .border(Color.gray)
+                
                 TextField(
                     "",
                     text: Binding<String>(
@@ -45,7 +34,7 @@ struct LDRLoginView: View {
                         set: { self.loginViewModel.update(domainUrl: $0) }
                     )
                 )
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
     }
@@ -59,7 +48,8 @@ struct LDRLoginView: View {
                     set: { self.loginViewModel.update(username: $0) }
                 )
             )
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            
             SecureField(
                 "password",
                 text: Binding<String>(
@@ -67,21 +57,43 @@ struct LDRLoginView: View {
                     set: { self.loginViewModel.update(password: $0) }
                 )
             )
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
     
     func loginButton() -> some View {
         HStack {
             Button(
-                action: { },
-                label: { Text("Login") }
+                action: { self.loginViewModel.startLogin() },
+                label: {
+                    Text("Login")
+                    if self.loginViewModel.isLogingingIn {
+                        ActivityIndicator(
+                            isAnimating: .constant(true),
+                            style: .medium
+                        )
+                    }
+                }
             )
-                .frame(width: 112)
-                .padding(8)
-                .border(Color.blue)
+            .frame(width: 112)
+            .padding(8)
+            .border(Color.blue)
         }
-            .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity)
+    }
+    
+    func dismissButton() -> some View {
+        Button(action: {
+            },
+            label: {
+                Image(uiImage: IonIcons.image(
+                    withIcon: ion_android_close,
+                    iconColor: UIColor.systemGray,
+                    iconSize: 32,
+                    imageSize: CGSize(width: 32, height: 32)
+                ))
+            }
+        )
     }
 }
 
