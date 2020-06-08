@@ -287,11 +287,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pcx-2S-vPK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8wo-pK-PpH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyZ-YD-zly">
-                                <rect key="frame" x="0.0" y="64" width="375" height="583"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bN-qC-lBb">
@@ -418,6 +418,10 @@
         <scene sceneID="PDI-T2-bYy">
             <objects>
                 <viewController id="RUp-bI-Dm1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AHv-AW-YlI"/>
+                        <viewControllerLayoutGuide type="bottom" id="4T9-Gm-04H"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C58-CU-LTc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

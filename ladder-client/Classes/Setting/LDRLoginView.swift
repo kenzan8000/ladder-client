@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LDRLoginView: View {
+    var dismiss: (() -> Void)?
     @ObservedObject var loginViewModel: LDRLoginViewModel
 
     var body: some View {
@@ -84,17 +85,25 @@ struct LDRLoginView: View {
     }
     
     func dismissButton() -> some View {
-        Button(action: {
-            },
-            label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_close,
-                    iconColor: UIColor.systemGray,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+        Group {
+            if loginViewModel.isLogingingIn {
+                Button(
+                    action: {
+                        if let dismiss = self.dismiss {
+                            dismiss()
+                        }
+                    },
+                    label: {
+                        Image(uiImage: IonIcons.image(
+                            withIcon: ion_android_close,
+                            iconColor: UIColor.systemGray,
+                            iconSize: 32,
+                            imageSize: CGSize(width: 32, height: 32)
+                        ))
+                    }
+                )
             }
-        )
+        }
     }
 }
 
@@ -107,10 +116,42 @@ struct LDRLoginSettingView_Previews: PreviewProvider {
 class LDRLoginViewController: UIHostingController<LDRLoginView> {
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: LDRLoginView(loginViewModel: LDRLoginViewModel()))
+        super.init(
+            coder: aDecoder,
+            rootView: LDRLoginView(loginViewModel: LDRLoginViewModel())
+        )
+        rootView.dismiss = dismiss
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRLoginViewController.didLogin),
+            name: LDRNotificationCenter.didLogin,
+            object: nil
+        )
     }
+    
+    // MARK: - destruction
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // MARK: - notification
+
+    /// called when did login
+    ///
+    /// - Parameter notification: notification happened when user did login
+    @objc
+    func didLogin(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.dismiss()
+        }
+    }
+    
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
     }
 }
