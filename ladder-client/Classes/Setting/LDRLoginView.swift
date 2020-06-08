@@ -66,12 +66,13 @@ struct LDRLoginView: View {
             Button(
                 action: { self.loginViewModel.startLogin() },
                 label: {
-                    Text("Login")
                     if self.loginViewModel.isLogingingIn {
                         ActivityIndicator(
                             isAnimating: .constant(true),
                             style: .medium
                         )
+                    } else {
+                        Text("Login")
                     }
                 }
             )
@@ -100,5 +101,16 @@ struct LDRLoginView: View {
 struct LDRLoginSettingView_Previews: PreviewProvider {
     static var previews: some View {
         LDRLoginView(loginViewModel: LDRLoginViewModel())
+    }
+}
+
+class LDRLoginViewController: UIHostingController<LDRLoginView> {
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder, rootView: LDRLoginView(loginViewModel: LDRLoginViewModel()))
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

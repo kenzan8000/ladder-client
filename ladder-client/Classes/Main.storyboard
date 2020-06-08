@@ -287,11 +287,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pcx-2S-vPK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8wo-pK-PpH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyZ-YD-zly">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="583"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bN-qC-lBb">
@@ -401,9 +401,36 @@
             </objects>
             <point key="canvasLocation" x="3277.5999999999999" y="1421.7391304347827"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="d00-YQ-X4Y">
+            <objects>
+                <hostingController storyboardIdentifier="LDRLoginViewController" id="tBG-hN-hd4" customClass="LDRLoginViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="vxB-fs-VWM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    </containerView>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAg-fh-5Xv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3278" y="2123"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="PDI-T2-bYy">
+            <objects>
+                <viewController id="RUp-bI-Dm1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C58-CU-LTc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tpe-jW-WYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3998" y="2123"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uMW-qc-B7s"/>
+        <segue reference="JAy-FL-v8y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="Background1">

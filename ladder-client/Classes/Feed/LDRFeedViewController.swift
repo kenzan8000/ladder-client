@@ -88,7 +88,22 @@ class LDRFeedViewController: UIViewController {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestSubs()
         } else if barButtonItem == self.navigationItem.rightBarButtonItem {
+            /*
             guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                return
+            }
+            self.present(
+                vc,
+                animated: true,
+                completion: {}
+            )
+            */
+            guard let vc = UIStoryboard(
+                name: "Main",
+                bundle: nil
+            ).instantiateViewController(
+                identifier: LDRNSStringFromClass(LDRLoginViewController.self)
+            ) as? LDRLoginViewController else {
                 return
             }
             self.present(
