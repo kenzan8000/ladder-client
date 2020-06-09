@@ -18,6 +18,13 @@ struct LDRLoginView: View {
             .navigationBarItems(trailing: dismissButton())
             .padding(16)
         }
+        .alert(isPresented: loginViewModel.isPresentingAlert) {
+            var title = ""
+            if let error = loginViewModel.error {
+                title = error.localizedDescription
+            }
+            return Alert(title: Text(title))
+        }
     }
     
     func urlDomainForm() -> some View {

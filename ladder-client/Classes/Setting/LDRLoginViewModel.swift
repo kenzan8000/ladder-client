@@ -7,6 +7,17 @@ final class LDRLoginViewModel: ObservableObject {
     
     @Published private var login = LDRLogin()
     @Published var isLogingIn = false
+    @Published var error: Error?
+    var isPresentingAlert: Binding<Bool> {
+        Binding<Bool>(get: {
+            self.error != nil
+        }, set: { newValue in
+            guard !newValue else {
+                return
+            }
+            self.error = nil
+        })
+    }
     
     // MARK: - access to the model
     
@@ -43,8 +54,9 @@ final class LDRLoginViewModel: ObservableObject {
             return
         }
         self.isLogingIn = true
-        login.start { [unowned self] _, _ in
+        login.start { [unowned self] _, error in
             self.isLogingIn = false
+            self.error = error
         }
     }
 }
