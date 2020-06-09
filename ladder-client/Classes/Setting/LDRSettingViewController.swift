@@ -160,7 +160,7 @@ class LDRSettingViewController: UIViewController {
         self.loginActivityIndicatorView.isHidden = false
         self.loginActivityIndicatorView.startAnimating()
         self.navigationItem.rightBarButtonItem = nil
-        LDRSettingLoginOperationQueue.shared.start { [unowned self] (json: JSON?, error: Error?) -> Void in
+        LDRLoginOperationQueue.shared.start { [unowned self] (json: JSON?, error: Error?) -> Void in
             if let e = error {
                 LDRLOG(e.localizedDescription)
                 self.endLogin()

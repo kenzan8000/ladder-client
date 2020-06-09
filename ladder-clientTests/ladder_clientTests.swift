@@ -23,7 +23,7 @@ class ladder_clientTests: XCTestCase {
     func testLogin() {
         var responseError: Error?
         let promise = expectation(description: "Login Succeeded")
-        LDRSettingLoginOperationQueue.shared.start { (_, error) -> Void in
+        LDRLoginOperationQueue.shared.start { (_, error) -> Void in
             responseError = error
             promise.fulfill()
         }

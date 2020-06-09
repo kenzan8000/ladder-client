@@ -37,7 +37,7 @@ struct LDRLogin {
         LDRRequestHelper.setPassword(loginParam.password)
         LDRRequestHelper.setURLDomain(loginParam.domainUrl)
         
-        LDRSettingLoginOperationQueue.shared.start(completionHandler: completionHandler)
+        LDRLoginOperationQueue.shared.start(completionHandler: completionHandler)
     }
     
     // MARK: - LDRLoginParam

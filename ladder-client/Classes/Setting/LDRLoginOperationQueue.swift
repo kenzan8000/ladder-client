@@ -4,12 +4,12 @@ import ISHTTPOperation
 import JavaScriptCore
 import SwiftyJSON
 
-// MARK: - LDRSettingLoginOperationQueue
-class LDRSettingLoginOperationQueue: ISHTTPOperationQueue {
+// MARK: - LDRLoginOperationQueue
+class LDRLoginOperationQueue: ISHTTPOperationQueue {
 
     // MARK: - property
 
-    static let shared = LDRSettingLoginOperationQueue()
+    static let shared = LDRLoginOperationQueue()
 
     // MARK: - initialization
 
