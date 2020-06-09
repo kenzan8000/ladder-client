@@ -1,20 +1,12 @@
 import SwiftUI
 
 // MARK: - LDRLoginViewModel
-class LDRLoginViewModel: ObservableObject {
+final class LDRLoginViewModel: ObservableObject {
     
     // MARK: - model
     
-    @Published private var login: LDRLogin<String> = LDRLoginViewModel.createLoginDomainUrl()
-
-    static func createLoginDomainUrl() -> LDRLogin<String> {
-        LDRLogin<String> {
-            if let urlDomain = LDRRequestHelper.getLDRDomain() {
-                return urlDomain
-            }
-            return ""
-        }
-    }
+    @Published private var login = LDRLogin()
+    @Published var isLogingIn = false
     
     // MARK: - access to the model
     
@@ -28,10 +20,6 @@ class LDRLoginViewModel: ObservableObject {
     
     var password: String {
         login.loginParam.password
-    }
-    
-    var isLogingingIn: Bool {
-        login.isLoginingIn
     }
     
     // MARK: - intent
@@ -51,6 +39,12 @@ class LDRLoginViewModel: ObservableObject {
     // MARK: - public api
 
     func startLogin() {
-        login.startLogin()
+        if self.isLogingIn {
+            return
+        }
+        self.isLogingIn = true
+        login.start { [unowned self] _, _ in
+            self.isLogingIn = false
+        }
     }
 }

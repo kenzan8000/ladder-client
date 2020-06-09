@@ -2,17 +2,20 @@ import SwiftyJSON
 import SwiftUI
 
 // MARK: - LDRLogin
-struct LDRLogin<LDRLoginDomainUrl> {
+struct LDRLogin {
     
     // MARK: - property
     
     var loginParam: LDRLoginParam
-    var isLoginingIn = false
     
     // MARK: - initialization
     
-    init(loginDomainUrlFactory: () -> String) {
-        self.loginParam = LDRLoginParam(domainUrl: loginDomainUrlFactory())
+    init() {
+        if let urlDomain = LDRRequestHelper.getLDRDomain() {
+            self.loginParam = LDRLoginParam(domainUrl: urlDomain)
+        } else {
+            self.loginParam = LDRLoginParam(domainUrl: "")
+        }
     }
 
     // MARK: - mutating
@@ -29,25 +32,12 @@ struct LDRLogin<LDRLoginDomainUrl> {
         loginParam.password = password
     }
     
-    mutating func startLogin() {
-        if isLoginingIn {
-            return
-        }
-        isLoginingIn = true
+    mutating func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         LDRRequestHelper.setUsername(loginParam.username)
         LDRRequestHelper.setPassword(loginParam.password)
         LDRRequestHelper.setURLDomain(loginParam.domainUrl)
         
-        LDRSettingLoginOperationQueue.shared.start { (json: JSON?, error: Error?) -> Void in
-            if let error = error {
-                LDRLOG(error.localizedDescription)
-                // let message = LDRErrorMessage(error: error)
-            } else {
-                if let json = json {
-                    LDRLOG(json.debugDescription)
-                }
-            }
-        }
+        LDRSettingLoginOperationQueue.shared.start(completionHandler: completionHandler)
     }
     
     // MARK: - LDRLoginParam

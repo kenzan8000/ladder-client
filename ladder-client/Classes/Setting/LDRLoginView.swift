@@ -14,7 +14,7 @@ struct LDRLoginView: View {
                 self.loginButton()
             }
             .frame(alignment: .top)
-            .navigationBarTitle("Login", displayMode: .inline)
+            .navigationBarTitle("Login", displayMode: .large)
             .navigationBarItems(trailing: dismissButton())
             .padding(16)
         }
@@ -67,7 +67,7 @@ struct LDRLoginView: View {
             Button(
                 action: { self.loginViewModel.startLogin() },
                 label: {
-                    if self.loginViewModel.isLogingingIn {
+                    if self.loginViewModel.isLogingIn {
                         ActivityIndicator(
                             isAnimating: .constant(true),
                             style: .medium
@@ -86,7 +86,7 @@ struct LDRLoginView: View {
     
     func dismissButton() -> some View {
         Group {
-            if loginViewModel.isLogingingIn {
+            if !loginViewModel.isLogingIn {
                 Button(
                     action: {
                         if let dismiss = self.dismiss {
