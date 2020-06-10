@@ -13,7 +13,8 @@ struct LDRLoginView: View {
                 Spacer().frame(height: 10)
                 self.loginButton()
             }
-            .frame(alignment: .top)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(height: 0, alignment: .bottom)
             .navigationBarTitle("Login", displayMode: .large)
             .navigationBarItems(trailing: dismissButton())
             .padding(16)
