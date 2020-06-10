@@ -1,5 +1,6 @@
 import SwiftUI
 
+// MARK: - LDRLoginView
 struct LDRLoginView: View {
     var dismiss: (() -> Void)?
     @ObservedObject var loginViewModel: LDRLoginViewModel
@@ -123,13 +124,17 @@ struct LDRLoginView: View {
     }
 }
 
+// MARK: - LDRLoginSettingView_Previews
 struct LDRLoginSettingView_Previews: PreviewProvider {
     static var previews: some View {
         LDRLoginView(loginViewModel: LDRLoginViewModel())
     }
 }
 
+// MARK: - LDRLoginViewController
 class LDRLoginViewController: UIHostingController<LDRLoginView> {
+
+    // MARK: - initialization
 
     required init?(coder aDecoder: NSCoder) {
         super.init(
@@ -151,6 +156,8 @@ class LDRLoginViewController: UIHostingController<LDRLoginView> {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: - life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -167,6 +174,7 @@ class LDRLoginViewController: UIHostingController<LDRLoginView> {
         }
     }
     
+    /// dismiss view controller
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }

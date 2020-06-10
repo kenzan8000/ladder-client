@@ -32,6 +32,8 @@ struct LDRLogin {
         loginParam.password = password
     }
     
+    /// start login operation
+    /// - Parameter completionHandler: handler called when operation is completed
     mutating func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
         LDRRequestHelper.setUsername(loginParam.username)
         LDRRequestHelper.setPassword(loginParam.password)
@@ -41,13 +43,13 @@ struct LDRLogin {
     }
     
     // MARK: - public api
-
+    
+    /// end login operation
     func end() {
         LDRLoginOperationQueue.shared.cancelAllOperations()
     }
     
     // MARK: - LDRLoginParam
-
     struct LDRLoginParam {
         var domainUrl: String
         var username = ""

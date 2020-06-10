@@ -49,6 +49,7 @@ final class LDRLoginViewModel: ObservableObject {
     
     // MARK: - public api
 
+    /// start login
     func startLogin() {
         if self.isLogingIn {
             return
@@ -60,6 +61,7 @@ final class LDRLoginViewModel: ObservableObject {
         }
     }
     
+    /// end login
     func endLogin() {
         login.end()
     }
