@@ -40,6 +40,12 @@ struct LDRLogin {
         LDRLoginOperationQueue.shared.start(completionHandler: completionHandler)
     }
     
+    // MARK: - public api
+
+    func end() {
+        LDRLoginOperationQueue.shared.cancelAllOperations()
+    }
+    
     // MARK: - LDRLoginParam
 
     struct LDRLoginParam {

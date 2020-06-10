@@ -26,6 +26,9 @@ struct LDRLoginView: View {
             }
             return Alert(title: Text(title))
         }
+        .onDisappear {
+            self.loginViewModel.endLogin()
+        }
     }
     
     func urlDomainForm() -> some View {

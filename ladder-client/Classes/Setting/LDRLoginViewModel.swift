@@ -59,4 +59,8 @@ final class LDRLoginViewModel: ObservableObject {
             self.error = error
         }
     }
+    
+    func endLogin() {
+        login.end()
+    }
 }
