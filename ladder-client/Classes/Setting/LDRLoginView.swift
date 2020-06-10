@@ -42,6 +42,8 @@ struct LDRLoginView: View {
                         set: { self.loginViewModel.update(domainUrl: $0) }
                     )
                 )
+                .keyboardType(.URL)
+                .textContentType(.URL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
@@ -56,6 +58,8 @@ struct LDRLoginView: View {
                     set: { self.loginViewModel.update(username: $0) }
                 )
             )
+            .keyboardType(.alphabet)
+            .textContentType(.username)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             
             SecureField(
@@ -65,6 +69,7 @@ struct LDRLoginView: View {
                     set: { self.loginViewModel.update(password: $0) }
                 )
             )
+            .textContentType(.password)
             .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
