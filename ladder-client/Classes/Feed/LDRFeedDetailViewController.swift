@@ -42,6 +42,10 @@ class LDRFeedDetailViewController: UIViewController {
         ) as? LDRFeedDetailViewController
         return vc
     }
+    
+    deinit {
+        self.titleLabel = nil
+    }
 
     // MARK: - life cycle
 
@@ -93,7 +97,6 @@ class LDRFeedDetailViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        self.titleLabel = nil
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -289,7 +292,11 @@ class LDRFeedDetailViewController: UIViewController {
             target: self,
             action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
         )
-
+        self.initTitleLabel()
+    }
+    
+    /// init title label
+    private func initTitleLabel() {
         if let nvc = self.navigationController,
             let leftBarButtonItem = self.navigationItem.leftBarButtonItem,
             let leftBarButtonItemImage = leftBarButtonItem.image {
