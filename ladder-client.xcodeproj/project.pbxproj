@@ -41,7 +41,6 @@
 		E6C1CA3D246562FA00839380 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C1CA3C246562FA00839380 /* UIColor+Hex.swift */; };
 		E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */; };
 		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
-		E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */; };
 		E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */; };
 		E6C8E62423E52460004F410D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62323E52460004F410D /* Media.xcassets */; };
 		E6C8E62623E52460004F410D /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* ActionViewController.swift */; };
@@ -140,7 +139,6 @@
 		E6C1CA3C246562FA00839380 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRCoreDataManager.swift; sourceTree = "<group>"; };
 		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
-		E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRSettingViewController.swift; sourceTree = "<group>"; };
 		E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
 		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C8E62323E52460004F410D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -217,7 +215,7 @@
 				E60230B81F5E54740052F762 /* Main.storyboard */,
 				E6FFD6661F6DEB7900AD947E /* Feed */,
 				E6FFD6681F6DEB7900AD947E /* Pin */,
-				E6C7B3601F849286000EFCE6 /* Setting */,
+				E6C7B3601F849286000EFCE6 /* Login */,
 				E6C32EE01F92CC610052DDE3 /* Model */,
 				E6BCD0171F944CA200B2E7E6 /* NSFoundation+Extension */,
 				E674AB401F94588D00348C98 /* UIKit+Extension */,
@@ -327,16 +325,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E6C7B3601F849286000EFCE6 /* Setting */ = {
+		E6C7B3601F849286000EFCE6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				E60763981F9452D60012A910 /* LDRLoginOperationQueue.swift */,
-				E6C7B3611F849286000EFCE6 /* LDRSettingViewController.swift */,
 				E63B44A42480FAA70055AC71 /* LDRLoginView.swift */,
 				E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */,
 				E67C46482487873A00480D46 /* LDRLogin.swift */,
 			);
-			path = Setting;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		E6C8E62223E52460004F410D /* app-extension */ = {
@@ -744,7 +741,6 @@
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
 				E60763991F9452D70012A910 /* LDRLoginOperationQueue.swift in Sources */,
 				E6C1CA3D246562FA00839380 /* UIColor+Hex.swift in Sources */,
-				E6C7B3621F849286000EFCE6 /* LDRSettingViewController.swift in Sources */,
 				E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */,
 				E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */,
 				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,

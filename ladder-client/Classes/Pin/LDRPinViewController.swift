@@ -107,16 +107,6 @@ class LDRPinViewController: UIViewController {
         if barButtonItem == self.navigationItem.leftBarButtonItem {
             self.requestPinAll()
         } else if barButtonItem == self.navigationItem.rightBarButtonItem {
-            /*
-            guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
-                return
-            }
-            self.present(
-                vc,
-                animated: true,
-                completion: {}
-            )
-            */
             guard let vc = UIStoryboard(
                 name: "Main",
                 bundle: nil
@@ -166,7 +156,12 @@ class LDRPinViewController: UIViewController {
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true) { [unowned self] in
-                guard let vc = LDRSettingNavigationController.ldr_navigationController() else {
+                guard let vc = UIStoryboard(
+                    name: "Main",
+                    bundle: nil
+                ).instantiateViewController(
+                    identifier: LDRNSStringFromClass(LDRLoginViewController.self)
+                ) as? LDRLoginViewController else {
                     return
                 }
                 self.present(
