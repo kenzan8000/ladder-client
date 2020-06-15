@@ -327,7 +327,7 @@ class LDRFeedViewController: UIViewController {
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_ios_gear,
+                withIcon: ion_person,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
