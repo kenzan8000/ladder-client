@@ -24,6 +24,8 @@ def main_pods
   pod 'KeychainAccess'
   # firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
 end
 
 target target_name do
