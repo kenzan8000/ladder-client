@@ -229,3 +229,6 @@ class LDRPin: NSManagedObject {
     }
 
 }
+
+extension LDRPin: Identifiable {
+}

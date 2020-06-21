@@ -2,12 +2,14 @@ import SwiftUI
 
 // MARK: - LDRPinView
 struct LDRPinView: View {
+    @ObservedObject var pinViewModel: LDRPinViewModel
+
     var body: some View {
         NavigationView {
-            List {
-                Text("Read Them Later")
+            List(pinViewModel.pins) { pin in
+                LDRPinRow(title: pin.title)
             }
-            .navigationBarTitle("Read Them Later", displayMode: .large)
+            .navigationBarTitle("\(pinViewModel.pins.count) pins", displayMode: .large)
             .navigationBarItems(
                 leading: reloadButton(),
                 trailing: loginButton()
@@ -49,6 +51,6 @@ struct LDRPinView: View {
 // MARK: - LDRPinView_Previews
 struct LDRPinView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRPinView()
+        LDRPinView(pinViewModel: LDRPinViewModel())
     }
 }

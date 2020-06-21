@@ -21,6 +21,8 @@
 		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
 		E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9A249F7A950051C402 /* LDRPinView.swift */; };
+		E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */; };
+		E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAFA0249F8E240051C402 /* LDRPinRow.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E66ACC351F986E45000B7EC5 /* LDRPinOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */; };
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
@@ -117,6 +119,8 @@
 		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
 		E63B44A6248100830055AC71 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E63CAF9A249F7A950051C402 /* LDRPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinView.swift; sourceTree = "<group>"; };
+		E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinViewModel.swift; sourceTree = "<group>"; };
+		E63CAFA0249F8E240051C402 /* LDRPinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRow.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinOperationQueue.swift; sourceTree = "<group>"; };
@@ -383,11 +387,13 @@
 			isa = PBXGroup;
 			children = (
 				E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */,
-				E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */,
 				E6FFD6691F6DEB7900AD947E /* LDRPinViewController.swift */,
 				E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */,
 				E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */,
 				E63CAF9A249F7A950051C402 /* LDRPinView.swift */,
+				E63CAFA0249F8E240051C402 /* LDRPinRow.swift */,
+				E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */,
+				E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */,
 			);
 			path = Pin;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
 				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E67EB2FC1F78C8CF00C7940B /* LDRPinTableViewCell.swift in Sources */,
+				E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */,
 				E6C7C3C41FAAEE0600167632 /* LDRFeedUnread.swift in Sources */,
 				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
 				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
@@ -775,6 +782,7 @@
 				E67600111F94855F000A7B16 /* LDROperation.m in Sources */,
 				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E6FFD66B1F6DEB7900AD947E /* LDRPinViewController.swift in Sources */,
+				E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */,
 				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,
 				E6BCD01A1F944CA200B2E7E6 /* Reachability.m in Sources */,
 				E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */,
