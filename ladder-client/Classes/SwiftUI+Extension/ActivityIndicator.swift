@@ -1,5 +1,5 @@
-import UIKit
 import SwiftUI
+import UIKit
 
 struct ActivityIndicator: UIViewRepresentable {
     @Binding var isAnimating: Bool

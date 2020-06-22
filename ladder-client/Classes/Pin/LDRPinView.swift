@@ -12,7 +12,9 @@ struct LDRPinView: View {
     var body: some View {
         NavigationView {
             List(pinViewModel.pins) { pin in
-                LDRPinRow(title: pin.title)
+                LDRPinRow(title: pin.title) {
+                    self.pinViewModel.delete(pin: pin)
+                }
             }
             .navigationBarTitle("\(pinViewModel.pins.count) pins", displayMode: .large)
             .navigationBarItems(
@@ -22,6 +24,12 @@ struct LDRPinView: View {
             .sheet(isPresented: $isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
+        }
+        .onAppear {
+            self.pinViewModel.loadPinsFromLocalDB()
+        }
+        .sheet(isPresented: pinViewModel.isPresentingSafariView) {
+            SafariView(url: self.pinViewModel.safariUrl!)
         }
         .alert(isPresented: pinViewModel.isPresentingAlert) {
             var title = ""
@@ -51,7 +59,7 @@ struct LDRPinView: View {
     func reloadButton() -> some View {
         Button(
             action: {
-                self.pinViewModel.reload()
+                self.pinViewModel.loadPinsFromAPI()
             },
             label: {
                 Image(uiImage: IonIcons.image(

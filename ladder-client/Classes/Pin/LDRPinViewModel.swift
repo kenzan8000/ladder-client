@@ -7,16 +7,29 @@ final class LDRPinViewModel: ObservableObject {
     // MARK: - model
     @Published var pins: [LDRPin]
     @Published var isLoading = false
+    @Published var safariUrl: URL?
+    var isPresentingSafariView: Binding<Bool> {
+        Binding<Bool>(
+            get: { self.safariUrl != nil },
+            set: { newValue in
+                guard !newValue else {
+                    return
+                }
+                self.safariUrl = nil
+            }
+        )
+    }
     @Published var error: Error?
     var isPresentingAlert: Binding<Bool> {
-        Binding<Bool>(get: {
-            self.error != nil
-        }, set: { newValue in
-            guard !newValue else {
-                return
+        Binding<Bool>(
+            get: { self.error != nil },
+            set: { newValue in
+                guard !newValue else {
+                    return
+                }
+                self.error = nil
             }
-            self.error = nil
-        })
+        )
     }
     
     // MARK: - initialization
@@ -55,7 +68,7 @@ final class LDRPinViewModel: ObservableObject {
     @objc
     func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            self.reload()
+            self.loadPinsFromAPI()
         }
     }
     
@@ -65,13 +78,17 @@ final class LDRPinViewModel: ObservableObject {
     @objc
     func didBecomeActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
-            self.reload()
+            self.loadPinsFromAPI()
         }
     }
     
     // MARK: - public api
-
-    func reload() {
+    
+    func loadPinsFromLocalDB() {
+        pins = LDRPin.fetch()
+    }
+    
+    func loadPinsFromAPI() {
         if isLoading {
             return
         }
@@ -89,5 +106,17 @@ final class LDRPinViewModel: ObservableObject {
             }
             self.isLoading = false
         }
+    }
+    
+    func delete(pin: LDRPin) {
+        if let url = pin.linkUrl {
+            self.safariUrl = url
+            LDRPinOperationQueue.shared.requestPinRemove(link: url) { _, _ in }
+        }
+        if let error = LDRPin.delete(pin: pin) {
+            self.error = error
+            return
+        }
+        pins = LDRPin.fetch()
     }
 }

@@ -3,13 +3,23 @@ import SwiftUI
 // MARK: - LDRPinRow
 struct LDRPinRow: View {
     var title: String
+    var onTap: (() -> Void)?
     
     var body: some View {
-        Text(title)
-        .fixedSize(horizontal: false, vertical: true)
-        .frame(height: 64)
-        .lineLimit(3)
-        .truncationMode(.tail)
+        Button(
+            action: {
+                if let onTap = self.onTap {
+                    onTap()
+                }
+            },
+            label: {
+                Text(title)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(height: 64)
+                .lineLimit(3)
+                .truncationMode(.tail)
+            }
+        )
     }
 }
 
