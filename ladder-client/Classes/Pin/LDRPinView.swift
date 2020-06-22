@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - LDRPinView
 struct LDRPinView: View {
     @ObservedObject var pinViewModel: LDRPinViewModel
+    @State var isPresentingLoginView = false
 
     init(pinViewModel: LDRPinViewModel) {
         self.pinViewModel = pinViewModel
@@ -19,6 +20,9 @@ struct LDRPinView: View {
                 leading: reloadButton(),
                 trailing: loginButton()
             )
+            .sheet(isPresented: $isPresentingLoginView) {
+                LDRLoginView(loginViewModel: LDRLoginViewModel())
+            }
         }
     }
     
@@ -40,6 +44,7 @@ struct LDRPinView: View {
     func loginButton() -> some View {
         Button(
             action: {
+                self.isPresentingLoginView.toggle()
             },
             label: {
                 Image(uiImage: IonIcons.image(
