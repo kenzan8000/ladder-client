@@ -17,28 +17,13 @@ struct LDRPinView: View {
             }
             .navigationBarTitle("\(pinViewModel.pins.count) pins", displayMode: .large)
             .navigationBarItems(
-                leading: reloadButton(),
-                trailing: loginButton()
+                leading: loginButton(),
+                trailing: reloadButton()
             )
             .sheet(isPresented: $isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
         }
-    }
-    
-    func reloadButton() -> some View {
-        Button(
-            action: {
-            },
-            label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_refresh,
-                    iconColor: UIColor.systemGray,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
-            }
-        )
     }
     
     func loginButton() -> some View {
@@ -49,6 +34,22 @@ struct LDRPinView: View {
             label: {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_person,
+                    iconColor: UIColor.systemGray,
+                    iconSize: 32,
+                    imageSize: CGSize(width: 32, height: 32)
+                ))
+            }
+        )
+    }
+    
+    func reloadButton() -> some View {
+        Button(
+            action: {
+                self.pinViewModel.reload()
+            },
+            label: {
+                Image(uiImage: IonIcons.image(
+                    withIcon: ion_android_refresh,
                     iconColor: UIColor.systemGray,
                     iconSize: 32,
                     imageSize: CGSize(width: 32, height: 32)
