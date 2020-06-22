@@ -4,6 +4,11 @@ import SwiftUI
 struct LDRPinView: View {
     @ObservedObject var pinViewModel: LDRPinViewModel
 
+    init(pinViewModel: LDRPinViewModel) {
+        self.pinViewModel = pinViewModel
+        self.pinViewModel.reload()
+    }
+    
     var body: some View {
         NavigationView {
             List(pinViewModel.pins) { pin in
@@ -52,5 +57,18 @@ struct LDRPinView: View {
 struct LDRPinView_Previews: PreviewProvider {
     static var previews: some View {
         LDRPinView(pinViewModel: LDRPinViewModel())
+    }
+}
+
+// MARK: - LDRPinViewController
+class LDRPinViewController: UIHostingController<LDRPinView> {
+
+    // MARK: - initialization
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(
+            coder: aDecoder,
+            rootView: LDRPinView(pinViewModel: LDRPinViewModel())
+        )
     }
 }

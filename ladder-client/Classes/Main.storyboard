@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="fdt-RO-Gol" kind="relationship" relationship="viewControllers" id="Gij-jr-dqW"/>
-                        <segue destination="Mny-lh-EwW" kind="relationship" relationship="viewControllers" id="PD6-lW-ONM"/>
+                        <segue destination="koS-BG-3RM" kind="relationship" relationship="viewControllers" id="BGf-BC-91e"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvq-ZG-z1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,12 +219,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1K-ok-cwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="628"/>
+            <point key="canvasLocation" x="1798" y="661"/>
         </scene>
-        <!--Pin View Controller-->
+        <!--Pin View Controller Old-->
         <scene sceneID="Ylo-gV-ull">
             <objects>
-                <viewController id="3Pp-hj-lkg" customClass="LDRPinViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Pp-hj-lkg" customClass="LDRPinViewControllerOld" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9dI-SS-P7f"/>
                         <viewControllerLayoutGuide type="bottom" id="6OZ-ZP-TVK"/>
@@ -252,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQi-6b-bdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.5999999999999" y="626.53673163418296"/>
+            <point key="canvasLocation" x="2521" y="661"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="d00-YQ-X4Y">
@@ -267,23 +267,15 @@
             </objects>
             <point key="canvasLocation" x="1073" y="1381"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="PDI-T2-bYy">
+        <!--Pin View Controller-->
+        <scene sceneID="vFk-8W-l5q">
             <objects>
-                <viewController id="RUp-bI-Dm1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AHv-AW-YlI"/>
-                        <viewControllerLayoutGuide type="bottom" id="4T9-Gm-04H"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="C58-CU-LTc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tpe-jW-WYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <hostingController id="koS-BG-3RM" customClass="LDRPinViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="gW2-Nl-mz9"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KLu-Rl-G1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="1380"/>
+            <point key="canvasLocation" x="1073" y="661"/>
         </scene>
     </scenes>
     <resources>

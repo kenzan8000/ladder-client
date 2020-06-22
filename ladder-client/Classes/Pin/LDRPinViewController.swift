@@ -4,7 +4,7 @@ import SwiftyJSON
 import UIKit
 
 // MARK: - LDRPinViewController
-class LDRPinViewController: UIViewController {
+class LDRPinViewControllerOld: UIViewController {
 
     // MARK: - properties
 
@@ -42,7 +42,7 @@ class LDRPinViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRPinViewControllerOld.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
@@ -53,7 +53,7 @@ class LDRPinViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRPinViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRPinViewControllerOld.barButtonItemTouchedUpInside)
         )
         // refreshView
         self.refreshView = LGRefreshView(scrollView: self.tableView)
@@ -236,13 +236,13 @@ class LDRPinViewController: UIViewController {
     func initNotifications() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRPinViewController.didLogin),
+            selector: #selector(LDRPinViewControllerOld.didLogin),
             name: LDRNotificationCenter.didLogin,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRPinViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            selector: #selector(LDRPinViewControllerOld.didGetInvalidUrlOrUsernameOrPasswordError),
             name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
             object: nil
         )
@@ -262,7 +262,7 @@ class LDRPinViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension LDRPinViewController: UITableViewDelegate, UITableViewDataSource {
+extension LDRPinViewControllerOld: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = self.pins.count
