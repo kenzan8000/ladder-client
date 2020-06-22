@@ -22,7 +22,7 @@ struct LDRLoginView: View {
         }
         .alert(isPresented: loginViewModel.isPresentingAlert) {
             var title = ""
-            if let error = loginViewModel.error {
+            if let error = self.loginViewModel.error {
                 title = error.localizedDescription
             }
             return Alert(title: Text(title))

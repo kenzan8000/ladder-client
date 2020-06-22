@@ -7,7 +7,6 @@ struct LDRPinView: View {
 
     init(pinViewModel: LDRPinViewModel) {
         self.pinViewModel = pinViewModel
-        self.pinViewModel.reload()
     }
     
     var body: some View {
@@ -24,6 +23,13 @@ struct LDRPinView: View {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
         }
+        .alert(isPresented: pinViewModel.isPresentingAlert) {
+            var title = ""
+            if let error = self.pinViewModel.error {
+                title = error.localizedDescription
+            }
+            return Alert(title: Text(title))
+        }
     }
     
     func loginButton() -> some View {
@@ -33,7 +39,7 @@ struct LDRPinView: View {
             },
             label: {
                 Image(uiImage: IonIcons.image(
-                    withIcon: ion_person,
+                    withIcon: ion_log_in,
                     iconColor: UIColor.systemGray,
                     iconSize: 32,
                     imageSize: CGSize(width: 32, height: 32)
