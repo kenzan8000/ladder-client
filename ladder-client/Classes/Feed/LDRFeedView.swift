@@ -7,16 +7,26 @@ struct LDRFeedView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Text("Test")
+            List(feedViewModel.subsunreads) { subsunread in
+                Text("\(subsunread.title)")
             }
-            .navigationBarItems(
-                leading: loginButton(),
-                trailing: reloadButton()
-            )
+            .navigationBarItems(leading: navigationBar())
             .sheet(isPresented: $isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
+        }
+        .onAppear {
+            self.feedViewModel.loadFeedFromLocalDB()
+        }
+    }
+    
+    func navigationBar() -> some View {
+        HStack {
+            self.loginButton()
+            
+            self.picker()
+            
+            self.reloadButton()
         }
     }
     
@@ -50,6 +60,29 @@ struct LDRFeedView: View {
                 ))
             }
         )
+    }
+    
+    func picker() -> some View {
+        Picker(
+            selection: $feedViewModel.segment,
+            label: EmptyView()
+        ) {
+            Image(uiImage: IonIcons.image(
+                withIcon: ion_ios_star,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ))
+            .tag(LDRFeedSubsUnread.Segment.rate)
+            Image(uiImage: IonIcons.image(
+                withIcon: ion_ios_folder,
+                iconColor: UIColor.systemGray,
+                iconSize: 32,
+                imageSize: CGSize(width: 32, height: 32)
+            ))
+            .tag(LDRFeedSubsUnread.Segment.folder)
+        }
+        .pickerStyle(SegmentedPickerStyle())
     }
 }
 

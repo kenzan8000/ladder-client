@@ -227,3 +227,6 @@ class LDRFeedSubsUnread: NSManagedObject {
     }
 
 }
+
+extension LDRFeedSubsUnread: Identifiable {
+}
