@@ -3,7 +3,14 @@ import SwiftyJSON
 
 // MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {
-
+    
+    // MARK: - enum
+    
+    enum Segment {
+        static let rate = 0
+        static let folder = 1
+    }
+    
     // MARK: - property
 
     @NSManaged var subscribeId: String
@@ -124,9 +131,9 @@ class LDRFeedSubsUnread: NSManagedObject {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
         var sortDescriptor: NSSortDescriptor?
-        if segment == LDRFeedViewControllerOld.Segment.rate {
+        if segment == Segment.rate {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false)
-        } else if segment == LDRFeedViewControllerOld.Segment.folder {
+        } else if segment == Segment.folder {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true)
         }
         if let descriptor = sortDescriptor {

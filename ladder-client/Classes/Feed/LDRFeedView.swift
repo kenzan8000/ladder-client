@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - LDRFeedView
 struct LDRFeedView: View {
-    // @ObservedObject var feedViewModel: LDRFeedViewModel
+    @ObservedObject var feedViewModel: LDRFeedViewModel
     @State var isPresentingLoginView = false
     
     var body: some View {
@@ -39,7 +39,7 @@ struct LDRFeedView: View {
     func reloadButton() -> some View {
         Button(
             action: {
-                // self.feedViewModel.loadPinsFromAPI()
+                self.feedViewModel.loadFeedFromAPI()
             },
             label: {
                 Image(uiImage: IonIcons.image(
@@ -56,7 +56,7 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRFeedView()
+        LDRFeedView(feedViewModel: LDRFeedViewModel())
     }
 }
 
@@ -68,7 +68,7 @@ class LDRFeedViewController: UIHostingController<LDRFeedView> {
     required init?(coder aDecoder: NSCoder) {
         super.init(
             coder: aDecoder,
-            rootView: LDRFeedView()
+            rootView: LDRFeedView(feedViewModel: LDRFeedViewModel())
         )
     }
 }

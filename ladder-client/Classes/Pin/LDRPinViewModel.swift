@@ -84,10 +84,12 @@ final class LDRPinViewModel: ObservableObject {
     
     // MARK: - public api
     
+    /// Load Pins from local DB
     func loadPinsFromLocalDB() {
         pins = LDRPin.fetch()
     }
     
+    /// Load Pins from API
     func loadPinsFromAPI() {
         if isLoading {
             return
@@ -108,6 +110,8 @@ final class LDRPinViewModel: ObservableObject {
         }
     }
     
+    /// Delete Pin from local db and call delete API
+    /// - Parameter pin: LDRPin model
     func delete(pin: LDRPin) {
         if let url = pin.linkUrl {
             self.safariUrl = url
