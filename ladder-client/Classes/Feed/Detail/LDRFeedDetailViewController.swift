@@ -279,7 +279,7 @@ class LDRFeedDetailViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRFeedViewControllerOld.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
@@ -290,7 +290,7 @@ class LDRFeedDetailViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRFeedViewControllerOld.barButtonItemTouchedUpInside)
         )
         self.initTitleLabel()
     }

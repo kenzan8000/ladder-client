@@ -248,13 +248,13 @@ class LDRPinViewControllerOld: UIViewController {
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.willResignActive),
+            selector: #selector(LDRFeedViewControllerOld.willResignActive),
             name: LDRNotificationCenter.willResignActive,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.didBecomeActive),
+            selector: #selector(LDRFeedViewControllerOld.didBecomeActive),
             name: LDRNotificationCenter.didBecomeActive,
             object: nil
         )

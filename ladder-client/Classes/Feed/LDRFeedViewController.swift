@@ -2,8 +2,8 @@ import LGRefreshView
 import SwiftyJSON
 import UIKit
 
-// MARK: - LDRFeedViewController
-class LDRFeedViewController: UIViewController {
+// MARK: - LDRFeedViewControllerOld
+class LDRFeedViewControllerOld: UIViewController {
 
     // MARK: - properties
 
@@ -323,7 +323,7 @@ class LDRFeedViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRFeedViewControllerOld.barButtonItemTouchedUpInside)
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
@@ -334,7 +334,7 @@ class LDRFeedViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(LDRFeedViewController.barButtonItemTouchedUpInside)
+            action: #selector(LDRFeedViewControllerOld.barButtonItemTouchedUpInside)
         )
     }
     
@@ -343,31 +343,31 @@ class LDRFeedViewController: UIViewController {
         // notification
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.didLogin),
+            selector: #selector(LDRFeedViewControllerOld.didLogin),
             name: LDRNotificationCenter.didLogin,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.didGetUnread),
+            selector: #selector(LDRFeedViewControllerOld.didGetUnread),
             name: LDRNotificationCenter.didGetUnread,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.didGetInvalidUrlOrUsernameOrPasswordError),
+            selector: #selector(LDRFeedViewControllerOld.didGetInvalidUrlOrUsernameOrPasswordError),
             name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.willResignActive),
+            selector: #selector(LDRFeedViewControllerOld.willResignActive),
             name: LDRNotificationCenter.willResignActive,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(LDRFeedViewController.didBecomeActive),
+            selector: #selector(LDRFeedViewControllerOld.didBecomeActive),
             name: LDRNotificationCenter.didBecomeActive,
             object: nil
         )
@@ -375,7 +375,7 @@ class LDRFeedViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension LDRFeedViewController: UITableViewDelegate, UITableViewDataSource {
+extension LDRFeedViewControllerOld: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {

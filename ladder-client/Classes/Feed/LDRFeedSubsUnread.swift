@@ -124,9 +124,9 @@ class LDRFeedSubsUnread: NSManagedObject {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
         var sortDescriptor: NSSortDescriptor?
-        if segment == LDRFeedViewController.Segment.rate {
+        if segment == LDRFeedViewControllerOld.Segment.rate {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false)
-        } else if segment == LDRFeedViewController.Segment.folder {
+        } else if segment == LDRFeedViewControllerOld.Segment.folder {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true)
         }
         if let descriptor = sortDescriptor {

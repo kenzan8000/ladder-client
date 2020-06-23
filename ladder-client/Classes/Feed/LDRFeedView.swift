@@ -1,18 +1,15 @@
 import SwiftUI
 
-// MARK: - LDRPinView
-struct LDRPinView: View {
-    @ObservedObject var pinViewModel: LDRPinViewModel
+// MARK: - LDRFeedView
+struct LDRFeedView: View {
+    // @ObservedObject var feedViewModel: LDRFeedViewModel
     @State var isPresentingLoginView = false
     
     var body: some View {
         NavigationView {
-            List(pinViewModel.pins) { pin in
-                LDRPinRow(title: pin.title) {
-                    self.pinViewModel.delete(pin: pin)
-                }
+            List {
+                Text("Test")
             }
-            .navigationBarTitle("\(pinViewModel.pins.count) pins", displayMode: .large)
             .navigationBarItems(
                 leading: loginButton(),
                 trailing: reloadButton()
@@ -20,19 +17,6 @@ struct LDRPinView: View {
             .sheet(isPresented: $isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
-        }
-        .onAppear {
-            self.pinViewModel.loadPinsFromLocalDB()
-        }
-        .sheet(isPresented: pinViewModel.isPresentingSafariView) {
-            SafariView(url: self.pinViewModel.safariUrl!)
-        }
-        .alert(isPresented: pinViewModel.isPresentingAlert) {
-            var title = ""
-            if let error = self.pinViewModel.error {
-                title = error.localizedDescription
-            }
-            return Alert(title: Text(title))
         }
     }
     
@@ -55,7 +39,7 @@ struct LDRPinView: View {
     func reloadButton() -> some View {
         Button(
             action: {
-                self.pinViewModel.loadPinsFromAPI()
+                // self.feedViewModel.loadPinsFromAPI()
             },
             label: {
                 Image(uiImage: IonIcons.image(
@@ -69,22 +53,22 @@ struct LDRPinView: View {
     }
 }
 
-// MARK: - LDRPinView_Previews
-struct LDRPinView_Previews: PreviewProvider {
+// MARK: - LDRFeedView_Previews
+struct LDRFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRPinView(pinViewModel: LDRPinViewModel())
+        LDRFeedView()
     }
 }
 
 // MARK: - LDRPinViewController
-class LDRPinViewController: UIHostingController<LDRPinView> {
+class LDRFeedViewController: UIHostingController<LDRFeedView> {
 
     // MARK: - initialization
 
     required init?(coder aDecoder: NSCoder) {
         super.init(
             coder: aDecoder,
-            rootView: LDRPinView(pinViewModel: LDRPinViewModel())
+            rootView: LDRFeedView()
         )
     }
 }
