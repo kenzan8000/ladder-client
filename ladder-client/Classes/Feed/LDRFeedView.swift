@@ -7,26 +7,21 @@ struct LDRFeedView: View {
     
     var body: some View {
         NavigationView {
-            List(feedViewModel.subsunreads) { subsunread in
-                Text("\(subsunread.title)")
+            VStack {
+                picker()
+                list()
             }
-            .navigationBarItems(leading: navigationBar())
+            .navigationBarTitle("RSS Feeds")
+            .navigationBarItems(
+                leading: loginButton(),
+                trailing: reloadButton()
+            )
             .sheet(isPresented: $isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
         }
         .onAppear {
             self.feedViewModel.loadFeedFromLocalDB()
-        }
-    }
-    
-    func navigationBar() -> some View {
-        HStack {
-            self.loginButton()
-            
-            self.picker()
-            
-            self.reloadButton()
         }
     }
     
@@ -82,7 +77,20 @@ struct LDRFeedView: View {
             ))
             .tag(LDRFeedSubsUnread.Segment.folder)
         }
+        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         .pickerStyle(SegmentedPickerStyle())
+    }
+    
+    func list() -> some View {
+        List(feedViewModel.subsunreads) { subsunread in
+            LDRFeedRow(
+                title: subsunread.title,
+                unreadCount: subsunread.unreadCountString,
+                color: Color.gray
+            ) {
+                LDRLOG("\(subsunread)")
+            }
+        }
     }
 }
 

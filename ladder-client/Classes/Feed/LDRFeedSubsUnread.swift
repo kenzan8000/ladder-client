@@ -27,6 +27,7 @@ class LDRFeedSubsUnread: NSManagedObject {
 
     var rateValue: Int { self.rate.intValue }
     var unreadCountValue: Int { self.unreadCount.intValue }
+    var unreadCountString: String { self.unreadCount.stringValue }
 
     // MARK: - class method
 

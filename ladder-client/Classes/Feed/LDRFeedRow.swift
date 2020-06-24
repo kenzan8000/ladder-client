@@ -20,10 +20,12 @@ struct LDRFeedRow: View {
                     .lineLimit(1)
                     .truncationMode(.tail)
                     .foregroundColor(color)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
                     Text(unreadCount)
                     .lineLimit(1)
                     .foregroundColor(color)
+                    .frame(alignment: .trailing)
                     
                     Image(uiImage: IonIcons.image(
                             withIcon: ion_chevron_right,
@@ -32,6 +34,7 @@ struct LDRFeedRow: View {
                             imageSize: CGSize(width: 24, height: 24)
                         )
                     )
+                    .frame(alignment: .trailing)
                 }
                 .frame(height: 48)
                 .padding(12)
