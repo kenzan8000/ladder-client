@@ -7,19 +7,7 @@ struct LDRPinView: View {
     
     var body: some View {
         NavigationView {
-            List(pinViewModel.pins) { pin in
-                LDRPinRow(title: pin.title) {
-                    self.pinViewModel.delete(pin: pin)
-                }
-            }
-            .navigationBarTitle("\(pinViewModel.pins.count) pins", displayMode: .large)
-            .navigationBarItems(
-                leading: loginButton(),
-                trailing: reloadButton()
-            )
-            .sheet(isPresented: $isPresentingLoginView) {
-                LDRLoginView(loginViewModel: LDRLoginViewModel())
-            }
+            self.list()
         }
         .onAppear {
             self.pinViewModel.loadPinsFromLocalDB()
@@ -66,6 +54,22 @@ struct LDRPinView: View {
                 ))
             }
         )
+    }
+    
+    func list() -> some View {
+        List(pinViewModel.pins) { pin in
+            LDRPinRow(title: pin.title) {
+                self.pinViewModel.delete(pin: pin)
+            }
+        }
+        .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
+        .navigationBarItems(
+            leading: loginButton(),
+            trailing: reloadButton()
+        )
+        .sheet(isPresented: $isPresentingLoginView) {
+            LDRLoginView(loginViewModel: LDRLoginViewModel())
+        }
     }
 }
 

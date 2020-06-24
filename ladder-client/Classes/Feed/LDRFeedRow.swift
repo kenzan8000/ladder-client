@@ -36,8 +36,8 @@ struct LDRFeedRow: View {
                     )
                     .frame(alignment: .trailing)
                 }
-                .frame(height: 48)
-                .padding(12)
+                .frame(height: 64)
+                .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
             }
         )
     }

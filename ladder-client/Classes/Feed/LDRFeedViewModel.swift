@@ -7,6 +7,7 @@ final class LDRFeedViewModel: ObservableObject {
     // MARK: - model
     @Published var segment: Int
     @Published var subsunreads: [LDRFeedSubsUnread]
+    @Published var unreads: [LDRFeedUnread] = []
     @Published var isLoading = false
     @Published var error: Error?
     var isPresentingAlert: Binding<Bool> {
@@ -86,5 +87,29 @@ final class LDRFeedViewModel: ObservableObject {
             return
         }
         isLoading = true
+        LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
+            if let error = error {
+                self.error = error
+            } else if let error = LDRFeedSubsUnread.delete() {
+                self.error = error
+            } else if let json = json, let error = LDRFeedSubsUnread.save(json: json) {
+                self.error = error
+            } else {
+                self.loadFeedFromLocalDB()
+                self.loadUnreadsFromAPI()
+            }
+        }
     }
+    
+    // MARK: - private api
+    
+    /// Load Unreads from API
+    func loadUnreadsFromAPI() {
+        for subsunread in self.subsunreads {
+            let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)
+            unreads.append(unread)
+            unread.request()
+        }
+    }
+
 }
