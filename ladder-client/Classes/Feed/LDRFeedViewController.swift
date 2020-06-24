@@ -200,7 +200,7 @@ class LDRFeedViewControllerOld: UIViewController {
         var index = 0
         for section in 0 ..< indexPath.section {
             if self.segmentedControl.selectedSegmentIndex == Segment.rate {
-                let offset = LDRFeedSubsUnread.countOfTheRate(
+                let offset = LDRFeedSubsUnread.countOfTheRateInt(
                     subsunreads: self.subsunreads,
                     rate: self.rates[section]
                 )
@@ -269,7 +269,7 @@ class LDRFeedViewControllerOld: UIViewController {
             self.unreads = newUnreads
         }
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
-            self.rates = LDRFeedSubsUnread.getRates(subsunreads: self.subsunreads)
+            self.rates = LDRFeedSubsUnread.getRateInts(subsunreads: self.subsunreads)
         } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             self.folders = LDRFeedSubsUnread.getFolders(subsunreads: self.subsunreads)
         }
@@ -388,7 +388,7 @@ extension LDRFeedViewControllerOld: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.segmentedControl.selectedSegmentIndex == Segment.rate {
-            return LDRFeedSubsUnread.countOfTheRate(subsunreads: self.subsunreads, rate: self.rates[section])
+            return LDRFeedSubsUnread.countOfTheRateInt(subsunreads: self.subsunreads, rate: self.rates[section])
         } else if self.segmentedControl.selectedSegmentIndex == Segment.folder {
             return LDRFeedSubsUnread.countOfTheFloder(subsunreads: self.subsunreads, folder: self.folders[section])
         }

@@ -26,6 +26,13 @@ class LDRFeedSubsUnread: NSManagedObject {
     @NSManaged var unreadCount: NSNumber
 
     var rateValue: Int { self.rate.intValue }
+    var rateString: String {
+        var rateName = ""
+        for i in 0 ..< 5 {
+            rateName = ((rate.intValue >= 5 - i) ? "★" : "☆") + rateName
+        }
+        return rateName
+    }
     var unreadCountValue: Int { self.unreadCount.intValue }
     var unreadCountString: String { self.unreadCount.stringValue }
 
@@ -61,9 +68,13 @@ class LDRFeedSubsUnread: NSManagedObject {
     ///   - subsunreads: subsunread models
     ///   - rate: rate star
     /// - Returns: count of model by the rate
-    class func countOfTheRate(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
+    class func countOfTheRateInt(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
         let filtered = subsunreads.filter { $0.rateValue == rate }
         return filtered.count
+    }
+    class func filter(subsunreads: [LDRFeedSubsUnread], rate: String) -> [LDRFeedSubsUnread] {
+        let filtered = subsunreads.filter { $0.rateString == rate }
+        return filtered
     }
 
     /// returns count of model by the folder
@@ -76,15 +87,28 @@ class LDRFeedSubsUnread: NSManagedObject {
         let filtered = subsunreads.filter { $0.folder == folder }
         return filtered.count
     }
+    class func filter(subsunreads: [LDRFeedSubsUnread], folder: String) -> [LDRFeedSubsUnread] {
+        let filtered = subsunreads.filter { $0.folder == folder }
+        return filtered
+    }
 
     /// returns rates of subsunread models
     ///
     /// - Parameter subsunreads: subsunread models
     /// - Returns: rates of subsunread models
-    class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [Int] {
+    class func getRateInts(subsunreads: [LDRFeedSubsUnread]) -> [Int] {
         var rates: [Int] = []
         for subsunread in subsunreads {
             let rateValue = subsunread.rateValue
+            if rates.contains(rateValue) { continue }
+            rates.append(rateValue)
+        }
+        return rates
+    }
+    class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [String] {
+        var rates: [String] = []
+        for subsunread in subsunreads {
+            let rateValue = subsunread.rateString
             if rates.contains(rateValue) { continue }
             rates.append(rateValue)
         }

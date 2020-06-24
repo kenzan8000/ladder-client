@@ -2,7 +2,16 @@ import SwiftyJSON
 
 // MARK: - LDRFeedUnread
 class LDRFeedUnread {
-
+    
+    // MARK: - enum
+    
+    enum State {
+        static let unloaded = 0
+        static let unread = 1
+        static let read = 2
+        static let noUnread = 3
+    }
+    
     // MARK: - property
 
     var subscribeId: String
@@ -17,7 +26,7 @@ class LDRFeedUnread {
     init(subscribeId: String) {
         self.subscribeId = subscribeId
         self.items = []
-        self.state = LDRFeedTableViewCell.State.unloaded
+        self.state = State.unloaded
     }
 
     // MARK: - public api
@@ -32,9 +41,9 @@ class LDRFeedUnread {
                 self.items = items.arrayValue
             }
             if self.items.isEmpty {
-                self.state = LDRFeedTableViewCell.State.noUnread
+                self.state = State.noUnread
             } else {
-                self.state = LDRFeedTableViewCell.State.unread
+                self.state = State.unread
             }
             NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
         }

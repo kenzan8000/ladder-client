@@ -7,7 +7,12 @@ final class LDRFeedViewModel: ObservableObject {
     // MARK: - model
     @Published var segment: Int
     @Published var subsunreads: [LDRFeedSubsUnread]
-    @Published var unreads: [LDRFeedUnread] = []
+    @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
+    @Published var rates: [String] = []
+    @Published var folders: [String] = []
+    var sections: [String] {
+        segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
+    }
     @Published var isLoading = false
     @Published var error: Error?
     var isPresentingAlert: Binding<Bool> {
@@ -27,6 +32,8 @@ final class LDRFeedViewModel: ObservableObject {
     init() {
         segment = LDRFeedSubsUnread.Segment.rate
         subsunreads = LDRFeedSubsUnread.fetch(segment: LDRFeedSubsUnread.Segment.rate)
+        rates = LDRFeedSubsUnread.getRates(subsunreads: subsunreads)
+        folders = LDRFeedSubsUnread.getFolders(subsunreads: subsunreads)
         
         NotificationCenter.default.addObserver(
             self,
@@ -79,6 +86,8 @@ final class LDRFeedViewModel: ObservableObject {
     /// Load Feed from local DB
     func loadFeedFromLocalDB() {
         subsunreads = LDRFeedSubsUnread.fetch(segment: segment)
+        rates = LDRFeedSubsUnread.getRates(subsunreads: subsunreads)
+        folders = LDRFeedSubsUnread.getFolders(subsunreads: subsunreads)
     }
     
     /// Load Feed from API
@@ -101,13 +110,24 @@ final class LDRFeedViewModel: ObservableObject {
         }
     }
     
+    /// Get subsuread models at section
+    /// - Parameter section: one of rates or folders
+    /// - Returns:subsuread models belonging to the section
+    func getSubsUnreads(at section: String) -> [LDRFeedSubsUnread] {
+        if segment == LDRFeedSubsUnread.Segment.rate {
+            return LDRFeedSubsUnread.filter(subsunreads: subsunreads, rate: section)
+        }
+        return LDRFeedSubsUnread.filter(subsunreads: subsunreads, folder: section)
+    }
+    
     // MARK: - private api
     
     /// Load Unreads from API
     func loadUnreadsFromAPI() {
+        unreads = [:]
         for subsunread in self.subsunreads {
             let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)
-            unreads.append(unread)
+            unreads[subsunread] = unread
             unread.request()
         }
     }

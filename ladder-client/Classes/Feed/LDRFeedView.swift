@@ -82,13 +82,18 @@ struct LDRFeedView: View {
     }
     
     func list() -> some View {
-        List(feedViewModel.subsunreads) { subsunread in
-            LDRFeedRow(
-                title: subsunread.title,
-                unreadCount: subsunread.unreadCountString,
-                color: Color.gray
-            ) {
-                LDRLOG("\(subsunread)")
+        List {
+            ForEach(feedViewModel.sections, id: \.self) { section in
+                Section(header: Text(section)) {
+                    ForEach(self.feedViewModel.getSubsUnreads(at: section)) { subsunread in
+                        LDRFeedRow(
+                            title: subsunread.title,
+                            unreadCount: subsunread.unreadCountString,
+                            color: self.feedViewModel.unreads[subsunread]?.state == LDRFeedUnread.State.unread ? Color.blue : Color.gray
+                        ) {
+                        }
+                    }
+                }
             }
         }
     }
