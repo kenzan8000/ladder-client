@@ -4,12 +4,18 @@ import SwiftUI
 struct LDRFeedView: View {
     @ObservedObject var feedViewModel: LDRFeedViewModel
     @State var isPresentingLoginView = false
+    @State var isPresentingDetailView = false
     
     var body: some View {
         NavigationView {
             VStack {
                 picker()
                 list()
+                NavigationLink(
+                    "LDRFeedDetailView",
+                    destination: LDRFeedDetailView(),
+                    isActive: $isPresentingDetailView
+                )
             }
             .navigationBarTitle("RSS Feeds")
             .navigationBarItems(
@@ -21,7 +27,7 @@ struct LDRFeedView: View {
             }
         }
         .onAppear {
-            self.feedViewModel.loadFeedFromLocalDB()
+            // self.feedViewModel.loadFeedFromLocalDB()
         }
     }
     
@@ -91,6 +97,7 @@ struct LDRFeedView: View {
                             unreadCount: subsunread.unreadCountString,
                             color: self.feedViewModel.unreads[subsunread]?.state == LDRFeedUnread.State.unread ? Color.blue : Color.gray
                         ) {
+                            self.isPresentingDetailView.toggle()
                         }
                     }
                 }
@@ -106,7 +113,7 @@ struct LDRFeedView_Previews: PreviewProvider {
     }
 }
 
-// MARK: - LDRPinViewController
+// MARK: - LDRFeedViewController
 class LDRFeedViewController: UIHostingController<LDRFeedView> {
 
     // MARK: - initialization

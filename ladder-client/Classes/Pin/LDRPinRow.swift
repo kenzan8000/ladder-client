@@ -16,7 +16,7 @@ struct LDRPinRow: View {
                 Text(title)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(height: 64)
-                .lineLimit(3)
+                .lineLimit(2)
                 .truncationMode(.tail)
             }
         )

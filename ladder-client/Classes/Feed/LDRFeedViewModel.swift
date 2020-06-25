@@ -123,7 +123,7 @@ final class LDRFeedViewModel: ObservableObject {
     // MARK: - private api
     
     /// Load Unreads from API
-    func loadUnreadsFromAPI() {
+    private func loadUnreadsFromAPI() {
         unreads = [:]
         for subsunread in self.subsunreads {
             let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)

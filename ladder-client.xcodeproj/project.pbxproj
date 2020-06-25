@@ -58,6 +58,8 @@
 		E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5903824A0DE0E003CCCBF /* SafariView.swift */; };
 		E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8DA511F92CE17002CAD69 /* CoreData.framework */; };
 		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
+		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
+		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6EC083823E7800800929110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EC083723E7800800929110 /* Assets.xcassets */; };
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
 		E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */; };
@@ -165,6 +167,8 @@
 		E6D5903824A0DE0E003CCCBF /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		E6D8DA511F92CE17002CAD69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
+		E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailView.swift; sourceTree = "<group>"; };
+		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E6E467EF1FA6EF5B00AD1B71 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			children = (
 				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
 				E6D5903824A0DE0E003CCCBF /* SafariView.swift */,
+				E6E127AE24A4BA22008627D5 /* WebView.swift */,
 			);
 			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewController.swift */,
+				E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -392,12 +398,12 @@
 				E60D63CF1F73ABB400D4C01F /* LDRFeedTableViewCell.xib */,
 				E6A4F78F1F74E524001BE38F /* LDRFeedViewForHeader.swift */,
 				E6A4F78E1F74E523001BE38F /* LDRFeedViewForHeader.xib */,
-				E69C865A1F98670E00EF525B /* LDRFeedOperationQueue.swift */,
-				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
-				E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */,
 				E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */,
 				E652C02A24A3676400C744DE /* LDRFeedRow.swift */,
 				E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */,
+				E69C865A1F98670E00EF525B /* LDRFeedOperationQueue.swift */,
+				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
+				E6C7C3C31FAAEE0600167632 /* LDRFeedUnread.swift */,
 				E6F25DD924A24D5A008C5E58 /* Detail */,
 			);
 			path = Feed;
@@ -409,10 +415,10 @@
 				E6FFD6691F6DEB7900AD947E /* LDRPinViewController.swift */,
 				E67EB2FA1F78C8CF00C7940B /* LDRPinTableViewCell.swift */,
 				E67EB2F91F78C8CF00C7940B /* LDRPinTableViewCell.xib */,
-				E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */,
 				E63CAF9A249F7A950051C402 /* LDRPinView.swift */,
 				E63CAFA0249F8E240051C402 /* LDRPinRow.swift */,
 				E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */,
+				E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */,
 				E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */,
 			);
 			path = Pin;
@@ -788,8 +794,10 @@
 				E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */,
 				E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
+				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
 				E60763991F9452D70012A910 /* LDRLoginOperationQueue.swift in Sources */,
 				E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */,
+				E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */,
 				E6C1CA3D246562FA00839380 /* UIColor+Hex.swift in Sources */,
 				E6FFD66A1F6DEB7900AD947E /* LDRFeedViewController.swift in Sources */,
 				E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */,

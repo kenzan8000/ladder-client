@@ -440,7 +440,7 @@ extension LDRFeedViewControllerOld: UITableViewDelegate, UITableViewDataSource {
             cell.setUIState(self.unreads[index].state)
         }
 
-        guard let viewController = LDRFeedDetailViewController.ldr_viewController() else {
+        guard let viewController = LDRFeedDetailViewControllerOld.ldr_viewController() else {
             return
         }
         viewController.hidesBottomBarWhenPushed = true

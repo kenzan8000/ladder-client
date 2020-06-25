@@ -10,7 +10,7 @@ struct LDRPinView: View {
             self.list()
         }
         .onAppear {
-            self.pinViewModel.loadPinsFromLocalDB()
+            // self.pinViewModel.loadPinsFromLocalDB()
         }
         .sheet(isPresented: pinViewModel.isPresentingSafariView) {
             SafariView(url: self.pinViewModel.safariUrl!)

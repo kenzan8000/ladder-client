@@ -4,8 +4,8 @@ import SwiftyJSON
 import UIKit
 import WebKit
 
-// MARK: - LDRFeedDetailViewController
-class LDRFeedDetailViewController: UIViewController {
+// MARK: - LDRFeedDetailViewControllerOld
+class LDRFeedDetailViewControllerOld: UIViewController {
 
     // MARK: - properties
 
@@ -33,13 +33,13 @@ class LDRFeedDetailViewController: UIViewController {
     /// returns view controller object
     ///
     /// - Returns: view controller object
-    class func ldr_viewController() -> LDRFeedDetailViewController? {
+    class func ldr_viewController() -> LDRFeedDetailViewControllerOld? {
         let vc = UIStoryboard(
             name: "Main",
             bundle: nil
         ).instantiateViewController(
-            withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewController.self)
-        ) as? LDRFeedDetailViewController
+            withIdentifier: LDRNSStringFromClass(LDRFeedDetailViewControllerOld.self)
+        ) as? LDRFeedDetailViewControllerOld
         return vc
     }
     
@@ -315,7 +315,7 @@ class LDRFeedDetailViewController: UIViewController {
 }
 
 // MARK: - UIGestureRecognizerDelegate
-extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
+extension LDRFeedDetailViewControllerOld: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(
         _ gestureRecognizer: UIGestureRecognizer,
@@ -327,7 +327,7 @@ extension LDRFeedDetailViewController: UIGestureRecognizerDelegate {
 }
 
 // MARK: - WKNavigationDelegate
-extension LDRFeedDetailViewController: WKNavigationDelegate {
+extension LDRFeedDetailViewControllerOld: WKNavigationDelegate {
     
     func webView(
         _ webView: WKWebView,
