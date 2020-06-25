@@ -4,18 +4,13 @@ import SwiftUI
 struct LDRFeedView: View {
     @ObservedObject var feedViewModel: LDRFeedViewModel
     @State var isPresentingLoginView = false
-    @State var isPresentingDetailView = false
     
     var body: some View {
         NavigationView {
             VStack {
                 picker()
                 list()
-                NavigationLink(
-                    "LDRFeedDetailView",
-                    destination: LDRFeedDetailView(),
-                    isActive: $isPresentingDetailView
-                )
+                navigationLink()
             }
             .navigationBarTitle("RSS Feeds")
             .navigationBarItems(
@@ -97,12 +92,28 @@ struct LDRFeedView: View {
                             unreadCount: subsunread.unreadCountString,
                             color: self.feedViewModel.unreads[subsunread]?.state == LDRFeedUnread.State.unread ? Color.blue : Color.gray
                         ) {
-                            self.isPresentingDetailView.toggle()
+                            guard let unread = self.feedViewModel.unreads[subsunread] else {
+                                return
+                            }
+                            self.feedViewModel.selectUnread(unread: unread)
                         }
                     }
                 }
             }
         }
+    }
+    
+    func navigationLink() -> AnyView {
+        guard let unread = feedViewModel.unread else {
+            return AnyView(EmptyView())
+        }
+        return AnyView(
+            NavigationLink(
+                "LDRFeedDetailView",
+                destination: LDRFeedDetailView(feedDetailViewModel: LDRFeedDetailViewModel(unread: unread)),
+                isActive: feedViewModel.isPresentingDetailView
+            )
+        )
     }
 }
 

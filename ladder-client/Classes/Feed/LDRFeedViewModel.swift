@@ -7,11 +7,23 @@ final class LDRFeedViewModel: ObservableObject {
     // MARK: - model
     @Published var segment: Int
     @Published var subsunreads: [LDRFeedSubsUnread]
-    @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
     @Published var rates: [String] = []
     @Published var folders: [String] = []
     var sections: [String] {
         segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
+    }
+    @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
+    @Published var unread: LDRFeedUnread?
+    var isPresentingDetailView: Binding<Bool> {
+        Binding<Bool>(
+            get: { self.unread != nil },
+            set: { newValue in
+                guard !newValue else {
+                    return
+                }
+                self.unread = nil
+            }
+        )
     }
     @Published var isLoading = false
     @Published var error: Error?
@@ -110,6 +122,12 @@ final class LDRFeedViewModel: ObservableObject {
         }
     }
     
+    /// Select LDRFeedUnread to focus
+    /// - Parameter unread: LDRFeedUnread
+    func selectUnread(unread: LDRFeedUnread) {
+        self.unread = unread
+    }
+    
     /// Get subsuread models at section
     /// - Parameter section: one of rates or folders
     /// - Returns:subsuread models belonging to the section
@@ -126,7 +144,7 @@ final class LDRFeedViewModel: ObservableObject {
     private func loadUnreadsFromAPI() {
         unreads = [:]
         for subsunread in self.subsunreads {
-            let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)
+            let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
             unreads[subsunread] = unread
             unread.request()
         }

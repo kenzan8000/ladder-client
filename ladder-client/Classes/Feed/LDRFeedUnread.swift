@@ -15,6 +15,7 @@ class LDRFeedUnread {
     // MARK: - property
 
     var subscribeId: String
+    var title: String
     var items: [JSON]
     var state: Int
 
@@ -23,8 +24,10 @@ class LDRFeedUnread {
     /// initializer
     ///
     /// - Parameter subscribeId: subscribe id
-    init(subscribeId: String) {
+    ///   - title: title of feed
+    init(subscribeId: String, title: String) {
         self.subscribeId = subscribeId
+        self.title = title
         self.items = []
         self.state = State.unloaded
     }

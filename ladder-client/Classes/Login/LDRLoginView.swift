@@ -17,7 +17,7 @@ struct LDRLoginView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(height: 0, alignment: .bottom)
             .navigationBarTitle("Login", displayMode: .large)
-            .navigationBarItems(trailing: dismissButton())
+            .navigationBarItems(leading: dismissButton())
             .padding(16)
         }
         .alert(isPresented: loginViewModel.isPresentingAlert) {

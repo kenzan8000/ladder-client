@@ -13,7 +13,9 @@ class LDRFeedDetailViewControllerOld: UIViewController {
 
     @IBOutlet private weak var headerButton: UIButton!
     @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var backLabel: UILabel!
     @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var nextLabel: UILabel!
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var webViewActivityIndicatorView: UIActivityIndicatorView!
@@ -221,6 +223,15 @@ class LDRFeedDetailViewControllerOld: UIViewController {
 
         self.backButton.alpha = (self.index != 0) ? 1.0 : 0.5
         self.nextButton.alpha = (self.index < unreadItem.items.count - 1) ? 1.0 : 0.5
+        
+        self.backLabel.text = ""
+        if let title = unreadItem.getTitle(at: self.index - 1) {
+            self.backLabel.text = "\(self.index) - \(title)"
+        }
+        self.nextLabel.text = ""
+        if let title = unreadItem.getTitle(at: self.index + 1) {
+            self.nextLabel.text = "\(self.index + 2) - \(title)"
+        }
 
         self.titleLabel.text = unreadItem.getTitle(at: self.index)
 

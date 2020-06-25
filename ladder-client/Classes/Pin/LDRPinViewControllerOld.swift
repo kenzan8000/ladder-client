@@ -35,7 +35,7 @@ class LDRPinViewControllerOld: UIViewController {
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_android_refresh,
+                withIcon: ion_log_in,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -46,7 +46,7 @@ class LDRPinViewControllerOld: UIViewController {
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_person,
+                withIcon: ion_android_refresh,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -104,9 +104,9 @@ class LDRPinViewControllerOld: UIViewController {
     /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc
     func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
-        if barButtonItem == self.navigationItem.leftBarButtonItem {
+        if barButtonItem == self.navigationItem.rightBarButtonItem {
             self.requestPinAll()
-        } else if barButtonItem == self.navigationItem.rightBarButtonItem {
+        } else if barButtonItem == self.navigationItem.leftBarButtonItem {
             guard let vc = UIStoryboard(
                 name: "Main",
                 bundle: nil

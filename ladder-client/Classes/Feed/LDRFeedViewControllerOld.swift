@@ -85,9 +85,9 @@ class LDRFeedViewControllerOld: UIViewController {
     /// - Parameter barButtonItem: UIBarButtonItem for the event
     @objc
     func barButtonItemTouchedUpInside(barButtonItem: UIBarButtonItem) {
-        if barButtonItem == self.navigationItem.leftBarButtonItem {
+        if barButtonItem == self.navigationItem.rightBarButtonItem {
             self.requestSubs()
-        } else if barButtonItem == self.navigationItem.rightBarButtonItem {
+        } else if barButtonItem == self.navigationItem.leftBarButtonItem {
             guard let vc = UIStoryboard(
                 name: "Main",
                 bundle: nil
@@ -253,7 +253,7 @@ class LDRFeedViewControllerOld: UIViewController {
         if isNew {
             self.unreads = []
             for subsunread in self.subsunreads {
-                let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId)
+                let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
                 self.unreads.append(unread)
                 unread.request()
             }
@@ -316,7 +316,7 @@ class LDRFeedViewControllerOld: UIViewController {
         // bar button items
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_android_refresh,
+                withIcon: ion_log_in,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
@@ -327,7 +327,7 @@ class LDRFeedViewControllerOld: UIViewController {
         )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: IonIcons.image(
-                withIcon: ion_person,
+                withIcon: ion_android_refresh,
                 iconColor: UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)

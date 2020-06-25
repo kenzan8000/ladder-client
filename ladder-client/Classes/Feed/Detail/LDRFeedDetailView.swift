@@ -1,10 +1,19 @@
 import SwiftUI
+import WebKit
 
 // MARK: - LDRFeedDetailView
 struct LDRFeedDetailView: View {
     
+    @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
+    
     var body: some View {
-        Text("Hoge")
+        VStack {
+            WebView(webView: WKWebView())
+        }
+        .navigationBarTitle(feedDetailViewModel.unread.title)
+        .navigationBarItems(
+            trailing: Text("Hoge")
+        )
     }
 
 }
@@ -12,19 +21,8 @@ struct LDRFeedDetailView: View {
 // MARK: - LDRFeedDetailView_Previews
 struct LDRFeedDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRFeedDetailView()
-    }
-}
-
-// MARK: - LDRFeedDetailViewController
-class LDRFeedDetailViewController: UIHostingController<LDRFeedDetailView> {
-
-    // MARK: - initialization
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(
-            coder: aDecoder,
-            rootView: LDRFeedDetailView()
+        LDRFeedDetailView(
+            feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRFeedUnread(subscribeId: "1", title: "Title"))
         )
     }
 }
