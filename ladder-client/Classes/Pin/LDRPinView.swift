@@ -13,7 +13,7 @@ struct LDRPinView: View {
             // self.pinViewModel.loadPinsFromLocalDB()
         }
         .sheet(isPresented: pinViewModel.isPresentingSafariView) {
-            SafariView(url: self.pinViewModel.safariUrl!)
+            self.safariView()
         }
         .alert(isPresented: pinViewModel.isPresentingAlert) {
             var title = ""
@@ -70,6 +70,13 @@ struct LDRPinView: View {
         .sheet(isPresented: $isPresentingLoginView) {
             LDRLoginView(loginViewModel: LDRLoginViewModel())
         }
+    }
+    
+    func safariView() -> some View {
+        guard let url = self.pinViewModel.safariUrl else {
+            return AnyView(EmptyView())
+        }
+        return AnyView(SafariView(url: url))
     }
 }
 

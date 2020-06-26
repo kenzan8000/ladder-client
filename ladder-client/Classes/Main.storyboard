@@ -19,8 +19,8 @@
                         <color key="barTintColor" name="Background2"/>
                     </tabBar>
                     <connections>
-                        <segue destination="fdt-RO-Gol" kind="relationship" relationship="viewControllers" id="Lu8-D7-hcC"/>
-                        <segue destination="Mny-lh-EwW" kind="relationship" relationship="viewControllers" id="PCV-fC-cm2"/>
+                        <segue destination="0Zk-H6-Fw0" kind="relationship" relationship="viewControllers" id="N73-cJ-z6Z"/>
+                        <segue destination="koS-BG-3RM" kind="relationship" relationship="viewControllers" id="KW7-WH-kHV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvq-ZG-z1c" userLabel="First Responder" sceneMemberID="firstResponder"/>

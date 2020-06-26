@@ -103,7 +103,7 @@ struct LDRFeedView: View {
         }
     }
     
-    func navigationLink() -> AnyView {
+    func navigationLink() -> some View {
         guard let unread = feedViewModel.unread else {
             return AnyView(EmptyView())
         }
