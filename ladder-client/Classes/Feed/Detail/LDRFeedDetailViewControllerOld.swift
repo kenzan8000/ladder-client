@@ -148,9 +148,8 @@ class LDRFeedDetailViewControllerOld: UIViewController {
                 if error == nil {
                     LDRPinOperationQueue.shared.requestPinAdd(
                         link: link,
-                        title: title,
-                        completionHandler: { _, _ in }
-                    )
+                        title: title
+                    ) { _, _ in }
                 }
             }
         }

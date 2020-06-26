@@ -6,19 +6,25 @@ import WebKit
 struct LDRFeedDetailView: View {
     
     @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    var webView = WKWebView()
     
     var body: some View {
         VStack {
             header()
-            
-            WebView(webView: WKWebView())
-            
+            WebView(webView: webView)
             footer()
         }
         .navigationBarTitle(feedDetailViewModel.unread.title)
         .navigationBarItems(
             trailing: pinButton()
         )
+        .onAppear {
+            self.webView.loadHTMLString(
+                self.feedDetailViewModel.getHtml(colorScheme: self.colorScheme),
+                baseURL: self.feedDetailViewModel.link
+            )
+        }
     }
 
     func pinButton() -> some View {
@@ -49,7 +55,7 @@ struct LDRFeedDetailView: View {
         .lineLimit(2)
         .truncationMode(.tail)
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-        .padding(EdgeInsets(top: 12, leading: 12, bottom: 24, trailing: 12))
+        .padding(EdgeInsets(top: 12, leading: 12, bottom: 0, trailing: 12))
     }
     
     func footer() -> some View {
@@ -58,7 +64,7 @@ struct LDRFeedDetailView: View {
                 nextText(direction: -1)
                 nextText(direction: 1)
             }
-            .padding(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             HStack {
                 moveButton(direction: -1)
                 moveButton(direction: 1)
@@ -89,6 +95,11 @@ struct LDRFeedDetailView: View {
                         color: UIColor.systemGray6.withAlphaComponent(0.5),
                         count: 1,
                         interval: 0.08
+                    )
+                } else {
+                    self.webView.loadHTMLString(
+                        self.feedDetailViewModel.getHtml(colorScheme: self.colorScheme),
+                        baseURL: self.feedDetailViewModel.link
                     )
                 }
             },
