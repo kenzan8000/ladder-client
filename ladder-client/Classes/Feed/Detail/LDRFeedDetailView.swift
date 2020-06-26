@@ -1,3 +1,4 @@
+import KSToastView
 import SwiftUI
 import WebKit
 
@@ -23,6 +24,12 @@ struct LDRFeedDetailView: View {
     func pinButton() -> some View {
         Button(
             action: {
+                if self.feedDetailViewModel.savePin() {
+                    KSToastView.ks_showToast(
+                        "Added a pin\n\(self.feedDetailViewModel.title)",
+                        duration: 2.0
+                    )
+                }
             },
             label: {
                 Image(uiImage: IonIcons.image(
@@ -37,12 +44,12 @@ struct LDRFeedDetailView: View {
     
     func header() -> some View {
         Text(
-            "\(feedDetailViewModel.index + 1) / \(feedDetailViewModel.count) - \(feedDetailViewModel.title)"
+            "【\(feedDetailViewModel.index + 1) / \(feedDetailViewModel.count)】 \(feedDetailViewModel.title)"
         )
         .lineLimit(2)
         .truncationMode(.tail)
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-        .padding(EdgeInsets(top: 12, leading: 12, bottom: 0, trailing: 12))
+        .padding(EdgeInsets(top: 12, leading: 12, bottom: 24, trailing: 12))
     }
     
     func footer() -> some View {
@@ -51,7 +58,7 @@ struct LDRFeedDetailView: View {
                 nextText(direction: -1)
                 nextText(direction: 1)
             }
-            .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+            .padding(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))
             HStack {
                 moveButton(direction: -1)
                 moveButton(direction: 1)
@@ -61,7 +68,11 @@ struct LDRFeedDetailView: View {
     }
     
     func nextText(direction: Int) -> some View {
-        Text(direction < 0 ? feedDetailViewModel.prevTitle : feedDetailViewModel.nextTitle)
+        var text = direction < 0 ? feedDetailViewModel.prevTitle : feedDetailViewModel.nextTitle
+        if !text.isEmpty {
+            text = "【\(feedDetailViewModel.index + 1 + direction)】 " + text
+        }
+        return Text(text)
         .lineLimit(2)
         .truncationMode(.tail)
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -73,7 +84,12 @@ struct LDRFeedDetailView: View {
         return Button(
             action: {
                 if !self.feedDetailViewModel.move(offset: direction) {
-                    LDRLOG("")
+                    LDRBlinkView.show(
+                        on: UIApplication.shared.windows[0],
+                        color: UIColor.systemGray6.withAlphaComponent(0.5),
+                        count: 1,
+                        interval: 0.08
+                    )
                 }
             },
             label: {
