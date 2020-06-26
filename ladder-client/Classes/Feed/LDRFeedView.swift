@@ -8,7 +8,6 @@ struct LDRFeedView: View {
     var body: some View {
         NavigationView {
             VStack {
-                picker()
                 list()
                 navigationLink()
             }
@@ -84,6 +83,7 @@ struct LDRFeedView: View {
     
     func list() -> some View {
         List {
+            picker()
             ForEach(feedViewModel.sections, id: \.self) { section in
                 Section(header: Text(section)) {
                     ForEach(self.feedViewModel.getSubsUnreads(at: section)) { subsunread in

@@ -17,7 +17,6 @@ struct LDRLoginView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(height: 0, alignment: .bottom)
             .navigationBarTitle("Login", displayMode: .large)
-            .navigationBarItems(leading: dismissButton())
             .padding(16)
         }
         .alert(isPresented: loginViewModel.isPresentingAlert) {
@@ -99,28 +98,6 @@ struct LDRLoginView: View {
             .border(Color.blue)
         }
         .frame(maxWidth: .infinity)
-    }
-    
-    func dismissButton() -> some View {
-        Group {
-            if !loginViewModel.isLogingIn {
-                Button(
-                    action: {
-                        if let dismiss = self.dismiss {
-                            dismiss()
-                        }
-                    },
-                    label: {
-                        Image(uiImage: IonIcons.image(
-                            withIcon: ion_android_close,
-                            iconColor: UIColor.systemGray,
-                            iconSize: 32,
-                            imageSize: CGSize(width: 32, height: 32)
-                        ))
-                    }
-                )
-            }
-        }
     }
 }
 
