@@ -1,7 +1,7 @@
 import UIKit
 
-// MARK: - LDRTabBarController
-class LDRTabBarController: UITabBarController {
+// MARK: - LDRTabBarControllerOld
+class LDRTabBarControllerOld: UITabBarController {
 
     // MARK: - properties
 
