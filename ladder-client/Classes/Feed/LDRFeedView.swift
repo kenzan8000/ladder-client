@@ -95,6 +95,7 @@ struct LDRFeedView: View {
                             guard let unread = self.feedViewModel.unreads[subsunread] else {
                                 return
                             }
+                            self.feedViewModel.touchAll(unread: unread)
                             self.feedViewModel.selectUnread(unread: unread)
                         }
                     }

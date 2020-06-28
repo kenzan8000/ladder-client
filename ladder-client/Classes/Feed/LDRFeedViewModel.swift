@@ -119,6 +119,13 @@ final class LDRFeedViewModel: ObservableObject {
                 self.loadFeedFromLocalDB()
                 self.loadUnreadsFromAPI()
             }
+            self.isLoading = false
+        }
+    }
+    
+    func touchAll(unread: LDRFeedUnread) {
+        if unread.state == LDRFeedUnread.State.unread {
+            unread.requestTouchAll()
         }
     }
     

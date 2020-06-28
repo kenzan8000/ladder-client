@@ -54,7 +54,10 @@ class LDRFeedUnread {
 
     /// request touch_all api
     func requestTouchAll() {
-        LDRFeedOperationQueue.shared.requestTouchAll(subscribeId: self.subscribeId) { _, _ in }
+        if state == State.unread {
+            state = State.read
+        }
+        LDRFeedOperationQueue.shared.requestTouchAll(subscribeId: subscribeId) { _, _ in }
     }
 
     /// returns title of unread feed at index
@@ -65,11 +68,11 @@ class LDRFeedUnread {
         if index < 0 {
             return nil
         }
-        if index >= self.items.count {
+        if index >= items.count {
             return nil
         }
 
-        let item = self.items[index]
+        let item = items[index]
         return item["title"].stringValue
     }
     
@@ -101,7 +104,7 @@ class LDRFeedUnread {
             return nil
         }
 
-        let item = self.items[index]
+        let item = items[index]
         return item["body"].stringValue
     }
 
