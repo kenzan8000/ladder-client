@@ -87,6 +87,10 @@ struct LDRFeedDetailView: View {
     
     func moveButton(direction: Int) -> some View {
         let icon = [-1: ion_chevron_left, 1: ion_chevron_right]
+        var color = UIColor.label
+        if feedDetailViewModel.index + direction < 0 || feedDetailViewModel.index + direction >= feedDetailViewModel.count {
+            color = UIColor.systemGray4
+        }
         return Button(
             action: {
                 if !self.feedDetailViewModel.move(offset: direction) {
@@ -106,7 +110,7 @@ struct LDRFeedDetailView: View {
             label: {
                 Image(uiImage: IonIcons.image(
                         withIcon: icon[direction],
-                        iconColor: UIColor.label,
+                        iconColor: color,
                         iconSize: 36,
                         imageSize: CGSize(width: 36, height: 36)
                     )

@@ -21,7 +21,7 @@ struct LDRFeedView: View {
             }
         }
         .onAppear {
-            // self.feedViewModel.loadFeedFromLocalDB()
+            self.feedViewModel.loadFeedFromLocalDB()
         }
     }
     
