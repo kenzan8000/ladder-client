@@ -78,7 +78,7 @@ final class LDRFeedViewModel: ObservableObject {
     /// - Parameter notification: NSNotification happened when user did login
     @objc
     func didLogin(notification: NSNotification) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.loadFeedFromAPI()
         }
     }
@@ -88,7 +88,7 @@ final class LDRFeedViewModel: ObservableObject {
     /// - Parameter notification: notification happened when application did become active
     @objc
     func didBecomeActive(notification: NSNotification) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.loadFeedFromAPI()
         }
     }
@@ -108,7 +108,7 @@ final class LDRFeedViewModel: ObservableObject {
             return
         }
         isLoading = true
-        LDRFeedOperationQueue.shared.requestSubs { (json: JSON?, error: Error?) -> Void in
+        LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
             if let error = error {
                 self.error = error
             } else if let error = LDRFeedSubsUnread.delete() {

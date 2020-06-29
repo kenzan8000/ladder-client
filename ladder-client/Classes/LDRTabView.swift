@@ -9,7 +9,11 @@ struct LDRTabView: View {
         static let pin = 1
     }
     
+    // MARK: - property
+    
     @State private var selected = Tab.feed
+    var feedViewModel: LDRFeedViewModel
+    var pinViewModel: LDRPinViewModel
     
     var body: some View {
         TabView(selection: $selected) {
@@ -19,7 +23,8 @@ struct LDRTabView: View {
     }
 
     func feedView(tab: Int) -> some View {
-        LDRFeedView(feedViewModel: LDRFeedViewModel())
+        // LDRFeedView(feedViewModel: LDRFeedViewModel())
+        LDRFeedView(feedViewModel: feedViewModel)
         .tabItem {
             if tab == Tab.feed {
                 Image(uiImage: IonIcons.image(
@@ -41,7 +46,8 @@ struct LDRTabView: View {
     }
         
     func pinView(tab: Int) -> some View {
-        LDRPinView(pinViewModel: LDRPinViewModel())
+        // LDRPinView(pinViewModel: LDRPinViewModel())
+        LDRPinView(pinViewModel: pinViewModel)
         .tabItem {
             if tab == Tab.pin {
                 Image(uiImage: IonIcons.image(
@@ -66,7 +72,10 @@ struct LDRTabView: View {
 // MARK: - LDRTabView_Previews
 struct LDRTabView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRTabView()
+        LDRTabView(
+            feedViewModel: LDRFeedViewModel(),
+            pinViewModel: LDRPinViewModel()
+        )
     }
 }
 
@@ -78,7 +87,10 @@ class LDRTabViewController: UIHostingController<LDRTabView> {
     required init?(coder aDecoder: NSCoder) {
         super.init(
             coder: aDecoder,
-            rootView: LDRTabView()
+            rootView: LDRTabView(
+                feedViewModel: LDRFeedViewModel(),
+                pinViewModel: LDRPinViewModel()
+            )
         )
     }
 

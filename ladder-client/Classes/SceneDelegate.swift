@@ -38,7 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-        let tabView = LDRTabView()
+        let tabView = LDRTabView(
+            feedViewModel: LDRFeedViewModel(),
+            pinViewModel: LDRPinViewModel()
+        )
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
