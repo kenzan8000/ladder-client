@@ -153,7 +153,9 @@ final class LDRFeedViewModel: ObservableObject {
         for subsunread in self.subsunreads {
             let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
             unreads[subsunread] = unread
-            unread.request()
+            unread.request { [unowned self] (unread) in
+                self.unreads[subsunread] = unread
+            }
         }
     }
 

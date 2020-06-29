@@ -35,7 +35,9 @@ class LDRFeedUnread {
     // MARK: - public api
 
     /// request unread api
-    func request() {
+    func request(
+        completionHandler: @escaping (_ unread: LDRFeedUnread) -> Void
+    ) {
         LDRFeedOperationQueue.shared.requestUnread(subscribeId: self.subscribeId) { [unowned self] (json: JSON?, error: Error?) -> Void in
             if let e = error {
                 LDRLOG(e.localizedDescription)
@@ -48,6 +50,7 @@ class LDRFeedUnread {
             } else {
                 self.state = State.unread
             }
+            completionHandler(self)
             NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
         }
     }

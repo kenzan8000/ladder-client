@@ -255,7 +255,7 @@ class LDRFeedViewControllerOld: UIViewController {
             for subsunread in self.subsunreads {
                 let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
                 self.unreads.append(unread)
-                unread.request()
+                unread.request { _ in }
             }
         } else {
             var newUnreads: [LDRFeedUnread] = []
