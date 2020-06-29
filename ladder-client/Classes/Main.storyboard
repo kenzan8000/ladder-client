@@ -7,14 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab View Controller-->
-        <scene sceneID="1i1-ky-z6U">
-            <objects>
-                <hostingController id="0YH-oj-Bbc" customClass="LDRTabViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6ps-Wf-KPr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-446" y="323"/>
-        </scene>
         <!--Tab Bar Controller Old-->
         <scene sceneID="fPQ-m8-Bfx">
             <objects>
@@ -34,16 +26,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvq-ZG-z1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="289" y="324"/>
-        </scene>
-        <!--Feed View Controller-->
-        <scene sceneID="kI1-0C-Ioz">
-            <objects>
-                <hostingController id="0Zk-H6-Fw0" customClass="LDRFeedViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="b17-E1-xQK"/>
-                </hostingController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iq8-aQ-QMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1072" y="-72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yDn-ZY-ie4">
@@ -301,16 +283,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAg-fh-5Xv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="1381"/>
-        </scene>
-        <!--Pin View Controller-->
-        <scene sceneID="vFk-8W-l5q">
-            <objects>
-                <hostingController id="koS-BG-3RM" customClass="LDRPinViewController" customModule="ladder_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="gW2-Nl-mz9"/>
-                </hostingController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KLu-Rl-G1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1073" y="661"/>
         </scene>
     </scenes>
     <resources>

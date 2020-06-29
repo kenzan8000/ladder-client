@@ -23,7 +23,6 @@ struct LDRTabView: View {
     }
 
     func feedView(tab: Int) -> some View {
-        // LDRFeedView(feedViewModel: LDRFeedViewModel())
         LDRFeedView(feedViewModel: feedViewModel)
         .tabItem {
             if tab == Tab.feed {
@@ -46,7 +45,6 @@ struct LDRTabView: View {
     }
         
     func pinView(tab: Int) -> some View {
-        // LDRPinView(pinViewModel: LDRPinViewModel())
         LDRPinView(pinViewModel: pinViewModel)
         .tabItem {
             if tab == Tab.pin {
