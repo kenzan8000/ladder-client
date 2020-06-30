@@ -11,7 +11,7 @@ struct LDRFeedView: View {
                 list()
                 navigationLink()
             }
-            .navigationBarTitle("RSS Feeds")
+            .navigationBarTitle("New Updates")
             .navigationBarItems(
                 leading: loginButton(),
                 trailing: reloadButton()

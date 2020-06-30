@@ -28,18 +28,19 @@ struct LDRTabView: View {
             if tab == Tab.feed {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_social_rss,
-                    iconColor: UIColor.systemGray,
+                    iconColor: UIColor.systemBlue,
                     iconSize: 25,
                     imageSize: CGSize(width: 75, height: 75)
                 ))
             } else {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_social_rss,
-                    iconColor: UIColor.systemGray5,
+                    iconColor: UIColor.systemGray,
                     iconSize: 25,
                     imageSize: CGSize(width: 75, height: 75)
                 ))
             }
+            Text("RSS Feeds")
         }
         .tag(Tab.feed)
     }
@@ -50,18 +51,19 @@ struct LDRTabView: View {
             if tab == Tab.pin {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_pin,
-                    iconColor: UIColor.systemGray,
+                    iconColor: UIColor.systemBlue,
                     iconSize: 25,
                     imageSize: CGSize(width: 75, height: 75)
                 ))
             } else {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_pin,
-                    iconColor: UIColor.systemGray5,
+                    iconColor: UIColor.systemGray,
                     iconSize: 25,
                     imageSize: CGSize(width: 75, height: 75)
                 ))
             }
+            Text("Read Later Pins")
         }
         .tag(Tab.pin)
     }
