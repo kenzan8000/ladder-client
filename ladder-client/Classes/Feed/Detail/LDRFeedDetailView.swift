@@ -1,4 +1,3 @@
-import KSToastView
 import SwiftUI
 import WebKit
 
@@ -31,9 +30,9 @@ struct LDRFeedDetailView: View {
         Button(
             action: {
                 if self.feedDetailViewModel.savePin() {
-                    KSToastView.ks_showToast(
-                        "Added a pin\n\(self.feedDetailViewModel.title)",
-                        duration: 2.0
+                    LDRToastView.show(
+                        on: UIApplication.shared.windows[0],
+                        text: "Added a pin\n\(self.feedDetailViewModel.title)"
                     )
                 }
             },

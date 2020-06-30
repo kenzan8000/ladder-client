@@ -11,18 +11,18 @@ class LDRBlinkView: UIView {
     /// show the blink view
     ///
     /// - Parameters:
-    ///   - on: a view blink view is shown on
+    ///   - parentView: a view blink view is shown on
     ///   - color: color of blink
     ///   - count: number of blink
     ///   - interval: interval of blink
-    class func show(on: UIView, color: UIColor, count: Int, interval: Double) {
+    class func show(on parentView: UIView, color: UIColor, count: Int, interval: Double) {
         let view = LDRBlinkView()
-        view.frame = CGRect(x: 0, y: 0, width: on.frame.width, height: on.frame.height)
+        view.frame = CGRect(x: 0, y: 0, width: parentView.frame.width, height: parentView.frame.height)
         view.backgroundColor = color
         view.blinkCount = count
         view.blinkInterval = interval
 
-        on.addSubview(view)
+        parentView.addSubview(view)
 
         view.startBlinking()
     }
