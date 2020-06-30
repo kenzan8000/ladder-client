@@ -50,10 +50,14 @@ public class WebViewStore: ObservableObject {
 public struct WebView: View, UIViewRepresentable {
   /// The WKWebView to display
   public let webView: WKWebView
+  // public let didFinish: ((_ webView: WKWebView, _ navigation: WKNavigation) -> Void)?
+  // public let decidePolicy: ((_ webView: WKWebView, _ decisionHandler: (WKNavigationActionPolicy)) -> Void)?
   
   public typealias UIViewType = UIViewContainerView<WKWebView>
   
-  public init(webView: WKWebView) {
+  public init(
+    webView: WKWebView
+  ) {
     self.webView = webView
   }
   
@@ -63,9 +67,33 @@ public struct WebView: View, UIViewRepresentable {
   
   public func updateUIView(_ uiView: WebView.UIViewType, context: UIViewRepresentableContext<WebView>) {
     // If its the same content view we don't need to update.
+    // webView.navigationDelegate = context.coordinator
     if uiView.contentView !== webView {
       uiView.contentView = webView
     }
+  }
+
+  /*
+  public class Coordinator: NSObject, WKNavigationDelegate {
+    public func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        
+    }
+    
+    public func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy
+    ) -> Swift.Void) {
+        
+    }
+  }
+  */
+
+  public func makeCoordinator() -> WebView.Coordinator {
+    Coordinator()
   }
 }
 

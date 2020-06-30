@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftyJSON
+import WebKit
 
 // MARK: - LDRFeedDetailViewModel
 final class LDRFeedDetailViewModel: ObservableObject {
@@ -40,6 +41,8 @@ final class LDRFeedDetailViewModel: ObservableObject {
         }
         return title
     }
+    @Published var isLoadingWebView = true
+    var webView = WKWebView()
     
     // MARK: - initialization
     
@@ -90,7 +93,9 @@ final class LDRFeedDetailViewModel: ObservableObject {
         return true
     }
     
-    func getHtml(colorScheme: ColorScheme) -> String {
+    /// load html string on webview
+    /// - Parameter colorScheme: color scheme like dark mode and light mode
+    func loadHTMLString(colorScheme: ColorScheme) {
         let htmlBackgroundColor = colorScheme == .dark ? "background: #080808;" : "background: #f8f8f8;"
         let htmlColor = colorScheme == .dark ? "color: #E5E5EA;" : "color: #2c2c2e;"
         let htmlLinkColor = colorScheme == .dark ? "color: #0a84ff;" : "color: #007aff;"
@@ -106,7 +111,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
         html += "</style><body>"
         html += body
         html += "</body></html>"
-        return html
+        webView.loadHTMLString(html, baseURL: link)
     }
     
     // MARK: - private api

@@ -64,14 +64,14 @@ struct LDRFeedView: View {
         ) {
             Image(uiImage: IonIcons.image(
                 withIcon: ion_ios_star,
-                iconColor: UIColor.systemGray,
+                iconColor: feedViewModel.segment == LDRFeedSubsUnread.Segment.rate ? UIColor.systemBlue : UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ))
             .tag(LDRFeedSubsUnread.Segment.rate)
             Image(uiImage: IonIcons.image(
                 withIcon: ion_ios_folder,
-                iconColor: UIColor.systemGray,
+                iconColor: feedViewModel.segment == LDRFeedSubsUnread.Segment.folder ? UIColor.systemBlue : UIColor.systemGray,
                 iconSize: 32,
                 imageSize: CGSize(width: 32, height: 32)
             ))

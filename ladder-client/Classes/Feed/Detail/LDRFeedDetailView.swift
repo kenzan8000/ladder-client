@@ -1,17 +1,15 @@
 import SwiftUI
-import WebKit
 
 // MARK: - LDRFeedDetailView
 struct LDRFeedDetailView: View {
     
     @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    var webView = WKWebView()
     
     var body: some View {
         VStack {
             header()
-            WebView(webView: webView)
+            WebView(webView: feedDetailViewModel.webView)
             footer()
         }
         .navigationBarTitle(feedDetailViewModel.unread.title)
@@ -19,10 +17,7 @@ struct LDRFeedDetailView: View {
             trailing: pinButton()
         )
         .onAppear {
-            self.webView.loadHTMLString(
-                self.feedDetailViewModel.getHtml(colorScheme: self.colorScheme),
-                baseURL: self.feedDetailViewModel.link
-            )
+            self.feedDetailViewModel.loadHTMLString(colorScheme: self.colorScheme)
         }
     }
 
@@ -100,10 +95,7 @@ struct LDRFeedDetailView: View {
                         interval: 0.08
                     )
                 } else {
-                    self.webView.loadHTMLString(
-                        self.feedDetailViewModel.getHtml(colorScheme: self.colorScheme),
-                        baseURL: self.feedDetailViewModel.link
-                    )
+                    self.feedDetailViewModel.loadHTMLString(colorScheme: self.colorScheme)
                 }
             },
             label: {

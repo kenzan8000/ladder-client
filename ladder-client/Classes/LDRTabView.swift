@@ -25,21 +25,12 @@ struct LDRTabView: View {
     func feedView(tab: Int) -> some View {
         LDRFeedView(feedViewModel: feedViewModel)
         .tabItem {
-            if tab == Tab.feed {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_social_rss,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 25,
-                    imageSize: CGSize(width: 75, height: 75)
-                ))
-            } else {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_social_rss,
-                    iconColor: UIColor.systemGray,
-                    iconSize: 25,
-                    imageSize: CGSize(width: 75, height: 75)
-                ))
-            }
+            Image(uiImage: IonIcons.image(
+                withIcon: ion_social_rss,
+                iconColor: tab == Tab.feed ? UIColor.systemBlue : UIColor.systemGray,
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
+            ))
             Text("RSS Feeds")
         }
         .tag(Tab.feed)
@@ -48,21 +39,12 @@ struct LDRTabView: View {
     func pinView(tab: Int) -> some View {
         LDRPinView(pinViewModel: pinViewModel)
         .tabItem {
-            if tab == Tab.pin {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_pin,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 25,
-                    imageSize: CGSize(width: 75, height: 75)
-                ))
-            } else {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_pin,
-                    iconColor: UIColor.systemGray,
-                    iconSize: 25,
-                    imageSize: CGSize(width: 75, height: 75)
-                ))
-            }
+            Image(uiImage: IonIcons.image(
+                withIcon: ion_pin,
+                iconColor: tab == Tab.pin ? UIColor.systemBlue : UIColor.systemGray,
+                iconSize: 25,
+                imageSize: CGSize(width: 75, height: 75)
+            ))
             Text("Read Later Pins")
         }
         .tag(Tab.pin)
