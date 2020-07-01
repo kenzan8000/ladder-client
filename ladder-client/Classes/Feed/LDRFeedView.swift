@@ -110,6 +110,7 @@ struct LDRFeedView: View {
                 }
             }
         }
+        .animation(nil)
     }
     
     func navigationLink() -> some View {

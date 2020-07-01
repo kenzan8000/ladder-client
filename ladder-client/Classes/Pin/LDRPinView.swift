@@ -74,6 +74,7 @@ struct LDRPinView: View {
         .sheet(isPresented: $isPresentingLoginView) {
             LDRLoginView(loginViewModel: LDRLoginViewModel())
         }
+        .animation(nil)
     }
     
     func safariView() -> some View {
