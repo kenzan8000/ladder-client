@@ -17,6 +17,9 @@ struct LDRFeedDetailView: View {
         .navigationBarItems(
             trailing: pinButton()
         )
+        .sheet(isPresented: feedDetailWebViewModel.isPresentingSafariView) {
+            self.safariView()
+        }
         .onAppear {
             self.feedDetailWebViewModel.loadHTMLString(
                 colorScheme: self.colorScheme,
@@ -118,6 +121,13 @@ struct LDRFeedDetailView: View {
             }
         )
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+    }
+    
+    func safariView() -> some View {
+        guard let url = self.feedDetailWebViewModel.safariUrl else {
+            return AnyView(EmptyView())
+        }
+        return AnyView(SafariView(url: url))
     }
 }
 

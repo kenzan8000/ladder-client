@@ -6,10 +6,41 @@ import WebKit
 final class LDRFeedDetailWebViewModel: ObservableObject {
     
     // MARK: - model
-    @Published var isLoadingWebView = true
+    @Published var isInitialLoading = false
     var webView = WKWebView()
+    var webViewNavigation = LDRFeedDetailWebViewNavigation()
+    @Published var safariUrl: URL?
+    var isPresentingSafariView: Binding<Bool> {
+        Binding<Bool>(
+            get: { self.safariUrl != nil },
+            set: { newValue in
+                guard !newValue else {
+                    return
+                }
+                self.safariUrl = nil
+            }
+        )
+    }
     
     // MARK: - initialization
+    
+    init() {
+        self.webView.isHidden = true
+        webViewNavigation.didFinish = { [unowned self] _, _ in
+            if self.isInitialLoading {
+                return
+            }
+            self.isInitialLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
+                self.webView.isHidden = false
+            }
+            usleep(300000)
+        }
+        webViewNavigation.openUrl = { [unowned self] url in
+            self.safariUrl = url
+        }
+        self.webView.navigationDelegate = webViewNavigation
+    }
 
     // MARK: - destruction
 
@@ -50,4 +81,50 @@ final class LDRFeedDetailWebViewModel: ObservableObject {
     
     // MARK: - private api
 
+    // MARK: - LDRFeedDetailWebViewNavigation
+    class LDRFeedDetailWebViewNavigation: NSObject, WKNavigationDelegate {
+
+        var openUrl: ((_ url: URL) -> Void)?
+        var didFinish: ((_ webView: WKWebView, _ navigation: WKNavigation) -> Void)?
+
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationAction: WKNavigationAction,
+            decisionHandler: @escaping (WKNavigationActionPolicy
+        ) -> Swift.Void) {
+            switch navigationAction.navigationType {
+            case .formSubmitted:
+                break
+            case .backForward:
+                break
+            case .reload:
+                break
+            case .formResubmitted:
+                break
+            case .other:
+                break
+            case .linkActivated:
+                decisionHandler(.cancel)
+                guard let url = navigationAction.request.url else {
+                    decisionHandler(.cancel)
+                    return
+                }
+                openUrl?(url)
+                return
+            @unknown default:
+                return
+            }
+            decisionHandler(.allow)
+        }
+
+        func webView(
+            _ webView: WKWebView,
+            didFinish navigation: WKNavigation!
+        ) {
+            didFinish?(
+                webView,
+                navigation
+            )
+        }
+    }
 }
