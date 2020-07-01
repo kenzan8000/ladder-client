@@ -44,9 +44,11 @@ struct LDRFeedDetailView: View {
                 }
             },
             label: {
+                Text("Add a Pin")
+                .foregroundColor(Color.blue)
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_pin,
-                    iconColor: UIColor.systemGray,
+                    iconColor: UIColor.systemBlue,
                     iconSize: 32,
                     imageSize: CGSize(width: 32, height: 32)
                 ))

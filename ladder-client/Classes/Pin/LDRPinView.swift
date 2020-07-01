@@ -32,10 +32,12 @@ struct LDRPinView: View {
             label: {
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_log_in,
-                    iconColor: UIColor.systemGray,
+                    iconColor: UIColor.systemBlue,
                     iconSize: 32,
                     imageSize: CGSize(width: 32, height: 32)
                 ))
+                Text("Login")
+                .foregroundColor(Color.blue)
             }
         )
     }
@@ -46,9 +48,11 @@ struct LDRPinView: View {
                 self.pinViewModel.loadPinsFromAPI()
             },
             label: {
+                Text("Reload")
+                .foregroundColor(Color.blue)
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_android_refresh,
-                    iconColor: UIColor.systemGray,
+                    iconColor: UIColor.systemBlue,
                     iconSize: 32,
                     imageSize: CGSize(width: 32, height: 32)
                 ))
