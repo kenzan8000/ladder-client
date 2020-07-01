@@ -19,6 +19,7 @@ final class LDRPinViewModel: ObservableObject {
             }
         )
     }
+    @Published var isPresentingLoginView = false
     @Published var error: Error?
     var isPresentingAlert: Binding<Bool> {
         Binding<Bool>(
@@ -69,6 +70,7 @@ final class LDRPinViewModel: ObservableObject {
     func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.loadPinsFromAPI()
+            self.isPresentingLoginView = false
         }
     }
     

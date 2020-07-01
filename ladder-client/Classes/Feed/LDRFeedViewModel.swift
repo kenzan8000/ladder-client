@@ -25,6 +25,7 @@ final class LDRFeedViewModel: ObservableObject {
             }
         )
     }
+    @Published var isPresentingLoginView = false
     @Published var isLoading = false
     @Published var error: Error?
     var isPresentingAlert: Binding<Bool> {
@@ -80,6 +81,7 @@ final class LDRFeedViewModel: ObservableObject {
     func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.loadFeedFromAPI()
+            self.isPresentingLoginView = false
         }
     }
     

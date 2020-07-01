@@ -4,7 +4,7 @@ import SwiftUI
 // MARK: - LDRFeedView
 struct LDRFeedView: View {
     @ObservedObject var feedViewModel: LDRFeedViewModel
-    @State var isPresentingLoginView = false
+    @State var tabBar: UITabBar?
     
     var body: some View {
         NavigationView {
@@ -17,22 +17,24 @@ struct LDRFeedView: View {
                 leading: loginButton(),
                 trailing: reloadButton()
             )
-            .sheet(isPresented: $isPresentingLoginView) {
+            .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
                 LDRLoginView(loginViewModel: LDRLoginViewModel())
             }
         }
         .onAppear {
             self.feedViewModel.loadFeedFromLocalDB()
+            self.tabBar?.isHidden = false
         }
         .introspectViewController { viewController in
-            viewController.tabBarController?.tabBar.isHidden = false
+            self.tabBar = viewController.tabBarController?.tabBar
+            self.tabBar?.isHidden = false
         }
     }
     
     func loginButton() -> some View {
         Button(
             action: {
-                self.isPresentingLoginView.toggle()
+                self.feedViewModel.isPresentingLoginView.toggle()
             },
             label: {
                 Image(uiImage: IonIcons.image(
