@@ -1,3 +1,4 @@
+import Introspect
 import SwiftUI
 
 // MARK: - LDRFeedDetailView
@@ -26,6 +27,9 @@ struct LDRFeedDetailView: View {
                 body: self.feedDetailViewModel.body,
                 link: self.feedDetailViewModel.link
             )
+        }
+        .introspectViewController { viewController in
+            viewController.tabBarController?.tabBar.isHidden = true
         }
     }
 
