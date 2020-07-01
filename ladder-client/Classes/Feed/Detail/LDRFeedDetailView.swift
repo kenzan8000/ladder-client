@@ -39,12 +39,12 @@ struct LDRFeedDetailView: View {
                 if self.feedDetailViewModel.savePin() {
                     LDRToastView.show(
                         on: UIApplication.shared.windows[0],
-                        text: "Added a pin\n\(self.feedDetailViewModel.title)"
+                        text: "Added to Read Later Pins\n\(self.feedDetailViewModel.title)"
                     )
                 }
             },
             label: {
-                Text("Add a Pin")
+                Text("Pin it")
                 .foregroundColor(Color.blue)
                 Image(uiImage: IonIcons.image(
                     withIcon: ion_pin,
@@ -89,15 +89,18 @@ struct LDRFeedDetailView: View {
         return Text(text)
         .lineLimit(2)
         .truncationMode(.tail)
+        .foregroundColor(Color.blue)
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
     }
     
     func moveButton(direction: Int) -> some View {
         let icon = [-1: ion_chevron_left, 1: ion_chevron_right]
-        var color = UIColor.label
+        var color = UIColor.blue
+        var opacity = 1.0
         if feedDetailViewModel.index + direction < 0 || feedDetailViewModel.index + direction >= feedDetailViewModel.count {
-            color = UIColor.systemGray4
+            color = UIColor.systemBlue
+            opacity = 0.5
         }
         return Button(
             action: {
@@ -127,6 +130,7 @@ struct LDRFeedDetailView: View {
             }
         )
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+        .opacity(opacity)
     }
     
     func safariView() -> some View {
