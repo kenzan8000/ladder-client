@@ -29,7 +29,7 @@ struct LDRFeedRow: View {
                     
                     Image(uiImage: IonIcons.image(
                             withIcon: ion_chevron_right,
-                            iconColor: UIColor.systemGray,
+                            iconColor: [Color.blue: UIColor.systemBlue, Color.gray: UIColor.systemGray][color],
                             iconSize: 24,
                             imageSize: CGSize(width: 24, height: 24)
                         )
