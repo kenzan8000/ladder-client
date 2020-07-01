@@ -24,6 +24,7 @@
 		E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */; };
 		E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAFA0249F8E240051C402 /* LDRPinRow.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
+		E6522F8C24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6522F8B24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift */; };
 		E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652C02A24A3676400C744DE /* LDRFeedRow.swift */; };
 		E66ACC351F986E45000B7EC5 /* LDRPinOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
@@ -132,6 +133,7 @@
 		E63CAF9C249F83730051C402 /* LDRPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinViewModel.swift; sourceTree = "<group>"; };
 		E63CAFA0249F8E240051C402 /* LDRPinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRow.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E6522F8B24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailWebViewModel.swift; sourceTree = "<group>"; };
 		E652C02A24A3676400C744DE /* LDRFeedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRow.swift; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinOperationQueue.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				E6D1CF551F7B6D8F00BA0273 /* LDRFeedDetailViewControllerOld.swift */,
 				E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */,
 				E6E127B024A4C3D9008627D5 /* LDRFeedDetailViewModel.swift */,
+				E6522F8B24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLReader/HTMLReader.framework",
 				"${BUILT_PRODUCTS_DIR}/ISHTTPOperation/ISHTTPOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework",
 				"${BUILT_PRODUCTS_DIR}/KSToastView/KSToastView.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/LGRefreshView/LGRefreshView.framework",
@@ -630,6 +634,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISHTTPOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Introspect.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSToastView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGRefreshView.framework",
@@ -695,6 +700,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLReader/HTMLReader.framework",
 				"${BUILT_PRODUCTS_DIR}/ISHTTPOperation/ISHTTPOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework",
 				"${BUILT_PRODUCTS_DIR}/KSToastView/KSToastView.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/LGRefreshView/LGRefreshView.framework",
@@ -710,6 +716,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISHTTPOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Introspect.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSToastView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGRefreshView.framework",
@@ -818,6 +825,7 @@
 				E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */,
 				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
 				E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */,
+				E6522F8C24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift in Sources */,
 				E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */,
 				E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */,
 				E6241ECB1FA462C400DBA613 /* Dictionary+HTTPBody.swift in Sources */,

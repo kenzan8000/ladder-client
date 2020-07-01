@@ -108,10 +108,14 @@ struct LDRFeedView: View {
         guard let unread = feedViewModel.unread else {
             return AnyView(EmptyView())
         }
+        let feedDetailView = LDRFeedDetailView(
+            feedDetailViewModel: LDRFeedDetailViewModel(unread: unread),
+            feedDetailWebViewModel: LDRFeedDetailWebViewModel()
+        )
         return AnyView(
             NavigationLink(
                 "LDRFeedDetailView",
-                destination: LDRFeedDetailView(feedDetailViewModel: LDRFeedDetailViewModel(unread: unread)),
+                destination: feedDetailView,
                 isActive: feedViewModel.isPresentingDetailView
             )
         )

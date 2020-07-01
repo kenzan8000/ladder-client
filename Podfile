@@ -13,6 +13,7 @@ def main_pods
   # ui
   pod 'LGRefreshView'
   pod 'KSToastView'
+  pod "Introspect"
   # json parser
   pod 'SwiftyJSON'
   # html parser

@@ -4,12 +4,13 @@ import SwiftUI
 struct LDRFeedDetailView: View {
     
     @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
+    @ObservedObject var feedDetailWebViewModel: LDRFeedDetailWebViewModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {
         VStack {
             header()
-            WebView(webView: feedDetailViewModel.webView)
+            WebView(webView: feedDetailWebViewModel.webView)
             footer()
         }
         .navigationBarTitle(feedDetailViewModel.unread.title)
@@ -17,7 +18,11 @@ struct LDRFeedDetailView: View {
             trailing: pinButton()
         )
         .onAppear {
-            self.feedDetailViewModel.loadHTMLString(colorScheme: self.colorScheme)
+            self.feedDetailWebViewModel.loadHTMLString(
+                colorScheme: self.colorScheme,
+                body: self.feedDetailViewModel.body,
+                link: self.feedDetailViewModel.link
+            )
         }
     }
 
@@ -95,7 +100,11 @@ struct LDRFeedDetailView: View {
                         interval: 0.08
                     )
                 } else {
-                    self.feedDetailViewModel.loadHTMLString(colorScheme: self.colorScheme)
+                    self.feedDetailWebViewModel.loadHTMLString(
+                        colorScheme: self.colorScheme,
+                        body: self.feedDetailViewModel.body,
+                        link: self.feedDetailViewModel.link
+                    )
                 }
             },
             label: {
@@ -116,7 +125,8 @@ struct LDRFeedDetailView: View {
 struct LDRFeedDetailView_Previews: PreviewProvider {
     static var previews: some View {
         LDRFeedDetailView(
-            feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRFeedUnread(subscribeId: "1", title: "Title"))
+            feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRFeedUnread(subscribeId: "1", title: "Title")),
+            feedDetailWebViewModel: LDRFeedDetailWebViewModel()
         )
     }
 }
