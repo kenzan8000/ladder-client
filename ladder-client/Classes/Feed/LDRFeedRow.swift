@@ -2,11 +2,15 @@ import SwiftUI
 
 // MARK: - LDRFeedRow
 struct LDRFeedRow: View {
+    // MARK: - property
+
     var title: String
     var unreadCount: String
     var color: Color
     var onTap: (() -> Void)?
-    
+
+    // MARK: - view
+
     var body: some View {
         Button(
             action: {

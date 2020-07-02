@@ -2,9 +2,13 @@ import SwiftUI
 
 // MARK: - LDRPinRow
 struct LDRPinRow: View {
+    // MARK: - property
+
     var title: String
     var onTap: (() -> Void)?
     
+    // MARK: - view
+
     var body: some View {
         Button(
             action: {

@@ -135,6 +135,8 @@ final class LDRFeedViewModel: ObservableObject {
         }
     }
     
+    /// Request feed is touched (read)
+    /// - Parameter unread: this unread is already read
     func touchAll(unread: LDRFeedUnread) {
         if unread.state == LDRFeedUnread.State.unread {
             unread.requestTouchAll()

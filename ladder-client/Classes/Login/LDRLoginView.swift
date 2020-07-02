@@ -2,8 +2,12 @@ import SwiftUI
 
 // MARK: - LDRLoginView
 struct LDRLoginView: View {
+    // MARK: - property
+
     var dismiss: (() -> Void)?
     @ObservedObject var loginViewModel: LDRLoginViewModel
+    
+    // MARK: - view
 
     var body: some View {
         NavigationView {

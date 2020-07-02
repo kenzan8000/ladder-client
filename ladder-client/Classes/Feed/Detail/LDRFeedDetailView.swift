@@ -3,11 +3,14 @@ import SwiftUI
 
 // MARK: - LDRFeedDetailView
 struct LDRFeedDetailView: View {
-    
+    // MARK: - property
+
     @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
     @ObservedObject var feedDetailWebViewModel: LDRFeedDetailWebViewModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
+    // MARK: - view
+
     var body: some View {
         VStack {
             header()

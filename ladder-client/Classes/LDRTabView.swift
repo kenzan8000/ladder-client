@@ -15,6 +15,8 @@ struct LDRTabView: View {
     var feedViewModel: LDRFeedViewModel
     var pinViewModel: LDRPinViewModel
     
+    // MARK: - view
+    
     var body: some View {
         TabView(selection: $selected) {
             feedView(tab: selected)

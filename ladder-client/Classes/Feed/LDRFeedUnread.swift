@@ -54,7 +54,6 @@ class LDRFeedUnread {
                 self.state = State.unread
             }
             completionHandler(self)
-            NotificationCenter.default.post(name: LDRNotificationCenter.didGetUnread, object: nil)
         }
     }
 

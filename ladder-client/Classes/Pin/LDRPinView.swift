@@ -2,8 +2,12 @@ import SwiftUI
 
 // MARK: - LDRPinView
 struct LDRPinView: View {
+    // MARK: - property
+
     @ObservedObject var pinViewModel: LDRPinViewModel
     
+    // MARK: - view
+
     var body: some View {
         NavigationView {
             self.list()

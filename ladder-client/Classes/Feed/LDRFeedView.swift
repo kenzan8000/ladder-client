@@ -3,9 +3,13 @@ import SwiftUI
 
 // MARK: - LDRFeedView
 struct LDRFeedView: View {
+    // MARK: - property
+
     @ObservedObject var feedViewModel: LDRFeedViewModel
     @State var tabBar: UITabBar?
-    
+
+    // MARK: - view
+
     var body: some View {
         NavigationView {
             VStack {
