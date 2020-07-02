@@ -72,9 +72,20 @@ class LDRFeedSubsUnread: NSManagedObject {
         let filtered = subsunreads.filter { $0.rateValue == rate }
         return filtered.count
     }
+    
+    /// Returns filtered subsunread array by rate
+    ///
+    /// - Parameters:
+    ///   - subsunreads: subsunread models
+    ///   - rate: rate string
+    /// - Returns: filtered subsunread models
     class func filter(subsunreads: [LDRFeedSubsUnread], rate: String) -> [LDRFeedSubsUnread] {
-        let filtered = subsunreads.filter { $0.rateString == rate }
-        return filtered
+        subsunreads.filter {
+            $0.rateString == rate
+        }
+        .sorted {
+            $0.title < $1.title
+        }
     }
 
     /// returns count of model by the folder
@@ -87,9 +98,20 @@ class LDRFeedSubsUnread: NSManagedObject {
         let filtered = subsunreads.filter { $0.folder == folder }
         return filtered.count
     }
+    
+    /// Returns filtered subsunread array by rate
+    ///
+    /// - Parameters:
+    ///   - subsunreads: subsunread models
+    ///   - folder: folder string
+    /// - Returns: filtered subsunread models
     class func filter(subsunreads: [LDRFeedSubsUnread], folder: String) -> [LDRFeedSubsUnread] {
-        let filtered = subsunreads.filter { $0.folder == folder }
-        return filtered
+        subsunreads.filter {
+            $0.folder == folder
+        }
+        .sorted {
+            $0.title < $1.title
+        }
     }
 
     /// returns rates of subsunread models
@@ -105,6 +127,10 @@ class LDRFeedSubsUnread: NSManagedObject {
         }
         return rates
     }
+    
+    /// Returns Rate Strings from subsunread array
+    /// - Parameter subsunreads:subsunread array
+    /// - Returns: Rate Strings e.g. "★★★☆☆" when rate equals to 3
     class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [String] {
         var rates: [String] = []
         for subsunread in subsunreads {
@@ -125,6 +151,7 @@ class LDRFeedSubsUnread: NSManagedObject {
             if folders.contains(subsunread.folder) { continue }
             folders.append(subsunread.folder)
         }
+        folders.sort()
         return folders
     }
 
