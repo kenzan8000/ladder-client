@@ -39,6 +39,16 @@ final class LDRFeedViewModel: ObservableObject {
             }
         )
     }
+    var unreadCount: Int {
+        var count = 0
+        for (subsunread, unread) in unreads {
+            if unread.state == LDRFeedUnread.State.read {
+                continue
+            }
+            count += subsunread.unreadCountValue
+        }
+        return count
+    }
     
     // MARK: - initialization
     

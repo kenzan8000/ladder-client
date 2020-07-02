@@ -12,7 +12,7 @@ struct LDRFeedView: View {
                 list()
                 navigationLink()
             }
-            .navigationBarTitle("Updates")
+            .navigationBarTitle("\(feedViewModel.unreadCount) Updates")
             .navigationBarItems(
                 leading: loginButton(),
                 trailing: reloadButton()

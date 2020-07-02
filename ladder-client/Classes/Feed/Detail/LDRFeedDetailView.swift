@@ -95,7 +95,7 @@ struct LDRFeedDetailView: View {
     
     func moveButton(direction: Int) -> some View {
         let icon = [-1: ion_chevron_left, 1: ion_chevron_right]
-        var color = UIColor.blue
+        var color = UIColor.systemBlue
         var opacity = 1.0
         if feedDetailViewModel.index + direction < 0 || feedDetailViewModel.index + direction >= feedDetailViewModel.count {
             color = UIColor.systemBlue
