@@ -89,7 +89,6 @@ struct LDRFeedDetailView: View {
         return Text(text)
         .lineLimit(2)
         .truncationMode(.tail)
-        .foregroundColor(Color.blue)
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
     }

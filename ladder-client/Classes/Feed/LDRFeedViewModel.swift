@@ -111,6 +111,7 @@ final class LDRFeedViewModel: ObservableObject {
         }
         isLoading = true
         LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
+            self.isLoading = false
             if let error = error {
                 self.error = error
             } else if let error = LDRFeedSubsUnread.delete() {
@@ -121,7 +122,6 @@ final class LDRFeedViewModel: ObservableObject {
                 self.loadFeedFromLocalDB()
                 self.loadUnreadsFromAPI()
             }
-            self.isLoading = false
         }
     }
     
@@ -155,8 +155,10 @@ final class LDRFeedViewModel: ObservableObject {
         for subsunread in self.subsunreads {
             let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
             unreads[subsunread] = unread
+            self.isLoading = true
             unread.request { [unowned self] unread in
                 self.unreads[subsunread] = unread
+                self.isLoading = unread.requestCount > 0
             }
         }
     }

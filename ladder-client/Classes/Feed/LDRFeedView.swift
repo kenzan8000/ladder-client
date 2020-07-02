@@ -12,7 +12,7 @@ struct LDRFeedView: View {
                 list()
                 navigationLink()
             }
-            .navigationBarTitle("New Updates")
+            .navigationBarTitle("Updates")
             .navigationBarItems(
                 leading: loginButton(),
                 trailing: reloadButton()
@@ -89,6 +89,8 @@ struct LDRFeedView: View {
         }
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         .pickerStyle(SegmentedPickerStyle())
+        .animation(nil)
+        .disabled(feedViewModel.isLoading)
     }
     
     func list() -> some View {
@@ -112,7 +114,6 @@ struct LDRFeedView: View {
                 }
             }
         }
-        .animation(nil)
     }
     
     func navigationLink() -> some View {

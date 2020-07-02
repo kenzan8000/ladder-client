@@ -18,6 +18,9 @@ class LDRFeedUnread {
     var title: String
     var items: [JSON]
     var state: Int
+    var requestCount: Int {
+        LDRFeedOperationQueue.shared.operations.count
+    }
 
     // MARK: - initialization
 
