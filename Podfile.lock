@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.2.1)
-  - DACircularProgress (2.3.1)
   - Firebase/Analytics (6.27.0):
     - Firebase/Core
   - Firebase/Core (6.27.0):
@@ -75,9 +74,6 @@ PODS:
   - ionicons (2.1.1)
   - ISHTTPOperation (1.2.0)
   - KeychainAccess (4.2.0)
-  - KSToastView (0.5.7)
-  - LGRefreshView (1.0.5):
-    - DACircularProgress (~> 2.3.0)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -97,15 +93,12 @@ DEPENDENCIES:
   - ionicons
   - ISHTTPOperation
   - KeychainAccess
-  - KSToastView
-  - LGRefreshView
   - SwiftLint
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - DACircularProgress
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -121,8 +114,6 @@ SPEC REPOS:
     - ionicons
     - ISHTTPOperation
     - KeychainAccess
-    - KSToastView
-    - LGRefreshView
     - nanopb
     - PromisesObjC
     - SwiftLint
@@ -130,7 +121,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
   FirebaseAnalytics: 0ea640473474f036cabbc2576e20c2d63671c92f
   FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
@@ -146,13 +136,11 @@ SPEC CHECKSUMS:
   ionicons: 630bcd2c2970741c3359e3a35ad544e71d3c086b
   ISHTTPOperation: dfe4b6b2b3d7803688b22df2c46ea9827081e723
   KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
-  KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
-  LGRefreshView: 34746afadbd23de8d1449cab15f3d89269645d43
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 8b91fe896142cd4dbd6eb4ae29bee86c4c757a02
+PODFILE CHECKSUM: 43e21708b9d0410a482a97fcb547bc03e7f0cccf
 
 COCOAPODS: 1.9.1

@@ -140,16 +140,3 @@ struct LDRFeedView_Previews: PreviewProvider {
         LDRFeedView(feedViewModel: LDRFeedViewModel())
     }
 }
-
-// MARK: - LDRFeedViewController
-class LDRFeedViewController: UIHostingController<LDRFeedView> {
-
-    // MARK: - initialization
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(
-            coder: aDecoder,
-            rootView: LDRFeedView(feedViewModel: LDRFeedViewModel())
-        )
-    }
-}

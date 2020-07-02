@@ -89,16 +89,3 @@ struct LDRPinView_Previews: PreviewProvider {
         LDRPinView(pinViewModel: LDRPinViewModel())
     }
 }
-
-// MARK: - LDRPinViewController
-class LDRPinViewController: UIHostingController<LDRPinView> {
-
-    // MARK: - initialization
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(
-            coder: aDecoder,
-            rootView: LDRPinView(pinViewModel: LDRPinViewModel())
-        )
-    }
-}
