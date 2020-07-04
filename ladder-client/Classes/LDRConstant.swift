@@ -18,9 +18,8 @@ enum LDRKeychain {
 
 enum LDRNotificationCenter {
     static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
-    static let didGetUnread = Notification.Name("LDRNotificationCenter.didGetUnread")
+    static let willCloseLoginView = Notification.Name("LDRNotificationCenter.willCloseLoginView")
     static let didGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError")
-    static let willResignActive = Notification.Name("LDRNotificationCenter.willResignActive")
     static let didBecomeActive = Notification.Name("LDRNotificationCenter.didBecomeActive")
 }
 

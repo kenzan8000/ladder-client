@@ -49,6 +49,12 @@ final class LDRPinViewModel: ObservableObject {
             name: LDRNotificationCenter.didBecomeActive,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LDRPinViewModel.willCloseLoginView),
+            name: LDRNotificationCenter.willCloseLoginView,
+            object: nil
+        )
     }
 
     // MARK: - destruction
@@ -81,6 +87,16 @@ final class LDRPinViewModel: ObservableObject {
     func didBecomeActive(notification: NSNotification) {
         DispatchQueue.main.async { [unowned self] in
             self.loadPinsFromAPI()
+        }
+    }
+    
+    /// called when close button pressed on login view
+    ///
+    /// - Parameter notification: nsnotification
+    @objc
+    func willCloseLoginView(notification: NSNotification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.isPresentingLoginView = false
         }
     }
     
