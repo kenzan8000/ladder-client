@@ -21,9 +21,6 @@ struct LDRLoginView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(height: 0, alignment: .bottom)
             .navigationBarTitle("Login", displayMode: .large)
-            .navigationBarItems(
-                leading: closeButton()
-            )
             .padding(16)
         }
         .alert(isPresented: loginViewModel.isPresentingAlert) {
@@ -36,23 +33,6 @@ struct LDRLoginView: View {
         .onDisappear {
             self.loginViewModel.endLogin()
         }
-    }
-    
-    func closeButton() -> some View {
-        Button(
-            action: {
-                NotificationCenter.default.post(name: LDRNotificationCenter.willCloseLoginView, object: nil)
-            },
-            label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_close,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
-                .foregroundColor(Color.blue)
-            }
-        )
     }
     
     func urlDomainForm() -> some View {
