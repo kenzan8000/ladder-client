@@ -22,7 +22,7 @@ struct LDRFeedView: View {
                 trailing: reloadButton()
             )
             .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
-                LDRLoginView(loginViewModel: LDRLoginViewModel())
+                LDRLoginView().environmentObject(LDRLoginViewModel())
             }
         }
         .onAppear {
