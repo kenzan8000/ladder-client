@@ -6,7 +6,8 @@ import WebKit
 final class LDRFeedDetailWebViewModel: ObservableObject {
     
     // MARK: - model
-    @Published var isInitialLoading = false
+    var isInitialLoading = false
+    @Published var doneInitialLoading = false
     var webView = WKWebView()
     var webViewNavigation = LDRFeedDetailWebViewNavigation()
     @Published var safariUrl: URL?
@@ -33,6 +34,7 @@ final class LDRFeedDetailWebViewModel: ObservableObject {
             self.isInitialLoading = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
                 self.webView.isHidden = false
+                self.doneInitialLoading = true
             }
             usleep(300000)
         }

@@ -14,7 +14,15 @@ struct LDRFeedDetailView: View {
     var body: some View {
         VStack {
             header()
-            WebView(webView: feedDetailWebViewModel.webView)
+            ZStack {
+                WebView(webView: feedDetailWebViewModel.webView)
+                if !feedDetailWebViewModel.doneInitialLoading {
+                    ActivityIndicator(
+                        isAnimating: .constant(true),
+                        style: .large
+                    )
+                }
+            }
             footer()
         }
         .navigationBarTitle(feedDetailViewModel.unread.title)
