@@ -20,10 +20,11 @@ class ladder_clientTests: XCTestCase {
     // MARK: - http requests
 
     /// Tests Login
-    func testLogin() {
+    func testLoginOperationQueue_whenInitialState_requestLogin() {
         var responseError: Error?
         let promise = expectation(description: "Login Succeeded")
-        LDRLoginOperationQueue.shared.start { (_, error) -> Void in
+        let sut = LDRLoginOperationQueue.shared
+        sut.start { (_, error) -> Void in
             responseError = error
             promise.fulfill()
         }
@@ -32,11 +33,12 @@ class ladder_clientTests: XCTestCase {
     }
     
     /// Tests Requesting Feed Subs API
-    func testRequestFeedSubs() {
+    func testFeedOperationQueue_whenHavingSession_requestFeedSubs() {
         var responseError: Error?
         var responseJson: JSON?
         let promise = expectation(description: "Request Subs Succeeded")
-        LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json, error) -> Void in
+        let sut = LDRFeedOperationQueue.shared
+        sut.requestSubs { [unowned self] (json, error) -> Void in
             responseError = error
             responseJson = json
             if let json = json {
@@ -54,14 +56,15 @@ class ladder_clientTests: XCTestCase {
     }
 
     /// Tests Requesting Feed Unread API
-    func testRequestFeedUnread() {
+    func testFeedOperationQueue_whenHavingSession_requestFeedUnread() {
         var responseError: Error?
         let promise = expectation(description: "Request Unread Succeeded")
         guard let sId = self.subscribeId else {
             XCTFail("You weren't able to get subscribeId from testRequestFeedSubs")
             return
         }
-        LDRFeedOperationQueue.shared.requestUnread(subscribeId: sId) { (_, error) -> Void in
+        let sut = LDRFeedOperationQueue.shared
+        sut.requestUnread(subscribeId: sId) { (_, error) -> Void in
             responseError = error
             promise.fulfill()
         }
@@ -70,14 +73,15 @@ class ladder_clientTests: XCTestCase {
     }
     
     /// Tests Requesting Feed Touch All API
-    func testRequestFeedTouchAll() {
+    func testFeedOperationQueue_whenHavingSession_requestFeedTouchAll() {
         var responseError: Error?
         let promise = expectation(description: "Request Touch All Succeeded")
         guard let sId = self.subscribeId else {
             XCTFail("You weren't able to get subscribeId from testRequestFeedSubs")
             return
         }
-        LDRFeedOperationQueue.shared.requestTouchAll(subscribeId: sId) { (_, error) -> Void in
+        let sut = LDRFeedOperationQueue.shared
+        sut.requestTouchAll(subscribeId: sId) { (_, error) -> Void in
             responseError = error
             promise.fulfill()
         }
@@ -86,14 +90,15 @@ class ladder_clientTests: XCTestCase {
     }
     
     /// Tests Requesting Pin Add  API
-    func testRequestPinAdd() {
+    func testPinOperationQueue_whenHavingSession_requestPinAdd() {
         var responseError: Error?
         let promise = expectation(description: "Request Pin Add Succeeded")
         guard let link = URL(string: "https://google.com") else {
             return
         }
         let title = "Google"
-        LDRPinOperationQueue.shared.requestPinAdd(link: link, title: title) { _, error in
+        let sut = LDRPinOperationQueue.shared
+        sut.requestPinAdd(link: link, title: title) { _, error in
             responseError = error
             promise.fulfill()
         }
@@ -102,13 +107,14 @@ class ladder_clientTests: XCTestCase {
     }
     
     /// Tests Requesting Pin Remove  API
-    func testRequestPinRemove() {
+    func testPinOperationQueue_whenHavingSession_requestPinRemove() {
         var responseError: Error?
         let promise = expectation(description: "Request Pin Remove Succeeded")
         guard let link = URL(string: "https://google.com") else {
             return
         }
-        LDRPinOperationQueue.shared.requestPinRemove(link: link) { _, error in
+        let sut = LDRPinOperationQueue.shared
+        sut.requestPinRemove(link: link) { _, error in
             responseError = error
             promise.fulfill()
         }
@@ -117,10 +123,11 @@ class ladder_clientTests: XCTestCase {
     }
     
     /// Tests Requesting Pin All  API
-    func testRequestPinAll() {
+    func testPinOperationQueue_whenHavingSession_RequestPinAll() {
         var responseError: Error?
         let promise = expectation(description: "Request Pin All Succeeded")
-        LDRPinOperationQueue.shared.requestPinAll { _, error in
+        let sut = LDRPinOperationQueue.shared
+        sut.requestPinAll { _, error in
             responseError = error
             promise.fulfill()
         }
