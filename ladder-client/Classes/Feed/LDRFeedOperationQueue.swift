@@ -23,13 +23,6 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
 
     // MARK: - public api
 
-    /// start operation
-    ///
-    /// - Parameter completionHandler: handler called when completed the operation
-    func start(completionHandler: @escaping (_ json: JSON?, _ error: Error?) -> Void) {
-        self.requestSubs(completionHandler: completionHandler)
-    }
-
     /// request api/subs
     ///
     /// - Parameter completionHandler: handler called when completed the request

@@ -2,17 +2,17 @@
 @testable import SwiftyJSON
 import XCTest
 
-class ladder_clientTests: XCTestCase {
+class ladder_clientNetworkingTests: XCTestCase {
 
     var subscribeId: String? = nil
     
     override func setUpWithError() throws {
         super.setUp()
-        subscribeId = nil
+        // subscribeId = nil
     }
 
     override func tearDownWithError() throws {
-        subscribeId = nil
+        // subscribeId = nil
         super.tearDown()
     }
     
@@ -24,7 +24,7 @@ class ladder_clientTests: XCTestCase {
         var responseError: Error?
         let promise = expectation(description: "Login Succeeded")
         let sut = LDRLoginOperationQueue.shared
-        sut.start { (_, error) -> Void in
+        sut.start { _, error in
             responseError = error
             promise.fulfill()
         }
@@ -35,12 +35,10 @@ class ladder_clientTests: XCTestCase {
     /// Tests Requesting Feed Subs API
     func testFeedOperationQueue_whenHavingSession_requestFeedSubs() {
         var responseError: Error?
-        var responseJson: JSON?
         let promise = expectation(description: "Request Subs Succeeded")
         let sut = LDRFeedOperationQueue.shared
-        sut.requestSubs { [unowned self] (json, error) -> Void in
+        sut.requestSubs { [unowned self] json, error in
             responseError = error
-            responseJson = json
             if let json = json {
                 let items = json.arrayValue
                 for item in items {
@@ -52,7 +50,6 @@ class ladder_clientTests: XCTestCase {
         }
         wait(for: [promise], timeout: 10)
         XCTAssertNil(responseError)
-        XCTAssertNil(responseJson)
     }
 
     /// Tests Requesting Feed Unread API
@@ -64,7 +61,7 @@ class ladder_clientTests: XCTestCase {
             return
         }
         let sut = LDRFeedOperationQueue.shared
-        sut.requestUnread(subscribeId: sId) { (_, error) -> Void in
+        sut.requestUnread(subscribeId: sId) { _, error in
             responseError = error
             promise.fulfill()
         }
@@ -81,7 +78,7 @@ class ladder_clientTests: XCTestCase {
             return
         }
         let sut = LDRFeedOperationQueue.shared
-        sut.requestTouchAll(subscribeId: sId) { (_, error) -> Void in
+        sut.requestTouchAll(subscribeId: sId) { _, error in
             responseError = error
             promise.fulfill()
         }
