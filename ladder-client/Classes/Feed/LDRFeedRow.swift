@@ -31,13 +31,9 @@ struct LDRFeedRow: View {
                     .foregroundColor(color)
                     .frame(alignment: .trailing)
                     
-                    Image(uiImage: IonIcons.image(
-                            withIcon: ion_chevron_right,
-                            iconColor: [Color.blue: UIColor.systemBlue, Color.gray: UIColor.systemGray][color],
-                            iconSize: 24,
-                            imageSize: CGSize(width: 24, height: 24)
-                        )
-                    )
+                    Image(systemName: "chevron.right")
+                    .foregroundColor(color)
+                    .font(.title)
                     .frame(alignment: .trailing)
                 }
                 .frame(height: 64)
@@ -53,7 +49,7 @@ struct LDRFeedRow_Previews: PreviewProvider {
         LDRFeedRow(
             title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
             unreadCount: "187",
-            color: Color.gray
+            color: .gray
         )
     }
 }

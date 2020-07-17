@@ -27,12 +27,7 @@ struct LDRTabView: View {
     func feedView(tab: Int) -> some View {
         LDRFeedView(feedViewModel: feedViewModel)
         .tabItem {
-            Image(uiImage: IonIcons.image(
-                withIcon: ion_social_rss,
-                iconColor: tab == Tab.feed ? UIColor.systemBlue : UIColor.systemGray,
-                iconSize: 25,
-                imageSize: CGSize(width: 75, height: 75)
-            ))
+            Image(systemName: "wifi")
             Text("RSS Feeds")
         }
         .tag(Tab.feed)
@@ -41,12 +36,7 @@ struct LDRTabView: View {
     func pinView(tab: Int) -> some View {
         LDRPinView(pinViewModel: pinViewModel)
         .tabItem {
-            Image(uiImage: IonIcons.image(
-                withIcon: ion_pin,
-                iconColor: tab == Tab.pin ? UIColor.systemBlue : UIColor.systemGray,
-                iconSize: 25,
-                imageSize: CGSize(width: 75, height: 75)
-            ))
+            Image(systemName: "pin.fill")
             Text("Read Later Pins")
         }
         .tag(Tab.pin)

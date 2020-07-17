@@ -26,7 +26,7 @@ class LDRToastView: UILabel {
         view.text = text
         view.textAlignment = .center
         view.numberOfLines = 0
-        view.textColor = UIColor.label
+        view.textColor = .label
         view.backgroundColor = UIColor.systemGray5.withAlphaComponent(0.85)
         view.frame = CGRect(
             x: 0,

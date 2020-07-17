@@ -41,14 +41,10 @@ struct LDRFeedView: View {
                 self.feedViewModel.isPresentingLoginView.toggle()
             },
             label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_log_in,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                Image(systemName: "person.circle")
+                .foregroundColor(.blue)
                 Text("Login")
-                .foregroundColor(Color.blue)
+                .foregroundColor(.blue)
             }
         )
     }
@@ -60,13 +56,9 @@ struct LDRFeedView: View {
             },
             label: {
                 Text("Reload")
-                .foregroundColor(Color.blue)
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_refresh,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                .foregroundColor(.blue)
+                Image(systemName: "arrow.clockwise")
+                .foregroundColor(.blue)
             }
         )
     }
@@ -76,19 +68,11 @@ struct LDRFeedView: View {
             selection: $feedViewModel.segment,
             label: EmptyView()
         ) {
-            Image(uiImage: IonIcons.image(
-                withIcon: ion_ios_star,
-                iconColor: feedViewModel.segment == LDRFeedSubsUnread.Segment.rate ? UIColor.systemBlue : UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ))
+            Image(systemName: "star.fill")
+            .foregroundColor(feedViewModel.segment == LDRFeedSubsUnread.Segment.rate ? .blue : .gray)
             .tag(LDRFeedSubsUnread.Segment.rate)
-            Image(uiImage: IonIcons.image(
-                withIcon: ion_ios_folder,
-                iconColor: feedViewModel.segment == LDRFeedSubsUnread.Segment.folder ? UIColor.systemBlue : UIColor.systemGray,
-                iconSize: 32,
-                imageSize: CGSize(width: 32, height: 32)
-            ))
+            Image(systemName: "folder.fill")
+            .foregroundColor(feedViewModel.segment == LDRFeedSubsUnread.Segment.folder ? .blue : .gray)
             .tag(LDRFeedSubsUnread.Segment.folder)
         }
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
@@ -106,7 +90,7 @@ struct LDRFeedView: View {
                         LDRFeedRow(
                             title: subsunread.title,
                             unreadCount: self.feedViewModel.unreads[subsunread]?.state != LDRFeedUnread.State.read ? subsunread.unreadCountString : "",
-                            color: self.feedViewModel.unreads[subsunread]?.state == LDRFeedUnread.State.unread ? Color.blue : Color.gray
+                            color: self.feedViewModel.unreads[subsunread]?.state == LDRFeedUnread.State.unread ? .blue : .gray
                         ) {
                             guard let unread = self.feedViewModel.unreads[subsunread] else {
                                 return

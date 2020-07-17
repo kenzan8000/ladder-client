@@ -56,13 +56,9 @@ struct LDRFeedDetailView: View {
             },
             label: {
                 Text("Pin it")
-                .foregroundColor(Color.blue)
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_pin,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                .foregroundColor(.blue)
+                Image(systemName: "pin.fill")
+                .foregroundColor(.blue)
             }
         )
     }
@@ -105,11 +101,10 @@ struct LDRFeedDetailView: View {
     }
     
     func moveButton(direction: Int) -> some View {
-        let icon = [-1: ion_chevron_left, 1: ion_chevron_right]
-        var color = UIColor.systemBlue
+        var color = Color.blue
         var opacity = 1.0
         if feedDetailViewModel.index + direction < 0 || feedDetailViewModel.index + direction >= feedDetailViewModel.count {
-            color = UIColor.systemBlue
+            color = Color.blue
             opacity = 0.5
         }
         return Button(
@@ -130,13 +125,9 @@ struct LDRFeedDetailView: View {
                 }
             },
             label: {
-                Image(uiImage: IonIcons.image(
-                        withIcon: icon[direction],
-                        iconColor: color,
-                        iconSize: 36,
-                        imageSize: CGSize(width: 36, height: 36)
-                    )
-                )
+                Image(systemName: direction == -1 ? "chevron.left" : "chevron.right")
+                .font(.title)
+                .foregroundColor(color)
             }
         )
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)

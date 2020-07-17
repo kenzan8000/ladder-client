@@ -90,12 +90,8 @@ struct LDRLoginView: View {
                 NotificationCenter.default.post(name: LDRNotificationCenter.willCloseLoginView, object: nil)
             },
             label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_close,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                Image(systemName: "xmark")
+                .foregroundColor(.blue)
             }
         )
     }

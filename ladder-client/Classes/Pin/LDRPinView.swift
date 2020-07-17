@@ -33,14 +33,10 @@ struct LDRPinView: View {
                 self.pinViewModel.isPresentingLoginView.toggle()
             },
             label: {
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_log_in,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                Image(systemName: "person.circle")
+                .foregroundColor(.blue)
                 Text("Login")
-                .foregroundColor(Color.blue)
+                .foregroundColor(.blue)
             }
         )
     }
@@ -52,13 +48,9 @@ struct LDRPinView: View {
             },
             label: {
                 Text("Reload")
-                .foregroundColor(Color.blue)
-                Image(uiImage: IonIcons.image(
-                    withIcon: ion_android_refresh,
-                    iconColor: UIColor.systemBlue,
-                    iconSize: 32,
-                    imageSize: CGSize(width: 32, height: 32)
-                ))
+                .foregroundColor(.blue)
+                Image(systemName: "arrow.clockwise")
+                .foregroundColor(.blue)
             }
         )
     }
