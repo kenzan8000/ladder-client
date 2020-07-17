@@ -1,3 +1,5 @@
+import UIKit
+
 // MARK: - LDRBlinkView
 class LDRBlinkView: UIView {
 

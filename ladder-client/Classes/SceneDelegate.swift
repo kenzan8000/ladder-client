@@ -1,4 +1,4 @@
-import Firebase
+import FirebaseCore
 import KeychainAccess
 import SwiftUI
 import UIKit

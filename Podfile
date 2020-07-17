@@ -8,8 +8,6 @@ project target_name
 def main_pods
   # lint
   pod 'SwiftLint'
-  # font
-  pod 'ionicons'
   # ui
   pod "Introspect"
   # json parser
