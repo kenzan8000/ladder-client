@@ -78,6 +78,7 @@ PODS:
   - PromisesObjC (1.2.9)
   - SwiftLint (0.39.2)
   - SwiftyJSON (5.0.0)
+  - ViewInspector (0.3.8)
 
 DEPENDENCIES:
   - Alamofire
@@ -90,6 +91,7 @@ DEPENDENCIES:
   - KeychainAccess
   - SwiftLint
   - SwiftyJSON
+  - ViewInspector
 
 SPEC REPOS:
   trunk:
@@ -111,6 +113,7 @@ SPEC REPOS:
     - PromisesObjC
     - SwiftLint
     - SwiftyJSON
+    - ViewInspector
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -131,7 +134,8 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  ViewInspector: 3f5b65a60bbabbf4521ea5fdf78633ee55ba54b5
 
-PODFILE CHECKSUM: 679522b696fea27ad0125f4cdf8a5a760cc4302b
+PODFILE CHECKSUM: c75a333bc0a299ff5952de5bfa2bd95713e53aea
 
 COCOAPODS: 1.9.1

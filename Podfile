@@ -23,6 +23,8 @@ def main_pods
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
+  # swiftui unit test
+  pod 'ViewInspector'
 end
 
 target target_name do
