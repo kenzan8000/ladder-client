@@ -28,6 +28,7 @@
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E670842924766740006571DA /* LDRNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
+		E675A49324D4342D00C050C4 /* LDRLoginViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */; };
 		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
 		E67C46492487873A00480D46 /* LDRLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C46482487873A00480D46 /* LDRLogin.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
@@ -126,6 +127,7 @@
 		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
 		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
+		E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewTest.swift; sourceTree = "<group>"; };
 		E676000F1F94855E000A7B16 /* LDROperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDROperation.h; sourceTree = "<group>"; };
 		E67600101F94855F000A7B16 /* LDROperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDROperation.m; sourceTree = "<group>"; };
 		E67C46482487873A00480D46 /* LDRLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLogin.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		E644964624BC508B00F78EA2 /* AppModel */ = {
 			isa = PBXGroup;
 			children = (
+				E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */,
 				E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */,
 			);
 			path = AppModel;
@@ -797,6 +800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E670842924766740006571DA /* LDRNetworkingTests.swift in Sources */,
+				E675A49324D4342D00C050C4 /* LDRLoginViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,6 @@ struct LDRLoginView: View {
     // MARK: - property
 
     var dismiss: (() -> Void)?
-    // @ObservedObject var loginViewModel: LDRLoginViewModel
     @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
     // MARK: - view
@@ -13,16 +12,19 @@ struct LDRLoginView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 10) {
-                self.urlDomainForm()
+                urlDomainForm
                 Spacer().frame(height: 10)
-                self.usernamePasswordForm()
+                usernameAndPasswordForm
                 Spacer().frame(height: 10)
-                self.loginButton()
+                HStack {
+                    loginButton
+                }
+                .frame(maxWidth: .infinity)
             }
             .fixedSize(horizontal: false, vertical: true)
             .frame(height: 0, alignment: .bottom)
             .navigationBarTitle("Login", displayMode: .large)
-            .navigationBarItems(leading: closeButton())
+            .navigationBarItems(leading: closeButton)
             .padding(16)
         }
         .alert(isPresented: loginViewModel.isPresentingAlert) {
@@ -37,7 +39,7 @@ struct LDRLoginView: View {
         }
     }
     
-    func urlDomainForm() -> some View {
+    var urlDomainForm: some View {
         Group {
             Text("Your Fastladder URL:")
             HStack {
@@ -45,46 +47,57 @@ struct LDRLoginView: View {
                 .padding(6)
                 .border(Color.gray)
                 
-                TextField(
-                    "",
-                    text: Binding<String>(
-                        get: { self.loginViewModel.urlDomain },
-                        set: { self.loginViewModel.update(domainUrl: $0) }
-                    )
-                )
-                .keyboardType(.URL)
-                .textContentType(.URL)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                urlDomainTextField
             }
         }
     }
     
-    func usernamePasswordForm() -> some View {
+    var urlDomainTextField: some View {
+        TextField(
+            "",
+            text: Binding<String>(
+                get: { self.loginViewModel.urlDomain },
+                set: { self.loginViewModel.update(domainUrl: $0) }
+            )
+        )
+        .keyboardType(.URL)
+        .textContentType(.URL)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+    
+    var usernameAndPasswordForm: some View {
         Group {
-            TextField(
-                "username",
-                text: Binding<String>(
-                    get: { self.loginViewModel.username },
-                    set: { self.loginViewModel.update(username: $0) }
-                )
-            )
-            .keyboardType(.alphabet)
-            .textContentType(.username)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            SecureField(
-                "password",
-                text: Binding<String>(
-                    get: { self.loginViewModel.password },
-                    set: { self.loginViewModel.update(password: $0) }
-                )
-            )
-            .textContentType(.password)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            usernameTextField
+            passwordTextField
         }
     }
     
-    func closeButton() -> some View {
+    var usernameTextField: some View {
+        TextField(
+            "username",
+            text: Binding<String>(
+                get: { self.loginViewModel.username },
+                set: { self.loginViewModel.update(username: $0) }
+            )
+        )
+        .keyboardType(.alphabet)
+        .textContentType(.username)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+    
+    var passwordTextField: some View {
+        SecureField(
+            "password",
+            text: Binding<String>(
+                get: { self.loginViewModel.password },
+                set: { self.loginViewModel.update(password: $0) }
+            )
+        )
+        .textContentType(.password)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+    
+    var closeButton: some View {
         Button(
             action: {
                 NotificationCenter.default.post(name: LDRNotificationCenter.willCloseLoginView, object: nil)
@@ -96,26 +109,23 @@ struct LDRLoginView: View {
         )
     }
     
-    func loginButton() -> some View {
-        HStack {
-            Button(
-                action: { self.loginViewModel.startLogin() },
-                label: {
-                    if self.loginViewModel.isLogingIn {
-                        ActivityIndicator(
-                            isAnimating: .constant(true),
-                            style: .medium
-                        )
-                    } else {
-                        Text("Login")
-                    }
+    var loginButton: some View {
+        Button(
+            action: { self.loginViewModel.startLogin() },
+            label: {
+                if self.loginViewModel.isLogingIn {
+                    ActivityIndicator(
+                        isAnimating: .constant(true),
+                        style: .medium
+                    )
+                } else {
+                    Text("Login")
                 }
-            )
-            .frame(width: 112)
-            .padding(8)
-            .border(Color.blue)
-        }
-        .frame(maxWidth: .infinity)
+            }
+        )
+        .frame(width: 112)
+        .padding(8)
+        .border(Color.blue)
     }
 }
 
