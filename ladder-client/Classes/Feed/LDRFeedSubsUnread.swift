@@ -6,9 +6,9 @@ class LDRFeedSubsUnread: NSManagedObject {
     
     // MARK: - enum
     
-    enum Segment {
-        static let rate = 0
-        static let folder = 1
+    enum Segment: Int {
+        case rate = 0
+        case folder = 1
     }
     
     // MARK: - property
@@ -171,7 +171,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     ///
     /// - Parameter segment: search condition -> rate or folder
     /// - Returns: models from coredata
-    class func fetch(segment: Int) -> [LDRFeedSubsUnread] {
+    class func fetch(segment: Segment) -> [LDRFeedSubsUnread] {
         let context = LDRCoreDataManager.shared.managedObjectContext
 
         // make fetch request
@@ -183,9 +183,9 @@ class LDRFeedSubsUnread: NSManagedObject {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
         var sortDescriptor: NSSortDescriptor?
-        if segment == Segment.rate {
+        if segment == .rate {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false)
-        } else if segment == Segment.folder {
+        } else if segment == .folder {
             sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true)
         }
         if let descriptor = sortDescriptor {

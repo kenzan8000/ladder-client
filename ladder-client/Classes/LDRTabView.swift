@@ -4,9 +4,9 @@ import SwiftUI
 struct LDRTabView: View {
     // MARK: - enum
     
-    enum Tab {
-        static let feed = 0
-        static let pin = 1
+    enum Tab: Int {
+        case feed = 0
+        case pin = 1
     }
     
     // MARK: - property
@@ -24,7 +24,7 @@ struct LDRTabView: View {
         }
     }
 
-    func feedView(tab: Int) -> some View {
+    func feedView(tab: Tab) -> some View {
         LDRFeedView(feedViewModel: feedViewModel)
         .tabItem {
             Image(systemName: "wifi")
@@ -33,7 +33,7 @@ struct LDRTabView: View {
         .tag(Tab.feed)
     }
         
-    func pinView(tab: Int) -> some View {
+    func pinView(tab: Tab) -> some View {
         LDRPinView(pinViewModel: pinViewModel)
         .tabItem {
             Image(systemName: "pin.fill")

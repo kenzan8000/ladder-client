@@ -5,7 +5,7 @@ import SwiftyJSON
 final class LDRFeedViewModel: ObservableObject {
     
     // MARK: - model
-    @Published var segment: Int
+    @Published var segment: LDRFeedSubsUnread.Segment
     @Published var subsunreads: [LDRFeedSubsUnread]
     @Published var rates: [String] = []
     @Published var folders: [String] = []

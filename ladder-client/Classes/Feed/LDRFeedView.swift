@@ -69,10 +69,10 @@ struct LDRFeedView: View {
             label: EmptyView()
         ) {
             Image(systemName: "star.fill")
-            .foregroundColor(feedViewModel.segment == LDRFeedSubsUnread.Segment.rate ? .blue : .gray)
+            .foregroundColor(feedViewModel.segment == .rate ? .blue : .gray)
             .tag(LDRFeedSubsUnread.Segment.rate)
             Image(systemName: "folder.fill")
-            .foregroundColor(feedViewModel.segment == LDRFeedSubsUnread.Segment.folder ? .blue : .gray)
+            .foregroundColor(feedViewModel.segment == .folder ? .blue : .gray)
             .tag(LDRFeedSubsUnread.Segment.folder)
         }
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))

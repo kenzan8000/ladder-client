@@ -5,11 +5,11 @@ class LDRFeedUnread {
     
     // MARK: - enum
     
-    enum State {
-        static let unloaded = 0
-        static let unread = 1
-        static let read = 2
-        static let noUnread = 3
+    enum State: Int {
+        case unloaded = 0
+        case unread = 1
+        case read = 2
+        case noUnread = 3
     }
     
     // MARK: - property
@@ -17,7 +17,7 @@ class LDRFeedUnread {
     var subscribeId: String
     var title: String
     var items: [JSON]
-    var state: Int
+    var state: State
     var requestCount: Int {
         LDRFeedOperationQueue.shared.operations.count
     }
@@ -32,7 +32,7 @@ class LDRFeedUnread {
         self.subscribeId = subscribeId
         self.title = title
         self.items = []
-        self.state = State.unloaded
+        self.state = .unloaded
     }
 
     // MARK: - public api
