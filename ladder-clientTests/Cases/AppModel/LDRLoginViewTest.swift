@@ -2,19 +2,20 @@
 @testable import ViewInspector
 import XCTest
 
+// extension Inspection: InspectionEmissary where V: Inspectable { }
+extension LDRLoginView: Inspectable { }
+
 // MARK: - LDRLoginViewTest
 class LDRLoginViewTest: XCTestCase {
     
     // MARK: - properties
     
     var sut: LDRLoginView?
-    var loginViewModel: LDRLoginViewModel?
     
     // MARK: - initialization
     
     override func setUpWithError() throws {
         sut = LDRLoginView()
-        loginViewModel = sut?.environmentObject(LDRLoginViewModel()) as? LDRLoginViewModel
         super.setUp()
     }
 
@@ -22,17 +23,37 @@ class LDRLoginViewTest: XCTestCase {
     
     override func tearDownWithError() throws {
         sut = nil
-        loginViewModel = nil
         super.tearDown()
     }
 
     // MARK: - tests
     
-    /// Tests url domain text field
-    func testLoginView_whenInitialState_urlDomainTextField() throws {
-        let text = try sut?.urlDomainTextField.inspect().textField().text().string()
-        print(text)
-        XCTAssertNil(text)
+    /// Tests if URL Domain TextField text should equal to LoginViewModel url domain.
+    func testLoginView_whenInitialState_urlDomainTextFieldTextShouldEqualToLoginViewModelUrlDomain() throws {
+        var urlDomain: String? = nil
+        var text: String? = nil
+        let promise = expectation(description: "URL Domain TextField text should equal to LoginViewModel url domain.")
+        sut?.on(\.didAppear) { view in
+            let actualView = try view.actualView()
+            text = try actualView.urlDomainTextField.inspect().textField().text().string()
+            urlDomain = actualView.loginViewModel.urlDomain
+            promise.fulfill()
+        }
+        ViewHosting.host(view: sut.environmentObject(LDRLoginViewModel()))
+        wait(for: [promise], timeout: 1)
+        XCTAssertEqual(text, urlDomain)
+        /*
+        guard let sut = sut else {
+            XCTAssertNotNil(nil)
+            return
+        }
+        let promise = sut.inspection.inspect(after: 1) { view in
+            urlDomain = try view.actualView().loginViewModel.urlDomain
+            XCTAssertEqual(text, urlDomain)
+        }
+        ViewHosting.host(view: sut.environmentObject(LDRLoginViewModel()))
+        wait(for: [promise], timeout: 1)
+        */
     }
     
 }

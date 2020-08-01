@@ -27,6 +27,7 @@
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E670842924766740006571DA /* LDRNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */; };
+		E670E04524D5D5AD0040122D /* SwiftUI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E670E04424D5D5AD0040122D /* SwiftUI+Inspection.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E675A49324D4342D00C050C4 /* LDRLoginViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */; };
 		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
@@ -126,6 +127,7 @@
 		E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinOperationQueue.swift; sourceTree = "<group>"; };
 		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
 		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
+		E670E04424D5D5AD0040122D /* SwiftUI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Inspection.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewTest.swift; sourceTree = "<group>"; };
 		E676000F1F94855E000A7B16 /* LDROperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDROperation.h; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
 				E6D5903824A0DE0E003CCCBF /* SafariView.swift */,
 				E6E127AE24A4BA22008627D5 /* WebView.swift */,
+				E670E04424D5D5AD0040122D /* SwiftUI+Inspection.swift */,
 			);
 			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				E6BCD01A1F944CA200B2E7E6 /* Reachability.m in Sources */,
 				E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */,
 				E67C46492487873A00480D46 /* LDRLogin.swift in Sources */,
+				E670E04524D5D5AD0040122D /* SwiftUI+Inspection.swift in Sources */,
 				E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */,
 				E69C865B1F98670E00EF525B /* LDRFeedOperationQueue.swift in Sources */,
 			);

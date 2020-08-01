@@ -1,9 +1,15 @@
-//
-//  SwiftUI+Inspection.swift
-//  ladder-client
-//
-//  Created by Kenzan Hase on 8/2/20.
-//  Copyright © 2020 kenzan8000. All rights reserved.
-//
+import Combine
+import SwiftUI
+import ViewInspector
 
-import Foundation
+internal final class Inspection<V> where V: View {
+
+    let notice = PassthroughSubject<UInt, Never>()
+    var callbacks = [UInt: (V) -> Void]()
+
+    func visit(_ view: V, _ line: UInt) {
+        if let callback = callbacks.removeValue(forKey: line) {
+            callback(view)
+        }
+    }
+}

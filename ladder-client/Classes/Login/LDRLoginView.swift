@@ -7,6 +7,9 @@ struct LDRLoginView: View {
     var dismiss: (() -> Void)?
     @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
+    // internal let inspection = Inspection<Self>()
+    internal var didAppear: ((Self) -> Void)?
+    
     // MARK: - view
 
     var body: some View {
@@ -33,6 +36,13 @@ struct LDRLoginView: View {
                 title = error.localizedDescription
             }
             return Alert(title: Text(title))
+        }
+        /*
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0)
+        }
+        */
+        .onAppear {
+            self.didAppear?(self)
         }
         .onDisappear {
             self.loginViewModel.endLogin()
