@@ -30,16 +30,17 @@ class LDRLoginViewTest: XCTestCase {
     
     /// Tests if URL Domain TextField text should equal to LoginViewModel url domain.
     func testLoginView_whenInitialState_urlDomainTextFieldTextShouldEqualToLoginViewModelUrlDomain() throws {
-        var urlDomain: String? = nil
+        let viewModel = LDRLoginViewModel()
+        let urlDomain = viewModel.urlDomain
         var text: String? = nil
         let promise = expectation(description: "URL Domain TextField text should equal to LoginViewModel url domain.")
         sut?.on(\.didAppear) { view in
-            let actualView = try view.actualView()
-            text = try actualView.urlDomainTextField.inspect().textField().text().string()
-            urlDomain = actualView.loginViewModel.urlDomain
+            text = try view.actualView()
+                .urlDomainTextField.inspect()
+                .textField().text().string()
             promise.fulfill()
         }
-        ViewHosting.host(view: sut.environmentObject(LDRLoginViewModel()))
+        ViewHosting.host(view: sut.environmentObject(viewModel))
         wait(for: [promise], timeout: 1)
         XCTAssertEqual(text, urlDomain)
         /*
