@@ -1,6 +1,0 @@
-For Getting Started
-
-1. Tap right bar button item on navigation bar.
-2. Login view controller will launch.
-3. Then input url as "ladder-client-demo.herokuapp.com", username, and password.
-4. Tap login button.
