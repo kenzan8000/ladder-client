@@ -1,3 +1,4 @@
+/*
 import Combine
 import SwiftUI
 import ViewInspector
@@ -13,3 +14,4 @@ internal final class Inspection<V> where V: View {
         }
     }
 }
+*/

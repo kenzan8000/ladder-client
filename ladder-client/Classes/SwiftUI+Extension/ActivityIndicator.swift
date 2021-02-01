@@ -16,6 +16,10 @@ struct ActivityIndicator: UIViewRepresentable {
             uiView.stopAnimating()
         }
     }
+    
+    static func dismantleUIView(_ uiView: UIActivityIndicatorView, coordinator: ()) {
+        
+    }
 }
 
 struct ActivityIndicator_Previews: PreviewProvider {

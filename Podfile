@@ -24,18 +24,18 @@ def main_pods
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
   # swiftui unit test
-  pod 'ViewInspector'
+  # pod 'ViewInspector'
 end
 
 target target_name do
   main_pods
 end
 
-target_name = 'ladder-clientTests'
-
-target target_name do
-  main_pods
-end
+#target_name = 'ladder-clientTests'
+#
+#target target_name do
+#  main_pods
+#end
 
 target_name = 'app-extension'
 

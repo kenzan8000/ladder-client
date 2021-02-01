@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F1E4A137CC5089D221CB013 /* Pods_ladder_clientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA201C2754636F08A0E3E9E /* Pods_ladder_clientTests.framework */; };
 		8CB4B4A05F4346E4D068905E /* Pods_ladder_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9089F3FDFE5515AF9B9502BC /* Pods_ladder_client.framework */; };
 		DD933E8D446545E16DF32855 /* Pods_app_extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9425D321988930638B2CB016 /* Pods_app_extension.framework */; };
 		E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60230B71F5E54740052F762 /* AppDelegate.swift */; };
@@ -26,10 +25,8 @@
 		E66ACC351F986E45000B7EC5 /* LDRPinOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ACC311F986E45000B7EC5 /* LDRPinOperationQueue.swift */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
-		E670842924766740006571DA /* LDRNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */; };
 		E670E04524D5D5AD0040122D /* SwiftUI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E670E04424D5D5AD0040122D /* SwiftUI+Inspection.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
-		E675A49324D4342D00C050C4 /* LDRLoginViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */; };
 		E67600111F94855F000A7B16 /* LDROperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E67600101F94855F000A7B16 /* LDROperation.m */; };
 		E67C46492487873A00480D46 /* LDRLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C46482487873A00480D46 /* LDRLogin.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
@@ -50,6 +47,7 @@
 		E6CBA82323E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82223E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift */; };
 		E6CBA82523E6AE6600A6F773 /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82423E6AE6600A6F773 /* Dictionary+HTTPBody.swift */; };
 		E6CBA82723E6B39200A6F773 /* URLRequest+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82623E6B39200A6F773 /* URLRequest+Cookie.swift */; };
+		E6D1A69425C83AA700CC7EB3 /* LDROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1A69325C83AA700CC7EB3 /* LDROperation.swift */; };
 		E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5903824A0DE0E003CCCBF /* SafariView.swift */; };
 		E6D8DA521F92CE17002CAD69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8DA511F92CE17002CAD69 /* CoreData.framework */; };
 		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
@@ -66,13 +64,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E61BD3042473C3DF00087CE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
-			remoteInfo = "ladder-client";
-		};
 		E6C8E62B23E52460004F410D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
@@ -98,20 +89,15 @@
 
 /* Begin PBXFileReference section */
 		32529E4E155C47BAB3755686 /* Pods-app-extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-app-extension/Pods-app-extension.release.xcconfig"; sourceTree = "<group>"; };
-		72D9B4E2CD89B83429A518D9 /* Pods-ladder-clientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-clientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-clientTests/Pods-ladder-clientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9089F3FDFE5515AF9B9502BC /* Pods_ladder_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladder_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9425D321988930638B2CB016 /* Pods_app_extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF53690F14A043A005990FB1 /* Pods-ladder-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-client/Pods-ladder-client.debug.xcconfig"; sourceTree = "<group>"; };
 		BD395FE48987FD0A0B67FD4B /* Pods-ladder-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-client/Pods-ladder-client.release.xcconfig"; sourceTree = "<group>"; };
 		C4E45A9148019DD321F442CA /* Pods-app-extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-extension/Pods-app-extension.debug.xcconfig"; sourceTree = "<group>"; };
-		DEA201C2754636F08A0E3E9E /* Pods_ladder_clientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ladder_clientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60230B71F5E54740052F762 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E60763981F9452D60012A910 /* LDRLoginOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRLoginOperationQueue.swift; sourceTree = "<group>"; };
 		E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
-		E61BD2FF2473C3DF00087CE1 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRNetworkingTests.swift; sourceTree = "<group>"; };
-		E61BD3032473C3DF00087CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62870DF1FB2D93D00584B90 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -129,7 +115,6 @@
 		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E670E04424D5D5AD0040122D /* SwiftUI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Inspection.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
-		E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewTest.swift; sourceTree = "<group>"; };
 		E676000F1F94855E000A7B16 /* LDROperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDROperation.h; sourceTree = "<group>"; };
 		E67600101F94855F000A7B16 /* LDROperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDROperation.m; sourceTree = "<group>"; };
 		E67C46482487873A00480D46 /* LDRLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLogin.swift; sourceTree = "<group>"; };
@@ -155,6 +140,7 @@
 		E6CBA82223E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6CBA82423E6AE6600A6F773 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E6CBA82623E6B39200A6F773 /* URLRequest+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cookie.swift"; sourceTree = "<group>"; };
+		E6D1A69325C83AA700CC7EB3 /* LDROperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDROperation.swift; sourceTree = "<group>"; };
 		E6D5903824A0DE0E003CCCBF /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		E6D8DA511F92CE17002CAD69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
@@ -170,18 +156,9 @@
 		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6F929BD1FC44A5E0092F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFFD63A26E14DA34914C63FD /* Pods-ladder-clientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-clientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-clientTests/Pods-ladder-clientTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E61BD2FC2473C3DF00087CE1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2F1E4A137CC5089D221CB013 /* Pods_ladder_clientTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4D1F5E537D0065B7B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,8 +186,6 @@
 				BD395FE48987FD0A0B67FD4B /* Pods-ladder-client.release.xcconfig */,
 				C4E45A9148019DD321F442CA /* Pods-app-extension.debug.xcconfig */,
 				32529E4E155C47BAB3755686 /* Pods-app-extension.release.xcconfig */,
-				FFFD63A26E14DA34914C63FD /* Pods-ladder-clientTests.debug.xcconfig */,
-				72D9B4E2CD89B83429A518D9 /* Pods-ladder-clientTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -253,17 +228,6 @@
 			path = Plists;
 			sourceTree = "<group>";
 		};
-		E61BD3002473C3DF00087CE1 /* ladder-clientTests */ = {
-			isa = PBXGroup;
-			children = (
-				E644964424BC503300F78EA2 /* Cases */,
-				E644964524BC506A00F78EA2 /* Mocks */,
-				E644964824BC50AD00F78EA2 /* Helpers */,
-				E61BD3032473C3DF00087CE1 /* Info.plist */,
-			);
-			path = "ladder-clientTests";
-			sourceTree = "<group>";
-		};
 		E6365963248CD46600FA3908 /* SwiftUI+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,67 +239,11 @@
 			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
 		};
-		E644964424BC503300F78EA2 /* Cases */ = {
-			isa = PBXGroup;
-			children = (
-				E644964624BC508B00F78EA2 /* AppModel */,
-				E644964724BC509900F78EA2 /* UILayer */,
-			);
-			path = Cases;
-			sourceTree = "<group>";
-		};
-		E644964524BC506A00F78EA2 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		E644964624BC508B00F78EA2 /* AppModel */ = {
-			isa = PBXGroup;
-			children = (
-				E675A49224D4342D00C050C4 /* LDRLoginViewTest.swift */,
-				E61BD3012473C3DF00087CE1 /* LDRNetworkingTests.swift */,
-			);
-			path = AppModel;
-			sourceTree = "<group>";
-		};
-		E644964724BC509900F78EA2 /* UILayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UILayer;
-			sourceTree = "<group>";
-		};
-		E644964824BC50AD00F78EA2 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				E644964A24BC50D900F78EA2 /* Classes */,
-				E644964924BC50CE00F78EA2 /* Extensions */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		E644964924BC50CE00F78EA2 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E644964A24BC50D900F78EA2 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		E6690C471F5E537D0065B7B5 = {
 			isa = PBXGroup;
 			children = (
 				E6690C521F5E537E0065B7B5 /* ladder-client */,
 				E6C8E62223E52460004F410D /* app-extension */,
-				E61BD3002473C3DF00087CE1 /* ladder-clientTests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
 				3AFF126D8E990F23BC8A20A9 /* Pods */,
 				F35B2A1F15EE5610A5B8F095 /* Frameworks */,
@@ -347,7 +255,6 @@
 			children = (
 				E6690C501F5E537E0065B7B5 /* ladder-client.app */,
 				E6C8E62123E52460004F410D /* Add the url to "read later"..appex */,
-				E61BD2FF2473C3DF00087CE1 /* ladder-clientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -379,6 +286,7 @@
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
 				E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */,
+				E6D1A69325C83AA700CC7EB3 /* LDROperation.swift */,
 				E676000F1F94855E000A7B16 /* LDROperation.h */,
 				E67600101F94855F000A7B16 /* LDROperation.m */,
 				E6BCD0181F944CA200B2E7E6 /* Reachability.h */,
@@ -477,7 +385,6 @@
 				E6D8DA511F92CE17002CAD69 /* CoreData.framework */,
 				9089F3FDFE5515AF9B9502BC /* Pods_ladder_client.framework */,
 				9425D321988930638B2CB016 /* Pods_app_extension.framework */,
-				DEA201C2754636F08A0E3E9E /* Pods_ladder_clientTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -485,26 +392,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E61BD2FE2473C3DF00087CE1 /* ladder-clientTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E61BD3082473C3DF00087CE1 /* Build configuration list for PBXNativeTarget "ladder-clientTests" */;
-			buildPhases = (
-				4523A8DB97EE72337FA172FE /* [CP] Check Pods Manifest.lock */,
-				E61BD2FB2473C3DF00087CE1 /* Sources */,
-				E61BD2FC2473C3DF00087CE1 /* Frameworks */,
-				E61BD2FD2473C3DF00087CE1 /* Resources */,
-				527790326FEF0914BA982C56 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E61BD3052473C3DF00087CE1 /* PBXTargetDependency */,
-			);
-			name = "ladder-clientTests";
-			productName = "ladder-clientTests";
-			productReference = E61BD2FF2473C3DF00087CE1 /* ladder-clientTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E6690C4F1F5E537D0065B7B5 /* ladder-client */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6690C621F5E537E0065B7B5 /* Build configuration list for PBXNativeTarget "ladder-client" */;
@@ -556,12 +443,6 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
-					E61BD2FE2473C3DF00087CE1 = {
-						CreatedOnToolsVersion = 11.4.1;
-						DevelopmentTeam = 6RYZ4RB738;
-						ProvisioningStyle = Automatic;
-						TestTargetID = E6690C4F1F5E537D0065B7B5;
-					};
 					E6690C4F1F5E537D0065B7B5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 6RYZ4RB738;
@@ -595,19 +476,11 @@
 			targets = (
 				E6690C4F1F5E537D0065B7B5 /* ladder-client */,
 				E6C8E62023E52460004F410D /* app-extension */,
-				E61BD2FE2473C3DF00087CE1 /* ladder-clientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E61BD2FD2473C3DF00087CE1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4E1F5E537D0065B7B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,6 +512,11 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ladder-client/Pods-ladder-client-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLReader/HTMLReader.framework",
 				"${BUILT_PRODUCTS_DIR}/ISHTTPOperation/ISHTTPOperation.framework",
@@ -646,12 +524,16 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/ViewInspector/ViewInspector.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISHTTPOperation.framework",
@@ -659,7 +541,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewInspector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,64 +564,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4523A8DB97EE72337FA172FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ladder-clientTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		527790326FEF0914BA982C56 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ladder-clientTests/Pods-ladder-clientTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/HTMLReader/HTMLReader.framework",
-				"${BUILT_PRODUCTS_DIR}/ISHTTPOperation/ISHTTPOperation.framework",
-				"${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/ViewInspector/ViewInspector.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLReader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISHTTPOperation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Introspect.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewInspector.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ladder-clientTests/Pods-ladder-clientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7027681E00C0F93894E0290D /* [CP] Check Pods Manifest.lock */ = {
@@ -802,15 +625,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E61BD2FB2473C3DF00087CE1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E670842924766740006571DA /* LDRNetworkingTests.swift in Sources */,
-				E675A49324D4342D00C050C4 /* LDRLoginViewTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4C1F5E537D0065B7B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -829,6 +643,7 @@
 				E6E127B124A4C3D9008627D5 /* LDRFeedDetailViewModel.swift in Sources */,
 				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
 				E60763991F9452D70012A910 /* LDRLoginOperationQueue.swift in Sources */,
+				E6D1A69425C83AA700CC7EB3 /* LDROperation.swift in Sources */,
 				E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */,
 				E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */,
 				E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */,
@@ -871,11 +686,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E61BD3052473C3DF00087CE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
-			targetProxy = E61BD3042473C3DF00087CE1 /* PBXContainerItemProxy */;
-		};
 		E6C8E62C23E52460004F410D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E6C8E62023E52460004F410D /* app-extension */;
@@ -895,55 +705,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E61BD3062473C3DF00087CE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFFD63A26E14DA34914C63FD /* Pods-ladder-clientTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_CODE_COVERAGE = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
-			};
-			name = Debug;
-		};
-		E61BD3072473C3DF00087CE1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72D9B4E2CD89B83429A518D9 /* Pods-ladder-clientTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_CODE_COVERAGE = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
-			};
-			name = Release;
-		};
 		E6690C601F5E537E0065B7B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1206,15 +967,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E61BD3082473C3DF00087CE1 /* Build configuration list for PBXNativeTarget "ladder-clientTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E61BD3062473C3DF00087CE1 /* Debug */,
-				E61BD3072473C3DF00087CE1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E6690C4B1F5E537D0065B7B5 /* Build configuration list for PBXProject "ladder-client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
