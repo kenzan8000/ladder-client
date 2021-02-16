@@ -1,4 +1,5 @@
 import Combine
+import HTMLReader
 
 // MARK: - URLSession + LDRRequest
 extension URLSession {
@@ -18,7 +19,16 @@ extension URLSession {
       .map(\.data)
       .eraseToAnyPublisher()
   }
-
+  
+  func publisher(
+    for request: LDRRequest<URLResponse>
+  ) -> AnyPublisher<URLResponse, Swift.Error> {
+    dataTaskPublisher(for: request.urlRequest)
+      .mapError(Error.networking)
+      .map(\.response)
+      .eraseToAnyPublisher()
+  }
+  
   func publisher<Value: Decodable>(
     for request: LDRRequest<Value>,
     using decoder: JSONDecoder = .init()

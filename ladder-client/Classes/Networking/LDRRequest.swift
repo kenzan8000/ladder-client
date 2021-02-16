@@ -1,12 +1,12 @@
 // MARK: - LDRRequest
 struct LDRRequest<Response> {
   // MARK: property
-  
   let url: URL
   let method: HttpMethod
   var headers: [String: String] = [:]
   
   var urlRequest: URLRequest {
+
     var request = URLRequest(url: url)
     switch method {
     case .post(let data), .put(let data):
@@ -15,7 +15,7 @@ struct LDRRequest<Response> {
       var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
       components?.queryItems = queryItems
       guard let url = components?.url else {
-        preconditionFailure("Couldn't create a url from components...")
+        preconditionFailure("Couldn't create a url from components.")
       }
       request = URLRequest(url: url)
     default:
