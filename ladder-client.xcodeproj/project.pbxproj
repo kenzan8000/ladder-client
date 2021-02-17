@@ -329,8 +329,8 @@
 				E63B44A42480FAA70055AC71 /* LDRLoginView.swift */,
 				E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */,
 				E67C46482487873A00480D46 /* LDRLogin.swift */,
-				E60763981F9452D60012A910 /* LDRLoginOperationQueue.swift */,
 				E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */,
+				E60763981F9452D60012A910 /* LDRLoginOperationQueue.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";

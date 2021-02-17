@@ -7,7 +7,6 @@ struct LDRLoginView: View {
     var dismiss: (() -> Void)?
     @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
-    // internal let inspection = Inspection<Self>()
     internal var didAppear: ((Self) -> Void)?
     
     // MARK: - view
@@ -37,10 +36,6 @@ struct LDRLoginView: View {
             }
             return Alert(title: Text(title))
         }
-        /*
-        .onReceive(inspection.notice) { self.inspection.visit(self, $0)
-        }
-        */
         .onAppear {
             self.didAppear?(self)
         }
