@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 // MARK: - LDRLoginViewModel
@@ -19,25 +20,81 @@ final class LDRLoginViewModel: ObservableObject {
       }
     })
   }
-    
+  
+  private var authencityToken = ""
+  private var cancellables = Set<AnyCancellable>()
+  
+  // MARK: destruction
+  
+  deinit {
+    cancellables.forEach { $0.cancel() }
+  }
+  
   // MARK: - public api
 
-  /// start login
-  func startLogin() {
-    if self.isLogingIn {
+  /// login
+  func login() {
+    if isLogingIn {
       return
     }
-    self.isLogingIn = true
-    
-    // URLSession.shared.publisher(for: LDRRequest.login(username: username, password: password))
-    // login.start { [unowned self] _, error in
-    //   self.isLogingIn = false
-    //   self.error = error
-    // }
+    isLogingIn = true
+    requestAuthencityToken()
   }
+  
+  // MARK: - private api
+  
+  /// request authencityToken
+  private func requestAuthencityToken() {
+    LDRRequestHelper.setUsername(username)
+    LDRRequestHelper.setPassword(password)
+    LDRRequestHelper.setURLDomain(urlDomain)
     
-  /// end login
-  func endLogin() {
-    // login.end()
+    URLSession.shared.publisher(for: .login(username: username, password: password))
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] result in
+          if case let .failure(error) = result {
+            self?.fail(by: error)
+          } else {
+            self?.requestSession()
+          }
+        },
+        receiveValue: { [weak self] response in
+          self?.authencityToken = response.authencityToken
+        }
+      )
+      .store(in: &cancellables)
   }
+  
+  /// request session
+  private func requestSession() {
+    URLSession.shared.publisher(for: .session(username: username, password: password, authenticityToken: authencityToken))
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] error in
+          if case let .failure(error) = error {
+            self?.fail(by: error)
+          } else {
+            self?.succeed()
+          }
+        },
+        receiveValue: {
+          LDRRequestHelper.setApiKey($0.apiKey)
+        }
+      )
+      .store(in: &cancellables)
+  }
+  
+  /// calls when succeeded
+  private func succeed() {
+    isLogingIn = false
+    NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
+  }
+  
+  /// calls when failed
+  private func fail(by error: Swift.Error) {
+    self.error = error
+    isLogingIn = false
+  }
+
 }

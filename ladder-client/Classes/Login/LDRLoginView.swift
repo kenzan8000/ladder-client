@@ -27,9 +27,6 @@ struct LDRLoginView: View {
     .onAppear {
       self.didAppear?(self)
     }
-    .onDisappear {
-      self.loginViewModel.endLogin()
-    }
   }
 
   var urlDomainTextField: some View {
@@ -79,7 +76,7 @@ struct LDRLoginView: View {
     
   var loginButton: some View {
     Button(
-      action: { self.loginViewModel.startLogin() },
+      action: { self.loginViewModel.login() },
       label: {
         if self.loginViewModel.isLogingIn {
           ActivityIndicator(

@@ -62,25 +62,4 @@ extension URLSession {
       .map { LDRLoginResponse(data: $0.data, response: $0.response) }
       .eraseToAnyPublisher()
   }
-
-}
-
-// MARK: - LDRRequest + Session
-extension LDRRequest where Response == Data {
-  // MARK: static api
-  
-  /// Session Request
-  /// - Parameters:
-  ///   - username: username string
-  ///   - password: password string
-  ///   - authencityToken: authencityToken string
-  /// - Returns:
-  static func session(username: String, password: String, authenticityToken: String) -> Self {
-    LDRRequest(
-      url: URL(ldrPath: LDR.session),
-      method: .post(
-        ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
-      )
-    )
-  }
 }
