@@ -49,7 +49,7 @@ struct LDRLoginResponse {
   }
 }
 
-// MARK: - URLSession + Login
+// MARK: - URLSession + LDRLoginResponse
 extension URLSession {
 
   // MARK: public api
