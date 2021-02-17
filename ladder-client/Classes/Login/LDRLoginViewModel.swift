@@ -6,7 +6,7 @@ final class LDRLoginViewModel: ObservableObject {
     
   // MARK: - model
     
-  @Published var urlDomain = ""
+  @Published var urlDomain = LDRRequestHelper.getLDRDomain() ?? ""
   @Published var username = ""
   @Published var password = ""
   @Published var isLogingIn = false
@@ -43,7 +43,7 @@ final class LDRLoginViewModel: ObservableObject {
   
   // MARK: - private api
   
-  /// request authencityToken
+  /// requests authencityToken
   private func requestAuthencityToken() {
     LDRRequestHelper.setUsername(username)
     LDRRequestHelper.setPassword(password)
@@ -66,7 +66,7 @@ final class LDRLoginViewModel: ObservableObject {
       .store(in: &cancellables)
   }
   
-  /// request session
+  /// requests session
   private func requestSession() {
     URLSession.shared.publisher(for: .session(username: username, password: password, authenticityToken: authencityToken))
       .receive(on: DispatchQueue.main)
