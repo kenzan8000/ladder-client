@@ -73,13 +73,14 @@ struct LDRLoginView: View {
     Button(
       action: { loginViewModel.login() },
       label: {
-        if loginViewModel.isLogingIn {
-          ActivityIndicator(
-            isAnimating: .constant(true),
-            style: .medium
-          )
-        } else {
+        HStack {
           Text("Login")
+            .foregroundColor(
+              loginViewModel.isLogingIn ? .secondary : .blue
+            )
+          if loginViewModel.isLogingIn {
+            ActivityIndicator(isAnimating: .constant(true), style: .medium)
+          }
         }
       }
     )
