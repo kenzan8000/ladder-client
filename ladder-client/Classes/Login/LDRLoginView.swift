@@ -4,10 +4,8 @@ import SwiftUI
 struct LDRLoginView: View {
   // MARK: - property
 
-  var dismiss: (() -> Void)?
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
-  internal var didAppear: ((Self) -> Void)?
-    
+
   // MARK: - view
 
   var body: some View {
@@ -22,10 +20,7 @@ struct LDRLoginView: View {
         .navigationBarItems(leading: closeButton)
     }
     .alert(isPresented: loginViewModel.isPresentingAlert) {
-      Alert(title: Text(self.loginViewModel.error?.localizedDescription ?? ""))
-    }
-    .onAppear {
-      self.didAppear?(self)
+      Alert(title: Text(loginViewModel.error?.localizedDescription ?? ""))
     }
   }
 
@@ -76,9 +71,9 @@ struct LDRLoginView: View {
     
   var loginButton: some View {
     Button(
-      action: { self.loginViewModel.login() },
+      action: { loginViewModel.login() },
       label: {
-        if self.loginViewModel.isLogingIn {
+        if loginViewModel.isLogingIn {
           ActivityIndicator(
             isAnimating: .constant(true),
             style: .medium
@@ -93,7 +88,7 @@ struct LDRLoginView: View {
 
 // MARK: - LDRLoginView_Previews
 struct LDRLoginSettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LDRLoginView().environmentObject(LDRLoginViewModel())
-    }
+  static var previews: some View {
+    LDRLoginView().environmentObject(LDRLoginViewModel())
+  }
 }

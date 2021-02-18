@@ -32,12 +32,17 @@ final class LDRLoginViewModel: ObservableObject {
   
   // MARK: - public api
 
-  /// login
+  /// logins
   func login() {
     if isLogingIn {
       return
     }
     isLogingIn = true
+    
+    LDRRequestHelper.setUsername(username)
+    LDRRequestHelper.setPassword(password)
+    LDRRequestHelper.setURLDomain(urlDomain)
+    
     requestAuthencityToken()
   }
   
@@ -45,10 +50,6 @@ final class LDRLoginViewModel: ObservableObject {
   
   /// requests authencityToken
   private func requestAuthencityToken() {
-    LDRRequestHelper.setUsername(username)
-    LDRRequestHelper.setPassword(password)
-    LDRRequestHelper.setURLDomain(urlDomain)
-    
     URLSession.shared.publisher(for: .login(username: username, password: password))
       .receive(on: DispatchQueue.main)
       .sink(
@@ -93,8 +94,8 @@ final class LDRLoginViewModel: ObservableObject {
   
   /// calls when failed
   private func fail(by error: Swift.Error) {
-    self.error = error
     isLogingIn = false
+    self.error = error
   }
 
 }

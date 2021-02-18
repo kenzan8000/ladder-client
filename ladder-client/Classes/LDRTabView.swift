@@ -12,6 +12,7 @@ struct LDRTabView: View {
     // MARK: - property
     
     @State private var selected = Tab.feed
+    @StateObject var loginViewModel: LDRLoginViewModel
     var feedViewModel: LDRFeedViewModel
     var pinViewModel: LDRPinViewModel
     
@@ -25,7 +26,7 @@ struct LDRTabView: View {
     }
 
     func feedView(tab: Tab) -> some View {
-        LDRFeedView(feedViewModel: feedViewModel)
+        LDRFeedView(feedViewModel: feedViewModel, loginViewModel: loginViewModel)
         .tabItem {
             Image(systemName: "wifi")
             Text("RSS Feeds")
@@ -34,7 +35,7 @@ struct LDRTabView: View {
     }
         
     func pinView(tab: Tab) -> some View {
-        LDRPinView(pinViewModel: pinViewModel)
+        LDRPinView(pinViewModel: pinViewModel, loginViewModel: loginViewModel)
         .tabItem {
             Image(systemName: "pin.fill")
             Text("Read Later Pins")
@@ -47,6 +48,7 @@ struct LDRTabView: View {
 struct LDRTabView_Previews: PreviewProvider {
     static var previews: some View {
         LDRTabView(
+            loginViewModel: LDRLoginViewModel(),
             feedViewModel: LDRFeedViewModel(),
             pinViewModel: LDRPinViewModel()
         )
@@ -62,6 +64,7 @@ class LDRTabViewController: UIHostingController<LDRTabView> {
         super.init(
             coder: aDecoder,
             rootView: LDRTabView(
+                loginViewModel: LDRLoginViewModel(),
                 feedViewModel: LDRFeedViewModel(),
                 pinViewModel: LDRPinViewModel()
             )

@@ -6,6 +6,7 @@ struct LDRFeedView: View {
     // MARK: - property
 
     @ObservedObject var feedViewModel: LDRFeedViewModel
+    @StateObject var loginViewModel: LDRLoginViewModel
     @State var tabBar: UITabBar?
 
     // MARK: - view
@@ -22,7 +23,7 @@ struct LDRFeedView: View {
                 trailing: reloadButton()
             )
             .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
-                LDRLoginView().environmentObject(LDRLoginViewModel())
+              LDRLoginView().environmentObject(loginViewModel)
             }
         }
         .onAppear {
@@ -125,6 +126,6 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        LDRFeedView(feedViewModel: LDRFeedViewModel())
+        LDRFeedView(feedViewModel: LDRFeedViewModel(), loginViewModel: LDRLoginViewModel())
     }
 }
