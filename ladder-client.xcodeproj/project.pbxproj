@@ -11,6 +11,7 @@
 		DD933E8D446545E16DF32855 /* Pods_app_extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9425D321988930638B2CB016 /* Pods_app_extension.framework */; };
 		E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60230B71F5E54740052F762 /* AppDelegate.swift */; };
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
+		E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */; };
 		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
 		E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */; };
 		E6241ECB1FA462C400DBA613 /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
@@ -99,6 +100,7 @@
 		C4E45A9148019DD321F442CA /* Pods-app-extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-extension/Pods-app-extension.debug.xcconfig"; sourceTree = "<group>"; };
 		E60230B71F5E54740052F762 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginFormValidation.swift; sourceTree = "<group>"; };
 		E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Session.swift"; sourceTree = "<group>"; };
 		E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				E63B44A42480FAA70055AC71 /* LDRLoginView.swift */,
 				E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */,
+				E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */,
 				E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */,
 				E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */,
 			);
@@ -681,6 +684,7 @@
 				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */,
 				E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */,
+				E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */,
 				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,
 				E6BCD01A1F944CA200B2E7E6 /* Reachability.m in Sources */,
 				E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */,

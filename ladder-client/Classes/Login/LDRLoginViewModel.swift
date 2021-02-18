@@ -21,6 +21,16 @@ final class LDRLoginViewModel: ObservableObject {
     })
   }
   
+  lazy var urlDomainValidation: LDRLoginFormValidationPublisher = {
+    $urlDomain.domainValidator("Fastladder URL must be provided.")
+  }()
+  lazy var usernameValidation: LDRLoginFormValidationPublisher = {
+    $username.nonEmptyValidator("username must be provided.")
+  }()
+  lazy var passwordValidation: LDRLoginFormValidationPublisher = {
+    $password.nonEmptyValidator("password must be provided.")
+  }()
+  
   private var authencityToken = ""
   private var cancellables = Set<AnyCancellable>()
   

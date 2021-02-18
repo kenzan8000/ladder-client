@@ -33,6 +33,7 @@ struct LDRLoginView: View {
         "Your Fastladder URL",
         text: $loginViewModel.urlDomain
       )
+        .validation(loginFormValidationPublisher: loginViewModel.urlDomainValidation)
         .keyboardType(.URL)
         .textContentType(.URL)
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -44,6 +45,7 @@ struct LDRLoginView: View {
       "username",
       text: $loginViewModel.username
     )
+      .validation(loginFormValidationPublisher: loginViewModel.usernameValidation)
       .keyboardType(.alphabet)
       .textContentType(.username)
   }
@@ -53,6 +55,7 @@ struct LDRLoginView: View {
       "password",
       text: $loginViewModel.password
     )
+      .validation(loginFormValidationPublisher: loginViewModel.passwordValidation)
       .keyboardType(.alphabet)
       .textContentType(.password)
   }
