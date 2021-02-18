@@ -2,11 +2,11 @@ import SwiftUI
 
 // MARK: - LDRLoginView
 struct LDRLoginView: View {
-  // MARK: - property
+  // MARK: property
 
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
 
-  // MARK: - view
+  // MARK: view
 
   var body: some View {
     NavigationView {
@@ -18,9 +18,16 @@ struct LDRLoginView: View {
       }
         .navigationBarTitle("Login", displayMode: .large)
         .navigationBarItems(leading: closeButton)
+        .allowsHitTesting(!loginViewModel.isLogingIn)
+        .onReceive(loginViewModel.allValidation) { validation in
+          loginViewModel.loginDisabled = !validation.isSuccess
+        }
     }
     .alert(isPresented: loginViewModel.isPresentingAlert) {
       Alert(title: Text(loginViewModel.error?.localizedDescription ?? ""))
+    }
+    .onAppear {
+      loginViewModel.urlDomain = LDRRequestHelper.getLDRDomain() ?? ""
     }
   }
 
@@ -28,7 +35,7 @@ struct LDRLoginView: View {
     HStack {
       Text("https://")
         .padding(6)
-        .border(Color.gray)
+        .border(Color.secondary)
       TextField(
         "Your Fastladder URL",
         text: $loginViewModel.urlDomain
@@ -63,6 +70,7 @@ struct LDRLoginView: View {
   var closeButton: some View {
     Button(
       action: {
+        loginViewModel.tearDown()
         NotificationCenter.default.post(name: LDRNotificationCenter.willCloseLoginView, object: nil)
       },
       label: {
@@ -79,7 +87,8 @@ struct LDRLoginView: View {
         HStack {
           Text("Login")
             .foregroundColor(
-              loginViewModel.isLogingIn ? .secondary : .blue
+              loginViewModel.loginDisabled || loginViewModel.isLogingIn ?
+                .secondary : .blue
             )
           if loginViewModel.isLogingIn {
             ActivityIndicator(isAnimating: .constant(true), style: .medium)
@@ -87,6 +96,7 @@ struct LDRLoginView: View {
         }
       }
     )
+    .disabled(loginViewModel.loginDisabled)
   }
 }
 

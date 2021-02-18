@@ -6,10 +6,9 @@ final class LDRLoginViewModel: ObservableObject {
     
   // MARK: - model
     
-  @Published var urlDomain = LDRRequestHelper.getLDRDomain() ?? ""
+  @Published var urlDomain = ""
   @Published var username = ""
   @Published var password = ""
-  @Published var isLogingIn = false
   @Published var error: Error?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(get: {
@@ -20,7 +19,9 @@ final class LDRLoginViewModel: ObservableObject {
       }
     })
   }
-  
+  @Published var isLogingIn = false
+  @Published var loginDisabled = true
+
   lazy var urlDomainValidation: LDRLoginFormValidationPublisher = {
     $urlDomain.domainValidator("Fastladder URL must be provided.")
   }()
@@ -30,6 +31,15 @@ final class LDRLoginViewModel: ObservableObject {
   lazy var passwordValidation: LDRLoginFormValidationPublisher = {
     $password.nonEmptyValidator("password must be provided.")
   }()
+  lazy var allValidation: LDRLoginFormValidationPublisher = {
+    Publishers.CombineLatest3(
+      urlDomainValidation,
+      usernameValidation,
+      passwordValidation
+    ).map { v1, v2, v3 in
+      [v1, v2, v3].allSatisfy { $0.isSuccess } ? .success : .failure(message: "")
+    }.eraseToAnyPublisher()
+  }()
   
   private var authencityToken = ""
   private var cancellables = Set<AnyCancellable>()
@@ -37,16 +47,13 @@ final class LDRLoginViewModel: ObservableObject {
   // MARK: destruction
   
   deinit {
-    cancellables.forEach { $0.cancel() }
+    tearDown()
   }
   
   // MARK: - public api
 
   /// logins
   func login() {
-    if isLogingIn {
-      return
-    }
     isLogingIn = true
     
     LDRRequestHelper.setUsername(username)
@@ -54,6 +61,13 @@ final class LDRLoginViewModel: ObservableObject {
     LDRRequestHelper.setURLDomain(urlDomain)
     
     requestAuthencityToken()
+  }
+  
+  /// calls when tearing down
+  func tearDown() {
+    cancellables.forEach { $0.cancel() }
+    isLogingIn = false
+    error = nil
   }
   
   // MARK: - private api
@@ -98,7 +112,7 @@ final class LDRLoginViewModel: ObservableObject {
   
   /// calls when succeeded
   private func succeed() {
-    isLogingIn = false
+    tearDown()
     NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
   }
   
