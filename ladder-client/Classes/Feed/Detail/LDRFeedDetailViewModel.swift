@@ -79,7 +79,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
     /// Save pin you currently focus on
     /// - Returns: Bool if you could save the current focusing pin on local DB
     func savePin() -> Bool {
-        if !LDRPin.alreadySavedPin(link: link.absoluteString, title: title) {
+        if !LDRPin.exists(link: link.absoluteString, title: title) {
             if LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString) != nil {
                 return false
             }

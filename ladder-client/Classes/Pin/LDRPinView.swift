@@ -1,5 +1,9 @@
 import SwiftUI
 
+extension String: Identifiable {
+  public var id: String { self }
+}
+
 // MARK: - LDRPinView
 struct LDRPinView: View {
   // MARK: - property
@@ -13,15 +17,15 @@ struct LDRPinView: View {
     NavigationView {
       list
     }
-    .onAppear {
-      pinViewModel.loadPinsFromLocalDB()
-    }
-    .sheet(isPresented: pinViewModel.isPresentingSafariView) {
-      safariView
-    }
-    .alert(isPresented: pinViewModel.isPresentingAlert) {
-      Alert(title: Text(pinViewModel.error?.localizedDescription ?? ""))
-    }
+      .onAppear {
+        pinViewModel.loadPinsFromLocalDB()
+      }
+      .sheet(isPresented: pinViewModel.isPresentingSafariView) {
+        safariView
+      }
+      .alert(isPresented: pinViewModel.isPresentingAlert) {
+        Alert(title: Text(pinViewModel.error?.localizedDescription ?? ""))
+      }
   }
   
   var list: some View {
@@ -29,14 +33,14 @@ struct LDRPinView: View {
       LDRPinRow(title: pin.title)
         .onTap { pinViewModel.delete(pin: pin) }
     }
-    .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
-    .navigationBarItems(
-      leading: loginButton,
-      trailing: reloadButton
-    )
-    .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
-      LDRLoginView().environmentObject(loginViewModel)
-    }
+      .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
+      .navigationBarItems(
+        leading: loginButton,
+        trailing: reloadButton
+      )
+      .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
+        LDRLoginView().environmentObject(loginViewModel)
+      }
   }
  
   var loginButton: some View {

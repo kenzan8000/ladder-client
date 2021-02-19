@@ -44,9 +44,9 @@ class LDRPin: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [])
     fetchRequest.returnsObjectsAsFaults = false
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(LDRPin.createdOn), ascending: false)]
     var models: [LDRPin] = []
     do {
       if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
@@ -62,7 +62,7 @@ class LDRPin: NSManagedObject {
   ///   - link: link url string
   ///   - title: title of pin
   /// - Returns: Bool value if the ldr pin is already saved
-  class func alreadySavedPin(link: String, title: String) -> Bool {
+  class func exists(link: String, title: String) -> Bool {
     let context = LDRCoreDataManager.shared.managedObjectContext
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
     let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
@@ -75,7 +75,7 @@ class LDRPin: NSManagedObject {
     do {
       cnt = try context.count(for: fetchRequest)
     } catch { cnt = 0 }
-    return (cnt > 0)
+    return cnt > 0
   }
     
   /// save pin

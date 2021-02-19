@@ -11,12 +11,12 @@ final class LDRPinViewModel: ObservableObject {
   @Published var safariUrl: URL?
   var isPresentingSafariView: Binding<Bool> {
     Binding<Bool>(
-      get: { self.safariUrl != nil },
-      set: { newValue in
+      get: { [weak self] in self?.safariUrl != nil },
+      set: { [weak self] newValue in
         guard !newValue else {
           return
         }
-        self.safariUrl = nil
+        self?.safariUrl = nil
       }
     )
   }
@@ -24,12 +24,12 @@ final class LDRPinViewModel: ObservableObject {
   @Published var error: Error?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
-      get: { self.error != nil },
-      set: { newValue in
+      get: { [weak self] in self?.error != nil },
+      set: { [weak self] newValue in
         guard !newValue else {
           return
         }
-        self.error = nil
+        self?.error = nil
       }
     )
   }
