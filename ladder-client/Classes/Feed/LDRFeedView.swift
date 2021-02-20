@@ -103,6 +103,7 @@ struct LDRFeedView: View {
                 }
             }
         }
+        .listStyle(PlainListStyle())
     }
     
     func navigationLink() -> some View {

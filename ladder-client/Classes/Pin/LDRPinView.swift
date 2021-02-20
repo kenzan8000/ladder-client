@@ -33,14 +33,16 @@ struct LDRPinView: View {
       LDRPinRow(title: pin.title)
         .onTap { pinViewModel.delete(pin: pin) }
     }
-      .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
-      .navigationBarItems(
-        leading: loginButton,
-        trailing: reloadButton
-      )
-      .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
-        LDRLoginView().environmentObject(loginViewModel)
-      }
+    .listStyle(PlainListStyle())
+    .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
+    .navigationBarItems(
+      leading: loginButton,
+      trailing: reloadButton
+    )
+    .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
+      LDRLoginView().environmentObject(loginViewModel)
+    }
+
   }
  
   var loginButton: some View {
