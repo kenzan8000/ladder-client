@@ -24,7 +24,9 @@ enum LDRNotificationCenter {
 }
 
 // MARK: - Error
-enum LDRError: Error {
+enum LDRError: Swift.Error {
+    case networking(URLError)
+    case decoding(Swift.Error)
     // core data
     case deleteModelsFailed
     case saveModelsFailed
