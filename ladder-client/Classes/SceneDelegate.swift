@@ -1,4 +1,3 @@
-import FirebaseCore
 import KeychainAccess
 import SwiftUI
 import UIKit
@@ -17,8 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        FirebaseApp.configure()
-
         // remember last session
         if let url = LDRRequestHelper.createUrl(path: LDR.login) {
             if url.host != nil {

@@ -34,7 +34,7 @@ final class LDRPinViewModel: ObservableObject {
   }
   
   private var pinAllCancellable: AnyCancellable?
-  private var cancellables = Set<AnyCancellable>()
+  private var notificationCancellables = Set<AnyCancellable>()
     
   // MARK: - initialization
     
@@ -46,26 +46,26 @@ final class LDRPinViewModel: ObservableObject {
         self?.loadPinsFromAPI()
         self?.isPresentingLoginView = false
       }
-      .store(in: &cancellables)
+      .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: LDRNotificationCenter.didBecomeActive)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.loadPinsFromAPI()
       }
-      .store(in: &cancellables)
+      .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: LDRNotificationCenter.willCloseLoginView)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.isPresentingLoginView = false
       }
-      .store(in: &cancellables)
+      .store(in: &notificationCancellables)
   }
 
   // MARK: - public api
     
   /// Load Pins from local DB
   func loadPinsFromLocalDB() {
-      pins = LDRPin.fetch()
+    pins = LDRPin.fetch()
   }
     
   /// Load Pins from API

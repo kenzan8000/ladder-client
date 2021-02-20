@@ -64,7 +64,6 @@
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
 		E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */; };
 		E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
-		E6F929BE1FC44A5E0092F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6F929BD1FC44A5E0092F557 /* GoogleService-Info.plist */; };
 		E6FA099424A8CBED00888F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -164,7 +163,6 @@
 		E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedViewModel.swift; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
 		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
-		E6F929BD1FC44A5E0092F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,17 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				E60230BE1F5E54860052F762 /* Assets.xcassets */,
-				E60230BF1F5E54860052F762 /* Plists */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		E60230BF1F5E54860052F762 /* Plists */ = {
-			isa = PBXGroup;
-			children = (
-				E6F929BD1FC44A5E0092F557 /* GoogleService-Info.plist */,
-			);
-			path = Plists;
 			sourceTree = "<group>";
 		};
 		E6365963248CD46600FA3908 /* SwiftUI+Extension */ = {
@@ -509,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E60230C11F5E54860052F762 /* Assets.xcassets in Resources */,
-				E6F929BE1FC44A5E0092F557 /* GoogleService-Info.plist in Resources */,
 				E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
