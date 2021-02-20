@@ -71,6 +71,7 @@ final class LDRPinViewModel: ObservableObject {
   /// Load Pins from API
   func loadPinsFromAPI() {
     pinAllCancellable?.cancel()
+    _ = LDRPin.deleteAll()
     
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
