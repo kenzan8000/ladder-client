@@ -106,26 +106,25 @@ class LDRPin: NSManagedObject {
 
   /// save pin
   ///
-  /// - Parameter json: json params representing pin model
+  /// - Parameter responses: LDRPinAllResponses
   /// - Returns: model saving error or nil if succeeded
-  class func save(json: JSON) -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
-    let items = json.arrayValue
-    for item in items {
+  class func save(responses: LDRPinAllResponses) -> Error? {
+    for response in responses {
+      let context = LDRCoreDataManager.shared.managedObjectContext
       guard let model = NSEntityDescription.insertNewObject(
         forEntityName: "LDRPin",
         into: context
       ) as? LDRPin else {
-        continue
+        return nil
       }
-      model.createdOn = item["created_on"].stringValue
-      model.title = item["title"].stringValue
-      model.link = item["link"].stringValue
-    }
-    do {
-      try context.save()
-    } catch {
-      return LDRError.saveModelsFailed
+      model.createdOn = "\(response.createdOn)"
+      model.title = response.title
+      model.link = response.link
+      do {
+        try context.save()
+      } catch {
+        return LDRError.saveModelsFailed
+      }
     }
     return nil
   }

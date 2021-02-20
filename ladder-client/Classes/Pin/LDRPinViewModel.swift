@@ -7,7 +7,6 @@ final class LDRPinViewModel: ObservableObject {
     
   // MARK: - model
   @Published var pins: [LDRPin]
-  @Published var isLoading = false
   @Published var safariUrl: URL?
   var isPresentingSafariView: Binding<Bool> {
     Binding<Bool>(
@@ -33,6 +32,8 @@ final class LDRPinViewModel: ObservableObject {
       }
     )
   }
+  
+  private var pinAllCancellable: AnyCancellable?
   private var cancellables = Set<AnyCancellable>()
     
   // MARK: - initialization
@@ -60,12 +61,6 @@ final class LDRPinViewModel: ObservableObject {
       .store(in: &cancellables)
   }
 
-  // MARK: - destruction
-
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-
   // MARK: - public api
     
   /// Load Pins from local DB
@@ -75,22 +70,26 @@ final class LDRPinViewModel: ObservableObject {
     
   /// Load Pins from API
   func loadPinsFromAPI() {
-    if isLoading {
-      return
-    }
-    isLoading = true
-    LDRPinOperationQueue.shared.requestPinAll { [unowned self] (json: JSON?, error: Error?) -> Void in
-      if let error = error {
-        self.error = error
-      } else if let error = LDRPin.deleteAll() {
-        self.error = error
-      } else if let json = json, let error = LDRPin.save(json: json) {
-        self.error = error
-      } else {
-        self.pins = LDRPin.fetch()
-      }
-      self.isLoading = false
-    }
+    pinAllCancellable?.cancel()
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    pinAllCancellable = URLSession.shared.publisher(for: .pinAll(), using: decoder)
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] result in
+          if case let .failure(error) = result {
+            self?.error = error
+          } else {
+            self?.pins = LDRPin.fetch()
+          }
+        },
+        receiveValue: { [weak self] responses in
+          if let error = LDRPin.save(responses: responses) {
+            self?.error = error
+          }
+        }
+     )
   }
     
   /// Delete Pin from local db and call delete API
@@ -106,4 +105,5 @@ final class LDRPinViewModel: ObservableObject {
     }
     pins = LDRPin.fetch()
   }
+  
 }
