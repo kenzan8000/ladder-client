@@ -41,7 +41,6 @@ final class LDRLoginViewModel: ObservableObject {
     }.eraseToAnyPublisher()
   }()
   
-  private var authencityToken = ""
   private var cancellables = Set<AnyCancellable>()
   
   // MARK: destruction
@@ -60,44 +59,11 @@ final class LDRLoginViewModel: ObservableObject {
     LDRRequestHelper.setPassword(password)
     LDRRequestHelper.setURLDomain(urlDomain)
     
-    requestAuthencityToken()
-  }
-  
-  /// calls when tearing down
-  func tearDown() {
-    cancellables.forEach { $0.cancel() }
-    isLogingIn = false
-    error = nil
-  }
-  
-  // MARK: - private api
-  
-  /// requests authencityToken
-  private func requestAuthencityToken() {
     URLSession.shared.publisher(for: .login(username: username, password: password))
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
           if case let .failure(error) = result {
-            self?.fail(by: error)
-          } else {
-            self?.requestSession()
-          }
-        },
-        receiveValue: { [weak self] response in
-          self?.authencityToken = response.authencityToken
-        }
-      )
-      .store(in: &cancellables)
-  }
-  
-  /// requests session
-  private func requestSession() {
-    URLSession.shared.publisher(for: .session(username: username, password: password, authenticityToken: authencityToken))
-      .receive(on: DispatchQueue.main)
-      .sink(
-        receiveCompletion: { [weak self] error in
-          if case let .failure(error) = error {
             self?.fail(by: error)
           } else {
             self?.succeed()
@@ -110,6 +76,15 @@ final class LDRLoginViewModel: ObservableObject {
       .store(in: &cancellables)
   }
   
+  /// calls when tearing down
+  func tearDown() {
+    cancellables.forEach { $0.cancel() }
+    isLogingIn = false
+    error = nil
+  }
+  
+  // MARK: - private api
+
   /// calls when succeeded
   private func succeed() {
     tearDown()
