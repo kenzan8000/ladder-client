@@ -26,6 +26,9 @@ struct LDRFeedView: View {
               LDRLoginView().environmentObject(loginViewModel)
             }
         }
+        .alert(isPresented: feedViewModel.isPresentingAlert) {
+          Alert(title: Text(feedViewModel.error?.localizedDescription ?? ""))
+        }
         .onAppear {
             self.feedViewModel.loadFeedFromLocalDB()
             self.tabBar?.isHidden = false

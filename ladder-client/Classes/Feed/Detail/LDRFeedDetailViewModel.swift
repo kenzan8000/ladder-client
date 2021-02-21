@@ -1,5 +1,6 @@
-import SwiftUI
+import Combine
 import SwiftyJSON
+import SwiftUI
 import WebKit
 
 // MARK: - LDRFeedDetailViewModel
@@ -41,7 +42,20 @@ final class LDRFeedDetailViewModel: ObservableObject {
         }
         return title
     }
-    
+  @Published var error: Error?
+  var isPresentingAlert: Binding<Bool> {
+    Binding<Bool>(
+      get: { [weak self] in self?.error != nil },
+      set: { [weak self] newValue in
+        guard !newValue else {
+          return
+        }
+        self?.error = nil
+      }
+    )
+  }
+  private var pinAddCancellables = Set<AnyCancellable>()
+
     // MARK: - initialization
     
     init(unread: LDRFeedUnread) {
@@ -79,17 +93,28 @@ final class LDRFeedDetailViewModel: ObservableObject {
     /// Save pin you currently focus on
     /// - Returns: Bool if you could save the current focusing pin on local DB
     func savePin() -> Bool {
-        if !LDRPin.exists(link: link.absoluteString, title: title) {
-            if LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString) != nil {
-                return false
-            }
-            /*
-            LDRPinOperationQueue.shared.requestPinAdd(
-                link: link,
-                title: title
-            ) { _, _ in }
-            */
+        let url = link
+        if LDRPin.exists(link: url.absoluteString, title: title) {
+          return true
         }
+        if LDRPin.saveByAttributes(createdOn: "", title: title, link: url.absoluteString) != nil {
+            return false
+        }
+        URLSession.shared.publisher(for: .pinAdd(link: url, title: title))
+          .receive(on: DispatchQueue.main)
+          .sink(
+            receiveCompletion: { [weak self] result in
+              if case let .failure(error) = result {
+                self?.error = error
+              }
+            },
+            receiveValue: { [weak self] response in
+              if !response.isSuccess {
+                self?.error = LDRError.failed("Failed to remove a pin. (\(url.absoluteString))")
+              }
+            }
+          )
+          .store(in: &pinAddCancellables)
         return true
     }
     

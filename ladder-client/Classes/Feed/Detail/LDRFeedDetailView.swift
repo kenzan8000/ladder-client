@@ -39,6 +39,9 @@ struct LDRFeedDetailView: View {
                 link: self.feedDetailViewModel.link
             )
         }
+        .alert(isPresented: feedDetailViewModel.isPresentingAlert) {
+          Alert(title: Text(feedDetailViewModel.error?.localizedDescription ?? ""))
+        }
         .introspectViewController { viewController in
             viewController.tabBarController?.tabBar.isHidden = true
         }

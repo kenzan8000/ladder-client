@@ -50,9 +50,7 @@ final class LDRFeedViewModel: ObservableObject {
         }
         return count
     }
-    private var pinAddCancellables = Set<AnyCancellable>()
 
-    
     // MARK: - initialization
     
     init() {
@@ -99,7 +97,6 @@ final class LDRFeedViewModel: ObservableObject {
     @objc
     func didLogin(notification: NSNotification) {
         DispatchQueue.main.async { [weak self] in
-            self?.pinAddCancellables.forEach { $0.cancel() }
             self?.loadFeedFromAPI()
             self?.isPresentingLoginView = false
         }
