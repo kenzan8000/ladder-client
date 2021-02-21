@@ -1,89 +1,14 @@
 PODS:
   - Alamofire (5.4.1)
-  - Firebase/Analytics (7.5.0):
-    - Firebase/Core
-  - Firebase/Core (7.5.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (= 7.5.0)
-  - Firebase/CoreOnly (7.5.0):
-    - FirebaseCore (= 7.5.0)
-  - Firebase/Crashlytics (7.5.0):
-    - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 7.5.0)
-  - FirebaseAnalytics (7.5.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleAppMeasurement (= 7.5.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/MethodSwizzler (~> 7.0)
-    - GoogleUtilities/Network (~> 7.0)
-    - "GoogleUtilities/NSData+zlib (~> 7.0)"
-    - nanopb (~> 2.30907.0)
-  - FirebaseCore (7.5.0):
-    - FirebaseCoreDiagnostics (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.5.0):
-    - GoogleDataTransport (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-    - nanopb (~> 2.30907.0)
-  - FirebaseCrashlytics (7.5.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleDataTransport (~> 8.0)
-    - nanopb (~> 2.30907.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (7.5.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
-  - GoogleAppMeasurement (7.5.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/MethodSwizzler (~> 7.0)
-    - GoogleUtilities/Network (~> 7.0)
-    - "GoogleUtilities/NSData+zlib (~> 7.0)"
-    - nanopb (~> 2.30907.0)
-  - GoogleDataTransport (8.2.0):
-    - nanopb (~> 2.30907.0)
-  - GoogleUtilities/AppDelegateSwizzler (7.2.0):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.2.0):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.2.0):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.2.0):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.2.0):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.2.0)"
-  - GoogleUtilities/Reachability (7.2.0):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.2.0):
-    - GoogleUtilities/Logger
   - HTMLReader (2.1.5)
   - Introspect (0.1.2)
   - ISHTTPOperation (1.2.0)
   - KeychainAccess (4.2.1)
-  - nanopb (2.30907.0):
-    - nanopb/decode (= 2.30907.0)
-    - nanopb/encode (= 2.30907.0)
-  - nanopb/decode (2.30907.0)
-  - nanopb/encode (2.30907.0)
-  - PromisesObjC (1.2.12)
   - SwiftLint (0.42.0)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
-  - Firebase/Analytics
-  - Firebase/Core
-  - Firebase/Crashlytics
   - HTMLReader
   - Introspect
   - ISHTTPOperation
@@ -94,44 +19,22 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseCrashlytics
-    - FirebaseInstallations
-    - GoogleAppMeasurement
-    - GoogleDataTransport
-    - GoogleUtilities
     - HTMLReader
     - Introspect
     - ISHTTPOperation
     - KeychainAccess
-    - nanopb
-    - PromisesObjC
     - SwiftLint
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  Firebase: fd5e4d2b756292c6e7ee6faac1eb320225d6e97e
-  FirebaseAnalytics: 00b7f74571d346ee1ffb9bf0a2e6f2ffff222bcc
-  FirebaseCore: 06a2b68af8901f2244eb989419eb89edc3789b4d
-  FirebaseCoreDiagnostics: 35685db68b11fe7d19d2d8b557fd7e3a56ac81cc
-  FirebaseCrashlytics: 4d77da03c81dedc92cccbefc758f968dccf64b30
-  FirebaseInstallations: a46ae59915f0931e18814164849cd0354bea24ed
-  GoogleAppMeasurement: 65a1071e5f52f63ab03d0a4d814a54fd762d885a
-  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
-  GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
   HTMLReader: 8056b3418baad09718902a1b39361c63b14a894f
   Introspect: 85a29d2c5ee4d3d15469ad0b75fd8839f3e72674
   ISHTTPOperation: dfe4b6b2b3d7803688b22df2c46ea9827081e723
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 46416bd3abfa0c21aa70f2b8c67fff3069dc2f75
+PODFILE CHECKSUM: 2175fa683ced4022a482f036e69ed3799b00e654
 
 COCOAPODS: 1.10.1
