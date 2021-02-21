@@ -30,9 +30,9 @@ extension HTTPCookieStorage {
 
     /// save cookies by url response
     ///
-    /// - Parameter httpUrlResponse: url response
-    func addCookies(httpUrlResponse: HTTPURLResponse?) {
-        guard let response = httpUrlResponse else {
+    /// - Parameter urlResponse: url response
+    func addCookies(urlResponse: URLResponse) {
+        guard let response = urlResponse as? HTTPURLResponse else {
             return
         }
 

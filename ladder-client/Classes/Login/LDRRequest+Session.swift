@@ -65,6 +65,7 @@ extension URLSession {
   ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
+      .map { LDRResponse(data: $0.data, response: $0.response) }
       .map { LDRSessionResponse(data: $0.data) }
       .eraseToAnyPublisher()
   }

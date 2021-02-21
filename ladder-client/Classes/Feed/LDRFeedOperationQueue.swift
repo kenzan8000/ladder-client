@@ -58,7 +58,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             request: request
         ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
             if let r = response {
-                HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                HTTPCookieStorage.shared.addCookies(urlResponse: r)
             }
             var json = JSON([])
             do {
@@ -126,7 +126,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             request: request
         ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
             if let r = response {
-                HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                HTTPCookieStorage.shared.addCookies(urlResponse: r)
             }
             var json = JSON([])
             do {
@@ -194,7 +194,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             request: request
         ) { [unowned self] (response: HTTPURLResponse?, object: Any?, error: Error?) -> Void in
             if let r = response {
-                HTTPCookieStorage.shared.addCookies(httpUrlResponse: r)
+                HTTPCookieStorage.shared.addCookies(urlResponse: r)
             }
             var json = JSON([])
             do {

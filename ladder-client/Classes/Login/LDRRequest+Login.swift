@@ -59,6 +59,7 @@ extension URLSession {
   ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
+      .map { LDRResponse(data: $0.data, response: $0.response) }
       .map { LDRLoginResponse(data: $0.data, response: $0.response) }
       .flatMap { result -> AnyPublisher<LDRSessionResponse, Swift.Error> in
         var username = ""
