@@ -10,7 +10,7 @@ class LDRPin: NSManagedObject {
   @NSManaged var link: String
   @NSManaged var title: String
 
-  var linkUrl: URL? { URL(string: self.link) }
+  var linkUrl: URL? { URL(string: link) }
 
   // MARK: - class method
     

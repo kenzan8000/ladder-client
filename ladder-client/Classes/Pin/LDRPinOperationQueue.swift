@@ -88,7 +88,7 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
       }
     })
   }
-
+/*
   /// request api/pin/remove api
   ///
   /// - Parameters:
@@ -151,4 +151,5 @@ class LDRPinOperationQueue: ISHTTPOperationQueue {
       }
     })
   }
+*/
 }

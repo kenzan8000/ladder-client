@@ -49,7 +49,6 @@ struct LDRRequest<Response> {
   
 }
 
-/*
 // MARK: - LDRResponse
 struct LDRResponse {
   // MARK: property
@@ -63,4 +62,3 @@ struct LDRResponse {
     self.response = response
   }
 }
-*/

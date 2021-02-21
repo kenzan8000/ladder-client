@@ -34,6 +34,7 @@ final class LDRPinViewModel: ObservableObject {
   }
   
   private var pinAllCancellable: AnyCancellable?
+  private var pinRemoveCancellables = Set<AnyCancellable>()
   private var notificationCancellables = Set<AnyCancellable>()
     
   // MARK: - initialization
@@ -43,6 +44,8 @@ final class LDRPinViewModel: ObservableObject {
     NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
+        self?.pinAllCancellable?.cancel()
+        self?.pinRemoveCancellables.forEach { $0.cancel() }
         self?.loadPinsFromAPI()
         self?.isPresentingLoginView = false
       }
@@ -96,14 +99,30 @@ final class LDRPinViewModel: ObservableObject {
   /// Delete Pin from local db and call delete API
   /// - Parameter pin: LDRPin model
   func delete(pin: LDRPin) {
-    if let url = pin.linkUrl {
-      safariUrl = url
-      LDRPinOperationQueue.shared.requestPinRemove(link: url) { _, _ in }
+    guard let url = pin.linkUrl else {
+      error = LDRError.invalidLdrUrl
+      return
     }
+    safariUrl = url
     if let error = LDRPin.delete(pin: pin) {
       self.error = error
       return
     }
+    URLSession.shared.publisher(for: .pinRemove(link: url))
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] result in
+          if case let .failure(error) = result {
+            self?.error = error
+          }
+        },
+        receiveValue: { [weak self] response in
+          if !response.isSuccess {
+            self?.error = LDRError.failed("Failed to remove a pin. (\(url.absoluteString))")
+          }
+        }
+      )
+      .store(in: &pinRemoveCancellables)
     pins = LDRPin.fetch()
   }
   

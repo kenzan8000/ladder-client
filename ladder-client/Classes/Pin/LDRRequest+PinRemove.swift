@@ -9,14 +9,12 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   /// - Parameter link: link URL to add the list  /// 
   /// - Returns: LDRRequest
   static func pinRemove(link: URL) -> Self {
-    LDRRequest(
-      url: URL(ldrPath: LDR.Api.pinRemove),
-      method: .post(
-        [
-          "ApiKey": LDRRequestHelper.getApiKey() ?? "",
-          "link": link.absoluteString
-        ].HTTPBodyValue()
-      )
+    let url = URL(ldrPath: LDR.Api.pinRemove)
+    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "link": link.absoluteString].HTTPBodyValue()
+    return LDRRequest(
+      url: url,
+      method: .post(body),
+      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
     )
   }
 }

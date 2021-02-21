@@ -32,6 +32,8 @@ enum LDRError: Swift.Error {
     case saveModelsFailed
     // internet connection
     case notReachable
+    // failed for some reason
+    case failed(String)
     // login
     case invalidUsername
     case invalidPassword
