@@ -11,7 +11,7 @@ extension URLSession {
   ) -> AnyPublisher<Value, Swift.Error> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
-      .map { LDRResponse(data: $0.data, response: $0.response) }
+      // .map { LDRResponse(data: $0.data, response: $0.response) }
       .map(\.data)
       .decode(type: Value.self, decoder: decoder)
       .mapError(LDRError.decoding)

@@ -114,17 +114,6 @@ class LDRRequestHelper: Any {
         return password
     }
 
-    /// Returns LDR HttpHeader
-    ///
-    /// - Parameter httpBody: httpBody to request
-    /// - Returns: [String: String]
-    class func createHttpHeader(httpBody: Data?) -> [String: String] {
-      [
-        "Content-Type": "application/json",
-        "Content-Length": "\(String(describing: httpBody?.count))"
-      ]
-    }
-    
     /// Returns LDR HttpHeader with Cookie
     ///
     /// - Parameters:
@@ -139,6 +128,21 @@ class LDRRequestHelper: Any {
         headers.add(name: "Content-Type", value: "application/json")
         headers.add(name: "Content-Length", value: "\(String(describing: httpBody?.count))")
         return headers
+    }
+  
+    class func createHttpHeader(body: Data?) -> [String: String] {
+      [
+        "Content-Type": "application/json",
+        "Content-Length": "\(String(describing: body?.count))",
+      ]
+    }
+  
+    class func createCookieHttpHeader(url: URL, body: Data?) -> [String: String] {
+      [
+        "Content-Type": "application/json",
+        "Content-Length": "\(String(describing: body?.count))",
+        "Cookie": URLRequest.getCookiesString(host: url.host),
+      ]
     }
     
     /// returns built ldr url

@@ -13,11 +13,9 @@ extension LDRRequest where Response == LDRSessionResponse {
   ///   - authencityToken: authencityToken string
   /// - Returns:
   static func session(username: String, password: String, authenticityToken: String) -> Self {
-    let body = ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
-    return LDRRequest(
+    LDRRequest(
       url: URL(ldrPath: LDR.session),
-      method: .post(body),
-      headers: LDRRequestHelper.createHttpHeader(httpBody: body)
+      method: .post(["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue())
     )
   }
 }
@@ -65,7 +63,7 @@ extension URLSession {
   ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
-      .map { LDRResponse(data: $0.data, response: $0.response) }
+      // .map { LDRResponse(data: $0.data, response: $0.response) }
       .map { LDRSessionResponse(data: $0.data) }
       .eraseToAnyPublisher()
   }
