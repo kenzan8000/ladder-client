@@ -83,10 +83,12 @@ final class LDRFeedDetailViewModel: ObservableObject {
             if LDRPin.saveByAttributes(createdOn: "", title: title, link: link.absoluteString) != nil {
                 return false
             }
+            /*
             LDRPinOperationQueue.shared.requestPinAdd(
                 link: link,
                 title: title
             ) { _, _ in }
+            */
         }
         return true
     }

@@ -1,5 +1,6 @@
-import SwiftUI
+import Combine
 import SwiftyJSON
+import SwiftUI
 
 // MARK: - LDRFeedViewModel
 final class LDRFeedViewModel: ObservableObject {
@@ -49,6 +50,8 @@ final class LDRFeedViewModel: ObservableObject {
         }
         return count
     }
+    private var pinAddCancellables = Set<AnyCancellable>()
+
     
     // MARK: - initialization
     
@@ -95,9 +98,10 @@ final class LDRFeedViewModel: ObservableObject {
     /// - Parameter notification: NSNotification happened when user did login
     @objc
     func didLogin(notification: NSNotification) {
-        DispatchQueue.main.async { [unowned self] in
-            self.loadFeedFromAPI()
-            self.isPresentingLoginView = false
+        DispatchQueue.main.async { [weak self] in
+            self?.pinAddCancellables.forEach { $0.cancel() }
+            self?.loadFeedFromAPI()
+            self?.isPresentingLoginView = false
         }
     }
     
@@ -106,8 +110,8 @@ final class LDRFeedViewModel: ObservableObject {
     /// - Parameter notification: notification happened when application did become active
     @objc
     func didBecomeActive(notification: NSNotification) {
-        DispatchQueue.main.async { [unowned self] in
-            self.loadFeedFromAPI()
+        DispatchQueue.main.async { [weak self] in
+            self?.loadFeedFromAPI()
         }
     }
     
@@ -116,8 +120,8 @@ final class LDRFeedViewModel: ObservableObject {
     /// - Parameter notification: nsnotification
     @objc
     func willCloseLoginView(notification: NSNotification) {
-        DispatchQueue.main.async { [unowned self] in
-            self.isPresentingLoginView = false
+        DispatchQueue.main.async { [weak self] in
+            self?.isPresentingLoginView = false
         }
     }
     
@@ -136,17 +140,17 @@ final class LDRFeedViewModel: ObservableObject {
             return
         }
         isLoading = true
-        LDRFeedOperationQueue.shared.requestSubs { [unowned self] (json: JSON?, error: Error?) -> Void in
-            self.isLoading = false
+        LDRFeedOperationQueue.shared.requestSubs { [weak self] (json: JSON?, error: Error?) -> Void in
+            self?.isLoading = false
             if let error = error {
-                self.error = error
+                self?.error = error
             } else if let error = LDRFeedSubsUnread.delete() {
-                self.error = error
+                self?.error = error
             } else if let json = json, let error = LDRFeedSubsUnread.save(json: json) {
-                self.error = error
+                self?.error = error
             } else {
-                self.loadFeedFromLocalDB()
-                self.loadUnreadsFromAPI()
+                self?.loadFeedFromLocalDB()
+                self?.loadUnreadsFromAPI()
             }
         }
     }
@@ -184,9 +188,9 @@ final class LDRFeedViewModel: ObservableObject {
             let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
             unreads[subsunread] = unread
             self.isLoading = true
-            unread.request { [unowned self] unread in
-                self.unreads[subsunread] = unread
-                self.isLoading = unread.requestCount > 0
+            unread.request { [weak self] unread in
+                self?.unreads[subsunread] = unread
+                self?.isLoading = unread.requestCount > 0
             }
         }
     }

@@ -20,27 +20,27 @@ class ActionViewController: UIViewController {
                 if provider.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
                     noUrlInfo = false
                     provider.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil, completionHandler: { (data, error) in
-                        OperationQueue.main.addOperation { [unowned self] in
+                        OperationQueue.main.addOperation { [weak self] in
                             if let e = error {
-                                self.operationDidFail(error: e)
+                                self?.operationDidFail(error: e)
                                 return
                             }
                             if let url = data as? URL {
-                                self.url = url
-                                self.activityIndicatorView.isHidden = false
-                                self.activityIndicatorView.startAnimating()
-                                self.start(completionHandler: { [unowned self] (_ error: Error?) -> Void in
+                                self?.url = url
+                                self?.activityIndicatorView.isHidden = false
+                                self?.activityIndicatorView.startAnimating()
+                                self?.start(completionHandler: { [weak self] (_ error: Error?) -> Void in
                                     if let e = error {
-                                        self.operationDidFail(error: e)
+                                        self?.operationDidFail(error: e)
                                     }
                                     else {
-                                        self.operationDidSucceed()
+                                        self?.operationDidSucceed()
                                     }
                                 })
                                 
                             }
                             else {
-                                self.operationDidFail(error: LDRError.invalidPinUrl)
+                                self?.operationDidFail(error: LDRError.invalidPinUrl)
                             }
                         }
                     })
@@ -84,8 +84,12 @@ class ActionViewController: UIViewController {
         
         URLSession.shared.dataTask(
             with: request,
-            completionHandler: { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
-                OperationQueue.main.addOperation { [unowned self] in
+            completionHandler: { [weak self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                OperationQueue.main.addOperation { [weak self] in
+                  guard let self = self else {
+                    completionHandler(LDRError.failed("Failed for some reason."))
+                    return
+                  }
                     if error != nil { completionHandler(error!); return }
                     if data == nil { completionHandler(LDRError.invalidAuthenticityToken); return }
                     if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
@@ -125,7 +129,11 @@ class ActionViewController: UIViewController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         URLSession.shared.dataTask(
             with: request as URLRequest,
-            completionHandler: { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in                OperationQueue.main.addOperation { [unowned self] in
+            completionHandler: { [weak self] (data: Data?, response: URLResponse?, error: Error?) -> Void in                OperationQueue.main.addOperation { [weak self] in
+                   guard let self = self else {
+                     completionHandler(LDRError.failed("Failed for some reason."))
+                     return
+                   }
                     if error != nil { completionHandler(error!); return }
                     if data == nil { completionHandler(LDRError.invalidApiKey); return }
                     if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
@@ -161,7 +169,7 @@ class ActionViewController: UIViewController {
                         accessGroup: LDRKeychain.suiteName
                     )[LDRKeychain.apiKey] = apiKey
                 
-                self.requestPinAdd(link: self.url!, title: self.url!.host!+self.url!.path, completionHandler: completionHandler)
+                  self.requestPinAdd(link: self.url!, title: self.url!.host!+self.url!.path, completionHandler: completionHandler)
                 }
             }
         ).resume()

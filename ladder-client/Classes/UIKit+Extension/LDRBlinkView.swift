@@ -45,11 +45,11 @@ class LDRBlinkView: UIView {
             withDuration: self.blinkInterval,
             delay: 0.0,
             options: .curveEaseOut,
-            animations: { [unowned self] in
-                self.alpha = 1.0
+            animations: { [weak self] in
+                self?.alpha = 1.0
             },
-            completion: { [unowned self] _ in
-                self.blinkOff()
+            completion: { [weak self] _ in
+                self?.blinkOff()
             }
         )
     }
@@ -62,14 +62,14 @@ class LDRBlinkView: UIView {
             withDuration: self.blinkInterval,
             delay: 0.0,
             options: .curveEaseIn,
-            animations: { [unowned self] in
-                self.alpha = 0.0
+            animations: { [weak self] in
+                self?.alpha = 0.0
             },
-            completion: { [unowned self] _ in
-                if self.blinkCount <= 0 {
-                    self.removeFromSuperview()
+            completion: { [weak self] _ in
+                if let blinkCount = self?.blinkCount, blinkCount <= 0 {
+                    self?.removeFromSuperview()
                 } else {
-                    self.blinkOn()
+                    self?.blinkOn()
                 }
             }
         )

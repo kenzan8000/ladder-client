@@ -31,6 +31,8 @@ enum LDRError: Error {
     case saveModelsFailed
     // internet connection
     case notReachable
+    // failed
+    case failed(String)
     // login
     case invalidUsername
     case invalidPassword

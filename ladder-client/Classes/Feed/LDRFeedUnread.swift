@@ -41,19 +41,21 @@ class LDRFeedUnread {
     func request(
         completionHandler: @escaping (_ unread: LDRFeedUnread) -> Void
     ) {
-        LDRFeedOperationQueue.shared.requestUnread(subscribeId: self.subscribeId) { [unowned self] (json: JSON?, error: Error?) -> Void in
+        LDRFeedOperationQueue.shared.requestUnread(subscribeId: self.subscribeId) { [weak self] (json: JSON?, error: Error?) -> Void in
             if let e = error {
                 LDRLOG(e.localizedDescription)
             }
             if let items = json?["items"] {
-                self.items = items.arrayValue
+                self?.items = items.arrayValue
             }
-            if self.items.isEmpty {
-                self.state = State.noUnread
+            if let isEmpty = self?.items.isEmpty, isEmpty {
+                self?.state = State.noUnread
             } else {
-                self.state = State.unread
+                self?.state = State.unread
             }
-            completionHandler(self)
+            if let self = self {
+              completionHandler(self)
+            }
         }
     }
 

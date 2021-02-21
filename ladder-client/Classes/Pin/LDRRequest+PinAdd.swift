@@ -6,11 +6,13 @@ extension LDRRequest where Response == LDRPinAddResponse {
   // MARK: static api
   
   /// Request adding a link to read later list
-  /// - Parameter link: link URL to add the list
+  /// - Parameters:
+  ///   - link: pin url
+  ///   - title: pin title
   /// - Returns: LDRRequest
-  static func pinAdd(link: URL) -> Self {
+  static func pinAdd(link: URL, title: String) -> Self {
     let url = URL(ldrPath: LDR.Api.pinAdd)
-    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "link": link.absoluteString].HTTPBodyValue()
+    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "title": title, "link": link.absoluteString].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),

@@ -66,11 +66,11 @@ class LDRToastView: UILabel {
             withDuration: appearingDuration,
             delay: 0.0,
             options: .curveEaseOut,
-            animations: { [unowned self] in
-                self.alpha = 1.0
+            animations: { [weak self] in
+                self?.alpha = 1.0
             },
-            completion: { [unowned self] _ in
-                self.disappear()
+            completion: { [weak self] _ in
+                self?.disappear()
             }
         )
     }
@@ -83,11 +83,11 @@ class LDRToastView: UILabel {
             withDuration: disappearingDuration,
             delay: displayDuration,
             options: .curveEaseIn,
-            animations: { [unowned self] in
-                self.alpha = 0.0
+            animations: { [weak self] in
+                self?.alpha = 0.0
             },
-            completion: { [unowned self] _ in
-                self.removeFromSuperview()
+            completion: { [weak self] _ in
+                self?.removeFromSuperview()
             }
         )
     }

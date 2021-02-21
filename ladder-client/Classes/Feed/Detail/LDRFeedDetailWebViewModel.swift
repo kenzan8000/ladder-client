@@ -27,19 +27,19 @@ final class LDRFeedDetailWebViewModel: ObservableObject {
     
     init() {
         self.webView.isHidden = true
-        webViewNavigation.didFinish = { [unowned self] _, _ in
-            if self.isInitialLoading {
+        webViewNavigation.didFinish = { [weak self] _, _ in
+            if let isInitialLoading = self?.isInitialLoading, isInitialLoading {
                 return
             }
-            self.isInitialLoading = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
-                self.webView.isHidden = false
-                self.doneInitialLoading = true
+            self?.isInitialLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
+                self?.webView.isHidden = false
+                self?.doneInitialLoading = true
             }
             usleep(300000)
         }
-        webViewNavigation.openUrl = { [unowned self] url in
-            self.safariUrl = url
+        webViewNavigation.openUrl = { [weak self] url in
+            self?.safariUrl = url
         }
         self.webView.navigationDelegate = webViewNavigation
     }
