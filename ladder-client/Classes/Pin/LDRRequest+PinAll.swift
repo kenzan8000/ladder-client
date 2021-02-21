@@ -19,7 +19,7 @@ typealias LDRPinAllResponses = [LDRPinAllResponse]
 
 struct LDRPinAllResponse: Decodable {
   // MARK: prooperty
-  var createdOn: Int
-  var link: String
-  var title: String
+  let createdOn: Int
+  let link: String
+  let title: String
 }
