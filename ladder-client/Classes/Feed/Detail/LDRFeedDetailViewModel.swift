@@ -55,11 +55,18 @@ final class LDRFeedDetailViewModel: ObservableObject {
     )
   }
   private var pinAddCancellables = Set<AnyCancellable>()
+  private var notificationCancellables = Set<AnyCancellable>()
 
     // MARK: - initialization
     
     init(unread: LDRFeedUnread) {
         self.unread = unread
+        NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
+          .receive(on: DispatchQueue.main)
+          .sink { [weak self] _ in
+            self?.pinAddCancellables.forEach { $0.cancel() }
+          }
+          .store(in: &notificationCancellables)
     }
 
     // MARK: - destruction

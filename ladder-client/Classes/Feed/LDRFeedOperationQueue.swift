@@ -68,7 +68,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             } catch {
                 DispatchQueue.main.async { [weak self] in
                     self?.cancelAllOperations()
-                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    // LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
                         name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
                         object: nil
@@ -136,7 +136,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             } catch {
                 DispatchQueue.main.async { [weak self] in
                     self?.cancelAllOperations()
-                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    // LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
                         name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
                         object: nil
@@ -204,7 +204,7 @@ class LDRFeedOperationQueue: ISHTTPOperationQueue {
             } catch {
                 DispatchQueue.main.async { [weak self] in
                     self?.cancelAllOperations()
-                    LDRPinOperationQueue.shared.cancelAllOperations()
+                    // LDRPinOperationQueue.shared.cancelAllOperations()
                     NotificationCenter.default.post(
                         name: LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError,
                         object: nil
