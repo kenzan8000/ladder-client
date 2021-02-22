@@ -46,7 +46,7 @@ struct LDRFeedDetailView: View {
         if feedDetailViewModel.savePin() {
           LDRToastView.show(
             on: UIApplication.shared.windows[0],
-            text: "Added to Read Later Pins\n\(self.feedDetailViewModel.title)"
+            text: "Added to Read Later Pins\n\(feedDetailViewModel.title)"
           )
         }
       },
@@ -114,7 +114,7 @@ struct LDRFeedDetailView: View {
     }
     return Button(
       action: {
-        if !self.feedDetailViewModel.move(offset: direction) {
+        if !feedDetailViewModel.move(offset: direction) {
           LDRBlinkView.show(
             on: UIApplication.shared.windows[0],
             color: UIColor.systemGray6.withAlphaComponent(0.5),
@@ -122,10 +122,10 @@ struct LDRFeedDetailView: View {
             interval: 0.08
           )
         } else {
-          self.feedDetailWebViewModel.loadHTMLString(
-            colorScheme: self.colorScheme,
-            body: self.feedDetailViewModel.body,
-            link: self.feedDetailViewModel.link
+          feedDetailWebViewModel.loadHTMLString(
+            colorScheme: colorScheme,
+            body: feedDetailViewModel.body,
+            link: feedDetailViewModel.link
           )
         }
       },

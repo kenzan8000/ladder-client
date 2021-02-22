@@ -2,18 +2,30 @@ import Combine
 import SwiftUI
 import WebKit
 
+// MARK: - WebViewStore
 public class WebViewStore: ObservableObject {
+  // MARK: property
   @Published public var webView: WKWebView {
     didSet {
       setupObservers()
     }
   }
+  private var observers: [NSKeyValueObservation] = []
   
+  // MARK: initialization
   public init(webView: WKWebView = WKWebView()) {
     self.webView = webView
     setupObservers()
   }
   
+  // MARK: destruction
+  deinit {
+    observers.forEach {
+      $0.invalidate()
+    }
+  }
+  
+  // MARK: private api
   private func setupObservers() {
     func subscriber<Value>(for keyPath: KeyPath<WKWebView, Value>) -> NSKeyValueObservation {
       webView.observe(keyPath, options: [.prior]) { _, change in
@@ -34,31 +46,22 @@ public class WebViewStore: ObservableObject {
       subscriber(for: \.canGoForward)
     ]
   }
-  
-  private var observers: [NSKeyValueObservation] = []
-  
-  deinit {
-    observers.forEach {
-      // Not even sure if this is required?
-      // Probably wont be needed in future betas?
-      $0.invalidate()
-    }
-  }
 }
 
-/// A container for using a WKWebView in SwiftUI
+// MARK: - WebView
 public struct WebView: View, UIViewRepresentable {
-  /// The WKWebView to display
-  public let webView: WKWebView
-  
+  // MARK: typealias
   public typealias UIViewType = UIViewContainerView<WKWebView>
   
-  public init(
-    webView: WKWebView
-  ) {
+  // MARK: property
+  public let webView: WKWebView
+  
+  // MARK: initialization
+  public init(webView: WKWebView) {
     self.webView = webView
   }
   
+  // MARK: UIViewRepresentable
   public func makeUIView(context: UIViewRepresentableContext<WebView>) -> WebView.UIViewType {
     UIViewContainerView()
   }
@@ -75,8 +78,9 @@ public struct WebView: View, UIViewRepresentable {
   }
 }
 
-/// A UIView which simply adds some view to its view hierarchy
+// MARK: - UIViewContainerView<ContentView: UIView>
 public class UIViewContainerView<ContentView: UIView>: UIView {
+  // A UIView which simply adds some view to its view hierarchy
   var contentView: ContentView? {
     willSet {
       contentView?.removeFromSuperview()
