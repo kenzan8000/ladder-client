@@ -27,9 +27,9 @@ struct LDRFeedDetailView: View {
     }
     .onAppear {
       feedDetailWebViewModel.loadHTMLString(
-        colorScheme: self.colorScheme,
-        body: self.feedDetailViewModel.body,
-        link: self.feedDetailViewModel.link
+        colorScheme: colorScheme,
+        body: feedDetailViewModel.body,
+        link: feedDetailViewModel.link
       )
     }
     .alert(isPresented: feedDetailViewModel.isPresentingAlert) {
