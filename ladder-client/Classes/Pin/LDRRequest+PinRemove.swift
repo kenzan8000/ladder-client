@@ -19,6 +19,7 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   }
 }
 
+// MARK: - LDRPinRemoveResponse
 struct LDRPinRemoveResponse: Decodable {
   // MARK: prooperty
   let ErrorCode: Int

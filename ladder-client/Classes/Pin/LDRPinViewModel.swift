@@ -5,7 +5,7 @@ import SwiftUI
 // MARK: - LDRPinViewModel
 final class LDRPinViewModel: ObservableObject {
     
-  // MARK: - model
+  // MARK: property
   @Published var pins: [LDRPin]
   @Published var safariUrl: URL?
   var isPresentingSafariView: Binding<Bool> {
@@ -37,7 +37,7 @@ final class LDRPinViewModel: ObservableObject {
   private var pinRemoveCancellables = Set<AnyCancellable>()
   private var notificationCancellables = Set<AnyCancellable>()
     
-  // MARK: - initialization
+  // MARK: initialization
     
   init() {
     pins = LDRPin.fetch()
@@ -64,7 +64,7 @@ final class LDRPinViewModel: ObservableObject {
       .store(in: &notificationCancellables)
   }
 
-  // MARK: - public api
+  // MARK: public api
     
   /// Load Pins from local DB
   func loadPinsFromLocalDB() {

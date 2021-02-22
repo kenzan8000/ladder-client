@@ -18,8 +18,10 @@ extension LDRRequest where Response == LDRPinAllResponses {
   }
 }
 
+// MARK: - LDRPinAllResponses
 typealias LDRPinAllResponses = [LDRPinAllResponse]
 
+// MARK: - LDRPinAllResponse
 struct LDRPinAllResponse: Decodable {
   // MARK: prooperty
   let createdOn: Int

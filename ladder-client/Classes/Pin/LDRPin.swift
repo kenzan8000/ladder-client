@@ -4,7 +4,7 @@ import SwiftyJSON
 // MARK: - LDRPin
 class LDRPin: NSManagedObject {
 
-  // MARK: - property
+  // MARK: property
 
   @NSManaged var createdOn: String
   @NSManaged var link: String
@@ -12,7 +12,7 @@ class LDRPin: NSManagedObject {
 
   var linkUrl: URL? { URL(string: link) }
 
-  // MARK: - class method
+  // MARK: class method
     
   /// returns count of model from coredata
   ///

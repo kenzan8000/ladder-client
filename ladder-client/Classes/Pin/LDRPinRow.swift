@@ -3,12 +3,10 @@ import SwiftUI
 
 // MARK: - LDRPinRow
 struct LDRPinRow: View {
-  // MARK: - property
+  // MARK: property
 
   var title: String
   let tapPublisher = PassthroughSubject<Void, Never>()
-
-  // MARK: - view
 
   var body: some View {
     Button(
@@ -25,7 +23,7 @@ struct LDRPinRow: View {
     )
   }
   
-  // MARK: - public api
+  // MARK: public api
   
   func onTap(perform action: @escaping () -> Void) -> some View {
     onReceive(tapPublisher) { action() }

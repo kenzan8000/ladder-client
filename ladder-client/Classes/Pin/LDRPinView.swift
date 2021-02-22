@@ -6,13 +6,11 @@ extension String: Identifiable {
 
 // MARK: - LDRPinView
 struct LDRPinView: View {
-  // MARK: - property
+  // MARK: property
 
   @ObservedObject var pinViewModel: LDRPinViewModel
   @StateObject var loginViewModel: LDRLoginViewModel
     
-  // MARK: - view
-
   var body: some View {
     NavigationView {
       list
