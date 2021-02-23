@@ -1,0 +1,28 @@
+import Combine
+import Foundation
+
+// MARK: - LDRRequest + TouchAll
+extension LDRRequest where Response == LDRTouchAllResponse {
+  // MARK: static api
+  
+  /// Request making the subsucription feed's all articles read
+  /// - Parameters:
+  ///   - subscribeId: subscribe id
+  /// - Returns:
+  static func touchAll(subscribeId: String) -> Self {
+    let url = URL(ldrPath: LDR.Api.touchAll)
+    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "subscribe_id": subscribeId].HTTPBodyValue()
+    return LDRRequest(
+      url: url,
+      method: .post(body),
+      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+    )
+  }
+}
+
+// MARK: - LDRTouchAllResponse
+struct LDRTouchAllResponse: Decodable {
+  // MARK: prooperty
+  let ErrorCode: Int
+  let isSuccess: Bool
+}

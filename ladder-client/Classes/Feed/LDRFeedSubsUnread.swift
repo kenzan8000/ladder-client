@@ -59,8 +59,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   ///   - rate: rate star
   /// - Returns: count of model by the rate
   class func countOfTheRateInt(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
-    let filtered = subsunreads.filter { $0.rateValue == rate }
-    return filtered.count
+    subsunreads.filter { $0.rateValue == rate }.count
   }
     
   /// Returns filtered subsunread array by rate
@@ -140,18 +139,6 @@ class LDRFeedSubsUnread: NSManagedObject {
     return folders
   }
 
-  /// returns  rate name (stars)
-  ///
-  /// - Parameter rate: how many stars
-  /// - Returns: rate name (stars)
-  class func getRateName(rate: Int) -> String {
-    var rateName = ""
-    for i in 0 ..< 5 {
-      rateName = ((rate >= 5 - i) ? "★" : "☆") + rateName
-    }
-    return rateName
-  }
-    
   /// fetch models from coredata
   ///
   /// - Parameter segment: search condition -> rate or folder

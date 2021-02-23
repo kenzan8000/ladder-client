@@ -54,12 +54,11 @@ class LDRFeedUnread {
     }
   }
 
-  /// request touch_all api
-  func requestTouchAll() {
+  /// read
+  func read() {
     if state == State.unread {
       state = State.read
     }
-    LDRFeedOperationQueue.shared.requestTouchAll(subscribeId: subscribeId) { _, _ in }
   }
 
   /// returns title of unread feed at index

@@ -1,11 +1,11 @@
 import Combine
-import HTMLReader
+import Foundation
 
 // MARK: - LDRRequest + Subs
 extension LDRRequest where Response == LDRSubsResponse {
   // MARK: static api
   
-  /// Request retrieving all pins
+  /// Request retrieving all subsUnread
   /// - Returns:
   static func subs() -> Self {
     let url = URL(ldrPath: LDR.Api.subs)

@@ -52,6 +52,7 @@ final class LDRFeedViewModel: ObservableObject {
   }
   private var notificationCancellables = Set<AnyCancellable>()
   private var subsCancellable: AnyCancellable?
+  private var touchAllCancellables = Set<AnyCancellable>()
 
   // MARK: initialization
     
@@ -93,6 +94,7 @@ final class LDRFeedViewModel: ObservableObject {
   /// Load Feed from API
   func loadFeedFromAPI() {
     isLoading = true
+    touchAllCancellables.forEach { $0.cancel() }
     subsCancellable?.cancel()
     
     let decoder = JSONDecoder()
@@ -122,9 +124,16 @@ final class LDRFeedViewModel: ObservableObject {
   /// Request feed is touched (read)
   /// - Parameter unread: this unread is already read
   func touchAll(unread: LDRFeedUnread) {
-    if unread.state == LDRFeedUnread.State.unread {
-      unread.requestTouchAll()
-    }
+    unread.read()
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    URLSession.shared.publisher(for: .touchAll(subscribeId: unread.subscribeId), using: decoder)
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { _ in }
+      )
+      .store(in: &touchAllCancellables)
   }
     
   /// Select LDRFeedUnread to focus
