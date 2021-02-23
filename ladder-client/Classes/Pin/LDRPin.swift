@@ -106,9 +106,9 @@ class LDRPin: NSManagedObject {
 
   /// save pin
   ///
-  /// - Parameter responses: LDRPinAllResponses
+  /// - Parameter responses: LDRPinAllResponse
   /// - Returns: model saving error or nil if succeeded
-  class func save(responses: LDRPinAllResponses) -> Error? {
+  class func save(responses: LDRPinAllResponse) -> Error? {
     for response in responses {
       let context = LDRCoreDataManager.shared.managedObjectContext
       guard let model = NSEntityDescription.insertNewObject(

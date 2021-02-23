@@ -1,0 +1,39 @@
+import Combine
+import HTMLReader
+
+// MARK: - LDRRequest + Subs
+extension LDRRequest where Response == LDRSubsResponse {
+  // MARK: static api
+  
+  /// Request retrieving all pins
+  /// - Returns:
+  static func subs() -> Self {
+    let url = URL(ldrPath: LDR.Api.subs)
+    var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+    urlComponents?.queryItems = [URLQueryItem(name: "unread", value: "1")]
+    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? ""].HTTPBodyValue()
+    return LDRRequest(
+      url: urlComponents?.url ?? url,
+      method: .post(body),
+      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+    )
+  }
+}
+
+// MARK: - LDRSubsResponse
+typealias LDRSubsResponse = [LDRSubResponse]
+
+// MARK: - LDRSubResponse
+struct LDRSubResponse: Decodable {
+  // MARK: prooperty
+  let rate: Int
+  let folder: String
+  let title: String
+  let subscribeId: Int
+  let link: String
+  let icon: String
+  let modifiedOn: Int
+  let unreadCount: Int
+  let subscribersCount: Int
+  let feedlink: String
+}

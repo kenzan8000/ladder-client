@@ -2,7 +2,7 @@ import Combine
 import HTMLReader
 
 // MARK: - LDRRequest + PinAll
-extension LDRRequest where Response == LDRPinAllResponses {
+extension LDRRequest where Response == LDRPinAllResponse {
   // MARK: static api
   
   /// Request retrieving all pins
@@ -18,11 +18,11 @@ extension LDRRequest where Response == LDRPinAllResponses {
   }
 }
 
-// MARK: - LDRPinAllResponses
-typealias LDRPinAllResponses = [LDRPinAllResponse]
-
 // MARK: - LDRPinAllResponse
-struct LDRPinAllResponse: Decodable {
+typealias LDRPinAllResponse = [LDRPinResponse]
+
+// MARK: - LDRPinResponse
+struct LDRPinResponse: Decodable {
   // MARK: prooperty
   let createdOn: Int
   let link: String

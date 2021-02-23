@@ -51,6 +51,7 @@ final class LDRFeedViewModel: ObservableObject {
     return count
   }
   private var notificationCancellables = Set<AnyCancellable>()
+  private var subsCancellable: AnyCancellable?
 
   // MARK: initialization
     
@@ -91,23 +92,31 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Load Feed from API
   func loadFeedFromAPI() {
-    if isLoading {
-      return
-    }
     isLoading = true
-    LDRFeedOperationQueue.shared.requestSubs { [weak self] (json: JSON?, error: Error?) -> Void in
-      self?.isLoading = false
-      if let error = error {
-        self?.error = error
-      } else if let error = LDRFeedSubsUnread.delete() {
-        self?.error = error
-      } else if let json = json, let error = LDRFeedSubsUnread.save(json: json) {
-        self?.error = error
-      } else {
-        self?.loadFeedFromLocalDB()
-        self?.loadUnreadsFromAPI()
-      }
-    }
+    subsCancellable?.cancel()
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    subsCancellable = URLSession.shared.publisher(for: .subs(), using: decoder)
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] result in
+          self?.isLoading = false
+          if case let .failure(error) = result {
+            self?.error = error
+          } else {
+            self?.loadFeedFromLocalDB()
+            self?.loadUnreadsFromAPI()
+          }
+        },
+        receiveValue: { [weak self] response in
+          if let error = LDRFeedSubsUnread.delete() {
+            self?.error = error
+          } else if let error = LDRFeedSubsUnread.save(response: response) {
+            self?.error = error
+          }
+        }
+      )
   }
     
   /// Request feed is touched (read)
