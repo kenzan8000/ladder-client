@@ -7,14 +7,14 @@ import WebKit
 final class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
-  @Published var unread: LDRFeedUnread
+  @Published var unread: LDRUnread
   @Published var index: Int = 0
-  var count: Int { unread.items.count }
-  var title: String { unread.getTitle(at: index) ?? "" }
-  var body: String { unread.getBody(at: index) ?? "" }
-  var link: URL { unread.getLink(at: index) ?? URL(fileURLWithPath: "") }
-  var prevTitle: String { unread.getTitle(at: index - 1) ?? "" }
-  var nextTitle: String { unread.getTitle(at: index + 1) ?? "" }
+  var count: Int { unread.itemsCount }
+  var title: String { unread.getItemValue(at: index, keyPath: \.title) ?? "" }
+  var body: String { unread.getItemValue(at: index, keyPath: \.body) ?? "" }
+  var link: URL { URL(string: unread.getItemValue(at: index, keyPath: \.link) ?? "") ?? URL(fileURLWithPath: "") }
+  var prevTitle: String { unread.getItemValue(at: index - 1, keyPath: \.title) ?? "" }
+  var nextTitle: String { unread.getItemValue(at: index + 1, keyPath: \.title) ?? "" }
   @Published var error: Error?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
@@ -32,7 +32,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
 
   // MARK: initialization
     
-  init(unread: LDRFeedUnread) {
+  init(unread: LDRUnread) {
     self.unread = unread
     NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
       .receive(on: DispatchQueue.main)

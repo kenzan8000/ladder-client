@@ -13,8 +13,8 @@ final class LDRFeedViewModel: ObservableObject {
   var sections: [String] {
     segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
   }
-  @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
-  @Published var unread: LDRFeedUnread?
+  @Published var unreads: [LDRFeedSubsUnread: LDRUnread] = [:]
+  @Published var unread: LDRUnread?
   var isPresentingDetailView: Binding<Bool> {
     Binding<Bool>(
       get: { self.unread != nil },
@@ -43,16 +43,19 @@ final class LDRFeedViewModel: ObservableObject {
   var unreadCount: Int {
     var count = 0
     for (subsunread, unread) in unreads {
-      if unread.state == LDRFeedUnread.State.read {
+      if unread.state == LDRUnread.State.read {
         continue
       }
       count += subsunread.unreadCountValue
     }
     return count
   }
+  
   private var notificationCancellables = Set<AnyCancellable>()
   private var subsCancellable: AnyCancellable?
   private var touchAllCancellables = Set<AnyCancellable>()
+  private var unreadCancellables = Set<AnyCancellable>()
+  private var unreadOperationQueue = LDRFeedUnreadOperationQueue()
 
   // MARK: initialization
     
@@ -94,6 +97,7 @@ final class LDRFeedViewModel: ObservableObject {
   /// Load Feed from API
   func loadFeedFromAPI() {
     isLoading = true
+    unreadCancellables.forEach { $0.cancel() }
     touchAllCancellables.forEach { $0.cancel() }
     subsCancellable?.cancel()
     
@@ -123,7 +127,11 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Request feed is touched (read)
   /// - Parameter unread: this unread is already read
-  func touchAll(unread: LDRFeedUnread) {
+  func touchAll(unread: LDRUnread) {
+    if unread.state == .read {
+      return
+    }
+    
     unread.read()
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -138,7 +146,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Select LDRFeedUnread to focus
   /// - Parameter unread: LDRFeedUnread
-  func selectUnread(unread: LDRFeedUnread) {
+  func selectUnread(unread: LDRUnread) {
     self.unread = unread
   }
     
@@ -156,15 +164,28 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Load Unreads from API
   private func loadUnreadsFromAPI() {
-    unreads = [:]
-    for subsunread in subsunreads {
-      let unread = LDRFeedUnread(subscribeId: subsunread.subscribeId, title: subsunread.title)
-      unreads[subsunread] = unread
-      isLoading = true
-      unread.request { [weak self] unread in
-        self?.unreads[subsunread] = unread
-        self?.isLoading = unread.requestCount > 0
+    isLoading = !subsunreads.isEmpty
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    subsunreads.publisher
+      .flatMap { [weak self] subsunread in
+        URLSession(configuration: .default, delegate: nil, delegateQueue: self?.unreadOperationQueue)
+          .publisher(for: .unread(subscribeId: subsunread.subscribeId), using: decoder)
       }
-    }
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { [weak self] _ in
+          self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
+        },
+        receiveValue: { [weak self] response in
+          let unread = LDRUnread(response: response)
+          if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == unread.subscribeId }) {
+            self?.unreads[subsunread] = unread
+            unread.state = .unread
+          }
+        }
+      )
+      .store(in: &unreadCancellables)
   }
 }
