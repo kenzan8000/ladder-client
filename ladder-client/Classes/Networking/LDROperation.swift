@@ -1,9 +1,8 @@
-/*
 import Foundation
 import ISHTTPOperation
 
 class LDROperation: ISHTTPOperation {
-
+/*
   enum State: String {
     case Ready, Executing, Finished
 
@@ -22,10 +21,7 @@ class LDROperation: ISHTTPOperation {
       didChangeValue(forKey: state.keyPath)
     }
   }
-}
-
-extension LDROperation {
-
+   
   override var isReady: Bool {
     super.isReady && state == .Ready
   }
@@ -37,7 +33,9 @@ extension LDROperation {
   override var isFinished: Bool {
     state == .Finished
   }
-
+*/
+  
+    /*
   override func start() {
     if let connection = Reachability.forInternetConnection() {
         if connection.currentReachabilityStatus() == NotReachable {
@@ -54,7 +52,7 @@ extension LDROperation {
   }
 
   override func cancel() {
-    state = .Finished
+    // state = .Finished
   }
+    */
 }
-*/

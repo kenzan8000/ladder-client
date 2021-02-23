@@ -1,3 +1,5 @@
+import Foundation
+
 // MARK: - LDRRequest
 struct LDRRequest<Response> {
   // MARK: property
