@@ -25,7 +25,6 @@
 		E6522F8C24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6522F8B24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift */; };
 		E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652C02A24A3676400C744DE /* LDRFeedRow.swift */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
-		E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66EF8581F945EE20073C44B /* URL+Queries.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
@@ -117,7 +116,6 @@
 		E652C02A24A3676400C744DE /* LDRFeedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRow.swift; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
-		E66EF8581F945EE20073C44B /* URL+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Queries.swift"; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewModel.swift; sourceTree = "<group>"; };
 		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				E6FFD6661F6DEB7900AD947E /* Feed */,
 				E6FFD6681F6DEB7900AD947E /* Pin */,
 				E6C7B3601F849286000EFCE6 /* Login */,
-				E68CA39F25DC2087005E591D /* Networking */,
 				E6C32EE01F92CC610052DDE3 /* CoreData */,
 				E6C9FFDB25E644ED00F9F21E /* Constant */,
 				E6BCD0171F944CA200B2E7E6 /* Foundation+Extension */,
@@ -271,20 +268,12 @@
 			path = "UIKit+Extension";
 			sourceTree = "<group>";
 		};
-		E68CA39F25DC2087005E591D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
-				E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */,
-				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		E6BCD0171F944CA200B2E7E6 /* Foundation+Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E66EF8581F945EE20073C44B /* URL+Queries.swift */,
+				E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */,
+				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
+				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
 				E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */,
@@ -614,7 +603,6 @@
 				E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */,
 				E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */,
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
-				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E6C9FFEB25E646A800F9F21E /* LDRApi.swift in Sources */,
 				E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */,
 				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,

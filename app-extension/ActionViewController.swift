@@ -92,7 +92,7 @@ class ActionViewController: UIViewController {
                   }
                     if error != nil { completionHandler(error!); return }
                     if data == nil { completionHandler(LDRError.invalidAuthenticityToken); return }
-                    if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
+                  if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(urlResponse: httpUrlResponse) }
 
                     // parse html
                     let authenticityToken = self.getAuthencityToken(htmlData: data!)
@@ -118,11 +118,10 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
-        let url = LDRUrl(path: LDRApi.session)
-        if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
+        let url = URL(ldrPath: LDRApi.api.pin.add)
 
         // request
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = ["username": username!, "password": password!, "authenticity_token": authenticityToken].HTTPBodyValue()
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
@@ -136,7 +135,7 @@ class ActionViewController: UIViewController {
                    }
                     if error != nil { completionHandler(error!); return }
                     if data == nil { completionHandler(LDRError.invalidApiKey); return }
-                    if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
+              if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(urlResponse: httpUrlResponse) }
 
                     let authenticityToken = self.getAuthencityToken(htmlData: data!)
                     if authenticityToken != nil { completionHandler(LDRError.invalidUsernameOrPassword); return }
@@ -183,11 +182,10 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
         // invalid url
-        let url = LDRUrl(path: LDRApi.api.pin.add)
-        if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
+        let url = URL(ldrPath: LDRApi.api.pin.add)
 
         // request
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -205,7 +203,7 @@ class ActionViewController: UIViewController {
                         completionHandler(LDRError.invalidApiKey)
                         return
                     }
-                    if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(httpUrlResponse: httpUrlResponse) }
+              if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(urlResponse: httpUrlResponse) }
                 
                     do {
                         let json = try JSON(data: d)

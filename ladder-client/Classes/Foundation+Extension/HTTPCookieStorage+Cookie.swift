@@ -1,106 +1,42 @@
 import Foundation
 import KeychainAccess
 
-// MARK: - HTTPCookieStorage+Cookie
+// MARK: - HTTPCookieStorage + Cookie
 extension HTTPCookieStorage {
 
-    // MARK: - public api
+  // MARK: public api
 
-    /// check if having the cookie
-    ///
-    /// - Parameters:
-    ///   - name: name of cookie
-    ///   - domain: domain of cookie
-    /// - Returns: Bool value if having the cookie
-    func hasCookie(name: String, domain: String) -> Bool {
-        var doesHave = false
-
-        guard let cookies = HTTPCookieStorage.shared.cookies else {
-            return doesHave
-        }
-        for cookie in cookies {
-            if name != cookie.name { continue }
-            if domain != cookie.domain { continue }
-            doesHave = true
-            break
-        }
-
-        return doesHave
+  /// save cookies by url response
+  ///
+  /// - Parameter urlResponse: url response
+  func addCookies(urlResponse: URLResponse) {
+    guard let response = urlResponse as? HTTPURLResponse,
+          let responseUrl = response.url else {
+      return
     }
-
-    /// save cookies by url response
-    ///
-    /// - Parameter urlResponse: url response
-    func addCookies(urlResponse: URLResponse) {
-        guard let response = urlResponse as? HTTPURLResponse else {
-            return
-        }
-
-        var headerFields: [String: String] = [:]
-        for (key, value) in response.allHeaderFields {
-            if let k = key as? String, let v = value as? String {
-                headerFields[k] = v
-            }
-        }
-        guard let responseUrl = response.url else {
-            return
-        }
-        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl)
-        for cookie in cookies {
-            HTTPCookieStorage.shared.setCookie(cookie)
-
-            let url = URL(ldrPath: LDRApi.login)
-            guard let host = url.host else {
-                continue
-            }
-            if cookie.domain.hasSuffix(host) {
-                Keychain(
-                    service: .ldrServiceName,
-                    accessGroup: .ldrSuiteName
-                )[LDRKeychain.session] = cookie.value
-            }
-        }
+    let headerFields = Dictionary(
+      uniqueKeysWithValues: response.allHeaderFields.map { key, value in ("\(key)", "\(value)") }
+    )
+    let host = URL(ldrPath: LDRApi.login).host
+    HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl).forEach {
+      HTTPCookieStorage.shared.setCookie($0)
+      if let host = host, $0.domain.hasSuffix(host) {
+        Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.session] = $0.value
+      }
     }
+  }
 
-    /// delete the cookie
-    ///
-    /// - Parameters:
-    ///   - name: cookie name
-    ///   - domain: cookie domain
-    func deleteCookie(name: String, domain: String) {
-        guard let cookies = HTTPCookieStorage.shared.cookies else {
-            return
-        }
-        var deletingCookies: [HTTPCookie] = []
-        for cookie in cookies {
-            if name != cookie.name { continue }
-            if domain != cookie.domain { continue }
-            deletingCookies.append(cookie)
-        }
+}
 
-        for cookie in deletingCookies {
-            HTTPCookieStorage.shared.deleteCookie(cookie)
-        }
-    }
-
-    /// returns string value of cookie or nil if not existed
-    ///
-    /// - Parameters:
-    ///   - name: cookie name
-    ///   - domain: cookie domain
-    /// - Returns: string value of cookie or nil if not existed
-    func value(name: String, domain: String) -> String? {
-        guard let cookies = HTTPCookieStorage.shared.cookies else {
-            return nil
-        }
-
-        for cookie in cookies {
-            if name != cookie.name { continue }
-            if domain != cookie.domain { continue }
-            return cookie.value
-        }
-
-        return nil
-    }
-
+// MARK: - String + Cookie
+extension String {
+  /// get cookies string for http header
+  /// - Parameter host: host name for cookie
+  /// - Returns: http header string
+  static func ldrCookie(host: String) -> String {
+    HTTPCookieStorage.shared.cookies?
+      .compactMap { $0.domain.hasSuffix(host) ? $0 : nil }
+      .map { "\($0.name)=\($0.value)" }
+      .reduce("", +) ?? ""
+  }
 }
