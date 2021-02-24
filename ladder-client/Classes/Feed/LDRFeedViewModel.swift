@@ -13,8 +13,8 @@ final class LDRFeedViewModel: ObservableObject {
   var sections: [String] {
     segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
   }
-  @Published var unreads: [LDRFeedSubsUnread: LDRUnread] = [:]
-  @Published var unread: LDRUnread?
+  @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
+  @Published var unread: LDRFeedUnread?
   var isPresentingDetailView: Binding<Bool> {
     Binding<Bool>(
       get: { self.unread != nil },
@@ -41,14 +41,9 @@ final class LDRFeedViewModel: ObservableObject {
     )
   }
   var unreadCount: Int {
-    var count = 0
-    for (subsunread, unread) in unreads {
-      if unread.state == LDRUnread.State.read {
-        continue
-      }
-      count += subsunread.unreadCountValue
-    }
-    return count
+    subsunreads.filter { unreads[$0]?.state != .read }
+      .map { $0.unreadCount.intValue }
+      .reduce(0, +)
   }
   
   private var notificationCancellables = Set<AnyCancellable>()
@@ -127,7 +122,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Request feed is touched (read)
   /// - Parameter unread: this unread is already read
-  func touchAll(unread: LDRUnread) {
+  func touchAll(unread: LDRFeedUnread) {
     if unread.state == .read {
       return
     }
@@ -146,7 +141,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Select LDRFeedUnread to focus
   /// - Parameter unread: LDRFeedUnread
-  func selectUnread(unread: LDRUnread) {
+  func selectUnread(unread: LDRFeedUnread) {
     self.unread = unread
   }
     
@@ -179,7 +174,7 @@ final class LDRFeedViewModel: ObservableObject {
           self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
         },
         receiveValue: { [weak self] response in
-          let unread = LDRUnread(response: response)
+          let unread = LDRFeedUnread(response: response)
           if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == unread.subscribeId }) {
             self?.unreads[subsunread] = unread
             unread.state = .unread

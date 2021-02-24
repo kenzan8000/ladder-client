@@ -12,8 +12,8 @@ extension URLSession {
     // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
-      .handleEvents(receiveOutput: { (output: URLSession.DataTaskPublisher.Output) in
-        HTTPCookieStorage.shared.addCookies(urlResponse: output.response)
+      .handleEvents(receiveOutput: {
+        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
       })
       .map(\.data)
       .decode(type: Value.self, decoder: decoder)

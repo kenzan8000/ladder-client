@@ -48,6 +48,7 @@
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
 		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E6C8E63423E55646004F410D /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E63323E55646004F410D /* LDRConstant.swift */; };
+		E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */; };
 		E6CBA82323E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82223E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift */; };
 		E6CBA82523E6AE6600A6F773 /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82423E6AE6600A6F773 /* Dictionary+HTTPBody.swift */; };
 		E6CBA82723E6B39200A6F773 /* URLRequest+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBA82623E6B39200A6F773 /* URLRequest+Cookie.swift */; };
@@ -140,6 +141,7 @@
 		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6C8E63223E524A5004F410D /* app-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "app-extension.entitlements"; sourceTree = "<group>"; };
 		E6C8E63323E55646004F410D /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
+		E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
 		E6CBA82223E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6CBA82423E6AE6600A6F773 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E6CBA82623E6B39200A6F773 /* URLRequest+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cookie.swift"; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				E652C02A24A3676400C744DE /* LDRFeedRow.swift */,
 				E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */,
 				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
+				E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */,
 				E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */,
 				E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */,
 				E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */,
@@ -609,6 +612,7 @@
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
 				E6E127B124A4C3D9008627D5 /* LDRFeedDetailViewModel.swift in Sources */,
 				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
+				E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */,
 				E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */,
 				E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */,
 				E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */,

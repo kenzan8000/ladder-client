@@ -145,7 +145,7 @@ struct LDRFeedDetailView: View {
 struct LDRFeedDetailView_Previews: PreviewProvider {
   static var previews: some View {
     LDRFeedDetailView(
-      feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRUnread(response: LDRUnreadResponse(subscribeId: 1, items: [], channel: .example))),
+      feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRFeedUnread(response: LDRUnreadResponse(subscribeId: 1, items: [], channel: .example))),
       feedDetailWebViewModel: LDRFeedDetailWebViewModel()
     )
   }

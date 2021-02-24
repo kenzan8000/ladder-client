@@ -7,7 +7,7 @@ import WebKit
 final class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
-  @Published var unread: LDRUnread
+  @Published var unread: LDRFeedUnread
   @Published var index: Int = 0
   var count: Int { unread.itemsCount }
   var title: String { unread.getItemValue(at: index, keyPath: \.title) ?? "" }
@@ -32,7 +32,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
 
   // MARK: initialization
     
-  init(unread: LDRUnread) {
+  init(unread: LDRFeedUnread) {
     self.unread = unread
     NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
       .receive(on: DispatchQueue.main)
