@@ -66,7 +66,7 @@ final class LDRFeedViewModel: ObservableObject {
         self?.isPresentingLoginView = false
       }
       .store(in: &notificationCancellables)
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.didBecomeActive)
+    NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.loadFeedFromAPI()

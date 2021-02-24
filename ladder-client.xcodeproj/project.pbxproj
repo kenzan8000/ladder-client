@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8CB4B4A05F4346E4D068905E /* Pods_ladder_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9089F3FDFE5515AF9B9502BC /* Pods_ladder_client.framework */; };
 		DD933E8D446545E16DF32855 /* Pods_app_extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9425D321988930638B2CB016 /* Pods_app_extension.framework */; };
-		E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60230B71F5E54740052F762 /* AppDelegate.swift */; };
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
 		E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */; };
 		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
@@ -63,7 +62,7 @@
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
 		E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */; };
 		E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
-		E6FA099424A8CBED00888F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* SceneDelegate.swift */; };
+		E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* LadderClientApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +96,6 @@
 		AF53690F14A043A005990FB1 /* Pods-ladder-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-client/Pods-ladder-client.debug.xcconfig"; sourceTree = "<group>"; };
 		BD395FE48987FD0A0B67FD4B /* Pods-ladder-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ladder-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-ladder-client/Pods-ladder-client.release.xcconfig"; sourceTree = "<group>"; };
 		C4E45A9148019DD321F442CA /* Pods-app-extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-extension/Pods-app-extension.debug.xcconfig"; sourceTree = "<group>"; };
-		E60230B71F5E54740052F762 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginFormValidation.swift; sourceTree = "<group>"; };
 		E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Session.swift"; sourceTree = "<group>"; };
@@ -158,7 +156,7 @@
 		E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedViewModel.swift; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
 		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
-		E6FA099324A8CBED00888F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E6FA099324A8CBED00888F58 /* LadderClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadderClientApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,8 +194,7 @@
 		E60230B61F5E54740052F762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E6FA099324A8CBED00888F58 /* SceneDelegate.swift */,
-				E60230B71F5E54740052F762 /* AppDelegate.swift */,
+				E6FA099324A8CBED00888F58 /* LadderClientApp.swift */,
 				E60D63D31F73AEEF00D4C01F /* LDRConstant.swift */,
 				E6A51A0324751C8B008DE603 /* LDRRequestHelper.swift */,
 				E66DFE1924A8B95000790F8B /* LDRTabView.swift */,
@@ -606,7 +603,6 @@
 				E66EF8591F945EE20073C44B /* URL+Queries.swift in Sources */,
 				E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */,
 				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
-				E60230BA1F5E54740052F762 /* AppDelegate.swift in Sources */,
 				E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */,
 				E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
@@ -629,7 +625,7 @@
 				E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */,
 				E60D63D41F73AEEF00D4C01F /* LDRConstant.swift in Sources */,
 				E6241ECB1FA462C400DBA613 /* Dictionary+HTTPBody.swift in Sources */,
-				E6FA099424A8CBED00888F58 /* SceneDelegate.swift in Sources */,
+				E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */,
 				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */,
 				E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */,

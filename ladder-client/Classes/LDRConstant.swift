@@ -20,7 +20,6 @@ enum LDRNotificationCenter {
     static let didLogin = Notification.Name("LDRNotificationCenter.didLogin")
     static let willCloseLoginView = Notification.Name("LDRNotificationCenter.willCloseLoginView")
     static let didGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("LDRNotificationCenter.didGetInvalidUrlOrUsernameOrPasswordError")
-    static let didBecomeActive = Notification.Name("LDRNotificationCenter.didBecomeActive")
 }
 
 // MARK: - Error
