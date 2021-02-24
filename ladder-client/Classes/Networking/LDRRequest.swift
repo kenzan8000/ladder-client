@@ -50,17 +50,3 @@ struct LDRRequest<Response> {
   }
   
 }
-
-// MARK: - LDRResponse
-struct LDRResponse {
-  // MARK: property
-  let data: Data
-  let response: URLResponse
-  
-  // MARK: initialization
-  init(data: Data, response: URLResponse) {
-    HTTPCookieStorage.shared.addCookies(urlResponse: response)
-    self.data = data
-    self.response = response
-  }
-}

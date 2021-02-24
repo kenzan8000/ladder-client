@@ -64,10 +64,14 @@ extension URLSession {
   func publisher(
     for request: LDRRequest<LDRSessionResponse>
   ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
+    // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
-      .map { LDRResponse(data: $0.data, response: $0.response) }
+      .handleEvents(receiveOutput: {
+        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
+      })
       .map { LDRSessionResponse(data: $0.data) }
       .eraseToAnyPublisher()
+    // swiftlint:enable trailing_closure
   }
 }
