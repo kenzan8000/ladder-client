@@ -35,10 +35,7 @@ struct LDRUnreadItem: Decodable {
   let title: String
   let category: String
   let body: String
-  let createdOn: Int
-  let modifiedOn: Int
   let link: String
-  let author: String
 }
 
 // MARK: - LDRChannel
@@ -49,11 +46,7 @@ struct LDRChannel: Decodable {
     title: "efclのはてなブックマーク",
     description: "efclのはてなブックマーク (46,216)",
     link: "https://b.hatena.ne.jp/efcl/bookmark",
-    feedlink: "https://b.hatena.ne.jp/efcl/bookmark.rss",
-    createdOn: "2020-06-01T14:37:08.842Z",
-    updatedOn: "2021-02-23T07:32:18.605Z",
-    modifiedOn: "2021-02-23T07:32:18.567Z",
-    subscribersCount: 1
+    feedlink: "https://b.hatena.ne.jp/efcl/bookmark.rss"
   )
   
   // MARK: prooperty
@@ -62,8 +55,4 @@ struct LDRChannel: Decodable {
   let description: String
   let link: String
   let feedlink: String
-  let createdOn: String
-  let updatedOn: String
-  let modifiedOn: String
-  let subscribersCount: Int
 }

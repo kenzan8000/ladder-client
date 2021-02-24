@@ -32,7 +32,6 @@ struct LDRSubResponse: Decodable {
   let subscribeId: Int
   let link: String
   let icon: String
-  let modifiedOn: Int
   let unreadCount: Int
   let subscribersCount: Int
   let feedlink: String

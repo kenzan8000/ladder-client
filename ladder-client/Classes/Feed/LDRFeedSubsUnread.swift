@@ -32,7 +32,6 @@ class LDRFeedSubsUnread: NSManagedObject {
   // MARK: class method
 
   /// returns model count from coredata
-  ///
   /// - Returns: count
   class func count() -> Int {
     let context = LDRCoreDataManager.shared.managedObjectContext
@@ -53,17 +52,17 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
 
   /// returns count of model by the rate
-  ///
   /// - Parameters:
   ///   - subsunreads: subsunread models
   ///   - rate: rate star
   /// - Returns: count of model by the rate
   class func countOfTheRateInt(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
-    subsunreads.filter { $0.rateValue == rate }.count
+    subsunreads
+      .filter { $0.rateValue == rate }
+      .count
   }
     
   /// Returns filtered subsunread array by rate
-  ///
   /// - Parameters:
   ///   - subsunreads: subsunread models
   ///   - rate: rate string
@@ -75,7 +74,6 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
 
   /// returns count of model by the folder
-  ///
   /// - Parameters:
   ///   - subsunreads: subsunread models
   ///   - folder: folder name
@@ -87,7 +85,6 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
     
   /// Returns filtered subsunread array by rate
-  ///
   /// - Parameters:
   ///   - subsunreads: subsunread models
   ///   - folder: folder string
@@ -98,45 +95,22 @@ class LDRFeedSubsUnread: NSManagedObject {
       .sorted { $0.title < $1.title }
   }
 
-  /// returns rates of subsunread models
-  ///
-  /// - Parameter subsunreads: subsunread models
-  /// - Returns: rates of subsunread models
-  class func getRateInts(subsunreads: [LDRFeedSubsUnread]) -> [Int] {
-    var rates: [Int] = []
-    for subsunread in subsunreads {
-      let rateValue = subsunread.rateValue
-      if rates.contains(rateValue) { continue }
-      rates.append(rateValue)
-    }
-    return rates
-  }
-    
   /// Returns Rate Strings from subsunread array
   /// - Parameter subsunreads:subsunread array
   /// - Returns: Rate Strings e.g. "★★★☆☆" when rate equals to 3
   class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [String] {
-    var rates: [String] = []
-    for subsunread in subsunreads {
-      let rateValue = subsunread.rateString
-      if rates.contains(rateValue) { continue }
-      rates.append(rateValue)
-    }
-    return rates
+    Array(
+      Set(subsunreads.map { $0.rateString })
+    ).sorted()
   }
 
   /// returns folder names
-  ///
   /// - Parameter subsunreads: subsunread models
   /// - Returns: folder names
   class func getFolders(subsunreads: [LDRFeedSubsUnread]) -> [String] {
-    var folders: [String] = []
-    for subsunread in subsunreads {
-      if folders.contains(subsunread.folder) { continue }
-      folders.append(subsunread.folder)
-    }
-    folders.sort()
-    return folders
+    Array(
+      Set(subsunreads.map { $0.folder })
+    ).sorted()
   }
 
   /// fetch models from coredata
