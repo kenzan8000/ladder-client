@@ -64,14 +64,14 @@ class ActionViewController: UIViewController {
     func requestLogin(completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid username
         let username = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
+            service: .ldrServiceName,
+            accessGroup: .ldrSuiteName
         )[LDRKeychain.username]
         if username == nil || username! == "" { completionHandler(LDRError.invalidUsername); return }
         // invalid password
         let password = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
+            service: .ldrServiceName,
+            accessGroup: .ldrSuiteName
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
@@ -107,14 +107,14 @@ class ActionViewController: UIViewController {
     func requestSession(authenticityToken: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid username
         let username = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
+            service: .ldrServiceName,
+            accessGroup: .ldrSuiteName
         )[LDRKeychain.username]
         if username == nil || username! == "" { completionHandler(LDRError.invalidUsername); return }
         // invalid password
         let password = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
+            service: .ldrServiceName,
+            accessGroup: .ldrSuiteName
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
@@ -165,8 +165,8 @@ class ActionViewController: UIViewController {
                     if apiKey == "undefined" { completionHandler(LDRError.invalidApiKey); return }
 
                     Keychain(
-                        service: LDRKeychain.serviceName,
-                        accessGroup: LDRKeychain.suiteName
+                        service: .ldrServiceName,
+                        accessGroup: .ldrSuiteName
                     )[LDRKeychain.apiKey] = apiKey
                 
                   self.requestPinAdd(link: self.url!, title: self.url!.host!+self.url!.path, completionHandler: completionHandler)
@@ -178,8 +178,8 @@ class ActionViewController: UIViewController {
     func requestPinAdd(link: URL, title: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         // invalid ApiKey
         let apiKey = Keychain(
-            service: LDRKeychain.serviceName,
-            accessGroup: LDRKeychain.suiteName
+            service: .ldrServiceName,
+            accessGroup: .ldrSuiteName
         )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
         // invalid url

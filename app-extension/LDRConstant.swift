@@ -4,8 +4,6 @@ import NotificationCenter
 // MARK: - User Defaults
 
 enum LDRKeychain {
-    static let serviceName = "org.kenzan8000.ladder-client"
-    static let suiteName = "group.ladder-pin"
     static let uuid = "LDRKeychain.uuid"
     static let username = "LDRKeychain.username"
     static let password = "LDRKeychain.password"
@@ -13,6 +11,11 @@ enum LDRKeychain {
     static let apiKey = "LDRKeychain.apiKey"
     static let session = "LDRKeychain.session"
     static let darkMode = "LDRKeychain.darkMode"
+}
+// MARK: - String + LDRKeychain
+extension String {
+  static let ldrServiceName = "org.kenzan8000.ladder-client"
+  static let ldrSuiteName = "group.ladder-pin"
 }
 
 
@@ -74,8 +77,8 @@ enum LDRApi {
  */
 func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
     guard let ldrUrlString = Keychain(
-        service: LDRKeychain.serviceName,
-        accessGroup: LDRKeychain.suiteName
+        service: .ldrServiceName,
+        accessGroup: .ldrSuiteName
         )[LDRKeychain.ldrUrlString] else {
         return nil
     }

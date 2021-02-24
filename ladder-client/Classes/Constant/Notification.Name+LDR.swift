@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Notification.Name
 extension Notification.Name {
-  static let ldrDidLogin = Notification.Name("Notification.ldrDidLogin")
-  static let ldrWillCloseLoginView = Notification.Name("Notification.ldrWillCloseLoginView")
-  static let ldrDidGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("Notification.ldrDidGetInvalidUrlOrUsernameOrPasswordError")
+  static let ldrDidLogin = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrDidLogin")
+  static let ldrWillCloseLoginView = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrWillCloseLoginView")
+  static let ldrDidGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrDidGetInvalidUrlOrUsernameOrPasswordError")
 }

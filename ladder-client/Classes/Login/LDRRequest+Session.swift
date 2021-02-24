@@ -18,7 +18,7 @@ extension LDRRequest where Response == LDRSessionResponse {
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body)
     )
   }
 }

@@ -5,7 +5,7 @@ struct LDRRequest<Response> {
   // MARK: property
   let url: URL
   let method: HttpMethod
-  var headers: [String: String] = [:]
+  var headers: LDRRequestHeader = [:]
   
   var urlRequest: URLRequest {
 
@@ -48,5 +48,16 @@ struct LDRRequest<Response> {
       }
     }
   }
-  
+}
+
+// MARK: - LDRRequestHeader
+typealias LDRRequestHeader = [String: String]
+extension LDRRequestHeader {
+  static func defaultHeader(url: URL, body: Data?) -> LDRRequestHeader {
+    [
+      "Content-Type": "application/json",
+      "Content-Length": "\(String(describing: body?.count))",
+      "Cookie": URLRequest.getCookiesString(host: url.host),
+    ]
+  }
 }

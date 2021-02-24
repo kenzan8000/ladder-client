@@ -1,4 +1,5 @@
 import Combine
+import KeychainAccess
 import HTMLReader
 
 // MARK: - LDRRequest + PinAll
@@ -9,11 +10,13 @@ extension LDRRequest where Response == LDRPinAllResponse {
   /// - Returns:
   static func pinAll() -> Self {
     let url = URL(ldrPath: LDRApi.Api.pinAll)
-    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? ""].HTTPBodyValue()
+    let body = [
+      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? ""
+    ].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body)
     )
   }
 }

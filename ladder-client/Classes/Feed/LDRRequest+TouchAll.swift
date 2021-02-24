@@ -1,4 +1,5 @@
 import Combine
+import KeychainAccess
 import Foundation
 
 // MARK: - LDRRequest + TouchAll
@@ -11,11 +12,14 @@ extension LDRRequest where Response == LDRTouchAllResponse {
   /// - Returns:
   static func touchAll(subscribeId: String) -> Self {
     let url = URL(ldrPath: LDRApi.Api.touchAll)
-    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "subscribe_id": subscribeId].HTTPBodyValue()
+    let body = [
+      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",
+      "subscribe_id": subscribeId
+    ].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body)
     )
   }
 }

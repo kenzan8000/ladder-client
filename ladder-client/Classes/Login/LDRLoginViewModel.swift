@@ -1,4 +1,5 @@
 import Combine
+import KeychainAccess
 import SwiftUI
 
 // MARK: - LDRLoginViewModel
@@ -55,10 +56,10 @@ final class LDRLoginViewModel: ObservableObject {
   func login() {
     isLogingIn = true
     
-    LDRRequestHelper.setUsername(username)
-    LDRRequestHelper.setPassword(password)
-    LDRRequestHelper.setURLDomain(urlDomain)
-    
+    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.username] = username
+    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.password] = password
+    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.ldrUrlString] = urlDomain
+
     URLSession.shared.publisher(for: .login(username: username, password: password))
       .receive(on: DispatchQueue.main)
       .sink(
@@ -70,7 +71,7 @@ final class LDRLoginViewModel: ObservableObject {
           }
         },
         receiveValue: {
-          LDRRequestHelper.setApiKey($0.apiKey)
+          Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] = $0.apiKey
         }
       )
       .store(in: &cancellables)

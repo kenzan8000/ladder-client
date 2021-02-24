@@ -1,3 +1,4 @@
+import KeychainAccess
 import SwiftUI
 
 // MARK: - LDRLoginView
@@ -27,7 +28,7 @@ struct LDRLoginView: View {
       Alert(title: Text(loginViewModel.error?.localizedDescription ?? ""))
     }
     .onAppear {
-      loginViewModel.urlDomain = LDRRequestHelper.getLDRDomain() ?? ""
+      loginViewModel.urlDomain = Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.ldrUrlString] ?? ""
     }
   }
 

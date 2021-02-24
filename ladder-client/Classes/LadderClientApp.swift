@@ -23,19 +23,19 @@ struct LadderClientApp: App {
   
   init() {
     /*
-    if let url = LDRRequestHelper.createUrl(path: LDRApi.login) {
-      if url.host != nil {
-        if let session = Keychain(
-          service: LDRKeychain.serviceName,
-          accessGroup: LDRKeychain.suiteName
-          )[LDRKeychain.session] {
-          let cookies = HTTPCookie.cookies(
-            withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session)"],
-            for: url
-          )
-          for cookie in cookies {
-              HTTPCookieStorage.shared.setCookie(cookie)
-          }
+     
+    let url = URL(ldrPath: LDRApi.login)
+    if url.host != nil {
+      if let session = Keychain(
+        service: .ldrServiceName,
+        accessGroup: .ldrSuiteName
+        )[LDRKeychain.session] {
+        let cookies = HTTPCookie.cookies(
+          withResponseHeaderFields: ["Set-Cookie": "\(LDR.cookieName)=\(session)"],
+          for: url
+        )
+        for cookie in cookies {
+            HTTPCookieStorage.shared.setCookie(cookie)
         }
       }
     }

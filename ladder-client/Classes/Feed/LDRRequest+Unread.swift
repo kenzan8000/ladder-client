@@ -1,4 +1,5 @@
 import Combine
+import KeychainAccess
 import Foundation
 
 // MARK: - LDRRequest + Unread
@@ -11,11 +12,14 @@ extension LDRRequest where Response == LDRUnreadResponse {
   /// - Returns:
   static func unread(subscribeId: String) -> Self {
     let url = URL(ldrPath: LDRApi.Api.unread)
-    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "subscribe_id": subscribeId].HTTPBodyValue()
+    let body = [
+      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",
+      "subscribe_id": subscribeId
+    ].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body)
     )
   }
 }

@@ -1,4 +1,5 @@
 import Combine
+import KeychainAccess
 import HTMLReader
 
 // MARK: - LDRRequest + PinAdd
@@ -12,11 +13,15 @@ extension LDRRequest where Response == LDRPinAddResponse {
   /// - Returns: LDRRequest
   static func pinAdd(link: URL, title: String) -> Self {
     let url = URL(ldrPath: LDRApi.Api.pinAdd)
-    let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "title": title, "link": link.absoluteString].HTTPBodyValue()
+    let body = [
+      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",
+      "title": title,
+      "link": link.absoluteString
+    ].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: LDRRequestHelper.createCookieHttpHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body)
     )
   }
 }

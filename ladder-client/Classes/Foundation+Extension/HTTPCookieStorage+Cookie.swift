@@ -49,13 +49,14 @@ extension HTTPCookieStorage {
         for cookie in cookies {
             HTTPCookieStorage.shared.setCookie(cookie)
 
-            guard let url = LDRRequestHelper.createUrl(path: LDRApi.login), let host = url.host else {
+            let url = URL(ldrPath: LDRApi.login)
+            guard let host = url.host else {
                 continue
             }
             if cookie.domain.hasSuffix(host) {
                 Keychain(
-                    service: LDRKeychain.serviceName,
-                    accessGroup: LDRKeychain.suiteName
+                    service: .ldrServiceName,
+                    accessGroup: .ldrSuiteName
                 )[LDRKeychain.session] = cookie.value
             }
         }

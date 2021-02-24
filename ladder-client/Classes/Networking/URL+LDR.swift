@@ -9,8 +9,8 @@ extension URL {
   /// - Parameter path: url path
   init(ldrPath: String) {
     guard let ldrUrlString = Keychain(
-      service: LDRKeychain.serviceName,
-      accessGroup: LDRKeychain.suiteName
+      service: .ldrServiceName,
+      accessGroup: .ldrSuiteName
     )[LDRKeychain.ldrUrlString] else {
       preconditionFailure("Couldn't retrieve RSS Reader URL.")
     }

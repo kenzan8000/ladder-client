@@ -49,8 +49,8 @@ extension HTTPCookieStorage {
             let url = LDRUrl(path: LDRApi.login)
             if url != nil && cookie.domain.hasSuffix(url!.host!) {
                 Keychain(
-                    service: LDRKeychain.serviceName,
-                    accessGroup: LDRKeychain.suiteName
+                    service: .ldrServiceName,
+                    accessGroup: .ldrSuiteName
                 )[LDRKeychain.session] = cookie.value
             }
         }
