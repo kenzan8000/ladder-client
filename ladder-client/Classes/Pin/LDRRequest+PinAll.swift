@@ -8,7 +8,7 @@ extension LDRRequest where Response == LDRPinAllResponse {
   /// Request retrieving all pins
   /// - Returns:
   static func pinAll() -> Self {
-    let url = URL(ldrPath: LDR.Api.pinAll)
+    let url = URL(ldrPath: LDRApi.Api.pinAll)
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? ""].HTTPBodyValue()
     return LDRRequest(
       url: url,

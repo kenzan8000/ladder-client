@@ -88,7 +88,7 @@ final class LDRLoginViewModel: ObservableObject {
   /// calls when succeeded
   private func succeed() {
     tearDown()
-    NotificationCenter.default.post(name: LDRNotificationCenter.didLogin, object: nil)
+    NotificationCenter.default.post(name: .ldrDidLogin, object: nil)
   }
   
   /// calls when failed

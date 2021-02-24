@@ -10,7 +10,7 @@ extension LDRRequest where Response == LDRTouchAllResponse {
   ///   - subscribeId: subscribe id
   /// - Returns:
   static func touchAll(subscribeId: String) -> Self {
-    let url = URL(ldrPath: LDR.Api.touchAll)
+    let url = URL(ldrPath: LDRApi.Api.touchAll)
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "subscribe_id": subscribeId].HTTPBodyValue()
     return LDRRequest(
       url: url,

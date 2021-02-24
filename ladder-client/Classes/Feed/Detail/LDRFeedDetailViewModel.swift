@@ -34,7 +34,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
     
   init(unread: LDRFeedUnread) {
     self.unread = unread
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
+    NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.pinAddCancellables.forEach { $0.cancel() }

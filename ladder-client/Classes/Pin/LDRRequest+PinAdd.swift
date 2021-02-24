@@ -11,7 +11,7 @@ extension LDRRequest where Response == LDRPinAddResponse {
   ///   - title: pin title
   /// - Returns: LDRRequest
   static func pinAdd(link: URL, title: String) -> Self {
-    let url = URL(ldrPath: LDR.Api.pinAdd)
+    let url = URL(ldrPath: LDRApi.Api.pinAdd)
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "title": title, "link": link.absoluteString].HTTPBodyValue()
     return LDRRequest(
       url: url,

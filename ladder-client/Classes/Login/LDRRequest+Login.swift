@@ -12,7 +12,7 @@ extension LDRRequest where Response == LDRLoginResponse {
   /// - Returns: 
   static func login(username: String, password: String) -> Self {
     LDRRequest(
-      url: URL(ldrPath: LDR.login),
+      url: URL(ldrPath: LDRApi.login),
       method: .get(
         [
           .init(name: "username", value: username),

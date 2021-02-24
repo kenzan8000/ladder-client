@@ -71,7 +71,7 @@ struct LDRLoginView: View {
     Button(
       action: {
         loginViewModel.tearDown()
-        NotificationCenter.default.post(name: LDRNotificationCenter.willCloseLoginView, object: nil)
+        NotificationCenter.default.post(name: .ldrWillCloseLoginView, object: nil)
       },
       label: {
         Image(systemName: "xmark")

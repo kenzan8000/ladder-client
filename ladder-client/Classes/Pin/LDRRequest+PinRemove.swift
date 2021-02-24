@@ -9,7 +9,7 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   /// - Parameter link: link URL to add the list  /// 
   /// - Returns: LDRRequest
   static func pinRemove(link: URL) -> Self {
-    let url = URL(ldrPath: LDR.Api.pinRemove)
+    let url = URL(ldrPath: LDRApi.Api.pinRemove)
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "link": link.absoluteString].HTTPBodyValue()
     return LDRRequest(
       url: url,

@@ -75,8 +75,8 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
-        let url = LDRUrl(path: LDR.login, params: ["username": username!, "password": password!])
-        //let url = LDRUrl(path: LDR.login)
+        let url = LDRUrl(path: LDRApi.login, params: ["username": username!, "password": password!])
+        //let url = LDRUrl(path: LDRApi.login)
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
@@ -118,7 +118,7 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
-        let url = LDRUrl(path: LDR.session)
+        let url = LDRUrl(path: LDRApi.session)
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
@@ -183,7 +183,7 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
         // invalid url
-        let url = LDRUrl(path: LDR.api.pin.add)
+        let url = LDRUrl(path: LDRApi.api.pin.add)
         if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
@@ -209,7 +209,6 @@ class ActionViewController: UIViewController {
                 
                     do {
                         let json = try JSON(data: d)
-                        LDRLOG(json.debugDescription)
                     }
                     catch {
                         completionHandler(LDRError.invalidUrlOrUsernameOrPassword)

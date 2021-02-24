@@ -13,7 +13,7 @@ extension LDRRequest where Response == LDRSessionResponse {
   ///   - authencityToken: authencityToken string
   /// - Returns:
   static func session(username: String, password: String, authenticityToken: String) -> Self {
-    let url = URL(ldrPath: LDR.session)
+    let url = URL(ldrPath: LDRApi.session)
     let body = ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
     return LDRRequest(
       url: url,

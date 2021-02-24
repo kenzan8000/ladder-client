@@ -46,7 +46,7 @@ extension HTTPCookieStorage {
         for cookie in cookies {
             HTTPCookieStorage.shared.setCookie(cookie)
 
-            let url = LDRUrl(path: LDR.login)
+            let url = LDRUrl(path: LDRApi.login)
             if url != nil && cookie.domain.hasSuffix(url!.host!) {
                 Keychain(
                     service: LDRKeychain.serviceName,

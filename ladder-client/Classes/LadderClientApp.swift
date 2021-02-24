@@ -23,7 +23,7 @@ struct LadderClientApp: App {
   
   init() {
     /*
-    if let url = LDRRequestHelper.createUrl(path: LDR.login) {
+    if let url = LDRRequestHelper.createUrl(path: LDRApi.login) {
       if url.host != nil {
         if let session = Keychain(
           service: LDRKeychain.serviceName,

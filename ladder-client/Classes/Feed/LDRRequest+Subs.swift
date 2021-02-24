@@ -8,7 +8,7 @@ extension LDRRequest where Response == LDRSubsResponse {
   /// Request retrieving all subsUnread
   /// - Returns:
   static func subs() -> Self {
-    let url = URL(ldrPath: LDR.Api.subs)
+    let url = URL(ldrPath: LDRApi.Api.subs)
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
     urlComponents?.queryItems = [URLQueryItem(name: "unread", value: "1")]
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? ""].HTTPBodyValue()

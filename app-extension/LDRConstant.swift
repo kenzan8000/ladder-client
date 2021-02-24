@@ -47,8 +47,8 @@ enum LDRError: Error {
 }
 
 
-// MARK: - LDR
-enum LDR {
+// MARK: - LDRApi
+enum LDRApi {
     static let login =                      "/login"
     static let session =                    "/session"
     enum api {
@@ -63,33 +63,6 @@ enum LDR {
     }
 
     static let cookieName = "_fastladder_session"
-}
-
-
-// MARK: - function
-
-/**
- * display log
- *
- * @param body log
- */
-func LDRLOG(_ body: Any) {
-#if DEBUG
-    print(body)
-#endif
-}
-
-/**
- * return class name
- *
- * @param classType classType
- * @return class name
- */
-func LDRNSStringFromClass(_ classType: AnyClass) -> String {
-    let classString = NSStringFromClass(classType)
-    let range = classString.range(of: ".")
-    //return classString.substring(from: range!.upperBound)
-    return String(classString[range!.upperBound...])
 }
 
 /**
@@ -115,16 +88,4 @@ func LDRUrl(path: String, params: Dictionary<String, String> = [:]) -> URL? {
         url = urlComponents?.url
     }
     return url
-}
-
-/**
- * return error message
- *
- * @param error Error?
- * @return error message string
- */
-func LDRErrorMessage(error: Error?) -> String {
-    if error == nil { return "Unknown Error" }
-    if !(error is LDRError) { return "\(error!.localizedDescription)" }
-    return "\(String(describing: error!))"
 }

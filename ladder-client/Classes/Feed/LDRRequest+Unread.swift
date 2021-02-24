@@ -10,7 +10,7 @@ extension LDRRequest where Response == LDRUnreadResponse {
   ///   - subscribeId: feed subscribe id
   /// - Returns:
   static func unread(subscribeId: String) -> Self {
-    let url = URL(ldrPath: LDR.Api.unread)
+    let url = URL(ldrPath: LDRApi.Api.unread)
     let body = ["ApiKey": LDRRequestHelper.getApiKey() ?? "", "subscribe_id": subscribeId].HTTPBodyValue()
     return LDRRequest(
       url: url,

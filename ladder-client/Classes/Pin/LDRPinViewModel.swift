@@ -41,7 +41,7 @@ final class LDRPinViewModel: ObservableObject {
     
   init() {
     pins = LDRPin.fetch()
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
+    NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.pinAllCancellable?.cancel()
@@ -56,7 +56,7 @@ final class LDRPinViewModel: ObservableObject {
         self?.loadPinsFromAPI()
       }
       .store(in: &notificationCancellables)
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.willCloseLoginView)
+    NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.isPresentingLoginView = false

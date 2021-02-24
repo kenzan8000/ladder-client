@@ -49,7 +49,7 @@ extension HTTPCookieStorage {
         for cookie in cookies {
             HTTPCookieStorage.shared.setCookie(cookie)
 
-            guard let url = LDRRequestHelper.createUrl(path: LDR.login), let host = url.host else {
+            guard let url = LDRRequestHelper.createUrl(path: LDRApi.login), let host = url.host else {
                 continue
             }
             if cookie.domain.hasSuffix(host) {

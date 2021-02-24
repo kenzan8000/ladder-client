@@ -59,7 +59,7 @@ final class LDRFeedViewModel: ObservableObject {
     subsunreads = LDRFeedSubsUnread.fetch(segment: LDRFeedSubsUnread.Segment.rate)
     rates = LDRFeedSubsUnread.getRates(subsunreads: subsunreads)
     folders = LDRFeedSubsUnread.getFolders(subsunreads: subsunreads)
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.didLogin)
+    NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.loadFeedFromAPI()
@@ -72,7 +72,7 @@ final class LDRFeedViewModel: ObservableObject {
         self?.loadFeedFromAPI()
       }
       .store(in: &notificationCancellables)
-    NotificationCenter.default.publisher(for: LDRNotificationCenter.willCloseLoginView)
+    NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.isPresentingLoginView = false
