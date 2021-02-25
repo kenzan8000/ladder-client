@@ -189,7 +189,6 @@ class ActionViewController: UIViewController {
         request.httpBody = ["ApiKey": apiKey!, "title": title, "link": link.absoluteString].HTTPBodyValue()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if request.httpBody != nil { request.setValue("\(request.httpBody!.count)", forHTTPHeaderField: "Content-Length") }
-        request.setCookies()
 
         URLSession.shared.dataTask(
             with: request as URLRequest,
