@@ -33,7 +33,10 @@
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
 		E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE225E77A4200C0F18C /* KeychainAccess */; };
-		E6572DE725E77A5700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE625E77A5700C0F18C /* HTMLReader */; };
+		E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
+		E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
+		E66AD21525E797A90099D5B4 /* URLSession+LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */; };
+		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
@@ -50,7 +53,7 @@
 		E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */; };
 		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
 		E6C8E62423E52460004F410D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62323E52460004F410D /* Media.xcassets */; };
-		E6C8E62623E52460004F410D /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* ActionViewController.swift */; };
+		E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */; };
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
 		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */; };
@@ -129,7 +132,7 @@
 		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
 		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C8E62323E52460004F410D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		E6C8E62523E52460004F410D /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
 		E6C8E62823E52460004F410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6C8E63223E524A5004F410D /* app-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "app-extension.entitlements"; sourceTree = "<group>"; };
@@ -167,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6572DE725E77A5700C0F18C /* HTMLReader in Frameworks */,
+				E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */,
 				E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +298,7 @@
 			children = (
 				E6C8E63223E524A5004F410D /* app-extension.entitlements */,
 				E6C8E62323E52460004F410D /* Media.xcassets */,
-				E6C8E62523E52460004F410D /* ActionViewController.swift */,
+				E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */,
 				E6C8E62723E52460004F410D /* MainInterface.storyboard */,
 				E6C8E62A23E52460004F410D /* Info.plist */,
 				E6EC083723E7800800929110 /* Assets.xcassets */,
@@ -398,7 +401,7 @@
 			name = "app-extension";
 			packageProductDependencies = (
 				E6572DE225E77A4200C0F18C /* KeychainAccess */,
-				E6572DE625E77A5700C0F18C /* HTMLReader */,
+				E66AD21A25E7CBAC0099D5B4 /* HTMLReader */,
 			);
 			productName = "app-extension";
 			productReference = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */;
@@ -553,6 +556,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E66AD21525E797A90099D5B4 /* URLSession+LDRRequest.swift in Sources */,
+				E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */,
+				E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */,
 				E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */,
 				E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */,
 				E6541CB325E78DEC00746F2E /* URLRequest+Cookie.swift in Sources */,
@@ -560,7 +566,7 @@
 				E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */,
 				E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */,
 				E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */,
-				E6C8E62623E52460004F410D /* ActionViewController.swift in Sources */,
+				E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,7 +930,7 @@
 			package = E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
-		E6572DE625E77A5700C0F18C /* HTMLReader */ = {
+		E66AD21A25E7CBAC0099D5B4 /* HTMLReader */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
 			productName = HTMLReader;

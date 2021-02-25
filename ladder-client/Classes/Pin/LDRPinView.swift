@@ -1,9 +1,5 @@
 import SwiftUI
 
-extension String: Identifiable {
-  public var id: String { self }
-}
-
 // MARK: - LDRPinView
 struct LDRPinView: View {
   // MARK: property
