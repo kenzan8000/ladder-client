@@ -1,3 +1,4 @@
+import Foundation
 import KeychainAccess
 
 // MARK: - URL + LDR

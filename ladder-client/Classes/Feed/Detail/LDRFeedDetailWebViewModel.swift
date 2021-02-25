@@ -1,4 +1,3 @@
-import SwiftyJSON
 import SwiftUI
 import WebKit
 

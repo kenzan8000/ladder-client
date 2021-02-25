@@ -1,5 +1,4 @@
 import CoreData
-import SwiftyJSON
 
 // MARK: - LDRPin
 class LDRPin: NSManagedObject {

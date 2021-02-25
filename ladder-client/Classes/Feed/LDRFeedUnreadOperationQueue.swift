@@ -1,9 +1,7 @@
-import Alamofire
-import ISHTTPOperation
-import SwiftyJSON
+import Foundation
 
 // MARK: - LDRFeedUnreadOperationQueue
-class LDRFeedUnreadOperationQueue: ISHTTPOperationQueue {
+class LDRFeedUnreadOperationQueue: OperationQueue {
 
   // MARK: initialization
 

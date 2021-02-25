@@ -1,5 +1,4 @@
 import CoreData
-import SwiftyJSON
 
 // MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {

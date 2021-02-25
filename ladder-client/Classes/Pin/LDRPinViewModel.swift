@@ -1,5 +1,4 @@
 import Combine
-import SwiftyJSON
 import SwiftUI
 
 // MARK: - LDRPinViewModel

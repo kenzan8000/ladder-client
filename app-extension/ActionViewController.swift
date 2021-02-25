@@ -2,7 +2,6 @@ import HTMLReader
 import JavaScriptCore
 import KeychainAccess
 import MobileCoreServices
-import SwiftyJSON
 import UIKit
 
 class ActionViewController: UIViewController {
@@ -199,12 +198,14 @@ class ActionViewController: UIViewController {
                         completionHandler(e)
                         return
                     }
+                    /*
                     guard let d = data else {
                         completionHandler(LDRError.invalidApiKey)
                         return
                     }
+                    */
               if let httpUrlResponse = response as? HTTPURLResponse { HTTPCookieStorage.shared.addCookies(urlResponse: httpUrlResponse) }
-                
+                    /*
                     do {
                         let json = try JSON(data: d)
                     }
@@ -212,6 +213,7 @@ class ActionViewController: UIViewController {
                         completionHandler(LDRError.invalidUrlOrUsernameOrPassword)
                         return
                     }
+                    */
                     completionHandler(nil)
                 }
             }
