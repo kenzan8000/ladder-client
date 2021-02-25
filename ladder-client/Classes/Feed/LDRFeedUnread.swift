@@ -12,7 +12,7 @@ final class LDRFeedUnread {
   let response: LDRUnreadResponse
   
   var subscribeId: String {
-    "\(response.channel.id)"
+    "\(response.subscribeId)"
   }
   var title: String {
     response.channel.title
