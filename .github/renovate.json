@@ -1,0 +1,40 @@
+{
+  "packageRules": [
+    {
+      "groupName": "KeychainAccess",
+      "managers": [
+        "swift"
+      ],
+      "packageNames": [
+        "KeychainAccess"
+      ]
+    },
+    {
+      "groupName": "HTMLReader",
+      "managers": [
+        "swift"
+      ],
+      "packageNames": [
+        "HTMLReader"
+      ]
+    },
+    {
+      "groupName": "Introspect",
+      "managers": [
+        "swift"
+      ],
+      "packageNames": [
+        "Introspect"
+      ]
+    },
+    {
+      "groupName": "swift-snapshot-testing",
+      "managers": [
+        "swift"
+      ],
+      "packageNames": [
+        "SnapshotTesting"
+      ]
+    }
+  ]
+}

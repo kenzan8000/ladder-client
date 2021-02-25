@@ -19,6 +19,5 @@ Thumbs.db
 .gitconfig
 *.ipa
 *.app
-Pods
 fastlane
 ladder-client/Resources/Certificates/*
