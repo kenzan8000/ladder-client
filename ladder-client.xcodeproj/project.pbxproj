@@ -22,6 +22,10 @@
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E6522F8C24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6522F8B24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift */; };
 		E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652C02A24A3676400C744DE /* LDRFeedRow.swift */; };
+		E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
+		E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
+		E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */; };
+		E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
 		E6572DCA25E7788700C0F18C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DC925E7788700C0F18C /* Introspect */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
@@ -46,7 +50,6 @@
 		E6C8E62623E52460004F410D /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* ActionViewController.swift */; };
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
 		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E6C8E63423E55646004F410D /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E63323E55646004F410D /* LDRConstant.swift */; };
 		E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */; };
 		E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */; };
 		E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
@@ -130,7 +133,6 @@
 		E6C8E62823E52460004F410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6C8E63223E524A5004F410D /* app-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "app-extension.entitlements"; sourceTree = "<group>"; };
-		E6C8E63323E55646004F410D /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
 		E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
 		E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+LDR.swift"; sourceTree = "<group>"; };
 		E6C9FFE425E6456500F9F21E /* LDRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRError.swift; sourceTree = "<group>"; };
@@ -298,7 +300,6 @@
 				E6C8E63223E524A5004F410D /* app-extension.entitlements */,
 				E6C8E62323E52460004F410D /* Media.xcassets */,
 				E6C8E62523E52460004F410D /* ActionViewController.swift */,
-				E6C8E63323E55646004F410D /* LDRConstant.swift */,
 				E6C8E62723E52460004F410D /* MainInterface.storyboard */,
 				E6C8E62A23E52460004F410D /* Info.plist */,
 				E6EC083723E7800800929110 /* Assets.xcassets */,
@@ -566,8 +567,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */,
+				E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */,
+				E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */,
+				E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */,
 				E6CBA82323E6AC1E00A6F773 /* HTTPCookieStorage+Cookie.swift in Sources */,
-				E6C8E63423E55646004F410D /* LDRConstant.swift in Sources */,
 				E6C8E62623E52460004F410D /* ActionViewController.swift in Sources */,
 				E6CBA82523E6AE6600A6F773 /* Dictionary+HTTPBody.swift in Sources */,
 				E6CBA82723E6B39200A6F773 /* URLRequest+Cookie.swift in Sources */,

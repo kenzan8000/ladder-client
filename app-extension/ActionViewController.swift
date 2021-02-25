@@ -39,7 +39,7 @@ class ActionViewController: UIViewController {
                                 
                             }
                             else {
-                                self?.operationDidFail(error: LDRError.invalidPinUrl)
+                                self?.operationDidFail(error: LDRError.failed(""))
                             }
                         }
                     })
@@ -47,7 +47,7 @@ class ActionViewController: UIViewController {
             }
         }
         if noUrlInfo {
-            self.operationDidFail(error: LDRError.invalidPinUrl)
+            self.operationDidFail(error: LDRError.failed(""))
         }
     }
 
@@ -74,12 +74,12 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
-        let url = LDRUrl(path: LDRApi.login, params: ["username": username!, "password": password!])
-        //let url = LDRUrl(path: LDRApi.login)
-        if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
+        // let url = LDRUrl(path: LDRApi.login, params: ["username": username!, "password": password!])
+        let url = URL(ldrPath: LDRApi.login)
+        // if url == nil { completionHandler(LDRError.invalidLdrUrl); return }
 
         // request
-        let request = URLRequest(url: url!)
+        let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(
             with: request,
@@ -117,7 +117,7 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.password]
         if password == nil || password! == "" { completionHandler(LDRError.invalidPassword); return }
         // invalid url
-        let url = URL(ldrPath: LDRApi.api.pin.add)
+        let url = URL(ldrPath: LDRApi.Api.pinAdd)
 
         // request
         var request = URLRequest(url: url)
@@ -181,7 +181,7 @@ class ActionViewController: UIViewController {
         )[LDRKeychain.apiKey]
         if apiKey == nil || apiKey == "" { completionHandler(LDRError.invalidApiKey); return }
         // invalid url
-        let url = URL(ldrPath: LDRApi.api.pin.add)
+        let url = URL(ldrPath: LDRApi.Api.pinAdd)
 
         // request
         var request = URLRequest(url: url)
