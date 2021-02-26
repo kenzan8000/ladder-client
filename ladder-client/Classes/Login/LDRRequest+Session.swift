@@ -29,29 +29,20 @@ struct LDRSessionResponse {
   let data: Data
   
   var apiKey: String {
-    var apiKey = "undefined"
-    let document = HTMLDocument(data: data, contentTypeHeader: nil)
-
-    let scripts = document.nodes(matchingSelector: "script")
-    for script in scripts {
-      for child in script.children {
-        guard let htmlNode = child as? HTMLNode else {
-          continue
+    HTMLDocument(data: data, contentTypeHeader: "text/html")
+      .nodes(matchingSelector: "script")
+      .flatMap { $0.children }
+      .compactMap { $0 as? HTMLNode }
+      .map {
+        let jsContext = JSContext()
+        jsContext?.evaluateScript($0.textContent)
+        jsContext?.evaluateScript("let getApiKey = () => { return ApiKey }")
+        if let key = jsContext?.evaluateScript("getApiKey()").toString(), key != "undefined" {
+          return key
         }
-        // parse ApiKey
-        guard let jsContext = JSContext() else {
-          continue
-        }
-        jsContext.evaluateScript(htmlNode.textContent)
-        jsContext.evaluateScript("let getApiKey = () => { return ApiKey }")
-        // save ApiKey
-        apiKey = jsContext.evaluateScript("getApiKey()").toString()
-        if apiKey == "undefined" { continue }
-        break
+        return ""
       }
-      if apiKey != "undefined" { break }
-    }
-    return apiKey
+      .reduce("", +)
   }
 }
 

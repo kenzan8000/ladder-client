@@ -17,13 +17,43 @@ extension HTTPCookieStorage {
     let headerFields = Dictionary(
       uniqueKeysWithValues: response.allHeaderFields.map { key, value in ("\(key)", "\(value)") }
     )
-    let host = URL(ldrPath: LDRApi.login).host
     HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl).forEach {
       HTTPCookieStorage.shared.setCookie($0)
-      if let host = host, $0.domain.hasSuffix(host) {
-        Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.session] = $0.value
+      /*
+      Keychain(
+        service: .ldrServiceName,
+        accessGroup: .ldrSuiteName
+      )[LDRKeychain.session] = $0.value
+      */
+    }
+    /*
+    guard let response = urlResponse as? HTTPURLResponse else {
+      return
+    }
+    var headerFields: [String: String] = [:]
+    for (key, value) in response.allHeaderFields {
+      if let k = key as? String, let v = value as? String {
+        headerFields[k] = v
       }
     }
+    guard let responseUrl = response.url else {
+      return
+    }
+    let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl)
+    for cookie in cookies {
+      HTTPCookieStorage.shared.setCookie(cookie)
+      let url = URL(ldrPath: LDRApi.login)
+      guard let host = url.host else {
+        continue
+      }
+      if cookie.domain.hasSuffix(host) {
+        Keychain(
+          service: .ldrServiceName,
+          accessGroup: .ldrSuiteName
+        )[LDRKeychain.session] = cookie.value
+      }
+    }
+    */
   }
 
 }
@@ -36,7 +66,7 @@ extension String {
   static func ldrCookie(host: String) -> String {
     HTTPCookieStorage.shared.cookies?
       .compactMap { $0.domain.hasSuffix(host) ? $0 : nil }
-      .map { "\($0.name)=\($0.value)" }
+      .map { "\($0.name)=\($0.value);" }
       .reduce("", +) ?? ""
   }
 }

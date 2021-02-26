@@ -25,7 +25,6 @@
 		E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
 		E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */; };
 		E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E6541CB325E78DEC00746F2E /* URLRequest+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */; };
 		E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
@@ -40,16 +39,14 @@
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; platformFilter = ios; };
-		E678DED725E8E828009C75E5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E678DED625E8E828009C75E5 /* SnapshotTesting */; };
 		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
-		E678DF0125E8ED21009C75E5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E678DF0025E8ED21009C75E5 /* SnapshotTesting */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
 		E68CA3A925DC227A005E591D /* URLSession+LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */; };
 		E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */; };
 		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */; };
 		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
+		E6B4A5B325E95334002C0E67 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E6B4A5B225E95334002C0E67 /* SnapshotTesting */; };
 		E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */; };
 		E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */; };
 		E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */; };
@@ -85,6 +82,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
 			remoteInfo = "ladder-client";
+		};
+		E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6C8E62023E52460004F410D;
+			remoteInfo = "app-extension";
 		};
 		E6C8E62B23E52460004F410D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -132,13 +136,11 @@
 		E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladder_clientTests.swift; sourceTree = "<group>"; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+HTMLTitle.swift"; sourceTree = "<group>"; };
-		E678DEE325E8EBCC009C75E5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewModel.swift; sourceTree = "<group>"; };
 		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
 		E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+LDRRequest.swift"; sourceTree = "<group>"; };
 		E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Login.swift"; sourceTree = "<group>"; };
 		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
-		E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cookie.swift"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
 		E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Subs.swift"; sourceTree = "<group>"; };
 		E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+TouchAll.swift"; sourceTree = "<group>"; };
@@ -186,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E678DF0125E8ED21009C75E5 /* SnapshotTesting in Frameworks */,
+				E6B4A5B325E95334002C0E67 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +196,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E678DED725E8E828009C75E5 /* SnapshotTesting in Frameworks */,
 				E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */,
 				E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */,
 			);
@@ -239,14 +240,6 @@
 			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
 		};
-		E6572DE125E77A4200C0F18C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E678DEE325E8EBCC009C75E5 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E6690C471F5E537D0065B7B5 = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +247,6 @@
 				E6C8E62223E52460004F410D /* app-extension */,
 				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
-				E6572DE125E77A4200C0F18C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,7 +296,6 @@
 				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
-				E68F09E71FAC50AC003BA13C /* URLRequest+Cookie.swift */,
 			);
 			path = "Foundation+Extension";
 			sourceTree = "<group>";
@@ -435,11 +426,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				E678DF1125E907B1009C75E5 /* PBXTargetDependency */,
 				E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */,
 			);
 			name = "ladder-clientTests";
 			packageProductDependencies = (
-				E678DF0025E8ED21009C75E5 /* SnapshotTesting */,
+				E6B4A5B225E95334002C0E67 /* SnapshotTesting */,
 			);
 			productName = "ladder-clientTests";
 			productReference = E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */;
@@ -461,7 +453,6 @@
 			packageProductDependencies = (
 				E6572DE225E77A4200C0F18C /* KeychainAccess */,
 				E66AD21A25E7CBAC0099D5B4 /* HTMLReader */,
-				E678DED625E8E828009C75E5 /* SnapshotTesting */,
 			);
 			productName = "app-extension";
 			productReference = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */;
@@ -512,7 +503,7 @@
 				E6572DC825E7788700C0F18C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */,
 				E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				E6B4A5B125E95334002C0E67 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = E6690C511F5E537E0065B7B5 /* Products */;
 			projectDirPath = "";
@@ -588,7 +579,6 @@
 				E6C9FFEB25E646A800F9F21E /* LDRApi.swift in Sources */,
 				E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */,
 				E63CAF9D249F83730051C402 /* LDRPinViewModel.swift in Sources */,
-				E68F09E81FAC50AC003BA13C /* URLRequest+Cookie.swift in Sources */,
 				E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */,
 				E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */,
 				E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */,
@@ -642,7 +632,6 @@
 				E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */,
 				E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */,
 				E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */,
-				E6541CB325E78DEC00746F2E /* URLRequest+Cookie.swift in Sources */,
 				E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */,
 				E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */,
 				E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */,
@@ -660,6 +649,11 @@
 			platformFilter = ios;
 			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
 			targetProxy = E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */;
+		};
+		E678DF1125E907B1009C75E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6C8E62023E52460004F410D /* app-extension */;
+			targetProxy = E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */;
 		};
 		E6C8E62C23E52460004F410D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -885,7 +879,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -915,7 +909,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1064,7 +1058,7 @@
 				minimumVersion = 4.2.1;
 			};
 		};
-		E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+		E6B4A5B125E95334002C0E67 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
@@ -1100,14 +1094,9 @@
 			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
 			productName = HTMLReader;
 		};
-		E678DED625E8E828009C75E5 /* SnapshotTesting */ = {
+		E6B4A5B225E95334002C0E67 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
-		};
-		E678DF0025E8ED21009C75E5 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			package = E6B4A5B125E95334002C0E67 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */

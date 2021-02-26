@@ -22,5 +22,15 @@ struct LadderClientApp: App {
   // MARK: initialization
   
   init() {
+    /*
+    if let session = Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.session] {
+      HTTPCookie.cookies(
+        withResponseHeaderFields: ["Set-Cookie": "\(LDRApi.cookieName)=\(session)"],
+        for: URL(ldrPath: LDRApi.login)
+      ).forEach {
+        HTTPCookieStorage.shared.setCookie($0)
+      }
+    }
+    */
   }
 }
