@@ -39,6 +39,7 @@
 		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
+		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
 		E68CA3A925DC227A005E591D /* URLSession+LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */; };
@@ -75,6 +76,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
+			remoteInfo = "ladder-client";
+		};
 		E6C8E62B23E52460004F410D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
@@ -117,6 +125,9 @@
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
+		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladder_clientTests.swift; sourceTree = "<group>"; };
+		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewModel.swift; sourceTree = "<group>"; };
 		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
 		E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+LDRRequest.swift"; sourceTree = "<group>"; };
@@ -163,6 +174,13 @@
 				E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */,
 				E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */,
 				E6572DCA25E7788700C0F18C /* Introspect in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E678DEC525E8E2C6009C75E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +244,7 @@
 			children = (
 				E6690C521F5E537E0065B7B5 /* ladder-client */,
 				E6C8E62223E52460004F410D /* app-extension */,
+				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
 				E6572DE125E77A4200C0F18C /* Frameworks */,
 			);
@@ -236,6 +255,7 @@
 			children = (
 				E6690C501F5E537E0065B7B5 /* ladder-client.app */,
 				E6C8E62123E52460004F410D /* Add the url to "read later"..appex */,
+				E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +277,15 @@
 				E6EE2E9824AB20EB0086590A /* LDRToastView.swift */,
 			);
 			path = "UIKit+Extension";
+			sourceTree = "<group>";
+		};
+		E678DEC925E8E2C6009C75E5 /* ladder-clientTests */ = {
+			isa = PBXGroup;
+			children = (
+				E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */,
+				E678DECC25E8E2C6009C75E5 /* Info.plist */,
+			);
+			path = "ladder-clientTests";
 			sourceTree = "<group>";
 		};
 		E6BCD0171F944CA200B2E7E6 /* Foundation+Extension */ = {
@@ -386,6 +415,24 @@
 			productReference = E6690C501F5E537E0065B7B5 /* ladder-client.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E678DEC725E8E2C6009C75E5 /* ladder-clientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E678DED125E8E2C6009C75E5 /* Build configuration list for PBXNativeTarget "ladder-clientTests" */;
+			buildPhases = (
+				E678DEC425E8E2C6009C75E5 /* Sources */,
+				E678DEC525E8E2C6009C75E5 /* Frameworks */,
+				E678DEC625E8E2C6009C75E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */,
+			);
+			name = "ladder-clientTests";
+			productName = "ladder-clientTests";
+			productReference = E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E6C8E62023E52460004F410D /* app-extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "app-extension" */;
@@ -413,7 +460,7 @@
 		E6690C481F5E537D0065B7B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
@@ -427,6 +474,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					E678DEC725E8E2C6009C75E5 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E6690C4F1F5E537D0065B7B5;
 					};
 					E6C8E62023E52460004F410D = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -455,6 +506,7 @@
 			targets = (
 				E6690C4F1F5E537D0065B7B5 /* ladder-client */,
 				E6C8E62023E52460004F410D /* app-extension */,
+				E678DEC725E8E2C6009C75E5 /* ladder-clientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -466,6 +518,13 @@
 			files = (
 				E60230C11F5E54860052F762 /* Assets.xcassets in Resources */,
 				E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E678DEC625E8E2C6009C75E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +611,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E678DEC425E8E2C6009C75E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6C8E61D23E52460004F410D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -573,6 +640,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
+			targetProxy = E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */;
+		};
 		E6C8E62C23E52460004F410D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E6C8E62023E52460004F410D /* app-extension */;
@@ -782,6 +854,59 @@
 			};
 			name = Release;
 		};
+		E678DECF25E8E2C6009C75E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
+			};
+			name = Debug;
+		};
+		E678DED025E8E2C6009C75E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
+			};
+			name = Release;
+		};
 		E6C8E62F23E52460004F410D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -867,6 +992,15 @@
 			buildConfigurations = (
 				E6690C631F5E537E0065B7B5 /* Debug */,
 				E6690C641F5E537E0065B7B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E678DED125E8E2C6009C75E5 /* Build configuration list for PBXNativeTarget "ladder-clientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E678DECF25E8E2C6009C75E5 /* Debug */,
+				E678DED025E8E2C6009C75E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
