@@ -40,6 +40,7 @@
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; };
+		E678DED725E8E828009C75E5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E678DED625E8E828009C75E5 /* SnapshotTesting */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
 		E68CA3A925DC227A005E591D /* URLSession+LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */; };
@@ -188,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E678DED725E8E828009C75E5 /* SnapshotTesting in Frameworks */,
 				E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */,
 				E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */,
 			);
@@ -449,6 +451,7 @@
 			packageProductDependencies = (
 				E6572DE225E77A4200C0F18C /* KeychainAccess */,
 				E66AD21A25E7CBAC0099D5B4 /* HTMLReader */,
+				E678DED625E8E828009C75E5 /* SnapshotTesting */,
 			);
 			productName = "app-extension";
 			productReference = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */;
@@ -499,6 +502,7 @@
 				E6572DC825E7788700C0F18C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */,
 				E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = E6690C511F5E537E0065B7B5 /* Products */;
 			projectDirPath = "";
@@ -1041,6 +1045,14 @@
 				minimumVersion = 4.2.1;
 			};
 		};
+		E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1068,6 +1080,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
 			productName = HTMLReader;
+		};
+		E678DED625E8E828009C75E5 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 
