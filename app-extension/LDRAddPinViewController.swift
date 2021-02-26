@@ -36,8 +36,11 @@ class LDRAddPinViewController: UIViewController {
         }
         .eraseToAnyPublisher()
       }
-      .flatMap {
-        URLSession.shared.publisher(for: .pinAdd(link: $0, title: $0.absoluteString))
+      .flatMap { (url: URL) -> AnyPublisher<LDRHTMLTitleResponse, Swift.Error> in
+        URLSession.shared.publisher(for: .htmlTitle(url: url))
+      }
+      .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, Swift.Error> in
+        URLSession.shared.publisher(for: .pinAdd(link: response.url, title: response.title))
       }
       .receive(on: DispatchQueue.main)
       .sink(
@@ -48,7 +51,7 @@ class LDRAddPinViewController: UIViewController {
           }
           else {
             self?.label.text = "Succeeded to add the URL to your 'read later' list."
-            self?.extensionContext!.completeRequest(returningItems: self?.extensionContext?.inputItems, completionHandler: nil)
+            self?.extensionContext?.completeRequest(returningItems: self?.extensionContext?.inputItems, completionHandler: nil)
           }
         },
         receiveValue: { _ in }

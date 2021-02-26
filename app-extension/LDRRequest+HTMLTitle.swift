@@ -1,6 +1,5 @@
 import Combine
 import HTMLReader
-import JavaScriptCore
 import KeychainAccess
 
 // MARK: - LDRRequest + HTMLTitle
@@ -24,6 +23,7 @@ extension LDRRequest where Response == LDRHTMLTitleResponse {
 struct LDRHTMLTitleResponse: Decodable {
   // MARK: prooperty
   let title: String
+  let url: URL
 }
 
 // MARK: - URLSession + LDRHTMLTitleResponse
@@ -37,12 +37,13 @@ extension URLSession {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
       .map {
-        let document = HTMLDocument(data: $0.data, contentTypeHeader: nil)
-        let jsContext = JSContext()
-        jsContext?.evaluateScript(document.textContent)
-        jsContext?.evaluateScript("let getTitle = () => { return document.title }")
+        let title = HTMLDocument(data: $0.data, contentTypeHeader: "text/html")
+          .nodes(matchingSelector: "title")
+          .map { $0.textContent }
+          .reduce("", +)
         return LDRHTMLTitleResponse(
-          title: jsContext?.evaluateScript("getTitle()").toString() ?? request.url.absoluteString
+          title: title == "" ? "\(request.url.host ?? "")/\(request.url.path)" : title,
+          url: request.url
         )
       }
       .eraseToAnyPublisher()
