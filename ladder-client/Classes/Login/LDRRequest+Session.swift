@@ -39,14 +39,13 @@ struct LDRSessionResponse {
           continue
         }
         // parse ApiKey
-        let jsText = htmlNode.textContent
         guard let jsContext = JSContext() else {
           continue
         }
-        jsContext.evaluateScript(jsText)
-        jsContext.evaluateScript("var getApiKey = function() { return ApiKey; };")
+        jsContext.evaluateScript(htmlNode.textContent)
+        jsContext.evaluateScript("let getApiKey = () => { return ApiKey }")
         // save ApiKey
-        apiKey = jsContext.evaluateScript("getApiKey();").toString()
+        apiKey = jsContext.evaluateScript("getApiKey()").toString()
         if apiKey == "undefined" { continue }
         break
       }

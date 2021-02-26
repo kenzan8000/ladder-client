@@ -1,6 +1,5 @@
 import Combine
 import KeychainAccess
-import HTMLReader
 
 // MARK: - LDRRequest + PinAll
 extension LDRRequest where Response == LDRPinAllResponse {

@@ -1,6 +1,5 @@
 import Combine
 import KeychainAccess
-import HTMLReader
 
 // MARK: - LDRRequest + PinRemove
 extension LDRRequest where Response == LDRPinRemoveResponse {

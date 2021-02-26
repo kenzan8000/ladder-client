@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import ladder_client
 
 class ladder_clientTests: XCTestCase {
 

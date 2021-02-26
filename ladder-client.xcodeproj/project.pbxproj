@@ -39,8 +39,10 @@
 		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
-		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; };
+		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; platformFilter = ios; };
 		E678DED725E8E828009C75E5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E678DED625E8E828009C75E5 /* SnapshotTesting */; };
+		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
+		E678DF0125E8ED21009C75E5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E678DF0025E8ED21009C75E5 /* SnapshotTesting */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
 		E68CA3A925DC227A005E591D /* URLSession+LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */; };
@@ -129,6 +131,8 @@
 		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladder_clientTests.swift; sourceTree = "<group>"; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+HTMLTitle.swift"; sourceTree = "<group>"; };
+		E678DEE325E8EBCC009C75E5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewModel.swift; sourceTree = "<group>"; };
 		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
 		E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+LDRRequest.swift"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E678DF0125E8ED21009C75E5 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +242,7 @@
 		E6572DE125E77A4200C0F18C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E678DEE325E8EBCC009C75E5 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				E6C8E63223E524A5004F410D /* app-extension.entitlements */,
 				E6C8E62323E52460004F410D /* Media.xcassets */,
 				E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */,
+				E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */,
 				E6C8E62723E52460004F410D /* MainInterface.storyboard */,
 				E6C8E62A23E52460004F410D /* Info.plist */,
 				E6EC083723E7800800929110 /* Assets.xcassets */,
@@ -431,6 +438,9 @@
 				E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */,
 			);
 			name = "ladder-clientTests";
+			packageProductDependencies = (
+				E678DF0025E8ED21009C75E5 /* SnapshotTesting */,
+			);
 			productName = "ladder-clientTests";
 			productReference = E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -637,6 +647,7 @@
 				E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */,
 				E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */,
 				E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */,
+				E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */,
 				E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +657,7 @@
 /* Begin PBXTargetDependency section */
 		E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
 			targetProxy = E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */;
 		};
@@ -866,7 +878,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -879,6 +895,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
@@ -894,6 +912,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "ladder-clientTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1082,6 +1101,11 @@
 			productName = HTMLReader;
 		};
 		E678DED625E8E828009C75E5 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		E678DF0025E8ED21009C75E5 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E678DED525E8E828009C75E5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
