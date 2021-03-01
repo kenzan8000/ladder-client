@@ -14,7 +14,7 @@ extension LDRRequest where Response == LDRUnreadResponse {
     let url = URL(ldrPath: LDRApi.Api.unread)
     let body = [
       "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",
-      "subscribe_id": subscribeId
+      "subscribe_id": "\(subscribeId)"
     ].HTTPBodyValue()
     return LDRRequest(
       url: url,
