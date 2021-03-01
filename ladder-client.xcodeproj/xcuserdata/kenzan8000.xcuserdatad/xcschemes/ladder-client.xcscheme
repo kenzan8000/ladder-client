@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1160"
+   LastUpgradeVersion = "1240"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E61BD2FE2473C3DF00087CE1"
+               BlueprintIdentifier = "E678DEC725E8E2C6009C75E5"
                BuildableName = "ladder-clientTests.xctest"
                BlueprintName = "ladder-clientTests"
                ReferencedContainer = "container:ladder-client.xcodeproj">
