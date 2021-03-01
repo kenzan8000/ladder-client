@@ -30,22 +30,13 @@ struct LDRLoginResponse {
   let response: URLResponse
   
   var authencityToken: String {
-    var authenticityToken = ""
-    let document = HTMLDocument(data: data, contentTypeHeader: nil)
-    guard let form = document.firstNode(matchingSelector: "form") else {
-      return authenticityToken
-    }
-    for child in form.children {
-      guard let htmlElement = child as? HTMLElement else {
-        continue
+    HTMLDocument(data: data, contentTypeHeader: nil)
+      .firstNode(matchingSelector: "form")?.children
+      .compactMap { $0 as? HTMLElement }
+      .compactMap { (element: HTMLElement) in
+        element["name"] == "authenticity_token" ? element["value"] : nil
       }
-      if htmlElement["name"] != "authenticity_token" {
-        continue
-      }
-      authenticityToken = htmlElement["value"] ?? ""
-      break
-    }
-    return authenticityToken
+      .reduce("", +) ?? ""
   }
 }
 

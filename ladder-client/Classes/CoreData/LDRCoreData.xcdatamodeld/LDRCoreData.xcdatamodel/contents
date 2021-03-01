@@ -5,13 +5,13 @@
         <attribute name="folder" attributeType="String" defaultValueString="undefined"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="link" attributeType="String"/>
-        <attribute name="rate" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="subscribeId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rate" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="subscribeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
-        <attribute name="unreadCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="LDRPin" representedClassName=".LDRPin" syncable="YES">
-        <attribute name="createdOn" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdOn" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="link" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
     </entity>

@@ -10,7 +10,7 @@ extension LDRRequest where Response == LDRUnreadResponse {
   /// - Parameters:
   ///   - subscribeId: feed subscribe id
   /// - Returns:
-  static func unread(subscribeId: String) -> Self {
+  static func unread(subscribeId: Int) -> Self {
     let url = URL(ldrPath: LDRApi.Api.unread)
     let body = [
       "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",

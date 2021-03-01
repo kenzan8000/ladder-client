@@ -9,7 +9,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
     
   // MARK: property
-  @NSManaged var subscribeId: String
+  @NSManaged var subscribeId: Int
   @NSManaged var rate: Int
   @NSManaged var folder: String
   @NSManaged var title: String
@@ -157,7 +157,7 @@ class LDRFeedSubsUnread: NSManagedObject {
       ) as? LDRFeedSubsUnread else {
         continue
       }
-      model.subscribeId = "\(item.subscribeId)"
+      model.subscribeId = item.subscribeId
       model.rate = item.rate
       model.folder = item.folder
       model.title = item.title

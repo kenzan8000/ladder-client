@@ -43,6 +43,7 @@ final class LDRLoginViewModel: ObservableObject {
   }()
   
   private var cancellables = Set<AnyCancellable>()
+  private var loginResponse: LDRLoginResponse?
   
   // MARK: destruction
   
@@ -60,7 +61,7 @@ final class LDRLoginViewModel: ObservableObject {
     Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.password] = password
     Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.ldrUrlString] = urlDomain
 
-    // HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
+    HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
     
     URLSession.shared.publisher(for: .login(username: username, password: password))
       .receive(on: DispatchQueue.main)

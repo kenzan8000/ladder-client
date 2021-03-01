@@ -11,8 +11,8 @@ final class LDRFeedUnread {
   var state: State = .unloaded
   let response: LDRUnreadResponse
   
-  var subscribeId: String {
-    "\(response.subscribeId)"
+  var subscribeId: Int {
+    response.subscribeId
   }
   var title: String {
     response.channel.title

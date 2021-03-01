@@ -29,7 +29,7 @@ struct LDRSessionResponse {
   let data: Data
   
   var apiKey: String {
-    HTMLDocument(data: data, contentTypeHeader: "text/html")
+    HTMLDocument(data: data, contentTypeHeader: nil)
       .nodes(matchingSelector: "script")
       .flatMap { $0.children }
       .compactMap { $0 as? HTMLNode }

@@ -11,7 +11,9 @@ extension Dictionary {
     var data: Data?
     do {
       data = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
-    } catch { data = nil }
+    } catch {
+      data = nil
+    }
     return data
   }
 
