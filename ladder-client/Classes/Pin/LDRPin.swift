@@ -5,7 +5,7 @@ class LDRPin: NSManagedObject {
 
   // MARK: property
 
-  @NSManaged var createdOn: String
+  @NSManaged var createdOn: Int
   @NSManaged var link: String
   @NSManaged var title: String
 
@@ -84,7 +84,7 @@ class LDRPin: NSManagedObject {
   ///   - title: title of pin
   ///   - link: link url string of pin
   /// - Returns: model saving error or nil if succeeded
-  class func saveByAttributes(createdOn: String, title: String, link: String) -> Error? {
+  class func saveByAttributes(createdOn: Int, title: String, link: String) -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
     guard let model = NSEntityDescription.insertNewObject(
       forEntityName: "LDRPin",
@@ -92,7 +92,7 @@ class LDRPin: NSManagedObject {
     ) as? LDRPin else {
       return nil
     }
-    model.createdOn = ""
+    model.createdOn = createdOn
     model.title = title
     model.link = link
     do {
@@ -116,7 +116,7 @@ class LDRPin: NSManagedObject {
       ) as? LDRPin else {
         return nil
       }
-      model.createdOn = "\(response.createdOn)"
+      model.createdOn = response.createdOn
       model.title = response.title
       model.link = response.link
       do {

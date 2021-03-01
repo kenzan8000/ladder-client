@@ -10,24 +10,21 @@ class LDRFeedSubsUnread: NSManagedObject {
     
   // MARK: property
   @NSManaged var subscribeId: String
-  @NSManaged var rate: NSNumber
+  @NSManaged var rate: Int
   @NSManaged var folder: String
   @NSManaged var title: String
   @NSManaged var link: String
   @NSManaged var feedlink: String
   @NSManaged var icon: String
-  @NSManaged var unreadCount: NSNumber
+  @NSManaged var unreadCount: Int
 
-  var rateValue: Int { self.rate.intValue }
   var rateString: String {
     (0 ..< 5)
-      .map { ((rate.intValue >= 5 - $0) ? "★" : "☆") }
+      .map { ((rate >= 5 - $0) ? "★" : "☆") }
       .reversed()
       .joined()
   }
-  var unreadCountValue: Int { self.unreadCount.intValue }
-  var unreadCountString: String { self.unreadCount.stringValue }
-
+  
   // MARK: class method
 
   /// returns model count from coredata
@@ -57,7 +54,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   /// - Returns: count of model by the rate
   class func countOfTheRateInt(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
     subsunreads
-      .filter { $0.rateValue == rate }
+      .filter { $0.rate == rate }
       .count
   }
     
@@ -161,13 +158,13 @@ class LDRFeedSubsUnread: NSManagedObject {
         continue
       }
       model.subscribeId = "\(item.subscribeId)"
-      model.rate = NSNumber(value: item.rate)
+      model.rate = item.rate
       model.folder = item.folder
       model.title = item.title
       model.link = item.link
       model.feedlink = item.feedlink
       model.icon = item.icon
-      model.unreadCount = NSNumber(value: item.unreadCount)
+      model.unreadCount = item.unreadCount
     }
     do {
       try context.save()

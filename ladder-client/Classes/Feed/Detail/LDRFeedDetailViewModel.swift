@@ -65,7 +65,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
     if LDRPin.exists(link: url.absoluteString, title: title) {
       return true
     }
-    if LDRPin.saveByAttributes(createdOn: "", title: title, link: url.absoluteString) != nil {
+    if LDRPin.saveByAttributes(createdOn: Int(Date().timeIntervalSince1970), title: title, link: url.absoluteString) != nil {
       return false
     }
     URLSession.shared.publisher(for: .pinAdd(link: url, title: title))

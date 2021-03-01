@@ -52,7 +52,6 @@
 		E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */; };
 		E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
 		E6C32EE41F92CC610052DDE3 /* LDRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */; };
-		E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */; };
 		E6C8E62423E52460004F410D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62323E52460004F410D /* Media.xcassets */; };
 		E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */; };
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
@@ -67,6 +66,7 @@
 		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
 		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6E127B124A4C3D9008627D5 /* LDRFeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailViewModel.swift */; };
+		E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
 		E6EC083823E7800800929110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EC083723E7800800929110 /* Assets.xcassets */; };
 		E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE2E9824AB20EB0086590A /* LDRToastView.swift */; };
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
@@ -147,7 +147,6 @@
 		E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Unread.swift"; sourceTree = "<group>"; };
 		E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPin.swift; sourceTree = "<group>"; };
 		E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRCoreDataManager.swift; sourceTree = "<group>"; };
-		E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JBModel.xcdatamodel; sourceTree = "<group>"; };
 		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C8E62323E52460004F410D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +163,7 @@
 		E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailView.swift; sourceTree = "<group>"; };
 		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E6E127B024A4C3D9008627D5 /* LDRFeedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewModel.swift; sourceTree = "<group>"; };
+		E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LDRCoreData.xcdatamodel; sourceTree = "<group>"; };
 		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6EE2E9824AB20EB0086590A /* LDRToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRToastView.swift; sourceTree = "<group>"; };
 		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C32EE11F92CC610052DDE3 /* LDRCoreDataManager.swift */,
-				E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */,
+				E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -589,6 +589,7 @@
 				E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */,
 				E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */,
 				E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */,
+				E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */,
 				E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */,
 				E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */,
 				E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */,
@@ -602,7 +603,6 @@
 				E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */,
 				E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */,
-				E6C32EE51F92CC610052DDE3 /* LDRModel.xcdatamodeld in Sources */,
 				E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */,
 				E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */,
 				E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */,
@@ -1104,13 +1104,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		E6C32EE21F92CC610052DDE3 /* LDRModel.xcdatamodeld */ = {
+		E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */,
+				E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */,
 			);
-			currentVersion = E6C32EE31F92CC610052DDE3 /* JBModel.xcdatamodel */;
-			path = LDRModel.xcdatamodeld;
+			currentVersion = E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */;
+			path = LDRCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

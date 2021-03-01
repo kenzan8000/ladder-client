@@ -14,7 +14,7 @@ class LDRCoreDataManager {
   
   // MARK: initialization
   init() {
-    persistentContainer = NSPersistentContainer(name: "LDRModel")
+    persistentContainer = NSPersistentContainer(name: "LDRCoreData")
     persistentContainer.loadPersistentStores { _, error in
       if let error = error {
         fatalError("Core Data store failed to load with error: \(error)")

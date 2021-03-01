@@ -41,7 +41,7 @@ final class LDRFeedViewModel: ObservableObject {
   }
   var unreadCount: Int {
     subsunreads.filter { unreads[$0]?.state != .read }
-      .map { $0.unreadCount.intValue }
+      .map { $0.unreadCount }
       .reduce(0, +)
   }
   
