@@ -13,6 +13,8 @@
 		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
 		E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */; };
 		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
+		E62A739925EE4B3E00E79F24 /* LDRRequestLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A739825EE4B3E00E79F24 /* LDRRequestLoginTests.swift */; };
+		E62A73A425EE4E3500E79F24 /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A73A325EE4E3500E79F24 /* login.html */; };
 		E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
 		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
@@ -122,6 +124,8 @@
 		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
+		E62A739825EE4B3E00E79F24 /* LDRRequestLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequestLoginTests.swift; sourceTree = "<group>"; };
+		E62A73A325EE4E3500E79F24 /* login.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = login.html; sourceTree = "<group>"; };
 		E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAll.swift"; sourceTree = "<group>"; };
 		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
@@ -252,8 +256,10 @@
 		E659C00B25EE1FE9005AAF87 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E62A739025EE329600E79F24 /* session.html */,
+				E62A739825EE4B3E00E79F24 /* LDRRequestLoginTests.swift */,
 				E678DECA25E8E2C6009C75E5 /* LDRRequestSessionTests.swift */,
+				E62A73A325EE4E3500E79F24 /* login.html */,
+				E62A739025EE329600E79F24 /* session.html */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -549,6 +555,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +646,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62A739925EE4B3E00E79F24 /* LDRRequestLoginTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequestSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

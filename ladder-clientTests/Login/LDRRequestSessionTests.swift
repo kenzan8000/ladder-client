@@ -32,7 +32,7 @@ class LDRRequestSessionTests: XCTestCase {
       )
     
     wait(for: [exp], timeout: 0.1)
-    XCTAssertTrue(result?.apiKey == "88ea15c16fc915fc27392b7dedc17382")
+    XCTAssertTrue(result?.apiKey == mockApiKey)
   }
   
   func testLDRRequestSession_whenEmptyHtml_apiKeyIsEmpty() throws {
@@ -52,7 +52,10 @@ class LDRRequestSessionTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Mock
+// MARK: - Mock
+private let mockApiKey = "88ea15c16fc915fc27392b7dedc17382"
+
+// MARK: - URLSession + Fake
 extension URLSession {
   func fakeValidHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     Future<LDRSessionResponse, Swift.Error> { promise in
