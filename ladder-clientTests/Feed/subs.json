@@ -1,0 +1,92 @@
+[
+  {
+    "feedlink": "https://engineeringblog.yelp.com/feed.xml",
+    "folder": "company",
+    "icon": "/favicon/8",
+    "link": "https://engineeringblog.yelp.com/",
+    "modified_on": 1614641982,
+    "public": 1,
+    "rate": 2,
+    "subscribe_id": 8,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "Yelp Engineering and Product Blog",
+    "unread_count": 1
+  },
+  {
+    "feedlink": "https://www.twilio.com/blog/feed",
+    "folder": "company",
+    "icon": "/favicon/10",
+    "link": "https://www.twilio.com/blog",
+    "modified_on": 1614640177,
+    "public": 1,
+    "rate": 2,
+    "subscribe_id": 10,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "Twilio Blog",
+    "unread_count": 3
+  },
+  {
+    "feedlink": "https://github.blog/all.atom",
+    "folder": "software engineering",
+    "icon": "/favicon/32",
+    "link": "https://github.blog",
+    "modified_on": 1614625723,
+    "public": 1,
+    "rate": 2,
+    "subscribe_id": 32,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "The GitHub Blog",
+    "unread_count": 1
+  },
+  {
+    "feedlink": "https://www.reddit.com/r/swift/.rss",
+    "folder": "software engineering",
+    "icon": "/favicon/472",
+    "link": "https://www.reddit.com/r/swift/",
+    "modified_on": 1614680071,
+    "public": 0,
+    "rate": 2,
+    "subscribe_id": 472,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "The Swift Programming Language",
+    "unread_count": 12
+  },
+  {
+    "feedlink": "https://www.reddit.com/r/iOSProgramming/.rss",
+    "folder": "software engineering",
+    "icon": "/favicon/473",
+    "link": "https://www.reddit.com/r/iOSProgramming/",
+    "modified_on": 1614667305,
+    "public": 0,
+    "rate": 2,
+    "subscribe_id": 473,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "iOS Programming",
+    "unread_count": 25
+  },
+  {
+    "feedlink": "https://www.reddit.com/r/SwiftUI/.rss",
+    "folder": "software engineering",
+    "icon": "/favicon/474",
+    "link": "https://www.reddit.com/r/SwiftUI/",
+    "modified_on": 1614640041,
+    "public": 0,
+    "rate": 2,
+    "subscribe_id": 474,
+    "subscribers_count": 1,
+    "tags": [
+    ],
+    "title": "SwiftUI",
+    "unread_count": 3
+  }
+]

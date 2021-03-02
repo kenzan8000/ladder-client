@@ -3,7 +3,7 @@ import Foundation
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRRequest+PinAll
+// MARK: - LDRRequest+PinAllTests
 class LDRRequestPinAllTests: XCTestCase {
 
   // MARK: life cycle
@@ -41,7 +41,7 @@ extension URLSession {
     Future<LDRPinAllResponse, Swift.Error> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "pinAll", withExtension: "json"),
+      if let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"),
          let data = try? Data(contentsOf: url, options: .uncached),
          let response = try? decoder.decode(LDRPinAllResponse.self, from: data) {
         promise(.success(response))
