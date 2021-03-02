@@ -18,10 +18,10 @@ class LDRRequestSessionTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestSession_whenInitialState_retrieveValidApiKey() throws {
+  func testLDRRequestSession_whenValidHtml_apiKeyIsValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeSuccessPublisher(
+    let sut = URLSession.shared.fakeValidHtmlPublisher(
       for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
     )
     
@@ -34,11 +34,27 @@ class LDRRequestSessionTests: XCTestCase {
     wait(for: [exp], timeout: 0.1)
     XCTAssertTrue(result?.apiKey == "88ea15c16fc915fc27392b7dedc17382")
   }
+  
+  func testLDRRequestSession_whenEmptyHtml_apiKeyIsEmpty() throws {
+    var result: LDRSessionResponse? = nil
+    let exp = expectation(description: #function)
+    let sut = URLSession.shared.fakeEmptyHtmlPublisher(
+      for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
+    )
+    
+    _ = sut
+      .sink(
+        receiveCompletion: { _ in exp.fulfill() },
+        receiveValue: { result = $0 }
+      )
+    wait(for: [exp], timeout: 0.1)
+    XCTAssertTrue(result?.apiKey == "")
+  }
 }
 
 // MARK: - URLSession + Mock
 extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
+  func fakeValidHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     Future<LDRSessionResponse, Swift.Error> { promise in
       if let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html"),
          let data = try? Data(contentsOf: url, options: .uncached) {
@@ -46,6 +62,13 @@ extension URLSession {
       } else {
         promise(.failure(LDRError.failed("Failed to load local html file.")))
       }
+    }
+    .eraseToAnyPublisher()
+  }
+  
+  func fakeEmptyHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
+    Future<LDRSessionResponse, Swift.Error> { promise in
+      promise(.success(LDRSessionResponse(data: Data())))
     }
     .eraseToAnyPublisher()
   }
