@@ -12,6 +12,7 @@
 		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
 		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
 		E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */; };
+		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
 		E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
 		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
@@ -38,7 +39,7 @@
 		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
-		E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */; platformFilter = ios; };
+		E678DECB25E8E2C6009C75E5 /* LDRRequestSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* LDRRequestSessionTests.swift */; platformFilter = ios; };
 		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
@@ -120,6 +121,7 @@
 		E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAdd.swift"; sourceTree = "<group>"; };
 		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
+		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
 		E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAll.swift"; sourceTree = "<group>"; };
 		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
@@ -133,7 +135,7 @@
 		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ladder_clientTests.swift; sourceTree = "<group>"; };
+		E678DECA25E8E2C6009C75E5 /* LDRRequestSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequestSessionTests.swift; sourceTree = "<group>"; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+HTMLTitle.swift"; sourceTree = "<group>"; };
 		E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewModel.swift; sourceTree = "<group>"; };
@@ -240,6 +242,22 @@
 			path = "SwiftUI+Extension";
 			sourceTree = "<group>";
 		};
+		E659BFF925EE1CF0005AAF87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E659C00B25EE1FE9005AAF87 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E62A739025EE329600E79F24 /* session.html */,
+				E678DECA25E8E2C6009C75E5 /* LDRRequestSessionTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		E6690C471F5E537D0065B7B5 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +265,7 @@
 				E6C8E62223E52460004F410D /* app-extension */,
 				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
+				E659BFF925EE1CF0005AAF87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,7 +301,7 @@
 		E678DEC925E8E2C6009C75E5 /* ladder-clientTests */ = {
 			isa = PBXGroup;
 			children = (
-				E678DECA25E8E2C6009C75E5 /* ladder_clientTests.swift */,
+				E659C00B25EE1FE9005AAF87 /* Login */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
@@ -530,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62A739125EE329600E79F24 /* session.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E678DECB25E8E2C6009C75E5 /* ladder_clientTests.swift in Sources */,
+				E678DECB25E8E2C6009C75E5 /* LDRRequestSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
