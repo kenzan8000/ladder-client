@@ -3,7 +3,7 @@ import Foundation
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRRequestLoginTests
+// MARK: - LDRRequest+LoginTests
 class LDRRequestLoginTests: XCTestCase {
 
   // MARK: life cycle
@@ -70,7 +70,7 @@ private let mockAuthencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5
 extension URLSession {
   func fakeValidHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
     Future<LDRSessionResponse, Swift.Error> { promise in
-      if let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html"),
+      if let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html"),
          let data = try? Data(contentsOf: url, options: .uncached) {
         promise(.success(LDRSessionResponse(data: data)))
       } else {
@@ -91,7 +91,7 @@ extension URLSession {
 // MARK: - LDRLoginResponse + Fake
 extension LDRLoginResponse {
   static func fakeValidResponse() -> LDRLoginResponse? {
-    guard let htmlUrl = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "login", withExtension: "html"),
+    guard let htmlUrl = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html"),
        let data = try? Data(contentsOf: htmlUrl, options: .uncached),
        let url = URL(string: "https://example.com/login?username=username&password=password") else {
        return nil

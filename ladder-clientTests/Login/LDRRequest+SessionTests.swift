@@ -3,7 +3,7 @@ import Foundation
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRRequestSessionTests
+// MARK: - LDRRequest+SessionTests
 class LDRRequestSessionTests: XCTestCase {
 
   // MARK: life cycle
