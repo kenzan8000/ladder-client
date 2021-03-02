@@ -16,6 +16,12 @@ extension URLSession {
         HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
       })
       .map(\.data)
+      .handleEvents(receiveOutput: {
+        do {
+          print(try JSONSerialization.jsonObject(with: $0, options: []))
+        } catch {
+        }
+      })
       .decode(type: Value.self, decoder: decoder)
       .mapError(LDRError.decoding)
       .eraseToAnyPublisher()

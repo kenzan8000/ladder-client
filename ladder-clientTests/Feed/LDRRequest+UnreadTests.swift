@@ -3,8 +3,8 @@ import Foundation
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRRequest+PinAllTests
-class LDRRequestPinAllTests: XCTestCase {
+// MARK: - LDRRequest+UnreadTests
+class LDRRequestUnreadTests: XCTestCase {
 
   // MARK: life cycle
   
@@ -18,10 +18,11 @@ class LDRRequestPinAllTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestPinAll_whenValidJsonResponse_LDRPinAllResponseIsValid() throws {
-    var result: LDRPinAllResponse? = nil
+  func testLDRRequestUnread_whenValidJsonResponse_LDRUnreadResponseIsValid() throws {
+    let subscribeId = 50
+    var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeValidPublisher(for: .pinAll())
+    let sut = URLSession.shared.fakeValidPublisher(for: .unread(subscribeId: subscribeId))
 
     _ = sut
       .sink(
@@ -31,19 +32,19 @@ class LDRRequestPinAllTests: XCTestCase {
     
     wait(for: [exp], timeout: 0.1)
     XCTAssertNotNil(result)
-    XCTAssertTrue(result?.count == 5)
+    XCTAssertTrue(result?.subscribeId == subscribeId)
   }
 }
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRPinAllResponse>) -> AnyPublisher<LDRPinAllResponse, Swift.Error> {
-    Future<LDRPinAllResponse, Swift.Error> { promise in
+  func fakeValidPublisher(for request: LDRRequest<LDRUnreadResponse>) -> AnyPublisher<LDRUnreadResponse, Swift.Error> {
+    Future<LDRUnreadResponse, Swift.Error> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"),
+      if let url = Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json"),
          let data = try? Data(contentsOf: url, options: .uncached),
-         let response = try? decoder.decode(LDRPinAllResponse.self, from: data) {
+         let response = try? decoder.decode(LDRUnreadResponse.self, from: data) {
         promise(.success(response))
       } else {
         promise(.failure(LDRError.failed("Failed to load local json file.")))

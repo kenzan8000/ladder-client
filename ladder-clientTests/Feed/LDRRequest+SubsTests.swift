@@ -31,7 +31,7 @@ class LDRRequestSubsTests: XCTestCase {
     
     wait(for: [exp], timeout: 0.1)
     XCTAssertNotNil(result)
-    XCTAssertNotNil(result?.count == 6)
+    XCTAssertTrue(result?.count == 6)
   }
 }
 

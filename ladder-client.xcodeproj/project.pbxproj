@@ -19,6 +19,8 @@
 		E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73BD25EE58F100E79F24 /* pinAll.json */; };
 		E62A73C425EE606600E79F24 /* subs.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73C325EE606600E79F24 /* subs.json */; };
 		E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */; };
+		E62A73D725EE61DE00E79F24 /* unread.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73D625EE61DE00E79F24 /* unread.json */; };
+		E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */; };
 		E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
 		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
@@ -134,6 +136,8 @@
 		E62A73BD25EE58F100E79F24 /* pinAll.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pinAll.json; sourceTree = "<group>"; };
 		E62A73C325EE606600E79F24 /* subs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = subs.json; sourceTree = "<group>"; };
 		E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SubsTests.swift"; sourceTree = "<group>"; };
+		E62A73D625EE61DE00E79F24 /* unread.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unread.json; sourceTree = "<group>"; };
+		E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+UnreadTests.swift"; sourceTree = "<group>"; };
 		E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAll.swift"; sourceTree = "<group>"; };
 		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
@@ -257,7 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */,
+				E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */,
 				E62A73C325EE606600E79F24 /* subs.json */,
+				E62A73D625EE61DE00E79F24 /* unread.json */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */,
+				E62A73D725EE61DE00E79F24 /* unread.json in Resources */,
 				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
 				E62A73C425EE606600E79F24 /* subs.json in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
@@ -676,6 +683,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
