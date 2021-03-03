@@ -22,7 +22,7 @@ class LDRPin: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
+    let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     var cnt = 0
@@ -43,9 +43,10 @@ class LDRPin: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [])
+    let predicates = [NSPredicate]()
+    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(LDRPin.createdOn), ascending: false)]
+    fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \LDRPin.createdOn, ascending: false)]
     var models: [LDRPin] = []
     do {
       if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
@@ -67,7 +68,10 @@ class LDRPin: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = [NSPredicate(format: "(link = %@)", link), NSPredicate(format: "(title = %@)", title)]
+    let predicates = [
+      NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), link),
+      NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.title), title),
+    ]
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     var cnt = 0

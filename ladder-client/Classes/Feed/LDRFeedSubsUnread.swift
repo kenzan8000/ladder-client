@@ -35,7 +35,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
+    let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     var count = 0
@@ -119,19 +119,19 @@ class LDRFeedSubsUnread: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
+    let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     var sortDescriptor: NSSortDescriptor?
     if segment == .rate {
-      sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.rate), ascending: false)
+      sortDescriptor = NSSortDescriptor(keyPath: \LDRFeedSubsUnread.rate, ascending: false)
     } else if segment == .folder {
-      sortDescriptor = NSSortDescriptor(key: #keyPath(LDRFeedSubsUnread.folder), ascending: true)
+      sortDescriptor = NSSortDescriptor(keyPath: \LDRFeedSubsUnread.folder, ascending: true)
     }
     if let descriptor = sortDescriptor {
       fetchRequest.sortDescriptors = [descriptor]
     }
     fetchRequest.returnsObjectsAsFaults = false
-    var models: [LDRFeedSubsUnread] = []
+    var models = [LDRFeedSubsUnread]()
     do {
       if let fetchedModels = try context.fetch(
         fetchRequest
@@ -183,10 +183,10 @@ class LDRFeedSubsUnread: NSManagedObject {
     let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
     fetchRequest.entity = entity
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
+    let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var models: [LDRFeedSubsUnread] = []
+    var models = [LDRFeedSubsUnread]()
     do {
       if let fetchedModels = try context.fetch(fetchRequest) as? [LDRFeedSubsUnread] {
         models = fetchedModels
