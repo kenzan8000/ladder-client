@@ -3,8 +3,8 @@ import Foundation
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRRequest+TouchAllTests
-class LDRRequestTouchAllTests: XCTestCase {
+// MARK: - LDRRequest+PinAddTests
+class LDRRequestPinAddTests: XCTestCase {
 
   // MARK: life cycle
   
@@ -18,11 +18,15 @@ class LDRRequestTouchAllTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestTouchAll_whenSucceeding_LDRTouchAllResponseWithIsSuccessIsTrue() throws {
-    let subscribeId = 50
-    var result: LDRTouchAllResponse? = nil
+  func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseWithIsSuccessIsTrue() throws {
+    var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeSuccessPublisher(for: .touchAll(subscribeId: subscribeId))
+    let sut = URLSession.shared.fakeSuccessPublisher(
+      for: .pinAdd(
+        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: ""),
+        title: "alextsui05 starred vercel/og-image"
+      )
+    )
 
     _ = sut
       .sink(
@@ -35,11 +39,15 @@ class LDRRequestTouchAllTests: XCTestCase {
     XCTAssertTrue(result?.isSuccess == true)
   }
   
-  func testLDRRequestTouchAll_whenFailing_LDRTouchAllResponseWithIsSuccessIsFalse() throws {
-    let subscribeId = 50
-    var result: LDRTouchAllResponse? = nil
+  func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseWithIsSuccessIsFalse() throws {
+    var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeFailurePublisher(for: .touchAll(subscribeId: subscribeId))
+    let sut = URLSession.shared.fakeFailurePublisher(
+      for: .pinAdd(
+        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: ""),
+        title: "alextsui05 starred vercel/og-image"
+      )
+    )
 
     _ = sut
       .sink(
@@ -55,12 +63,12 @@ class LDRRequestTouchAllTests: XCTestCase {
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRTouchAllResponse>) -> AnyPublisher<LDRTouchAllResponse, Swift.Error> {
-    Future<LDRTouchAllResponse, Swift.Error> { promise in
+  func fakeSuccessPublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, Swift.Error> {
+    Future<LDRPinAddResponse, Swift.Error> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8),
-         let response = try? decoder.decode(LDRTouchAllResponse.self, from: data) {
+         let response = try? decoder.decode(LDRPinAddResponse.self, from: data) {
         promise(.success(response))
       } else {
         promise(.failure(LDRError.failed("Failed to load response string.")))
@@ -69,12 +77,12 @@ extension URLSession {
     .eraseToAnyPublisher()
   }
   
-  func fakeFailurePublisher(for request: LDRRequest<LDRTouchAllResponse>) -> AnyPublisher<LDRTouchAllResponse, Swift.Error> {
-    Future<LDRTouchAllResponse, Swift.Error> { promise in
+  func fakeFailurePublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, Swift.Error> {
+    Future<LDRPinAddResponse, Swift.Error> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8),
-         let response = try? decoder.decode(LDRTouchAllResponse.self, from: data) {
+         let response = try? decoder.decode(LDRPinAddResponse.self, from: data) {
         promise(.success(response))
       } else {
         promise(.failure(LDRError.failed("Failed to load response string.")))
