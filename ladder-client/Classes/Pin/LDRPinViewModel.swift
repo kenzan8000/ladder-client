@@ -73,8 +73,7 @@ final class LDRPinViewModel: ObservableObject {
   /// Load Pins from API
   func loadPinsFromAPI() {
     pinAllCancellable?.cancel()
-    _ = LDRPin.deleteAll()
-    
+
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     pinAllCancellable = URLSession.shared.publisher(for: .pinAll(), using: decoder)
@@ -88,7 +87,10 @@ final class LDRPinViewModel: ObservableObject {
           }
         },
         receiveValue: { [weak self] responses in
-          if let error = LDRPin.save(responses: responses) {
+          if let error = LDRPin.deleteAll() {
+            self?.error = error
+          }
+          else if let error = LDRPin.save(responses: responses) {
             self?.error = error
           }
         }
