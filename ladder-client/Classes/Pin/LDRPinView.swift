@@ -5,7 +5,7 @@ struct LDRPinView: View {
   // MARK: property
 
   @ObservedObject var pinViewModel: LDRPinViewModel
-  @StateObject var loginViewModel: LDRLoginViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
   var body: some View {
     NavigationView {
@@ -34,7 +34,7 @@ struct LDRPinView: View {
       trailing: reloadButton
     )
     .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
-      LDRLoginView().environmentObject(loginViewModel)
+      LDRLoginView() //.environmentObject(loginViewModel)
     }
 
   }
@@ -78,6 +78,6 @@ struct LDRPinView: View {
 // MARK: - LDRPinView_Previews
 struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRPinView(pinViewModel: LDRPinViewModel(), loginViewModel: LDRLoginViewModel())
+    LDRPinView(pinViewModel: LDRPinViewModel()).environmentObject(LDRLoginViewModel())
   }
 }

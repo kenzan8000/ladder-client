@@ -12,7 +12,7 @@ struct LDRTabView: View {
   // MARK: property
     
   @State private var selected = Tab.feed
-  @StateObject var loginViewModel: LDRLoginViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginViewModel
   var feedViewModel: LDRFeedViewModel
   var pinViewModel: LDRPinViewModel
     
@@ -24,7 +24,7 @@ struct LDRTabView: View {
   }
 
   var feedView: some View {
-    LDRFeedView(feedViewModel: feedViewModel, loginViewModel: loginViewModel)
+    LDRFeedView(feedViewModel: feedViewModel)
     .tabItem {
       Image(systemName: "wifi")
       Text("RSS Feeds")
@@ -33,7 +33,7 @@ struct LDRTabView: View {
   }
         
   var pinView: some View {
-    LDRPinView(pinViewModel: pinViewModel, loginViewModel: loginViewModel)
+    LDRPinView(pinViewModel: pinViewModel)
     .tabItem {
       Image(systemName: "pin.fill")
       Text("Read Later Pins")
@@ -46,9 +46,9 @@ struct LDRTabView: View {
 struct LDRTabView_Previews: PreviewProvider {
   static var previews: some View {
     LDRTabView(
-      loginViewModel: LDRLoginViewModel(),
       feedViewModel: LDRFeedViewModel(),
       pinViewModel: LDRPinViewModel()
     )
+    .environmentObject(LDRLoginViewModel())
   }
 }

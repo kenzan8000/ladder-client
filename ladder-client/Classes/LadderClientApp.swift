@@ -12,10 +12,10 @@ struct LadderClientApp: App {
   var body: some Scene {
     WindowGroup {
       LDRTabView(
-        loginViewModel: LDRLoginViewModel(),
         feedViewModel: LDRFeedViewModel(),
         pinViewModel: LDRPinViewModel()
       )
+      .environmentObject(LDRLoginViewModel())
     }
   }
   

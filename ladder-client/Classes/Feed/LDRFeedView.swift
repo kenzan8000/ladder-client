@@ -6,7 +6,7 @@ struct LDRFeedView: View {
   // MARK: property
 
   @ObservedObject var feedViewModel: LDRFeedViewModel
-  @StateObject var loginViewModel: LDRLoginViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginViewModel
   @State var tabBar: UITabBar?
 
   // MARK: property
@@ -20,7 +20,7 @@ struct LDRFeedView: View {
       .navigationBarTitle("\(feedViewModel.unreadCount) Updates")
       .navigationBarItems(leading: loginButton, trailing: reloadButton)
       .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
-        LDRLoginView().environmentObject(loginViewModel)
+        LDRLoginView() // .environmentObject(loginViewModel)
       }
     }
     .alert(isPresented: feedViewModel.isPresentingAlert) {
@@ -126,6 +126,6 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRFeedView(feedViewModel: LDRFeedViewModel(), loginViewModel: LDRLoginViewModel())
+    LDRFeedView(feedViewModel: LDRFeedViewModel()).environmentObject(LDRLoginViewModel())
   }
 }
