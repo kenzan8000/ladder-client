@@ -20,7 +20,7 @@ struct LDRFeedView: View {
       .navigationBarTitle("\(feedViewModel.unreadCount) Updates")
       .navigationBarItems(leading: loginButton, trailing: reloadButton)
       .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
-        LDRLoginView() // .environmentObject(loginViewModel)
+        LDRLoginView()
       }
     }
     .alert(isPresented: feedViewModel.isPresentingAlert) {

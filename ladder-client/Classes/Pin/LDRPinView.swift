@@ -34,7 +34,7 @@ struct LDRPinView: View {
       trailing: reloadButton
     )
     .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
-      LDRLoginView() //.environmentObject(loginViewModel)
+      LDRLoginView()
     }
 
   }

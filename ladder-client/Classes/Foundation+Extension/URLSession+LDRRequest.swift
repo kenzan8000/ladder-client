@@ -16,6 +16,14 @@ extension URLSession {
         HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
       })
       .map(\.data)
+      .handleEvents(receiveOutput: {
+        do {
+          let json = try JSONSerialization.jsonObject(with: $0, options: [])
+          let data = try JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted])
+          print(String(data: data, encoding: .utf8))
+        } catch {
+        }
+      })
       .decode(type: Value.self, decoder: decoder)
       .mapError(LDRError.decoding)
       .eraseToAnyPublisher()
