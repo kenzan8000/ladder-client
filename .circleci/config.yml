@@ -1,0 +1,25 @@
+version: 2.1
+jobs:
+  build-and-test:
+    macos:
+      xcode: 12.4.0
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec fastlane scan
+      - store_test_results:
+          path: test_output
+      - store_artifacts:
+          path: test_output
+          destination: scan-output
+
+workflows:
+  version: 2.1
+  build-and-test:
+    jobs:
+      - build-and-test

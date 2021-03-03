@@ -89,8 +89,7 @@ final class LDRPinViewModel: ObservableObject {
         receiveValue: { [weak self] responses in
           if let error = LDRPin.deleteAll() {
             self?.error = error
-          }
-          else if let error = LDRPin.save(responses: responses) {
+          } else if let error = LDRPin.save(responses: responses) {
             self?.error = error
           }
         }
