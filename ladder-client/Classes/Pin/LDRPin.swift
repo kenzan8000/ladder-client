@@ -12,15 +12,19 @@ class LDRPin: NSManagedObject {
   var linkUrl: URL? { URL(string: link) }
 
   // MARK: class method
-    
+  
+  /// Returns fixed type NSFetchRequest
+  @nonobjc
+  class func fetchRequest() -> NSFetchRequest<LDRPin> {
+    NSFetchRequest<LDRPin>(entityName: "LDRPin")
+  }
+  
   /// returns count of model from coredata
   ///
   /// - Returns: count of model
   class func count() -> Int {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -39,21 +43,17 @@ class LDRPin: NSManagedObject {
   /// - Returns: models
   class func fetch() -> [LDRPin] {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \LDRPin.createdOn, ascending: false)]
-    var models: [LDRPin] = []
     do {
-      if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
-        models = fetchedModels
-      }
-    } catch { models = [] }
-    return models
+      return try context.fetch(fetchRequest)
+    } catch {
+      return []
+    }
   }
     
   /// returns if the ldr pin is already saved
@@ -64,9 +64,7 @@ class LDRPin: NSManagedObject {
   /// - Returns: Bool value if the ldr pin is already saved
   class func exists(link: String, title: String) -> Bool {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [
       NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), link),
@@ -74,11 +72,11 @@ class LDRPin: NSManagedObject {
     ]
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var cnt = 0
     do {
-      cnt = try context.count(for: fetchRequest)
-    } catch { cnt = 0 }
-    return cnt > 0
+      return try context.count(for: fetchRequest) > 0
+    } catch {
+      return false
+    }
   }
     
   /// save pin
@@ -137,22 +135,20 @@ class LDRPin: NSManagedObject {
   /// - Returns: model deletion error or nil if succeeded
   class func deleteAll() -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = []
+    let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var models: [LDRPin] = []
+    var models = [LDRPin]()
     do {
-      if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
-        models = fetchedModels
-      }
+      models = try context.fetch(fetchRequest)
     } catch {
       models = []
     }
-    for model in models { context.delete(model) }
+    for model in models {
+      context.delete(model)
+    }
     do {
       try context.save()
     } catch {
@@ -167,22 +163,20 @@ class LDRPin: NSManagedObject {
   /// - Returns: model deletion error or nil if succeeded
   class func delete(pin: LDRPin) -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRPin")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRPin", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates: [NSPredicate] = [NSPredicate(format: "(link = %@)", pin.link)]
+    let predicates = [NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)]
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var models: [LDRPin] = []
+    var models = [LDRPin]()
     do {
-      if let fetchedModels = try context.fetch(fetchRequest) as? [LDRPin] {
-        models = fetchedModels
-      }
+      models = try context.fetch(fetchRequest)
     } catch {
       models = []
     }
-    for model in models { context.delete(model) }
+    for model in models {
+      context.delete(model)
+    }
     do {
       try context.save()
     } catch {

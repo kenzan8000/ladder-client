@@ -1,6 +1,7 @@
 import CoreData
 
 // MARK: - LDRFeedSubsUnread
+
 class LDRFeedSubsUnread: NSManagedObject {
   // MARK: enum
   enum Segment: Int {
@@ -26,25 +27,27 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
   
   // MARK: class method
-
+  
+  /// Returns fixed type NSFetchRequest
+  @nonobjc
+  class func fetchRequest() -> NSFetchRequest<LDRFeedSubsUnread> {
+    NSFetchRequest<LDRFeedSubsUnread>(entityName: "LDRFeedSubsUnread")
+  }
+  
   /// returns model count from coredata
   /// - Returns: count
   class func count() -> Int {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var count = 0
     do {
-      count = try context.count(for: fetchRequest)
+      return try context.count(for: fetchRequest)
     } catch {
-      count = 0
+      return 0
     }
-    return count
   }
 
   /// returns count of model by the rate
@@ -115,9 +118,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   /// - Returns: models from coredata
   class func fetch(segment: Segment) -> [LDRFeedSubsUnread] {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -131,17 +132,11 @@ class LDRFeedSubsUnread: NSManagedObject {
       fetchRequest.sortDescriptors = [descriptor]
     }
     fetchRequest.returnsObjectsAsFaults = false
-    var models = [LDRFeedSubsUnread]()
     do {
-      if let fetchedModels = try context.fetch(
-        fetchRequest
-      ) as? [LDRFeedSubsUnread] {
-        models = fetchedModels
-      }
+      return try context.fetch(fetchRequest)
     } catch {
-      models = []
+      return []
     }
-    return models
   }
 
   /// save model
@@ -179,18 +174,14 @@ class LDRFeedSubsUnread: NSManagedObject {
   /// - Returns: deletion error or nil if succeeded
   class func delete() -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LDRFeedSubsUnread")
-    let entity = NSEntityDescription.entity(forEntityName: "LDRFeedSubsUnread", in: context)
-    fetchRequest.entity = entity
+    let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     var models = [LDRFeedSubsUnread]()
     do {
-      if let fetchedModels = try context.fetch(fetchRequest) as? [LDRFeedSubsUnread] {
-        models = fetchedModels
-      }
+      models = try context.fetch(fetchRequest)
     } catch {
       models = []
     }
