@@ -8,7 +8,14 @@ class LDRFeedSubsUnread: NSManagedObject {
     case rate = 0
     case folder = 1
   }
-    
+  
+  @objc
+  enum State: Int64 {
+    case unloaded = 0
+    case unread = 1
+    case read = 2
+  }
+  
   // MARK: property
   @NSManaged var subscribeId: Int
   @NSManaged var rate: Int
@@ -18,6 +25,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   @NSManaged var feedlink: String
   @NSManaged var icon: String
   @NSManaged var unreadCount: Int
+  @NSManaged var state: State
 
   var rateString: String {
     (0 ..< 5)

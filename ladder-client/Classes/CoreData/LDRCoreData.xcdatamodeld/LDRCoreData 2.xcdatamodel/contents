@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LDRFeedSubsUnread" representedClassName=".LDRFeedSubsUnread" syncable="YES">
+        <attribute name="feedlink" attributeType="String"/>
+        <attribute name="folder" attributeType="String" defaultValueString="undefined"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="link" attributeType="String"/>
+        <attribute name="rate" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="subscribeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="LDRPin" representedClassName=".LDRPin" syncable="YES">
+        <attribute name="createdOn" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="link" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="LDRFeedSubsUnread" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="LDRPin" positionX="-54" positionY="54" width="128" height="74"/>
+    </elements>
+</model>
