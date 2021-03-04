@@ -146,12 +146,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   class func save(response: LDRSubsResponse) -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
     for item in response {
-      guard let model = NSEntityDescription.insertNewObject(
-        forEntityName: "LDRFeedSubsUnread",
-        into: context
-      ) as? LDRFeedSubsUnread else {
-        continue
-      }
+      let model = LDRFeedSubsUnread(context: context)
       model.subscribeId = item.subscribeId
       model.rate = item.rate
       model.folder = item.folder

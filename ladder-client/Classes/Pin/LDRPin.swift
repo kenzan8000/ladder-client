@@ -88,12 +88,7 @@ class LDRPin: NSManagedObject {
   /// - Returns: model saving error or nil if succeeded
   class func saveByAttributes(createdOn: Int, title: String, link: String) -> Error? {
     let context = LDRCoreDataManager.shared.managedObjectContext
-    guard let model = NSEntityDescription.insertNewObject(
-      forEntityName: "LDRPin",
-      into: context
-    ) as? LDRPin else {
-      return nil
-    }
+    let model = LDRPin(context: context)
     model.createdOn = createdOn
     model.title = title
     model.link = link
@@ -112,12 +107,7 @@ class LDRPin: NSManagedObject {
   class func save(responses: LDRPinAllResponse) -> Error? {
     for response in responses {
       let context = LDRCoreDataManager.shared.managedObjectContext
-      guard let model = NSEntityDescription.insertNewObject(
-        forEntityName: "LDRPin",
-        into: context
-      ) as? LDRPin else {
-        return nil
-      }
+      let model = LDRPin(context: context)
       model.createdOn = response.createdOn
       model.title = response.title
       model.link = response.link
