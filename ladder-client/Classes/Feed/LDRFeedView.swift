@@ -81,14 +81,14 @@ struct LDRFeedView: View {
           ForEach(feedViewModel.getSubsUnreads(at: section)) { subsunread in
             LDRFeedRow(
               title: subsunread.title,
-              unreadCount: feedViewModel.unreads[subsunread]?.state != .read ? "\(subsunread.unreadCount)" : "",
-              color: feedViewModel.unreads[subsunread]?.state == .unread ? .blue : .gray
+              unreadCount: subsunread.state != .read ? "\(subsunread.unreadCount)" : "",
+              color: subsunread.state == .unread ? .blue : .gray
             )
             .onTap {
               guard let unread = feedViewModel.unreads[subsunread] else {
                 return
               }
-              feedViewModel.touchAll(unread: unread)
+              feedViewModel.touchAll(subsunread: subsunread)
               feedViewModel.selectUnread(unread: unread)
             }
           }

@@ -40,7 +40,7 @@ final class LDRFeedViewModel: ObservableObject {
     )
   }
   var unreadCount: Int {
-    subsunreads.filter { unreads[$0]?.state != .read }
+    subsunreads.filter { $0.state != .read }
       .map { $0.unreadCount }
       .reduce(0, +)
   }
@@ -121,12 +121,15 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Request feed is touched (read)
   /// - Parameter unread: this unread is already read
-  func touchAll(unread: LDRFeedUnread) {
-    if unread.state == .read {
+  func touchAll(subsunread: LDRFeedSubsUnread) {
+    if subsunread.state == .read {
       return
     }
+    guard let unread = unreads[subsunread] else {
+      return
+    }
+    subsunread.update(state: .read)
     
-    unread.read()
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     URLSession.shared.publisher(for: .touchAll(subscribeId: unread.subscribeId), using: decoder)
@@ -163,6 +166,7 @@ final class LDRFeedViewModel: ObservableObject {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     subsunreads.publisher
+      .compactMap { $0.state == .unloaded ? $0 : nil }
       .flatMap { [weak self] subsunread in
         URLSession(configuration: .default, delegate: nil, delegateQueue: self?.unreadOperationQueue)
           .publisher(for: .unread(subscribeId: subsunread.subscribeId), using: decoder)
@@ -176,7 +180,7 @@ final class LDRFeedViewModel: ObservableObject {
           let unread = LDRFeedUnread(response: response)
           if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == unread.subscribeId }) {
             self?.unreads[subsunread] = unread
-            unread.state = .unread
+            subsunread.update(state: .unread)
           }
         }
       )

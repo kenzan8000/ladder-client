@@ -167,6 +167,7 @@ class LDRFeedSubsUnread: NSManagedObject {
     do {
       try context.save()
     } catch {
+      context.rollback()
       return LDRError.saveModelsFailed
     }
     return nil
@@ -192,9 +193,24 @@ class LDRFeedSubsUnread: NSManagedObject {
       for model in models { context.delete(model) }
       try context.save()
     } catch {
+      context.rollback()
       return LDRError.deleteModelsFailed
     }
     return nil
+  }
+  
+  // MARK: public api
+  
+  /// Updates state
+  /// - Parameter state: LDRFeedSubsUnerad.State
+  func update(state: State) {
+    let context = LDRCoreDataManager.shared.managedObjectContext
+    self.state = state
+    do {
+      try context.save()
+    } catch {
+      context.rollback()
+    }
   }
 }
 

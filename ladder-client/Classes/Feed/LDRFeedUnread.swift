@@ -1,14 +1,7 @@
 // MARK: - LDRFeedUnread
 final class LDRFeedUnread {
-  // MARK: enum
-  enum State: Int {
-    case unloaded = 0
-    case unread = 1
-    case read = 2
-  }
-  
+
   // MARK: prooperty
-  var state: State = .unloaded
   let response: LDRUnreadResponse
   
   var subscribeId: Int {
@@ -27,13 +20,6 @@ final class LDRFeedUnread {
   }
   
   // MARK: public api
-  
-  /// read
-  func read() {
-    if state == State.unread {
-      state = State.read
-    }
-  }
   
   /// get LDRUnreadItem's property by KeyPath
   /// - Parameters:
