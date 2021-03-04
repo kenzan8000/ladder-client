@@ -37,7 +37,6 @@
 		E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
-		E6572DCA25E7788700C0F18C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DC925E7788700C0F18C /* Introspect */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
 		E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE225E77A4200C0F18C /* KeychainAccess */; };
@@ -204,7 +203,6 @@
 			files = (
 				E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */,
 				E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */,
-				E6572DCA25E7788700C0F18C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +473,6 @@
 			);
 			name = "ladder-client";
 			packageProductDependencies = (
-				E6572DC925E7788700C0F18C /* Introspect */,
 				E6572DCE25E778C700C0F18C /* HTMLReader */,
 				E6572DD325E778E200C0F18C /* KeychainAccess */,
 			);
@@ -568,7 +565,6 @@
 			);
 			mainGroup = E6690C471F5E537D0065B7B5;
 			packageReferences = (
-				E6572DC825E7788700C0F18C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */,
 				E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				E6B4A5B125E95334002C0E67 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
@@ -1116,14 +1112,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E6572DC825E7788700C0F18C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.2;
-			};
-		};
 		E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nolanw/HTMLReader.git";
@@ -1151,11 +1139,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E6572DC925E7788700C0F18C /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6572DC825E7788700C0F18C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
 		E6572DCE25E778C700C0F18C /* HTMLReader */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;

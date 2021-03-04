@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 // MARK: - LDRFeedView
@@ -7,7 +6,6 @@ struct LDRFeedView: View {
 
   @ObservedObject var feedViewModel: LDRFeedViewModel
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
-  @State var tabBar: UITabBar?
 
   // MARK: property
 
@@ -28,11 +26,6 @@ struct LDRFeedView: View {
     }
     .onAppear {
       feedViewModel.loadFeedFromLocalDB()
-      tabBar?.isHidden = false
-    }
-    .introspectViewController { viewController in
-      tabBar = viewController.tabBarController?.tabBar
-      tabBar?.isHidden = false
     }
   }
     

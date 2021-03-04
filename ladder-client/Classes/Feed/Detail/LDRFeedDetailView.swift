@@ -1,4 +1,3 @@
-import Introspect
 import SwiftUI
 
 // MARK: - LDRFeedDetailView
@@ -34,9 +33,6 @@ struct LDRFeedDetailView: View {
     }
     .alert(isPresented: feedDetailViewModel.isPresentingAlert) {
       Alert(title: Text(feedDetailViewModel.error?.localizedDescription ?? ""))
-    }
-    .introspectViewController { viewController in
-      viewController.tabBarController?.tabBar.isHidden = true
     }
   }
 
