@@ -1,7 +1,6 @@
 import CoreData
 
 // MARK: - LDRFeedSubsUnread
-
 class LDRFeedSubsUnread: NSManagedObject {
   // MARK: enum
   enum Segment: Int {
@@ -26,6 +25,7 @@ class LDRFeedSubsUnread: NSManagedObject {
   @NSManaged var icon: String
   @NSManaged var unreadCount: Int
   @NSManaged var state: State
+  @NSManaged var unreads: Set<LDRFeedUnread>
 
   var rateString: String {
     (0 ..< 5)

@@ -6,14 +6,16 @@ import WebKit
 final class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
-  @Published var unread: LDRFeedUnread
-  @Published var index: Int = 0
-  var count: Int { unread.itemsCount }
-  var title: String { unread.getItemValue(at: index, keyPath: \.title) ?? "" }
-  var body: String { unread.getItemValue(at: index, keyPath: \.body) ?? "" }
-  var link: URL { URL(string: unread.getItemValue(at: index, keyPath: \.link) ?? "") ?? URL(fileURLWithPath: "") }
-  var prevTitle: String { unread.getItemValue(at: index - 1, keyPath: \.title) ?? "" }
-  var nextTitle: String { unread.getItemValue(at: index + 1, keyPath: \.title) ?? "" }
+  @Published var subsunread: LDRFeedSubsUnread
+  @Published var index = 0
+  let unreads: [LDRFeedUnread]
+  var unread: LDRFeedUnread? { unreads[index] }
+  var count: Int { unreads.count }
+  var title: String { unread?.title ?? "" }
+  var body: String { unread?.body ?? "" }
+  var link: URL { unread?.linkUrl ?? URL(fileURLWithPath: "") }
+  var prevTitle: String { index > 0 ? unreads[index - 1].title : "" }
+  var nextTitle: String { index + 1 < unreads.count ? unreads[index + 1].title : "" }
   @Published var error: Error?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
@@ -31,8 +33,9 @@ final class LDRFeedDetailViewModel: ObservableObject {
 
   // MARK: initialization
     
-  init(unread: LDRFeedUnread) {
-    self.unread = unread
+  init(subsunread: LDRFeedSubsUnread) {
+    self.subsunread = subsunread
+    unreads = subsunread.unreads.sorted { $0.id < $1.id }
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
@@ -61,14 +64,16 @@ final class LDRFeedDetailViewModel: ObservableObject {
   /// Save pin you currently focus on
   /// - Returns: Bool if you could save the current focusing pin on local DB
   func savePin() -> Bool {
-    let url = link
-    if LDRPin.exists(link: url.absoluteString, title: title) {
-      return true
-    }
-    if LDRPin.saveByAttributes(createdOn: Int(Date().timeIntervalSince1970), title: title, link: url.absoluteString) != nil {
+    guard let unread = unread else {
       return false
     }
-    URLSession.shared.publisher(for: .pinAdd(link: url, title: title))
+    if LDRPin.exists(link: unread.link, title: unread.title) {
+      return true
+    }
+    if LDRPin.saveByAttributes(createdOn: Int(Date().timeIntervalSince1970), title: unread.title, link: unread.link) != nil {
+      return false
+    }
+    URLSession.shared.publisher(for: .pinAdd(link: unread.linkUrl, title: unread.title))
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
@@ -78,7 +83,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
         },
         receiveValue: { [weak self] response in
           if !response.isSuccess {
-            self?.error = LDRError.failed("Failed to add a pin. (\(url.absoluteString))")
+            self?.error = LDRError.failed("Failed to add a pin. (\(unread.link))")
           }
         }
       )

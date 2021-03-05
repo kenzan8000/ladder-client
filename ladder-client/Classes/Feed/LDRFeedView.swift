@@ -85,11 +85,7 @@ struct LDRFeedView: View {
               color: subsunread.state == .unread ? .blue : .gray
             )
             .onTap {
-              guard let unread = feedViewModel.unreads[subsunread] else {
-                return
-              }
               feedViewModel.touchAll(subsunread: subsunread)
-              feedViewModel.selectUnread(unread: unread)
             }
           }
         }
@@ -99,20 +95,21 @@ struct LDRFeedView: View {
   }
     
   var navigationLink: some View {
-    guard let unread = feedViewModel.unread else {
-      return AnyView(EmptyView())
-    }
-    let feedDetailView = LDRFeedDetailView(
-      feedDetailViewModel: LDRFeedDetailViewModel(unread: unread),
-      feedDetailWebViewModel: LDRFeedDetailWebViewModel()
-    )
-    return AnyView(
-      NavigationLink(
-        "LDRFeedDetailView",
-        destination: feedDetailView,
-        isActive: feedViewModel.isPresentingDetailView
+    if let subsunread = feedViewModel.subsunread,
+       subsunread.state != .unloaded {
+      let feedDetailView = LDRFeedDetailView(
+        feedDetailViewModel: LDRFeedDetailViewModel(subsunread: subsunread),
+        feedDetailWebViewModel: LDRFeedDetailWebViewModel()
       )
-    )
+      return AnyView(
+        NavigationLink(
+          "",
+          destination: feedDetailView,
+          isActive: feedViewModel.isPresentingDetailView
+        )
+      )
+    }
+    return AnyView(EmptyView())
   }
 }
 

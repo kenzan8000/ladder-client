@@ -6,22 +6,21 @@ final class LDRFeedViewModel: ObservableObject {
     
   // MARK: property
   @Published var segment: LDRFeedSubsUnread.Segment
-  @Published var subsunreads: [LDRFeedSubsUnread]
   @Published var rates: [String] = []
   @Published var folders: [String] = []
   var sections: [String] {
     segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
   }
-  @Published var unreads: [LDRFeedSubsUnread: LDRFeedUnread] = [:]
-  @Published var unread: LDRFeedUnread?
+  @Published var subsunreads: [LDRFeedSubsUnread]
+  @Published var subsunread: LDRFeedSubsUnread?
   var isPresentingDetailView: Binding<Bool> {
     Binding<Bool>(
-      get: { self.unread != nil },
+      get: { self.subsunread != nil },
       set: { newValue in
         guard !newValue else {
           return
         }
-        self.unread = nil
+        self.subsunread = nil
       }
     )
   }
@@ -63,12 +62,6 @@ final class LDRFeedViewModel: ObservableObject {
       .sink { [weak self] _ in
         self?.loadFeedFromAPI()
         self?.isPresentingLoginView = false
-      }
-      .store(in: &notificationCancellables)
-    NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
-      .receive(on: DispatchQueue.main)
-      .sink { [weak self] _ in
-        self?.loadFeedFromAPI()
       }
       .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
@@ -122,17 +115,16 @@ final class LDRFeedViewModel: ObservableObject {
   /// Request feed is touched (read)
   /// - Parameter unread: this unread is already read
   func touchAll(subsunread: LDRFeedSubsUnread) {
+    if subsunread.state != .unloaded {
+      self.subsunread = subsunread
+    }
     if subsunread.state == .read {
       return
     }
-    guard let unread = unreads[subsunread] else {
-      return
-    }
     subsunread.update(state: .read)
-    
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
-    URLSession.shared.publisher(for: .touchAll(subscribeId: unread.subscribeId), using: decoder)
+    URLSession.shared.publisher(for: .touchAll(subscribeId: subsunread.subscribeId), using: decoder)
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { _ in },
@@ -140,13 +132,7 @@ final class LDRFeedViewModel: ObservableObject {
       )
       .store(in: &touchAllCancellables)
   }
-    
-  /// Select LDRFeedUnread to focus
-  /// - Parameter unread: LDRFeedUnread
-  func selectUnread(unread: LDRFeedUnread) {
-    self.unread = unread
-  }
-    
+
   /// Get subsuread models at section
   /// - Parameter section: one of rates or folders
   /// - Returns:subsuread models belonging to the section
@@ -177,10 +163,10 @@ final class LDRFeedViewModel: ObservableObject {
           self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
         },
         receiveValue: { [weak self] response in
-          let unread = LDRFeedUnread(response: response)
-          if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == unread.subscribeId }) {
-            self?.unreads[subsunread] = unread
+          if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == response.subscribeId }) {
+            LDRFeedUnread.save(subsunread: subsunread, response: response)
             subsunread.update(state: .unread)
+            self?.loadFeedFromLocalDB()
           }
         }
       )

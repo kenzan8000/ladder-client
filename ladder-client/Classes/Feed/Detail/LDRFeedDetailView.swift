@@ -19,7 +19,7 @@ struct LDRFeedDetailView: View {
       }
       footer
     }
-    .navigationBarTitle(feedDetailViewModel.unread.title)
+    .navigationBarTitle(feedDetailViewModel.title)
     .navigationBarItems(trailing: pinButton)
     .sheet(isPresented: feedDetailWebViewModel.isPresentingSafariView) {
       safariView
@@ -137,12 +137,14 @@ struct LDRFeedDetailView: View {
  
 }
 
+/*
 // MARK: - LDRFeedDetailView_Previews
 struct LDRFeedDetailView_Previews: PreviewProvider {
   static var previews: some View {
     LDRFeedDetailView(
-      feedDetailViewModel: LDRFeedDetailViewModel(unread: LDRFeedUnread(response: LDRUnreadResponse(subscribeId: 1, items: [], channel: .example))),
+      feedDetailViewModel: LDRFeedDetailViewModel(subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
       feedDetailWebViewModel: LDRFeedDetailWebViewModel()
     )
   }
 }
+*/

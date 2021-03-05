@@ -1,37 +1,45 @@
-// MARK: - LDRFeedUnread
-final class LDRFeedUnread {
+import CoreData
 
-  // MARK: prooperty
-  let response: LDRUnreadResponse
+// MARK: - LDRFeedUnread
+class LDRFeedUnread: NSManagedObject {
+  // MARK: property
+  @NSManaged var id: Int
+  @NSManaged var category: String
+  @NSManaged var title: String
+  @NSManaged var body: String
+  @NSManaged var link: String
   
-  var subscribeId: Int {
-    response.subscribeId
-  }
-  var title: String {
-    response.channel.title
-  }
-  var itemsCount: Int {
-    response.items.count
-  }
+  @NSManaged var subsunread: LDRFeedSubsUnread
   
-  // MARK: initialization
-  init(response: LDRUnreadResponse) {
-    self.response = response
+  var linkUrl: URL {
+    URL(string: link) ?? URL(fileURLWithPath: "")
   }
   
-  // MARK: public api
+  // MARK: class method
   
-  /// get LDRUnreadItem's property by KeyPath
-  /// - Parameters:
-  ///   - index: item's index
-  ///   - keyPath: key path
-  /// - Returns: LDRUnreadItem's property
-  func getItemValue(at index: Int, keyPath: KeyPath<LDRUnreadItem, String>) -> String? {
-    if index < 0 {
-      return nil
-    } else if index >= response.items.count {
-      return nil
+  /// save model
+  ///
+  /// - Parameter response: LDRUnreadResponse
+  /// - Returns: error of saving the model or no error if succeeded
+  class func save(subsunread: LDRFeedSubsUnread, response: LDRUnreadResponse) {
+    let context = LDRCoreDataManager.shared.managedObjectContext
+    for item in response.items {
+      let model = LDRFeedUnread(context: context)
+      model.id = item.id
+      model.body = item.body
+      model.category = item.category
+      model.link = item.link
+      model.title = item.title
+      model.subsunread = subsunread
     }
-    return response.items[index][keyPath: keyPath]
+    do {
+      try context.save()
+    } catch {
+      context.rollback()
+    }
   }
+  
+}
+
+extension LDRFeedUnread: Identifiable {
 }

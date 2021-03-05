@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LDRFeedSubsUnread" representedClassName=".LDRFeedSubsUnread" syncable="YES">
+        <attribute name="feedlink" attributeType="String"/>
+        <attribute name="folder" attributeType="String" defaultValueString="undefined"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="link" attributeType="String"/>
+        <attribute name="rate" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="subscribeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="unreads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LDRFeedUnread" inverseName="subsunread" inverseEntity="LDRFeedUnread"/>
+    </entity>
+    <entity name="LDRFeedUnread" representedClassName=".LDRFeedUnread" syncable="YES">
+        <attribute name="body" attributeType="String" defaultValueString=""/>
+        <attribute name="category" attributeType="String" defaultValueString=""/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="link" attributeType="String" defaultValueString=""/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <relationship name="subsunread" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LDRFeedSubsUnread" inverseName="unreads" inverseEntity="LDRFeedSubsUnread"/>
+    </entity>
+    <entity name="LDRPin" representedClassName=".LDRPin" syncable="YES">
+        <attribute name="createdOn" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="link" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="LDRFeedSubsUnread" positionX="-462.7805786132812" positionY="13.021484375" width="128" height="193"/>
+        <element name="LDRFeedUnread" positionX="-277.9021606445312" positionY="12.27249145507812" width="128" height="119"/>
+        <element name="LDRPin" positionX="-212.1080932617188" positionY="-86.4031982421875" width="128" height="74"/>
+    </elements>
+</model>
