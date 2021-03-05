@@ -98,7 +98,7 @@ struct LDRFeedView: View {
     if let subsunread = feedViewModel.subsunread,
        subsunread.state != .unloaded {
       let feedDetailView = LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailViewModel(subsunread: subsunread),
+        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: feedViewModel.storageProvider, subsunread: subsunread),
         feedDetailWebViewModel: LDRFeedDetailWebViewModel()
       )
       return AnyView(
@@ -116,6 +116,6 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRFeedView(feedViewModel: LDRFeedViewModel()).environmentObject(LDRLoginViewModel())
+    LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider())).environmentObject(LDRLoginViewModel())
   }
 }

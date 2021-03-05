@@ -18,13 +18,13 @@ class LDRFeedUnread: NSManagedObject {
   // MARK: class method
   
   /// save model
-  ///
-  /// - Parameter response: LDRUnreadResponse
-  /// - Returns: error of saving the model or no error if succeeded
-  class func save(subsunread: LDRFeedSubsUnread, response: LDRUnreadResponse) {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - subsunread: parent model
+  ///   - response: unread response
+  class func save(storageProvider: LDRStorageProvider, subsunread: LDRFeedSubsUnread, response: LDRUnreadResponse) {
     for item in response.items {
-      let model = LDRFeedUnread(context: context)
+      let model = LDRFeedUnread(context: storageProvider.viewContext)
       model.id = item.id
       model.body = item.body
       model.category = item.category
@@ -33,9 +33,9 @@ class LDRFeedUnread: NSManagedObject {
       model.subsunread = subsunread
     }
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
-      context.rollback()
+      storageProvider.viewContext.rollback()
     }
   }
   

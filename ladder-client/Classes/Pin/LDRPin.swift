@@ -20,10 +20,9 @@ class LDRPin: NSManagedObject {
   }
   
   /// returns count of model from coredata
-  ///
-  /// - Returns: count of model
-  class func count() -> Int {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  /// - Parameter storageProvider: for CoreData
+  /// - Returns: number of pin count
+  class func count(storageProvider: LDRStorageProvider) -> Int {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
@@ -31,7 +30,7 @@ class LDRPin: NSManagedObject {
     fetchRequest.returnsObjectsAsFaults = false
     var cnt = 0
     do {
-      cnt = try context.count(for: fetchRequest)
+      cnt = try storageProvider.viewContext.count(for: fetchRequest)
     } catch {
       cnt = 0
     }
@@ -39,10 +38,9 @@ class LDRPin: NSManagedObject {
   }
     
   /// fetch models from coredata
-  ///
+  /// - Parameter storageProvider: for CoreData
   /// - Returns: models
-  class func fetch() -> [LDRPin] {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func fetch(storageProvider: LDRStorageProvider) -> [LDRPin] {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
@@ -50,20 +48,19 @@ class LDRPin: NSManagedObject {
     fetchRequest.returnsObjectsAsFaults = false
     fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \LDRPin.createdOn, ascending: false)]
     do {
-      return try context.fetch(fetchRequest)
+      return try storageProvider.viewContext.fetch(fetchRequest)
     } catch {
       return []
     }
   }
     
   /// returns if the ldr pin is already saved
-  ///
   /// - Parameters:
+  ///   - storageProvider: for CoreData
   ///   - link: link url string
   ///   - title: title of pin
   /// - Returns: Bool value if the ldr pin is already saved
-  class func exists(link: String, title: String) -> Bool {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func exists(storageProvider: LDRStorageProvider, link: String, title: String) -> Bool {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [
@@ -73,7 +70,7 @@ class LDRPin: NSManagedObject {
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      return try context.count(for: fetchRequest) > 0
+      return try storageProvider.viewContext.count(for: fetchRequest) > 0
     } catch {
       return false
     }
@@ -82,18 +79,18 @@ class LDRPin: NSManagedObject {
   /// save pin
   ///
   /// - Parameters:
+  ///   - storageProvider: for CoreData
   ///   - createdOn: string representing date the pin is created
   ///   - title: title of pin
   ///   - link: link url string of pin
   /// - Returns: model saving error or nil if succeeded
-  class func saveByAttributes(createdOn: Int, title: String, link: String) -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
-    let model = LDRPin(context: context)
+  class func saveByAttributes(storageProvider: LDRStorageProvider, createdOn: Int, title: String, link: String) -> Error? {
+    let model = LDRPin(context: storageProvider.viewContext)
     model.createdOn = createdOn
     model.title = title
     model.link = link
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
       return LDRError.saveModelsFailed
     }
@@ -101,18 +98,18 @@ class LDRPin: NSManagedObject {
   }
 
   /// save pin
-  ///
-  /// - Parameter responses: LDRPinAllResponse
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - response: all pin response
   /// - Returns: model saving error or nil if succeeded
-  class func save(responses: LDRPinAllResponse) -> Error? {
+  class func save(storageProvider: LDRStorageProvider, responses: LDRPinAllResponse) -> Error? {
     for response in responses {
-      let context = LDRCoreDataManager.shared.managedObjectContext
-      let model = LDRPin(context: context)
+      let model = LDRPin(context: storageProvider.viewContext)
       model.createdOn = response.createdOn
       model.title = response.title
       model.link = response.link
       do {
-        try context.save()
+        try storageProvider.viewContext.save()
       } catch {
         return LDRError.saveModelsFailed
       }
@@ -121,10 +118,9 @@ class LDRPin: NSManagedObject {
   }
 
   /// delete all pins
-  ///
+  /// - Parameter storageProvider: for CoreData
   /// - Returns: model deletion error or nil if succeeded
-  class func deleteAll() -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func deleteAll(storageProvider: LDRStorageProvider) -> Error? {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
@@ -132,27 +128,28 @@ class LDRPin: NSManagedObject {
     fetchRequest.returnsObjectsAsFaults = false
     var models = [LDRPin]()
     do {
-      models = try context.fetch(fetchRequest)
+      models = try storageProvider.viewContext.fetch(fetchRequest)
     } catch {
       models = []
     }
     for model in models {
-      context.delete(model)
+      storageProvider.viewContext.delete(model)
     }
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
+      storageProvider.viewContext.rollback()
       return LDRError.deleteModelsFailed
     }
     return nil
   }
 
   /// delete pin
-  ///
-  /// - Parameter pin: pin you want to delete
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - pin: pin to delete
   /// - Returns: model deletion error or nil if succeeded
-  class func delete(pin: LDRPin) -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func delete(storageProvider: LDRStorageProvider, pin: LDRPin) -> Error? {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)]
@@ -160,16 +157,17 @@ class LDRPin: NSManagedObject {
     fetchRequest.returnsObjectsAsFaults = false
     var models = [LDRPin]()
     do {
-      models = try context.fetch(fetchRequest)
+      models = try storageProvider.viewContext.fetch(fetchRequest)
     } catch {
       models = []
     }
     for model in models {
-      context.delete(model)
+      storageProvider.viewContext.delete(model)
     }
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
+      storageProvider.viewContext.rollback()
       return LDRError.deleteModelsFailed
     }
     return nil

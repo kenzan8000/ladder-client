@@ -45,9 +45,10 @@ struct LDRTabView: View {
 // MARK: - LDRTabView_Previews
 struct LDRTabView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRTabView(
-      feedViewModel: LDRFeedViewModel(),
-      pinViewModel: LDRPinViewModel()
+    let storageProvider = LDRStorageProvider()
+    return LDRTabView(
+      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+      pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
     )
     .environmentObject(LDRLoginViewModel())
   }

@@ -6,6 +6,7 @@ import WebKit
 final class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
+  var storageProvider: LDRStorageProvider
   @Published var subsunread: LDRFeedSubsUnread
   @Published var index = 0
   let unreads: [LDRFeedUnread]
@@ -32,8 +33,13 @@ final class LDRFeedDetailViewModel: ObservableObject {
   private var notificationCancellables = Set<AnyCancellable>()
 
   // MARK: initialization
-    
-  init(subsunread: LDRFeedSubsUnread) {
+  
+  /// Inits
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - subsunread: LDRFeedSubsUnread model
+  init(storageProvider: LDRStorageProvider, subsunread: LDRFeedSubsUnread) {
+    self.storageProvider = storageProvider
     self.subsunread = subsunread
     unreads = subsunread.unreads.sorted { $0.id < $1.id }
     NotificationCenter.default.publisher(for: .ldrDidLogin)
@@ -67,10 +73,10 @@ final class LDRFeedDetailViewModel: ObservableObject {
     guard let unread = unread else {
       return false
     }
-    if LDRPin.exists(link: unread.link, title: unread.title) {
+    if LDRPin.exists(storageProvider: storageProvider, link: unread.link, title: unread.title) {
       return true
     }
-    if LDRPin.saveByAttributes(createdOn: Int(Date().timeIntervalSince1970), title: unread.title, link: unread.link) != nil {
+    if LDRPin.saveByAttributes(storageProvider: storageProvider, createdOn: Int(Date().timeIntervalSince1970), title: unread.title, link: unread.link) != nil {
       return false
     }
     URLSession.shared.publisher(for: .pinAdd(link: unread.linkUrl, title: unread.title))

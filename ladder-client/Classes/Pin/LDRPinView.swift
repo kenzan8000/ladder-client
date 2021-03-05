@@ -78,6 +78,6 @@ struct LDRPinView: View {
 // MARK: - LDRPinView_Previews
 struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRPinView(pinViewModel: LDRPinViewModel()).environmentObject(LDRLoginViewModel())
+    LDRPinView(pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider())).environmentObject(LDRLoginViewModel())
   }
 }

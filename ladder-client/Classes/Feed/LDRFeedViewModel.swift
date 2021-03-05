@@ -5,6 +5,7 @@ import SwiftUI
 final class LDRFeedViewModel: ObservableObject {
     
   // MARK: property
+  var storageProvider: LDRStorageProvider
   @Published var segment: LDRFeedSubsUnread.Segment
   @Published var rates: [String] = []
   @Published var folders: [String] = []
@@ -51,10 +52,13 @@ final class LDRFeedViewModel: ObservableObject {
   private var unreadOperationQueue = LDRFeedUnreadOperationQueue()
 
   // MARK: initialization
-    
-  init() {
+  
+  /// Inits
+  /// - Parameter storageProvider: for CoreData
+  init(storageProvider: LDRStorageProvider) {
+    self.storageProvider = storageProvider
     segment = .rate
-    subsunreads = LDRFeedSubsUnread.fetch(segment: .rate)
+    subsunreads = LDRFeedSubsUnread.fetch(storageProvider: storageProvider, segment: .rate)
     rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
     folders = Array(Set(subsunreads.map { $0.folder })).sorted()
     NotificationCenter.default.publisher(for: .ldrDidLogin)
@@ -76,7 +80,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   /// Load Feed from local DB
   func loadFeedFromLocalDB() {
-    subsunreads = LDRFeedSubsUnread.fetch(segment: segment)
+    subsunreads = LDRFeedSubsUnread.fetch(storageProvider: storageProvider, segment: segment)
     rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
     folders = Array(Set(subsunreads.map { $0.folder })).sorted()
   }
@@ -103,9 +107,11 @@ final class LDRFeedViewModel: ObservableObject {
           }
         },
         receiveValue: { [weak self] response in
-          if let error = LDRFeedSubsUnread.delete() {
+          if let storageProvider = self?.storageProvider,
+             let error = LDRFeedSubsUnread.delete(storageProvider: storageProvider) {
             self?.error = error
-          } else if let error = LDRFeedSubsUnread.save(response: response) {
+          } else if let storageProvider = self?.storageProvider,
+                    let error = LDRFeedSubsUnread.save(storageProvider: storageProvider, response: response) {
             self?.error = error
           }
         }
@@ -121,7 +127,7 @@ final class LDRFeedViewModel: ObservableObject {
     if subsunread.state == .read {
       return
     }
-    subsunread.update(state: .read)
+    subsunread.update(storageProvider: storageProvider, state: .read)
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     URLSession.shared.publisher(for: .touchAll(subscribeId: subsunread.subscribeId), using: decoder)
@@ -165,9 +171,10 @@ final class LDRFeedViewModel: ObservableObject {
           self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
         },
         receiveValue: { [weak self] response in
-          if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == response.subscribeId }) {
-            LDRFeedUnread.save(subsunread: subsunread, response: response)
-            subsunread.update(state: .unread)
+          if let storageProvider = self?.storageProvider,
+             let subsunread = self?.subsunreads.first(where: { $0.subscribeId == response.subscribeId }) {
+            LDRFeedUnread.save(storageProvider: storageProvider, subsunread: subsunread, response: response)
+            subsunread.update(storageProvider: storageProvider, state: .unread)
             self?.loadFeedFromLocalDB()
           }
         }

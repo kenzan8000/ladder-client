@@ -9,11 +9,13 @@ let logger = Logger(subsystem: "\(Bundle.main.bundleIdentifier ?? "").logger", c
 struct LadderClientApp: App {
   // MARK: property
   
+  let storageProvider = LDRStorageProvider()
+  
   var body: some Scene {
     WindowGroup {
       LDRTabView(
-        feedViewModel: LDRFeedViewModel(),
-        pinViewModel: LDRPinViewModel()
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
       )
       .environmentObject(LDRLoginViewModel())
     }

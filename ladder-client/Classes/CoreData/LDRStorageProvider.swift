@@ -1,14 +1,11 @@
 import CoreData
 
-// MARK: - LDRCoreDataManager
-class LDRCoreDataManager {
-
-  // MARK: static property
-  static let shared = LDRCoreDataManager()
+// MARK: - LDRStorageProvider
+final class LDRStorageProvider {
 
   // MARK: property
   let persistentContainer: NSPersistentContainer
-  var managedObjectContext: NSManagedObjectContext {
+  var viewContext: NSManagedObjectContext {
     persistentContainer.viewContext
   }
   

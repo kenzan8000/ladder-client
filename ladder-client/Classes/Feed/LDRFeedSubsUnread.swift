@@ -43,27 +43,27 @@ class LDRFeedSubsUnread: NSManagedObject {
   }
   
   /// returns model count from coredata
+  /// - Parameter storageProvider: for CoreData
   /// - Returns: count
-  class func count() -> Int {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func count(storageProvider: LDRStorageProvider) -> Int {
     let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      return try context.count(for: fetchRequest)
+      return try storageProvider.viewContext.count(for: fetchRequest)
     } catch {
       return 0
     }
   }
 
   /// fetch models from coredata
-  ///
-  /// - Parameter segment: search condition -> rate or folder
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - segment: search condition -> rate or folder
   /// - Returns: models from coredata
-  class func fetch(segment: Segment) -> [LDRFeedSubsUnread] {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func fetch(storageProvider: LDRStorageProvider, segment: Segment) -> [LDRFeedSubsUnread] {
     let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
@@ -80,20 +80,20 @@ class LDRFeedSubsUnread: NSManagedObject {
     }
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      return try context.fetch(fetchRequest)
+      return try storageProvider.viewContext.fetch(fetchRequest)
     } catch {
       return []
     }
   }
 
   /// save model
-  ///
-  /// - Parameter response: LDRSubsResponse
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - response: LDRSubsResponse
   /// - Returns: error of saving the model or no error if succeeded
-  class func save(response: LDRSubsResponse) -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func save(storageProvider: LDRStorageProvider, response: LDRSubsResponse) -> Error? {
     for item in response {
-      let model = LDRFeedSubsUnread(context: context)
+      let model = LDRFeedSubsUnread(context: storageProvider.viewContext)
       model.subscribeId = item.subscribeId
       model.rate = item.rate
       model.folder = item.folder
@@ -104,19 +104,18 @@ class LDRFeedSubsUnread: NSManagedObject {
       model.unreadCount = item.unreadCount
     }
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
-      context.rollback()
+      storageProvider.viewContext.rollback()
       return LDRError.saveModelsFailed
     }
     return nil
   }
   
   /// delete all models
-  ///
+  /// - Parameter storageProvider: for CoreData
   /// - Returns: deletion error or nil if succeeded
-  class func delete() -> Error? {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  class func delete(storageProvider: LDRStorageProvider) -> Error? {
     let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     let predicates = [NSPredicate]()
@@ -124,15 +123,15 @@ class LDRFeedSubsUnread: NSManagedObject {
     fetchRequest.returnsObjectsAsFaults = false
     var models = [LDRFeedSubsUnread]()
     do {
-      models = try context.fetch(fetchRequest)
+      models = try storageProvider.viewContext.fetch(fetchRequest)
     } catch {
       models = []
     }
     do {
-      for model in models { context.delete(model) }
-      try context.save()
+      for model in models { storageProvider.viewContext.delete(model) }
+      try storageProvider.viewContext.save()
     } catch {
-      context.rollback()
+      storageProvider.viewContext.rollback()
       return LDRError.deleteModelsFailed
     }
     return nil
@@ -141,14 +140,15 @@ class LDRFeedSubsUnread: NSManagedObject {
   // MARK: public api
   
   /// Updates state
-  /// - Parameter state: LDRFeedSubsUnerad.State
-  func update(state: State) {
-    let context = LDRCoreDataManager.shared.managedObjectContext
+  /// - Parameters:
+  ///   - storageProvider: for CoreData
+  ///   - state: LDRFeedSubsUnerad.State
+  func update(storageProvider: LDRStorageProvider, state: State) {
     self.state = state
     do {
-      try context.save()
+      try storageProvider.viewContext.save()
     } catch {
-      context.rollback()
+      storageProvider.viewContext.rollback()
     }
   }
 }
