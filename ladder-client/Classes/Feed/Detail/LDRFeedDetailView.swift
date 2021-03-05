@@ -19,7 +19,7 @@ struct LDRFeedDetailView: View {
       }
       footer
     }
-    .navigationBarTitle(feedDetailViewModel.title)
+    .navigationBarTitle(feedDetailViewModel.subsunread.title)
     .navigationBarItems(trailing: pinButton)
     .sheet(isPresented: feedDetailWebViewModel.isPresentingSafariView) {
       safariView
