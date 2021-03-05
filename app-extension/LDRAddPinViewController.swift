@@ -39,6 +39,13 @@ class LDRAddPinViewController: UIViewController {
       .flatMap { (url: URL) -> AnyPublisher<LDRHTMLTitleResponse, Swift.Error> in
         URLSession.shared.publisher(for: .htmlTitle(url: url))
       }
+      .receive(on: DispatchQueue.main)
+      .handleEvents(receiveOutput: { (response: LDRHTMLTitleResponse) in
+        let storageProvider = LDRStorageProvider()
+        if !storageProvider.existPin(link: response.url.absoluteString) {
+          storageProvider.savePin(title: response.title, link: response.url.absoluteString)
+        }
+      })
       .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, Swift.Error> in
         URLSession.shared.publisher(for: .pinAdd(title: response.title, link: response.url))
       }

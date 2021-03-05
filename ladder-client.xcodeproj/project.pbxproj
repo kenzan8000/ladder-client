@@ -22,6 +22,12 @@
 		E62A73D725EE61DE00E79F24 /* unread.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73D625EE61DE00E79F24 /* unread.json */; };
 		E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */; };
 		E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
+		E62F725825F267B100AC90D7 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
+		E62F725925F267B100AC90D7 /* LDRCoreData3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */; };
+		E62F725A25F267B100AC90D7 /* LDRCoreData2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6CC19F425F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel */; };
+		E62F725E25F267BB00AC90D7 /* LDRStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */; };
+		E62F726225F267C300AC90D7 /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
+		E62F726625F2687300AC90D7 /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
 		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
 		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
 		E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9A249F7A950051C402 /* LDRPinView.swift */; };
@@ -713,6 +719,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62F726625F2687300AC90D7 /* LDRRequest+PinAll.swift in Sources */,
+				E62F726225F267C300AC90D7 /* LDRPin.swift in Sources */,
+				E62F725E25F267BB00AC90D7 /* LDRStorageProvider.swift in Sources */,
+				E62F725825F267B100AC90D7 /* LDRCoreData.xcdatamodeld in Sources */,
+				E62F725925F267B100AC90D7 /* LDRCoreData3.xcmappingmodel in Sources */,
+				E62F725A25F267B100AC90D7 /* LDRCoreData2.xcmappingmodel in Sources */,
 				E66AD21525E797A90099D5B4 /* URLSession+LDRRequest.swift in Sources */,
 				E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */,
 				E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */,
