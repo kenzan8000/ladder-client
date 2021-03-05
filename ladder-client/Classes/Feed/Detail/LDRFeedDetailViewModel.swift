@@ -67,19 +67,16 @@ final class LDRFeedDetailViewModel: ObservableObject {
     return true
   }
 
-  /// Save pin you currently focus on
-  /// - Returns: Bool if you could save the current focusing pin on local DB
-  func savePin() -> Bool {
+  /// Saves a pin
+  func savePin() {
     guard let unread = unread else {
-      return false
+      return
     }
-    if LDRPin.exists(storageProvider: storageProvider, link: unread.link, title: unread.title) {
-      return true
+    if storageProvider.existPin(link: unread.link) {
+      return
     }
-    if LDRPin.saveByAttributes(storageProvider: storageProvider, createdOn: Int(Date().timeIntervalSince1970), title: unread.title, link: unread.link) != nil {
-      return false
-    }
-    URLSession.shared.publisher(for: .pinAdd(link: unread.linkUrl, title: unread.title))
+    storageProvider.savePin(title: unread.title, link: unread.link)
+    URLSession.shared.publisher(for: .pinAdd(title: unread.title, link: unread.linkUrl))
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
@@ -94,6 +91,5 @@ final class LDRFeedDetailViewModel: ObservableObject {
         }
       )
       .store(in: &pinAddCancellables)
-    return true
   }
 }

@@ -8,10 +8,10 @@ extension LDRRequest where Response == LDRPinAddResponse {
   
   /// Request adding a link to read later list
   /// - Parameters:
-  ///   - link: pin url
   ///   - title: pin title
+  ///   - link: pin url
   /// - Returns: LDRRequest
-  static func pinAdd(link: URL, title: String) -> Self {
+  static func pinAdd(title: String, link: URL) -> Self {
     let url = URL(ldrPath: LDRApi.Api.pinAdd)
     let body = [
       "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",

@@ -39,12 +39,11 @@ struct LDRFeedDetailView: View {
   var pinButton: some View {
     Button(
       action: {
-        if feedDetailViewModel.savePin() {
-          LDRToastView.show(
-            on: UIApplication.shared.windows[0],
-            text: "Added to Read Later Pins\n\(feedDetailViewModel.title)"
-          )
-        }
+        feedDetailViewModel.savePin()
+        LDRToastView.show(
+          on: UIApplication.shared.windows[0],
+          text: "Added to Read Later Pins\n\(feedDetailViewModel.title)"
+        )
       },
       label: {
         Text("Pin it")

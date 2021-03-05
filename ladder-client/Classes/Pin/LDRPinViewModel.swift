@@ -43,7 +43,7 @@ final class LDRPinViewModel: ObservableObject {
   /// - Parameter storageProvider: for CoreData
   init(storageProvider: LDRStorageProvider) {
     self.storageProvider = storageProvider
-    pins = LDRPin.fetch(storageProvider: storageProvider)
+    pins = storageProvider.fetchPins()
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
@@ -65,7 +65,7 @@ final class LDRPinViewModel: ObservableObject {
     
   /// Load Pins from local DB
   func loadPinsFromLocalDB() {
-    pins = LDRPin.fetch(storageProvider: storageProvider)
+    pins = storageProvider.fetchPins()
   }
     
   /// Load Pins from API
@@ -80,16 +80,14 @@ final class LDRPinViewModel: ObservableObject {
         receiveCompletion: { [weak self] result in
           if case let .failure(error) = result {
             self?.error = error
-          } else if let storageProvider = self?.storageProvider {
-            self?.pins = LDRPin.fetch(storageProvider: storageProvider)
+          } else {
+            self?.pins = self?.storageProvider.fetchPins() ?? []
           }
         },
         receiveValue: { [weak self] responses in
-          if let storageProvider = self?.storageProvider,
-             let error = LDRPin.deleteAll(storageProvider: storageProvider) {
+          if let error = self?.storageProvider.deletePins() {
             self?.error = error
-          } else if let storageProvider = self?.storageProvider,
-                    let error = LDRPin.save(storageProvider: storageProvider, responses: responses) {
+          } else if let error = self?.storageProvider.savePins(by: responses) {
             self?.error = error
           }
         }
@@ -104,7 +102,7 @@ final class LDRPinViewModel: ObservableObject {
       return
     }
     safariUrl = url
-    if let error = LDRPin.delete(storageProvider: storageProvider, pin: pin) {
+    if let error = storageProvider.deletePin(pin) {
       self.error = error
       return
     }
@@ -123,7 +121,7 @@ final class LDRPinViewModel: ObservableObject {
         }
       )
       .store(in: &pinRemoveCancellables)
-    pins = LDRPin.fetch(storageProvider: storageProvider)
+    pins = storageProvider.fetchPins()
   }
   
 }

@@ -23,8 +23,8 @@ class LDRRequestPinAddTests: XCTestCase {
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeSuccessPublisher(
       for: .pinAdd(
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: ""),
-        title: "alextsui05 starred vercel/og-image"
+        title: "alextsui05 starred vercel/og-image",
+        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
       )
     )
 
@@ -44,8 +44,8 @@ class LDRRequestPinAddTests: XCTestCase {
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeFailurePublisher(
       for: .pinAdd(
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: ""),
-        title: "alextsui05 starred vercel/og-image"
+        title: "alextsui05 starred vercel/og-image",
+        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
       )
     )
 

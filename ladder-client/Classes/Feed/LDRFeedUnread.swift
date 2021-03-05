@@ -15,31 +15,36 @@ class LDRFeedUnread: NSManagedObject {
     URL(string: link) ?? URL(fileURLWithPath: "")
   }
   
-  // MARK: class method
-  
-  /// save model
-  /// - Parameters:
-  ///   - storageProvider: for CoreData
-  ///   - subsunread: parent model
-  ///   - response: unread response
-  class func save(storageProvider: LDRStorageProvider, subsunread: LDRFeedSubsUnread, response: LDRUnreadResponse) {
-    for item in response.items {
-      let model = LDRFeedUnread(context: storageProvider.viewContext)
-      model.id = item.id
-      model.body = item.body
-      model.category = item.category
-      model.link = item.link
-      model.title = item.title
-      model.subsunread = subsunread
-    }
-    do {
-      try storageProvider.viewContext.save()
-    } catch {
-      storageProvider.viewContext.rollback()
-    }
-  }
-  
 }
 
+// MARK: - LDRFeedUnread + Identifiable
 extension LDRFeedUnread: Identifiable {
+}
+
+// MARK: - LDRStorageProvider + LDRFeedUnread
+extension LDRStorageProvider {
+  
+  // MARK: public api
+  
+  /// Saves a unread record
+  /// - Parameters:
+  ///   - response: unread response
+  ///   - subsUnread: parent model
+  func saveUnread(by response: LDRUnreadResponse, subsUnread: LDRFeedSubsUnread) {
+    response.items.forEach {
+      let model = LDRFeedUnread(context: viewContext)
+      model.id = $0.id
+      model.body = $0.body
+      model.category = $0.category
+      model.link = $0.link
+      model.title = $0.title
+      model.subsunread = subsUnread
+    }
+    do {
+      try viewContext.save()
+    } catch {
+      viewContext.rollback()
+    }
+  }
+ 
 }

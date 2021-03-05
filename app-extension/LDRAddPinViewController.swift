@@ -40,7 +40,7 @@ class LDRAddPinViewController: UIViewController {
         URLSession.shared.publisher(for: .htmlTitle(url: url))
       }
       .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, Swift.Error> in
-        URLSession.shared.publisher(for: .pinAdd(link: response.url, title: response.title))
+        URLSession.shared.publisher(for: .pinAdd(title: response.title, link: response.url))
       }
       .receive(on: DispatchQueue.main)
       .sink(

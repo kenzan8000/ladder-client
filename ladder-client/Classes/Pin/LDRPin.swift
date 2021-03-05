@@ -18,161 +18,136 @@ class LDRPin: NSManagedObject {
   class func fetchRequest() -> NSFetchRequest<LDRPin> {
     NSFetchRequest<LDRPin>(entityName: "LDRPin")
   }
+}
+
+// MARK: - LDRPin + Identifiable
+extension LDRPin: Identifiable {
+}
+
+// MARK: - LDRStorageProvider + LDRPin
+extension LDRStorageProvider {
   
-  /// returns count of model from coredata
-  /// - Parameter storageProvider: for CoreData
-  /// - Returns: number of pin count
-  class func count(storageProvider: LDRStorageProvider) -> Int {
+  // MARK: public api
+  
+  /// Returns number of pin records
+  /// - Returns: number of pins Int
+  func countPins() -> Int {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates = [NSPredicate]()
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
-    var cnt = 0
     do {
-      cnt = try storageProvider.viewContext.count(for: fetchRequest)
+      return try viewContext.count(for: fetchRequest)
     } catch {
-      cnt = 0
+      return 0
     }
-    return cnt
   }
     
-  /// fetch models from coredata
-  /// - Parameter storageProvider: for CoreData
+  /// Fetches pin records
   /// - Returns: models
-  class func fetch(storageProvider: LDRStorageProvider) -> [LDRPin] {
+  func fetchPins() -> [LDRPin] {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates = [NSPredicate]()
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
     fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \LDRPin.createdOn, ascending: false)]
     do {
-      return try storageProvider.viewContext.fetch(fetchRequest)
+      return try viewContext.fetch(fetchRequest)
     } catch {
       return []
     }
   }
     
-  /// returns if the ldr pin is already saved
+  /// Returns if pin record already exists
   /// - Parameters:
-  ///   - storageProvider: for CoreData
-  ///   - link: link url string
-  ///   - title: title of pin
-  /// - Returns: Bool value if the ldr pin is already saved
-  class func exists(storageProvider: LDRStorageProvider, link: String, title: String) -> Bool {
+  ///   - link: pin's link url string
+  /// - Returns: Bool if existing or not
+  func existPin(link: String) -> Bool {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates = [
-      NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), link),
-      NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.title), title),
-    ]
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), link)])
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      return try storageProvider.viewContext.count(for: fetchRequest) > 0
+      return try viewContext.count(for: fetchRequest) > 0
     } catch {
       return false
     }
   }
     
-  /// save pin
-  ///
+  /// Saves a pin by a client action
   /// - Parameters:
-  ///   - storageProvider: for CoreData
-  ///   - createdOn: string representing date the pin is created
-  ///   - title: title of pin
-  ///   - link: link url string of pin
-  /// - Returns: model saving error or nil if succeeded
-  class func saveByAttributes(storageProvider: LDRStorageProvider, createdOn: Int, title: String, link: String) -> Error? {
-    let model = LDRPin(context: storageProvider.viewContext)
-    model.createdOn = createdOn
+  ///   - title: pin's title
+  ///   - link: pin's url string
+  func savePin(title: String, link: String) {
+    let model = LDRPin(context: viewContext)
     model.title = title
     model.link = link
+    model.createdOn = Int(Date().timeIntervalSince1970)
     do {
-      try storageProvider.viewContext.save()
+      try viewContext.save()
     } catch {
+      viewContext.rollback()
+    }
+  }
+
+  /// Save pins by response
+  /// - Parameters:
+  ///   - response: LDRPinAllResponse
+  /// - Returns: Error occuring when saving pin records or nil
+  func savePins(by response: LDRPinAllResponse) -> Error? {
+    response.forEach {
+      let model = LDRPin(context: viewContext)
+      model.title = $0.title
+      model.link = $0.link
+      model.createdOn = $0.createdOn
+    }
+    do {
+      try viewContext.save()
+    } catch {
+      viewContext.rollback()
       return LDRError.saveModelsFailed
     }
     return nil
   }
 
-  /// save pin
+  /// Delete pin records
   /// - Parameters:
-  ///   - storageProvider: for CoreData
-  ///   - response: all pin response
-  /// - Returns: model saving error or nil if succeeded
-  class func save(storageProvider: LDRStorageProvider, responses: LDRPinAllResponse) -> Error? {
-    for response in responses {
-      let model = LDRPin(context: storageProvider.viewContext)
-      model.createdOn = response.createdOn
-      model.title = response.title
-      model.link = response.link
-      do {
-        try storageProvider.viewContext.save()
-      } catch {
-        return LDRError.saveModelsFailed
-      }
-    }
-    return nil
-  }
-
-  /// delete all pins
-  /// - Parameter storageProvider: for CoreData
-  /// - Returns: model deletion error or nil if succeeded
-  class func deleteAll(storageProvider: LDRStorageProvider) -> Error? {
+  ///   - predicate: condition to search pins to delete
+  /// - Returns: Error occuring when deleting pin records or nil
+  func deletePins(by predicate: NSPredicate?) -> Error? {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
-    let predicates = [NSPredicate]()
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     fetchRequest.returnsObjectsAsFaults = false
+    if let predicate = predicate {
+      fetchRequest.predicate = predicate
+    }
     var models = [LDRPin]()
     do {
-      models = try storageProvider.viewContext.fetch(fetchRequest)
+      models = try viewContext.fetch(fetchRequest)
     } catch {
-      models = []
+      return LDRError.deleteModelsFailed
     }
-    for model in models {
-      storageProvider.viewContext.delete(model)
-    }
+    models.forEach { viewContext.delete($0) }
     do {
-      try storageProvider.viewContext.save()
+      try viewContext.save()
     } catch {
-      storageProvider.viewContext.rollback()
+      viewContext.rollback()
       return LDRError.deleteModelsFailed
     }
     return nil
   }
+  
+  /// Delete pin records
+  /// - Returns: Error occuring when deleting pin records or nil
+  func deletePins() -> Error? {
+    deletePins(by: nil)
+  }
 
-  /// delete pin
+  /// Delete a pin record
   /// - Parameters:
-  ///   - storageProvider: for CoreData
   ///   - pin: pin to delete
-  /// - Returns: model deletion error or nil if succeeded
-  class func delete(storageProvider: LDRStorageProvider, pin: LDRPin) -> Error? {
-    let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
-    fetchRequest.fetchBatchSize = 20
-    let predicates = [NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)]
-    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-    fetchRequest.returnsObjectsAsFaults = false
-    var models = [LDRPin]()
-    do {
-      models = try storageProvider.viewContext.fetch(fetchRequest)
-    } catch {
-      models = []
-    }
-    for model in models {
-      storageProvider.viewContext.delete(model)
-    }
-    do {
-      try storageProvider.viewContext.save()
-    } catch {
-      storageProvider.viewContext.rollback()
-      return LDRError.deleteModelsFailed
-    }
-    return nil
+  /// - Returns: Error occuring when deleting a pin record or nil
+  func deletePin(_ pin: LDRPin) -> Error? {
+    deletePins(
+      by: NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)
+    )
   }
-}
-
-extension LDRPin: Identifiable {
 }
