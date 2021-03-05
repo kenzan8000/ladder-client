@@ -3,9 +3,9 @@ import CoreData
 // MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {
   // MARK: enum
-  enum Segment: Int {
-    case rate = 0
-    case folder = 1
+  enum Segment {
+    case rate
+    case folder
   }
   
   @objc
@@ -58,68 +58,6 @@ class LDRFeedSubsUnread: NSManagedObject {
     }
   }
 
-  /// returns count of model by the rate
-  /// - Parameters:
-  ///   - subsunreads: subsunread models
-  ///   - rate: rate star
-  /// - Returns: count of model by the rate
-  class func countOfTheRateInt(subsunreads: [LDRFeedSubsUnread], rate: Int) -> Int {
-    subsunreads
-      .filter { $0.rate == rate }
-      .count
-  }
-    
-  /// Returns filtered subsunread array by rate
-  /// - Parameters:
-  ///   - subsunreads: subsunread models
-  ///   - rate: rate string
-  /// - Returns: filtered subsunread models
-  class func filter(subsunreads: [LDRFeedSubsUnread], rate: String) -> [LDRFeedSubsUnread] {
-    subsunreads
-      .filter { $0.rateString == rate }
-      .sorted { $0.title < $1.title }
-  }
-
-  /// returns count of model by the folder
-  /// - Parameters:
-  ///   - subsunreads: subsunread models
-  ///   - folder: folder name
-  /// - Returns: count of model by the folder
-  class func countOfTheFloder(subsunreads: [LDRFeedSubsUnread], folder: String) -> Int {
-    subsunreads
-      .filter { $0.folder == folder }
-      .count
-  }
-    
-  /// Returns filtered subsunread array by rate
-  /// - Parameters:
-  ///   - subsunreads: subsunread models
-  ///   - folder: folder string
-  /// - Returns: filtered subsunread models
-  class func filter(subsunreads: [LDRFeedSubsUnread], folder: String) -> [LDRFeedSubsUnread] {
-    subsunreads
-      .filter { $0.folder == folder }
-      .sorted { $0.title < $1.title }
-  }
-
-  /// Returns Rate Strings from subsunread array
-  /// - Parameter subsunreads:subsunread array
-  /// - Returns: Rate Strings e.g. "★★★☆☆" when rate equals to 3
-  class func getRates(subsunreads: [LDRFeedSubsUnread]) -> [String] {
-    Array(
-      Set(subsunreads.map { $0.rateString })
-    ).sorted()
-  }
-
-  /// returns folder names
-  /// - Parameter subsunreads: subsunread models
-  /// - Returns: folder names
-  class func getFolders(subsunreads: [LDRFeedSubsUnread]) -> [String] {
-    Array(
-      Set(subsunreads.map { $0.folder })
-    ).sorted()
-  }
-
   /// fetch models from coredata
   ///
   /// - Parameter segment: search condition -> rate or folder
@@ -131,9 +69,10 @@ class LDRFeedSubsUnread: NSManagedObject {
     let predicates = [NSPredicate]()
     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     var sortDescriptor: NSSortDescriptor?
-    if segment == .rate {
+    switch segment {
+    case .rate:
       sortDescriptor = NSSortDescriptor(keyPath: \LDRFeedSubsUnread.rate, ascending: false)
-    } else if segment == .folder {
+    case .folder:
       sortDescriptor = NSSortDescriptor(keyPath: \LDRFeedSubsUnread.folder, ascending: true)
     }
     if let descriptor = sortDescriptor {

@@ -9,7 +9,7 @@ final class LDRFeedViewModel: ObservableObject {
   @Published var rates: [String] = []
   @Published var folders: [String] = []
   var sections: [String] {
-    segment == LDRFeedSubsUnread.Segment.rate ? rates : folders
+    segment == .rate ? rates : folders
   }
   @Published var subsunreads: [LDRFeedSubsUnread]
   @Published var subsunread: LDRFeedSubsUnread?
@@ -53,10 +53,10 @@ final class LDRFeedViewModel: ObservableObject {
   // MARK: initialization
     
   init() {
-    segment = LDRFeedSubsUnread.Segment.rate
-    subsunreads = LDRFeedSubsUnread.fetch(segment: LDRFeedSubsUnread.Segment.rate)
-    rates = LDRFeedSubsUnread.getRates(subsunreads: subsunreads)
-    folders = LDRFeedSubsUnread.getFolders(subsunreads: subsunreads)
+    segment = .rate
+    subsunreads = LDRFeedSubsUnread.fetch(segment: .rate)
+    rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
+    folders = Array(Set(subsunreads.map { $0.folder })).sorted()
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
@@ -77,8 +77,8 @@ final class LDRFeedViewModel: ObservableObject {
   /// Load Feed from local DB
   func loadFeedFromLocalDB() {
     subsunreads = LDRFeedSubsUnread.fetch(segment: segment)
-    rates = LDRFeedSubsUnread.getRates(subsunreads: subsunreads)
-    folders = LDRFeedSubsUnread.getFolders(subsunreads: subsunreads)
+    rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
+    folders = Array(Set(subsunreads.map { $0.folder })).sorted()
   }
     
   /// Load Feed from API
@@ -137,10 +137,12 @@ final class LDRFeedViewModel: ObservableObject {
   /// - Parameter section: one of rates or folders
   /// - Returns:subsuread models belonging to the section
   func getSubsUnreads(at section: String) -> [LDRFeedSubsUnread] {
-    if segment == LDRFeedSubsUnread.Segment.rate {
-      return LDRFeedSubsUnread.filter(subsunreads: subsunreads, rate: section)
+    switch segment {
+    case .rate:
+      return subsunreads.filter { $0.rateString == section }.sorted { $0.title < $1.title }
+    case .folder:
+      return subsunreads.filter { $0.folder == section }.sorted { $0.title < $1.title }
     }
-    return LDRFeedSubsUnread.filter(subsunreads: subsunreads, folder: section)
   }
     
   // MARK: private api
