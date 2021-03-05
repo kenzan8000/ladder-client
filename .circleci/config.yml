@@ -18,8 +18,7 @@ workflows:
   version: 2.1
   build-and-test:
     jobs:
-      - build-and-test
-          filters:
-            branches:
-              only: main
-
+      - build-and-test:
+        filters:
+          branches:
+            only: main
