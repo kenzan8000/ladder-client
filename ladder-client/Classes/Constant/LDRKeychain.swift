@@ -11,10 +11,11 @@ enum LDRKeychain {
 
 // MARK: - String + LDRKeychain
 extension String {
-  static let ldrServiceName = "org.kenzan8000.ladder-client"
-  static let ldrSuiteName = "group.ladder-pin"
+  static let ldrService = "org.kenzan8000.ladder-client"
+  static let ldrGroup = "group.ladder-pin"
 }
 
+// MARK: - Keychain + LDR
 extension Keychain {
-  static let ldrKeychain = Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)
+  static let ldr = Keychain(service: .ldrService, accessGroup: .ldrGroup)
 }

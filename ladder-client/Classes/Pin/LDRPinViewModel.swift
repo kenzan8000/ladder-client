@@ -53,6 +53,12 @@ final class LDRPinViewModel: ObservableObject {
         self?.isPresentingLoginView = false
       }
       .store(in: &notificationCancellables)
+    NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] _ in
+        self?.loadPinsFromLocalDB()
+      }
+      .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
