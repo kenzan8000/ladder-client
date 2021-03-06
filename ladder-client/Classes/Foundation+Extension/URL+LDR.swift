@@ -9,7 +9,7 @@ extension URL {
   /// Inits
   /// - Parameter path: url path
   init(ldrPath: String) {
-    guard let ldrUrlString = Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.ldrUrlString] else {
+    guard let ldrUrlString = Keychain.ldrKeychain[LDRKeychain.ldrUrlString] else {
       self.init(fileURLWithPath: "")
       return
     }

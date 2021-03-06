@@ -12,7 +12,7 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   static func pinRemove(link: URL) -> Self {
     let url = URL(ldrPath: LDRApi.Api.pinRemove)
     let body = [
-      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? "",
+      "ApiKey": Keychain.ldrKeychain[LDRKeychain.apiKey] ?? "",
       "link": link.absoluteString
     ].HTTPBodyValue()
     return LDRRequest(

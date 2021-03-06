@@ -13,7 +13,7 @@ extension LDRRequest where Response == LDRSubsResponse {
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
     urlComponents?.queryItems = [URLQueryItem(name: "unread", value: "1")]
     let body = [
-      "ApiKey": Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] ?? ""
+      "ApiKey": Keychain.ldrKeychain[LDRKeychain.apiKey] ?? ""
     ].HTTPBodyValue()
     return LDRRequest(
       url: urlComponents?.url ?? url,

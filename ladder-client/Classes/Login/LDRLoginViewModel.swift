@@ -57,9 +57,9 @@ final class LDRLoginViewModel: ObservableObject {
   func login() {
     isLogingIn = true
     
-    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.username] = username
-    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.password] = password
-    Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.ldrUrlString] = urlDomain
+    Keychain.ldrKeychain[LDRKeychain.username] = username
+    Keychain.ldrKeychain[LDRKeychain.password] = password
+    Keychain.ldrKeychain[LDRKeychain.ldrUrlString] = urlDomain
 
     HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
     
@@ -74,7 +74,7 @@ final class LDRLoginViewModel: ObservableObject {
           }
         },
         receiveValue: {
-          Keychain(service: .ldrServiceName, accessGroup: .ldrSuiteName)[LDRKeychain.apiKey] = $0.apiKey
+          Keychain.ldrKeychain[LDRKeychain.apiKey] = $0.apiKey
         }
       )
       .store(in: &cancellables)
