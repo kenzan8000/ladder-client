@@ -8,7 +8,7 @@ let logger = Logger(subsystem: "\(Bundle.main.bundleIdentifier ?? "").logger", c
 struct LadderClientApp: App {
   // MARK: property
   
-  let storageProvider = LDRStorageProvider()
+  let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
   
   var body: some Scene {
     WindowGroup {

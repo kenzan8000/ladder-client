@@ -1,20 +1,20 @@
 import CoreData
 
+// MARK: enum
+enum LDRFeedSubsUnreadSegment {
+  case rate
+  case folder
+}
+
+@objc
+enum LDRFeedSubsUnreadState: Int64 {
+  case unloaded = 0
+  case unread = 1
+  case read = 2
+}
+
 // MARK: - LDRFeedSubsUnread
 class LDRFeedSubsUnread: NSManagedObject {
-  // MARK: enum
-  enum Segment {
-    case rate
-    case folder
-  }
-  
-  @objc
-  enum State: Int64 {
-    case unloaded = 0
-    case unread = 1
-    case read = 2
-  }
-  
   // MARK: property
   @NSManaged var subscribeId: Int
   @NSManaged var rate: Int
@@ -24,16 +24,17 @@ class LDRFeedSubsUnread: NSManagedObject {
   @NSManaged var feedlink: String
   @NSManaged var icon: String
   @NSManaged var unreadCount: Int
-  @NSManaged var state: State
+  @NSManaged var state: LDRFeedSubsUnreadState
+  
   @NSManaged var unreads: Set<LDRFeedUnread>
-
+  
   var rateString: String {
     (0 ..< 5)
       .map { ((rate >= 5 - $0) ? "★" : "☆") }
       .reversed()
       .joined()
   }
-  
+
   // MARK: class method
   
   /// Returns fixed type NSFetchRequest
@@ -49,7 +50,6 @@ extension LDRFeedSubsUnread: Identifiable {
 
 // MARK: - LDRStorageProvider + LDRFeedSubsUnread
 extension LDRStorageProvider {
-  
   // MARK: public api
   
   /// Counts number of SubsUnread records
@@ -68,7 +68,7 @@ extension LDRStorageProvider {
   /// Fetches SubsUnread by LDRFeedSubsUnread.Segment
   /// - Parameter segment: LDRFeedSubsUnread.Segment
   /// - Returns: SubsUnread records beloging to the segment
-  func fetchSubsUnreads(by segment: LDRFeedSubsUnread.Segment) -> [LDRFeedSubsUnread] {
+  func fetchSubsUnreads(by segment: LDRFeedSubsUnreadSegment) -> [LDRFeedSubsUnread] {
     let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     fetchRequest.returnsObjectsAsFaults = false
@@ -136,7 +136,7 @@ extension LDRStorageProvider {
   /// - Parameters:
   ///   - subsUnread: target SubsUnread record
   ///   - state: LDRFeedSubsUnread.State to update
-  func updateSubsUnread(_ subsUnread: LDRFeedSubsUnread, state: LDRFeedSubsUnread.State) {
+  func updateSubsUnread(_ subsUnread: LDRFeedSubsUnread, state: LDRFeedSubsUnreadState) {
     subsUnread.state = state
     do {
       try viewContext.save()

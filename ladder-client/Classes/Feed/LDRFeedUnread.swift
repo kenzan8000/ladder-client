@@ -23,7 +23,6 @@ extension LDRFeedUnread: Identifiable {
 
 // MARK: - LDRStorageProvider + LDRFeedUnread
 extension LDRStorageProvider {
-  
   // MARK: public api
   
   /// Saves a unread record

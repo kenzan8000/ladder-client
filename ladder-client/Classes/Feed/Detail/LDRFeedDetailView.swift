@@ -136,14 +136,12 @@ struct LDRFeedDetailView: View {
  
 }
 
-/*
 // MARK: - LDRFeedDetailView_Previews
 struct LDRFeedDetailView_Previews: PreviewProvider {
   static var previews: some View {
     LDRFeedDetailView(
-      feedDetailViewModel: LDRFeedDetailViewModel(subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
+      feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup), subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
       feedDetailWebViewModel: LDRFeedDetailWebViewModel()
     )
   }
 }
-*/

@@ -6,7 +6,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   // MARK: property
   var storageProvider: LDRStorageProvider
-  @Published var segment: LDRFeedSubsUnread.Segment
+  @Published var segment: LDRFeedSubsUnreadSegment
   @Published var rates: [String] = []
   @Published var folders: [String] = []
   var sections: [String] {

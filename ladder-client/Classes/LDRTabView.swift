@@ -45,7 +45,7 @@ struct LDRTabView: View {
 // MARK: - LDRTabView_Previews
 struct LDRTabView_Previews: PreviewProvider {
   static var previews: some View {
-    let storageProvider = LDRStorageProvider()
+    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
     return LDRTabView(
       feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
       pinViewModel: LDRPinViewModel(storageProvider: storageProvider)

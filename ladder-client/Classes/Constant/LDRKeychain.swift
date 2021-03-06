@@ -6,13 +6,6 @@ enum LDRKeychain {
   static let password = "LDRKeychain.password"
   static let ldrUrlString = "LDRKeychain.ldrUrlString"
   static let apiKey = "LDRKeychain.apiKey"
-  // static let session = "LDRKeychain.session"
-}
-
-// MARK: - String + LDRKeychain
-extension String {
-  static let ldrService = "org.kenzan8000.ladder-client"
-  static let ldrGroup = "group.ladder-pin"
 }
 
 // MARK: - Keychain + LDR

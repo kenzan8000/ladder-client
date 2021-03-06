@@ -10,12 +10,12 @@ final class LDRStorageProvider {
   }
   
   // MARK: initialization
-  init() {
-    guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: .ldrGroup) else {
-      fatalError("Could not find shared coredata file.")
+  init(name: String, group: String) {
+    persistentContainer = NSPersistentContainer(name: name)
+    guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group) else {
+      fatalError("Could not find coredata share group url.")
     }
-    persistentContainer = NSPersistentContainer(name: "LDRCoreData")
-    persistentContainer.persistentStoreDescriptions.first?.url = url.appendingPathComponent("LDRCoreData.sqlite")
+    persistentContainer.persistentStoreDescriptions.first?.url = url.appendingPathComponent("\(name).sqlite")
     persistentContainer.loadPersistentStores { _, error in
       if let error = error {
         fatalError("Core Data store failed to load with error: \(error)")

@@ -41,7 +41,7 @@ class LDRAddPinViewController: UIViewController {
       }
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { (response: LDRHTMLTitleResponse) in
-        let storageProvider = LDRStorageProvider()
+        let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
         if !storageProvider.existPin(link: response.url.absoluteString) {
           storageProvider.savePin(title: response.title, link: response.url.absoluteString)
         }

@@ -62,10 +62,10 @@ struct LDRFeedView: View {
     ) {
       Image(systemName: "star.fill")
         .foregroundColor(feedViewModel.segment == .rate ? .blue : .gray)
-        .tag(LDRFeedSubsUnread.Segment.rate)
+        .tag(LDRFeedSubsUnreadSegment.rate)
       Image(systemName: "folder.fill")
         .foregroundColor(feedViewModel.segment == .folder ? .blue : .gray)
-        .tag(LDRFeedSubsUnread.Segment.folder)
+        .tag(LDRFeedSubsUnreadSegment.folder)
     }
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
       .pickerStyle(SegmentedPickerStyle())
@@ -116,6 +116,6 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider())).environmentObject(LDRLoginViewModel())
+    LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup))).environmentObject(LDRLoginViewModel())
   }
 }
