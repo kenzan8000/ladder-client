@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build-and-test:
+  test:
     macos:
       xcode: 12.4.0
     steps:
@@ -16,9 +16,9 @@ jobs:
 
 workflows:
   version: 2.1
-  build-and-test:
+  test:
     jobs:
-      - build-and-test:
+      - test:
         filters:
           branches:
             only: main
