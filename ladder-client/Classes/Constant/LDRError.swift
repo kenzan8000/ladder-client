@@ -10,10 +10,10 @@ enum LDRError: Swift.Error {
   
   var legibleDescription: String {
     switch self {
-    case let .networking(urlError):
-      return urlError.localizedDescription
-    case let .decoding(error):
-      return error.localizedDescription
+    case .networking:
+      return "Connection failed."
+    case .decoding:
+      return "Decode failed. Received unexpected response from your Fastladder."
     case .deleteModelsFailed:
       return "Failed to delete the record."
     case .saveModelsFailed:
