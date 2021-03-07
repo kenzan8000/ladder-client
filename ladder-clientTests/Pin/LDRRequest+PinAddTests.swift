@@ -63,29 +63,29 @@ class LDRRequestPinAddTests: XCTestCase {
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, Swift.Error> {
-    Future<LDRPinAddResponse, Swift.Error> { promise in
+  func fakeSuccessPublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, LDRError> {
+    Future<LDRPinAddResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8),
          let response = try? decoder.decode(LDRPinAddResponse.self, from: data) {
         promise(.success(response))
       } else {
-        promise(.failure(LDRError.failed("Failed to load response string.")))
+        promise(.failure(LDRError.others("Failed to load response string.")))
       }
     }
     .eraseToAnyPublisher()
   }
   
-  func fakeFailurePublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, Swift.Error> {
-    Future<LDRPinAddResponse, Swift.Error> { promise in
+  func fakeFailurePublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, LDRError> {
+    Future<LDRPinAddResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8),
          let response = try? decoder.decode(LDRPinAddResponse.self, from: data) {
         promise(.success(response))
       } else {
-        promise(.failure(LDRError.failed("Failed to load response string.")))
+        promise(.failure(LDRError.others("Failed to load response string.")))
       }
     }
     .eraseToAnyPublisher()

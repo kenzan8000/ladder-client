@@ -68,20 +68,20 @@ private let mockAuthencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeValidHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
-    Future<LDRSessionResponse, Swift.Error> { promise in
+  func fakeValidHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
+    Future<LDRSessionResponse, LDRError> { promise in
       if let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html"),
          let data = try? Data(contentsOf: url, options: .uncached) {
         promise(.success(LDRSessionResponse(data: data)))
       } else {
-        promise(.failure(LDRError.failed("Failed to load local html file.")))
+        promise(.failure(LDRError.others("Failed to load local html file.")))
       }
     }
     .eraseToAnyPublisher()
   }
   
-  func fakeEmptyHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
-    Future<LDRSessionResponse, Swift.Error> { promise in
+  func fakeEmptyHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
+    Future<LDRSessionResponse, LDRError> { promise in
       promise(.success(LDRSessionResponse(data: Data())))
     }
     .eraseToAnyPublisher()

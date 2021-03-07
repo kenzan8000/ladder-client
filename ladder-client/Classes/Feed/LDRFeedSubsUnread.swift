@@ -105,7 +105,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      return LDRError.saveModelsFailed
+      return LDRError.saveModel
     }
     return nil
   }
@@ -127,7 +127,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      return LDRError.deleteModelsFailed
+      return LDRError.deleteModel
     }
     return nil
   }

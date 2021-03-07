@@ -1,12 +1,12 @@
 import Foundation
 
 // MARK: - LDRError
-enum LDRError: Swift.Error {
+enum LDRError: Error {
   case networking(URLError)
-  case decoding(Swift.Error)
-  case deleteModelsFailed
-  case saveModelsFailed
-  case failed(String)
+  case decoding(Error)
+  case deleteModel
+  case saveModel
+  case others(String)
   
   var legibleDescription: String {
     switch self {
@@ -14,11 +14,11 @@ enum LDRError: Swift.Error {
       return "Connection failed."
     case .decoding:
       return "Decode failed. Received unexpected response from your Fastladder."
-    case .deleteModelsFailed:
+    case .deleteModel:
       return "Failed to delete the record."
-    case .saveModelsFailed:
+    case .saveModel:
       return "Failed to save the record."
-    case let .failed(description):
+    case let .others(description):
       return description
     }
   }

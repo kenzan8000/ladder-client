@@ -103,7 +103,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      return LDRError.saveModelsFailed
+      return LDRError.saveModel
     }
     return nil
   }
@@ -123,14 +123,14 @@ extension LDRStorageProvider {
     do {
       models = try viewContext.fetch(fetchRequest)
     } catch {
-      return LDRError.deleteModelsFailed
+      return LDRError.deleteModel
     }
     models.forEach { viewContext.delete($0) }
     do {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      return LDRError.deleteModelsFailed
+      return LDRError.deleteModel
     }
     return nil
   }

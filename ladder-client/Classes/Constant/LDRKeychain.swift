@@ -10,5 +10,5 @@ enum LDRKeychain {
 
 // MARK: - Keychain + LDR
 extension Keychain {
-  static let ldr = Keychain(service: .ldrService, accessGroup: .ldrGroup)
+  static let ldr = Keychain(service: LDR.service, accessGroup: LDR.group)
 }

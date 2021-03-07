@@ -89,8 +89,8 @@
 		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6E127B124A4C3D9008627D5 /* LDRFeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailViewModel.swift */; };
 		E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
-		E6E8D4B425F3C60200F71D10 /* String+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* String+LDR.swift */; };
-		E6E8D4B825F3C6C200F71D10 /* String+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* String+LDR.swift */; };
+		E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
+		E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
 		E6EC083823E7800800929110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EC083723E7800800929110 /* Assets.xcassets */; };
 		E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE2E9824AB20EB0086590A /* LDRToastView.swift */; };
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
@@ -207,7 +207,7 @@
 		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E6E127B024A4C3D9008627D5 /* LDRFeedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewModel.swift; sourceTree = "<group>"; };
 		E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LDRCoreData.xcdatamodel; sourceTree = "<group>"; };
-		E6E8D4B325F3C60200F71D10 /* String+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LDR.swift"; sourceTree = "<group>"; };
+		E6E8D4B325F3C60200F71D10 /* LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDR.swift; sourceTree = "<group>"; };
 		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6EE2E9824AB20EB0086590A /* LDRToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRToastView.swift; sourceTree = "<group>"; };
 		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
@@ -434,7 +434,7 @@
 				E6C9FFE425E6456500F9F21E /* LDRError.swift */,
 				E6C9FFEA25E646A800F9F21E /* LDRApi.swift */,
 				E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */,
-				E6E8D4B325F3C60200F71D10 /* String+LDR.swift */,
+				E6E8D4B325F3C60200F71D10 /* LDR.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -693,7 +693,7 @@
 				E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */,
 				E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */,
 				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
-				E6E8D4B425F3C60200F71D10 /* String+LDR.swift in Sources */,
+				E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */,
 				E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */,
 				E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */,
 				E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */,
@@ -736,7 +736,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6E8D4B825F3C6C200F71D10 /* String+LDR.swift in Sources */,
+				E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */,
 				E62F726625F2687300AC90D7 /* LDRRequest+PinAll.swift in Sources */,
 				E62F726225F267C300AC90D7 /* LDRPin.swift in Sources */,
 				E62F725E25F267BB00AC90D7 /* LDRStorageProvider.swift in Sources */,
@@ -1064,7 +1064,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
@@ -1098,7 +1098,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 3.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
 				PRODUCT_NAME = "Add the url to \"read later\".";

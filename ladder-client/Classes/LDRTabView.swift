@@ -45,7 +45,7 @@ struct LDRTabView: View {
 // MARK: - LDRTabViewFeed_Previews
 struct LDRTabViewFeed_Previews: PreviewProvider {
   static var previews: some View {
-    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
+    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
     return LDRTabView(
       selected: LDRTabView.Tab.feed,
       feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
@@ -58,7 +58,7 @@ struct LDRTabViewFeed_Previews: PreviewProvider {
 // MARK: - LDRTabViewPin_Previews
 struct LDRTabViewPin_Previews: PreviewProvider {
   static var previews: some View {
-    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
+    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
     return LDRTabView(
       selected: LDRTabView.Tab.pin,
       feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),

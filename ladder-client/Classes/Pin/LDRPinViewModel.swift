@@ -121,7 +121,7 @@ final class LDRPinViewModel: ObservableObject {
         },
         receiveValue: { [weak self] response in
           if !response.isSuccess {
-            self?.error = LDRError.failed("Failed to remove a pin. (\(url.absoluteString))")
+            self?.error = LDRError.others("Failed to remove a pin. (\(url.absoluteString))")
           }
         }
       )

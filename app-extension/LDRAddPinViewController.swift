@@ -30,7 +30,7 @@ class LDRAddPinViewController: UIViewController {
             if let url = data as? URL {
               promise(.success(url))
             } else {
-              promise(.failure(LDRError.failed("Could not retrieve the URL to add to your 'read later' list.")))
+              promise(.failure(LDRError.others("Could not retrieve the URL to add to your 'read later' list.")))
             }
           }
         }
@@ -41,7 +41,7 @@ class LDRAddPinViewController: UIViewController {
       }
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { (response: LDRHTMLTitleResponse) in
-        let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
+        let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
         if !storageProvider.existPin(link: response.url.absoluteString) {
           storageProvider.savePin(title: response.title, link: response.url.absoluteString)
         }

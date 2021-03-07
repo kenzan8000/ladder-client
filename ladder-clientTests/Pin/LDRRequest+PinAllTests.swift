@@ -37,8 +37,8 @@ class LDRRequestPinAllTests: XCTestCase {
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRPinAllResponse>) -> AnyPublisher<LDRPinAllResponse, Swift.Error> {
-    Future<LDRPinAllResponse, Swift.Error> { promise in
+  func fakeValidPublisher(for request: LDRRequest<LDRPinAllResponse>) -> AnyPublisher<LDRPinAllResponse, LDRError> {
+    Future<LDRPinAllResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"),
@@ -46,7 +46,7 @@ extension URLSession {
          let response = try? decoder.decode(LDRPinAllResponse.self, from: data) {
         promise(.success(response))
       } else {
-        promise(.failure(LDRError.failed("Failed to load local json file.")))
+        promise(.failure(LDRError.others("Failed to load local json file.")))
       }
     }
     .eraseToAnyPublisher()

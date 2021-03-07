@@ -86,7 +86,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
         },
         receiveValue: { [weak self] response in
           if !response.isSuccess {
-            self?.error = LDRError.failed("Failed to add a pin. (\(unread.link))")
+            self?.error = LDRError.others("Failed to add a pin. (\(unread.link))")
           }
         }
       )

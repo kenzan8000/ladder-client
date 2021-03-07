@@ -37,8 +37,8 @@ class LDRRequestSubsTests: XCTestCase {
 
 // MARK: - URLSession + Fake
 extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRSubsResponse>) -> AnyPublisher<LDRSubsResponse, Swift.Error> {
-    Future<LDRSubsResponse, Swift.Error> { promise in
+  func fakeValidPublisher(for request: LDRRequest<LDRSubsResponse>) -> AnyPublisher<LDRSubsResponse, LDRError> {
+    Future<LDRSubsResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       if let url = Bundle(for: type(of: LDRRequestSubsTests())).url(forResource: "subs", withExtension: "json"),
@@ -46,7 +46,7 @@ extension URLSession {
          let response = try? decoder.decode(LDRSubsResponse.self, from: data) {
         promise(.success(response))
       } else {
-        promise(.failure(LDRError.failed("Failed to load local json file.")))
+        promise(.failure(LDRError.others("Failed to load local json file.")))
       }
     }
     .eraseToAnyPublisher()

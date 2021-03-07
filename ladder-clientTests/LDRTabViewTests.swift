@@ -19,7 +19,7 @@ class LDRTabViewTests: XCTestCase {
   // MARK: test
   
   func testLDRTabView_whenSelectedTabIsFeed_snapshotTesting() throws {
-    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: "org.kenzan8000.ladder-client.test")
+    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.testGroup)
     let sut = UIHostingController(
       rootView: LDRTabView(
         selected: LDRTabView.Tab.feed,
@@ -39,7 +39,7 @@ class LDRTabViewTests: XCTestCase {
   }
   
   func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
-    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: "org.kenzan8000.ladder-client.test")
+    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.testGroup)
     let sut = UIHostingController(
       rootView: LDRTabView(
         selected: LDRTabView.Tab.pin,
@@ -57,4 +57,9 @@ class LDRTabViewTests: XCTestCase {
       )
     }
   }
+}
+
+// MARK: - LDR + Tests
+extension LDR {
+  static let testGroup = "org.kenzan8000.ladder-client.test"
 }
