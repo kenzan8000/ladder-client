@@ -33,8 +33,8 @@ struct LDRFeedRow: View {
             .font(.title)
             .frame(alignment: .trailing)
         }
-          .frame(height: 64)
-          .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
+          .frame(minWidth: 0, maxWidth: .infinity, minHeight: 64, alignment: .leading)
+          .padding(.horizontal, 16.0)
       }
     )
   }
