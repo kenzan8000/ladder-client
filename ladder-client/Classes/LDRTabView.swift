@@ -11,10 +11,10 @@ struct LDRTabView: View {
     
   // MARK: property
     
-  @State private var selected = Tab.feed
-  @EnvironmentObject var loginViewModel: LDRLoginViewModel
+  @State var selected: Tab
   var feedViewModel: LDRFeedViewModel
   var pinViewModel: LDRPinViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
   var body: some View {
     TabView(selection: $selected) {
@@ -42,11 +42,25 @@ struct LDRTabView: View {
   }
 }
 
-// MARK: - LDRTabView_Previews
-struct LDRTabView_Previews: PreviewProvider {
+// MARK: - LDRTabViewFeed_Previews
+struct LDRTabViewFeed_Previews: PreviewProvider {
   static var previews: some View {
     let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
     return LDRTabView(
+      selected: LDRTabView.Tab.feed,
+      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+      pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+    )
+    .environmentObject(LDRLoginViewModel())
+  }
+}
+
+// MARK: - LDRTabViewPin_Previews
+struct LDRTabViewPin_Previews: PreviewProvider {
+  static var previews: some View {
+    let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: .ldrGroup)
+    return LDRTabView(
+      selected: LDRTabView.Tab.pin,
       feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
       pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
     )

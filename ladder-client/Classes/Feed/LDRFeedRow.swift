@@ -46,12 +46,34 @@ struct LDRFeedRow: View {
   }
 }
 
-// MARK: - LDRFeedRow_Previews
-struct LDRFeedRow_Previews: PreviewProvider {
+// MARK: - LDRFeedRowUnload_Previews
+struct LDRFeedRowUnload_Previews: PreviewProvider {
   static var previews: some View {
     LDRFeedRow(
       title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
       unreadCount: "187",
+      color: .gray
+    )
+  }
+}
+
+// MARK: - LDRFeedRowUnread_Previews
+struct LDRFeedRowUnread_Previews: PreviewProvider {
+  static var previews: some View {
+    LDRFeedRow(
+      title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
+      unreadCount: "187",
+      color: .blue
+    )
+  }
+}
+
+// MARK: - LDRFeedRowRead_Previews
+struct LDRFeedRowRead_Previews: PreviewProvider {
+  static var previews: some View {
+    LDRFeedRow(
+      title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
+      unreadCount: "",
       color: .gray
     )
   }

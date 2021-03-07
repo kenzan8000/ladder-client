@@ -13,6 +13,7 @@ struct LadderClientApp: App {
   var body: some Scene {
     WindowGroup {
       LDRTabView(
+        selected: LDRTabView.Tab.feed,
         feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
         pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
       )
