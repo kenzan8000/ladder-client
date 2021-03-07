@@ -54,6 +54,7 @@
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
 		E674DE2525F4EE7B00D9E8BB /* LDRTabViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674DE2425F4EE7B00D9E8BB /* LDRTabViewTests.swift */; };
 		E674DE2F25F4F2E100D9E8BB /* LDRFeedRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674DE2E25F4F2E100D9E8BB /* LDRFeedRowTests.swift */; };
+		E674DE3425F4F40F00D9E8BB /* LDRPinRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674DE3325F4F40F00D9E8BB /* LDRPinRowTests.swift */; };
 		E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */; platformFilter = ios; };
 		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginViewModel.swift */; };
@@ -167,6 +168,7 @@
 		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
 		E674DE2425F4EE7B00D9E8BB /* LDRTabViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabViewTests.swift; sourceTree = "<group>"; };
 		E674DE2E25F4F2E100D9E8BB /* LDRFeedRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRowTests.swift; sourceTree = "<group>"; };
+		E674DE3325F4F40F00D9E8BB /* LDRPinRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
 		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SessionTests.swift"; sourceTree = "<group>"; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				E6D19BF725EFAD4B001FC76B /* LDRRequest+PinAddTests.swift */,
 				E6D19BFF25EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift */,
 				E62A73BD25EE58F100E79F24 /* pinAll.json */,
+				E674DE3325F4F40F00D9E8BB /* LDRPinRowTests.swift */,
 			);
 			path = Pin;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
+				E674DE3425F4F40F00D9E8BB /* LDRPinRowTests.swift in Sources */,
 				E6D19BF025EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift in Sources */,
 				E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */,
 				E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */,
