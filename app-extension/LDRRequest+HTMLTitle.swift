@@ -33,7 +33,7 @@ extension URLSession {
   
   func publisher(
     for request: LDRRequest<LDRHTMLTitleResponse>
-  ) -> AnyPublisher<LDRHTMLTitleResponse, Swift.Error> {
+  ) -> AnyPublisher<LDRHTMLTitleResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
       .map {

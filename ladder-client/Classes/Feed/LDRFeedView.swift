@@ -22,7 +22,7 @@ struct LDRFeedView: View {
       }
     }
     .alert(isPresented: feedViewModel.isPresentingAlert) {
-      Alert(title: Text(feedViewModel.error?.localizedDescription ?? ""))
+      Alert(title: Text(feedViewModel.error?.legibleDescription ?? ""))
     }
     .onAppear {
       feedViewModel.loadFeedFromLocalDB()

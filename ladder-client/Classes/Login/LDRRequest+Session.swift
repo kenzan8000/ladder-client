@@ -53,7 +53,7 @@ extension URLSession {
   
   func publisher(
     for request: LDRRequest<LDRSessionResponse>
-  ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
+  ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)

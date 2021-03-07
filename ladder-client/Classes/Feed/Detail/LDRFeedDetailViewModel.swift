@@ -17,7 +17,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
   var link: URL { unread?.linkUrl ?? URL(fileURLWithPath: "") }
   var prevTitle: String { index > 0 ? unreads[index - 1].title : "" }
   var nextTitle: String { index + 1 < unreads.count ? unreads[index + 1].title : "" }
-  @Published var error: Error?
+  @Published var error: LDRError?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
       get: { [weak self] in self?.error != nil },

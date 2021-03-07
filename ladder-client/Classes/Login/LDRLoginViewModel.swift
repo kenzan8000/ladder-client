@@ -10,7 +10,7 @@ final class LDRLoginViewModel: ObservableObject {
   @Published var urlDomain = ""
   @Published var username = ""
   @Published var password = ""
-  @Published var error: Error?
+  @Published var error: LDRError?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(get: {
       self.error != nil
@@ -96,7 +96,7 @@ final class LDRLoginViewModel: ObservableObject {
   }
   
   /// calls when failed
-  private func fail(by error: Swift.Error) {
+  private func fail(by error: LDRError) {
     isLogingIn = false
     self.error = error
   }

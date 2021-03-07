@@ -25,7 +25,7 @@ struct LDRLoginView: View {
         }
     }
     .alert(isPresented: loginViewModel.isPresentingAlert) {
-      Alert(title: Text(loginViewModel.error?.localizedDescription ?? ""))
+      Alert(title: Text(loginViewModel.error?.legibleDescription ?? ""))
     }
     .onAppear {
       loginViewModel.urlDomain = Keychain.ldr[LDRKeychain.ldrUrlString] ?? ""

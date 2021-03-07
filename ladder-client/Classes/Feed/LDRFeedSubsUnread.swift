@@ -89,7 +89,7 @@ extension LDRStorageProvider {
   /// Saves SubsUnreads records by response
   /// - Parameter response: LDRSubsResponse
   /// - Returns: save error or nil
-  func saveSubsUnreads(by response: LDRSubsResponse) -> Error? {
+  func saveSubsUnreads(by response: LDRSubsResponse) -> LDRError? {
     for item in response {
       let model = LDRFeedSubsUnread(context: viewContext)
       model.subscribeId = item.subscribeId
@@ -112,7 +112,7 @@ extension LDRStorageProvider {
   
   /// Delete SubsUnreads records
   /// - Returns: save error or nil
-  func deleteSubsUnreads() -> Error? {
+  func deleteSubsUnreads() -> LDRError? {
     let fetchRequest: NSFetchRequest<LDRFeedSubsUnread> = LDRFeedSubsUnread.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     fetchRequest.returnsObjectsAsFaults = false

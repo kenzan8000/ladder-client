@@ -20,7 +20,7 @@ final class LDRPinViewModel: ObservableObject {
     )
   }
   @Published var isPresentingLoginView = false
-  @Published var error: Error?
+  @Published var error: LDRError?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
       get: { [weak self] in self?.error != nil },
@@ -104,7 +104,6 @@ final class LDRPinViewModel: ObservableObject {
   /// - Parameter pin: LDRPin model
   func delete(pin: LDRPin) {
     guard let url = pin.linkUrl else {
-      error = LDRError.invalidLdrUrl
       return
     }
     safariUrl = url

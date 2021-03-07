@@ -18,7 +18,7 @@ struct LDRPinView: View {
         safariView
       }
       .alert(isPresented: pinViewModel.isPresentingAlert) {
-        Alert(title: Text(pinViewModel.error?.localizedDescription ?? ""))
+        Alert(title: Text(pinViewModel.error?.legibleDescription ?? ""))
       }
   }
   

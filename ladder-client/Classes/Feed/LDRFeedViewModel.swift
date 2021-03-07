@@ -27,7 +27,7 @@ final class LDRFeedViewModel: ObservableObject {
   }
   @Published var isPresentingLoginView = false
   @Published var isLoading = false
-  @Published var error: Error?
+  @Published var error: LDRError?
   var isPresentingAlert: Binding<Bool> {
     Binding<Bool>(
       get: { self.error != nil },

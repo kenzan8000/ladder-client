@@ -92,7 +92,7 @@ extension LDRStorageProvider {
   /// - Parameters:
   ///   - response: LDRPinAllResponse
   /// - Returns: Error occuring when saving pin records or nil
-  func savePins(by response: LDRPinAllResponse) -> Error? {
+  func savePins(by response: LDRPinAllResponse) -> LDRError? {
     response.forEach {
       let model = LDRPin(context: viewContext)
       model.title = $0.title
@@ -112,7 +112,7 @@ extension LDRStorageProvider {
   /// - Parameters:
   ///   - predicate: condition to search pins to delete
   /// - Returns: Error occuring when deleting pin records or nil
-  func deletePins(by predicate: NSPredicate?) -> Error? {
+  func deletePins(by predicate: NSPredicate?) -> LDRError? {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     fetchRequest.returnsObjectsAsFaults = false
@@ -137,7 +137,7 @@ extension LDRStorageProvider {
   
   /// Delete pin records
   /// - Returns: Error occuring when deleting pin records or nil
-  func deletePins() -> Error? {
+  func deletePins() -> LDRError? {
     deletePins(by: nil)
   }
 
@@ -145,7 +145,7 @@ extension LDRStorageProvider {
   /// - Parameters:
   ///   - pin: pin to delete
   /// - Returns: Error occuring when deleting a pin record or nil
-  func deletePin(_ pin: LDRPin) -> Error? {
+  func deletePin(_ pin: LDRPin) -> LDRError? {
     deletePins(
       by: NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)
     )

@@ -32,7 +32,7 @@ struct LDRFeedDetailView: View {
       )
     }
     .alert(isPresented: feedDetailViewModel.isPresentingAlert) {
-      Alert(title: Text(feedDetailViewModel.error?.localizedDescription ?? ""))
+      Alert(title: Text(feedDetailViewModel.error?.legibleDescription ?? ""))
     }
   }
 

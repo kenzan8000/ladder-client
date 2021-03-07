@@ -47,11 +47,11 @@ extension URLSession {
   
   func publisher(
     for request: LDRRequest<LDRLoginResponse>
-  ) -> AnyPublisher<LDRSessionResponse, Swift.Error> {
+  ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
       .map { LDRLoginResponse(data: $0.data, response: $0.response) }
-      .flatMap { result -> AnyPublisher<LDRSessionResponse, Swift.Error> in
+      .flatMap { result -> AnyPublisher<LDRSessionResponse, LDRError> in
         var username = ""
         var password = ""
         if case let .get(queryItems) = request.method {

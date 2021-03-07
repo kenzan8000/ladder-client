@@ -25,7 +25,7 @@ class LDRAddPinViewController: UIViewController {
       .filter { $0.hasItemConformingToTypeIdentifier(kUTTypeURL as String) }
       .publisher
       .flatMap { provider in
-        Future<URL, Swift.Error> { promise in
+        Future<URL, LDRError> { promise in
           provider.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { data, error in
             if let url = data as? URL {
               promise(.success(url))
@@ -36,7 +36,7 @@ class LDRAddPinViewController: UIViewController {
         }
         .eraseToAnyPublisher()
       }
-      .flatMap { (url: URL) -> AnyPublisher<LDRHTMLTitleResponse, Swift.Error> in
+      .flatMap { (url: URL) -> AnyPublisher<LDRHTMLTitleResponse, LDRError> in
         URLSession.shared.publisher(for: .htmlTitle(url: url))
       }
       .receive(on: DispatchQueue.main)
@@ -46,15 +46,15 @@ class LDRAddPinViewController: UIViewController {
           storageProvider.savePin(title: response.title, link: response.url.absoluteString)
         }
       })
-      .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, Swift.Error> in
+      .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, LDRError> in
         URLSession.shared.publisher(for: .pinAdd(title: response.title, link: response.url))
       }
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
           self?.activityIndicatorView.isHidden = true
-          if case .failure(_) = result {
-            self?.label.text = "Failed to add the URL to your 'read later' list. You might have already added the same URL. Make sure your ladder-client app's settings are appropriate."
+          if case let .failure(error) = result {
+            self?.label.text = error.legibleDescription
           }
           else {
             self?.label.text = "Succeeded to add the URL to your 'read later' list."

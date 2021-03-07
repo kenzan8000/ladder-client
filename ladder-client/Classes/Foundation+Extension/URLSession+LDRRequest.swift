@@ -8,7 +8,7 @@ extension URLSession {
   func publisher<Value: Decodable>(
     for request: LDRRequest<Value>,
     using decoder: JSONDecoder = .init()
-  ) -> AnyPublisher<Value, Swift.Error> {
+  ) -> AnyPublisher<Value, LDRError> {
     // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)

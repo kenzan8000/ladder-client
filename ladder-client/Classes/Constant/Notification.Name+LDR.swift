@@ -4,5 +4,4 @@ import Foundation
 extension Notification.Name {
   static let ldrDidLogin = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrDidLogin")
   static let ldrWillCloseLoginView = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrWillCloseLoginView")
-  static let ldrDidGetInvalidUrlOrUsernameOrPasswordError = Notification.Name("\(Bundle.main.bundleIdentifier ?? "").ldrDidGetInvalidUrlOrUsernameOrPasswordError")
 }
