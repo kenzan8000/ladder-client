@@ -3,7 +3,7 @@ import SwiftUI
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRTabViewTests+SubsTests
+// MARK: - LDRTabViewTests
 class LDRTabViewTests: XCTestCase {
 
   // MARK: life cycle
@@ -18,7 +18,7 @@ class LDRTabViewTests: XCTestCase {
 
   // MARK: test
   
-  func testMapZoomButton_whenSelectedTabIsFeed_snapshotTesting() throws {
+  func testLDRTabView_whenSelectedTabIsFeed_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: "org.kenzan8000.ladder-client.test")
     let sut = UIHostingController(
       rootView: LDRTabView(
@@ -38,7 +38,7 @@ class LDRTabViewTests: XCTestCase {
     }
   }
   
-  func testMapZoomButton_whenSelectedTabIsPin_snapshotTesting() throws {
+  func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(name: .ldrCoreData, group: "org.kenzan8000.ladder-client.test")
     let sut = UIHostingController(
       rootView: LDRTabView(
