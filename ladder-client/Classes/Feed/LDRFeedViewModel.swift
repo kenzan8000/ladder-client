@@ -64,8 +64,16 @@ final class LDRFeedViewModel: ObservableObject {
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
-        self?.loadFeedFromAPI()
+        self?.reloadUnreads()
         self?.isPresentingLoginView = false
+      }
+      .store(in: &notificationCancellables)
+    NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] _ in
+        if LDRKeychain.reloadTimestampExpired() {
+          self?.reloadUnreads()
+        }
       }
       .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
@@ -177,5 +185,13 @@ final class LDRFeedViewModel: ObservableObject {
         }
       )
       .store(in: &unreadCancellables)
+  }
+  
+  /// Stops current loading and reloads unreads
+  private func reloadUnreads() {
+    subsCancellable?.cancel()
+    touchAllCancellables.forEach { $0.cancel() }
+    unreadCancellables.forEach { $0.cancel() }
+    loadFeedFromAPI()
   }
 }

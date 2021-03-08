@@ -1,3 +1,5 @@
+import Combine
+import KeychainAccess
 import os
 import SwiftUI
 
@@ -8,7 +10,8 @@ let logger = Logger(subsystem: "\(Bundle.main.bundleIdentifier ?? "").logger", c
 struct LadderClientApp: App {
   // MARK: property
   
-  let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
+  private let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
+  private var willResignActiveCancellable: AnyCancellable?
   
   var body: some Scene {
     WindowGroup {
@@ -24,5 +27,14 @@ struct LadderClientApp: App {
   // MARK: initialization
   
   init() {
+    if LDRKeychain.reloadTimestampExpired() {
+      LDRKeychain.updateReloadTimestamp()
+    }
+    willResignActiveCancellable = NotificationCenter.default
+      .publisher(for: UIApplication.willResignActiveNotification)
+      .receive(on: DispatchQueue.main)
+      .sink { _ in
+        LDRKeychain.updateReloadTimestamp()
+      }
   }
 }

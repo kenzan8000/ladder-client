@@ -47,9 +47,7 @@ final class LDRPinViewModel: ObservableObject {
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
-        self?.pinAllCancellable?.cancel()
-        self?.pinRemoveCancellables.forEach { $0.cancel() }
-        self?.loadPinsFromAPI()
+        self?.reloadPins()
         self?.isPresentingLoginView = false
       }
       .store(in: &notificationCancellables)
@@ -57,6 +55,9 @@ final class LDRPinViewModel: ObservableObject {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.loadPinsFromLocalDB()
+        if LDRKeychain.reloadTimestampExpired() {
+          self?.reloadPins()
+        }
       }
       .store(in: &notificationCancellables)
     NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
@@ -129,4 +130,12 @@ final class LDRPinViewModel: ObservableObject {
     pins = storageProvider.fetchPins()
   }
   
+  // MARK: private api
+  
+  /// Stops current loadings and reloads pins
+  private func reloadPins() {
+    pinAllCancellable?.cancel()
+    pinRemoveCancellables.forEach { $0.cancel() }
+    loadPinsFromAPI()
+  }
 }
