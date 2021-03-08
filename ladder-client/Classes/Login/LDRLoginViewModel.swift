@@ -57,8 +57,6 @@ final class LDRLoginViewModel: ObservableObject {
   func login() {
     isLogingIn = true
     
-    Keychain.ldr[LDRKeychain.username] = username
-    Keychain.ldr[LDRKeychain.password] = password
     Keychain.ldr[LDRKeychain.ldrUrlString] = urlDomain
 
     HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
