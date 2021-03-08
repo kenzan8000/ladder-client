@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.3.0
 jobs:
   unit-tests:
     macos:
@@ -13,7 +15,12 @@ jobs:
       - store_artifacts:
           path: test_output
           destination: scan-output
-
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 workflows:
   version: 2.1
   unit-tests:
