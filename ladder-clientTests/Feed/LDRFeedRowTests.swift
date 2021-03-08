@@ -31,7 +31,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
@@ -50,7 +50,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
@@ -69,7 +69,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
@@ -88,7 +88,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
@@ -107,7 +107,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
@@ -126,7 +126,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhoneX, precision: 0.9),
         named: named
       )
     }
