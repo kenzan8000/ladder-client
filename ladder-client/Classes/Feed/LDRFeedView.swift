@@ -70,7 +70,6 @@ struct LDRFeedView: View {
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
       .pickerStyle(SegmentedPickerStyle())
       .animation(nil)
-      .disabled(feedViewModel.isLoading)
   }
     
   var list: some View {
