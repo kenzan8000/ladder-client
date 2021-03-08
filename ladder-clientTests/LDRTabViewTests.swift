@@ -52,7 +52,7 @@ class LDRTabViewTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image,
+        as: .image(on: .iPhoneX),
         named: named
       )
     }

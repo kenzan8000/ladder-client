@@ -5,7 +5,7 @@ import KeychainAccess
 enum LDRKeychain {
   static let ldrUrlString = "LDRKeychain.ldrUrlString"
   static let apiKey = "LDRKeychain.apiKey"
-  private static let reloadTimestamp = "LDRKeychain.reloadTimestamp"
+  static let reloadTimestamp = "LDRKeychain.reloadTimestamp"
 }
 
 // MARK: - LDRKeychain + willResignActiveTimestamp

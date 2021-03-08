@@ -27,7 +27,7 @@ struct LadderClientApp: App {
   // MARK: initialization
   
   init() {
-    if LDRKeychain.reloadTimestampExpired() {
+    if Keychain.ldr[LDRKeychain.reloadTimestamp] == nil {
       LDRKeychain.updateReloadTimestamp()
     }
     willResignActiveCancellable = NotificationCenter.default
