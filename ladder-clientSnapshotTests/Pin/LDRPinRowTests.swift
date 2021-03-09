@@ -27,7 +27,7 @@ class LDRPinRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX, precision: 0.9),
+        as: .image(on: .iPhoneX),
         named: named
       )
     }
@@ -42,7 +42,7 @@ class LDRPinRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX, precision: 0.9),
+        as: .image(on: .iPhoneX),
         named: named
       )
     }
@@ -57,7 +57,7 @@ class LDRPinRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX, precision: 0.9),
+        as: .image(on: .iPhoneX),
         named: named
       )
     }

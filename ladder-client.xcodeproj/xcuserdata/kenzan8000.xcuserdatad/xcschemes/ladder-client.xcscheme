@@ -48,6 +48,16 @@
                ReferencedContainer = "container:ladder-client.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E661DD2D25F78C7D00B687D5"
+               BuildableName = "ladder-clientSnapshotTests.xctest"
+               BlueprintName = "ladder-clientSnapshotTests"
+               ReferencedContainer = "container:ladder-client.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
