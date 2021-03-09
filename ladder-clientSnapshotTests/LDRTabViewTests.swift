@@ -32,7 +32,12 @@ class LDRTabViewTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
+        named: named
+      )
+      assertSnapshot(
+        matching: sut,
+        as: .recursiveDescription(on: .iPhone8),
         named: named
       )
     }
@@ -52,7 +57,12 @@ class LDRTabViewTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhoneX),
+        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
+        named: named
+      )
+      assertSnapshot(
+        matching: sut,
+        as: .recursiveDescription(on: .iPhone8),
         named: named
       )
     }
