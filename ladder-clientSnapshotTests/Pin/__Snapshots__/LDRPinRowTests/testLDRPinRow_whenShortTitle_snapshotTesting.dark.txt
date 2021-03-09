@@ -1,2 +1,0 @@
-<_TtGC7SwiftUI14_UIHostingViewV13ladder_client9LDRPinRow_; frame = (0 0; 375 667); autoresize = W+H; gestureRecognizers = <NSArray>; layer = <CALayer>>
-   | <_TtCOCV7SwiftUI11DisplayList11ViewUpdater8Platform13CGDrawingView; frame = (16 334; 162.5 19.5); anchorPoint = (0, 0); opaque = NO; autoresizesSubviews = NO; layer = <CALayer>>

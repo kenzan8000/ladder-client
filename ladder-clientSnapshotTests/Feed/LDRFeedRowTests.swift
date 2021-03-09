@@ -31,12 +31,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
@@ -55,12 +50,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
@@ -79,12 +69,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
@@ -103,12 +88,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
@@ -127,12 +107,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
@@ -151,12 +126,7 @@ class LDRFeedRowTests: XCTestCase {
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
-        as: .image(on: .iPhone8, precision: 0.95, traits: .iPhone8(.portrait)),
-        named: named
-      )
-      assertSnapshot(
-        matching: sut,
-        as: .recursiveDescription(on: .iPhone8),
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
         named: named
       )
     }
