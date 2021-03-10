@@ -99,6 +99,8 @@
 		E6EE1FE525F8E08500DBF887 /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
 		E6EE1FE625F8E08500DBF887 /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
 		E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */; };
+		E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */; };
+		E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */; };
 		E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE2E9824AB20EB0086590A /* LDRToastView.swift */; };
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
 		E6F25DDD24A2501F008C5E58 /* LDRFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */; };
@@ -236,6 +238,8 @@
 		E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LDRCoreData.sqlite-wal"; sourceTree = "<group>"; };
 		E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LDRCoreData.sqlite-shm"; sourceTree = "<group>"; };
 		E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDR+SnapshotTests.swift"; sourceTree = "<group>"; };
+		E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnreadTests.swift; sourceTree = "<group>"; };
+		E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDR+Tests.swift"; sourceTree = "<group>"; };
 		E6EE2E9824AB20EB0086590A /* LDRToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRToastView.swift; sourceTree = "<group>"; };
 		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
 		E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedViewModel.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 		E62A73C225EE5E5C00E79F24 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */,
 				E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */,
 				E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */,
 				E6D19BEF25EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift */,
@@ -435,6 +440,7 @@
 				E62A73C225EE5E5C00E79F24 /* Feed */,
 				E62A73AE25EE538900E79F24 /* Pin */,
 				E659C00B25EE1FE9005AAF87 /* Login */,
+				E6EE203025F8EF4200DBF887 /* Constant */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
@@ -515,6 +521,14 @@
 			isa = PBXGroup;
 			children = (
 				E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		E6EE203025F8EF4200DBF887 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -851,11 +865,13 @@
 			files = (
 				E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */,
 				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
+				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
 				E6D19BF025EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift in Sources */,
 				E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */,
+				E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */,
 				E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
