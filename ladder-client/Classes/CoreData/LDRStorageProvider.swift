@@ -10,6 +10,11 @@ final class LDRStorageProvider {
   }
   
   // MARK: initialization
+  
+  /// Inits
+  /// - Parameters:
+  ///   - name: CoreData file name
+  ///   - group: App Group name
   init(name: String, group: String) {
     persistentContainer = NSPersistentContainer(name: name)
     guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group) else {
@@ -23,4 +28,30 @@ final class LDRStorageProvider {
     }
   }
 
+  /// Inits from an existing sqlite file
+  /// - Parameters:
+  ///   - source: bundle of source sqlite file
+  ///   - name: CoreData file name
+  ///   - group: App Group name
+  init(source: Bundle, name: String, group: String) {
+    persistentContainer = NSPersistentContainer(name: name)
+    guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group) else {
+      fatalError("Could not find coredata share group url.")
+    }
+    if !FileManager.default.fileExists(atPath: url.appendingPathComponent("\(name).sqlite").path) {
+      ["sqlite", "sqlite-wal", "sqlite-shm"]
+        .forEach {
+          try? FileManager.default.copyItem(
+            at: source.url(forResource: name, withExtension: $0) ?? URL(fileURLWithPath: ""),
+            to: url.appendingPathComponent("\(name)." + $0)
+          )
+        }
+    }
+    persistentContainer.persistentStoreDescriptions.first?.url = url.appendingPathComponent("\(name).sqlite")
+    persistentContainer.loadPersistentStores { _, error in
+      if let error = error {
+        fatalError("Core Data store failed to load with error: \(error)")
+      }
+    }
+  }
 }
