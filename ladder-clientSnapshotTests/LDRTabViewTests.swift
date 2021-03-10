@@ -18,12 +18,32 @@ class LDRTabViewTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRTabView_whenSelectedTabIsFeed_snapshotTesting() throws {
-    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.testGroup)
+  func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsRate_snapshotTesting() throws {
+    let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
     let sut = UIHostingController(
       rootView: LDRTabView(
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+      )
+    )
+    
+    [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      sut.overrideUserInterfaceStyle = style
+      assertSnapshot(
+        matching: sut,
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
+        named: named
+      )
+    }
+  }
+  
+  func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsFolder_snapshotTesting() throws {
+    let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
+    let sut = UIHostingController(
+      rootView: LDRTabView(
+        selected: LDRTabView.Tab.feed,
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .folder),
         pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
       )
     )
@@ -39,11 +59,11 @@ class LDRTabViewTests: XCTestCase {
   }
   
   func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
-    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.testGroup)
+    let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
     let sut = UIHostingController(
       rootView: LDRTabView(
         selected: LDRTabView.Tab.pin,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
         pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
       )
     )
@@ -61,5 +81,5 @@ class LDRTabViewTests: XCTestCase {
 
 // MARK: - LDR + Tests
 extension LDR {
-  static let testGroup = "org.kenzan8000.ladder-client.test"
+  static let testGroup = "org.kenzan8000.ladder-clientSnapshotTests"
 }
