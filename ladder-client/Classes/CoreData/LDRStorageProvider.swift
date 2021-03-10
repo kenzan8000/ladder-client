@@ -2,6 +2,12 @@ import CoreData
 
 // MARK: - LDRStorageProvider
 final class LDRStorageProvider {
+  
+  // MARK: - enum
+  enum StoreType {
+    case inMemory
+    case persisted
+  }
 
   // MARK: property
   let persistentContainer: NSPersistentContainer
@@ -15,19 +21,24 @@ final class LDRStorageProvider {
   /// - Parameters:
   ///   - name: CoreData file name
   ///   - group: App Group name
-  init(name: String, group: String) {
+  init(name: String, group: String, storeType: StoreType = .persisted) {
     persistentContainer = NSPersistentContainer(name: name)
     guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group) else {
       fatalError("Could not find coredata share group url.")
     }
-    persistentContainer.persistentStoreDescriptions.first?.url = url.appendingPathComponent("\(name).sqlite")
+    switch storeType {
+    case .inMemory:
+      persistentContainer.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+    case .persisted:
+      persistentContainer.persistentStoreDescriptions.first?.url = url.appendingPathComponent("\(name).sqlite")
+    }
     persistentContainer.loadPersistentStores { _, error in
       if let error = error {
         fatalError("Core Data store failed to load with error: \(error)")
       }
     }
   }
-
+  
   /// Inits from an existing sqlite file
   /// - Parameters:
   ///   - source: bundle of source sqlite file

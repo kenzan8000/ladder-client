@@ -78,8 +78,3 @@ class LDRTabViewTests: XCTestCase {
     }
   }
 }
-
-// MARK: - LDR + Tests
-extension LDR {
-  static let testGroup = "org.kenzan8000.ladder-clientSnapshotTests"
-}
