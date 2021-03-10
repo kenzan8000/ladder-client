@@ -55,10 +55,10 @@ final class LDRFeedViewModel: ObservableObject {
   
   /// Inits
   /// - Parameter storageProvider: for CoreData
-  init(storageProvider: LDRStorageProvider) {
+  init(storageProvider: LDRStorageProvider, segment: LDRFeedSubsUnreadSegment) {
     self.storageProvider = storageProvider
-    segment = .rate
-    subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
+    self.segment = segment
+    subsunreads = storageProvider.fetchSubsUnreads(by: segment)
     rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
     folders = Array(Set(subsunreads.map { $0.folder })).sorted()
     NotificationCenter.default.publisher(for: .ldrDidLogin)

@@ -115,6 +115,6 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group))).environmentObject(LDRLoginViewModel())
+    LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), segment: .rate)).environmentObject(LDRLoginViewModel())
   }
 }

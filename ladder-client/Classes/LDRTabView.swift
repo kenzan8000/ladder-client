@@ -48,7 +48,7 @@ struct LDRTabViewFeed_Previews: PreviewProvider {
     let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
     return LDRTabView(
       selected: LDRTabView.Tab.feed,
-      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
       pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
     )
     .environmentObject(LDRLoginViewModel())
@@ -61,7 +61,7 @@ struct LDRTabViewPin_Previews: PreviewProvider {
     let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
     return LDRTabView(
       selected: LDRTabView.Tab.pin,
-      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
       pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
     )
     .environmentObject(LDRLoginViewModel())

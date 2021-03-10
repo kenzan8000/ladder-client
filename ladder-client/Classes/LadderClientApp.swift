@@ -17,7 +17,7 @@ struct LadderClientApp: App {
     WindowGroup {
       LDRTabView(
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider),
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
         pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
       )
       .environmentObject(LDRLoginViewModel())
