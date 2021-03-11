@@ -50,5 +50,46 @@ class LDRLoginViewTests: XCTestCase {
       )
     }
   }
+  
+  func testLDRLoginView_whenFormIsFilled_snapshotTesting() throws {
+    Keychain.test[LDRKeychain.ldrUrlString] = "kenzan8000.org"
+    let viewModel = LDRLoginViewModel()
+    let sut = UIHostingController(
+      rootView: LDRLoginView().environmentObject(viewModel)
+    )
+    viewModel.username = "username"
+    viewModel.password = "password"
+    viewModel.loginDisabled = false
+
+    [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      sut.overrideUserInterfaceStyle = style
+      assertSnapshot(
+        matching: sut,
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
+        named: named
+      )
+    }
+  }
+  
+  func testLDRLoginView_whenLogingIn_snapshotTesting() throws {
+    Keychain.test[LDRKeychain.ldrUrlString] = "kenzan8000.org"
+    let viewModel = LDRLoginViewModel()
+    let sut = UIHostingController(
+      rootView: LDRLoginView().environmentObject(viewModel)
+    )
+    viewModel.username = "username"
+    viewModel.password = "password"
+    viewModel.loginDisabled = false
+    viewModel.isLogingIn = true
+
+    [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      sut.overrideUserInterfaceStyle = style
+      assertSnapshot(
+        matching: sut,
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
+        named: named
+      )
+    }
+  }
 
 }
