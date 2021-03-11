@@ -9,5 +9,4 @@
 ladder-client is an iOS client for an open source RSS reader called [fastladder](https://github.com/fastladder/fastladder).
 This app provides more mobile-optimized experience comparing to just using a mobile browser.
 
-![browser](https://user-images.githubusercontent.com/225808/110352376-3562d600-8079-11eb-9cf4-e625b7644554.gif)
-![app](https://user-images.githubusercontent.com/225808/110351770-83c3a500-8078-11eb-8bb7-df585714d1ff.gif)
+![ladder-client](https://user-images.githubusercontent.com/225808/110782426-755ccf80-82aa-11eb-9a52-86c5b1b2f098.gif)
