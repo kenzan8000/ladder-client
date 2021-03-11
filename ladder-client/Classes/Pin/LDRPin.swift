@@ -109,10 +109,28 @@ extension LDRStorageProvider {
   }
 
   /// Delete pin records
+  /// - Returns: Error occuring when deleting pin records or nil
+  func deletePins() -> LDRError? {
+    deletePins(by: nil)
+  }
+
+  /// Delete a pin record
+  /// - Parameters:
+  ///   - pin: pin to delete
+  /// - Returns: Error occuring when deleting a pin record or nil
+  func deletePin(_ pin: LDRPin) -> LDRError? {
+    deletePins(
+      by: NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)
+    )
+  }
+  
+  // MARK: private api
+  
+  /// Delete pin records
   /// - Parameters:
   ///   - predicate: condition to search pins to delete
   /// - Returns: Error occuring when deleting pin records or nil
-  func deletePins(by predicate: NSPredicate?) -> LDRError? {
+  private func deletePins(by predicate: NSPredicate?) -> LDRError? {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     fetchRequest.returnsObjectsAsFaults = false
@@ -134,20 +152,5 @@ extension LDRStorageProvider {
     }
     return nil
   }
-  
-  /// Delete pin records
-  /// - Returns: Error occuring when deleting pin records or nil
-  func deletePins() -> LDRError? {
-    deletePins(by: nil)
-  }
-
-  /// Delete a pin record
-  /// - Parameters:
-  ///   - pin: pin to delete
-  /// - Returns: Error occuring when deleting a pin record or nil
-  func deletePin(_ pin: LDRPin) -> LDRError? {
-    deletePins(
-      by: NSPredicate(format: "(%K = %@)", #keyPath(LDRPin.link), pin.link)
-    )
-  }
+ 
 }
