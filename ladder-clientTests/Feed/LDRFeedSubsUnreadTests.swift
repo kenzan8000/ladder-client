@@ -22,9 +22,7 @@ class LDRFeedSubsUnreadTest: XCTestCase {
  
   func testLDRFeedSubsUnread_whenInitialState_saveAndDelete() throws {
     let response = [LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed")]
-    var error = storageProvider.saveSubsUnreads(
-      by: response
-    )
+    var error = storageProvider.saveSubsUnreads(by: response)
     var count = storageProvider.countSubsUnreads()
     XCTAssertNil(error)
     XCTAssertEqual(count, response.count)
@@ -47,20 +45,31 @@ class LDRFeedSubsUnreadTest: XCTestCase {
     XCTAssertNil(error)
     XCTAssertEqual(count, response.count)
     
-    let subsunreadByRate = storageProvider.fetchSubsUnreads(by: .rate)
-    XCTAssertEqual(subsunreadByRate[0].rate, 5)
-    XCTAssertEqual(subsunreadByRate[1].rate, 5)
-    XCTAssertEqual(subsunreadByRate[2].rate, 3)
-    XCTAssertEqual(subsunreadByRate[3].rate, 3)
+    let subsunreadsByRate = storageProvider.fetchSubsUnreads(by: .rate)
+    XCTAssertEqual(subsunreadsByRate[0].rate, 5)
+    XCTAssertEqual(subsunreadsByRate[1].rate, 5)
+    XCTAssertEqual(subsunreadsByRate[2].rate, 3)
+    XCTAssertEqual(subsunreadsByRate[3].rate, 3)
     
-    let subsunreadByFolders = storageProvider.fetchSubsUnreads(by: .folder)
-    XCTAssertEqual(subsunreadByFolders[0].folder, "blog")
-    XCTAssertEqual(subsunreadByFolders[1].folder, "blog")
-    XCTAssertEqual(subsunreadByFolders[2].folder, "software engineering")
-    XCTAssertEqual(subsunreadByFolders[3].folder, "software engineering")
+    let subsunreadsByFolders = storageProvider.fetchSubsUnreads(by: .folder)
+    XCTAssertEqual(subsunreadsByFolders[0].folder, "blog")
+    XCTAssertEqual(subsunreadsByFolders[1].folder, "blog")
+    XCTAssertEqual(subsunreadsByFolders[2].folder, "software engineering")
+    XCTAssertEqual(subsunreadsByFolders[3].folder, "software engineering")
   }
   
-  // TODO
-  // func testLDRFeedSubsUnread_whenInitialState_saveAndUpdate() throws {
-  // }
+  func testLDRFeedSubsUnread_whenInitialState_saveAndUpdate() throws {
+    let response = [LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed")]
+    let error = storageProvider.saveSubsUnreads(by: response)
+    XCTAssertNil(error)
+
+    let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
+    XCTAssertEqual(subsunreads[0].state, LDRFeedSubsUnreadState.unloaded)
+    
+    storageProvider.updateSubsUnread(subsunreads[0], state: .unread)
+    XCTAssertEqual(subsunreads[0].state, LDRFeedSubsUnreadState.unread)
+    
+    storageProvider.updateSubsUnread(subsunreads[0], state: .read)
+    XCTAssertEqual(subsunreads[0].state, LDRFeedSubsUnreadState.read)
+  }
 }
