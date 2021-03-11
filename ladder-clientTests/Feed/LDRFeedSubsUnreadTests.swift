@@ -1,8 +1,8 @@
 import XCTest
 @testable import ladder_client
 
-// MARK: - LDRFeedSubsUnreadTest
-class LDRFeedSubsUnreadTest: XCTestCase {
+// MARK: - LDRFeedSubsUnreadTests
+class LDRFeedSubsUnreadTests: XCTestCase {
 
   // MARK: property
   var storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group, storeType: .inMemory)
