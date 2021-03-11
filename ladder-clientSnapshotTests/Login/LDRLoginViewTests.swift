@@ -1,0 +1,54 @@
+import KeychainAccess
+import SnapshotTesting
+import SwiftUI
+import XCTest
+@testable import ladder_client
+
+// MARK: - LDRLoginViewTests
+class LDRLoginViewTests: XCTestCase {
+
+  // MARK: life cycle
+  
+  override func setUpWithError() throws {
+    super.setUp()
+  }
+
+  override func tearDownWithError() throws {
+    super.tearDown()
+  }
+
+  // MARK: test
+  
+  func testLDRLoginView_whenInitialState_snapshotTesting() throws {
+    Keychain.test[LDRKeychain.ldrUrlString] = ""
+    let sut = UIHostingController(
+      rootView: LDRLoginView().environmentObject(LDRLoginViewModel())
+    )
+    
+    [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      sut.overrideUserInterfaceStyle = style
+      assertSnapshot(
+        matching: sut,
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
+        named: named
+      )
+    }
+  }
+  
+  func testLDRLoginView_whenInitialStateWithDomain_snapshotTesting() throws {
+    Keychain.test[LDRKeychain.ldrUrlString] = "kenzan8000.org"
+    let sut = UIHostingController(
+      rootView: LDRLoginView().environmentObject(LDRLoginViewModel())
+    )
+    
+    [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      sut.overrideUserInterfaceStyle = style
+      assertSnapshot(
+        matching: sut,
+        as: .image(on: .iPhone8, precision: 0.98, traits: .iPhone8(.portrait)),
+        named: named
+      )
+    }
+  }
+
+}

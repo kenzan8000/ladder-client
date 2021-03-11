@@ -48,6 +48,8 @@
 		E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE225E77A4200C0F18C /* KeychainAccess */; };
 		E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */; };
 		E65DBEFC25F9FE7C00F7D074 /* LDRPinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */; };
+		E65DBF0725FA29A000F7D074 /* LDRLoginViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */; };
+		E65DBF1125FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */; };
 		E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D1D25F7A3A200FFBA46 /* LDRPinRowTests.swift */; };
 		E65E9D3E25F7A3A300FFBA46 /* LDRFeedRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D2725F7A3A200FFBA46 /* LDRFeedRowTests.swift */; };
 		E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D3625F7A3A300FFBA46 /* LDRTabViewTests.swift */; };
@@ -190,6 +192,8 @@
 		E652C02A24A3676400C744DE /* LDRFeedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRow.swift; sourceTree = "<group>"; };
 		E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadTests.swift; sourceTree = "<group>"; };
 		E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinTests.swift; sourceTree = "<group>"; };
+		E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewTests.swift; sourceTree = "<group>"; };
+		E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRKeychain+SnapshotTests.swift"; sourceTree = "<group>"; };
 		E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientSnapshotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65E9D0A25F7A37D00FFBA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E65E9D1D25F7A3A200FFBA46 /* LDRPinRowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
@@ -369,12 +373,21 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		E65DBF0525FA298500F7D074 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		E65E9D0725F7A37D00FFBA46 /* ladder-clientSnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
 				E65E9D3625F7A3A300FFBA46 /* LDRTabViewTests.swift */,
 				E65E9D2625F7A3A200FFBA46 /* Feed */,
 				E65E9D1C25F7A3A200FFBA46 /* Pin */,
+				E65DBF0525FA298500F7D074 /* Login */,
 				E6EE200B25F8E7F000DBF887 /* Constant */,
 				E65E9D0A25F7A37D00FFBA46 /* Info.plist */,
 			);
@@ -527,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */,
+				E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -809,6 +823,8 @@
 				E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */,
 				E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */,
 				E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */,
+				E65DBF0725FA29A000F7D074 /* LDRLoginViewTests.swift in Sources */,
+				E65DBF1125FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift in Sources */,
 				E65E9D3E25F7A3A300FFBA46 /* LDRFeedRowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
