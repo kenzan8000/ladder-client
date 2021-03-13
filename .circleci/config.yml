@@ -2,19 +2,12 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.3.0
 jobs:
-  build:
+  unit-tests:
     macos:
       xcode: 12.4.0
     steps:
       - checkout
       - run: bundle install
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-  unit-tests:
-    macos:
-      xcode: 12.4.0
-    steps:
       - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
       - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientTests"
       - store_test_results:
@@ -29,6 +22,8 @@ jobs:
     macos:
       xcode: 12.4.0
     steps:
+      - checkout
+      - run: bundle install
       - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
       - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientSnapshotTests"
       - store_test_results:
@@ -54,21 +49,12 @@ workflows:
   version: 2.1
   unit-tests:
     jobs:
-      - build:
-          context: slack
-          filters:
-            branches:
-              only: main
       - unit-tests:
-          requires:
-            - build
           context: slack
           filters:
             branches:
               only: main
       - snapshot-tests:
-          requires:
-            - build
           context: slack
           filters:
             branches:
