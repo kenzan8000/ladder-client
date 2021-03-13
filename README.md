@@ -13,12 +13,12 @@ This app provides more mobile-optimized experience comparing to viewing the RSS 
 
 <img src="https://user-images.githubusercontent.com/225808/110950188-dfe33d80-8386-11eb-9df4-aee386b07883.jpg" width="600px" alt="Fastladder" />
 
-[Fastladder](https://github.com/fastladder/fastladder) is an innovative RSS reader in a meaning that divides the browsing into two simpler tasks, feed browsing and article reading.
+[Fastladder](https://github.com/fastladder/fastladder) is an innovative RSS reader in the meaning that divides the browsing into two simpler tasks, feed browsing and article reading.
 For example, in a usual RSS reader, you would see list of the updated feeds you subscribe to.
-Then you dig in the unread articles in a feed, back to the feed list, and iterate them again and again.
+Then you dig in the unread articles in a feed, read the articles, back to the feed list, and iterate them again and again.
 On the other hand, [Fastladder](https://github.com/fastladder/fastladder) separates reading each article from the whole task.
-It allows you to first focus on <em>pinning</em> the articles you will read.
-Later, you just read the <em>pinned</em> articles at once without any task interference.
+It allows you to first focus on single task <em>pinning</em> the articles you will read.
+Later, you just read the <em>pinned</em> articles without any task interference.
 Besides, the vim-like intuitive key bindings help you get the task done more quickly and less stressfully.
 
 ## iOS client
@@ -32,12 +32,23 @@ The feed browsing and article reading are separated by the tabs.
 There is still a vim-like quick and intuitive interaction when pinning an article from each feed.
 <img src="https://user-images.githubusercontent.com/225808/110950608-6566ed80-8387-11eb-8a03-61dcbf857333.gif" alt="feed-detail" />
 
-[ladder-client](https://apps.apple.com/us/app/ladder-client/id1317507559) is technically an ordinary iOS app but at the same time it covers the following essential part of iOS development.
-Making this kind of app is maybe good for you to learn them.
+## Installation
 
-- SwiftUI
-- Database (CoreData)
-- Functional Reactive Programming (Combine)
-- Multi-threaded Networking
-- Unit Testing
-- CI (CircleCI)
+Download the project via the repository.
+
+```shell
+$ git clone https://github.com/kenzan8000/ladder-client.git
+$ cd ladder-client
+```
+
+Install the [gems](https://github.com/rubygems/bundler).
+
+```shell
+$ bundle install
+```
+
+Open the Xcode project and run it.
+
+```shell
+$ open ladder-client.xcodeproj
+```
