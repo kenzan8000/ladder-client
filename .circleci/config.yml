@@ -2,19 +2,47 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.3.0
 jobs:
-  unit-tests:
+  build:
     macos:
       xcode: 12.4.0
     steps:
       - checkout
       - run: bundle install
       - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
-      - run: bundle exec fastlane scan
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  unit-tests:
+    macos:
+      xcode: 12.4.0
+    steps:
+      - run: bundle exec fastlane unit_tests
       - store_test_results:
           path: test_output
       - store_artifacts:
           path: test_output
           destination: scan-output
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  snapshot-tests:
+    macos:
+      xcode: 12.4.0
+    steps:
+      - run: bundle exec fastlane snapshot_tests
+      - store_test_results:
+          path: test_output
+      - store_artifacts:
+          path: test_output
+          destination: scan-output
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  did-finish-tests:
+    macos:
+      xcode: 12.4.0
+    steps:
+      - run: echo "did finish tests"
       - slack/notify:
           event: fail
           template: basic_fail_1
@@ -25,7 +53,29 @@ workflows:
   version: 2.1
   unit-tests:
     jobs:
+      - build:
+          context: slack
+          filters:
+            branches:
+              only: main
       - unit-tests:
+          requires:
+            - build
+          context: slack
+          filters:
+            branches:
+              only: main
+      - snapshot-tests:
+          requires:
+            - build
+          context: slack
+          filters:
+            branches:
+              only: main
+      - did-finish-tests:
+          requires:
+            - unit-tests
+            - snapshot-tests
           context: slack
           filters:
             branches:
