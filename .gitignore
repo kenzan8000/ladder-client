@@ -19,5 +19,9 @@ Thumbs.db
 .gitconfig
 *.ipa
 *.app
-fastlane
+fastlane/Appfile
+fastlane/Deliverfile
+fastlane/metadata
+fastlane/report.xml
+fastlane/test_output
 ladder-client/Resources/Certificates/*
