@@ -104,6 +104,9 @@ struct LDRLoginView: View {
 // MARK: - LDRLoginView_Previews
 struct LDRLoginSettingView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRLoginView().environmentObject(LDRLoginViewModel())
+    ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
+      LDRLoginView().environmentObject(LDRLoginViewModel())
+        .colorScheme($0)
+    }
   }
 }

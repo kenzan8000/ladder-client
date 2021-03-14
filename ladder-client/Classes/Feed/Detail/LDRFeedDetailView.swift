@@ -139,9 +139,12 @@ struct LDRFeedDetailView: View {
 // MARK: - LDRFeedDetailView_Previews
 struct LDRFeedDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRFeedDetailView(
-      feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
-      feedDetailWebViewModel: LDRFeedDetailWebViewModel()
-    )
+    ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
+      LDRFeedDetailView(
+        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
+        feedDetailWebViewModel: LDRFeedDetailWebViewModel()
+      )
+      .colorScheme($0)
+    }
   }
 }

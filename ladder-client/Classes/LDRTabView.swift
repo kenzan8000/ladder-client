@@ -42,28 +42,26 @@ struct LDRTabView: View {
   }
 }
 
-// MARK: - LDRTabViewFeed_Previews
-struct LDRTabViewFeed_Previews: PreviewProvider {
-  static var previews: some View {
-    let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
-    return LDRTabView(
-      selected: LDRTabView.Tab.feed,
-      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
-      pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
-    )
-    .environmentObject(LDRLoginViewModel())
-  }
-}
-
 // MARK: - LDRTabViewPin_Previews
-struct LDRTabViewPin_Previews: PreviewProvider {
+struct LDRTabView_Previews: PreviewProvider {
   static var previews: some View {
     let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
-    return LDRTabView(
-      selected: LDRTabView.Tab.pin,
-      feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
-      pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
-    )
-    .environmentObject(LDRLoginViewModel())
+    ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) { colorScheme in
+      LDRTabView(
+        selected: LDRTabView.Tab.feed,
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+      )
+      .environmentObject(LDRLoginViewModel())
+      .preferredColorScheme(colorScheme)
+      
+      LDRTabView(
+        selected: LDRTabView.Tab.pin,
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+      )
+      .environmentObject(LDRLoginViewModel())
+      .preferredColorScheme(colorScheme)
+    }
   }
 }

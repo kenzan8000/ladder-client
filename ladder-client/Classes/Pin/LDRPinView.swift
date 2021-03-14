@@ -78,6 +78,10 @@ struct LDRPinView: View {
 // MARK: - LDRPinView_Previews
 struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
-    LDRPinView(pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group))).environmentObject(LDRLoginViewModel())
+    ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
+      LDRPinView(pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group)))
+        .environmentObject(LDRLoginViewModel())
+        .colorScheme($0)
+    }
   }
 }

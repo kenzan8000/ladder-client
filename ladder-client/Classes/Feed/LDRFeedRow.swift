@@ -47,34 +47,25 @@ struct LDRFeedRow: View {
 }
 
 // MARK: - LDRFeedRowUnload_Previews
-struct LDRFeedRowUnload_Previews: PreviewProvider {
-  static var previews: some View {
-    LDRFeedRow(
-      title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
-      unreadCount: "187",
-      color: .gray
-    )
+struct LDRFeedRow_Previews: PreviewProvider {
+  struct LDRFeedRowContent: Hashable {
+    let title: String
+    let unreadCount: String
+    let color: Color
   }
-}
-
-// MARK: - LDRFeedRowUnread_Previews
-struct LDRFeedRowUnread_Previews: PreviewProvider {
+  
   static var previews: some View {
-    LDRFeedRow(
-      title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
-      unreadCount: "187",
-      color: .blue
-    )
-  }
-}
-
-// MARK: - LDRFeedRowRead_Previews
-struct LDRFeedRowRead_Previews: PreviewProvider {
-  static var previews: some View {
-    LDRFeedRow(
-      title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り",
-      unreadCount: "",
-      color: .gray
-    )
+    let contents = [
+      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: "187", color: .gray),
+      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: "187", color: .blue),
+      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: "", color: .gray)
+    ]
+    ForEach(contents, id: \.self) { content in
+      LDRFeedRow(
+        title: content.title,
+        unreadCount: content.unreadCount,
+        color: content.color
+      )
+    }
   }
 }
