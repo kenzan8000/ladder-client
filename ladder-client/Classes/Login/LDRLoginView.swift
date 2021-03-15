@@ -44,6 +44,7 @@ struct LDRLoginView: View {
         .validation(loginFormValidationPublisher: loginViewModel.urlDomainValidation)
         .keyboardType(.URL)
         .textContentType(.URL)
+        .autocapitalization(.none)
         .textFieldStyle(RoundedBorderTextFieldStyle())
     }
   }
@@ -56,6 +57,7 @@ struct LDRLoginView: View {
       .validation(loginFormValidationPublisher: loginViewModel.usernameValidation)
       .keyboardType(.alphabet)
       .textContentType(.username)
+      .autocapitalization(.none)
   }
     
   var passwordTextField: some View {
@@ -66,6 +68,7 @@ struct LDRLoginView: View {
       .validation(loginFormValidationPublisher: loginViewModel.passwordValidation)
       .keyboardType(.alphabet)
       .textContentType(.password)
+      .autocapitalization(.none)
   }
     
   var closeButton: some View {
