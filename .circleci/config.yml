@@ -1,50 +1,61 @@
 version: 2.1
+
 orbs:
   slack: circleci/slack@4.3.0
-jobs:
-  unit-tests:
+
+executors:
+  macos-executor:
     macos:
       xcode: 12.4.0
+
+commands:
+  setup:
     steps:
       - checkout
       - run: bundle install
       - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+
+jobs:
+  unit-tests:
+    executor:
+      name: macos-executor
+    steps:
+      - setup
       - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientTests"
       - store_test_results:
-          path: test_output
+          path: unit_test_output
       - store_artifacts:
-          path: test_output
+          path: unit_test_output
           destination: scan-output
       - slack/notify:
           event: fail
           template: basic_fail_1
   snapshot-tests:
-    macos:
-      xcode: 12.4.0
+    executor:
+      name: macos-executor
     steps:
-      - checkout
-      - run: bundle install
-      - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+      - setup
       - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientSnapshotTests"
       - store_test_results:
-          path: test_output
+          path: snapshot_test_output
       - store_artifacts:
-          path: test_output
+          path: snapshot_test_output
           destination: scan-output
       - slack/notify:
           event: fail
           template: basic_fail_1
-  did-finish-tests:
-    macos:
-      xcode: 12.4.0
+  did-finish-jobs:
+    executor:
+      name: macos-executor
     steps:
-      - run: echo "did finish tests"
+      - run: echo "did finish jobs"
       - slack/notify:
           event: fail
           template: basic_fail_1
       - slack/notify:
           event: pass
           template: basic_success_1
+
 workflows:
   version: 2.1
   unit-tests:
@@ -59,7 +70,7 @@ workflows:
           filters:
             branches:
               only: main
-      - did-finish-tests:
+      - did-finish-jobs:
           requires:
             - unit-tests
             - snapshot-tests
