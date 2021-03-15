@@ -14,6 +14,16 @@ commands:
       - checkout
       - run: bundle install
       - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+  slack_notify_fail:
+    steps:
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+  slack_notify_success:
+    steps:
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 
 jobs:
   unit-tests:
@@ -27,9 +37,7 @@ jobs:
       - store_artifacts:
           path: unit_test_output
           destination: scan-output
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
+      - slack_notify_fail
   snapshot-tests:
     executor:
       name: macos-executor
@@ -41,20 +49,14 @@ jobs:
       - store_artifacts:
           path: snapshot_test_output
           destination: scan-output
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
+      - slack_notify_fail
   did-finish-jobs:
     executor:
       name: macos-executor
     steps:
       - run: echo "did finish jobs"
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: basic_success_1
+      - slack_notify_fail
+      - slack_notify_success
 
 workflows:
   version: 2.1
