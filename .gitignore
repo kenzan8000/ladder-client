@@ -23,5 +23,6 @@ fastlane/Deliverfile
 fastlane/metadata
 fastlane/report.xml
 fastlane/test_output
-ladder-client/Resources/Certificates/*
+fastlane/README.md
+ladder-client-certificates
 test.html

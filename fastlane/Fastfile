@@ -25,4 +25,9 @@ platform :ios do
     )
   end
 
+  desc "Ad-hoc build"
+  lane :adhoc do
+    match(type: "adhoc")
+    gym(export_method: "ad-hoc")
+  end
 end
