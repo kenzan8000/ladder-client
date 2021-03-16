@@ -19,7 +19,6 @@ Thumbs.db
 .gitconfig
 *.ipa
 *.app
-fastlane/Appfile
 fastlane/Deliverfile
 fastlane/metadata
 fastlane/report.xml
