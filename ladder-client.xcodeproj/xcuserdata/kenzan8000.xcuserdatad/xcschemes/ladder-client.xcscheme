@@ -52,7 +52,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E661DD5525F7950500B687D5"
+               BlueprintIdentifier = "E65E9D0525F7A37D00FFBA46"
                BuildableName = "ladder-clientSnapshotTests.xctest"
                BlueprintName = "ladder-clientSnapshotTests"
                ReferencedContainer = "container:ladder-client.xcodeproj">

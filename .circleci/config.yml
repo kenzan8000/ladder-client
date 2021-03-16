@@ -31,7 +31,7 @@ jobs:
       name: macos-executor
     steps:
       - setup
-      - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientTests"
+      - run: bundle exec fastlane unit_tests
       - store_test_results:
           path: unit_test_output
       - store_artifacts:
@@ -43,7 +43,7 @@ jobs:
       name: macos-executor
     steps:
       - setup
-      - run: bundle exec fastlane scan --scheme "ladder-client" --only_testing "ladder-clientSnapshotTests"
+      - run: bundle exec fastlane snapshot_tests
       - store_test_results:
           path: snapshot_test_output
       - store_artifacts:
