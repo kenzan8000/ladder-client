@@ -19,6 +19,8 @@ Thumbs.db
 .gitconfig
 *.ipa
 *.app
+*.app.zip
+*.app.dSYM.zip
 fastlane/Deliverfile
 fastlane/metadata
 fastlane/report.xml
