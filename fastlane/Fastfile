@@ -30,4 +30,10 @@ platform :ios do
     match(type: "adhoc")
     gym(export_method: "ad-hoc", configuration: "adhoc")
   end
+
+  desc "Build for beta testing"
+  lane :beta do
+    match(type: "appstore")
+    gym(export_method: "app-store", configuration: "Release")
+  end
 end
