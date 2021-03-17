@@ -54,9 +54,6 @@ jobs:
     executor:
       name: macos-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - run: echo "did finish jobs"
       - slack_notify_fail
       - slack_notify_success
