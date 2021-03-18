@@ -43,8 +43,8 @@ platform :ios do
   desc "Upload beta build"
   lane :beta_upload do
     puts "#{ENV['APP_STORE_CONNECT_KEY_ID']}"
-    puts "#{ENV['APP_STORE_CONNECT_ISSUER_ID']}",
-    puts "#{ENV['APP_STORE_CONNECT_KEY_CONTENT']}",
+    puts "#{ENV['APP_STORE_CONNECT_ISSUER_ID']}"
+    puts "#{ENV['APP_STORE_CONNECT_KEY_CONTENT']}"
     puts "#{ENV}"
     app_store_connect_api_key(
       key_id: "#{ENV['APP_STORE_CONNECT_KEY_ID']}",
