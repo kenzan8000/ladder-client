@@ -41,13 +41,10 @@ extension URLSession {
     Future<LDRPinAllResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"),
-         let data = try? Data(contentsOf: url, options: .uncached),
-         let response = try? decoder.decode(LDRPinAllResponse.self, from: data) {
-        promise(.success(response))
-      } else {
-        promise(.failure(LDRError.others("Failed to load local json file.")))
-      }
+      let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json")!
+      let data = try! Data(contentsOf: url, options: .uncached)
+      let response = try! decoder.decode(LDRPinAllResponse.self, from: data)
+      promise(.success(response))
     }
     .eraseToAnyPublisher()
   }

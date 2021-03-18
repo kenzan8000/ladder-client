@@ -42,13 +42,10 @@ extension URLSession {
     Future<LDRUnreadResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let url = Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json"),
-         let data = try? Data(contentsOf: url, options: .uncached),
-         let response = try? decoder.decode(LDRUnreadResponse.self, from: data) {
-        promise(.success(response))
-      } else {
-        promise(.failure(LDRError.others("Failed to load local json file.")))
-      }
+      let url = Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json")!
+      let data = try! Data(contentsOf: url, options: .uncached)
+      let response = try! decoder.decode(LDRUnreadResponse.self, from: data)
+      promise(.success(response))
     }
     .eraseToAnyPublisher()
   }

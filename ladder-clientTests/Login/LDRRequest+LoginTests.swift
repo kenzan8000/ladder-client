@@ -70,12 +70,9 @@ private let mockAuthencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5
 extension URLSession {
   func fakeValidHtmlPublisher(for request: LDRRequest<LDRLoginResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
-      if let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html"),
-         let data = try? Data(contentsOf: url, options: .uncached) {
-        promise(.success(LDRSessionResponse(data: data)))
-      } else {
-        promise(.failure(LDRError.others("Failed to load local html file.")))
-      }
+      let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html")!
+      let data = try! Data(contentsOf: url, options: .uncached)
+      promise(.success(LDRSessionResponse(data: data)))
     }
     .eraseToAnyPublisher()
   }
@@ -91,11 +88,9 @@ extension URLSession {
 // MARK: - LDRLoginResponse + Fake
 extension LDRLoginResponse {
   static func fakeValidResponse() -> LDRLoginResponse? {
-    guard let htmlUrl = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html"),
-       let data = try? Data(contentsOf: htmlUrl, options: .uncached),
-       let url = URL(string: "https://example.com/login?username=username&password=password") else {
-       return nil
-    }
+    let htmlUrl = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html")!
+    let data = try! Data(contentsOf: htmlUrl, options: .uncached)
+    let url = URL(string: "https://example.com/login?username=username&password=password")!
     return LDRLoginResponse(
       data: data,
       response: URLResponse(

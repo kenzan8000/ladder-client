@@ -59,12 +59,9 @@ private let mockApiKey = "88ea15c16fc915fc27392b7dedc17382"
 extension URLSession {
   func fakeValidHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
-      if let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html"),
-         let data = try? Data(contentsOf: url, options: .uncached) {
-        promise(.success(LDRSessionResponse(data: data)))
-      } else {
-        promise(.failure(LDRError.others("Failed to load local html file.")))
-      }
+      let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html")!
+      let data = try! Data(contentsOf: url, options: .uncached)
+      promise(.success(LDRSessionResponse(data: data)))
     }
     .eraseToAnyPublisher()
   }

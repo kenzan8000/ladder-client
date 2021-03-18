@@ -59,12 +59,9 @@ extension URLSession {
     Future<LDRTouchAllResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8),
-         let response = try? decoder.decode(LDRTouchAllResponse.self, from: data) {
-        promise(.success(response))
-      } else {
-        promise(.failure(LDRError.others("Failed to load response string.")))
-      }
+      let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
+      let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)
+      promise(.success(response))
     }
     .eraseToAnyPublisher()
   }
@@ -73,12 +70,9 @@ extension URLSession {
     Future<LDRTouchAllResponse, LDRError> { promise in
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      if let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8),
-         let response = try? decoder.decode(LDRTouchAllResponse.self, from: data) {
-        promise(.success(response))
-      } else {
-        promise(.failure(LDRError.others("Failed to load response string.")))
-      }
+      let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8)!
+      let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)
+      promise(.success(response))
     }
     .eraseToAnyPublisher()
   }
