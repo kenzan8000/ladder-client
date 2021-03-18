@@ -87,7 +87,7 @@ jobs:
 
 workflows:
   version: 2.1
-  test-and-beta-upload:
+  test-and-upload:
     jobs:
       # - unit-tests:
       #     context: ladder-client
