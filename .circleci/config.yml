@@ -56,7 +56,21 @@ jobs:
           path: snapshot_test_output
           destination: scan-output
       - slack_notify_fail
-  beta-upload:
+  adhoc:
+    executor:
+      name: macos-executor
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "d5:91:3f:fb:96:bc:ca:a2:f9:b2:d8:69:b3:b7:d7:6b"
+            - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
+      - setup
+      - run: bundle exec fastlane adhoc
+      - slack_notify_fail
+      - slack_notify_success
+  beta:
     executor:
       name: macos-executor
     environment:
@@ -85,11 +99,23 @@ workflows:
       #     filters:
       #       branches:
       #         only: main
-      - beta-upload:
+      # - adhoc:
+      #     requires:
+      #       - unit-tests
+      #       - snapshot-tests
+      #     context: ladder-client
+      #     filters:
+      #       branches:
+      #         only: main
+      - beta:
           # requires:
           #   - unit-tests
           #   - snapshot-tests
           context: ladder-client
           filters:
+            # tags:
+            #   only: /.*/
+            # branches:
+            #   ignore: /.*/
             branches:
               only: main
