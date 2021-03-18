@@ -62,9 +62,9 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
+            - "d5:91:3f:fb:96:bc:ca:a2:f9:b2:d8:69:b3:b7:d7:6b"
             - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - setup
-      - run: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: bundle exec fastlane beta
       - slack_notify_fail
       - slack_notify_success
@@ -73,20 +73,20 @@ workflows:
   version: 2.1
   test-and-beta-upload:
     jobs:
-      - unit-tests:
-          context: ladder-client
-          filters:
-            branches:
-              only: main
-      - snapshot-tests:
-          context: ladder-client
-          filters:
-            branches:
-              only: main
+      # - unit-tests:
+      #     context: ladder-client
+      #     filters:
+      #       branches:
+      #         only: main
+      # - snapshot-tests:
+      #     context: ladder-client
+      #     filters:
+      #       branches:
+      #         only: main
       - beta-upload:
-          requires:
-            - unit-tests
-            - snapshot-tests
+          # requires:
+          #   - unit-tests
+          #   - snapshot-tests
           context: ladder-client
           filters:
             branches:
