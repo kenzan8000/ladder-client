@@ -34,11 +34,9 @@ platform :ios do
       duration: 1200,
       in_house: false,
     )
-    match(type: "adhoc", app_identifier: "org.kenzan8000.ladder-client")
-    match(type: "adhoc", app_identifier: "org.kenzan8000.ladder-client.app-extension")
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client")
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client.app-extension")
-    #gym(export_method: "app-store", configuration: "Release", scheme: "ladder-client")
-    #pilot
+    gym(export_method: "app-store", configuration: "Release", scheme: "ladder-client")
+    pilot
   end
 end
