@@ -56,7 +56,7 @@ jobs:
           path: snapshot_test_output
           destination: scan-output
       - slack_notify_fail
-  did-finish-jobs:
+  beta-upload:
     executor:
       name: macos-executor
     steps:
@@ -64,29 +64,29 @@ jobs:
           fingerprints:
             - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - setup
-      - run: echo "did finish jobs"
+      - run: bundle exec fastlane beta
       - slack_notify_fail
       - slack_notify_success
 
 workflows:
   version: 2.1
-  unit-tests:
+  test-and-beta-upload:
     jobs:
       - unit-tests:
-          context: slack
+          context: ladder-client
           filters:
             branches:
               only: main
       - snapshot-tests:
-          context: slack
+          context: ladder-client
           filters:
             branches:
               only: main
-      - did-finish-jobs:
+      - beta-upload:
           requires:
             - unit-tests
             - snapshot-tests
-          context: slack
+          context: ladder-client
           filters:
             branches:
               only: main
