@@ -64,6 +64,7 @@ jobs:
           fingerprints:
             - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - setup
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: bundle exec fastlane beta
       - slack_notify_fail
       - slack_notify_success
