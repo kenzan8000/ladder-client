@@ -59,6 +59,8 @@ jobs:
   beta-upload:
     executor:
       name: macos-executor
+    environment:
+      FL_OUTPUT_DIR: output
     steps:
       - add_ssh_keys:
           fingerprints:
