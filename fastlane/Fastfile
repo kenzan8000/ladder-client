@@ -34,7 +34,8 @@ platform :ios do
       duration: 1200,
       in_house: false,
     )
-    match(type: "appstore")
+    match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client")
+    match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client.app-extension")
     gym(export_method: "app-store", configuration: "Release", scheme: "ladder-client")
     pilot
   end
