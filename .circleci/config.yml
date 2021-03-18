@@ -67,7 +67,7 @@ jobs:
             - "d5:91:3f:fb:96:bc:ca:a2:f9:b2:d8:69:b3:b7:d7:6b"
             - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - setup
-      - run: bundle exec fastlane adhoc
+      - run: bundle exec fastlane adhoc_upload
       - slack_notify_fail
       - slack_notify_success
   beta:
@@ -81,7 +81,7 @@ jobs:
             - "d5:91:3f:fb:96:bc:ca:a2:f9:b2:d8:69:b3:b7:d7:6b"
             - "8f:8e:c0:8b:65:0f:89:e3:be:73:33:f7:c6:86:af:e4"
       - setup
-      - run: bundle exec fastlane beta
+      - run: bundle exec fastlane beta_upload
       - slack_notify_fail
       - slack_notify_success
 

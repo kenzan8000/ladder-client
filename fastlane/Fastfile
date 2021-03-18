@@ -25,8 +25,8 @@ platform :ios do
     )
   end
 
-  desc "Adhoc build"
-  lane :adhoc do
+  desc "Upload adhoc build"
+  lane :adhoc_upload do
     app_store_connect_api_key(
       key_id: "#{ENV['APP_STORE_CONNECT_KEY_ID']}",
       issuer_id: "#{ENV['APP_STORE_CONNECT_ISSUER_ID']}",
@@ -37,11 +37,15 @@ platform :ios do
     match(type: "adhoc", app_identifier: "org.kenzan8000.ladder-client")
     match(type: "adhoc", app_identifier: "org.kenzan8000.ladder-client.app-extension")
     gym(export_method: "ad-hoc", configuration: "adhoc", scheme: "ladder-client")
-    pilot(skip_submission: true)
+    pilot
   end
 
-  desc "Beta testing"
-  lane :beta do
+  desc "Upload beta build"
+  lane :beta_upload do
+    puts "#{ENV['APP_STORE_CONNECT_KEY_ID']}"
+    puts "#{ENV['APP_STORE_CONNECT_ISSUER_ID']}",
+    puts "#{ENV['APP_STORE_CONNECT_KEY_CONTENT']}",
+    puts "#{ENV}"
     app_store_connect_api_key(
       key_id: "#{ENV['APP_STORE_CONNECT_KEY_ID']}",
       issuer_id: "#{ENV['APP_STORE_CONNECT_ISSUER_ID']}",
@@ -52,6 +56,6 @@ platform :ios do
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client")
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client.app-extension")
     gym(export_method: "app-store", configuration: "Release", scheme: "ladder-client")
-    pilot(skip_submission: true)
+    pilot
   end
 end
