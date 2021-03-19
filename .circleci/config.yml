@@ -89,33 +89,31 @@ workflows:
   version: 2.1
   test-and-upload:
     jobs:
-      # - unit-tests:
-      #     context: ladder-client
-      #     filters:
-      #       branches:
-      #         only: main
-      # - snapshot-tests:
-      #     context: ladder-client
-      #     filters:
-      #       branches:
-      #         only: main
-      # - adhoc:
-      #     requires:
-      #       - unit-tests
-      #       - snapshot-tests
-      #     context: ladder-client
-      #     filters:
-      #       branches:
-      #         only: main
-      - beta:
-          # requires:
-          #   - unit-tests
-          #   - snapshot-tests
+      - unit-tests:
           context: ladder-client
           filters:
-            # tags:
-            #   only: /.*/
-            # branches:
-            #   ignore: /.*/
             branches:
               only: main
+      - snapshot-tests:
+          context: ladder-client
+          filters:
+            branches:
+              only: main
+      - adhoc:
+          requires:
+            - unit-tests
+            - snapshot-tests
+          context: ladder-client
+          filters:
+            branches:
+              only: main
+      - beta:
+          requires:
+            - unit-tests
+            - snapshot-tests
+          context: ladder-client
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
