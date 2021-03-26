@@ -18,7 +18,7 @@ class LDRRequestPinAllTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestPinAll_whenValidJsonResponse_LDRPinAllResponseIsValid() throws {
+  func testLDRRequestPinAll_whenValidJsonResponse_LDRPinAllResponseShouldBeValid() throws {
     var result: LDRPinAllResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeValidPublisher(for: .pinAll())

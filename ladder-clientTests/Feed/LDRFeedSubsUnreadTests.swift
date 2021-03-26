@@ -20,7 +20,7 @@ class LDRFeedSubsUnreadTests: XCTestCase {
 
   // MARK: test
  
-  func testLDRFeedSubsUnread_whenInitialState_saveAndDelete() throws {
+  func testLDRFeedSubsUnread_whenInitialState_shouldBeAbleToSaveAndDelete() throws {
     let response = [LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed")]
     var error = storageProvider.saveSubsUnreads(by: response)
     var count = storageProvider.countSubsUnreads()
@@ -33,7 +33,7 @@ class LDRFeedSubsUnreadTests: XCTestCase {
     XCTAssertEqual(count, 0)
   }
   
-  func testLDRFeedSubsUnread_whenInitialState_saveAndFetch() throws {
+  func testLDRFeedSubsUnread_whenInitialState_shouldBeAbleToSaveAndFetch() throws {
     let response = [
       LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed"),
       LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 2, link: "https://kenzan8000.org/es", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/es/feed"),
@@ -58,7 +58,7 @@ class LDRFeedSubsUnreadTests: XCTestCase {
     XCTAssertEqual(subsunreadsByFolders[3].folder, "software engineering")
   }
   
-  func testLDRFeedSubsUnread_whenInitialState_saveAndUpdate() throws {
+  func testLDRFeedSubsUnread_whenInitialState_shouldBeAbleToSaveAndUpdate() throws {
     let response = [LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed")]
     let error = storageProvider.saveSubsUnreads(by: response)
     XCTAssertNil(error)

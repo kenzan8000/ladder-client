@@ -18,7 +18,7 @@ class LDRRequestLoginTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestLogin_whenValidHtml_apiKeyIsValid() throws {
+  func testLDRRequestLogin_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeValidHtmlPublisher(
@@ -35,7 +35,7 @@ class LDRRequestLoginTests: XCTestCase {
     XCTAssertTrue(result?.apiKey == mockApiKey)
   }
   
-  func testLDRRequestLogin_whenEmptyHtml_apiKeyIsEmpty() throws {
+  func testLDRRequestLogin_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeEmptyHtmlPublisher(
@@ -51,12 +51,12 @@ class LDRRequestLoginTests: XCTestCase {
     XCTAssertTrue(result?.apiKey == "")
   }
   
-  func testLDRLoginResponse_whenValidHtml_authencityTokenIsValid() throws {
+  func testLDRLoginResponse_whenValidHtml_authencityTokenShouldBeValid() throws {
     let sut: LDRLoginResponse? = .fakeValidResponse()
     XCTAssertTrue(sut?.authencityToken == mockAuthencityToken)
   }
   
-  func testLDRLoginResponse_whenEmptyHtml_authencityTokenIsEmpty() throws {
+  func testLDRLoginResponse_whenEmptyHtml_authencityTokenShouldBeEmpty() throws {
     let sut: LDRLoginResponse? = .fakeEmptyResponse
     XCTAssertTrue(sut?.authencityToken == "")
   }

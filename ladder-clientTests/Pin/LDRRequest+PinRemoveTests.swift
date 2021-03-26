@@ -18,7 +18,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseWithIsSuccessIsTrue() throws {
+  func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeSuccessPublisher(
@@ -38,7 +38,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     XCTAssertTrue(result?.isSuccess == true)
   }
   
-  func testLDRRequestPinRemove_whenFailing_LDRPinRemoveResponseWithIsSuccessIsFalse() throws {
+  func testLDRRequestPinRemove_whenFailing_LDRPinRemoveResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeFailurePublisher(

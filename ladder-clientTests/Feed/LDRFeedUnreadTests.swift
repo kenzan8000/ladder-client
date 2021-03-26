@@ -20,7 +20,7 @@ class LDRUnreadTests: XCTestCase {
 
   // MARK: test
  
-  func testLDRUnread_whenInitialState_save() throws {
+  func testLDRUnread_whenInitialState_shouldBeAbleToSave() throws {
     // LDRFeedSubsUnread (parent entity)
     let subsResponse = [LDRSubResponse(rate: 5, folder: "blog", title: "Kenzan Hase", subscribeId: 1, link: "https://kenzan8000.org", icon: "", unreadCount: 3, subscribersCount: 1, feedlink: "https://kenzan8000.org/feed")]
     let error = storageProvider.saveSubsUnreads(by: subsResponse)

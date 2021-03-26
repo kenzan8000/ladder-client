@@ -18,7 +18,7 @@ class LDRRequestSessionTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestSession_whenValidHtml_apiKeyIsValid() throws {
+  func testLDRRequestSession_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeValidHtmlPublisher(
@@ -35,7 +35,7 @@ class LDRRequestSessionTests: XCTestCase {
     XCTAssertTrue(result?.apiKey == mockApiKey)
   }
   
-  func testLDRRequestSession_whenEmptyHtml_apiKeyIsEmpty() throws {
+  func testLDRRequestSession_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeEmptyHtmlPublisher(

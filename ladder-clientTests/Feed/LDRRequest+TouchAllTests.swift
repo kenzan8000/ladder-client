@@ -18,7 +18,7 @@ class LDRRequestTouchAllTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestTouchAll_whenSucceeding_LDRTouchAllResponseWithIsSuccessIsTrue() throws {
+  func testLDRRequestTouchAll_whenSucceeding_LDRTouchAllResponseIsSuccessShouldBeTrue() throws {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
@@ -35,7 +35,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     XCTAssertTrue(result?.isSuccess == true)
   }
   
-  func testLDRRequestTouchAll_whenFailing_LDRTouchAllResponseWithIsSuccessIsFalse() throws {
+  func testLDRRequestTouchAll_whenFailing_LDRTouchAllResponseIsSuccessShouldBeFalse() throws {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)

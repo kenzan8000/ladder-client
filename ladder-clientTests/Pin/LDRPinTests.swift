@@ -20,7 +20,7 @@ class LDRPinTests: XCTestCase {
 
   // MARK: test
  
-  func testLDRUnread_whenInitialState_saveAndDelete() throws {
+  func testLDRUnread_whenInitialState_shouldBeAbleToSaveAndDelete() throws {
     // initial state
     XCTAssertFalse(storageProvider.existPin(link: "https://kenzan8000.org"))
     XCTAssertEqual(storageProvider.countPins(), 0)

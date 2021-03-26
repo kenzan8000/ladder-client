@@ -18,7 +18,7 @@ class LDRRequestUnreadTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestUnread_whenValidJsonResponse_LDRUnreadResponseIsValid() throws {
+  func testLDRRequestUnread_whenValidJsonResponse_LDRUnreadResponseShouldBeValid() throws {
     let subscribeId = 50
     var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)

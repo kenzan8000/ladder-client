@@ -18,7 +18,7 @@ class LDRRequestSubsTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestSubs_whenValidJsonResponse_LDRSubsResponseIsValid() throws {
+  func testLDRRequestSubs_whenValidJsonResponse_LDRSubsResponseShouldBeValid() throws {
     var result: LDRSubsResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeValidPublisher(for: .subs())

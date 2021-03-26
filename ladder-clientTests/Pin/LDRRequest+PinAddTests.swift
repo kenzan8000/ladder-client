@@ -18,7 +18,7 @@ class LDRRequestPinAddTests: XCTestCase {
 
   // MARK: test
   
-  func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseWithIsSuccessIsTrue() throws {
+  func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeSuccessPublisher(
@@ -39,7 +39,7 @@ class LDRRequestPinAddTests: XCTestCase {
     XCTAssertTrue(result?.isSuccess == true)
   }
   
-  func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseWithIsSuccessIsFalse() throws {
+  func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
     let sut = URLSession.shared.fakeFailurePublisher(
