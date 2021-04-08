@@ -295,6 +295,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E601320C261F292C002FCD64 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E6BCD0171F944CA200B2E7E6 /* Foundation */,
+				E6365963248CD46600FA3908 /* SwiftUI */,
+				E674AB401F94588D00348C98 /* UIKit */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		E60230B61F5E54740052F762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,9 +316,7 @@
 				E6C7B3601F849286000EFCE6 /* Login */,
 				E6C32EE01F92CC610052DDE3 /* CoreData */,
 				E6C9FFDB25E644ED00F9F21E /* Constant */,
-				E6BCD0171F944CA200B2E7E6 /* Foundation+Extension */,
-				E674AB401F94588D00348C98 /* UIKit+Extension */,
-				E6365963248CD46600FA3908 /* SwiftUI+Extension */,
+				E601320C261F292C002FCD64 /* Extension */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -347,14 +355,14 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		E6365963248CD46600FA3908 /* SwiftUI+Extension */ = {
+		E6365963248CD46600FA3908 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
 				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
 				E6D5903824A0DE0E003CCCBF /* SafariView.swift */,
 				E6E127AE24A4BA22008627D5 /* WebView.swift */,
 			);
-			path = "SwiftUI+Extension";
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		E659BFF925EE1CF0005AAF87 /* Frameworks */ = {
@@ -447,13 +455,13 @@
 			path = "ladder-client";
 			sourceTree = "<group>";
 		};
-		E674AB401F94588D00348C98 /* UIKit+Extension */ = {
+		E674AB401F94588D00348C98 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				E674AB411F94588D00348C98 /* LDRBlinkView.swift */,
 				E6EE2E9824AB20EB0086590A /* LDRToastView.swift */,
 			);
-			path = "UIKit+Extension";
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		E678DEC925E8E2C6009C75E5 /* ladder-clientTests */ = {
@@ -476,7 +484,7 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		E6BCD0171F944CA200B2E7E6 /* Foundation+Extension */ = {
+		E6BCD0171F944CA200B2E7E6 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
 				E68CA3A825DC227A005E591D /* URLSession+LDRRequest.swift */,
@@ -485,7 +493,7 @@
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
 			);
-			path = "Foundation+Extension";
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		E6C32EE01F92CC610052DDE3 /* CoreData */ = {

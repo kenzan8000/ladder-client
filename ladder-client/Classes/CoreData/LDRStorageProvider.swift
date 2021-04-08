@@ -21,6 +21,7 @@ final class LDRStorageProvider {
   /// - Parameters:
   ///   - name: CoreData file name
   ///   - group: App Group name
+  ///   - storeType: StoreType
   init(name: String, group: String, storeType: StoreType = .persisted) {
     persistentContainer = NSPersistentContainer(name: name)
     guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group) else {
