@@ -28,3 +28,6 @@ fastlane/test_output
 fastlane/README.md
 ladder-client-certificates
 test.html
+*.xcuserstate
+ladder-client.xcodeproj/xcuserdata
+ladder-client.xcodeproj/project.xcworkspace
