@@ -20,7 +20,7 @@ extension LDRRequest where Response == LDRHTMLTitleResponse {
 }
 
 // MARK: - LDRHTMLTitleResponse
-struct LDRHTMLTitleResponse: Decodable {
+struct LDRHTMLTitleResponse: Codable {
   // MARK: prooperty
   let title: String
   let url: URL

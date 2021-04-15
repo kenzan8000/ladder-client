@@ -25,8 +25,13 @@ extension LDRRequest where Response == LDRTouchAllResponse {
 }
 
 // MARK: - LDRTouchAllResponse
-struct LDRTouchAllResponse: Decodable {
+struct LDRTouchAllResponse: Codable {
+  // CodingKey
+  enum CodingKeys: String, CodingKey {
+    case isSuccess
+    case errorCode = "ErrorCode"
+  }
   // MARK: prooperty
-  let ErrorCode: Int
+  let errorCode: Int
   let isSuccess: Bool
 }

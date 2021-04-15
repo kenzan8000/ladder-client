@@ -27,7 +27,7 @@ extension LDRRequest where Response == LDRSubsResponse {
 typealias LDRSubsResponse = [LDRSubResponse]
 
 // MARK: - LDRSubResponse
-struct LDRSubResponse: Decodable {
+struct LDRSubResponse: Codable {
   // MARK: prooperty
   let rate: Int
   let folder: String

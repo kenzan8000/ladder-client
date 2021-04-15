@@ -27,8 +27,13 @@ extension LDRRequest where Response == LDRPinAddResponse {
 }
 
 // MARK: - LDRPinAddResponse
-struct LDRPinAddResponse: Decodable {
+struct LDRPinAddResponse: Codable {
+  // CodingKey
+  enum CodingKeys: String, CodingKey {
+    case isSuccess
+    case errorCode = "ErrorCode"
+  }
   // MARK: prooperty
-  let ErrorCode: Int
+  let errorCode: Int
   let isSuccess: Bool
 }

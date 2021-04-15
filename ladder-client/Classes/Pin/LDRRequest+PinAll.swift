@@ -25,7 +25,7 @@ extension LDRRequest where Response == LDRPinAllResponse {
 typealias LDRPinAllResponse = [LDRPinResponse]
 
 // MARK: - LDRPinResponse
-struct LDRPinResponse: Decodable {
+struct LDRPinResponse: Codable {
   // MARK: prooperty
   let createdOn: Int
   let link: String

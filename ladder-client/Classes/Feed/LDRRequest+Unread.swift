@@ -25,7 +25,7 @@ extension LDRRequest where Response == LDRUnreadResponse {
 }
 
 // MARK: - LDRUnreadResponse
-struct LDRUnreadResponse: Decodable {
+struct LDRUnreadResponse: Codable {
   // MARK: prooperty
   let subscribeId: Int
   let items: [LDRUnreadItem]
@@ -33,7 +33,7 @@ struct LDRUnreadResponse: Decodable {
 }
 
 // MARK: - LDRUnreadItem
-struct LDRUnreadItem: Decodable {
+struct LDRUnreadItem: Codable {
   // MARK: prooperty
   let id: Int
   let title: String
@@ -43,7 +43,7 @@ struct LDRUnreadItem: Decodable {
 }
 
 // MARK: - LDRChannel
-struct LDRChannel: Decodable {
+struct LDRChannel: Codable {
   // MARK: static property
   static let example = LDRChannel(
     id: 34,
