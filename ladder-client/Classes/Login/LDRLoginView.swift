@@ -45,6 +45,7 @@ struct LDRLoginView: View {
         .keyboardType(.URL)
         .textContentType(.URL)
         .autocapitalization(.none)
+        .disableAutocorrection(true)
         .textFieldStyle(RoundedBorderTextFieldStyle())
     }
   }
@@ -58,6 +59,7 @@ struct LDRLoginView: View {
       .keyboardType(.alphabet)
       .textContentType(.username)
       .autocapitalization(.none)
+      .disableAutocorrection(true)
   }
     
   var passwordTextField: some View {
@@ -69,6 +71,7 @@ struct LDRLoginView: View {
       .keyboardType(.alphabet)
       .textContentType(.password)
       .autocapitalization(.none)
+      .disableAutocorrection(true)
   }
     
   var closeButton: some View {
