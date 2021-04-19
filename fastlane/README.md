@@ -26,16 +26,11 @@ Unit testing
 fastlane ios snapshot_tests
 ```
 Snapshot testing
-### ios adhoc_upload
-```
-fastlane ios adhoc_upload
-```
-Upload Adhoc
 ### ios beta_upload
 ```
 fastlane ios beta_upload
 ```
-Upload Beta
+Upload beta build
 
 ----
 

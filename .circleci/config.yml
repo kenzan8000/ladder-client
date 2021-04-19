@@ -99,7 +99,7 @@ workflows:
           filters:
             branches:
               only: main
-      - adhoc:
+      - beta:
           requires:
             - unit-tests
             - snapshot-tests
@@ -107,13 +107,3 @@ workflows:
           filters:
             branches:
               only: main
-      - beta:
-          requires:
-            - unit-tests
-            - snapshot-tests
-          context: ladder-client
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
