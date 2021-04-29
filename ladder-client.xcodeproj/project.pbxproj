@@ -1088,7 +1088,7 @@
 				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.17;
+				CURRENT_PROJECT_VERSION = 1.0.18;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1484,7 +1484,7 @@
 				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.17;
+				CURRENT_PROJECT_VERSION = 1.0.18;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1518,7 +1518,7 @@
 				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.17;
+				CURRENT_PROJECT_VERSION = 1.0.18;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
