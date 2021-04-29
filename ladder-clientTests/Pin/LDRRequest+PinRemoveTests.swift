@@ -21,13 +21,14 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeSuccessPublisher(
-      for: .pinRemove(
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-      )
-    )
+    let sut = LDRPinRemoveURLSessionSuccessMock()
 
     _ = sut
+      .publisher(
+        for: .pinRemove(
+          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
+        )
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -41,13 +42,14 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenFailing_LDRPinRemoveResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeFailurePublisher(
-      for: .pinRemove(
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-      )
-    )
+    let sut = LDRPinRemoveURLSessionFailureMock()
 
     _ = sut
+      .publisher(
+        for: .pinRemove(
+          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
+        )
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -59,11 +61,13 @@ class LDRRequestPinRemoveTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRPinRemoveResponse>) -> AnyPublisher<LDRPinRemoveResponse, LDRError> {
+// MARK: - LDRPinRemoveURLSessionSuccessMock
+struct LDRPinRemoveURLSessionSuccessMock: LDRURLSession {
+  func publisher<LDRPinRemoveResponse>(
+    for request: LDRRequest<LDRPinRemoveResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRPinRemoveResponse, LDRError> where LDRPinRemoveResponse: Decodable {
     Future<LDRPinRemoveResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
       let response = try! decoder.decode(LDRPinRemoveResponse.self, from: data)
@@ -71,10 +75,15 @@ extension URLSession {
     }
     .eraseToAnyPublisher()
   }
-  
-  func fakeFailurePublisher(for request: LDRRequest<LDRPinRemoveResponse>) -> AnyPublisher<LDRPinRemoveResponse, LDRError> {
+}
+
+// MARK: - LDRPinRemoveURLSessionFailureMock
+struct LDRPinRemoveURLSessionFailureMock: LDRURLSession {
+  func publisher<LDRPinRemoveResponse>(
+    for request: LDRRequest<LDRPinRemoveResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRPinRemoveResponse, LDRError> where LDRPinRemoveResponse: Decodable {
     Future<LDRPinRemoveResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8)!
       let response = try! decoder.decode(LDRPinRemoveResponse.self, from: data)

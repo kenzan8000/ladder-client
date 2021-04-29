@@ -21,9 +21,9 @@ class LDRRequestSubsTests: XCTestCase {
   func testLDRRequestSubs_whenValidJsonResponse_LDRSubsResponseShouldBeValid() throws {
     var result: LDRSubsResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeValidPublisher(for: .subs())
+    let sut = LDRSubsURLSessionMock()
 
-    _ = sut
+    _ = sut.publisher(for: .subs())
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -35,11 +35,14 @@ class LDRRequestSubsTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRSubsResponse>) -> AnyPublisher<LDRSubsResponse, LDRError> {
+// MARK: - LDRSubsURLSessionMock
+struct LDRSubsURLSessionMock: LDRURLSession  {
+  func publisher<LDRSubsResponse>(
+    for request: LDRRequest<LDRSubsResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRSubsResponse, LDRError> where LDRSubsResponse: Decodable {
     Future<LDRSubsResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
+      // let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let url = Bundle(for: type(of: LDRRequestSubsTests())).url(forResource: "subs", withExtension: "json")!
       let data = try! Data(contentsOf: url, options: .uncached)

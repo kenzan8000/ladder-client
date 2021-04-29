@@ -1,8 +1,16 @@
 import Combine
 import Foundation
 
-// MARK: - URLSession + LDRRequest
-extension URLSession {
+// MARK: - LDRURLSession
+protocol LDRURLSession {
+  func publisher<Value: Decodable>(
+    for request: LDRRequest<Value>,
+    using decoder: JSONDecoder
+  ) -> AnyPublisher<Value, LDRError>
+}
+
+// MARK: - URLSession + LDRURLSession
+extension URLSession: LDRURLSession {
   // MARK: public api
   
   func publisher<Value: Decodable>(

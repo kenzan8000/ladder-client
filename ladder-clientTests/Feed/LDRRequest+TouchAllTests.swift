@@ -22,9 +22,9 @@ class LDRRequestTouchAllTests: XCTestCase {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeSuccessPublisher(for: .touchAll(subscribeId: subscribeId))
+    let sut = LDRTouchAllURLSessionSuccessMock()
 
-    _ = sut
+    _ = sut.publisher(for: .touchAll(subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -39,9 +39,9 @@ class LDRRequestTouchAllTests: XCTestCase {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeFailurePublisher(for: .touchAll(subscribeId: subscribeId))
+    let sut = LDRTouchAllURLSessionFailureMock()
 
-    _ = sut
+    _ = sut.publisher(for: .touchAll(subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -53,11 +53,13 @@ class LDRRequestTouchAllTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRTouchAllResponse>) -> AnyPublisher<LDRTouchAllResponse, LDRError> {
+// MARK: - LDRTouchAllURLSessionSuccessMock
+struct LDRTouchAllURLSessionSuccessMock: LDRURLSession {
+  func publisher<LDRTouchAllResponse>(
+    for request: LDRRequest<LDRTouchAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRTouchAllResponse, LDRError> where LDRTouchAllResponse: Decodable {
     Future<LDRTouchAllResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
       let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)
@@ -65,10 +67,15 @@ extension URLSession {
     }
     .eraseToAnyPublisher()
   }
-  
-  func fakeFailurePublisher(for request: LDRRequest<LDRTouchAllResponse>) -> AnyPublisher<LDRTouchAllResponse, LDRError> {
+}
+
+// MARK: - LDRTouchAllURLSessionFailureMock
+struct LDRTouchAllURLSessionFailureMock: LDRURLSession {
+  func publisher<LDRTouchAllResponse>(
+    for request: LDRRequest<LDRTouchAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRTouchAllResponse, LDRError> where LDRTouchAllResponse: Decodable {
     Future<LDRTouchAllResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8)!
       let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)

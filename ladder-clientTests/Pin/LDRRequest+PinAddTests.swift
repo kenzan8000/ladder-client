@@ -21,14 +21,15 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeSuccessPublisher(
-      for: .pinAdd(
-        title: "alextsui05 starred vercel/og-image",
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-      )
-    )
+    let sut = LDRPinAddURLSessionSuccessMock()
 
     _ = sut
+      .publisher(
+        for: .pinAdd(
+          title: "alextsui05 starred vercel/og-image",
+          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
+        )
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -42,14 +43,15 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeFailurePublisher(
-      for: .pinAdd(
-        title: "alextsui05 starred vercel/og-image",
-        link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-      )
-    )
+    let sut = LDRPinAddURLSessionFailureMock()
 
     _ = sut
+      .publisher(
+        for: .pinAdd(
+          title: "alextsui05 starred vercel/og-image",
+          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
+        )
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -61,22 +63,29 @@ class LDRRequestPinAddTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeSuccessPublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, LDRError> {
-    Future<LDRPinAddResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
-      let response = try! decoder.decode(LDRPinAddResponse.self, from: data)
-      promise(.success(response))
-    }
-    .eraseToAnyPublisher()
+// MARK: - LDRPinAddURLSessionSuccessMock
+struct LDRPinAddURLSessionSuccessMock: LDRURLSession {
+  func publisher<LDRPinAddResponse>(
+    for request: LDRRequest<LDRPinAddResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRPinAddResponse, LDRError> where LDRPinAddResponse: Decodable {
+      Future<LDRPinAddResponse, LDRError> { promise in
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
+        let response = try! decoder.decode(LDRPinAddResponse.self, from: data)
+        promise(.success(response))
+      }
+      .eraseToAnyPublisher()
   }
-  
-  func fakeFailurePublisher(for request: LDRRequest<LDRPinAddResponse>) -> AnyPublisher<LDRPinAddResponse, LDRError> {
+}
+
+// MARK: - LDRPinAddURLSessionFailureMock
+struct LDRPinAddURLSessionFailureMock: LDRURLSession {
+  func publisher<LDRPinAddResponse>(
+    for request: LDRRequest<LDRPinAddResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRPinAddResponse, LDRError> where LDRPinAddResponse: Decodable {
     Future<LDRPinAddResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8)!
       let response = try! decoder.decode(LDRPinAddResponse.self, from: data)

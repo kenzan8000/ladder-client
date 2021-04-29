@@ -40,8 +40,15 @@ struct LDRLoginResponse {
   }
 }
 
-// MARK: - URLSession + LDRLoginResponse
-extension URLSession {
+// MARK: - LDRLoginURLSession
+protocol LDRLoginURLSession {
+  func publisher(
+    for request: LDRRequest<LDRLoginResponse>
+  ) -> AnyPublisher<LDRSessionResponse, LDRError>
+}
+
+// MARK: - URLSession
+extension URLSession: LDRLoginURLSession {
 
   // MARK: public api
   

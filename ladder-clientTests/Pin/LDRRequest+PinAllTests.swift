@@ -21,9 +21,9 @@ class LDRRequestPinAllTests: XCTestCase {
   func testLDRRequestPinAll_whenValidJsonResponse_LDRPinAllResponseShouldBeValid() throws {
     var result: LDRPinAllResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeValidPublisher(for: .pinAll())
+    let sut = LDRPinAllURLSessionMock()
 
-    _ = sut
+    _ = sut.publisher(for: .pinAll())
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -35,11 +35,13 @@ class LDRRequestPinAllTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRPinAllResponse>) -> AnyPublisher<LDRPinAllResponse, LDRError> {
+// MARK: - LDRPinAllURLSessionMock
+struct LDRPinAllURLSessionMock: LDRURLSession {
+  func publisher<LDRPinAllResponse>(
+    for request: LDRRequest<LDRPinAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRPinAllResponse, LDRError> where LDRPinAllResponse: Decodable {
     Future<LDRPinAllResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json")!
       let data = try! Data(contentsOf: url, options: .uncached)

@@ -21,11 +21,12 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeValidHtmlPublisher(
-      for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
-    )
+    let sut = LDRSessionURLSessionSuccessMock()
     
     _ = sut
+      .publisher(
+        for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -38,11 +39,12 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeEmptyHtmlPublisher(
-      for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
-    )
+    let sut = LDRSessionURLSessionFailureMock()
     
     _ = sut
+      .publisher(
+        for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
+      )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -55,9 +57,11 @@ class LDRRequestSessionTests: XCTestCase {
 // MARK: - Mock
 private let mockApiKey = "88ea15c16fc915fc27392b7dedc17382"
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeValidHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
+// MARK: - LDRSessionURLSessionSuccessMock
+struct LDRSessionURLSessionSuccessMock: LDRSessionURLSession {
+  func publisher(
+    for request: LDRRequest<LDRSessionResponse>
+  ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
       let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html")!
       let data = try! Data(contentsOf: url, options: .uncached)
@@ -65,8 +69,13 @@ extension URLSession {
     }
     .eraseToAnyPublisher()
   }
-  
-  func fakeEmptyHtmlPublisher(for request: LDRRequest<LDRSessionResponse>) -> AnyPublisher<LDRSessionResponse, LDRError> {
+}
+
+// MARK: - LDRSessionURLSessionFailureMock
+struct LDRSessionURLSessionFailureMock: LDRSessionURLSession {
+  func publisher(
+    for request: LDRRequest<LDRSessionResponse>
+  ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
       promise(.success(LDRSessionResponse(data: Data())))
     }

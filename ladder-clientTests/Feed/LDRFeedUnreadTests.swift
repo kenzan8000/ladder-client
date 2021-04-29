@@ -31,7 +31,7 @@ class LDRUnreadTests: XCTestCase {
     // save LDRFeedUnread (child entity)
     var unreadResponse: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
-    _ = URLSession.shared.fakeValidPublisher(for: .unread(subscribeId: subsunreads[0].subscribeId))
+    _ = LDRUnreadURLSessionMock().publisher(for: .unread(subscribeId: subsunreads[0].subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { unreadResponse = $0 }

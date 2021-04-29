@@ -22,9 +22,9 @@ class LDRRequestUnreadTests: XCTestCase {
     let subscribeId = 50
     var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
-    let sut = URLSession.shared.fakeValidPublisher(for: .unread(subscribeId: subscribeId))
+    let sut = LDRUnreadURLSessionMock()
 
-    _ = sut
+    _ = sut.publisher(for: .unread(subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -36,11 +36,13 @@ class LDRRequestUnreadTests: XCTestCase {
   }
 }
 
-// MARK: - URLSession + Fake
-extension URLSession {
-  func fakeValidPublisher(for request: LDRRequest<LDRUnreadResponse>) -> AnyPublisher<LDRUnreadResponse, LDRError> {
+// MARK: - LDRUnreadURLSessionMock
+struct LDRUnreadURLSessionMock: LDRURLSession {
+  func publisher<LDRUnreadResponse>(
+    for request: LDRRequest<LDRUnreadResponse>,
+    using decoder: JSONDecoder = .init()
+  ) -> AnyPublisher<LDRUnreadResponse, LDRError> where LDRUnreadResponse: Decodable {
     Future<LDRUnreadResponse, LDRError> { promise in
-      let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       let url = Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json")!
       let data = try! Data(contentsOf: url, options: .uncached)
