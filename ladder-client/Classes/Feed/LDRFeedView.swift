@@ -4,6 +4,7 @@ import SwiftUI
 struct LDRFeedView: View {
   // MARK: property
 
+  let keychain: LDRKeychain
   @ObservedObject var feedViewModel: LDRFeedViewModel
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
 
@@ -18,7 +19,7 @@ struct LDRFeedView: View {
       .navigationBarTitle("\(feedViewModel.unreadCount) Updates")
       .navigationBarItems(leading: loginButton, trailing: reloadButton)
       .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
-        LDRLoginView()
+        LDRLoginView(keychain: keychain)
       }
     }
     .alert(isPresented: feedViewModel.isPresentingAlert) {
@@ -97,7 +98,7 @@ struct LDRFeedView: View {
     if let subsunread = feedViewModel.subsunread,
        subsunread.state != .unloaded {
       let feedDetailView = LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: feedViewModel.storageProvider, subsunread: subsunread),
+        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: feedViewModel.storageProvider, keychain: keychain, subsunread: subsunread),
         feedDetailWebViewModel: LDRFeedDetailWebViewModel()
       )
       return AnyView(
@@ -115,9 +116,10 @@ struct LDRFeedView: View {
 // MARK: - LDRFeedView_Previews
 struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
+    let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRFeedView(feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), segment: .rate))
-        .environmentObject(LDRLoginViewModel())
+      LDRFeedView(keychain: keychain, feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, segment: .rate))
+        .environmentObject(LDRLoginViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }

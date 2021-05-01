@@ -12,7 +12,7 @@ public class WebViewStore: ObservableObject {
   }
   private var observers: [NSKeyValueObservation] = []
   
-  // MARK: initialization
+  // MARK: initializer
   public init(webView: WKWebView = WKWebView()) {
     self.webView = webView
     setupObservers()
@@ -56,7 +56,7 @@ public struct WebView: View, UIViewRepresentable {
   // MARK: property
   public let webView: WKWebView
   
-  // MARK: initialization
+  // MARK: initializer
   public init(webView: WKWebView) {
     self.webView = webView
   }

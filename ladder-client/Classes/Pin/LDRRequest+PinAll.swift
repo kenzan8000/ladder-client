@@ -7,12 +7,13 @@ extension LDRRequest where Response == LDRPinAllResponse {
   // MARK: static api
   
   /// Request retrieving all pins
-  /// - Returns:
-  static func pinAll() -> Self {
-    let url = URL(ldrPath: LDRApi.Api.pinAll)
-    let body = [
-      "ApiKey": Keychain.ldr[LDRKeychain.apiKey] ?? ""
-    ].HTTPBodyValue()
+  /// - Parameters:
+  ///   - apiKey: apiKey string
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
+  /// - Returns: LDRRequest
+  static func pinAll(apiKey: String?, ldrUrlString: String?) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.pinAll)
+    let body = ["ApiKey": apiKey ?? ""].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),

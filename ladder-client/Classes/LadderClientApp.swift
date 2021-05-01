@@ -11,30 +11,32 @@ struct LadderClientApp: App {
   // MARK: property
   
   private let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
+  private let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
   private var willResignActiveCancellable: AnyCancellable?
   
   var body: some Scene {
     WindowGroup {
       LDRTabView(
+        keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
       )
-      .environmentObject(LDRLoginViewModel())
+      .environmentObject(LDRLoginViewModel(keychain: keychain))
     }
   }
   
-  // MARK: initialization
+  // MARK: initializer
   
   init() {
-    if Keychain.ldr[LDRKeychain.reloadTimestamp] == nil {
-      LDRKeychain.updateReloadTimestamp()
+    if keychain.reloadTimestamp == nil {
+      keychain.updateReloadTimestamp()
     }
     willResignActiveCancellable = NotificationCenter.default
       .publisher(for: UIApplication.willResignActiveNotification)
       .receive(on: DispatchQueue.main)
       .sink { _ in
-        LDRKeychain.updateReloadTimestamp()
+        LDRKeychainStore(service: LDR.service, group: LDR.group).updateReloadTimestamp()
       }
   }
 }

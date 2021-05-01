@@ -22,7 +22,7 @@ final class LDRFeedDetailWebViewModel: ObservableObject {
     )
   }
     
-  // MARK: initialization
+  // MARK: initializer
     
   init() {
     webView.isHidden = true

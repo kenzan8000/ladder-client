@@ -6,6 +6,7 @@ final class LDRFeedViewModel: ObservableObject {
     
   // MARK: property
   var storageProvider: LDRStorageProvider
+  var keychain: LDRKeychain
   @Published var segment: LDRFeedSubsUnreadSegment
   @Published var rates: [String] = []
   @Published var folders: [String] = []
@@ -51,12 +52,16 @@ final class LDRFeedViewModel: ObservableObject {
   private var unreadCancellables = Set<AnyCancellable>()
   private var unreadOperationQueue = LDRFeedUnreadOperationQueue()
 
-  // MARK: initialization
+  // MARK: initializer
   
   /// Inits
-  /// - Parameter storageProvider: for CoreData
-  init(storageProvider: LDRStorageProvider, segment: LDRFeedSubsUnreadSegment) {
+  /// - Parameters:
+  ///   - storageProvider: coredata storage
+  ///   - keychain: LDRKeychain
+  ///   - segment: LDRFeedSubsUnreadSegment
+  init(storageProvider: LDRStorageProvider, keychain: LDRKeychain, segment: LDRFeedSubsUnreadSegment) {
     self.storageProvider = storageProvider
+    self.keychain = keychain
     self.segment = segment
     subsunreads = storageProvider.fetchSubsUnreads(by: segment)
     rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
@@ -71,8 +76,8 @@ final class LDRFeedViewModel: ObservableObject {
     NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
-        if LDRKeychain.reloadTimestampExpired() {
-          self?.reloadUnreads()
+        if let self = self, self.keychain.reloadTimestampIsExpired {
+          self.reloadUnreads()
         }
       }
       .store(in: &notificationCancellables)
@@ -102,7 +107,7 @@ final class LDRFeedViewModel: ObservableObject {
     
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
-    subsCancellable = URLSession.shared.publisher(for: .subs(), using: decoder)
+    subsCancellable = URLSession.shared.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString), using: decoder)
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
@@ -136,7 +141,7 @@ final class LDRFeedViewModel: ObservableObject {
     storageProvider.updateSubsUnread(subsunread, state: .read)
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
-    URLSession.shared.publisher(for: .touchAll(subscribeId: subsunread.subscribeId), using: decoder)
+    URLSession.shared.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunread.subscribeId), using: decoder)
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { _ in },
@@ -169,7 +174,10 @@ final class LDRFeedViewModel: ObservableObject {
       .compactMap { $0.state == .unloaded ? $0 : nil }
       .flatMap { [weak self] subsunread in
         URLSession(configuration: .default, delegate: nil, delegateQueue: self?.unreadOperationQueue)
-          .publisher(for: .unread(subscribeId: subsunread.subscribeId), using: decoder)
+          .publisher(
+            for: LDRRequest.unread(apiKey: self?.keychain.apiKey, ldrUrlString: self?.keychain.ldrUrlString, subscribeId: subsunread.subscribeId),
+            using: decoder
+          )
       }
       .receive(on: DispatchQueue.main)
       .sink(

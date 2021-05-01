@@ -4,6 +4,7 @@ import SwiftUI
 struct LDRPinView: View {
   // MARK: property
 
+  let keychain: LDRKeychain
   @ObservedObject var pinViewModel: LDRPinViewModel
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
     
@@ -34,7 +35,7 @@ struct LDRPinView: View {
       trailing: reloadButton
     )
     .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
-      LDRLoginView()
+      LDRLoginView(keychain: keychain)
     }
 
   }
@@ -78,9 +79,10 @@ struct LDRPinView: View {
 // MARK: - LDRPinView_Previews
 struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
+    let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRPinView(pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group)))
-        .environmentObject(LDRLoginViewModel())
+      LDRPinView(keychain: keychain, pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
+        .environmentObject(LDRLoginViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }

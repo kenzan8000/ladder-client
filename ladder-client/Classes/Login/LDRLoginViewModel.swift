@@ -6,7 +6,8 @@ import SwiftUI
 final class LDRLoginViewModel: ObservableObject {
     
   // MARK: - model
-    
+  private var keychain: LDRKeychain
+  
   @Published var urlDomain = ""
   @Published var username = ""
   @Published var password = ""
@@ -45,6 +46,12 @@ final class LDRLoginViewModel: ObservableObject {
   private var cancellables = Set<AnyCancellable>()
   private var loginResponse: LDRLoginResponse?
   
+  // MARK: initializer
+  
+  init(keychain: LDRKeychain) {
+    self.keychain = keychain
+  }
+  
   // MARK: destruction
   
   deinit {
@@ -57,11 +64,11 @@ final class LDRLoginViewModel: ObservableObject {
   func login() {
     isLogingIn = true
     
-    Keychain.ldr[LDRKeychain.ldrUrlString] = urlDomain
+    keychain.ldrUrlString = urlDomain
 
     HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
     
-    URLSession.shared.publisher(for: .login(username: username, password: password))
+    URLSession.shared.publisher(for: .login(ldrUrlString: urlDomain, username: username, password: password), ldrUrlString: urlDomain)
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
@@ -71,8 +78,8 @@ final class LDRLoginViewModel: ObservableObject {
             self?.succeed()
           }
         },
-        receiveValue: {
-          Keychain.ldr[LDRKeychain.apiKey] = $0.apiKey
+        receiveValue: { [weak self] in
+          self?.keychain.apiKey = $0.apiKey
         }
       )
       .store(in: &cancellables)

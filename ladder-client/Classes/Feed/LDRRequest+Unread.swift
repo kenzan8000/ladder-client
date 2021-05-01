@@ -8,12 +8,14 @@ extension LDRRequest where Response == LDRUnreadResponse {
   
   /// Request retrieving unread articles in the feed
   /// - Parameters:
+  ///   - apiKey: apiKey string
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - subscribeId: feed subscribe id
   /// - Returns:
-  static func unread(subscribeId: Int) -> Self {
-    let url = URL(ldrPath: LDRApi.Api.unread)
+  static func unread(apiKey: String?, ldrUrlString: String?, subscribeId: Int) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.unread)
     let body = [
-      "ApiKey": Keychain.ldr[LDRKeychain.apiKey] ?? "",
+      "ApiKey": apiKey ?? "",
       "subscribe_id": "\(subscribeId)"
     ].HTTPBodyValue()
     return LDRRequest(

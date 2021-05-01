@@ -5,6 +5,7 @@ import SwiftUI
 struct LDRLoginView: View {
   // MARK: property
 
+  let keychain: LDRKeychain
   @EnvironmentObject var loginViewModel: LDRLoginViewModel
 
   // MARK: view
@@ -28,7 +29,7 @@ struct LDRLoginView: View {
       Alert(title: Text(loginViewModel.error?.legibleDescription ?? ""))
     }
     .onAppear {
-      loginViewModel.urlDomain = Keychain.ldr[LDRKeychain.ldrUrlString] ?? ""
+      loginViewModel.urlDomain = keychain.ldrUrlString ?? ""
     }
   }
 
@@ -110,8 +111,9 @@ struct LDRLoginView: View {
 // MARK: - LDRLoginView_Previews
 struct LDRLoginSettingView_Previews: PreviewProvider {
   static var previews: some View {
+    let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRLoginView().environmentObject(LDRLoginViewModel())
+      LDRLoginView(keychain: keychain).environmentObject(LDRLoginViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }

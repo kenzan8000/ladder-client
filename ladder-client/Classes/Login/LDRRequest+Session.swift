@@ -8,12 +8,13 @@ extension LDRRequest where Response == LDRSessionResponse {
   
   /// Session Request
   /// - Parameters:
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - username: username string
   ///   - password: password string
   ///   - authencityToken: authencityToken string
   /// - Returns:
-  static func session(username: String, password: String, authenticityToken: String) -> Self {
-    let url = URL(ldrPath: LDRApi.session)
+  static func session(ldrUrlString: String?, username: String, password: String, authenticityToken: String) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.session)
     let body = ["username": username, "password": password, "authenticity_token": authenticityToken].HTTPBodyValue()
     return LDRRequest(
       url: url,

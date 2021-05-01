@@ -6,7 +6,8 @@ import WebKit
 final class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
-  var storageProvider: LDRStorageProvider
+  let storageProvider: LDRStorageProvider
+  let keychain: LDRKeychain
   @Published var subsunread: LDRFeedSubsUnread
   @Published var index = 0
   let unreads: [LDRFeedUnread]
@@ -32,14 +33,16 @@ final class LDRFeedDetailViewModel: ObservableObject {
   private var pinAddCancellables = Set<AnyCancellable>()
   private var notificationCancellables = Set<AnyCancellable>()
 
-  // MARK: initialization
+  // MARK: initializer
   
   /// Inits
   /// - Parameters:
   ///   - storageProvider: for CoreData
+  ///   - keychain: LDRKeychain
   ///   - subsunread: LDRFeedSubsUnread model
-  init(storageProvider: LDRStorageProvider, subsunread: LDRFeedSubsUnread) {
+  init(storageProvider: LDRStorageProvider, keychain: LDRKeychain, subsunread: LDRFeedSubsUnread) {
     self.storageProvider = storageProvider
+    self.keychain = keychain
     self.subsunread = subsunread
     unreads = subsunread.unreads.sorted { $0.id < $1.id }
     NotificationCenter.default.publisher(for: .ldrDidLogin)
@@ -76,7 +79,7 @@ final class LDRFeedDetailViewModel: ObservableObject {
       return
     }
     storageProvider.savePin(title: unread.title, link: unread.link)
-    URLSession.shared.publisher(for: .pinAdd(title: unread.title, link: unread.linkUrl))
+    URLSession.shared.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: unread.title, link: unread.linkUrl))
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in

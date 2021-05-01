@@ -7,12 +7,13 @@ extension LDRRequest where Response == LDRLoginResponse {
   
   /// Login Request
   /// - Parameters:
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - username: username string
   ///   - password: password string
   /// - Returns: 
-  static func login(username: String, password: String) -> Self {
+  static func login(ldrUrlString: String?, username: String, password: String) -> Self {
     LDRRequest(
-      url: URL(ldrPath: LDRApi.login),
+      url: URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.login),
       method: .get(
         [
           .init(name: "username", value: username),
@@ -43,7 +44,8 @@ struct LDRLoginResponse {
 // MARK: - LDRLoginURLSession
 protocol LDRLoginURLSession {
   func publisher(
-    for request: LDRRequest<LDRLoginResponse>
+    for request: LDRRequest<LDRLoginResponse>,
+    ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError>
 }
 
@@ -53,7 +55,8 @@ extension URLSession: LDRLoginURLSession {
   // MARK: public api
   
   func publisher(
-    for request: LDRRequest<LDRLoginResponse>
+    for request: LDRRequest<LDRLoginResponse>,
+    ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
       .mapError(LDRError.networking)
@@ -66,7 +69,7 @@ extension URLSession: LDRLoginURLSession {
           password = queryItems.first { $0.name == "password" }?.value ?? ""
         }
         return URLSession.shared.publisher(
-          for: .session(username: username, password: password, authenticityToken: result.authencityToken)
+          for: .session(ldrUrlString: ldrUrlString, username: username, password: password, authenticityToken: result.authencityToken)
         )
       }
       .eraseToAnyPublisher()

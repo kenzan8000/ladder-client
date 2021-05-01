@@ -8,12 +8,14 @@ extension LDRRequest where Response == LDRTouchAllResponse {
   
   /// Request making the subsucription feed's all articles read
   /// - Parameters:
+  ///   - apiKey: apiKey string
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - subscribeId: subscribe id
   /// - Returns:
-  static func touchAll(subscribeId: Int) -> Self {
-    let url = URL(ldrPath: LDRApi.Api.touchAll)
+  static func touchAll(apiKey: String?, ldrUrlString: String?, subscribeId: Int) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.touchAll)
     let body = [
-      "ApiKey": Keychain.ldr[LDRKeychain.apiKey] ?? "",
+      "ApiKey": apiKey ?? "",
       "subscribe_id": "\(subscribeId)"
     ].HTTPBodyValue()
     return LDRRequest(

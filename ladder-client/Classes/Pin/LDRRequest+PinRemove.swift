@@ -7,12 +7,15 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   // MARK: static api
   
   /// Request adding a link to read later list
-  /// - Parameter link: link URL to add the list  /// 
+  /// - Parameters:
+  ///   - apiKey: apiKey string
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
+  ///   - link: link URL to add the list
   /// - Returns: LDRRequest
-  static func pinRemove(link: URL) -> Self {
-    let url = URL(ldrPath: LDRApi.Api.pinRemove)
+  static func pinRemove(apiKey: String?, ldrUrlString: String?, link: URL) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.pinRemove)
     let body = [
-      "ApiKey": Keychain.ldr[LDRKeychain.apiKey] ?? "",
+      "ApiKey": apiKey ?? "",
       "link": link.absoluteString
     ].HTTPBodyValue()
     return LDRRequest(

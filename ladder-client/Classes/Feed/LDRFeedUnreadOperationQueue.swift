@@ -3,7 +3,7 @@ import Foundation
 // MARK: - LDRFeedUnreadOperationQueue
 class LDRFeedUnreadOperationQueue: OperationQueue {
 
-  // MARK: initialization
+  // MARK: initializer
 
   override init() {
     super.init()

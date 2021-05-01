@@ -4,17 +4,20 @@ import KeychainAccess
 // MARK: - URL + LDR
 extension URL {
   
-  // MARK: initialization
+  // MARK: initializer
   
   /// Inits
-  /// - Parameter path: url path
-  init(ldrPath: String) {
-    guard let ldrUrlString = Keychain.ldr[LDRKeychain.ldrUrlString] else {
+  /// - Parameters:
+  ///   - ldrUrlString: base url that removes https:// (domain + path that runs fastladder rails app)
+  ///   - ldrPath: url path string
+  init(ldrUrlString: String?, ldrPath: String) {
+    guard let ldrUrlString = ldrUrlString,
+          URL(string: "https://" + ldrUrlString + ldrPath) != nil else {
       self.init(fileURLWithPath: "")
       return
     }
     // swiftlint:disable force_unwrapping
-    self.init(string: "https://" + ldrUrlString + "\(ldrPath)")!
+    self.init(string: "https://" + ldrUrlString + ldrPath)!
     // swiftlint:enable force_unwrapping
   }
 }

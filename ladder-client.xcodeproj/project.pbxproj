@@ -487,11 +487,13 @@
 		E6BCD0171F944CA200B2E7E6 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				E68CA3A825DC227A005E591D /* LDRURLSession.swift */,
-				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
-				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
 				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
+				E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */,
+				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
+				E68CA3A825DC227A005E591D /* LDRURLSession.swift */,
+				E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */,
+				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -536,10 +538,8 @@
 		E6C9FFDB25E644ED00F9F21E /* Constant */ = {
 			isa = PBXGroup;
 			children = (
-				E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */,
 				E6C9FFE425E6456500F9F21E /* LDRError.swift */,
 				E6C9FFEA25E646A800F9F21E /* LDRApi.swift */,
-				E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */,
 				E6E8D4B325F3C60200F71D10 /* LDR.swift */,
 			);
 			path = Constant;

@@ -8,13 +8,15 @@ extension LDRRequest where Response == LDRPinAddResponse {
   
   /// Request adding a link to read later list
   /// - Parameters:
+  ///   - apiKey: apiKey string
+  ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - title: pin title
   ///   - link: pin url
   /// - Returns: LDRRequest
-  static func pinAdd(title: String, link: URL) -> Self {
-    let url = URL(ldrPath: LDRApi.Api.pinAdd)
+  static func pinAdd(apiKey: String?, ldrUrlString: String?, title: String, link: URL) -> Self {
+    let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.pinAdd)
     let body = [
-      "ApiKey": Keychain.ldr[LDRKeychain.apiKey] ?? "",
+      "ApiKey": apiKey ?? "",
       "title": title,
       "link": link.absoluteString
     ].HTTPBodyValue()

@@ -15,7 +15,7 @@ final class LDRStorageProvider {
     persistentContainer.viewContext
   }
   
-  // MARK: initialization
+  // MARK: initializer
   
   /// Inits
   /// - Parameters:

@@ -14,11 +14,13 @@ class LDRAddPinViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    guard let items = extensionContext?.inputItems as? [NSExtensionItem] else {
+    let keychainStore = LDRKeychainStore(service: LDR.service, group: LDR.group)
+    guard let items = extensionContext?.inputItems as? [NSExtensionItem],
+          let apiKey = keychainStore.apiKey,
+          let ldrUrlString = keychainStore.ldrUrlString else {
       label.text = "Could not retrieve the URL to add to your 'read later' list."
       return
     }
-
     items
       .compactMap { $0.attachments }
       .flatMap { $0 }
@@ -47,7 +49,7 @@ class LDRAddPinViewController: UIViewController {
         }
       })
       .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, LDRError> in
-        URLSession.shared.publisher(for: .pinAdd(title: response.title, link: response.url))
+        URLSession.shared.publisher(for: .pinAdd(apiKey: apiKey, ldrUrlString: ldrUrlString, title: response.title, link: response.url))
       }
       .receive(on: DispatchQueue.main)
       .sink(

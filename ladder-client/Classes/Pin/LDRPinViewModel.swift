@@ -5,7 +5,8 @@ import SwiftUI
 final class LDRPinViewModel: ObservableObject {
     
   // MARK: property
-  var storageProvider: LDRStorageProvider
+  let storageProvider: LDRStorageProvider
+  let keychain: LDRKeychain
   @Published var pins: [LDRPin]
   @Published var safariUrl: URL?
   var isPresentingSafariView: Binding<Bool> {
@@ -37,12 +38,15 @@ final class LDRPinViewModel: ObservableObject {
   private var pinRemoveCancellables = Set<AnyCancellable>()
   private var notificationCancellables = Set<AnyCancellable>()
     
-  // MARK: initialization
+  // MARK: initializer
   
   /// Inits
-  /// - Parameter storageProvider: for CoreData
-  init(storageProvider: LDRStorageProvider) {
+  /// - Parameters:
+  ///   - storageProvider: coredata
+  ///   - keychain: LDRKeychain
+  init(storageProvider: LDRStorageProvider, keychain: LDRKeychain) {
     self.storageProvider = storageProvider
+    self.keychain = keychain
     pins = storageProvider.fetchPins()
     NotificationCenter.default.publisher(for: .ldrDidLogin)
       .receive(on: DispatchQueue.main)
@@ -55,8 +59,9 @@ final class LDRPinViewModel: ObservableObject {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
         self?.loadPinsFromLocalDB()
-        if LDRKeychain.reloadTimestampExpired() {
-          self?.reloadPins()
+        if let self = self,
+           self.keychain.reloadTimestampIsExpired {
+          self.reloadPins()
         }
       }
       .store(in: &notificationCancellables)
@@ -81,7 +86,7 @@ final class LDRPinViewModel: ObservableObject {
 
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
-    pinAllCancellable = URLSession.shared.publisher(for: .pinAll(), using: decoder)
+    pinAllCancellable = URLSession.shared.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString), using: decoder)
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
@@ -112,7 +117,7 @@ final class LDRPinViewModel: ObservableObject {
       self.error = error
       return
     }
-    URLSession.shared.publisher(for: .pinRemove(link: url))
+    URLSession.shared.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: url))
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { [weak self] result in
