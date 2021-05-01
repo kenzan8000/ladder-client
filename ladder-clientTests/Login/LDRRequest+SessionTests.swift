@@ -21,11 +21,12 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRSessionURLSessionSuccessMock()
     
     _ = sut
       .publisher(
-        for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
+        for: .session(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password", authenticityToken: "authenticityToken")
       )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
@@ -39,11 +40,12 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRSessionURLSessionFailureMock()
     
     _ = sut
       .publisher(
-        for: .session(username: "username", password: "password", authenticityToken: "authenticityToken")
+        for: .session(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password", authenticityToken: "authenticityToken")
       )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },

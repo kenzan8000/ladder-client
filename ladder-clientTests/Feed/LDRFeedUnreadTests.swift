@@ -30,8 +30,9 @@ class LDRUnreadTests: XCTestCase {
 
     // save LDRFeedUnread (child entity)
     var unreadResponse: LDRUnreadResponse? = nil
+    let keychain = LDRKeychainMock()
     let exp = expectation(description: #function)
-    _ = LDRUnreadURLSessionMock().publisher(for: .unread(subscribeId: subsunreads[0].subscribeId))
+    _ = LDRUnreadURLSessionMock().publisher(for: .unread(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunreads[0].subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { unreadResponse = $0 }

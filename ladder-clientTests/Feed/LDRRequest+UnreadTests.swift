@@ -22,9 +22,10 @@ class LDRRequestUnreadTests: XCTestCase {
     let subscribeId = 50
     var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRUnreadURLSessionMock()
 
-    _ = sut.publisher(for: .unread(subscribeId: subscribeId))
+    _ = sut.publisher(for: .unread(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

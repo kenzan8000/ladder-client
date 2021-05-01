@@ -21,9 +21,10 @@ class LDRRequestSubsTests: XCTestCase {
   func testLDRRequestSubs_whenValidJsonResponse_LDRSubsResponseShouldBeValid() throws {
     var result: LDRSubsResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRSubsURLSessionMock()
 
-    _ = sut.publisher(for: .subs())
+    _ = sut.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

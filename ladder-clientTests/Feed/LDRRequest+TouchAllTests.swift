@@ -22,9 +22,10 @@ class LDRRequestTouchAllTests: XCTestCase {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRTouchAllURLSessionSuccessMock()
 
-    _ = sut.publisher(for: .touchAll(subscribeId: subscribeId))
+    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -39,9 +40,10 @@ class LDRRequestTouchAllTests: XCTestCase {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRTouchAllURLSessionFailureMock()
 
-    _ = sut.publisher(for: .touchAll(subscribeId: subscribeId))
+    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

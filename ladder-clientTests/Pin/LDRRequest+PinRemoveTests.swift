@@ -21,11 +21,14 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRPinRemoveURLSessionSuccessMock()
 
     _ = sut
       .publisher(
         for: .pinRemove(
+          apiKey: keychain.apiKey,
+          ldrUrlString: keychain.ldrUrlString,
           link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
         )
       )
@@ -42,11 +45,14 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenFailing_LDRPinRemoveResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRPinRemoveURLSessionFailureMock()
 
     _ = sut
       .publisher(
         for: .pinRemove(
+          apiKey: keychain.apiKey,
+          ldrUrlString: keychain.ldrUrlString,
           link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
         )
       )
