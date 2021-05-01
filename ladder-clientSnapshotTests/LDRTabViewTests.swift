@@ -20,11 +20,13 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsRate_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
+    let keychain = LDRKeychainMock()
     let sut = UIHostingController(
       rootView: LDRTabView(
+        keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     
@@ -40,11 +42,13 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsFolder_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
+    let keychain = LDRKeychainMock()
     let sut = UIHostingController(
       rootView: LDRTabView(
+        keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .folder),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .folder),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     
@@ -60,11 +64,13 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
+    let keychain = LDRKeychainMock()
     let sut = UIHostingController(
       rootView: LDRTabView(
+        keychain: keychain,
         selected: LDRTabView.Tab.pin,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider)
+        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     

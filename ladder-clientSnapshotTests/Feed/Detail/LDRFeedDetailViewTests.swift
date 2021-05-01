@@ -20,11 +20,13 @@ class LDRFeedDetailViewTests: XCTestCase {
   
   func testLDRFeedDetailView_whenInitialState_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRFeedDetailViewTests())), name: LDR.coreData, group: LDR.testGroup)
+    let keychain = LDRKeychainMock()
     let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
     let sut = UIHostingController(
       rootView: LDRFeedDetailView(
         feedDetailViewModel: LDRFeedDetailViewModel(
           storageProvider: storageProvider,
+          keychain: keychain,
           subsunread: subsunreads[0]
         ),
         feedDetailWebViewModel: LDRFeedDetailWebViewModel()

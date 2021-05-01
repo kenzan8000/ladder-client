@@ -21,11 +21,14 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRPinAddURLSessionSuccessMock()
 
     _ = sut
       .publisher(
         for: .pinAdd(
+          apiKey: keychain.apiKey,
+          ldrUrlString: keychain.ldrUrlString,
           title: "alextsui05 starred vercel/og-image",
           link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
         )
@@ -43,11 +46,14 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRPinAddURLSessionFailureMock()
 
     _ = sut
       .publisher(
         for: .pinAdd(
+          apiKey: keychain.apiKey,
+          ldrUrlString: keychain.ldrUrlString,
           title: "alextsui05 starred vercel/og-image",
           link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
         )

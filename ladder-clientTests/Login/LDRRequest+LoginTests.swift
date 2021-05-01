@@ -21,11 +21,13 @@ class LDRRequestLoginTests: XCTestCase {
   func testLDRRequestLogin_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRLoginURLSessionValidMock()
     
     _ = sut
       .publisher(
-        for: .login(username: "username", password: "password")
+        for: .login(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password"),
+        ldrUrlString: keychain.ldrUrlString
       )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
@@ -39,11 +41,13 @@ class LDRRequestLoginTests: XCTestCase {
   func testLDRRequestLogin_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
+    let keychain = LDRKeychainMock()
     let sut = LDRLoginURLSessionInvalidMock()
     
     _ = sut
       .publisher(
-        for: .login(username: "username", password: "password")
+        for: .login(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password"),
+        ldrUrlString: keychain.ldrUrlString
       )
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
@@ -71,7 +75,8 @@ private let mockAuthencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5
 // MARK: - LDRLoginURLSessionValidMock
 struct LDRLoginURLSessionValidMock: LDRLoginURLSession {
   func publisher(
-    for request: LDRRequest<LDRLoginResponse>
+    for request: LDRRequest<LDRLoginResponse>,
+    ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
       let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html")!
@@ -85,7 +90,8 @@ struct LDRLoginURLSessionValidMock: LDRLoginURLSession {
 // MARK: - LDRLoginURLSessionInvalidMock
 struct LDRLoginURLSessionInvalidMock: LDRLoginURLSession {
   func publisher(
-    for request: LDRRequest<LDRLoginResponse>
+    for request: LDRRequest<LDRLoginResponse>,
+    ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
       promise(.success(LDRSessionResponse(data: Data())))
