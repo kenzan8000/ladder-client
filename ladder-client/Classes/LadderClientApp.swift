@@ -1,9 +1,6 @@
 import Combine
 import KeychainAccess
-import os
 import SwiftUI
-
-let logger = Logger(subsystem: "\(Bundle.main.bundleIdentifier ?? "").logger", category: "main")
 
 // MARK: - LadderClientApp
 @main

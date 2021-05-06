@@ -61,6 +61,7 @@ extension LDRStorageProvider {
     do {
       return try viewContext.count(for: fetchRequest)
     } catch {
+      logger.error("\(logger.prefix(self, #function))\(fetchRequest.debugDescription, privacy: .private)")
       return 0
     }
   }
@@ -82,6 +83,7 @@ extension LDRStorageProvider {
     do {
       return try viewContext.fetch(fetchRequest)
     } catch {
+      logger.error("\(logger.prefix(self, #function))\(fetchRequest.debugDescription, privacy: .private)")
       return []
     }
   }
@@ -105,6 +107,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
+      logger.error("\(logger.prefix(self, #function))\(LDRError.saveModel.legibleDescription, privacy: .private)")
       return LDRError.saveModel
     }
     return nil
@@ -127,6 +130,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
+      logger.error("\(logger.prefix(self, #function))\(LDRError.deleteModel.legibleDescription, privacy: .private)")
       return LDRError.deleteModel
     }
     return nil
@@ -142,6 +146,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
+      logger.error("\(logger.prefix(self, #function))\(LDRError.saveModel.legibleDescription, privacy: .private)")
     }
   }
 }

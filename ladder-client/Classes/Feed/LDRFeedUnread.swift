@@ -43,6 +43,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
+      logger.error("\(logger.prefix(self, #function))\(LDRError.saveModel.legibleDescription, privacy: .private)")
     }
   }
  
