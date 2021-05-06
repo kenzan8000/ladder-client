@@ -35,7 +35,11 @@ extension URLSession {
     for request: LDRRequest<LDRHTMLTitleResponse>
   ) -> AnyPublisher<LDRHTMLTitleResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
-      .mapError(LDRError.networking)
+      .mapError { urlError -> LDRError in
+        let error = LDRError.networking(urlError)
+        logger.error("\(logger.prefix(self, #function), privacy: .private)\(error.legibleDescription, privacy: .private)")
+        return error
+      }
       .map {
         let title = HTMLDocument(data: $0.data, contentTypeHeader: "text/html")
           .nodes(matchingSelector: "title")

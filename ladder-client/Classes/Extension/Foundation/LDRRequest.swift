@@ -8,7 +8,6 @@ struct LDRRequest<Response> {
   var headers: LDRRequestHeader = [:]
   
   var urlRequest: URLRequest {
-
     var request = URLRequest(url: url)
     switch method {
     case .post(let data), .put(let data):

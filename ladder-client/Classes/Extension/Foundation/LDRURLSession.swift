@@ -19,14 +19,22 @@ extension URLSession: LDRURLSession {
   ) -> AnyPublisher<Value, LDRError> {
     // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
-      .mapError(LDRError.networking)
+      .mapError { urlError -> LDRError in
+        let error = LDRError.networking(urlError)
+        logger.error("\(logger.prefix(self, #function), privacy: .private)\(error.legibleDescription, privacy: .private)")
+        return error
+      }
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: {
         HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
       })
       .map(\.data)
       .decode(type: Value.self, decoder: decoder)
-      .mapError(LDRError.decoding)
+      .mapError { urlError -> LDRError in
+        let error = LDRError.decoding(urlError)
+        logger.error("\(logger.prefix(self, #function), privacy: .private)\(error.legibleDescription, privacy: .private)")
+        return error
+      }
       .eraseToAnyPublisher()
     // swiftlint:enable trailing_closure
   }

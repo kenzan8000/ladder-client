@@ -59,7 +59,11 @@ extension URLSession: LDRLoginURLSession {
     ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
-      .mapError(LDRError.networking)
+      .mapError { urlError -> LDRError in
+        let error = LDRError.networking(urlError)
+        logger.error("\(logger.prefix(self, #function), privacy: .private)\(error.legibleDescription, privacy: .private)")
+        return error
+      }
       .map { LDRLoginResponse(data: $0.data, response: $0.response) }
       .flatMap { result -> AnyPublisher<LDRSessionResponse, LDRError> in
         var username = ""
