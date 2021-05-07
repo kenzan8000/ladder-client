@@ -38,7 +38,7 @@ extension LDRStorageProvider {
     do {
       return try viewContext.count(for: fetchRequest)
     } catch {
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
       return 0
     }
   }
@@ -53,7 +53,7 @@ extension LDRStorageProvider {
     do {
       return try viewContext.fetch(fetchRequest)
     } catch {
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
       return []
     }
   }
@@ -70,7 +70,7 @@ extension LDRStorageProvider {
     do {
       return try viewContext.count(for: fetchRequest) > 0
     } catch {
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(fetchRequest.debugDescription, privacy: .private)")
       return false
     }
   }
@@ -88,7 +88,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
     }
   }
 
@@ -107,7 +107,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
       return LDRError.saveModel
     }
     return nil
@@ -153,7 +153,7 @@ extension LDRStorageProvider {
       try viewContext.save()
     } catch {
       viewContext.rollback()
-      logger.error("\(logger.prefix(self, #function), privacy: .private)\(LDRError.deleteModel.legibleDescription, privacy: .private)")
+      logger.error("\(logger.prefix(), privacy: .private)\(LDRError.deleteModel.legibleDescription, privacy: .private)")
       return LDRError.deleteModel
     }
     return nil

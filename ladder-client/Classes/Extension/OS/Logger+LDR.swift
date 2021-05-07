@@ -1,16 +1,15 @@
 import Foundation
 import os
 
-let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "org.kenzan8000.ladder-client", category: "main")
+let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "org.kenzan8000.ladder-client", category: "lddr")
 
 // MARK: - Logger + LDR
 extension Logger {
-  func prefix(_ instance: Any, _ function: String) -> String {
+  func prefix(_ instance: String = #file, _ function: String = #function) -> String {
     """
     
-    
-    **************************************************
-    \(String(describing: type(of: instance)))#\(function)
+    [file] \(String(describing: type(of: instance)))
+    [func] \(function)
     --------------------------------------------------
     
     """

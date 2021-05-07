@@ -37,7 +37,7 @@ extension URLSession {
     dataTaskPublisher(for: request.urlRequest)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
-        logger.error("\(logger.prefix(self, #function), privacy: .private)\(error.legibleDescription, privacy: .private)")
+        logger.error("\(logger.prefix(), privacy: .private)\(error.legibleDescription, privacy: .private)")
         return error
       }
       .map {
