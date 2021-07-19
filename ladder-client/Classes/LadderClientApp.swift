@@ -2,8 +2,21 @@ import Combine
 import KeychainAccess
 import SwiftUI
 
-// MARK: - LadderClientApp
+// MARK: - LDRApp
+// swiftlint:disable convenience_type
 @main
+struct LDRApp {
+  static func main() throws {
+    if NSClassFromString("XCTestCase") == nil {
+      LadderClientApp.main()
+    } else {
+      LDRTestApp.main()
+    }
+  }
+}
+// swiftlint:enable convenience_type
+
+// MARK: - LadderClientApp
 struct LadderClientApp: App {
   // MARK: property
   
@@ -37,5 +50,12 @@ struct LadderClientApp: App {
       .sink { _ in
         LDRKeychainStore(service: LDR.service, group: LDR.group).updateReloadTimestamp()
       }
+  }
+}
+
+// MARK: - LDRTestApp
+struct LDRTestApp: App {
+  var body: some Scene {
+    WindowGroup { Text("Running Tests") }
   }
 }
