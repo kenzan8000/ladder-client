@@ -7,6 +7,8 @@ import SwiftUI
 struct LadderClientApp: App {
   // MARK: property
   
+  @UIApplicationDelegateAdaptor var delegate: LDRAppDelegate
+  
   private let storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group)
   private let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
   private var willResignActiveCancellable: AnyCancellable?
