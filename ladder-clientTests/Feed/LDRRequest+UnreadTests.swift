@@ -22,7 +22,7 @@ class LDRRequestUnreadTests: XCTestCase {
     let subscribeId = 50
     var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRUnreadURLSessionMock()
 
     _ = sut.publisher(for: .unread(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))

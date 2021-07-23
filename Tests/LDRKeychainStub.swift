@@ -1,8 +1,8 @@
 import Foundation
 @testable import ladder_client
 
-// MARK: - LDRKeychainMock
-class LDRKeychainMock: LDRKeychain {
+// MARK: - LDRKeychainStub
+class LDRKeychainStub: LDRKeychain {
   // MARK: property
   
   private var keychain = [String: String]()

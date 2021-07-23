@@ -20,7 +20,7 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsRate_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = UIHostingController(
       rootView: LDRTabView(
         keychain: keychain,
@@ -42,7 +42,7 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsFolder_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = UIHostingController(
       rootView: LDRTabView(
         keychain: keychain,
@@ -64,7 +64,7 @@ class LDRTabViewTests: XCTestCase {
   
   func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
     let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRTabViewTests())), name: LDR.coreData, group: LDR.testGroup)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = UIHostingController(
       rootView: LDRTabView(
         keychain: keychain,

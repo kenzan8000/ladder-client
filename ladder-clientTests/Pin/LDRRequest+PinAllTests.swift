@@ -21,7 +21,7 @@ class LDRRequestPinAllTests: XCTestCase {
   func testLDRRequestPinAll_whenValidJsonResponse_LDRPinAllResponseShouldBeValid() throws {
     var result: LDRPinAllResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRPinAllURLSessionMock()
 
     _ = sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))

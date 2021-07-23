@@ -21,7 +21,7 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRPinAddURLSessionSuccessMock()
 
     _ = sut
@@ -46,7 +46,7 @@ class LDRRequestPinAddTests: XCTestCase {
   func testLDRRequestPinAdd_whenFailing_LDRPinAddResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRPinAddURLSessionFailureMock()
 
     _ = sut

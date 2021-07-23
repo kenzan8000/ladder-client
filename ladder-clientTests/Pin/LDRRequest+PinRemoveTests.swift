@@ -21,7 +21,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRPinRemoveURLSessionSuccessMock()
 
     _ = sut
@@ -45,7 +45,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
   func testLDRRequestPinRemove_whenFailing_LDRPinRemoveResponseIsSuccessShouldBeFalse() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRPinRemoveURLSessionFailureMock()
 
     _ = sut

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
-		E60BCF1C263D975700A22017 /* LDRKeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainMock.swift */; };
-		E60BCF1D263D975700A22017 /* LDRKeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainMock.swift */; };
+		E60BCF1C263D975700A22017 /* LDRKeychainStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */; };
+		E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */; };
 		E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */; };
 		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
 		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
@@ -172,7 +172,7 @@
 
 /* Begin PBXFileReference section */
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E60BCF1B263D975700A22017 /* LDRKeychainMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRKeychainMock.swift; sourceTree = "<group>"; };
+		E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRKeychainStub.swift; sourceTree = "<group>"; };
 		E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginFormValidation.swift; sourceTree = "<group>"; };
 		E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Session.swift"; sourceTree = "<group>"; };
 		E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAdd.swift"; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 				E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */,
 				E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */,
 				E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */,
-				E60BCF1B263D975700A22017 /* LDRKeychainMock.swift */,
+				E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -855,7 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E60BCF1D263D975700A22017 /* LDRKeychainMock.swift in Sources */,
+				E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */,
 				E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */,
 				E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */,
 				E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */,
@@ -935,7 +935,7 @@
 				E65DBEFC25F9FE7C00F7D074 /* LDRPinTests.swift in Sources */,
 				E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */,
 				E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */,
-				E60BCF1C263D975700A22017 /* LDRKeychainMock.swift in Sources */,
+				E60BCF1C263D975700A22017 /* LDRKeychainStub.swift in Sources */,
 				E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

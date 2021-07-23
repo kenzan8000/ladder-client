@@ -21,7 +21,7 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRSessionURLSessionSuccessMock()
     
     _ = sut
@@ -40,7 +40,7 @@ class LDRRequestSessionTests: XCTestCase {
   func testLDRRequestSession_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
-    let keychain = LDRKeychainMock()
+    let keychain = LDRKeychainStub()
     let sut = LDRSessionURLSessionFailureMock()
     
     _ = sut
