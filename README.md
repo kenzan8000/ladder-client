@@ -2,7 +2,7 @@
 
 # ladder-client
 
-![circleci](https://circleci.com/gh/kenzan8000/ladder-client.svg?style=shield)
+[![CircleCI](https://circleci.com/gh/kenzan8000/ladder-client/tree/main.svg?style=svg)](https://circleci.com/gh/kenzan8000/ladder-client/tree/main)
 
 [ladder-client](https://apps.apple.com/us/app/ladder-client/id1317507559) is an iOS client for an open source RSS reader called [Fastladder](https://github.com/fastladder/fastladder).
 This app provides more mobile-optimized experience comparing to viewing the RSS reader by a mobile browser.
