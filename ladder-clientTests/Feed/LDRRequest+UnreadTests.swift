@@ -45,7 +45,7 @@ struct LDRUnreadURLSessionMock: LDRURLSession {
   ) -> AnyPublisher<LDRUnreadResponse, LDRError> where LDRUnreadResponse: Decodable {
     Future<LDRUnreadResponse, LDRError> { promise in
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let url = Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json")!
+      let url = try! XCTUnwrap(Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json"))
       let data = try! Data(contentsOf: url, options: .uncached)
       let response = try! decoder.decode(LDRUnreadResponse.self, from: data)
       promise(.success(response))

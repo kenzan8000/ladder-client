@@ -38,8 +38,7 @@ class LDRUnreadTests: XCTestCase {
         receiveValue: { unreadResponse = $0 }
       )
     wait(for: [exp], timeout: 0.1)
-    XCTAssertNotNil(unreadResponse)
-    storageProvider.saveUnread(by: unreadResponse!, subsUnread: subsunreads[0])
+    storageProvider.saveUnread(by: try XCTUnwrap(unreadResponse), subsUnread: subsunreads[0])
     XCTAssertTrue(subsunreads[0].unreads.count > 0)
   }
 

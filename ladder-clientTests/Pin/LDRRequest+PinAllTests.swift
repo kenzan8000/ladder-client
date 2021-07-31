@@ -44,7 +44,7 @@ struct LDRPinAllURLSessionMock: LDRURLSession {
   ) -> AnyPublisher<LDRPinAllResponse, LDRError> where LDRPinAllResponse: Decodable {
     Future<LDRPinAllResponse, LDRError> { promise in
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let url = Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json")!
+      let url = try! XCTUnwrap(Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"))
       let data = try! Data(contentsOf: url, options: .uncached)
       let response = try! decoder.decode(LDRPinAllResponse.self, from: data)
       promise(.success(response))

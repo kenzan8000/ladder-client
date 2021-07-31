@@ -43,9 +43,8 @@ struct LDRSubsURLSessionMock: LDRURLSession  {
     using decoder: JSONDecoder = .init()
   ) -> AnyPublisher<LDRSubsResponse, LDRError> where LDRSubsResponse: Decodable {
     Future<LDRSubsResponse, LDRError> { promise in
-      // let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let url = Bundle(for: type(of: LDRRequestSubsTests())).url(forResource: "subs", withExtension: "json")!
+      let url = try! XCTUnwrap(Bundle(for: type(of: LDRRequestSubsTests())).url(forResource: "subs", withExtension: "json"))
       let data = try! Data(contentsOf: url, options: .uncached)
       let response = try! decoder.decode(LDRSubsResponse.self, from: data)
       promise(.success(response))

@@ -63,7 +63,7 @@ struct LDRTouchAllURLSessionSuccessMock: LDRURLSession {
   ) -> AnyPublisher<LDRTouchAllResponse, LDRError> where LDRTouchAllResponse: Decodable {
     Future<LDRTouchAllResponse, LDRError> { promise in
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let data = "{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)!
+      let data = try! XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8))
       let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)
       promise(.success(response))
     }
@@ -79,7 +79,7 @@ struct LDRTouchAllURLSessionFailureMock: LDRURLSession {
   ) -> AnyPublisher<LDRTouchAllResponse, LDRError> where LDRTouchAllResponse: Decodable {
     Future<LDRTouchAllResponse, LDRError> { promise in
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      let data = "{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8)!
+      let data = try! XCTUnwrap("{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8))
       let response = try! decoder.decode(LDRTouchAllResponse.self, from: data)
       promise(.success(response))
     }

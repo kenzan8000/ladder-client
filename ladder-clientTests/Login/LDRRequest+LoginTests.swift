@@ -79,7 +79,7 @@ struct LDRLoginURLSessionValidMock: LDRLoginURLSession {
     ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
-      let url = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html")!
+      let url = try! XCTUnwrap(Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "session", withExtension: "html"))
       let data = try! Data(contentsOf: url, options: .uncached)
       promise(.success(LDRSessionResponse(data: data)))
     }
@@ -103,7 +103,7 @@ struct LDRLoginURLSessionInvalidMock: LDRLoginURLSession {
 // MARK: - LDRLoginResponse + Fake
 extension LDRLoginResponse {
   static func fakeValidResponse() -> LDRLoginResponse? {
-    let htmlUrl = Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html")!
+    let htmlUrl = try! XCTUnwrap(Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html"))
     let data = try! Data(contentsOf: htmlUrl, options: .uncached)
     let url = URL(string: "https://example.com/login?username=username&password=password")!
     return LDRLoginResponse(

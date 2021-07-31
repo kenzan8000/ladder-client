@@ -65,7 +65,7 @@ struct LDRSessionURLSessionSuccessMock: LDRSessionURLSession {
     for request: LDRRequest<LDRSessionResponse>
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     Future<LDRSessionResponse, LDRError> { promise in
-      let url = Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html")!
+      let url = try! XCTUnwrap(Bundle(for: type(of: LDRRequestSessionTests())).url(forResource: "session", withExtension: "html"))
       let data = try! Data(contentsOf: url, options: .uncached)
       promise(.success(LDRSessionResponse(data: data)))
     }
