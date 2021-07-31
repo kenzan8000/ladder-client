@@ -22,7 +22,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRPinRemoveURLSessionSuccessMock()
+    let sut = LDRPinRemoveURLSessionSuccessFake()
 
     _ = sut
       .publisher(
@@ -46,7 +46,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRPinRemoveURLSessionFailureMock()
+    let sut = LDRPinRemoveURLSessionFailureFake()
 
     _ = sut
       .publisher(
@@ -67,8 +67,8 @@ class LDRRequestPinRemoveTests: XCTestCase {
   }
 }
 
-// MARK: - LDRPinRemoveURLSessionSuccessMock
-struct LDRPinRemoveURLSessionSuccessMock: LDRURLSession {
+// MARK: - LDRPinRemoveURLSessionSuccessFake
+struct LDRPinRemoveURLSessionSuccessFake: LDRURLSession {
   func publisher<LDRPinRemoveResponse>(
     for request: LDRRequest<LDRPinRemoveResponse>,
     using decoder: JSONDecoder = .init()
@@ -83,8 +83,8 @@ struct LDRPinRemoveURLSessionSuccessMock: LDRURLSession {
   }
 }
 
-// MARK: - LDRPinRemoveURLSessionFailureMock
-struct LDRPinRemoveURLSessionFailureMock: LDRURLSession {
+// MARK: - LDRPinRemoveURLSessionFailureFake
+struct LDRPinRemoveURLSessionFailureFake: LDRURLSession {
   func publisher<LDRPinRemoveResponse>(
     for request: LDRRequest<LDRPinRemoveResponse>,
     using decoder: JSONDecoder = .init()

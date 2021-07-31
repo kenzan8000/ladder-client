@@ -22,7 +22,7 @@ class LDRRequestSessionTests: XCTestCase {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRSessionURLSessionSuccessMock()
+    let sut = LDRSessionURLSessionSuccessFake()
     
     _ = sut
       .publisher(
@@ -34,14 +34,14 @@ class LDRRequestSessionTests: XCTestCase {
       )
     
     wait(for: [exp], timeout: 0.1)
-    XCTAssertTrue(result?.apiKey == mockApiKey)
+    XCTAssertTrue(result?.apiKey == apiKey)
   }
   
   func testLDRRequestSession_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRSessionURLSessionFailureMock()
+    let sut = LDRSessionURLSessionFailureFake()
     
     _ = sut
       .publisher(
@@ -56,11 +56,11 @@ class LDRRequestSessionTests: XCTestCase {
   }
 }
 
-// MARK: - Mock
-private let mockApiKey = "88ea15c16fc915fc27392b7dedc17382"
+// MARK: - Test Data
+private let apiKey = "88ea15c16fc915fc27392b7dedc17382"
 
-// MARK: - LDRSessionURLSessionSuccessMock
-struct LDRSessionURLSessionSuccessMock: LDRSessionURLSession {
+// MARK: - LDRSessionURLSessionSuccessFake
+struct LDRSessionURLSessionSuccessFake: LDRSessionURLSession {
   func publisher(
     for request: LDRRequest<LDRSessionResponse>
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
@@ -73,8 +73,8 @@ struct LDRSessionURLSessionSuccessMock: LDRSessionURLSession {
   }
 }
 
-// MARK: - LDRSessionURLSessionFailureMock
-struct LDRSessionURLSessionFailureMock: LDRSessionURLSession {
+// MARK: - LDRSessionURLSessionFailureFake
+struct LDRSessionURLSessionFailureFake: LDRSessionURLSession {
   func publisher(
     for request: LDRRequest<LDRSessionResponse>
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {

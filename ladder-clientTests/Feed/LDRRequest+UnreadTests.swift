@@ -23,7 +23,7 @@ class LDRRequestUnreadTests: XCTestCase {
     var result: LDRUnreadResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRUnreadURLSessionMock()
+    let sut = LDRUnreadURLSessionFake()
 
     _ = sut.publisher(for: .unread(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
@@ -37,8 +37,8 @@ class LDRRequestUnreadTests: XCTestCase {
   }
 }
 
-// MARK: - LDRUnreadURLSessionMock
-struct LDRUnreadURLSessionMock: LDRURLSession {
+// MARK: - LDRUnreadURLSessionFake
+struct LDRUnreadURLSessionFake: LDRURLSession {
   func publisher<LDRUnreadResponse>(
     for request: LDRRequest<LDRUnreadResponse>,
     using decoder: JSONDecoder = .init()

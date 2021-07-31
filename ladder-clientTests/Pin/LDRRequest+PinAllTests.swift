@@ -22,7 +22,7 @@ class LDRRequestPinAllTests: XCTestCase {
     var result: LDRPinAllResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRPinAllURLSessionMock()
+    let sut = LDRPinAllURLSessionFake()
 
     _ = sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
       .sink(
@@ -36,8 +36,8 @@ class LDRRequestPinAllTests: XCTestCase {
   }
 }
 
-// MARK: - LDRPinAllURLSessionMock
-struct LDRPinAllURLSessionMock: LDRURLSession {
+// MARK: - LDRPinAllURLSessionFake
+struct LDRPinAllURLSessionFake: LDRURLSession {
   func publisher<LDRPinAllResponse>(
     for request: LDRRequest<LDRPinAllResponse>,
     using decoder: JSONDecoder = .init()

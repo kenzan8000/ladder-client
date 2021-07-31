@@ -23,7 +23,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRTouchAllURLSessionSuccessMock()
+    let sut = LDRTouchAllURLSessionSuccessFake()
 
     _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
@@ -41,7 +41,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     var result: LDRTouchAllResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRTouchAllURLSessionFailureMock()
+    let sut = LDRTouchAllURLSessionFailureFake()
 
     _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
       .sink(
@@ -55,8 +55,8 @@ class LDRRequestTouchAllTests: XCTestCase {
   }
 }
 
-// MARK: - LDRTouchAllURLSessionSuccessMock
-struct LDRTouchAllURLSessionSuccessMock: LDRURLSession {
+// MARK: - LDRTouchAllURLSessionSuccessFake
+struct LDRTouchAllURLSessionSuccessFake: LDRURLSession {
   func publisher<LDRTouchAllResponse>(
     for request: LDRRequest<LDRTouchAllResponse>,
     using decoder: JSONDecoder = .init()
@@ -71,8 +71,8 @@ struct LDRTouchAllURLSessionSuccessMock: LDRURLSession {
   }
 }
 
-// MARK: - LDRTouchAllURLSessionFailureMock
-struct LDRTouchAllURLSessionFailureMock: LDRURLSession {
+// MARK: - LDRTouchAllURLSessionFailureFake
+struct LDRTouchAllURLSessionFailureFake: LDRURLSession {
   func publisher<LDRTouchAllResponse>(
     for request: LDRRequest<LDRTouchAllResponse>,
     using decoder: JSONDecoder = .init()

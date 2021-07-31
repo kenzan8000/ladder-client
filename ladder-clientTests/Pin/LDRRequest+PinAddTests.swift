@@ -22,7 +22,7 @@ class LDRRequestPinAddTests: XCTestCase {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRPinAddURLSessionSuccessMock()
+    let sut = LDRPinAddURLSessionSuccessFake()
 
     _ = sut
       .publisher(
@@ -47,7 +47,7 @@ class LDRRequestPinAddTests: XCTestCase {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRPinAddURLSessionFailureMock()
+    let sut = LDRPinAddURLSessionFailureFake()
 
     _ = sut
       .publisher(
@@ -69,8 +69,8 @@ class LDRRequestPinAddTests: XCTestCase {
   }
 }
 
-// MARK: - LDRPinAddURLSessionSuccessMock
-struct LDRPinAddURLSessionSuccessMock: LDRURLSession {
+// MARK: - LDRPinAddURLSessionSuccessFake
+struct LDRPinAddURLSessionSuccessFake: LDRURLSession {
   func publisher<LDRPinAddResponse>(
     for request: LDRRequest<LDRPinAddResponse>,
     using decoder: JSONDecoder = .init()
@@ -85,8 +85,8 @@ struct LDRPinAddURLSessionSuccessMock: LDRURLSession {
   }
 }
 
-// MARK: - LDRPinAddURLSessionFailureMock
-struct LDRPinAddURLSessionFailureMock: LDRURLSession {
+// MARK: - LDRPinAddURLSessionFailureFake
+struct LDRPinAddURLSessionFailureFake: LDRURLSession {
   func publisher<LDRPinAddResponse>(
     for request: LDRRequest<LDRPinAddResponse>,
     using decoder: JSONDecoder = .init()

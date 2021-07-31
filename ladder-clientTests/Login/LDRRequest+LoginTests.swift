@@ -22,7 +22,7 @@ class LDRRequestLoginTests: XCTestCase {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRLoginURLSessionValidMock()
+    let sut = LDRLoginURLSessionValidFake()
     
     _ = sut
       .publisher(
@@ -35,14 +35,14 @@ class LDRRequestLoginTests: XCTestCase {
       )
     
     wait(for: [exp], timeout: 0.1)
-    XCTAssertTrue(result?.apiKey == mockApiKey)
+    XCTAssertTrue(result?.apiKey == apiKey)
   }
   
   func testLDRRequestLogin_whenEmptyHtml_apiKeyShouldBeEmpty() throws {
     var result: LDRSessionResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
-    let sut = LDRLoginURLSessionInvalidMock()
+    let sut = LDRLoginURLSessionInvalidFake()
     
     _ = sut
       .publisher(
@@ -59,7 +59,7 @@ class LDRRequestLoginTests: XCTestCase {
   
   func testLDRLoginResponse_whenValidHtml_authencityTokenShouldBeValid() throws {
     let sut: LDRLoginResponse? = .fakeValidResponse()
-    XCTAssertTrue(sut?.authencityToken == mockAuthencityToken)
+    XCTAssertTrue(sut?.authencityToken == authencityToken)
   }
   
   func testLDRLoginResponse_whenEmptyHtml_authencityTokenShouldBeEmpty() throws {
@@ -68,12 +68,12 @@ class LDRRequestLoginTests: XCTestCase {
   }
 }
 
-// MARK: - Mock
-private let mockApiKey = "88ea15c16fc915fc27392b7dedc17382"
-private let mockAuthencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5+ZsAvXZOK8jpdc9Gx+HXIxCwfZTSvYH5MkJ1QoZ2Q=="
+// MARK: - Test Data
+private let apiKey = "88ea15c16fc915fc27392b7dedc17382"
+private let authencityToken = "Fnfu3ODtX/l7TozdDm7425yHGHJqQ+7Oc43XShAQExIR5+ZsAvXZOK8jpdc9Gx+HXIxCwfZTSvYH5MkJ1QoZ2Q=="
 
-// MARK: - LDRLoginURLSessionValidMock
-struct LDRLoginURLSessionValidMock: LDRLoginURLSession {
+// MARK: - LDRLoginURLSessionValidFake
+struct LDRLoginURLSessionValidFake: LDRLoginURLSession {
   func publisher(
     for request: LDRRequest<LDRLoginResponse>,
     ldrUrlString: String?
@@ -87,8 +87,8 @@ struct LDRLoginURLSessionValidMock: LDRLoginURLSession {
   }
 }
 
-// MARK: - LDRLoginURLSessionInvalidMock
-struct LDRLoginURLSessionInvalidMock: LDRLoginURLSession {
+// MARK: - LDRLoginURLSessionInvalidFake
+struct LDRLoginURLSessionInvalidFake: LDRLoginURLSession {
   func publisher(
     for request: LDRRequest<LDRLoginResponse>,
     ldrUrlString: String?
