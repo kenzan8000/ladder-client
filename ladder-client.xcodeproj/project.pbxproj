@@ -15,6 +15,8 @@
 		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
 		E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */; };
 		E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */; };
+		E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
+		E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
 		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
 		E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */; };
 		E62A73A425EE4E3500E79F24 /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A73A325EE4E3500E79F24 /* login.html */; };
@@ -179,6 +181,7 @@
 		E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAdd.swift"; sourceTree = "<group>"; };
 		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
 		E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedRow+ViewModel.swift"; sourceTree = "<group>"; };
+		E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedSubsUnread+Fixture.swift"; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
 		E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+LoginTests.swift"; sourceTree = "<group>"; };
@@ -572,6 +575,7 @@
 				E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */,
 				E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */,
 				E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */,
+				E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -860,6 +864,7 @@
 			files = (
 				E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */,
 				E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */,
+				E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
 				E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */,
 				E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */,
 				E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */,
@@ -928,6 +933,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
 				E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */,
 				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
