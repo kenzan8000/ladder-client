@@ -1,7 +1,12 @@
 import CoreData
 
+// MARK: - Pin
+protocol Pin {
+  var title: String { get }
+}
+
 // MARK: - LDRPin
-class LDRPin: NSManagedObject {
+class LDRPin: NSManagedObject, Pin {
 
   // MARK: property
 

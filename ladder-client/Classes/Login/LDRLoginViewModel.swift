@@ -3,7 +3,7 @@ import KeychainAccess
 import SwiftUI
 
 // MARK: - LDRLoginViewModel
-final class LDRLoginViewModel: ObservableObject {
+class LDRLoginViewModel: ObservableObject {
     
   // MARK: - model
   private var keychain: LDRKeychain

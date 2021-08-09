@@ -25,7 +25,7 @@ struct LDRPinView: View {
   
   var list: some View {
     List(pinViewModel.pins) { pin in
-      LDRPinRow(title: pin.title)
+      LDRPinRow(viewModel: .init(pin: pin))
         .onTap { pinViewModel.delete(pin: pin) }
     }
     .listStyle(PlainListStyle())

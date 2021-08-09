@@ -3,7 +3,7 @@ import SwiftUI
 import WebKit
 
 // MARK: - LDRFeedDetailViewModel
-final class LDRFeedDetailViewModel: ObservableObject {
+class LDRFeedDetailViewModel: ObservableObject {
     
   // MARK: property
   let storageProvider: LDRStorageProvider

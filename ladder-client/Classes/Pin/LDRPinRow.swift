@@ -5,7 +5,7 @@ import SwiftUI
 struct LDRPinRow: View {
   // MARK: property
 
-  var title: String
+  let viewModel: ViewModel
   let tapPublisher = PassthroughSubject<Void, Never>()
 
   var body: some View {
@@ -14,7 +14,7 @@ struct LDRPinRow: View {
         tapPublisher.send()
       },
       label: {
-        Text(title)
+        Text(viewModel.title)
           .fixedSize(horizontal: false, vertical: true)
           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 64, alignment: .leading)
           .padding(.horizontal, 16.0)
@@ -34,14 +34,20 @@ struct LDRPinRow: View {
 
 // MARK: - LDRPinRow_Previews
 struct LDRPinRow_Previews: PreviewProvider {
+  // MARK: LDRPinRowContent
+  struct LDRPinRowContent: Pin, Hashable {
+    let title: String
+  }
+  
+  // MARK: static property
   static var previews: some View {
-    let titles = [
-      "Rails - eagletmt's blog",
-      "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog",
-      "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog あいうえお かきくけこ さしすせそ たちつてと あいうえお かきくけこ さしすせそ たちつてと"
+    let contents: [LDRPinRowContent] = [
+      .init(title: "Rails - eagletmt's blog"),
+      .init(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog"),
+      .init(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog あいうえお かきくけこ さしすせそ たちつてと あいうえお かきくけこ さしすせそ たちつてと")
     ]
-    ForEach(titles, id: \.self) { title in
-      LDRPinRow(title: title)
+    ForEach(contents, id: \.self) { content in
+      LDRPinRow(viewModel: .init(pin: content))
     }
   }
 }

@@ -2,7 +2,7 @@ import Combine
 import SwiftUI
 
 // MARK: - LDRPinViewModel
-final class LDRPinViewModel: ObservableObject {
+class LDRPinViewModel: ObservableObject {
     
   // MARK: property
   let storageProvider: LDRStorageProvider

@@ -5,7 +5,7 @@ import SwiftUI
 struct LDRFeedRow: View {
   // MARK: property
 
-  var viewModel: ViewModel
+  let viewModel: ViewModel
   let tapPublisher = PassthroughSubject<Void, Never>()
 
   // MARK: property
@@ -46,17 +46,19 @@ struct LDRFeedRow: View {
 
 // MARK: - LDRFeedRowUnload_Previews
 struct LDRFeedRow_Previews: PreviewProvider {
+  // MARK: LDRFeedRowContent
   struct LDRFeedRowContent: FeedSubsUnread, Hashable {
     let title: String
     var unreadCount: Int
     let state: LDRFeedSubsUnreadState
   }
   
+  // MARK: static property
   static var previews: some View {
-    let contents = [
-      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .unloaded),
-      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .unread),
-      LDRFeedRowContent(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .read)
+    let contents: [LDRFeedRowContent] = [
+      .init(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .unloaded),
+      .init(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .unread),
+      .init(title: "はてなブックマーク -kenzan8000 のブックマーク - お気に入り", unreadCount: 187, state: .read)
     ]
     ForEach(contents, id: \.self) { content in
       LDRFeedRow(viewModel: .init(subsunread: content))

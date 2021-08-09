@@ -1,7 +1,7 @@
 import CoreData
 
 // MARK: - LDRStorageProvider
-final class LDRStorageProvider {
+class LDRStorageProvider {
   
   // MARK: - enum
   enum StoreType {

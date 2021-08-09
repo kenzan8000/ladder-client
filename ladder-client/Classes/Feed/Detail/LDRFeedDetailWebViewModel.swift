@@ -2,7 +2,7 @@ import SwiftUI
 import WebKit
 
 // MARK: - LDRFeedDetailWebViewModel
-final class LDRFeedDetailWebViewModel: ObservableObject {
+class LDRFeedDetailWebViewModel: ObservableObject {
     
   // MARK: property
   var isInitialLoading = false

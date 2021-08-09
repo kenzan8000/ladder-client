@@ -2,7 +2,7 @@ import Combine
 import SwiftUI
 
 // MARK: - LDRFeedViewModel
-final class LDRFeedViewModel: ObservableObject {
+class LDRFeedViewModel: ObservableObject {
     
   // MARK: property
   var storageProvider: LDRStorageProvider
