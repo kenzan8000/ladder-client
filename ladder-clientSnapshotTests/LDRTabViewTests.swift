@@ -25,8 +25,8 @@ class LDRTabViewTests: XCTestCase {
       rootView: LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     
@@ -47,8 +47,8 @@ class LDRTabViewTests: XCTestCase {
       rootView: LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .folder),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .folder),
+        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     
@@ -69,8 +69,8 @@ class LDRTabViewTests: XCTestCase {
       rootView: LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.pin,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
       )
     )
     

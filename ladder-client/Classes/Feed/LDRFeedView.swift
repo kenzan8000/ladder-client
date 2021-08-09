@@ -5,8 +5,8 @@ struct LDRFeedView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @ObservedObject var feedViewModel: LDRFeedViewModel
-  @EnvironmentObject var loginViewModel: LDRLoginViewModel
+  @ObservedObject var feedViewModel: ViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginView.ViewModel
 
   // MARK: property
 
@@ -94,8 +94,8 @@ struct LDRFeedView: View {
     if let subsunread = feedViewModel.subsunread,
        subsunread.state != .unloaded {
       let feedDetailView = LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: feedViewModel.storageProvider, keychain: keychain, subsunread: subsunread),
-        feedDetailWebViewModel: LDRFeedDetailWebViewModel()
+        feedDetailViewModel: LDRFeedDetailView.ViewModel(storageProvider: feedViewModel.storageProvider, keychain: keychain, subsunread: subsunread),
+        feedDetailWebViewModel: LDRFeedDetailView.WebViewModel()
       )
       return AnyView(
         NavigationLink(
@@ -114,8 +114,8 @@ struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRFeedView(keychain: keychain, feedViewModel: LDRFeedViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, segment: .rate))
-        .environmentObject(LDRLoginViewModel(keychain: keychain))
+      LDRFeedView(keychain: keychain, feedViewModel: LDRFeedView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, segment: .rate))
+        .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }

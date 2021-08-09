@@ -5,8 +5,8 @@ struct LDRPinView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @ObservedObject var pinViewModel: LDRPinViewModel
-  @EnvironmentObject var loginViewModel: LDRLoginViewModel
+  @ObservedObject var pinViewModel: ViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginView.ViewModel
     
   var body: some View {
     NavigationView {
@@ -81,8 +81,8 @@ struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRPinView(keychain: keychain, pinViewModel: LDRPinViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
-        .environmentObject(LDRLoginViewModel(keychain: keychain))
+      LDRPinView(keychain: keychain, pinViewModel: LDRPinView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
+        .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }

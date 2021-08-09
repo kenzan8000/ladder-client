@@ -4,8 +4,8 @@ import SwiftUI
 struct LDRFeedDetailView: View {
   // MARK: property
 
-  @ObservedObject var feedDetailViewModel: LDRFeedDetailViewModel
-  @ObservedObject var feedDetailWebViewModel: LDRFeedDetailWebViewModel
+  @ObservedObject var feedDetailViewModel: ViewModel
+  @ObservedObject var feedDetailWebViewModel: WebViewModel
   @Environment(\.colorScheme) var colorScheme: ColorScheme
     
   var body: some View {
@@ -142,8 +142,8 @@ struct LDRFeedDetailView_Previews: PreviewProvider {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
       LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
-        feedDetailWebViewModel: LDRFeedDetailWebViewModel()
+        feedDetailViewModel: LDRFeedDetailView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
+        feedDetailWebViewModel: LDRFeedDetailView.WebViewModel()
       )
       .colorScheme($0)
     }

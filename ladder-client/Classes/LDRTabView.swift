@@ -13,9 +13,9 @@ struct LDRTabView: View {
   
   let keychain: LDRKeychain
   @State var selected: Tab
-  var feedViewModel: LDRFeedViewModel
-  var pinViewModel: LDRPinViewModel
-  @EnvironmentObject var loginViewModel: LDRLoginViewModel
+  var feedViewModel: LDRFeedView.ViewModel
+  var pinViewModel: LDRPinView.ViewModel
+  @EnvironmentObject var loginViewModel: LDRLoginView.ViewModel
     
   var body: some View {
     TabView(selection: $selected) {
@@ -52,19 +52,19 @@ struct LDRTabView_Previews: PreviewProvider {
       LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
       )
-      .environmentObject(LDRLoginViewModel(keychain: keychain))
+      .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
       .preferredColorScheme(colorScheme)
       
       LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.pin,
-        feedViewModel: LDRFeedViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
       )
-      .environmentObject(LDRLoginViewModel(keychain: keychain))
+      .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
       .preferredColorScheme(colorScheme)
     }
   }

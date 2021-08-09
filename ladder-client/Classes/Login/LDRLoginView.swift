@@ -6,7 +6,7 @@ struct LDRLoginView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @EnvironmentObject var loginViewModel: LDRLoginViewModel
+  @EnvironmentObject var loginViewModel: ViewModel
 
   // MARK: view
 
@@ -113,7 +113,7 @@ struct LDRLoginSettingView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRLoginView(keychain: keychain).environmentObject(LDRLoginViewModel(keychain: keychain))
+      LDRLoginView(keychain: keychain).environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }
   }
