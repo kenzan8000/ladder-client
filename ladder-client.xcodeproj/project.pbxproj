@@ -14,6 +14,7 @@
 		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
 		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
 		E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */; };
+		E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */; };
 		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
 		E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */; };
 		E62A73A425EE4E3500E79F24 /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A73A325EE4E3500E79F24 /* login.html */; };
@@ -177,6 +178,7 @@
 		E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Session.swift"; sourceTree = "<group>"; };
 		E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAdd.swift"; sourceTree = "<group>"; };
 		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
+		E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedRow+ViewModel.swift"; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
 		E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+LoginTests.swift"; sourceTree = "<group>"; };
@@ -605,8 +607,9 @@
 			isa = PBXGroup;
 			children = (
 				E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */,
-				E652C02A24A3676400C744DE /* LDRFeedRow.swift */,
 				E6F25DDC24A2501F008C5E58 /* LDRFeedViewModel.swift */,
+				E652C02A24A3676400C744DE /* LDRFeedRow.swift */,
+				E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */,
 				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
 				E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */,
 				E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */,
@@ -902,6 +905,7 @@
 				E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */,
 				E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */,
 				E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */,
+				E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */,
 				E6522F8C24AC72B200E03434 /* LDRFeedDetailWebViewModel.swift in Sources */,
 				E6C9FFEF25E646D900F9F21E /* LDRKeychain.swift in Sources */,
 				E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */,

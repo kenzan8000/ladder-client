@@ -79,14 +79,10 @@ struct LDRFeedView: View {
       ForEach(feedViewModel.sections, id: \.self) { section in
         Section(header: Text(section)) {
           ForEach(feedViewModel.getSubsUnreads(at: section)) { subsunread in
-            LDRFeedRow(
-              title: subsunread.title,
-              unreadCount: subsunread.state != .read ? "\(subsunread.unreadCount)" : "",
-              color: subsunread.state == .unread ? .blue : .gray
-            )
-            .onTap {
-              feedViewModel.touchAll(subsunread: subsunread)
-            }
+            LDRFeedRow(viewModel: .init(subsunread: subsunread))
+              .onTap {
+                feedViewModel.touchAll(subsunread: subsunread)
+              }
           }
         }
       }
