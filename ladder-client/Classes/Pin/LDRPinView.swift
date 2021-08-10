@@ -5,7 +5,7 @@ struct LDRPinView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @ObservedObject var pinViewModel: ViewModel
+  @ObservedObject var viewModel: ViewModel
   @EnvironmentObject var loginViewModel: LDRLoginView.ViewModel
     
   var body: some View {
@@ -13,28 +13,28 @@ struct LDRPinView: View {
       list
     }
       .onAppear {
-        pinViewModel.loadPinsFromLocalDB()
+        viewModel.loadPinsFromLocalDB()
       }
-      .sheet(isPresented: pinViewModel.isPresentingSafariView) {
+      .sheet(isPresented: viewModel.isPresentingSafariView) {
         safariView
       }
-      .alert(isPresented: pinViewModel.isPresentingAlert) {
-        Alert(title: Text(pinViewModel.error?.legibleDescription ?? ""))
+      .alert(isPresented: viewModel.isPresentingAlert) {
+        Alert(title: Text(viewModel.error?.legibleDescription ?? ""))
       }
   }
   
   var list: some View {
-    List(pinViewModel.pins) { pin in
+    List(viewModel.pins) { pin in
       LDRPinRow(viewModel: .init(pin: pin))
-        .onTap { pinViewModel.delete(pin: pin) }
+        .onTap { viewModel.delete(pin: pin) }
     }
     .listStyle(PlainListStyle())
-    .navigationBarTitle("\(pinViewModel.pins.count) Pins", displayMode: .large)
+    .navigationBarTitle("\(viewModel.pins.count) Pins", displayMode: .large)
     .navigationBarItems(
       leading: loginButton,
       trailing: reloadButton
     )
-    .sheet(isPresented: $pinViewModel.isPresentingLoginView) {
+    .sheet(isPresented: $viewModel.isPresentingLoginView) {
       LDRLoginView(keychain: keychain)
     }
 
@@ -43,7 +43,7 @@ struct LDRPinView: View {
   var loginButton: some View {
     Button(
       action: {
-        pinViewModel.isPresentingLoginView.toggle()
+        viewModel.isPresentingLoginView.toggle()
       },
       label: {
         Image(systemName: "person.circle")
@@ -57,7 +57,7 @@ struct LDRPinView: View {
   var reloadButton: some View {
     Button(
       action: {
-        pinViewModel.loadPinsFromAPI()
+        viewModel.loadPinsFromAPI()
       },
       label: {
         Text("Reload")
@@ -69,7 +69,7 @@ struct LDRPinView: View {
   }
     
   var safariView: some View {
-    guard let url = pinViewModel.safariUrl else {
+    guard let url = viewModel.safariUrl else {
       return AnyView(EmptyView())
     }
     return AnyView(SafariView(url: url))
@@ -81,7 +81,7 @@ struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRPinView(keychain: keychain, pinViewModel: LDRPinView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
+      LDRPinView(keychain: keychain, viewModel: LDRPinView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
         .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }

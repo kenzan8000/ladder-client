@@ -24,12 +24,12 @@ class LDRFeedDetailViewTests: XCTestCase {
     let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
     let sut = UIHostingController(
       rootView: LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailView.ViewModel(
+        viewModel: LDRFeedDetailView.ViewModel(
           storageProvider: storageProvider,
           keychain: keychain,
           subsunread: subsunreads[0]
         ),
-        feedDetailWebViewModel: LDRFeedDetailView.WebViewModel()
+        webViewModel: LDRFeedDetailView.WebViewModel()
       )
     )
     

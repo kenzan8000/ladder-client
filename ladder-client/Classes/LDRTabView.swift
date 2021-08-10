@@ -25,7 +25,7 @@ struct LDRTabView: View {
   }
 
   var feedView: some View {
-    LDRFeedView(keychain: keychain, feedViewModel: feedViewModel)
+    LDRFeedView(keychain: keychain, viewModel: feedViewModel)
     .tabItem {
       Image(systemName: "wifi")
       Text("RSS Feeds")
@@ -34,7 +34,7 @@ struct LDRTabView: View {
   }
         
   var pinView: some View {
-    LDRPinView(keychain: keychain, pinViewModel: pinViewModel)
+    LDRPinView(keychain: keychain, viewModel: pinViewModel)
     .tabItem {
       Image(systemName: "pin.fill")
       Text("Read Later Pins")

@@ -5,7 +5,7 @@ struct LDRFeedView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @ObservedObject var feedViewModel: ViewModel
+  @ObservedObject var viewModel: ViewModel
   @EnvironmentObject var loginViewModel: LDRLoginView.ViewModel
 
   // MARK: property
@@ -16,23 +16,23 @@ struct LDRFeedView: View {
         list
         navigationLink
       }
-      .navigationBarTitle("\(feedViewModel.unreadCount) Updates")
+      .navigationBarTitle("\(viewModel.unreadCount) Updates")
       .navigationBarItems(leading: loginButton, trailing: reloadButton)
-      .sheet(isPresented: $feedViewModel.isPresentingLoginView) {
+      .sheet(isPresented: $viewModel.isPresentingLoginView) {
         LDRLoginView(keychain: keychain)
       }
     }
-    .alert(isPresented: feedViewModel.isPresentingAlert) {
-      Alert(title: Text(feedViewModel.error?.legibleDescription ?? ""))
+    .alert(isPresented: viewModel.isPresentingAlert) {
+      Alert(title: Text(viewModel.error?.legibleDescription ?? ""))
     }
     .onAppear {
-      feedViewModel.loadFeedFromLocalDB()
+      viewModel.loadFeedFromLocalDB()
     }
   }
     
   var loginButton: some View {
     Button(
-      action: { feedViewModel.isPresentingLoginView.toggle() },
+      action: { viewModel.isPresentingLoginView.toggle() },
       label: {
         Image(systemName: "person.circle")
           .foregroundColor(.blue)
@@ -45,7 +45,7 @@ struct LDRFeedView: View {
   var reloadButton: some View {
     Button(
       action: {
-        feedViewModel.loadFeedFromAPI()
+        viewModel.loadFeedFromAPI()
       },
       label: {
         Text("Reload")
@@ -58,14 +58,14 @@ struct LDRFeedView: View {
     
   var picker: some View {
     Picker(
-      selection: $feedViewModel.segment,
+      selection: $viewModel.segment,
       label: EmptyView()
     ) {
       Image(systemName: "star.fill")
-        .foregroundColor(feedViewModel.segment == .rate ? .blue : .gray)
+        .foregroundColor(viewModel.segment == .rate ? .blue : .gray)
         .tag(LDRFeedSubsUnreadSegment.rate)
       Image(systemName: "folder.fill")
-        .foregroundColor(feedViewModel.segment == .folder ? .blue : .gray)
+        .foregroundColor(viewModel.segment == .folder ? .blue : .gray)
         .tag(LDRFeedSubsUnreadSegment.folder)
     }
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
@@ -76,12 +76,12 @@ struct LDRFeedView: View {
   var list: some View {
     List {
       picker
-      ForEach(feedViewModel.sections, id: \.self) { section in
+      ForEach(viewModel.sections, id: \.self) { section in
         Section(header: Text(section)) {
-          ForEach(feedViewModel.getSubsUnreads(at: section)) { subsunread in
+          ForEach(viewModel.getSubsUnreads(at: section)) { subsunread in
             LDRFeedRow(viewModel: .init(subsunread: subsunread))
               .onTap {
-                feedViewModel.touchAll(subsunread: subsunread)
+                viewModel.touchAll(subsunread: subsunread)
               }
           }
         }
@@ -91,17 +91,17 @@ struct LDRFeedView: View {
   }
     
   var navigationLink: some View {
-    if let subsunread = feedViewModel.subsunread,
+    if let subsunread = viewModel.subsunread,
        subsunread.state != .unloaded {
       let feedDetailView = LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailView.ViewModel(storageProvider: feedViewModel.storageProvider, keychain: keychain, subsunread: subsunread),
-        feedDetailWebViewModel: LDRFeedDetailView.WebViewModel()
+        viewModel: LDRFeedDetailView.ViewModel(storageProvider: viewModel.storageProvider, keychain: keychain, subsunread: subsunread),
+        webViewModel: LDRFeedDetailView.WebViewModel()
       )
       return AnyView(
         NavigationLink(
           "",
           destination: feedDetailView,
-          isActive: feedViewModel.isPresentingDetailView
+          isActive: viewModel.isPresentingDetailView
         )
       )
     }
@@ -114,7 +114,7 @@ struct LDRFeedView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRFeedView(keychain: keychain, feedViewModel: LDRFeedView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, segment: .rate))
+      LDRFeedView(keychain: keychain, viewModel: LDRFeedView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, segment: .rate))
         .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }

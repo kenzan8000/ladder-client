@@ -18,7 +18,7 @@ class LDRFeedRowTests: XCTestCase {
   // MARK: test
  
   func testLDRFeedRow_whenInitialState_shouldEqualToSameTitleAndUnreadCount() throws {
-    let sut = LDRFeedRow.ViewModel(subsunread: LDRFeedRowContent.fixture(title: "はてなブックマーク - お気に入り", unreadCount: 187, state: .unread))
+    let sut = LDRFeedRow.ViewModel(subsunread: LDRFeedRowContent.fixture(title: "はてなブックマーク - お気に入り", unreadCount: 187, state: .unloaded))
     XCTAssertEqual(sut.title, "はてなブックマーク - お気に入り")
     XCTAssertEqual(sut.unreadCount, "187")
   }

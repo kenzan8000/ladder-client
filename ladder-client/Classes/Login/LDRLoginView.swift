@@ -6,7 +6,7 @@ struct LDRLoginView: View {
   // MARK: property
 
   let keychain: LDRKeychain
-  @EnvironmentObject var loginViewModel: ViewModel
+  @EnvironmentObject var viewModel: ViewModel
 
   // MARK: view
 
@@ -20,16 +20,16 @@ struct LDRLoginView: View {
       }
         .navigationBarTitle("Login", displayMode: .large)
         .navigationBarItems(leading: closeButton)
-        .allowsHitTesting(!loginViewModel.isLogingIn)
-        .onReceive(loginViewModel.allValidation) { validation in
-          loginViewModel.loginDisabled = !validation.isSuccess
+        .allowsHitTesting(!viewModel.isLogingIn)
+        .onReceive(viewModel.allValidation) { validation in
+          viewModel.loginDisabled = !validation.isSuccess
         }
     }
-    .alert(isPresented: loginViewModel.isPresentingAlert) {
-      Alert(title: Text(loginViewModel.error?.legibleDescription ?? ""))
+    .alert(isPresented: viewModel.isPresentingAlert) {
+      Alert(title: Text(viewModel.error?.legibleDescription ?? ""))
     }
     .onAppear {
-      loginViewModel.urlDomain = keychain.ldrUrlString ?? ""
+      viewModel.urlDomain = keychain.ldrUrlString ?? ""
     }
   }
 
@@ -40,9 +40,9 @@ struct LDRLoginView: View {
         .border(Color.secondary)
       TextField(
         "Your Fastladder URL",
-        text: $loginViewModel.urlDomain
+        text: $viewModel.urlDomain
       )
-        .validation(loginFormValidationPublisher: loginViewModel.urlDomainValidation)
+        .validation(loginFormValidationPublisher: viewModel.urlDomainValidation)
         .keyboardType(.URL)
         .textContentType(.URL)
         .autocapitalization(.none)
@@ -54,9 +54,9 @@ struct LDRLoginView: View {
   var usernameTextField: some View {
     TextField(
       "username",
-      text: $loginViewModel.username
+      text: $viewModel.username
     )
-      .validation(loginFormValidationPublisher: loginViewModel.usernameValidation)
+      .validation(loginFormValidationPublisher: viewModel.usernameValidation)
       .keyboardType(.alphabet)
       .textContentType(.username)
       .autocapitalization(.none)
@@ -66,9 +66,9 @@ struct LDRLoginView: View {
   var passwordTextField: some View {
     SecureField(
       "password",
-      text: $loginViewModel.password
+      text: $viewModel.password
     )
-      .validation(loginFormValidationPublisher: loginViewModel.passwordValidation)
+      .validation(loginFormValidationPublisher: viewModel.passwordValidation)
       .keyboardType(.alphabet)
       .textContentType(.password)
       .autocapitalization(.none)
@@ -78,7 +78,7 @@ struct LDRLoginView: View {
   var closeButton: some View {
     Button(
       action: {
-        loginViewModel.tearDown()
+        viewModel.tearDown()
         NotificationCenter.default.post(name: .ldrWillCloseLoginView, object: nil)
       },
       label: {
@@ -90,21 +90,21 @@ struct LDRLoginView: View {
     
   var loginButton: some View {
     Button(
-      action: { loginViewModel.login() },
+      action: { viewModel.login() },
       label: {
         HStack {
           Text("Login")
             .foregroundColor(
-              loginViewModel.loginDisabled || loginViewModel.isLogingIn ?
+              viewModel.loginDisabled || viewModel.isLogingIn ?
                 .secondary : .blue
             )
-          if loginViewModel.isLogingIn {
+          if viewModel.isLogingIn {
             ActivityIndicator(isAnimating: .constant(true), style: .medium)
           }
         }
       }
     )
-    .disabled(loginViewModel.loginDisabled)
+    .disabled(viewModel.loginDisabled)
   }
 }
 

@@ -4,45 +4,45 @@ import SwiftUI
 struct LDRFeedDetailView: View {
   // MARK: property
 
-  @ObservedObject var feedDetailViewModel: ViewModel
-  @ObservedObject var feedDetailWebViewModel: WebViewModel
+  @ObservedObject var viewModel: ViewModel
+  @ObservedObject var webViewModel: WebViewModel
   @Environment(\.colorScheme) var colorScheme: ColorScheme
     
   var body: some View {
     VStack {
       header
       ZStack {
-        WebView(webView: feedDetailWebViewModel.webView)
-        if !feedDetailWebViewModel.doneInitialLoading {
+        WebView(webView: webViewModel.webView)
+        if !webViewModel.doneInitialLoading {
           ActivityIndicator(isAnimating: .constant(true), style: .large)
         }
       }
       footer
     }
-    .navigationBarTitle(feedDetailViewModel.subsunread.title)
+    .navigationBarTitle(viewModel.subsunread.title)
     .navigationBarItems(trailing: pinButton)
-    .sheet(isPresented: feedDetailWebViewModel.isPresentingSafariView) {
+    .sheet(isPresented: webViewModel.isPresentingSafariView) {
       safariView
     }
     .onAppear {
-      feedDetailWebViewModel.loadHTMLString(
+      webViewModel.loadHTMLString(
         colorScheme: colorScheme,
-        body: feedDetailViewModel.body,
-        link: feedDetailViewModel.link
+        body: viewModel.body,
+        link: viewModel.link
       )
     }
-    .alert(isPresented: feedDetailViewModel.isPresentingAlert) {
-      Alert(title: Text(feedDetailViewModel.error?.legibleDescription ?? ""))
+    .alert(isPresented: viewModel.isPresentingAlert) {
+      Alert(title: Text(viewModel.error?.legibleDescription ?? ""))
     }
   }
 
   var pinButton: some View {
     Button(
       action: {
-        feedDetailViewModel.savePin()
+        viewModel.savePin()
         LDRToastView.show(
           on: UIApplication.shared.windows[0],
-          text: "Added to Read Later Pins\n\(feedDetailViewModel.title)"
+          text: "Added to Read Later Pins\n\(viewModel.title)"
         )
       },
       label: {
@@ -56,7 +56,7 @@ struct LDRFeedDetailView: View {
     
   var header: some View {
     Text(
-      "【\(feedDetailViewModel.index + 1) / \(feedDetailViewModel.count)】 \(feedDetailViewModel.title)"
+      "【\(viewModel.index + 1) / \(viewModel.count)】 \(viewModel.title)"
     )
     .lineLimit(2)
     .truncationMode(.tail)
@@ -80,7 +80,7 @@ struct LDRFeedDetailView: View {
   }
     
   var safariView: some View {
-    guard let url = feedDetailWebViewModel.safariUrl else {
+    guard let url = webViewModel.safariUrl else {
       return AnyView(EmptyView())
     }
     return AnyView(SafariView(url: url))
@@ -89,9 +89,9 @@ struct LDRFeedDetailView: View {
   // MARK: public api
   
   func nextText(direction: Int) -> some View {
-    var text = direction < 0 ? feedDetailViewModel.prevTitle : feedDetailViewModel.nextTitle
+    var text = direction < 0 ? viewModel.prevTitle : viewModel.nextTitle
     if !text.isEmpty {
-      text = "【\(feedDetailViewModel.index + 1 + direction)】 " + text
+      text = "【\(viewModel.index + 1 + direction)】 " + text
     }
     return Text(text)
       .lineLimit(2)
@@ -103,13 +103,13 @@ struct LDRFeedDetailView: View {
   func moveButton(direction: Int) -> some View {
     var color = Color.blue
     var opacity = 1.0
-    if feedDetailViewModel.index + direction < 0 || feedDetailViewModel.index + direction >= feedDetailViewModel.count {
+    if viewModel.index + direction < 0 || viewModel.index + direction >= viewModel.count {
       color = Color.blue
       opacity = 0.5
     }
     return Button(
       action: {
-        if !feedDetailViewModel.move(offset: direction) {
+        if !viewModel.move(offset: direction) {
           LDRBlinkView.show(
             on: UIApplication.shared.windows[0],
             color: UIColor.systemGray6.withAlphaComponent(0.5),
@@ -117,10 +117,10 @@ struct LDRFeedDetailView: View {
             interval: 0.08
           )
         } else {
-          feedDetailWebViewModel.loadHTMLString(
+          webViewModel.loadHTMLString(
             colorScheme: colorScheme,
-            body: feedDetailViewModel.body,
-            link: feedDetailViewModel.link
+            body: viewModel.body,
+            link: viewModel.link
           )
         }
       },
@@ -142,8 +142,8 @@ struct LDRFeedDetailView_Previews: PreviewProvider {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
       LDRFeedDetailView(
-        feedDetailViewModel: LDRFeedDetailView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
-        feedDetailWebViewModel: LDRFeedDetailView.WebViewModel()
+        viewModel: LDRFeedDetailView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: keychain, subsunread: LDRFeedSubsUnread(context: .init(concurrencyType: .mainQueueConcurrencyType))),
+        webViewModel: LDRFeedDetailView.WebViewModel()
       )
       .colorScheme($0)
     }
