@@ -58,10 +58,10 @@ extension LDRFeedDetailView {
     // MARK: public api
       
     /// Update unread index to next or previous unread
-    /// - Parameter offset: offset to move 1 or -1
+    /// - Parameter val: val to add
     /// - Returns: Bool if you can move
-    func move(offset: Int) -> Bool {
-      index += offset
+    func addIndex(_ val: Int) -> Bool {
+      index += val
       if index < 0 {
         index = 0
         return false

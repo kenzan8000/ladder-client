@@ -109,7 +109,7 @@ struct LDRFeedDetailView: View {
     }
     return Button(
       action: {
-        if !viewModel.move(offset: direction) {
+        if !viewModel.addIndex(direction) {
           LDRBlinkView.show(
             on: UIApplication.shared.windows[0],
             color: UIColor.systemGray6.withAlphaComponent(0.5),
