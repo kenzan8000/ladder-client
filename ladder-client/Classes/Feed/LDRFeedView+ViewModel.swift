@@ -62,7 +62,11 @@ extension LDRFeedView {
     ///   - storageProvider: coredata storage
     ///   - keychain: LDRKeychain
     ///   - segment: LDRFeedSubsUnreadSegment
-    init(storageProvider: LDRStorageProvider, keychain: LDRKeychain, segment: LDRFeedSubsUnreadSegment) {
+    init(
+      storageProvider: LDRStorageProvider,
+      keychain: LDRKeychain,
+      segment: LDRFeedSubsUnreadSegment
+    ) {
       self.storageProvider = storageProvider
       self.keychain = keychain
       self.segment = segment

@@ -126,6 +126,7 @@
 		E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* LadderClientApp.swift */; };
 		E6FD73B426C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
 		E6FD73B526C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
+		E6FD73B726C2A23500551617 /* LDRFeedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +282,7 @@
 		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* LadderClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadderClientApp.swift; sourceTree = "<group>"; };
 		E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRStorageProvider+Fixture.swift"; sourceTree = "<group>"; };
+		E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +373,7 @@
 		E62A73C225EE5E5C00E79F24 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */,
 				E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */,
 				E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */,
 				E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */,
@@ -993,6 +996,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6FD73B726C2A23500551617 /* LDRFeedViewTests.swift in Sources */,
 				E64B6B4526C1779B00E9B39D /* LDRPinRowTests.swift in Sources */,
 				E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
 				E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */,

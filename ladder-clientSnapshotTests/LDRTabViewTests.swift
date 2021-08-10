@@ -12,7 +12,7 @@ class LDRTabViewTests: XCTestCase {
   // MARK: life cycle
   
   override func setUpWithError() throws {
-    storageProvider = .fixture(source: Bundle(for: type(of: LDRTabViewTests())), group: LDR.testGroup)
+    storageProvider = .fixture(source: Bundle(for: type(of: LDRTabViewTests())))
     super.setUp()
   }
 

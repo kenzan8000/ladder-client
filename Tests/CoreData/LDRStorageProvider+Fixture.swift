@@ -17,7 +17,7 @@ extension LDRStorageProvider {
   static func fixture(
     source: Bundle,
     name: String = LDR.coreData,
-    group: String = LDR.group
+    group: String = LDR.testGroup
   ) -> LDRStorageProvider {
     LDRStorageProvider(source: source, name: name, group: group)
   }
