@@ -5,10 +5,14 @@ import XCTest
 
 // MARK: - LDRFeedDetailViewTests
 class LDRFeedDetailViewTests: XCTestCase {
+  
+  // MARK: property
+  var storageProvider: LDRStorageProvider!
 
   // MARK: life cycle
   
   override func setUpWithError() throws {
+    storageProvider = .fixture(source: Bundle(for: type(of: LDRFeedDetailViewTests())), group: LDR.testGroup)
     super.setUp()
   }
 
@@ -19,7 +23,6 @@ class LDRFeedDetailViewTests: XCTestCase {
   // MARK: test
   
   func testLDRFeedDetailView_whenInitialState_snapshotTesting() throws {
-    let storageProvider = LDRStorageProvider(source: Bundle(for: type(of: LDRFeedDetailViewTests())), name: LDR.coreData, group: LDR.testGroup)
     let keychain = LDRKeychainStub()
     let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
     let sut = UIHostingController(

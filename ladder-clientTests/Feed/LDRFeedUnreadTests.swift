@@ -5,12 +5,12 @@ import XCTest
 class LDRUnreadTests: XCTestCase {
 
   // MARK: property
-  var storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group, storeType: .inMemory)
+  var storageProvider: LDRStorageProvider!
   
   // MARK: life cycle
   
   override func setUpWithError() throws {
-    storageProvider = LDRStorageProvider(name: LDR.coreData, group: LDR.group, storeType: .inMemory)
+    storageProvider = .fixture()
     super.setUp()
   }
 

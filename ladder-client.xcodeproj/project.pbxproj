@@ -124,6 +124,8 @@
 		E6F25DDD24A2501F008C5E58 /* LDRFeedView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */; };
 		E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
 		E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* LadderClientApp.swift */; };
+		E6FD73B426C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
+		E6FD73B526C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,6 +280,7 @@
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
 		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* LadderClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadderClientApp.swift; sourceTree = "<group>"; };
+		E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRStorageProvider+Fixture.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,6 +619,7 @@
 			children = (
 				E64B6B4226C176BE00E9B39D /* Feed */,
 				E64B6B4326C176CA00E9B39D /* Pin */,
+				E6FD73B226C29DA300551617 /* CoreData */,
 				E64B6B4726C1786600E9B39D /* Extension */,
 				E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */,
 				E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */,
@@ -649,6 +653,14 @@
 				E6522F8B24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		E6FD73B226C29DA300551617 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		E6FFD6661F6DEB7900AD947E /* Feed */ = {
@@ -908,6 +920,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */,
+				E6FD73B526C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */,
 				E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */,
 				E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
 				E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */,
@@ -994,6 +1007,7 @@
 				E64B6B4026C176B700E9B39D /* LDRPin+Fixture.swift in Sources */,
 				E65DBEFC25F9FE7C00F7D074 /* LDRPinTests.swift in Sources */,
 				E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */,
+				E6FD73B426C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */,
 				E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */,
 				E60BCF1C263D975700A22017 /* LDRKeychainStub.swift in Sources */,
 				E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */,
