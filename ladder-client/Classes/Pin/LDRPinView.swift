@@ -81,7 +81,7 @@ struct LDRPinView_Previews: PreviewProvider {
   static var previews: some View {
     let keychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
     ForEach([ColorScheme.dark, ColorScheme.light], id: \.self) {
-      LDRPinView(keychain: keychain, viewModel: LDRPinView.ViewModel(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
+      LDRPinView(keychain: keychain, viewModel: .init(storageProvider: LDRStorageProvider(name: LDR.coreData, group: LDR.group), keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)))
         .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
         .colorScheme($0)
     }

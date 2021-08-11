@@ -1,7 +1,7 @@
 @testable import ladder_client
 
-// MARK: - LDRFeedRowContent
-struct LDRFeedRowContent: FeedSubsUnread, Hashable {
+// MARK: - LDRFeedSubsUnreadPlaceholder
+struct LDRFeedSubsUnreadPlaceholder: LDRFeedSubsUnreadProtocol, Hashable {
   let title: String
   var unreadCount: Int
   let state: LDRFeedSubsUnreadState
@@ -10,7 +10,7 @@ struct LDRFeedRowContent: FeedSubsUnread, Hashable {
     title: String = "はてなブックマーク - お気に入り",
     unreadCount: Int = 187,
     state: LDRFeedSubsUnreadState
-  ) -> LDRFeedRowContent {
-    LDRFeedRowContent(title: title, unreadCount: unreadCount, state: state)
+  ) -> LDRFeedSubsUnreadPlaceholder {
+    LDRFeedSubsUnreadPlaceholder(title: title, unreadCount: unreadCount, state: state)
   }
 }

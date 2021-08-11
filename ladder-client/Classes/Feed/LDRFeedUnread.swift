@@ -1,7 +1,7 @@
 import CoreData
 
-// MARK: - FeedUnread
-protocol FeedUnread {
+// MARK: - LDRFeedUnreadProtocol
+protocol LDRFeedUnreadProtocol {
   // MARK: property
   var id: Int { get }
   var category: String { get }
@@ -11,7 +11,7 @@ protocol FeedUnread {
 }
 
 // MARK: - LDRFeedUnread
-class LDRFeedUnread: NSManagedObject, FeedUnread {
+class LDRFeedUnread: NSManagedObject, LDRFeedUnreadProtocol {
   
   // MARK: property
   @NSManaged var id: Int

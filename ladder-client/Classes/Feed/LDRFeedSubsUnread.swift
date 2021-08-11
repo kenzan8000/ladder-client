@@ -13,15 +13,15 @@ enum LDRFeedSubsUnreadState: Int64 {
   case read = 2
 }
 
-// MARK: - FeedSubsUnread
-protocol FeedSubsUnread {
+// MARK: - LDRFeedSubsUnreadProtocol
+protocol LDRFeedSubsUnreadProtocol {
   var title: String { get }
   var unreadCount: Int { get }
   var state: LDRFeedSubsUnreadState { get }
 }
 
 // MARK: - LDRFeedSubsUnread
-class LDRFeedSubsUnread: NSManagedObject, FeedSubsUnread {
+class LDRFeedSubsUnread: NSManagedObject, LDRFeedSubsUnreadProtocol {
   // MARK: property
   @NSManaged var subscribeId: Int
   @NSManaged var rate: Int

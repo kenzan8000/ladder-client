@@ -4,7 +4,7 @@ import SwiftUI
 extension LDRFeedRow {
   // MARK: ViewModel
   struct ViewModel {
-    let subsunread: FeedSubsUnread
+    let subsunread: LDRFeedSubsUnreadProtocol
     var title: String {
       subsunread.title
     }

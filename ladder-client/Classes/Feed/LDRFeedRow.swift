@@ -47,7 +47,7 @@ struct LDRFeedRow: View {
 // MARK: - LDRFeedRowUnload_Previews
 struct LDRFeedRow_Previews: PreviewProvider {
   // MARK: LDRFeedRowContent
-  struct LDRFeedRowContent: FeedSubsUnread, Hashable {
+  struct LDRFeedRowContent: LDRFeedSubsUnreadProtocol, Hashable {
     let title: String
     var unreadCount: Int
     let state: LDRFeedSubsUnreadState

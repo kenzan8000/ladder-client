@@ -74,6 +74,7 @@
 		E67C464D24878F7700480D46 /* LDRLoginView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */; };
 		E6852FBC26441AC6005BAFFB /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
 		E6852FBD26441AC6005BAFFB /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
+		E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */; };
 		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
 		E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
 		E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */; };
@@ -232,6 +233,7 @@
 		E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+HTMLTitle.swift"; sourceTree = "<group>"; };
 		E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRLoginView+ViewModel.swift"; sourceTree = "<group>"; };
 		E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+LDR.swift"; sourceTree = "<group>"; };
+		E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinViewTests.swift; sourceTree = "<group>"; };
 		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
 		E68CA3A825DC227A005E591D /* LDRURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRURLSession.swift; sourceTree = "<group>"; };
 		E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Login.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 		E62A73AE25EE538900E79F24 /* Pin */ = {
 			isa = PBXGroup;
 			children = (
+				E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */,
 				E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */,
 				E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */,
 				E62A73B825EE53EC00E79F24 /* LDRRequest+PinAllTests.swift */,
@@ -1015,6 +1018,7 @@
 				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
+				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
