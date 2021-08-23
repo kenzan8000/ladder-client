@@ -38,6 +38,7 @@
 		E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9A249F7A950051C402 /* LDRPinView.swift */; };
 		E63CAF9D249F83730051C402 /* LDRPinView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9C249F83730051C402 /* LDRPinView+ViewModel.swift */; };
 		E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAFA0249F8E240051C402 /* LDRPinRow.swift */; };
+		E648D5D226D383E10034CE8A /* Alert+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */; };
 		E64B6B3E26C1745600E9B39D /* LDRPinRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3D26C1745600E9B39D /* LDRPinRow+ViewModel.swift */; };
 		E64B6B4026C176B700E9B39D /* LDRPin+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */; };
 		E64B6B4126C176B700E9B39D /* LDRPin+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */; };
@@ -208,6 +209,7 @@
 		E63CAF9A249F7A950051C402 /* LDRPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinView.swift; sourceTree = "<group>"; };
 		E63CAF9C249F83730051C402 /* LDRPinView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPinView+ViewModel.swift"; sourceTree = "<group>"; };
 		E63CAFA0249F8E240051C402 /* LDRPinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRow.swift; sourceTree = "<group>"; };
+		E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+ViewModel.swift"; sourceTree = "<group>"; };
 		E64B6B3D26C1745600E9B39D /* LDRPinRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPinRow+ViewModel.swift"; sourceTree = "<group>"; };
 		E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPin+Fixture.swift"; sourceTree = "<group>"; };
 		E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
 				E6D5903824A0DE0E003CCCBF /* SafariView.swift */,
 				E6E127AE24A4BA22008627D5 /* WebView.swift */,
+				E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */,
 				E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */,
 				E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */,
+				E648D5D226D383E10034CE8A /* Alert+ViewModel.swift in Sources */,
 				E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */,
 				E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */,
 				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
