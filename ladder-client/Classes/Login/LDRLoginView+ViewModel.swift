@@ -9,20 +9,12 @@ extension LDRLoginView {
       
     // MARK: - model
     private var keychain: LDRKeychain
+    let onAlertDismiss: () -> Void
     
     @Published var urlDomain = ""
     @Published var username = ""
     @Published var password = ""
-    @Published var error: LDRError?
-    var isPresentingAlert: Binding<Bool> {
-      Binding<Bool>(get: {
-        self.error != nil
-      }, set: { newValue in
-        if !newValue {
-          self.error = nil
-        }
-      })
-    }
+    @Published var alertToShow: Alert.ViewModel?
     @Published var isLogingIn = false
     @Published var loginDisabled = true
 
@@ -50,8 +42,13 @@ extension LDRLoginView {
     
     // MARK: initializer
     
-    init(keychain: LDRKeychain) {
+    /// Inits
+    /// - Parameters:
+    ///   - keychain: LDRKeychain
+    ///   - onAlertDismiss: @escaping () -> Void
+    init(keychain: LDRKeychain, onAlertDismiss: @escaping () -> Void = {}) {
       self.keychain = keychain
+      self.onAlertDismiss = onAlertDismiss
     }
     
     // MARK: destruction
@@ -91,7 +88,6 @@ extension LDRLoginView {
     func tearDown() {
       cancellables.forEach { $0.cancel() }
       isLogingIn = false
-      error = nil
     }
     
     // MARK: - private api
@@ -105,7 +101,7 @@ extension LDRLoginView {
     /// calls when failed
     private func fail(by error: LDRError) {
       isLogingIn = false
-      self.error = error
+      alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: onAlertDismiss)
     }
 
   }

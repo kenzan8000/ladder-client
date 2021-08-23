@@ -11,6 +11,7 @@ extension LDRFeedView {
     var storageProvider: LDRStorageProvider
     var keychain: LDRKeychain
     @Published var segment: LDRFeedSubsUnreadSegment
+    let onAlertDismiss: () -> Void
     @Published var rates: [String] = []
     @Published var folders: [String] = []
     var sections: [String] {
@@ -31,18 +32,7 @@ extension LDRFeedView {
     }
     @Published var isPresentingLoginView = false
     @Published var isLoading = false
-    @Published var error: LDRError?
-    var isPresentingAlert: Binding<Bool> {
-      Binding<Bool>(
-        get: { self.error != nil },
-        set: { newValue in
-          guard !newValue else {
-            return
-          }
-          self.error = nil
-        }
-      )
-    }
+    @Published var alertToShow: Alert.ViewModel?
     var unreadCount: Int {
       subsunreads.filter { $0.state != .read }
         .map { $0.unreadCount }
@@ -62,14 +52,17 @@ extension LDRFeedView {
     ///   - storageProvider: coredata storage
     ///   - keychain: LDRKeychain
     ///   - segment: LDRFeedSubsUnreadSegment
+    ///   - onAlertDismiss: @escaping () -> Void
     init(
       storageProvider: LDRStorageProvider,
       keychain: LDRKeychain,
-      segment: LDRFeedSubsUnreadSegment
+      segment: LDRFeedSubsUnreadSegment,
+      onAlertDismiss: @escaping () -> Void = {}
     ) {
       self.storageProvider = storageProvider
       self.keychain = keychain
       self.segment = segment
+      self.onAlertDismiss = onAlertDismiss
       subsunreads = storageProvider.fetchSubsUnreads(by: segment)
       rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
       folders = Array(Set(subsunreads.map { $0.folder })).sorted()
@@ -119,18 +112,18 @@ extension LDRFeedView {
         .sink(
           receiveCompletion: { [weak self] result in
             self?.isLoading = false
-            if case let .failure(error) = result {
-              self?.error = error
+            if case let .failure(error) = result, let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             } else {
               self?.loadFeedFromLocalDB()
               self?.loadUnreadsFromAPI()
             }
           },
           receiveValue: { [weak self] response in
-            if let error = self?.storageProvider.deleteSubsUnreads() {
-              self?.error = error
-            } else if let error = self?.storageProvider.saveSubsUnreads(by: response) {
-              self?.error = error
+            if let error = self?.storageProvider.deleteSubsUnreads(), let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
+            } else if let error = self?.storageProvider.saveSubsUnreads(by: response), let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           }
         )

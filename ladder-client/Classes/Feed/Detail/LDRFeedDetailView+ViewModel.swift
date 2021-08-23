@@ -11,6 +11,7 @@ extension LDRFeedDetailView {
     let storageProvider: LDRStorageProvider
     let keychain: LDRKeychain
     @Published var subsunread: LDRFeedSubsUnread
+    let onAlertDismiss: () -> Void
     @Published var index = 0
     let unreads: [LDRFeedUnread]
     var unread: LDRFeedUnread? { unreads[index] }
@@ -20,18 +21,7 @@ extension LDRFeedDetailView {
     var link: URL { unread?.linkUrl ?? URL(fileURLWithPath: "") }
     var prevTitle: String { index > 0 ? unreads[index - 1].title : "" }
     var nextTitle: String { index + 1 < unreads.count ? unreads[index + 1].title : "" }
-    @Published var error: LDRError?
-    var isPresentingAlert: Binding<Bool> {
-      Binding<Bool>(
-        get: { [weak self] in self?.error != nil },
-        set: { [weak self] newValue in
-          guard !newValue else {
-            return
-          }
-          self?.error = nil
-        }
-      )
-    }
+    @Published var alertToShow: Alert.ViewModel?
     private var pinAddCancellables = Set<AnyCancellable>()
     private var notificationCancellables = Set<AnyCancellable>()
 
@@ -42,10 +32,17 @@ extension LDRFeedDetailView {
     ///   - storageProvider: for CoreData
     ///   - keychain: LDRKeychain
     ///   - subsunread: LDRFeedSubsUnread model
-    init(storageProvider: LDRStorageProvider, keychain: LDRKeychain, subsunread: LDRFeedSubsUnread) {
+    ///   - onAlertDismiss: @escaping () -> Void   
+    init(
+      storageProvider: LDRStorageProvider,
+      keychain: LDRKeychain,
+      subsunread: LDRFeedSubsUnread,
+      onAlertDismiss: @escaping () -> Void = {}
+    ) {
       self.storageProvider = storageProvider
       self.keychain = keychain
       self.subsunread = subsunread
+      self.onAlertDismiss = onAlertDismiss
       unreads = subsunread.unreads.sorted { $0.id < $1.id }
       NotificationCenter.default.publisher(for: .ldrDidLogin)
         .receive(on: DispatchQueue.main)
@@ -85,13 +82,13 @@ extension LDRFeedDetailView {
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in
-            if case let .failure(error) = result {
-              self?.error = error
+            if case let .failure(error) = result, let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           },
           receiveValue: { [weak self] response in
-            if !response.isSuccess {
-              self?.error = LDRError.others("Failed to add a pin. (\(unread.link))")
+            if !response.isSuccess, let self = self {
+              self.alertToShow = .init(title: "", message: "Failed to add a pin. (\(unread.link))", buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           }
         )

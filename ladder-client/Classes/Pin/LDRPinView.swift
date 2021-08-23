@@ -18,8 +18,12 @@ struct LDRPinView: View {
       .sheet(isPresented: viewModel.isPresentingSafariView) {
         safariView
       }
-      .alert(isPresented: viewModel.isPresentingAlert) {
-        Alert(title: Text(viewModel.error?.legibleDescription ?? ""))
+      .alert(item: $viewModel.alertToShow) {
+        Alert(
+          title: Text($0.title),
+          message: Text($0.message),
+          dismissButton: .default(Text($0.buttonText))
+        )
       }
   }
   

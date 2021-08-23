@@ -9,6 +9,7 @@ extension LDRPinView {
     // MARK: property
     let storageProvider: LDRStorageProvider
     let keychain: LDRKeychain
+    let onAlertDismiss: () -> Void
     @Published var pins: [LDRPin]
     @Published var safariUrl: URL?
     var isPresentingSafariView: Binding<Bool> {
@@ -23,18 +24,7 @@ extension LDRPinView {
       )
     }
     @Published var isPresentingLoginView = false
-    @Published var error: LDRError?
-    var isPresentingAlert: Binding<Bool> {
-      Binding<Bool>(
-        get: { [weak self] in self?.error != nil },
-        set: { [weak self] newValue in
-          guard !newValue else {
-            return
-          }
-          self?.error = nil
-        }
-      )
-    }
+    @Published var alertToShow: Alert.ViewModel?
     
     private var pinAllCancellable: AnyCancellable?
     private var pinRemoveCancellables = Set<AnyCancellable>()
@@ -46,9 +36,15 @@ extension LDRPinView {
     /// - Parameters:
     ///   - storageProvider: coredata
     ///   - keychain: LDRKeychain
-    init(storageProvider: LDRStorageProvider, keychain: LDRKeychain) {
+    ///   - onAlertDismiss: @escaping () -> Void      
+    init(
+      storageProvider: LDRStorageProvider,
+      keychain: LDRKeychain,
+      onAlertDismiss: @escaping () -> Void = {}
+    ) {
       self.storageProvider = storageProvider
       self.keychain = keychain
+      self.onAlertDismiss = onAlertDismiss
       pins = storageProvider.fetchPins()
       NotificationCenter.default.publisher(for: .ldrDidLogin)
         .receive(on: DispatchQueue.main)
@@ -92,17 +88,17 @@ extension LDRPinView {
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in
-            if case let .failure(error) = result {
-              self?.error = error
+            if case let .failure(error) = result, let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             } else {
               self?.pins = self?.storageProvider.fetchPins() ?? []
             }
           },
           receiveValue: { [weak self] responses in
-            if let error = self?.storageProvider.deletePins() {
-              self?.error = error
-            } else if let error = self?.storageProvider.savePins(by: responses) {
-              self?.error = error
+            if let error = self?.storageProvider.deletePins(), let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
+            } else if let error = self?.storageProvider.savePins(by: responses), let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           }
        )
@@ -116,20 +112,20 @@ extension LDRPinView {
       }
       safariUrl = url
       if let error = storageProvider.deletePin(pin) {
-        self.error = error
+        alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: onAlertDismiss)
         return
       }
       URLSession.shared.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: url))
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in
-            if case let .failure(error) = result {
-              self?.error = error
+            if case let .failure(error) = result, let self = self {
+              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           },
           receiveValue: { [weak self] response in
-            if !response.isSuccess {
-              self?.error = LDRError.others("Failed to remove a pin. (\(url.absoluteString))")
+            if !response.isSuccess, let self = self {
+              self.alertToShow = .init(title: "", message: "Failed to remove a pin. (\(url.absoluteString))", buttonText: "OK", buttonAction: self.onAlertDismiss)
             }
           }
         )
