@@ -64,6 +64,7 @@ extension URLSession: LDRSessionURLSession {
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     // swiftlint:disable trailing_closure
     dataTaskPublisher(for: request.urlRequest)
+      .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
         logger.error("\(logger.prefix(), privacy: .private)\(error.legibleDescription, privacy: .private)")

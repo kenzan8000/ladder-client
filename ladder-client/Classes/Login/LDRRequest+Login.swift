@@ -59,6 +59,7 @@ extension URLSession: LDRLoginURLSession {
     ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     dataTaskPublisher(for: request.urlRequest)
+      .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
         logger.error("\(logger.prefix(), privacy: .private)\(error.legibleDescription, privacy: .private)")
