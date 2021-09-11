@@ -7,6 +7,14 @@ struct LDRFeedDetailView: View {
   @ObservedObject var viewModel: ViewModel
   @ObservedObject var webViewModel: WebViewModel
   @Environment(\.colorScheme) var colorScheme: ColorScheme
+  
+  var window: UIWindow? {
+    UIApplication.shared.connectedScenes
+      .filter { $0.activationState == .foregroundActive }
+      .compactMap { $0 as? UIWindowScene }
+      .first?.windows
+      .first { $0.isKeyWindow }
+  }
     
   var body: some View {
     VStack {
@@ -44,10 +52,12 @@ struct LDRFeedDetailView: View {
     Button(
       action: {
         viewModel.savePin()
-        LDRToastView.show(
-          on: UIApplication.shared.windows[0],
-          text: "Added to Read Later Pins\n\(viewModel.title)"
-        )
+        if let window = window {
+          LDRToastView.show(
+            on: window,
+            text: "Added to Read Later Pins\n\(viewModel.title)"
+          )
+        }
       },
       label: {
         Text("Pin it")
@@ -113,9 +123,9 @@ struct LDRFeedDetailView: View {
     }
     return Button(
       action: {
-        if !viewModel.addIndex(direction) {
+        if !viewModel.addIndex(direction), let window = window {
           LDRBlinkView.show(
-            on: UIApplication.shared.windows[0],
+            on: window,
             color: UIColor.systemGray6.withAlphaComponent(0.5),
             count: 1,
             interval: 0.08
