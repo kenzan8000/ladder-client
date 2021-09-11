@@ -92,6 +92,7 @@ struct LDRFeedView: View {
       }
     }
     .listStyle(PlainListStyle())
+    .refreshable { viewModel.loadFeedFromAPI() }
   }
     
   var navigationLink: some View {

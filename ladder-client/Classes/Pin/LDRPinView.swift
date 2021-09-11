@@ -41,7 +41,7 @@ struct LDRPinView: View {
     .sheet(isPresented: $viewModel.isPresentingLoginView) {
       LDRLoginView(keychain: keychain)
     }
-
+    .refreshable { viewModel.loadPinsFromAPI() }
   }
  
   var loginButton: some View {
