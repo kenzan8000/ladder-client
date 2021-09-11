@@ -3,10 +3,18 @@ import SwiftUI
 
 // MARK: - LDRLoginView
 struct LDRLoginView: View {
+  // MARK: enum
+  enum FocusedField: Hashable {
+    case urlDomain
+    case username
+    case password
+  }
+
   // MARK: property
 
   let keychain: LDRKeychain
   @EnvironmentObject var viewModel: ViewModel
+  @FocusState var focusedForm: FocusedField?
 
   // MARK: view
 
@@ -52,6 +60,9 @@ struct LDRLoginView: View {
         .autocapitalization(.none)
         .disableAutocorrection(true)
         .textFieldStyle(RoundedBorderTextFieldStyle())
+        .focused($focusedForm, equals: .urlDomain)
+        .submitLabel(.next)
+        .onSubmit { focusedForm = .username }
     }
   }
 
@@ -65,6 +76,9 @@ struct LDRLoginView: View {
       .textContentType(.username)
       .autocapitalization(.none)
       .disableAutocorrection(true)
+      .focused($focusedForm, equals: .username)
+      .submitLabel(.next)
+      .onSubmit { focusedForm = .password }
   }
     
   var passwordTextField: some View {
@@ -77,6 +91,14 @@ struct LDRLoginView: View {
       .textContentType(.password)
       .autocapitalization(.none)
       .disableAutocorrection(true)
+      .focused($focusedForm, equals: .password)
+      .submitLabel(.send)
+      .onSubmit {
+        if !viewModel.loginDisabled && !viewModel.isLogingIn {
+          viewModel.login()
+        }
+        focusedForm = nil
+      }
   }
     
   var closeButton: some View {

@@ -4,10 +4,11 @@ import SwiftUI
 
 // MARK: - LDRLoginView + ViewModel
 extension LDRLoginView {
+
   // MARK: ViewModel
   class ViewModel: ObservableObject {
       
-    // MARK: - model
+    // MARK: property
     private var keychain: LDRKeychain
     let onAlertDismiss: () -> Void
     
