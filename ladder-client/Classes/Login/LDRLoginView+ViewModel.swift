@@ -18,6 +18,9 @@ extension LDRLoginView {
     @Published var alertToShow: Alert.ViewModel?
     @Published var isLogingIn = false
     @Published var loginDisabled = true
+    var canLogin: Bool {
+      !isLogingIn && !loginDisabled
+    }
 
     lazy var urlDomainValidation: LDRLoginFormValidationPublisher = {
       $urlDomain.domainValidator("Fastladder URL must be provided.")

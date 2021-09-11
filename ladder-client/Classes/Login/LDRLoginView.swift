@@ -28,7 +28,7 @@ struct LDRLoginView: View {
       }
         .navigationBarTitle("Login", displayMode: .large)
         .navigationBarItems(leading: closeButton)
-        .allowsHitTesting(!viewModel.isLogingIn)
+        .disabled(viewModel.isLogingIn)
         .onReceive(viewModel.allValidation) { validation in
           viewModel.loginDisabled = !validation.isSuccess
         }
@@ -42,6 +42,7 @@ struct LDRLoginView: View {
     }
     .onAppear {
       viewModel.urlDomain = keychain.ldrUrlString ?? ""
+      focusedForm = viewModel.urlDomain.isEmpty ? .urlDomain : .username
     }
   }
 
@@ -94,7 +95,7 @@ struct LDRLoginView: View {
       .focused($focusedForm, equals: .password)
       .submitLabel(.send)
       .onSubmit {
-        if !viewModel.loginDisabled && !viewModel.isLogingIn {
+        if viewModel.canLogin {
           viewModel.login()
         }
         focusedForm = nil
@@ -116,13 +117,15 @@ struct LDRLoginView: View {
     
   var loginButton: some View {
     Button(
-      action: { viewModel.login() },
+      action: {
+        viewModel.login()
+        focusedForm = nil
+      },
       label: {
         HStack {
           Text("Login")
             .foregroundColor(
-              viewModel.loginDisabled || viewModel.isLogingIn ?
-                .secondary : .blue
+              viewModel.canLogin ? .blue : .secondary
             )
           if viewModel.isLogingIn {
             ActivityIndicator(isAnimating: .constant(true), style: .medium)
