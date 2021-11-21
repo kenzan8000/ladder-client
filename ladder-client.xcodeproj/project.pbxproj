@@ -17,6 +17,7 @@
 		E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */; };
 		E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
 		E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
+		E61E6568274A5A7800CCB483 /* LDRLaunchTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */; };
 		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
 		E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */; };
 		E62A73A425EE4E3500E79F24 /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A73A325EE4E3500E79F24 /* login.html */; };
@@ -135,6 +136,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E61E6561274A5A5800CCB483 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
+			remoteInfo = "ladder-client";
+		};
 		E65E9D0B25F7A37D00FFBA46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
@@ -195,6 +203,8 @@
 		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
 		E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedRow+ViewModel.swift"; sourceTree = "<group>"; };
 		E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedSubsUnread+Fixture.swift"; sourceTree = "<group>"; };
+		E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLaunchTimeTests.swift; sourceTree = "<group>"; };
 		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
 		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
 		E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+LoginTests.swift"; sourceTree = "<group>"; };
@@ -295,6 +305,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E61E6558274A5A5800CCB483 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E65E9D0325F7A37D00FFBA46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +381,14 @@
 				E60230BE1F5E54860052F762 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E61E655C274A5A5800CCB483 /* ladder-clientUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */,
+			);
+			path = "ladder-clientUITests";
 			sourceTree = "<group>";
 		};
 		E62A73AE25EE538900E79F24 /* Pin */ = {
@@ -504,6 +529,7 @@
 				E6C8E62223E52460004F410D /* app-extension */,
 				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
 				E65E9D0725F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
+				E61E655C274A5A5800CCB483 /* ladder-clientUITests */,
 				E6EE1FE325F8E06F00DBF887 /* Tests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
 				E659BFF925EE1CF0005AAF87 /* Frameworks */,
@@ -517,6 +543,7 @@
 				E6C8E62123E52460004F410D /* Add the url to "read later"..appex */,
 				E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */,
 				E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */,
+				E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -723,6 +750,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E61E655A274A5A5800CCB483 /* ladder-clientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E61E6566274A5A5800CCB483 /* Build configuration list for PBXNativeTarget "ladder-clientUITests" */;
+			buildPhases = (
+				E61E6557274A5A5800CCB483 /* Sources */,
+				E61E6558274A5A5800CCB483 /* Frameworks */,
+				E61E6559274A5A5800CCB483 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E61E6562274A5A5800CCB483 /* PBXTargetDependency */,
+			);
+			name = "ladder-clientUITests";
+			productName = "ladder-clientUITests";
+			productReference = E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E65E9D0525F7A37D00FFBA46 /* ladder-clientSnapshotTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E65E9D0D25F7A37D00FFBA46 /* Build configuration list for PBXNativeTarget "ladder-clientSnapshotTests" */;
@@ -817,10 +862,14 @@
 		E6690C481F5E537D0065B7B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
+					E61E655A274A5A5800CCB483 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = E6690C4F1F5E537D0065B7B5;
+					};
 					E65E9D0525F7A37D00FFBA46 = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
@@ -867,11 +916,19 @@
 				E6C8E62023E52460004F410D /* app-extension */,
 				E678DEC725E8E2C6009C75E5 /* ladder-clientTests */,
 				E65E9D0525F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
+				E61E655A274A5A5800CCB483 /* ladder-clientUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E61E6559274A5A5800CCB483 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E65E9D0425F7A37D00FFBA46 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -939,6 +996,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E61E6557274A5A5800CCB483 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E61E6568274A5A7800CCB483 /* LDRLaunchTimeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E65E9D0225F7A37D00FFBA46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1073,6 +1138,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E61E6562274A5A5800CCB483 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
+			targetProxy = E61E6561274A5A5800CCB483 /* PBXContainerItemProxy */;
+		};
 		E65E9D0C25F7A37D00FFBA46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
@@ -1113,6 +1183,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E61E6563274A5A5800CCB483 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ladder-client";
+			};
+			name = Debug;
+		};
+		E61E6564274A5A5800CCB483 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ladder-client";
+			};
+			name = Release;
+		};
+		E61E6565274A5A5800CCB483 /* adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ladder-client";
+			};
+			name = adhoc;
+		};
 		E61EDA872600D3B200D8D4D3 /* adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1672,6 +1824,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E61E6566274A5A5800CCB483 /* Build configuration list for PBXNativeTarget "ladder-clientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E61E6563274A5A5800CCB483 /* Debug */,
+				E61E6564274A5A5800CCB483 /* Release */,
+				E61E6565274A5A5800CCB483 /* adhoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E65E9D0D25F7A37D00FFBA46 /* Build configuration list for PBXNativeTarget "ladder-clientSnapshotTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

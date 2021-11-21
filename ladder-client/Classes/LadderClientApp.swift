@@ -29,8 +29,8 @@ struct LadderClientApp: App {
       LDRTabView(
         keychain: keychain,
         selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
+        feedViewModel: .init(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+        pinViewModel: .init(storageProvider: storageProvider, keychain: keychain)
       )
       .environmentObject(LDRLoginView.ViewModel(keychain: keychain))
     }
