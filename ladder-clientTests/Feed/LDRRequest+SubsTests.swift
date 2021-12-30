@@ -10,6 +10,7 @@ class LDRRequestSubsTests: XCTestCase {
   
   override func setUpWithError() throws {
     super.setUp()
+    LDRTestURLProtocol.requests = []
   }
 
   override func tearDownWithError() throws {
@@ -17,6 +18,30 @@ class LDRRequestSubsTests: XCTestCase {
   }
 
   // MARK: test
+  func testLDRRequestSubs_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
+    let config = URLSessionConfiguration.default
+    config.protocolClasses = [LDRTestURLProtocol.self]
+    let keychain = LDRKeychainStub()
+    keychain.ldrUrlString = "fastladder.com"
+    let sut = URLSession(configuration: config)
+    
+    sut.publisher(for: LDRRequest.subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { _ in }
+      )
+      .cancel()
+    usleep(1000)
+    
+    let request = try XCTUnwrap(LDRTestURLProtocol.requests.last)
+    let url = try XCTUnwrap(request.url)
+    XCTAssertEqual(url.absoluteString, "https://fastladder.com/api/subs?unread=1")
+    XCTAssertEqual(request.httpMethod, "POST")
+    XCTAssertEqual(
+      request.allHTTPHeaderFields,
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": ""].HTTPBodyValue())
+    )
+  }
   
   func testLDRRequestSubs_whenValidJsonResponse_LDRSubsResponseShouldBeValid() throws {
     var result: LDRSubsResponse? = nil

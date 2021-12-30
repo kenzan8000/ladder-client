@@ -10,6 +10,7 @@ class LDRRequestPinAddTests: XCTestCase {
   
   override func setUpWithError() throws {
     super.setUp()
+    LDRTestURLProtocol.requests = []
   }
 
   override func tearDownWithError() throws {
@@ -17,22 +18,41 @@ class LDRRequestPinAddTests: XCTestCase {
   }
 
   // MARK: test
+  func testLDRRequestPinAdd_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
+    let config = URLSessionConfiguration.default
+    config.protocolClasses = [LDRTestURLProtocol.self]
+    let keychain = LDRKeychainStub()
+    keychain.ldrUrlString = "fastladder.com"
+    let sut = URLSession(configuration: config)
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
+    let title = "alextsui05 starred vercel/og-image"
+
+    sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: title, link: link))
+     .sink(
+       receiveCompletion: { _ in },
+       receiveValue: { _ in }
+     )
+     .cancel()
+    usleep(1000)
+    
+    let request = try XCTUnwrap(LDRTestURLProtocol.requests.last)
+    let url = try XCTUnwrap(request.url)
+    XCTAssertEqual(url.absoluteString, "https://fastladder.com/api/pin/add")
+    XCTAssertEqual(request.httpMethod, "POST")
+    XCTAssertEqual(
+      request.allHTTPHeaderFields,
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "title": title, "link": link.absoluteString].HTTPBodyValue())
+    )
+  }
   
   func testLDRRequestPinAdd_whenSucceeding_LDRPinAddResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinAddResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
     let sut = LDRPinAddURLSessionSuccessFake()
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut
-      .publisher(
-        for: .pinAdd(
-          apiKey: keychain.apiKey,
-          ldrUrlString: keychain.ldrUrlString,
-          title: "alextsui05 starred vercel/og-image",
-          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-        )
-      )
+    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -48,16 +68,9 @@ class LDRRequestPinAddTests: XCTestCase {
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
     let sut = LDRPinAddURLSessionFailureFake()
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut
-      .publisher(
-        for: .pinAdd(
-          apiKey: keychain.apiKey,
-          ldrUrlString: keychain.ldrUrlString,
-          title: "alextsui05 starred vercel/og-image",
-          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-        )
-      )
+    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

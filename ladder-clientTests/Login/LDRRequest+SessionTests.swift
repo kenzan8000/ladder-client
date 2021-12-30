@@ -10,6 +10,7 @@ class LDRRequestSessionTests: XCTestCase {
   
   override func setUpWithError() throws {
     super.setUp()
+    LDRTestURLProtocol.requests = []
   }
 
   override func tearDownWithError() throws {
@@ -17,6 +18,30 @@ class LDRRequestSessionTests: XCTestCase {
   }
 
   // MARK: test
+  func testLDRRequestSession_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
+    let config = URLSessionConfiguration.default
+    config.protocolClasses = [LDRTestURLProtocol.self]
+    let keychain = LDRKeychainStub()
+    keychain.ldrUrlString = "fastladder.com"
+    let sut = URLSession(configuration: config)
+
+    sut.publisher(for: .session(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password", authenticityToken: "authenticityToken"))
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { _ in }
+      )
+      .cancel()
+    usleep(1000)
+    
+    let request = try XCTUnwrap(LDRTestURLProtocol.requests.last)
+    let url = try XCTUnwrap(request.url)
+    XCTAssertEqual(url.absoluteString, "https://fastladder.com/session")
+    XCTAssertEqual(request.httpMethod, "POST")
+    XCTAssertEqual(
+      request.allHTTPHeaderFields,
+      LDRRequestHeader.cookielessHeader(body: ["username": "username", "password": "password", "authenticity_token": "authenticityToken"].HTTPBodyValue())
+    )
+  }
   
   func testLDRRequestSession_whenValidHtml_apiKeyShouldBeValid() throws {
     var result: LDRSessionResponse? = nil

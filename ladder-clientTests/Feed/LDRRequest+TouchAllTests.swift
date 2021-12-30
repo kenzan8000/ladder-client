@@ -10,6 +10,7 @@ class LDRRequestTouchAllTests: XCTestCase {
   
   override func setUpWithError() throws {
     super.setUp()
+    LDRTestURLProtocol.requests = []
   }
 
   override func tearDownWithError() throws {
@@ -18,6 +19,32 @@ class LDRRequestTouchAllTests: XCTestCase {
 
   // MARK: test
   
+  func testLDRRequestTouchAll_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
+    let subscribeId = 50
+    let config = URLSessionConfiguration.default
+    config.protocolClasses = [LDRTestURLProtocol.self]
+    let keychain = LDRKeychainStub()
+    keychain.ldrUrlString = "fastladder.com"
+    let sut = URLSession(configuration: config)
+
+    sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { _ in }
+      )
+      .cancel()
+    usleep(1000)
+    
+    let request = try XCTUnwrap(LDRTestURLProtocol.requests.last)
+    let url = try XCTUnwrap(request.url)
+    XCTAssertEqual(url.absoluteString, "https://fastladder.com/api/touch_all")
+    XCTAssertEqual(request.httpMethod, "POST")
+    XCTAssertEqual(
+      request.allHTTPHeaderFields,
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "subscribe_id": "\(subscribeId)"].HTTPBodyValue())
+    )
+  }
+
   func testLDRRequestTouchAll_whenSucceeding_LDRTouchAllResponseIsSuccessShouldBeTrue() throws {
     let subscribeId = 50
     var result: LDRTouchAllResponse? = nil

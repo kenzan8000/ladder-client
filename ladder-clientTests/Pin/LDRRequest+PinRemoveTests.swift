@@ -10,6 +10,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
   
   override func setUpWithError() throws {
     super.setUp()
+    LDRTestURLProtocol.requests = []
   }
 
   override func tearDownWithError() throws {
@@ -17,21 +18,40 @@ class LDRRequestPinRemoveTests: XCTestCase {
   }
 
   // MARK: test
+  func testLDRRequestPinRemove_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
+    let config = URLSessionConfiguration.default
+    config.protocolClasses = [LDRTestURLProtocol.self]
+    let keychain = LDRKeychainStub()
+    keychain.ldrUrlString = "fastladder.com"
+    let sut = URLSession(configuration: config)
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
+    
+    sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
+     .sink(
+       receiveCompletion: { _ in },
+       receiveValue: { _ in }
+     )
+     .cancel()
+    usleep(1000)
+    
+    let request = try XCTUnwrap(LDRTestURLProtocol.requests.last)
+    let url = try XCTUnwrap(request.url)
+    XCTAssertEqual(url.absoluteString, "https://fastladder.com/api/pin/remove")
+    XCTAssertEqual(request.httpMethod, "POST")
+    XCTAssertEqual(
+      request.allHTTPHeaderFields,
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "link": link.absoluteString].HTTPBodyValue())
+    )
+  }
   
   func testLDRRequestPinRemove_whenSucceeding_LDRPinRemoveResponseIsSuccessShouldBeTrue() throws {
     var result: LDRPinRemoveResponse? = nil
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
     let sut = LDRPinRemoveURLSessionSuccessFake()
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut
-      .publisher(
-        for: .pinRemove(
-          apiKey: keychain.apiKey,
-          ldrUrlString: keychain.ldrUrlString,
-          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-        )
-      )
+    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -47,15 +67,9 @@ class LDRRequestPinRemoveTests: XCTestCase {
     let exp = expectation(description: #function)
     let keychain = LDRKeychainStub()
     let sut = LDRPinRemoveURLSessionFailureFake()
+    let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut
-      .publisher(
-        for: .pinRemove(
-          apiKey: keychain.apiKey,
-          ldrUrlString: keychain.ldrUrlString,
-          link: URL(string: "https://github.com/vercel/og-image") ?? URL(fileURLWithPath: "")
-        )
-      )
+    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

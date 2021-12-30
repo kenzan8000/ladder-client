@@ -55,7 +55,7 @@ extension LDRRequestHeader {
   static func defaultHeader(url: URL, body: Data?) -> LDRRequestHeader {
     [
       "Content-Type": "application/json",
-      "Content-Length": "\(String(describing: body?.count))",
+      "Content-Length": "\(String(describing: body?.count ?? 0))",
       "Cookie": .ldrCookie(host: url.host ?? ""),
     ]
   }
@@ -63,7 +63,7 @@ extension LDRRequestHeader {
   static func cookielessHeader(body: Data?) -> LDRRequestHeader {
     [
       "Content-Type": "application/json",
-      "Content-Length": "\(String(describing: body?.count))",
+      "Content-Length": "\(String(describing: body?.count ?? 0))",
     ]
   }
 }
