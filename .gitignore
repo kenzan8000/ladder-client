@@ -104,3 +104,5 @@ ladder-client-certificates
 test.html
 ladder-client.xcodeproj/xcuserdata
 ladder-client.xcodeproj/project.xcworkspace
+
+.env
