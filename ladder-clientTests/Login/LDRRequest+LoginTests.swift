@@ -82,7 +82,7 @@ class LDRRequestLoginTests: XCTestCase {
   }
   
   func testLDRLoginResponse_whenValidHtml_authencityTokenShouldBeValid() throws {
-    let sut: LDRLoginResponse? = .fakeValidResponse()
+    let sut: LDRLoginResponse? = try .fakeValidResponse()
     XCTAssertTrue(sut?.authencityToken == authencityToken)
   }
   
@@ -126,10 +126,10 @@ struct LDRLoginURLSessionInvalidFake: LDRLoginURLSession {
 
 // MARK: - LDRLoginResponse + Fake
 extension LDRLoginResponse {
-  static func fakeValidResponse() -> LDRLoginResponse? {
-    let htmlUrl = try! XCTUnwrap(Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html"))
-    let data = try! Data(contentsOf: htmlUrl, options: .uncached)
-    let url = URL(string: "https://example.com/login?username=username&password=password")!
+  static func fakeValidResponse() throws -> LDRLoginResponse? {
+    let htmlUrl = try XCTUnwrap(Bundle(for: type(of: LDRRequestLoginTests())).url(forResource: "login", withExtension: "html"))
+    let data = try XCTUnwrap(try Data(contentsOf: htmlUrl, options: .uncached))
+    let url = try XCTUnwrap(URL(string: "https://example.com/login?username=username&password=password"))
     return LDRLoginResponse(
       data: data,
       response: URLResponse(
