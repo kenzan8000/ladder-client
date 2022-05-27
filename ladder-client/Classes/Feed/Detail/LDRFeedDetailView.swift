@@ -130,12 +130,14 @@ struct LDRFeedDetailView: View {
             count: 1,
             interval: 0.08
           )
+          UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
         } else {
           webViewModel.loadHTMLString(
             colorScheme: colorScheme,
             body: viewModel.body,
             link: viewModel.link
           )
+          UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         }
       },
       label: {
