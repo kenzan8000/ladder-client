@@ -21,14 +21,19 @@ class LDRKeychainStore: LDRKeychain {
     Keychain(service: service, accessGroup: group)
   }
   
+  var apiKey: String? {
+    get { keychain["LDRKeychain.apiKey"] }
+    set { keychain["LDRKeychain.apiKey"] = newValue }
+  }
+  
   var ldrUrlString: String? {
     get { keychain["LDRKeychain.ldrUrlString"] }
     set { keychain["LDRKeychain.ldrUrlString"] = newValue }
   }
   
-  var apiKey: String? {
-    get { keychain["LDRKeychain.apiKey"] }
-    set { keychain["LDRKeychain.apiKey"] = newValue }
+  var feedSubsUnreadSegmentString: String? {
+    get { keychain["LDRKeychain.feedSubsUnreadSegment"] }
+    set { keychain["LDRKeychain.feedSubsUnreadSegment"] = newValue }
   }
   
   var reloadTimestamp: String? {

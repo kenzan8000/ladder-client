@@ -1,13 +1,13 @@
 import CoreData
 
 // MARK: enum
-enum LDRFeedSubsUnreadSegment {
-  case rate
-  case folder
+enum LDRFeedSubsUnreadSegment: Int {
+  case rate = 0
+  case folder = 1
 }
 
 @objc
-enum LDRFeedSubsUnreadState: Int64 {
+enum LDRFeedSubsUnreadState: Int {
   case unloaded = 0
   case unread = 1
   case read = 2
@@ -155,5 +155,21 @@ extension LDRStorageProvider {
       viewContext.rollback()
       logger.error("\(logger.prefix(), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
     }
+  }
+}
+
+// MARK: - LDRKeychainStore + LDRFeedSubsUnreadSegment
+extension LDRKeychainStore {
+  /// selected segment control on feed view
+  var feedSubsUnreadSegment: LDRFeedSubsUnreadSegment {
+    get {
+      guard let feedSubsUnreadSegmentString = feedSubsUnreadSegmentString,
+            let rawValue = Int(feedSubsUnreadSegmentString),
+            let segment = LDRFeedSubsUnreadSegment(rawValue: rawValue) else {
+        return .rate
+      }
+      return segment
+    }
+    set { feedSubsUnreadSegmentString = "\(newValue.rawValue)" }
   }
 }
