@@ -19,11 +19,10 @@ class LDRPinRowTests: XCTestCase {
   // MARK: test
   
   func testLDRPinRow_whenInitialState_snapshotTesting() throws {
-    let sut = UIHostingController(
-      rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog")))
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let sut = UIHostingController(
+        rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog")))
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
@@ -34,11 +33,10 @@ class LDRPinRowTests: XCTestCase {
   }
   
   func testLDRPinRow_whenShortTitle_snapshotTesting() throws {
-    let sut = UIHostingController(
-      rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails - eagletmt's blog")))
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let sut = UIHostingController(
+        rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails - eagletmt's blog")))
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
@@ -49,10 +47,10 @@ class LDRPinRowTests: XCTestCase {
   }
   
   func testLDRPinRow_whenLongTitle_snapshotTesting() throws {
-    let sut = UIHostingController(
-      rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog あいうえお かきくけこ さしすせそ たちつてと あいうえお かきくけこ さしすせそ たちつてと")))
-    )
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let sut = UIHostingController(
+        rootView: LDRPinRow(viewModel: .init(pin: LDRPinRowContent.fixture(title: "Rails アプリでオンラインでカラムの削除やリネームを行うには - eagletmt's blog あいうえお かきくけこ さしすせそ たちつてと あいうえお かきくけこ さしすせそ たちつてと")))
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,

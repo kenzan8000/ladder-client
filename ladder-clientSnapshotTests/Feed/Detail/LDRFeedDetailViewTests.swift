@@ -23,20 +23,19 @@ class LDRFeedDetailViewTests: XCTestCase {
   // MARK: test
   
   func testLDRFeedDetailView_whenInitialState_snapshotTesting() throws {
-    let keychain = LDRKeychainStub()
-    let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
-    let sut = UIHostingController(
-      rootView: LDRFeedDetailView(
-        viewModel: LDRFeedDetailView.ViewModel(
-          storageProvider: storageProvider,
-          keychain: keychain,
-          subsunread: subsunreads[0]
-        ),
-        webViewModel: LDRFeedDetailView.WebViewModel()
-      )
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let keychain = LDRKeychainStub()
+      let subsunreads = storageProvider.fetchSubsUnreads(by: .rate)
+      let sut = UIHostingController(
+        rootView: LDRFeedDetailView(
+          viewModel: LDRFeedDetailView.ViewModel(
+            storageProvider: storageProvider,
+            keychain: keychain,
+            subsunread: subsunreads[0]
+          ),
+          webViewModel: LDRFeedDetailView.WebViewModel()
+        )
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,

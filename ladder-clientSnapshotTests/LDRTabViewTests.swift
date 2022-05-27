@@ -23,17 +23,16 @@ class LDRTabViewTests: XCTestCase {
   // MARK: test
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsRate_snapshotTesting() throws {
-    let keychain = LDRKeychainStub()
-    let sut = UIHostingController(
-      rootView: LDRTabView(
-        keychain: keychain,
-        selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
-      )
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let keychain = LDRKeychainStub()
+      let sut = UIHostingController(
+        rootView: LDRTabView(
+          keychain: keychain,
+          selected: LDRTabView.Tab.feed,
+          feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+          pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
+        )
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
@@ -44,17 +43,16 @@ class LDRTabViewTests: XCTestCase {
   }
   
   func testLDRTabView_whenSelectedTabIsFeedAndSegmentIsFolder_snapshotTesting() throws {
-    let keychain = LDRKeychainStub()
-    let sut = UIHostingController(
-      rootView: LDRTabView(
-        keychain: keychain,
-        selected: LDRTabView.Tab.feed,
-        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .folder),
-        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
-      )
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let keychain = LDRKeychainStub()
+      let sut = UIHostingController(
+        rootView: LDRTabView(
+          keychain: keychain,
+          selected: LDRTabView.Tab.feed,
+          feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .folder),
+          pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
+        )
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
@@ -65,17 +63,16 @@ class LDRTabViewTests: XCTestCase {
   }
   
   func testLDRTabView_whenSelectedTabIsPin_snapshotTesting() throws {
-    let keychain = LDRKeychainStub()
-    let sut = UIHostingController(
-      rootView: LDRTabView(
-        keychain: keychain,
-        selected: LDRTabView.Tab.pin,
-        feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
-        pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
-      )
-    )
-    
     [(UIUserInterfaceStyle.dark, "dark"), (UIUserInterfaceStyle.light, "light")].forEach { style, named in
+      let keychain = LDRKeychainStub()
+      let sut = UIHostingController(
+        rootView: LDRTabView(
+          keychain: keychain,
+          selected: LDRTabView.Tab.pin,
+          feedViewModel: LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate),
+          pinViewModel: LDRPinView.ViewModel(storageProvider: storageProvider, keychain: keychain)
+        )
+      )
       sut.overrideUserInterfaceStyle = style
       assertSnapshot(
         matching: sut,
