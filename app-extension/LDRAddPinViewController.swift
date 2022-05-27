@@ -1,6 +1,7 @@
 import Combine
 import MobileCoreServices
 import UIKit
+import UniformTypeIdentifiers
 
 // MARK: - LDRAddPinViewController
 class LDRAddPinViewController: UIViewController {
@@ -24,11 +25,11 @@ class LDRAddPinViewController: UIViewController {
     items
       .compactMap { $0.attachments }
       .flatMap { $0 }
-      .filter { $0.hasItemConformingToTypeIdentifier(kUTTypeURL as String) }
+      .filter { $0.hasItemConformingToTypeIdentifier(UTType.url.identifier) }
       .publisher
       .flatMap { provider in
         Future<URL, LDRError> { promise in
-          provider.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { data, error in
+          provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { data, error in
             if let url = data as? URL {
               promise(.success(url))
             } else {
