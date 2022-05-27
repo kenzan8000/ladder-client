@@ -158,18 +158,13 @@ extension LDRStorageProvider {
   }
 }
 
-// MARK: - LDRKeychainStore + LDRFeedSubsUnreadSegment
-extension LDRKeychainStore {
-  /// selected segment control on feed view
-  var feedSubsUnreadSegment: LDRFeedSubsUnreadSegment {
-    get {
-      guard let feedSubsUnreadSegmentString = feedSubsUnreadSegmentString,
-            let rawValue = Int(feedSubsUnreadSegmentString),
+// MARK: String + LDRFeedSubsUnreadSegment
+extension String {
+  var feedSubsUnreadSegmentValue: LDRFeedSubsUnreadSegment {
+      guard let rawValue = Int(self),
             let segment = LDRFeedSubsUnreadSegment(rawValue: rawValue) else {
         return .rate
       }
       return segment
-    }
-    set { feedSubsUnreadSegmentString = "\(newValue.rawValue)" }
   }
 }

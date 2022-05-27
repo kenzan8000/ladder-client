@@ -10,12 +10,24 @@ extension LDRFeedView {
     // MARK: property
     var storageProvider: LDRStorageProvider
     var keychain: LDRKeychain
-    @Published var segment: LDRFeedSubsUnreadSegment
+    @Published var segment: LDRFeedSubsUnreadSegment {
+      didSet { feedSubsUnreadSegment = segment }
+    }
+    /// selected segment control on feed view
+    private var feedSubsUnreadSegment: LDRFeedSubsUnreadSegment {
+      get { keychain.feedSubsUnreadSegmentString?.feedSubsUnreadSegmentValue ?? .rate }
+      set { keychain.feedSubsUnreadSegmentString = "\(newValue.rawValue)" }
+    }
     let onAlertDismiss: () -> Void
     @Published var rates: [String] = []
     @Published var folders: [String] = []
     var sections: [String] {
-      segment == .rate ? rates : folders
+      switch segment {
+      case .rate:
+        return rates
+      case .folder:
+        return folders
+      }
     }
     @Published var subsunreads: [LDRFeedSubsUnread]
     @Published var subsunread: LDRFeedSubsUnread?

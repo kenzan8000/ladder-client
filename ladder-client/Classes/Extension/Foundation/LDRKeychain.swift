@@ -3,8 +3,9 @@ import KeychainAccess
 
 // MARK: - LDRKeychain
 protocol LDRKeychain {
-  var ldrUrlString: String? { get set }
   var apiKey: String? { get set }
+  var ldrUrlString: String? { get set }
+  var feedSubsUnreadSegmentString: String? { get set }
   var reloadTimestamp: String? { get set }
   var reloadTimestampIsExpired: Bool { get }
   
@@ -32,8 +33,8 @@ class LDRKeychainStore: LDRKeychain {
   }
   
   var feedSubsUnreadSegmentString: String? {
-    get { keychain["LDRKeychain.feedSubsUnreadSegment"] }
-    set { keychain["LDRKeychain.feedSubsUnreadSegment"] = newValue }
+    get { keychain["LDRKeychain.feedSubsUnreadSegmentString"] }
+    set { keychain["LDRKeychain.feedSubsUnreadSegmentString"] = newValue }
   }
   
   var reloadTimestamp: String? {
