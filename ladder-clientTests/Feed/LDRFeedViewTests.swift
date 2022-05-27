@@ -63,4 +63,21 @@ class LDRFeedViewTests: XCTestCase {
     let subsunreads = sut.getSubsUnreads(at: section)
     XCTAssertEqual(subsunreads.map { $0.title }, ["alextsui05’s Activity", "efclのはてなブックマーク", "eugeneotto’s Activity", "type:show score&gt;10 &amp;#8211; hnapp", "歴ログ -世界史専門ブログ-"])
   }
+  
+  func testLDRFeedView_whenSegmentIsInitializedByKeychain_segmentShouldBeSameWithKeychain() throws {
+    let keychain = LDRKeychainStub()
+    var segment: LDRFeedSubsUnreadSegment
+    var sut: LDRFeedView.ViewModel
+    
+    segment = .rate
+    keychain.feedSubsUnreadSegmentString = "\(segment.rawValue)"
+    sut = LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: try XCTUnwrap(keychain.feedSubsUnreadSegmentString?.feedSubsUnreadSegmentValue))
+    XCTAssertEqual(sut.segment, segment)
+    
+    segment = .folder
+    keychain.feedSubsUnreadSegmentString = "\(segment.rawValue)"
+    sut = LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: try XCTUnwrap(keychain.feedSubsUnreadSegmentString?.feedSubsUnreadSegmentValue))
+    XCTAssertEqual(sut.segment, segment)
+  }
+  
 }

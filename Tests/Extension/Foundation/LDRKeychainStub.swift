@@ -7,14 +7,19 @@ class LDRKeychainStub: LDRKeychain {
   
   private var keychain = [String: String]()
   
+  var apiKey: String? {
+    get { keychain["LDRKeychain.apiKey"] }
+    set { keychain["LDRKeychain.apiKey"] = newValue }
+  }
+  
   var ldrUrlString: String? {
     get { keychain["LDRKeychain.ldrUrlString"] }
     set { keychain["LDRKeychain.ldrUrlString"] = newValue }
   }
   
-  var apiKey: String? {
-    get { keychain["LDRKeychain.apiKey"] }
-    set { keychain["LDRKeychain.apiKey"] = newValue }
+  var feedSubsUnreadSegmentString: String? {
+    get { keychain["LDRKeychain.feedSubsUnreadSegmentString"] }
+    set { keychain["LDRKeychain.feedSubsUnreadSegmentString"] = newValue }
   }
   
   var reloadTimestamp: String? {
