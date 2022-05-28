@@ -80,4 +80,17 @@ class LDRFeedViewTests: XCTestCase {
     XCTAssertEqual(sut.segment, segment)
   }
   
+  func testLDRFeedView_whenSegmentValueIsUpdated_keychainValueShouldAlsoBeUpdated() throws {
+    let keychain = LDRKeychainStub()
+    var sut: LDRFeedView.ViewModel
+    
+    sut = LDRFeedView.ViewModel(storageProvider: storageProvider, keychain: keychain, segment: .rate)
+    
+    sut.segment = .folder
+    XCTAssertEqual(keychain.feedSubsUnreadSegmentString, "\(sut.segment.rawValue)")
+    
+    sut.segment = .rate
+    XCTAssertEqual(keychain.feedSubsUnreadSegmentString, "\(sut.segment.rawValue)")
+  }
+  
 }
