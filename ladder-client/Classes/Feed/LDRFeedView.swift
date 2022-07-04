@@ -22,6 +22,7 @@ struct LDRFeedView: View {
         LDRLoginView(keychain: keychain)
       }
     }
+    .navigationViewStyle(.stack)
     .alert(item: $viewModel.alertToShow) {
       Alert(
         title: Text($0.title),

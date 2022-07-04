@@ -26,6 +26,7 @@ struct LDRLoginView: View {
         passwordTextField
         loginButton
       }
+        .navigationViewStyle(.stack)
         .navigationBarTitle("Login", displayMode: .large)
         .navigationBarItems(leading: closeButton)
         .disabled(viewModel.isLogingIn)

@@ -12,6 +12,7 @@ struct LDRPinView: View {
     NavigationView {
       list
     }
+      .navigationViewStyle(.stack)
       .onAppear {
         viewModel.loadPinsFromLocalDB()
       }
