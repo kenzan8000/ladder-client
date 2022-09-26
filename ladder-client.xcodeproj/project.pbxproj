@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -94,7 +94,7 @@
 		E6C8E62423E52460004F410D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62323E52460004F410D /* Media.xcassets */; };
 		E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */; };
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
-		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */; };
 		E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */; };
 		E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
@@ -183,15 +183,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E6C8E63123E52460004F410D /* Embed App Extensions */ = {
+		E6C8E63123E52460004F410D /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed App Extensions */,
+				E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -801,7 +801,7 @@
 				E6690C4C1F5E537D0065B7B5 /* Sources */,
 				E6690C4D1F5E537D0065B7B5 /* Frameworks */,
 				E6690C4E1F5E537D0065B7B5 /* Resources */,
-				E6C8E63123E52460004F410D /* Embed App Extensions */,
+				E6C8E63123E52460004F410D /* Embed Foundation Extensions */,
 				E642B8D824685F8C00E6BBC8 /* ShellScript */,
 			);
 			buildRules = (
@@ -867,7 +867,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
 					E61E655A274A5A5800CCB483 = {
@@ -982,6 +982,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		E642B8D824685F8C00E6BBC8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
