@@ -57,7 +57,7 @@ extension LDRPinView {
         .receive(on: DispatchQueue.main)
         .sink { [weak self] _ in
           self?.loadPinsFromLocalDB()
-          if let self = self,
+          if let self,
              self.keychain.reloadTimestampIsExpired {
             self.reloadPins()
           }

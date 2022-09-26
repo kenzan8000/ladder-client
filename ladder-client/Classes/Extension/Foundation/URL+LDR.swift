@@ -11,7 +11,7 @@ extension URL {
   ///   - ldrUrlString: base url that removes https:// (domain + path that runs fastladder rails app)
   ///   - ldrPath: url path string
   init(ldrUrlString: String?, ldrPath: String) {
-    guard let ldrUrlString = ldrUrlString,
+    guard let ldrUrlString,
           URL(string: "https://" + ldrUrlString + ldrPath) != nil else {
       self.init(fileURLWithPath: "")
       return

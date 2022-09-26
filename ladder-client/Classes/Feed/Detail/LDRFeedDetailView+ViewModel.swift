@@ -71,7 +71,7 @@ extension LDRFeedDetailView {
 
     /// Saves a pin
     func savePin() {
-      guard let unread = unread else {
+      guard let unread else {
         return
       }
       if storageProvider.existPin(link: unread.link) {

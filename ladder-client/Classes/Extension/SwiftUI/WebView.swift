@@ -86,7 +86,7 @@ public class UIViewContainerView<ContentView: UIView>: UIView {
       contentView?.removeFromSuperview()
     }
     didSet {
-      if let contentView = contentView {
+      if let contentView {
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

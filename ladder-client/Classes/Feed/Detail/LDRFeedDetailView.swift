@@ -52,7 +52,7 @@ struct LDRFeedDetailView: View {
     Button(
       action: {
         viewModel.savePin()
-        if let window = window {
+        if let window {
           LDRToastView.show(
             on: window,
             text: "Added to Read Later Pins\n\(viewModel.title)"

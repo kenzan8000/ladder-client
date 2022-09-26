@@ -144,7 +144,7 @@ extension LDRStorageProvider {
     let fetchRequest: NSFetchRequest<LDRPin> = LDRPin.fetchRequest()
     fetchRequest.fetchBatchSize = 20
     fetchRequest.returnsObjectsAsFaults = false
-    if let predicate = predicate {
+    if let predicate {
       fetchRequest.predicate = predicate
     }
     var models = [LDRPin]()

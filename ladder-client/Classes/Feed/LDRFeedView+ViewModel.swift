@@ -88,7 +88,7 @@ extension LDRFeedView {
       NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
         .receive(on: DispatchQueue.main)
         .sink { [weak self] _ in
-          if let self = self, self.keychain.reloadTimestampIsExpired {
+          if let self, self.keychain.reloadTimestampIsExpired {
             self.reloadUnreads()
           }
         }
