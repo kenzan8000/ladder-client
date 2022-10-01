@@ -44,24 +44,24 @@ jobs:
           path: unit_test_output
           destination: scan-output
       - slack_notify_fail
-  snapshot-tests-on-iphone12promax:
+  snapshot-tests-on-iphone14promax:
     executor:
       name: macos-executor
     steps:
       - setup
-      - run: bundle exec fastlane snapshot_tests_on_iphone12promax
+      - run: bundle exec fastlane snapshot_tests_on_iphone14promax
       - store_test_results:
           path: snapshot_test_output
       - store_artifacts:
           path: snapshot_test_output
           destination: scan-output
       - slack_notify_fail
-  snapshot-tests-on-ipodtouch7thgeneration:
+  snapshot-tests-on-iphonese3rdgeneration:
     executor:
       name: macos-executor
     steps:
       - setup
-      - run: bundle exec fastlane snapshot_tests_on_ipodtouch7thgeneration
+      - run: bundle exec fastlane snapshot_tests_on_iphonese3rdgeneration
       - store_test_results:
           path: snapshot_test_output
       - store_artifacts:
@@ -106,12 +106,12 @@ workflows:
           filters:
             branches:
               only: main
-      - snapshot-tests-on-iphone12promax:
+      - snapshot-tests-on-iphone14promax:
           context: ladder-client
           filters:
             branches:
               only: main
-      - snapshot-tests-on-ipodtouch7thgeneration:
+      - snapshot-tests-on-iphonese3rdgeneration:
           context: ladder-client
           filters:
             branches:
@@ -119,8 +119,8 @@ workflows:
       - beta:
           requires:
             - unit-tests
-            - snapshot-tests-on-iphone12promax
-            - snapshot-tests-on-ipodtouch7thgeneration
+            - snapshot-tests-on-iphone14promax
+            - snapshot-tests-on-iphonese3rdgeneration
           context: ladder-client
           filters:
             branches:
