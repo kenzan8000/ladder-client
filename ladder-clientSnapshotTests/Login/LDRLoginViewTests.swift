@@ -31,7 +31,7 @@ class LDRLoginViewTests: XCTestCase {
       assertSnapshot(
         matching: sut,
         as: .img(precision: 0.98),
-        named: named + "." + model.name
+        named: named + "-" + model.name
       )
     }
   }
@@ -47,7 +47,7 @@ class LDRLoginViewTests: XCTestCase {
       assertSnapshot(
         matching: sut,
         as: .img(precision: 0.98),
-        named: named + "." + model.name
+        named: named + "-" + model.name
       )
     }
   }
@@ -67,7 +67,7 @@ class LDRLoginViewTests: XCTestCase {
       assertSnapshot(
         matching: sut,
         as: .img(precision: 0.98),
-        named: named + "." + model.name
+        named: named + "-" + model.name
       )
     }
   }
@@ -88,7 +88,7 @@ class LDRLoginViewTests: XCTestCase {
       assertSnapshot(
         matching: sut,
         as: .img(precision: 0.98),
-        named: named + "." + model.name
+        named: named + "-" + model.name
       )
     }
   }
