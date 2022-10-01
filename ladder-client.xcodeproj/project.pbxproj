@@ -1340,9 +1340,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "ladder-client/ladder-client.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6RYZ4RB738;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
@@ -1359,6 +1361,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.kenzan8000.ladder-client";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore org.kenzan8000.ladder-client";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1374,10 +1377,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "app-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1391,6 +1396,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
 				PRODUCT_NAME = "Add the url to \"read later\".";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.kenzan8000.ladder-client.app-extension";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore org.kenzan8000.ladder-client.app-extension";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1677,9 +1683,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "ladder-client/ladder-client.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6RYZ4RB738;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
@@ -1696,6 +1704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.kenzan8000.ladder-client";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore org.kenzan8000.ladder-client";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
