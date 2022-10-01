@@ -108,6 +108,12 @@
 		E6D8CD2B26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */; };
 		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
 		E6DFAF6625F1ECF000789E1C /* LDRCoreData3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */; };
+		E6E0776728E8CB9D00946B8F /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
+		E6E0776828E8CB9D00946B8F /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
+		E6E0776928E8CB9D00946B8F /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
+		E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
+		E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
+		E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
 		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
 		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */; };
@@ -115,12 +121,6 @@
 		E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
 		E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
 		E6EC083823E7800800929110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EC083723E7800800929110 /* Assets.xcassets */; };
-		E6EE1FC625F8D9E800DBF887 /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
-		E6EE1FD525F8DB2300DBF887 /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
-		E6EE1FD625F8DB2300DBF887 /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
-		E6EE1FE425F8E08500DBF887 /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
-		E6EE1FE525F8E08500DBF887 /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
-		E6EE1FE625F8E08500DBF887 /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
 		E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */; };
 		E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */; };
 		E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */; };
@@ -937,9 +937,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6EE1FD525F8DB2300DBF887 /* LDRCoreData.sqlite-wal in Resources */,
-				E6EE1FD625F8DB2300DBF887 /* LDRCoreData.sqlite-shm in Resources */,
-				E6EE1FC625F8D9E800DBF887 /* LDRCoreData.sqlite in Resources */,
+				E6E0776928E8CB9D00946B8F /* LDRCoreData.sqlite-wal in Resources */,
+				E6E0776828E8CB9D00946B8F /* LDRCoreData.sqlite-shm in Resources */,
+				E6E0776728E8CB9D00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,10 +960,10 @@
 				E62A73D725EE61DE00E79F24 /* unread.json in Resources */,
 				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
 				E62A73C425EE606600E79F24 /* subs.json in Resources */,
-				E6EE1FE625F8E08500DBF887 /* LDRCoreData.sqlite-wal in Resources */,
+				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
-				E6EE1FE525F8E08500DBF887 /* LDRCoreData.sqlite-shm in Resources */,
-				E6EE1FE425F8E08500DBF887 /* LDRCoreData.sqlite in Resources */,
+				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
+				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
