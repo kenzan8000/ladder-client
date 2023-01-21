@@ -18,12 +18,13 @@ class LDRRequestPinAddTests: XCTestCase {
   }
 
   // MARK: test
+  
   func testLDRRequestPinAdd_whenUsingLDRTestURLProtocol_requestShouldBeValid() throws {
     let config = URLSessionConfiguration.default
     config.protocolClasses = [LDRTestURLProtocol.self]
     let keychain = LDRKeychainStub()
     keychain.ldrUrlString = "fastladder.com"
-    let sut = URLSession(configuration: config)
+    let sut = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: config))
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
     let title = "alextsui05 starred vercel/og-image"
 

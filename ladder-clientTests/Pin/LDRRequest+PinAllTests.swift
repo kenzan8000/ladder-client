@@ -23,7 +23,7 @@ class LDRRequestPinAllTests: XCTestCase {
     config.protocolClasses = [LDRTestURLProtocol.self]
     let keychain = LDRKeychainStub()
     keychain.ldrUrlString = "fastladder.com"
-    let sut = URLSession(configuration: config)
+    let sut = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: config))
     
     sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
      .sink(

@@ -59,12 +59,13 @@ class LDRDefaultSessionURLSession: LDRSessionURLSession {
   // MARK: property
   
   private var keychain: LDRKeychain
-  private let urlSession = URLSession.shared
+  private let urlSession: URLSession
   
   // MARK: initializer
   
-  init(keychain: LDRKeychain) {
+  init(keychain: LDRKeychain, urlSession: URLSession = .shared) {
     self.keychain = keychain
+    self.urlSession = urlSession
   }
 
   // MARK: public api

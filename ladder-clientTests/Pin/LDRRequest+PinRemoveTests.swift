@@ -23,7 +23,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     config.protocolClasses = [LDRTestURLProtocol.self]
     let keychain = LDRKeychainStub()
     keychain.ldrUrlString = "fastladder.com"
-    let sut = URLSession(configuration: config)
+    let sut = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: config))
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
     
     sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link, cookie: keychain.cookie))

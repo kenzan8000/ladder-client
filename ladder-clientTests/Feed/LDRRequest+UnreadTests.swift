@@ -24,8 +24,8 @@ class LDRRequestUnreadTests: XCTestCase {
     config.protocolClasses = [LDRTestURLProtocol.self]
     let keychain = LDRKeychainStub()
     keychain.ldrUrlString = "fastladder.com"
-    let sut = URLSession(configuration: config)
-    
+    let sut = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: config))
+
     sut.publisher(for: .unread(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in },

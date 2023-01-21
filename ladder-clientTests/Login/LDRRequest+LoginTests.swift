@@ -23,7 +23,7 @@ class LDRRequestLoginTests: XCTestCase {
     config.protocolClasses = [LDRTestURLProtocol.self]
     let keychain = LDRKeychainStub()
     keychain.ldrUrlString = "fastladder.com"
-    let sut = URLSession(configuration: config)
+    let sut = LDRDefaultLoginURLSession(keychain: keychain, urlSession: .init(configuration: config))
     
     sut.publisher(
         for: .login(ldrUrlString: keychain.ldrUrlString, username: "username", password: "password"),
