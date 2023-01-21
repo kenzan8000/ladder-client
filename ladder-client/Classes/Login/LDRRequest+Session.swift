@@ -55,11 +55,17 @@ protocol LDRSessionURLSession {
 }
 
 // MARK: - LDRDefaultSessionURLSession
-struct LDRDefaultSessionURLSession: LDRSessionURLSession {
+class LDRDefaultSessionURLSession: LDRSessionURLSession {
   // MARK: property
   
-  var keychain: LDRKeychain
+  private var keychain: LDRKeychain
   private let urlSession = URLSession.shared
+  
+  // MARK: initializer
+  
+  init(keychain: LDRKeychain) {
+    self.keychain = keychain
+  }
 
   // MARK: public api
   
@@ -75,8 +81,9 @@ struct LDRDefaultSessionURLSession: LDRSessionURLSession {
         return error
       }
       .receive(on: DispatchQueue.main)
-      .handleEvents(receiveOutput: {
-        keychain.addCookies(urlResponse: $0.response)
+      .handleEvents(receiveOutput: { [weak self] in
+        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
+        self?.keychain.cookie = HTTPCookieStorage.shared.cookieString(host: $0.response.url?.host)
       })
       .map { LDRSessionResponse(data: $0.data) }
       .eraseToAnyPublisher()

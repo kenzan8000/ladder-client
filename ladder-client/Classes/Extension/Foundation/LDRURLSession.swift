@@ -10,10 +10,10 @@ protocol LDRURLSession {
 }
 
 // MARK: - LDRURLSession
-struct LDRDefaultURLSession: LDRURLSession {
+class LDRDefaultURLSession: LDRURLSession {
   // MARK: property
   
-  private let keychain: LDRKeychain
+  private var keychain: LDRKeychain
   private let urlSession: URLSession
   
   // MARK: initializer
@@ -38,8 +38,9 @@ struct LDRDefaultURLSession: LDRURLSession {
         return error
       }
       .receive(on: DispatchQueue.main)
-      .handleEvents(receiveOutput: {
-        keychain.addCookies(urlResponse: $0.response)
+      .handleEvents(receiveOutput: { [weak self] in
+        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
+        self?.keychain.cookie = HTTPCookieStorage.shared.cookieString(host: $0.response.url?.host)
       })
       .map(\.data)
       .decode(type: Value.self, decoder: decoder)

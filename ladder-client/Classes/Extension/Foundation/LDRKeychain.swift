@@ -9,12 +9,6 @@ protocol LDRKeychain {
   var feedSubsUnreadSegmentString: String? { get set }
   var reloadTimestamp: String? { get set }
   var reloadTimestampIsExpired: Bool { get }
- 
-  /// save cookies by url response
-  ///
-  /// - Parameter urlResponse: url response
-  func addCookies(urlResponse: URLResponse)
-  func removeAllCookies()
   
   func updateReloadTimestamp()
 }
@@ -55,38 +49,6 @@ class LDRKeychainStore: LDRKeychain {
   }
   var reloadTimestampIsExpired: Bool {
     Date() > Date(timeIntervalSince1970: Double(reloadTimestamp ?? "0.0") ?? 0.0)
-  }
- 
-  func addCookies(urlResponse: URLResponse) {
-    guard let response = urlResponse as? HTTPURLResponse,
-          let responseUrl = response.url else {
-      return
-    }
-    var headerFields: [String: String] = [:]
-    response.allHeaderFields
-      .forEach { key, value in
-        if let key = key as? String, let value = value as? String {
-          headerFields[key] = value
-        }
-      }
-    HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: responseUrl).forEach {
-      HTTPCookieStorage.shared.setCookie($0)
-    }
-    cookie = HTTPCookieStorage.shared.cookies?
-      .compactMap { (cookie: HTTPCookie) -> HTTPCookie? in
-        guard let host = responseUrl.host,
-              cookie.domain.hasSuffix(host) else {
-          return nil
-        }
-        return cookie
-      }
-      .map { "\($0.name)=\($0.value);" }
-      .reduce("", +)
-  }
-  
-  func removeAllCookies() {
-    HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
-    cookie = nil
   }
   
   // MARK: initializer

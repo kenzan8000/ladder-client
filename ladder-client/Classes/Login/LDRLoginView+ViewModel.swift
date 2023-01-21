@@ -71,8 +71,8 @@ extension LDRLoginView {
       
       keychain.ldrUrlString = urlDomain
 
-      // HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
-      keychain.removeAllCookies()
+      HTTPCookieStorage.shared.removeCookies(since: .init(timeIntervalSince1970: 0))
+      keychain.cookie = nil
       
       urlSession.publisher(for: .login(ldrUrlString: urlDomain, username: username, password: password), ldrUrlString: urlDomain)
         .receive(on: DispatchQueue.main)
