@@ -85,6 +85,9 @@
 		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
 		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
 		E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */; };
+		E6A909BA297C72BC00BB6873 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A909B9297C72BC00BB6873 /* ShareViewController.swift */; };
+		E6A909BD297C72BC00BB6873 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */; };
+		E6A909C1297C72BC00BB6873 /* rss-feed-finder.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */; };
 		E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */; };
 		E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */; };
@@ -173,6 +176,13 @@
 			remoteGlobalIDString = E6C8E62023E52460004F410D;
 			remoteInfo = "app-extension";
 		};
+		E6A909BF297C72BC00BB6873 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6A909B6297C72BC00BB6873;
+			remoteInfo = "rss-feed-finder";
+		};
 		E6C8E62B23E52460004F410D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
@@ -190,6 +200,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */,
+				E6A909C1297C72BC00BB6873 /* rss-feed-finder.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +268,10 @@
 		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
 		E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
+		E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "rss-feed-finder.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6A909B9297C72BC00BB6873 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E6A909BC297C72BC00BB6873 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		E6A909BE297C72BC00BB6873 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRowTests.swift; sourceTree = "<group>"; };
 		E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Subs.swift"; sourceTree = "<group>"; };
 		E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+TouchAll.swift"; sourceTree = "<group>"; };
@@ -268,7 +283,7 @@
 		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
 		E6C8E62823E52460004F410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6C8E63223E524A5004F410D /* app-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "app-extension.entitlements"; sourceTree = "<group>"; };
+		E6C8E63223E524A5004F410D /* read-later.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "read-later.entitlements"; sourceTree = "<group>"; };
 		E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
 		E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+LDR.swift"; sourceTree = "<group>"; };
 		E6C9FFE425E6456500F9F21E /* LDRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRError.swift; sourceTree = "<group>"; };
@@ -333,6 +348,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E678DEC525E8E2C6009C75E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6A909B4297C72BC00BB6873 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -530,7 +552,8 @@
 			isa = PBXGroup;
 			children = (
 				E6690C521F5E537E0065B7B5 /* ladder-client */,
-				E6C8E62223E52460004F410D /* app-extension */,
+				E6C8E62223E52460004F410D /* read-later */,
+				E6A909B8297C72BC00BB6873 /* rss-feed-finder */,
 				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
 				E65E9D0725F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
 				E61E655C274A5A5800CCB483 /* ladder-clientUITests */,
@@ -548,6 +571,7 @@
 				E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */,
 				E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */,
 				E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */,
+				E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -599,6 +623,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		E6A909B8297C72BC00BB6873 /* rss-feed-finder */ = {
+			isa = PBXGroup;
+			children = (
+				E6A909B9297C72BC00BB6873 /* ShareViewController.swift */,
+				E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */,
+				E6A909BE297C72BC00BB6873 /* Info.plist */,
+			);
+			path = "rss-feed-finder";
+			sourceTree = "<group>";
+		};
 		E6BCD0171F944CA200B2E7E6 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,10 +671,10 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E6C8E62223E52460004F410D /* app-extension */ = {
+		E6C8E62223E52460004F410D /* read-later */ = {
 			isa = PBXGroup;
 			children = (
-				E6C8E63223E524A5004F410D /* app-extension.entitlements */,
+				E6C8E63223E524A5004F410D /* read-later.entitlements */,
 				E6C8E62323E52460004F410D /* Media.xcassets */,
 				E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */,
 				E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */,
@@ -648,7 +682,7 @@
 				E6C8E62A23E52460004F410D /* Info.plist */,
 				E6EC083723E7800800929110 /* Assets.xcassets */,
 			);
-			path = "app-extension";
+			path = "read-later";
 			sourceTree = "<group>";
 		};
 		E6C9FFDB25E644ED00F9F21E /* Constant */ = {
@@ -808,6 +842,7 @@
 			);
 			dependencies = (
 				E6C8E62C23E52460004F410D /* PBXTargetDependency */,
+				E6A909C0297C72BC00BB6873 /* PBXTargetDependency */,
 			);
 			name = "ladder-client";
 			packageProductDependencies = (
@@ -839,9 +874,26 @@
 			productReference = E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E6C8E62023E52460004F410D /* app-extension */ = {
+		E6A909B6297C72BC00BB6873 /* rss-feed-finder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "app-extension" */;
+			buildConfigurationList = E6A909C2297C72BC00BB6873 /* Build configuration list for PBXNativeTarget "rss-feed-finder" */;
+			buildPhases = (
+				E6A909B3297C72BC00BB6873 /* Sources */,
+				E6A909B4297C72BC00BB6873 /* Frameworks */,
+				E6A909B5297C72BC00BB6873 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rss-feed-finder";
+			productName = "rss-feed-finder";
+			productReference = E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		E6C8E62023E52460004F410D /* read-later */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "read-later" */;
 			buildPhases = (
 				E6C8E61D23E52460004F410D /* Sources */,
 				E6C8E61E23E52460004F410D /* Frameworks */,
@@ -851,7 +903,7 @@
 			);
 			dependencies = (
 			);
-			name = "app-extension";
+			name = "read-later";
 			packageProductDependencies = (
 				E6572DE225E77A4200C0F18C /* KeychainAccess */,
 				E66AD21A25E7CBAC0099D5B4 /* HTMLReader */,
@@ -866,7 +918,7 @@
 		E6690C481F5E537D0065B7B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
@@ -891,6 +943,9 @@
 					E678DEC725E8E2C6009C75E5 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = E6690C4F1F5E537D0065B7B5;
+					};
+					E6A909B6297C72BC00BB6873 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 					E6C8E62023E52460004F410D = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -917,7 +972,8 @@
 			projectRoot = "";
 			targets = (
 				E6690C4F1F5E537D0065B7B5 /* ladder-client */,
-				E6C8E62023E52460004F410D /* app-extension */,
+				E6C8E62023E52460004F410D /* read-later */,
+				E6A909B6297C72BC00BB6873 /* rss-feed-finder */,
 				E678DEC725E8E2C6009C75E5 /* ladder-clientTests */,
 				E65E9D0525F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
 				E61E655A274A5A5800CCB483 /* ladder-clientUITests */,
@@ -964,6 +1020,14 @@
 				E62A739125EE329600E79F24 /* session.html in Resources */,
 				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
 				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6A909B5297C72BC00BB6873 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6A909BD297C72BC00BB6873 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,6 +1179,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E6A909B3297C72BC00BB6873 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6A909BA297C72BC00BB6873 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6C8E61D23E52460004F410D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1157,7 +1229,7 @@
 		};
 		E65E9D5D25F7A3C000FFBA46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E6C8E62023E52460004F410D /* app-extension */;
+			target = E6C8E62023E52460004F410D /* read-later */;
 			targetProxy = E65E9D5C25F7A3C000FFBA46 /* PBXContainerItemProxy */;
 		};
 		E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */ = {
@@ -1168,17 +1240,30 @@
 		};
 		E678DF1125E907B1009C75E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E6C8E62023E52460004F410D /* app-extension */;
+			target = E6C8E62023E52460004F410D /* read-later */;
 			targetProxy = E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */;
+		};
+		E6A909C0297C72BC00BB6873 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6A909B6297C72BC00BB6873 /* rss-feed-finder */;
+			targetProxy = E6A909BF297C72BC00BB6873 /* PBXContainerItemProxy */;
 		};
 		E6C8E62C23E52460004F410D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E6C8E62023E52460004F410D /* app-extension */;
+			target = E6C8E62023E52460004F410D /* read-later */;
 			targetProxy = E6C8E62B23E52460004F410D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6A909BC297C72BC00BB6873 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		E6C8E62723E52460004F410D /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1351,6 +1436,8 @@
 					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ladder-client/Resources/Plists/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ladder Client";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1375,7 +1462,7 @@
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1384,7 +1471,7 @@
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "app-extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1658,6 +1745,8 @@
 					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ladder-client/Resources/Plists/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ladder Client";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1694,6 +1783,8 @@
 					"\"$(PODS_ROOT)/ISHTTPOperation/ISHTTPOperation\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ladder-client/Resources/Plists/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ladder Client";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1769,6 +1860,105 @@
 			};
 			name = Release;
 		};
+		E6A909C3297C72BC00BB6873 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.0.8;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E6A909C4297C72BC00BB6873 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.0.8;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E6A909C5297C72BC00BB6873 /* adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = 6RYZ4RB738;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.0.8;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = adhoc;
+		};
 		E6C8E62F23E52460004F410D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1777,14 +1967,14 @@
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "app-extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1811,14 +2001,14 @@
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "app-extension/app-extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6RYZ4RB738;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "app-extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1890,7 +2080,17 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "app-extension" */ = {
+		E6A909C2297C72BC00BB6873 /* Build configuration list for PBXNativeTarget "rss-feed-finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6A909C3297C72BC00BB6873 /* Debug */,
+				E6A909C4297C72BC00BB6873 /* Release */,
+				E6A909C5297C72BC00BB6873 /* adhoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "read-later" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6C8E62F23E52460004F410D /* Debug */,
@@ -1908,7 +2108,7 @@
 			repositoryURL = "https://github.com/nolanw/HTMLReader.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.5;
+				minimumVersion = 2.2.1;
 			};
 		};
 		E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
@@ -1916,7 +2116,7 @@
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.1;
+				minimumVersion = 4.2.2;
 			};
 		};
 		E65E9D5E25F7A3DC00FFBA46 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {

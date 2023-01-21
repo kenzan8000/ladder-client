@@ -17,7 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E6C8E62023E52460004F410D"
                BuildableName = "Add the url to &quot;read later&quot;..appex"
-               BlueprintName = "app-extension"
+               BlueprintName = "read-later"
                ReferencedContainer = "container:ladder-client.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
