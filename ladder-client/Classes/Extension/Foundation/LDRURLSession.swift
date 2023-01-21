@@ -9,8 +9,20 @@ protocol LDRURLSession {
   ) -> AnyPublisher<Value, LDRError>
 }
 
-// MARK: - URLSession + LDRURLSession
-extension URLSession: LDRURLSession {
+// MARK: - LDRURLSession
+struct LDRDefaultURLSession: LDRURLSession {
+  // MARK: property
+  
+  private let keychain: LDRKeychain
+  private let urlSession: URLSession
+  
+  // MARK: initializer
+  
+  init(keychain: LDRKeychain, urlSession: URLSession = .shared) {
+    self.keychain = keychain
+    self.urlSession = urlSession
+  }
+  
   // MARK: public api
   
   func publisher<Value: Decodable>(
@@ -18,7 +30,7 @@ extension URLSession: LDRURLSession {
     using decoder: JSONDecoder = .init()
   ) -> AnyPublisher<Value, LDRError> {
     // swiftlint:disable trailing_closure
-    dataTaskPublisher(for: request.urlRequest)
+    urlSession.dataTaskPublisher(for: request.urlRequest)
       .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
@@ -27,7 +39,7 @@ extension URLSession: LDRURLSession {
       }
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: {
-        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
+        keychain.addCookies(urlResponse: $0.response)
       })
       .map(\.data)
       .decode(type: Value.self, decoder: decoder)

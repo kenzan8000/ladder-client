@@ -27,7 +27,7 @@ class LDRRequestPinAddTests: XCTestCase {
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
     let title = "alextsui05 starred vercel/og-image"
 
-    sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: title, link: link))
+    sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: title, link: link, cookie: keychain.cookie))
      .sink(
        receiveCompletion: { _ in },
        receiveValue: { _ in }
@@ -41,7 +41,7 @@ class LDRRequestPinAddTests: XCTestCase {
     XCTAssertEqual(request.httpMethod, "POST")
     XCTAssertEqual(
       request.allHTTPHeaderFields,
-      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "title": title, "link": link.absoluteString].HTTPBodyValue())
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "title": title, "link": link.absoluteString].HTTPBodyValue(), cookie: nil)
     )
   }
   
@@ -52,7 +52,7 @@ class LDRRequestPinAddTests: XCTestCase {
     let sut = LDRPinAddURLSessionSuccessFake()
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link))
+    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -70,7 +70,7 @@ class LDRRequestPinAddTests: XCTestCase {
     let sut = LDRPinAddURLSessionFailureFake()
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link))
+    _ = sut.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: "alextsui05 starred vercel/og-image", link: link, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

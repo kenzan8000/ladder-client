@@ -10,6 +10,8 @@ extension LDRFeedView {
     // MARK: property
     var storageProvider: LDRStorageProvider
     var keychain: LDRKeychain
+    private let urlSession: LDRURLSession
+    private let subsUnreadURLSession: LDRURLSession
     @Published var segment: LDRFeedSubsUnreadSegment {
       didSet { feedSubsUnreadSegment = segment }
     }
@@ -55,7 +57,7 @@ extension LDRFeedView {
     private var subsCancellable: AnyCancellable?
     private var touchAllCancellables = Set<AnyCancellable>()
     private var unreadCancellables = Set<AnyCancellable>()
-    private var unreadOperationQueue = LDRFeedUnreadOperationQueue()
+    private let unreadOperationQueue: OperationQueue
 
     // MARK: initializer
     
@@ -75,6 +77,10 @@ extension LDRFeedView {
       self.keychain = keychain
       self.segment = segment
       self.onAlertDismiss = onAlertDismiss
+      let operationQueue = LDRFeedUnreadOperationQueue()
+      unreadOperationQueue = operationQueue
+      urlSession = LDRDefaultURLSession(keychain: keychain)
+      subsUnreadURLSession = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: .default, delegate: nil, delegateQueue: operationQueue))
       subsunreads = storageProvider.fetchSubsUnreads(by: segment)
       rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
       folders = Array(Set(subsunreads.map { $0.folder })).sorted()
@@ -119,7 +125,7 @@ extension LDRFeedView {
       
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      subsCancellable = URLSession.shared.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString), using: decoder)
+      subsCancellable = urlSession.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie), using: decoder)
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in
@@ -153,7 +159,7 @@ extension LDRFeedView {
       storageProvider.updateSubsUnread(subsunread, state: .read)
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      URLSession.shared.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunread.subscribeId), using: decoder)
+      urlSession.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: keychain.cookie), using: decoder)
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { _ in },
@@ -184,13 +190,14 @@ extension LDRFeedView {
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       subsunreads.publisher
         .compactMap { $0.state == .unloaded ? $0 : nil }
-        .flatMap { [weak self] subsunread in
-          URLSession(configuration: .default, delegate: nil, delegateQueue: self?.unreadOperationQueue)
+        .compactMap { [weak self] subsunread in
+          self?.subsUnreadURLSession
             .publisher(
-              for: LDRRequest.unread(apiKey: self?.keychain.apiKey, ldrUrlString: self?.keychain.ldrUrlString, subscribeId: subsunread.subscribeId),
+              for: LDRRequest.unread(apiKey: self?.keychain.apiKey, ldrUrlString: self?.keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: self?.keychain.cookie),
               using: decoder
             )
         }
+        .flatMap { $0 }
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] _ in

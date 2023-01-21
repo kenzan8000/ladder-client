@@ -54,8 +54,12 @@ protocol LDRSessionURLSession {
   ) -> AnyPublisher<LDRSessionResponse, LDRError>
 }
 
-// MARK: - URLSession + LDRSessionURLSession
-extension URLSession: LDRSessionURLSession {
+// MARK: - LDRDefaultSessionURLSession
+struct LDRDefaultSessionURLSession: LDRSessionURLSession {
+  // MARK: property
+  
+  var keychain: LDRKeychain
+  private let urlSession = URLSession.shared
 
   // MARK: public api
   
@@ -63,7 +67,7 @@ extension URLSession: LDRSessionURLSession {
     for request: LDRRequest<LDRSessionResponse>
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
     // swiftlint:disable trailing_closure
-    dataTaskPublisher(for: request.urlRequest)
+    urlSession.dataTaskPublisher(for: request.urlRequest)
       .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
@@ -72,7 +76,7 @@ extension URLSession: LDRSessionURLSession {
       }
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: {
-        HTTPCookieStorage.shared.addCookies(urlResponse: $0.response)
+        keychain.addCookies(urlResponse: $0.response)
       })
       .map { LDRSessionResponse(data: $0.data) }
       .eraseToAnyPublisher()

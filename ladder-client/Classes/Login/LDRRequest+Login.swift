@@ -49,8 +49,12 @@ protocol LDRLoginURLSession {
   ) -> AnyPublisher<LDRSessionResponse, LDRError>
 }
 
-// MARK: - URLSession
-extension URLSession: LDRLoginURLSession {
+// MARK: - LDRDefaultLoginURLSession
+struct LDRDefaultLoginURLSession: LDRLoginURLSession {
+  // MARK: property
+  
+  let keychain: LDRKeychain
+  private let urlSession = URLSession.shared
 
   // MARK: public api
   
@@ -58,7 +62,7 @@ extension URLSession: LDRLoginURLSession {
     for request: LDRRequest<LDRLoginResponse>,
     ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
-    dataTaskPublisher(for: request.urlRequest)
+    urlSession.dataTaskPublisher(for: request.urlRequest)
       .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
@@ -73,7 +77,7 @@ extension URLSession: LDRLoginURLSession {
           username = queryItems.first { $0.name == "username" }?.value ?? ""
           password = queryItems.first { $0.name == "password" }?.value ?? ""
         }
-        return URLSession.shared.publisher(
+        return LDRDefaultSessionURLSession(keychain: keychain).publisher(
           for: .session(ldrUrlString: ldrUrlString, username: username, password: password, authenticityToken: result.authencityToken)
         )
       }

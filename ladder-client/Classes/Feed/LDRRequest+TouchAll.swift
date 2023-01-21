@@ -11,8 +11,9 @@ extension LDRRequest where Response == LDRTouchAllResponse {
   ///   - apiKey: apiKey string
   ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - subscribeId: subscribe id
+  ///   - cookie: cookie string
   /// - Returns:
-  static func touchAll(apiKey: String?, ldrUrlString: String?, subscribeId: Int) -> Self {
+  static func touchAll(apiKey: String?, ldrUrlString: String?, subscribeId: Int, cookie: String?) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.touchAll)
     let body = [
       "ApiKey": apiKey ?? "",
@@ -21,7 +22,7 @@ extension LDRRequest where Response == LDRTouchAllResponse {
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: .defaultHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body, cookie: cookie)
     )
   }
 }

@@ -52,11 +52,12 @@ struct LDRRequest<Response> {
 // MARK: - LDRRequestHeader
 typealias LDRRequestHeader = [String: String]
 extension LDRRequestHeader {
-  static func defaultHeader(url: URL, body: Data?) -> LDRRequestHeader {
+  static func defaultHeader(url: URL, body: Data?, cookie: String?) -> LDRRequestHeader {
     [
       "Content-Type": "application/json",
       "Content-Length": "\(String(describing: body?.count ?? 0))",
-      "Cookie": .ldrCookie(host: url.host ?? ""),
+      // "Cookie": .ldrCookie(host: url.host ?? ""),
+      "Cookie": cookie ?? "",
     ]
   }
   

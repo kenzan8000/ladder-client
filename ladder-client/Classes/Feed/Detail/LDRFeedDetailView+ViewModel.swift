@@ -10,6 +10,7 @@ extension LDRFeedDetailView {
     // MARK: property
     let storageProvider: LDRStorageProvider
     let keychain: LDRKeychain
+    private let urlSession: LDRURLSession
     @Published var subsunread: LDRFeedSubsUnread
     let onAlertDismiss: () -> Void
     @Published var index = 0
@@ -43,6 +44,7 @@ extension LDRFeedDetailView {
       self.keychain = keychain
       self.subsunread = subsunread
       self.onAlertDismiss = onAlertDismiss
+      urlSession = LDRDefaultURLSession(keychain: keychain)
       unreads = subsunread.unreads.sorted { $0.id < $1.id }
       NotificationCenter.default.publisher(for: .ldrDidLogin)
         .receive(on: DispatchQueue.main)
@@ -78,7 +80,7 @@ extension LDRFeedDetailView {
         return
       }
       storageProvider.savePin(title: unread.title, link: unread.link)
-      URLSession.shared.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: unread.title, link: unread.linkUrl))
+      urlSession.publisher(for: .pinAdd(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, title: unread.title, link: unread.linkUrl, cookie: keychain.cookie), using: .init())
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in

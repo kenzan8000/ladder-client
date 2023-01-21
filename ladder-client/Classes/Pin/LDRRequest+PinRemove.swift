@@ -11,8 +11,9 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
   ///   - apiKey: apiKey string
   ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - link: link URL to add the list
+  ///   - cookie: cookie string
   /// - Returns: LDRRequest
-  static func pinRemove(apiKey: String?, ldrUrlString: String?, link: URL) -> Self {
+  static func pinRemove(apiKey: String?, ldrUrlString: String?, link: URL, cookie: String?) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.pinRemove)
     let body = [
       "ApiKey": apiKey ?? "",
@@ -21,7 +22,7 @@ extension LDRRequest where Response == LDRPinRemoveResponse {
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: .defaultHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body, cookie: cookie)
     )
   }
 }

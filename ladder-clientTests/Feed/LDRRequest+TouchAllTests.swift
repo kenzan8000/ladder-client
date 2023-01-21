@@ -27,7 +27,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     keychain.ldrUrlString = "fastladder.com"
     let sut = URLSession(configuration: config)
 
-    sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
+    sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { _ in }
@@ -41,7 +41,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     XCTAssertEqual(request.httpMethod, "POST")
     XCTAssertEqual(
       request.allHTTPHeaderFields,
-      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "subscribe_id": "\(subscribeId)"].HTTPBodyValue())
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "subscribe_id": "\(subscribeId)"].HTTPBodyValue(), cookie: nil)
     )
   }
 
@@ -52,7 +52,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     let keychain = LDRKeychainStub()
     let sut = LDRTouchAllURLSessionSuccessFake()
 
-    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
+    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -70,7 +70,7 @@ class LDRRequestTouchAllTests: XCTestCase {
     let keychain = LDRKeychainStub()
     let sut = LDRTouchAllURLSessionFailureFake()
 
-    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId))
+    _ = sut.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subscribeId, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

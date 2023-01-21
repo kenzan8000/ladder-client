@@ -53,7 +53,6 @@
 		E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
 		E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
-		E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
 		E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE225E77A4200C0F18C /* KeychainAccess */; };
@@ -131,7 +130,6 @@
 		E6F07F042699F3CA00D5F3D4 /* Snapshotting+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F07F032699F3CA00D5F3D4 /* Snapshotting+Model.swift */; };
 		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
 		E6F25DDD24A2501F008C5E58 /* LDRFeedView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */; };
-		E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */; };
 		E6F8CDA826D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */; };
 		E6F8CDA926D731FF0033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */; };
 		E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* LadderClientApp.swift */; };
@@ -315,7 +313,6 @@
 		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
 		E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedView+ViewModel.swift"; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
-		E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
 		E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession.DataTaskPublisher+StatusCode.swift"; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* LadderClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadderClientApp.swift; sourceTree = "<group>"; };
 		E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRStorageProvider+Fixture.swift"; sourceTree = "<group>"; };
@@ -637,7 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
-				E6F6B8771F95C9E100C964DC /* HTTPCookieStorage+Cookie.swift */,
 				E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */,
 				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
 				E68CA3A825DC227A005E591D /* LDRURLSession.swift */,
@@ -1140,7 +1136,6 @@
 				E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */,
 				E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */,
 				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,
-				E6F6B8781F95C9E200C964DC /* HTTPCookieStorage+Cookie.swift in Sources */,
 				E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */,
 				E6852FBC26441AC6005BAFFB /* Logger+LDR.swift in Sources */,
 				E64B6B3E26C1745600E9B39D /* LDRPinRow+ViewModel.swift in Sources */,
@@ -1202,7 +1197,6 @@
 				E66AD21525E797A90099D5B4 /* LDRURLSession.swift in Sources */,
 				E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */,
 				E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */,
-				E6541CC925E78E8400746F2E /* HTTPCookieStorage+Cookie.swift in Sources */,
 				E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */,
 				E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */,
 				E6F8CDA926D731FF0033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,

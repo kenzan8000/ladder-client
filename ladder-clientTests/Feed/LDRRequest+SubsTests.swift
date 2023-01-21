@@ -25,7 +25,7 @@ class LDRRequestSubsTests: XCTestCase {
     keychain.ldrUrlString = "fastladder.com"
     let sut = URLSession(configuration: config)
     
-    sut.publisher(for: LDRRequest.subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
+    sut.publisher(for: LDRRequest.subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { _ in }
@@ -39,7 +39,7 @@ class LDRRequestSubsTests: XCTestCase {
     XCTAssertEqual(request.httpMethod, "POST")
     XCTAssertEqual(
       request.allHTTPHeaderFields,
-      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": ""].HTTPBodyValue())
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": ""].HTTPBodyValue(), cookie: nil)
     )
   }
   
@@ -49,7 +49,7 @@ class LDRRequestSubsTests: XCTestCase {
     let keychain = LDRKeychainStub()
     let sut = LDRSubsURLSessionFake()
 
-    _ = sut.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
+    _ = sut.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

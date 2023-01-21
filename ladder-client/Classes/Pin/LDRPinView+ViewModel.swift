@@ -9,6 +9,7 @@ extension LDRPinView {
     // MARK: property
     let storageProvider: LDRStorageProvider
     let keychain: LDRKeychain
+    private let urlSession: LDRURLSession
     let onAlertDismiss: () -> Void
     @Published var pins: [LDRPin]
     @Published var safariUrl: URL?
@@ -45,6 +46,7 @@ extension LDRPinView {
       self.storageProvider = storageProvider
       self.keychain = keychain
       self.onAlertDismiss = onAlertDismiss
+      urlSession = LDRDefaultURLSession(keychain: keychain)
       pins = storageProvider.fetchPins()
       NotificationCenter.default.publisher(for: .ldrDidLogin)
         .receive(on: DispatchQueue.main)
@@ -84,7 +86,7 @@ extension LDRPinView {
 
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
-      pinAllCancellable = URLSession.shared.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString), using: decoder)
+      pinAllCancellable = urlSession.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie), using: decoder)
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in
@@ -115,7 +117,7 @@ extension LDRPinView {
         alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: onAlertDismiss)
         return
       }
-      URLSession.shared.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: url))
+      urlSession.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: url, cookie: keychain.cookie), using: .init())
         .receive(on: DispatchQueue.main)
         .sink(
           receiveCompletion: { [weak self] result in

@@ -10,8 +10,9 @@ extension LDRRequest where Response == LDRSubsResponse {
   /// - Parameters:
   ///   - apiKey: apiKey string
   ///   - ldrUrlString: domain + url path (optional) that runs fastladder app   
+  ///   - cookie: cookie string
   /// - Returns: LDRRequest
-  static func subs(apiKey: String?, ldrUrlString: String?) -> Self {
+  static func subs(apiKey: String?, ldrUrlString: String?, cookie: String?) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.subs)
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
     urlComponents?.queryItems = [URLQueryItem(name: "unread", value: "1")]
@@ -19,7 +20,7 @@ extension LDRRequest where Response == LDRSubsResponse {
     return LDRRequest(
       url: urlComponents?.url ?? url,
       method: .post(body),
-      headers: .defaultHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body, cookie: cookie)
     )
   }
 }

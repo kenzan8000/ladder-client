@@ -25,7 +25,7 @@ class LDRRequestPinAllTests: XCTestCase {
     keychain.ldrUrlString = "fastladder.com"
     let sut = URLSession(configuration: config)
     
-    sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
+    sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
      .sink(
        receiveCompletion: { _ in },
        receiveValue: { _ in }
@@ -39,7 +39,7 @@ class LDRRequestPinAllTests: XCTestCase {
     XCTAssertEqual(request.httpMethod, "POST")
     XCTAssertEqual(
       request.allHTTPHeaderFields,
-      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": ""].HTTPBodyValue())
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": ""].HTTPBodyValue(), cookie: nil)
     )
   }
   
@@ -49,7 +49,7 @@ class LDRRequestPinAllTests: XCTestCase {
     let keychain = LDRKeychainStub()
     let sut = LDRPinAllURLSessionFake()
 
-    _ = sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString))
+    _ = sut.publisher(for: .pinAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

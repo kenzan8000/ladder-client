@@ -10,14 +10,15 @@ extension LDRRequest where Response == LDRPinAllResponse {
   /// - Parameters:
   ///   - apiKey: apiKey string
   ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
+  ///   - cookie: cookie string
   /// - Returns: LDRRequest
-  static func pinAll(apiKey: String?, ldrUrlString: String?) -> Self {
+  static func pinAll(apiKey: String?, ldrUrlString: String?, cookie: String?) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.Api.pinAll)
     let body = ["ApiKey": apiKey ?? ""].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .post(body),
-      headers: .defaultHeader(url: url, body: body)
+      headers: .defaultHeader(url: url, body: body, cookie: cookie)
     )
   }
 }

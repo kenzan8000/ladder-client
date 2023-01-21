@@ -19,7 +19,8 @@ class LDRAddPinViewController: UIViewController {
     guard let items = extensionContext?.inputItems as? [NSExtensionItem],
           let apiKey = keychainStore.apiKey,
           let ldrUrlString = keychainStore.ldrUrlString else {
-      label.text = "Could not retrieve the URL to add to your 'read later' list."
+          
+      label.text = "Could not retrieve the URL adding to your \"read later\" list."
       return
     }
     items
@@ -33,7 +34,7 @@ class LDRAddPinViewController: UIViewController {
             if let url = data as? URL {
               promise(.success(url))
             } else {
-              promise(.failure(LDRError.others("Could not retrieve the URL to add to your 'read later' list.")))
+              promise(.failure(LDRError.others("Could not retrieve the URL adding to your \"read later\" list.")))
             }
           }
         }
@@ -50,7 +51,7 @@ class LDRAddPinViewController: UIViewController {
         }
       })
       .flatMap { (response: LDRHTMLTitleResponse) -> AnyPublisher<LDRPinAddResponse, LDRError> in
-        URLSession.shared.publisher(for: .pinAdd(apiKey: apiKey, ldrUrlString: ldrUrlString, title: response.title, link: response.url))
+        LDRDefaultURLSession(keychain: keychainStore).publisher(for: .pinAdd(apiKey: apiKey, ldrUrlString: ldrUrlString, title: response.title, link: response.url, cookie: keychainStore.cookie))
       }
       .receive(on: DispatchQueue.main)
       .sink(
@@ -60,7 +61,7 @@ class LDRAddPinViewController: UIViewController {
             self?.label.text = error.legibleDescription
           }
           else {
-            self?.label.text = "Succeeded to add the URL to your 'read later' list."
+            self?.label.text = "Succeeded to add the URL to your \"read later\" list."
             self?.extensionContext?.completeRequest(returningItems: self?.extensionContext?.inputItems, completionHandler: nil)
           }
         },

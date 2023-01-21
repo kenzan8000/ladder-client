@@ -26,7 +26,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     let sut = URLSession(configuration: config)
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
     
-    sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
+    sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link, cookie: keychain.cookie))
      .sink(
        receiveCompletion: { _ in },
        receiveValue: { _ in }
@@ -40,7 +40,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     XCTAssertEqual(request.httpMethod, "POST")
     XCTAssertEqual(
       request.allHTTPHeaderFields,
-      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "link": link.absoluteString].HTTPBodyValue())
+      LDRRequestHeader.defaultHeader(url: url, body: ["ApiKey": "", "link": link.absoluteString].HTTPBodyValue(), cookie: nil)
     )
   }
   
@@ -51,7 +51,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     let sut = LDRPinRemoveURLSessionSuccessFake()
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
+    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }
@@ -69,7 +69,7 @@ class LDRRequestPinRemoveTests: XCTestCase {
     let sut = LDRPinRemoveURLSessionFailureFake()
     let link = try XCTUnwrap(URL(string: "https://github.com/vercel/og-image"))
 
-    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link))
+    _ = sut.publisher(for: .pinRemove(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, link: link, cookie: keychain.cookie))
       .sink(
         receiveCompletion: { _ in exp.fulfill() },
         receiveValue: { result = $0 }

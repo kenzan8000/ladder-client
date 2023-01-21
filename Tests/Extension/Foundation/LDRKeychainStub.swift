@@ -12,6 +12,11 @@ class LDRKeychainStub: LDRKeychain {
     set { keychain["LDRKeychain.apiKey"] = newValue }
   }
   
+  var cookie: String? {
+    get { keychain["LDRKeychain.cookie"] }
+    set { keychain["LDRKeychain.cookie"] = newValue }
+  }
+  
   var ldrUrlString: String? {
     get { keychain["LDRKeychain.ldrUrlString"] }
     set { keychain["LDRKeychain.ldrUrlString"] = newValue }
