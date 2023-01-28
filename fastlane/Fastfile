@@ -55,6 +55,7 @@ platform :ios do
     )
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client")
     match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client.app-extension")
+    match(type: "appstore", app_identifier: "org.kenzan8000.ladder-client.rss-feed-finder")
     gym(export_method: "app-store", configuration: "Release", scheme: "ladder-client")
     pilot
   end
