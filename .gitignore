@@ -104,5 +104,6 @@ ladder-client-certificates
 test.html
 ladder-client.xcodeproj/xcuserdata
 ladder-client.xcodeproj/project.xcworkspace
+ladder-client/Resources/Images/*.afphoto
 
 .env

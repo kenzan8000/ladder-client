@@ -96,7 +96,6 @@
 		E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */; };
 		E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
 		E6C32EE41F92CC610052DDE3 /* LDRStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */; };
-		E6C8E62423E52460004F410D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62323E52460004F410D /* Media.xcassets */; };
 		E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */; };
 		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
 		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -283,7 +282,6 @@
 		E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPin.swift; sourceTree = "<group>"; };
 		E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRStorageProvider.swift; sourceTree = "<group>"; };
 		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6C8E62323E52460004F410D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
 		E6C8E62823E52460004F410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -680,7 +678,6 @@
 			isa = PBXGroup;
 			children = (
 				E6C8E63223E524A5004F410D /* read-later.entitlements */,
-				E6C8E62323E52460004F410D /* Media.xcassets */,
 				E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */,
 				E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */,
 				E6C8E62723E52460004F410D /* MainInterface.storyboard */,
@@ -1041,7 +1038,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6C8E62423E52460004F410D /* Media.xcassets in Resources */,
 				E6EC083823E7800800929110 /* Assets.xcassets in Resources */,
 				E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */,
 			);
