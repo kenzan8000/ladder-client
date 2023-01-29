@@ -33,13 +33,30 @@ struct LDRRSSFeed: Codable {
   let url: URL
 }
 
-// MARK: - URLSession + LDRRSSFeedResponse
-extension URLSession {
+// MARK: - LDRRSSFeedURLSession
+protocol LDRRSSFeedURLSession {
   func data(
-    for request: LDRRequest<LDRRSSFeedResponse>,
-    using decoder: JSONDecoder = .init()
+    for request: LDRRequest<LDRRSSFeedResponse>
+  ) async throws -> (LDRRSSFeedResponse, URLResponse)
+}
+
+// MARK: - LDRDefaultRSSFeedURLSession
+class LDRDefaultRSSFeedURLSession: LDRRSSFeedURLSession {
+  // MARK: property
+  
+  let urlSession: URLSession
+  
+  // MARK: initializer
+  
+  init(urlSession: URLSession = .shared) {
+    self.urlSession = urlSession
+  }
+  
+  // MARK: public api
+  func data(
+    for request: LDRRequest<LDRRSSFeedResponse>
   ) async throws -> (LDRRSSFeedResponse, URLResponse) {
-    let (data, urlResponse) = try await data(for: request.urlRequest)
+    let (data, urlResponse) = try await urlSession.data(for: request.urlRequest)
     let feeds = HTMLDocument(data: data, contentTypeHeader: "text/html")
       .nodes(matchingSelector: "link")
       .compactMap { (element: HTMLElement) -> LDRRSSFeed? in

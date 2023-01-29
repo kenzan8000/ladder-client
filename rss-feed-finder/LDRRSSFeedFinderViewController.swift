@@ -4,9 +4,7 @@ import UniformTypeIdentifiers
 // MARK: - LDRRSSFeedFinderViewController
 class LDRRSSFeedFinderViewController: UIViewController {
   // MARK: property
-  private lazy var viewModel = LDRRSSFeedFinderViewModel(
-    urlSession: URLSession.shared
-  )
+  private lazy var rssFeedURLSession: LDRRSSFeedURLSession = LDRDefaultRSSFeedURLSession()
 
   // MARK: life cycle
   override func viewDidLoad() {
@@ -17,7 +15,7 @@ class LDRRSSFeedFinderViewController: UIViewController {
     }
     Task {
       do {
-        let (response, _) = try await viewModel.loadRSSFeeds(for: .rssFeed(url: url))
+        let (response, _) = try await rssFeedURLSession.data(for: .rssFeed(url: url))
       } catch {
         print(error)
       }
