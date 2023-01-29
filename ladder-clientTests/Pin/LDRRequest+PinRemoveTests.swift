@@ -96,11 +96,14 @@ struct LDRPinRemoveURLSessionSuccessFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data(from url: URL) async throws -> (Data, URLResponse) {
-    (
-      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)),
-      URLResponse()
-    )
+  func data<LDRPinRemoveResponse>(
+    for request: LDRRequest<LDRPinRemoveResponse>,
+    using decoder: JSONDecoder = .init()
+  ) async throws -> (LDRPinRemoveResponse, URLResponse) where LDRPinRemoveResponse: Decodable {
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    let data = try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8))
+    let response = try decoder.decode(LDRPinRemoveResponse.self, from: data)
+    return (response, URLResponse())
   }
 }
 
@@ -119,10 +122,13 @@ struct LDRPinRemoveURLSessionFailureFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data(from url: URL) async throws -> (Data, URLResponse) {
-    (
-      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": false}".data(using: .utf8)),
-      URLResponse()
-    )
+  func data<LDRPinRemoveResponse>(
+    for request: LDRRequest<LDRPinRemoveResponse>,
+    using decoder: JSONDecoder = .init()
+  ) async throws -> (LDRPinRemoveResponse, URLResponse) where LDRPinRemoveResponse: Decodable {
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    let data = try XCTUnwrap("{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8))
+    let response = try decoder.decode(LDRPinRemoveResponse.self, from: data)
+    return (response, URLResponse())
   }
 }

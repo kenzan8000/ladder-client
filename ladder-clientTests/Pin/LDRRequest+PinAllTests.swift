@@ -77,12 +77,14 @@ struct LDRPinAllURLSessionFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data(from url: URL) async throws -> (Data, URLResponse) {
+  func data<LDRPinAllResponse>(
+    for request: LDRRequest<LDRPinAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) async throws -> (LDRPinAllResponse, URLResponse) where LDRPinAllResponse: Decodable {
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
     let url = try XCTUnwrap(Bundle(for: type(of: LDRRequestPinAllTests())).url(forResource: "pinAll", withExtension: "json"))
     let data = try Data(contentsOf: url, options: .uncached)
-    return (
-      try XCTUnwrap(data),
-      URLResponse()
-    )
+    let response = try decoder.decode(LDRPinAllResponse.self, from: data)
+    return (response, URLResponse())
   }
 }

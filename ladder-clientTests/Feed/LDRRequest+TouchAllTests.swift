@@ -97,11 +97,14 @@ struct LDRTouchAllURLSessionSuccessFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data(from url: URL) async throws -> (Data, URLResponse) {
-    (
-      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)),
-      URLResponse()
-    )
+  func data<LDRTouchAllResponse>(
+    for request: LDRRequest<LDRTouchAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) async throws -> (LDRTouchAllResponse, URLResponse) where LDRTouchAllResponse: Decodable {
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    let data = try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8))
+    let response = try decoder.decode(LDRTouchAllResponse.self, from: data)
+    return (response, URLResponse())
   }
 }
 
@@ -120,10 +123,13 @@ struct LDRTouchAllURLSessionFailureFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data(from url: URL) async throws -> (Data, URLResponse) {
-    (
-      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": false}".data(using: .utf8)),
-      URLResponse()
-    )
+  func data<LDRTouchAllResponse>(
+    for request: LDRRequest<LDRTouchAllResponse>,
+    using decoder: JSONDecoder = .init()
+  ) async throws -> (LDRTouchAllResponse, URLResponse) where LDRTouchAllResponse: Decodable {
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    let data = try XCTUnwrap("{\"ErrorCode\": 400, \"isSuccess\": false}".data(using: .utf8))
+    let response = try decoder.decode(LDRTouchAllResponse.self, from: data)
+    return (response, URLResponse())
   }
 }

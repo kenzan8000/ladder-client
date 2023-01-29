@@ -4,9 +4,8 @@ import UniformTypeIdentifiers
 // MARK: - LDRRSSFeedFinderViewController
 class LDRRSSFeedFinderViewController: UIViewController {
   // MARK: property
-  private let keychain: LDRKeychain = LDRKeychainStore(service: LDR.service, group: LDR.group)
   private lazy var viewModel = LDRRSSFeedFinderViewModel(
-    urlSession: LDRDefaultURLSession(keychain: keychain)
+    urlSession: URLSession.shared
   )
 
   // MARK: life cycle
@@ -18,7 +17,7 @@ class LDRRSSFeedFinderViewController: UIViewController {
     }
     Task {
       do {
-        let response = try await viewModel.loadRSSFeeds(from: url)
+        let (response, _) = try await viewModel.loadRSSFeeds(for: .rssFeed(url: url))
       } catch {
         print(error)
       }
