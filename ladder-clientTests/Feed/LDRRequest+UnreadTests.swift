@@ -78,4 +78,13 @@ struct LDRUnreadURLSessionFake: LDRURLSession {
     }
     .eraseToAnyPublisher()
   }
+  
+  func data(from url: URL) async throws -> (Data, URLResponse) {
+    let url = try XCTUnwrap(Bundle(for: type(of: LDRRequestUnreadTests())).url(forResource: "unread", withExtension: "json"))
+    let data = try Data(contentsOf: url, options: .uncached)
+    return (
+      try XCTUnwrap(data),
+      URLResponse()
+    )
+  }
 }

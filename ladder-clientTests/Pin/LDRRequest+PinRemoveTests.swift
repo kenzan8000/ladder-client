@@ -95,6 +95,13 @@ struct LDRPinRemoveURLSessionSuccessFake: LDRURLSession {
     }
     .eraseToAnyPublisher()
   }
+  
+  func data(from url: URL) async throws -> (Data, URLResponse) {
+    (
+      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": true}".data(using: .utf8)),
+      URLResponse()
+    )
+  }
 }
 
 // MARK: - LDRPinRemoveURLSessionFailureFake
@@ -110,5 +117,12 @@ struct LDRPinRemoveURLSessionFailureFake: LDRURLSession {
       promise(.success(response))
     }
     .eraseToAnyPublisher()
+  }
+  
+  func data(from url: URL) async throws -> (Data, URLResponse) {
+    (
+      try XCTUnwrap("{\"ErrorCode\": 0, \"isSuccess\": false}".data(using: .utf8)),
+      URLResponse()
+    )
   }
 }

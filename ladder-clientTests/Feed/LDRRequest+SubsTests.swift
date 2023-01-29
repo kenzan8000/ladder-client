@@ -76,4 +76,13 @@ struct LDRSubsURLSessionFake: LDRURLSession  {
     }
     .eraseToAnyPublisher()
   }
+  
+  func data(from url: URL) async throws -> (Data, URLResponse) {
+    let url = try XCTUnwrap(Bundle(for: type(of: LDRRequestSubsTests())).url(forResource: "subs", withExtension: "json"))
+    let data = try Data(contentsOf: url, options: .uncached)
+    return (
+      try XCTUnwrap(data),
+      URLResponse()
+    )
+  }
 }
