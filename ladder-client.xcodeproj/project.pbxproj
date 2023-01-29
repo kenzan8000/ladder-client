@@ -98,6 +98,7 @@
 		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
 		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
 		E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */; };
+		E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */; };
 		E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */; };
 		E6A909BD297C72BC00BB6873 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */; };
 		E6A909C1297C72BC00BB6873 /* rss-feed-finder.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -283,6 +284,7 @@
 		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
 		E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
+		E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewModel.swift; sourceTree = "<group>"; };
 		E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "rss-feed-finder.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewController.swift; sourceTree = "<group>"; };
 		E6A909BC297C72BC00BB6873 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 			children = (
 				E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */,
 				E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */,
+				E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */,
 				E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */,
 				E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */,
 				E6A909BE297C72BC00BB6873 /* Info.plist */,
@@ -1209,6 +1212,7 @@
 				E605CF4B2985C6BE0086681A /* LDRKeychain.swift in Sources */,
 				E605CF4C2985C6C70086681A /* LDR.swift in Sources */,
 				E6518C432987029500A4AE28 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,
+				E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */,
 				E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */,
 				E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */,
 				E6518C402986F73100A4AE28 /* LDRError.swift in Sources */,
