@@ -56,7 +56,6 @@ extension LDRRequestHeader {
     [
       "Content-Type": "application/json",
       "Content-Length": "\(String(describing: body?.count ?? 0))",
-      // "Cookie": .ldrCookie(host: url.host ?? ""),
       "Cookie": cookie ?? "",
     ]
   }

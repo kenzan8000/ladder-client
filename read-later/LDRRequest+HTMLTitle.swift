@@ -6,11 +6,10 @@ import KeychainAccess
 extension LDRRequest where Response == LDRHTMLTitleResponse {
   // MARK: static api
   
-  /// Request adding a link to read later list
+  /// Request retrieving the title from the HTML URL
   /// - Parameters:
-  ///   - link: pin url
-  ///   - title: pin title
-  /// - Returns: LDRRequest
+  ///   - url: HTML `URL`
+  /// - Returns: `LDRRequest`
   static func htmlTitle(url: URL) -> Self {
     return LDRRequest(
       url: url,
