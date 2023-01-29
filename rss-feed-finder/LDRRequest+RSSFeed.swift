@@ -16,14 +16,14 @@ extension LDRRequest where Response == LDRRSSFeedResponse {
 }
 
 // MARK: - LDRRSSFeedResponse
-struct LDRRSSFeedResponse: Codable {
+struct LDRRSSFeedResponse {
   // MARK: property
   
   let feeds: [LDRRSSFeed]
 }
 
 // MARK: - LDRRSSFeed
-struct LDRRSSFeed: Codable {
+struct LDRRSSFeed {
   // MARK: property
   
   /// RSS Feed title
