@@ -1,6 +1,17 @@
 import Combine
 import Foundation
 
+// MARK: - URLSessionProtocol
+protocol URLSessionProtocol {
+  func data(
+    for request: URLRequest
+  ) async throws -> (Data, URLResponse)
+}
+
+// MARK: - URLSession + URLSessionProtocol
+extension URLSession: URLSessionProtocol {
+}
+
 // MARK: - LDRURLSession
 protocol LDRURLSession {
   func publisher<Value: Decodable>(

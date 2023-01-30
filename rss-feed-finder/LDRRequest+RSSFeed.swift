@@ -44,11 +44,11 @@ protocol LDRRSSFeedURLSession {
 class LDRDefaultRSSFeedURLSession: LDRRSSFeedURLSession {
   // MARK: property
   
-  let urlSession: URLSession
+  let urlSession: URLSessionProtocol
   
   // MARK: initializer
   
-  init(urlSession: URLSession = .shared) {
+  init(urlSession: URLSessionProtocol = URLSession.shared) {
     self.urlSession = urlSession
   }
   

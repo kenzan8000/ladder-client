@@ -51,7 +51,6 @@
 		E64B6B4526C1779B00E9B39D /* LDRPinRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
-		E6518C3D2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */; };
 		E6518C402986F73100A4AE28 /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
 		E6518C41298701DC00A4AE28 /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
 		E6518C422987028100A4AE28 /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
@@ -84,7 +83,7 @@
 		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
 		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
 		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
-		E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */; platformFilter = ios; };
+		E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */; };
 		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
 		E67C464D24878F7700480D46 /* LDRLoginView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */; };
 		E68195D1277DFD5400168177 /* LDRTestURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68195D0277DFD5400168177 /* LDRTestURLProtocol.swift */; };
@@ -133,6 +132,10 @@
 		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
 		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */; };
+		E6E8362D2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */; };
+		E6E8362F29886B1100890B41 /* rss-feeds.html in Resources */ = {isa = PBXBuildFile; fileRef = E6E8362E29886B1100890B41 /* rss-feeds.html */; };
+		E6E83634298870F700890B41 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */; };
+		E6E836352988713700890B41 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */; };
 		E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
 		E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
 		E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
@@ -317,6 +320,8 @@
 		E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailView.swift; sourceTree = "<group>"; };
 		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedDetailView+ViewModel.swift"; sourceTree = "<group>"; };
+		E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRssFeed+RSSFeedTests.swift"; sourceTree = "<group>"; };
+		E6E8362E29886B1100890B41 /* rss-feeds.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "rss-feeds.html"; sourceTree = "<group>"; };
 		E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LDRCoreData.xcdatamodel; sourceTree = "<group>"; };
 		E6E8D4B325F3C60200F71D10 /* LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDR.swift; sourceTree = "<group>"; };
 		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -727,6 +732,8 @@
 		E6E836292988625D00890B41 /* rss-feed-finder */ = {
 			isa = PBXGroup;
 			children = (
+				E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */,
+				E6E8362E29886B1100890B41 /* rss-feeds.html */,
 			);
 			path = "rss-feed-finder";
 			sourceTree = "<group>";
@@ -1051,6 +1058,7 @@
 				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
 				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
+				E6E8362F29886B1100890B41 /* rss-feeds.html in Resources */,
 				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1145,6 +1153,7 @@
 				E6C32EE41F92CC610052DDE3 /* LDRStorageProvider.swift in Sources */,
 				E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */,
 				E6DFAF6625F1ECF000789E1C /* LDRCoreData3.xcmappingmodel in Sources */,
+				E6E836352988713700890B41 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
 				E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */,
 				E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */,
@@ -1192,6 +1201,7 @@
 				E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */,
 				E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */,
 				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
+				E6E8362D2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift in Sources */,
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
@@ -1215,7 +1225,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6518C3D2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6518C422987028100A4AE28 /* Logger+LDR.swift in Sources */,
 				E605CF4B2985C6BE0086681A /* LDRKeychain.swift in Sources */,
 				E605CF4C2985C6C70086681A /* LDR.swift in Sources */,
@@ -1224,6 +1233,7 @@
 				E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */,
 				E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */,
 				E6518C402986F73100A4AE28 /* LDRError.swift in Sources */,
+				E6E83634298870F700890B41 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6518C41298701DC00A4AE28 /* LDRURLSession.swift in Sources */,
 				E6518C442987029F00A4AE28 /* HTTPCookieStorage+Cookie.swift in Sources */,
 			);
@@ -1282,6 +1292,7 @@
 		};
 		E678DF1125E907B1009C75E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = E6C8E62023E52460004F410D /* read-later */;
 			targetProxy = E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */;
 		};
