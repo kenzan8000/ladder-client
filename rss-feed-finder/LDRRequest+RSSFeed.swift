@@ -35,7 +35,7 @@ struct LDRRSSFeed: Codable {
 
 // MARK: - LDRRSSFeedURLSession
 protocol LDRRSSFeedURLSession {
-  func data(
+  func response(
     for request: LDRRequest<LDRRSSFeedResponse>
   ) async throws -> (LDRRSSFeedResponse, URLResponse)
 }
@@ -53,7 +53,7 @@ class LDRDefaultRSSFeedURLSession: LDRRSSFeedURLSession {
   }
   
   // MARK: public api
-  func data(
+  func response(
     for request: LDRRequest<LDRRSSFeedResponse>
   ) async throws -> (LDRRSSFeedResponse, URLResponse) {
     let (data, urlResponse) = try await urlSession.data(for: request.urlRequest)

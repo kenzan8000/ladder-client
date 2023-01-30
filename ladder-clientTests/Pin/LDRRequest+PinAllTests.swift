@@ -77,7 +77,7 @@ struct LDRPinAllURLSessionFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data<LDRPinAllResponse>(
+  func response<LDRPinAllResponse>(
     for request: LDRRequest<LDRPinAllResponse>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (LDRPinAllResponse, URLResponse) where LDRPinAllResponse: Decodable {

@@ -619,6 +619,7 @@
 				E62A73AE25EE538900E79F24 /* Pin */,
 				E659C00B25EE1FE9005AAF87 /* Login */,
 				E6EE203025F8EF4200DBF887 /* Constant */,
+				E6E836292988625D00890B41 /* rss-feed-finder */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
@@ -721,6 +722,13 @@
 				E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		E6E836292988625D00890B41 /* rss-feed-finder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "rss-feed-finder";
 			sourceTree = "<group>";
 		};
 		E6EE1FE325F8E06F00DBF887 /* Tests */ = {

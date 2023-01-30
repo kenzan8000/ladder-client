@@ -97,7 +97,7 @@ struct LDRTouchAllURLSessionSuccessFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data<LDRTouchAllResponse>(
+  func response<LDRTouchAllResponse>(
     for request: LDRRequest<LDRTouchAllResponse>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (LDRTouchAllResponse, URLResponse) where LDRTouchAllResponse: Decodable {
@@ -123,7 +123,7 @@ struct LDRTouchAllURLSessionFailureFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data<LDRTouchAllResponse>(
+  func response<LDRTouchAllResponse>(
     for request: LDRRequest<LDRTouchAllResponse>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (LDRTouchAllResponse, URLResponse) where LDRTouchAllResponse: Decodable {

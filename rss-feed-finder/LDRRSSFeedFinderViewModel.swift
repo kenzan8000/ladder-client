@@ -23,10 +23,8 @@ struct LDRRSSFeedFinderViewModel {
   /// - Parameter extensionContext: app extension's context. if it has URL, search RSS feeds on the URL.
   /// - Returns: `LDRRSSFeedResponse` RSS feeds information
   func loadRSSFeeds(extensionContext: NSExtensionContext?) async throws -> LDRRSSFeedResponse {
-    guard let inputItems = extensionContext?.inputItems as? [NSExtensionItem],
-          let apiKey = keychain.apiKey,
-          let ldrUrlString = keychain.ldrUrlString else {
-      throw LDRError.others("") // TODO: error handling
+    guard let inputItems = extensionContext?.inputItems as? [NSExtensionItem] else {
+      throw LDRError.others("") // TODO: add a new error for this
     }
     let itemProvider = inputItems
       .compactMap { $0.attachments }
@@ -35,9 +33,9 @@ struct LDRRSSFeedFinderViewModel {
       .first
     let item = try await itemProvider?.loadItem(forTypeIdentifier: UTType.url.identifier)
     guard let url = item as? URL else {
-      throw LDRError.others("") // TODO: error handling
+      throw LDRError.others("") // TODO: add a new error for this
     }
-    let (response, _) = try await rssFeedURLSession.data(for: .rssFeed(url: url))
+    let (response, _) = try await rssFeedURLSession.response(for: .rssFeed(url: url))
     return response
   }
 }

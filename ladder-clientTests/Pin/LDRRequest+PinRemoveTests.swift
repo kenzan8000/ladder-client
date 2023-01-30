@@ -96,7 +96,7 @@ struct LDRPinRemoveURLSessionSuccessFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data<LDRPinRemoveResponse>(
+  func response<LDRPinRemoveResponse>(
     for request: LDRRequest<LDRPinRemoveResponse>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (LDRPinRemoveResponse, URLResponse) where LDRPinRemoveResponse: Decodable {
@@ -122,7 +122,7 @@ struct LDRPinRemoveURLSessionFailureFake: LDRURLSession {
     .eraseToAnyPublisher()
   }
   
-  func data<LDRPinRemoveResponse>(
+  func response<LDRPinRemoveResponse>(
     for request: LDRRequest<LDRPinRemoveResponse>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (LDRPinRemoveResponse, URLResponse) where LDRPinRemoveResponse: Decodable {

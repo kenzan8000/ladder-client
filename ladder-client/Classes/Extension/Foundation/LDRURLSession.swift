@@ -8,7 +8,7 @@ protocol LDRURLSession {
     using decoder: JSONDecoder
   ) -> AnyPublisher<Value, LDRError>
   
-  func data<Value: Decodable>(
+  func response<Value: Decodable>(
     for request: LDRRequest<Value>,
     using decoder: JSONDecoder
   ) async throws -> (Value, URLResponse)
@@ -58,7 +58,7 @@ class LDRDefaultURLSession: LDRURLSession {
     // swiftlint:enable trailing_closure
   }
   
-  func data<Value: Decodable>(
+  func response<Value: Decodable>(
     for request: LDRRequest<Value>,
     using decoder: JSONDecoder = .init()
   ) async throws -> (Value, URLResponse) {

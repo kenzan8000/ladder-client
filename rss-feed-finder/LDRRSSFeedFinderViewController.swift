@@ -1,5 +1,4 @@
 import UIKit
-import UniformTypeIdentifiers
 
 // MARK: - LDRRSSFeedFinderViewController
 class LDRRSSFeedFinderViewController: UIViewController {
