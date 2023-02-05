@@ -100,11 +100,9 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
       .compactMap { (element: HTMLElement) -> LDRRSSFeed? in
         let subsDeleteButton = element.nodes(matchingSelector: "button")
           .first { button in button.attributes.contains { $0.key == "class" && $0.value == "subs_delete" } }
-        /*
         let id = subsDeleteButton?.attributes
-          .first { $0.key == "id" && $0.value.hasPrefix("subs_") }
-          .map { UInt(String($0.value.dropLast("subs_".count))) }
-        */
+          .first { $0.key == "id" && $0.value.hasPrefix("sub_") }
+          .map { UInt(String($0.value.dropFirst("sub_".count))) } as? UInt
         let subscribeList = element.nodes(matchingSelector: "a")
           .first { a in a.attributes.contains { $0.key == "class" && $0.value == "subscribe_list" } }
         let title = subscribeList?.textContent
@@ -112,11 +110,11 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
           .first { a in a.attributes.contains { $0.key == "class" && $0.value == "feedlink" } }
         let url = feedlink?.attributes
           .first { $0.key == "href" }
-          .map { URL(string: $0.value) }
-        guard let title, let url, let url else {
+          .map { URL(string: $0.value) } as? URL
+        guard let title, let url else {
           return nil
         }
-        return LDRRSSFeed(id: nil, title: title, url: url)
+        return LDRRSSFeed(id: id, title: title, url: url)
       }
     if feeds.isEmpty {
       throw LDRError.rssFeedNotFound
