@@ -2,17 +2,17 @@ import Foundation
 import HTMLReader
 
 // MARK: - LDRRequest + RSSFolder
-extension LDRRequest where Response == LDRSubscribeResponse {
+extension LDRRequest where Response == LDRGetSubscribeResponse {
   // MARK: static api
   
-  /// Request checking if already subscribed, retrieving the folders, title, and url
+  /// Request checking if the URL has the RSS feeds
   /// - Parameters:
   ///   - feedURL: RSS feed `URL`
   ///   - apiKey: apiKey string
   ///   - ldrUrlString: domain + url path (optional) that runs fastladder app
   ///   - cookie: cookie string
   /// - Returns: `LDRRequest`
-  static func subscriptionParam(
+  static func getSubscribe(
     feedUrl: URL,
     apiKey: String?,
     ldrUrlString: String?,
@@ -30,9 +30,23 @@ extension LDRRequest where Response == LDRSubscribeResponse {
   }
 }
 
-// MARK: - LDRSubscribeResponse
-struct LDRSubscribeResponse: Codable {
+// MARK: - LDRGetSubscribeResponse
+struct LDRGetSubscribeResponse: Codable {
   // MARK: property
+  
+  /// RSS feeds to subscribe
+  let feeds: [LDRRSSFeed]
+  
+  /// available folders to assign to RSS feed
+  let folders: [LDRRSSFolder]
+}
+
+// MARK: - LDRRSSFeed
+struct LDRRSSFeed: Codable {
+  // MARK: property
+  
+  /// RSS feed id if the feed is already subscribed
+  let id: UInt?
   
   /// RSS feed title
   let title: String
@@ -41,24 +55,21 @@ struct LDRSubscribeResponse: Codable {
   let url: URL
   
   /// flag if RSS feed is already subscribed
-  let isSubscribed: Bool
-  
-  /// available folders to assign to RSS feed
-  let folders: [LDRRSSFolder]
+  var isSubscribed: Bool { id != nil }
 }
 
 // MARK: - LDRRSSFolder
 struct LDRRSSFolder: Codable {
   // MARK: property
-  let id: Int
+  let id: UInt
   let name: String
 }
 
 // MARK: - LDRSubscribeURLSession
 protocol LDRSubscribeURLSession {
   func response(
-    for request: LDRRequest<LDRSubscribeResponse>
-  ) async throws -> (LDRSubscribeResponse, URLResponse)
+    for request: LDRRequest<LDRGetSubscribeResponse>
+  ) async throws -> (LDRGetSubscribeResponse, URLResponse)
 }
 
 // MARK: - LDRDefaultSubscribeURLSession
@@ -74,30 +85,35 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
   }
   
   // MARK: public api
+  
   func response(
-    for request: LDRRequest<LDRSubscribeResponse>
-  ) async throws -> (LDRSubscribeResponse, URLResponse) {
+    for request: LDRRequest<LDRGetSubscribeResponse>
+  ) async throws -> (LDRGetSubscribeResponse, URLResponse) {
     let (data, urlResponse) = try await urlSession.data(for: request.urlRequest)
     let html = HTMLDocument(data: data, contentTypeHeader: "text/html")
-    let title = ""
-    let url = URL(string: "")
-    let isSubscribed = false
-    let folders = html
-      .nodes(matchingSelector: "select")
-      .compactMap { (element: HTMLElement) -> LDRRSSFolder? in
-        let isRSSFolder = element.attributes.contains {
-          $0.key == "id" && $0.value == "folder_id"
-        }
-        guard isRSSFolder else {
+    guard let feedCandidates = html.nodes(matchingSelector: "ul").first(where: { (element: HTMLElement) in
+      element.attributes.contains { $0.key == "id" && $0.value == "feed_candidates" }
+    }) else {
+      throw LDRError.rssFeedNotFound
+    }
+    let feeds = feedCandidates.nodes(matchingSelector: "li")
+      .compactMap { (element: HTMLElement) -> LDRRSSFeed? in
+        let subscribeList = element.nodes(matchingSelector: "a")
+          .first { a in a.attributes.contains { $0.key == "class" && $0.value == "subscribe_list" } }
+        let title = subscribeList?.textContent
+        let feedlink = element.nodes(matchingSelector: "a")
+          .first { a in a.attributes.contains { $0.key == "class" && $0.value == "feedlink" } }
+        let url = feedlink?.attributes
+          .first { $0.key == "href" }
+          .map { URL(string: $0.value) }
+        guard let title, let url, let url else {
           return nil
         }
-        return LDRRSSFolder(id: 0, name: "")
+        return LDRRSSFeed(id: nil, title: title, url: url)
       }
-    return (LDRSubscribeResponse(
-      title: title,
-      url: url!,
-      isSubscribed: isSubscribed,
-      folders: folders
-    ), urlResponse)
+    if feeds.isEmpty {
+      throw LDRError.rssFeedNotFound
+    }
+    return (LDRGetSubscribeResponse(feeds: feeds, folders: []), urlResponse)
   }
 }

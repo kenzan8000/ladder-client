@@ -95,6 +95,10 @@
 		E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
 		E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */; };
 		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
+		E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */; };
+		E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */; };
+		E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */; };
+		E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */; };
 		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
 		E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */; };
 		E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */; };
@@ -285,6 +289,10 @@
 		E68CA3A825DC227A005E591D /* LDRURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRURLSession.swift; sourceTree = "<group>"; };
 		E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Login.swift"; sourceTree = "<group>"; };
 		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
+		E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SubscribeTests.swift"; sourceTree = "<group>"; };
+		E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-cnn.com.html"; sourceTree = "<group>"; };
+		E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-kenzan8000.org.html"; sourceTree = "<group>"; };
+		E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-github.com.html"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
 		E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
 		E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewModel.swift; sourceTree = "<group>"; };
@@ -621,8 +629,9 @@
 			isa = PBXGroup;
 			children = (
 				E62A73C225EE5E5C00E79F24 /* Feed */,
-				E62A73AE25EE538900E79F24 /* Pin */,
 				E659C00B25EE1FE9005AAF87 /* Login */,
+				E62A73AE25EE538900E79F24 /* Pin */,
+				E6999E47299040E40037DEB9 /* Subscribe */,
 				E6EE203025F8EF4200DBF887 /* Constant */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
@@ -641,6 +650,17 @@
 			isa = PBXGroup;
 			children = (
 				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
+			);
+			path = Subscribe;
+			sourceTree = "<group>";
+		};
+		E6999E47299040E40037DEB9 /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */,
+				E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */,
+				E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */,
+				E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */,
 			);
 			path = Subscribe;
 			sourceTree = "<group>";
@@ -1049,11 +1069,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */,
+				E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */,
 				E62A73D725EE61DE00E79F24 /* unread.json in Resources */,
 				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
 				E62A73C425EE606600E79F24 /* subs.json in Resources */,
 				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
+				E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */,
+				E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */,
 				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
 				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
@@ -1200,6 +1223,7 @@
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
+				E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
