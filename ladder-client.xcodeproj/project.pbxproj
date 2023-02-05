@@ -412,8 +412,9 @@
 				E66DFE1924A8B95000790F8B /* LDRTabView.swift */,
 				E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */,
 				E6FFD6661F6DEB7900AD947E /* Feed */,
-				E6FFD6681F6DEB7900AD947E /* Pin */,
 				E6C7B3601F849286000EFCE6 /* Login */,
+				E6FFD6681F6DEB7900AD947E /* Pin */,
+				E6999E462990407A0037DEB9 /* Subscribe */,
 				E6C32EE01F92CC610052DDE3 /* CoreData */,
 				E6C9FFDB25E644ED00F9F21E /* Constant */,
 				E601320C261F292C002FCD64 /* Extension */,
@@ -636,6 +637,14 @@
 			path = OS;
 			sourceTree = "<group>";
 		};
+		E6999E462990407A0037DEB9 /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
+			);
+			path = Subscribe;
+			sourceTree = "<group>";
+		};
 		E69CB81A25FE211C00682DD9 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,7 +659,6 @@
 				E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */,
 				E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */,
 				E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */,
-				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
 				E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */,
 				E6A909BE297C72BC00BB6873 /* Info.plist */,
 				E665B48E2985BA0F0092CD9A /* Assets.xcassets */,
