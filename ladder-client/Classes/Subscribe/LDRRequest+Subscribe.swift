@@ -31,7 +31,7 @@ extension LDRRequest where Response == LDRGetSubscribeResponse {
 }
 
 // MARK: - LDRGetSubscribeResponse
-struct LDRGetSubscribeResponse: Codable {
+struct LDRGetSubscribeResponse: Codable, Equatable {
   // MARK: property
   
   /// RSS feeds to subscribe
@@ -42,7 +42,7 @@ struct LDRGetSubscribeResponse: Codable {
 }
 
 // MARK: - LDRRSSFeed
-struct LDRRSSFeed: Codable {
+struct LDRRSSFeed: Codable, Equatable {
   // MARK: property
   
   /// RSS feed id if the feed is already subscribed
@@ -59,7 +59,7 @@ struct LDRRSSFeed: Codable {
 }
 
 // MARK: - LDRRSSFolder
-struct LDRRSSFolder: Codable {
+struct LDRRSSFolder: Codable, Equatable {
   // MARK: property
   let id: UInt
   let name: String

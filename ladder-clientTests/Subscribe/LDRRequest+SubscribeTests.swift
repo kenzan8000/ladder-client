@@ -63,6 +63,22 @@ class LDRRequestSubscribeTests: XCTestCase {
     XCTAssertEqual(response.feeds.last?.url, URL(string: "https://kenzan8000.org/comments/feed/"))
     XCTAssertEqual(response.folders, folders)
   }
+  
+  func testGetSusbscribeResponse_whenLoadingGithubComHTML_shouldRaiseError() async throws {
+    let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-github.com"))
+    let keychain = LDRKeychainStub()
+    let url = try XCTUnwrap(URL(string: "https://github.com"))
+    do {
+      let (_, _) = try await sut.response(for: .getSubscribe(
+        feedUrl: url,
+        apiKey: keychain.apiKey,
+        ldrUrlString: keychain.ldrUrlString,
+        cookie: keychain.cookie
+      ))
+    } catch {
+      XCTAssertNotNil(error)
+    }
+  }
 }
 
 private struct FakeURLSessoin: URLSessionProtocol {
