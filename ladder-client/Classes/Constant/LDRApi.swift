@@ -2,6 +2,7 @@
 enum LDRApi {
   static let login = "/login"
   static let session = "/session"
+  static let subscribe = "/subscribe"
   enum Api {
     static let subs = "/api/subs"
     static let unread = "/api/unread"
