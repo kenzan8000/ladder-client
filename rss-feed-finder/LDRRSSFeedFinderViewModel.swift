@@ -5,20 +5,21 @@ import UniformTypeIdentifiers
 struct LDRRSSFeedFinderViewModel {
   // MARK: property
   private let keychain: LDRKeychain
-  private let rssFeedURLSession: LDRRSSFeedURLSession
+  // private let rssFeedURLSession: LDRRSSFeedURLSession
   
   // MARK: initializer
   
   init(
-    keychain: LDRKeychain,
-    rssFeedURLSession: LDRRSSFeedURLSession = LDRDefaultRSSFeedURLSession()
+    keychain: LDRKeychain
+    // rssFeedURLSession: LDRRSSFeedURLSession = LDRDefaultRSSFeedURLSession()
   ) {
     self.keychain = keychain
-    self.rssFeedURLSession = rssFeedURLSession
+    // self.rssFeedURLSession = rssFeedURLSession
   }
   
   // MARK: public api
   
+  /*
   /// Find RSS feeds from app extension's contenxt
   /// - Parameter extensionContext: app extension's context. if it has URL, search RSS feeds on the URL.
   /// - Returns: `LDRRSSFeedResponse` RSS feeds information
@@ -38,4 +39,5 @@ struct LDRRSSFeedFinderViewModel {
     let (response, _) = try await rssFeedURLSession.response(for: .rssFeed(url: url))
     return response
   }
+  */
 }

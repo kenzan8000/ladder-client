@@ -137,10 +137,6 @@
 		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
 		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
 		E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */; };
-		E6E8362D2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */; };
-		E6E8362F29886B1100890B41 /* rss-feeds.html in Resources */ = {isa = PBXBuildFile; fileRef = E6E8362E29886B1100890B41 /* rss-feeds.html */; };
-		E6E83634298870F700890B41 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */; };
-		E6E836352988713700890B41 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */; };
 		E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
 		E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
 		E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
@@ -261,7 +257,6 @@
 		E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
 		E64D046C25F0F8A800654902 /* LDRCoreData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "LDRCoreData 3.xcdatamodel"; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+RSSFeed.swift"; sourceTree = "<group>"; };
 		E6522F8B24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedDetailView+WebViewModel.swift"; sourceTree = "<group>"; };
 		E652C02A24A3676400C744DE /* LDRFeedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRow.swift; sourceTree = "<group>"; };
 		E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "rss-feed-finder.entitlements"; sourceTree = "<group>"; };
@@ -326,8 +321,6 @@
 		E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailView.swift; sourceTree = "<group>"; };
 		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedDetailView+ViewModel.swift"; sourceTree = "<group>"; };
-		E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRssFeed+RSSFeedTests.swift"; sourceTree = "<group>"; };
-		E6E8362E29886B1100890B41 /* rss-feeds.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "rss-feeds.html"; sourceTree = "<group>"; };
 		E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LDRCoreData.xcdatamodel; sourceTree = "<group>"; };
 		E6E8D4B325F3C60200F71D10 /* LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDR.swift; sourceTree = "<group>"; };
 		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -630,7 +623,6 @@
 				E62A73AE25EE538900E79F24 /* Pin */,
 				E659C00B25EE1FE9005AAF87 /* Login */,
 				E6EE203025F8EF4200DBF887 /* Constant */,
-				E6E836292988625D00890B41 /* rss-feed-finder */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
@@ -658,7 +650,6 @@
 				E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */,
 				E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */,
 				E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */,
-				E6518C3C2986F25A00A4AE28 /* LDRRequest+RSSFeed.swift */,
 				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
 				E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */,
 				E6A909BE297C72BC00BB6873 /* Info.plist */,
@@ -734,15 +725,6 @@
 				E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		E6E836292988625D00890B41 /* rss-feed-finder */ = {
-			isa = PBXGroup;
-			children = (
-				E6E8362C2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift */,
-				E6E8362E29886B1100890B41 /* rss-feeds.html */,
-			);
-			path = "rss-feed-finder";
 			sourceTree = "<group>";
 		};
 		E6EE1FE325F8E06F00DBF887 /* Tests */ = {
@@ -1065,7 +1047,6 @@
 				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
 				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
-				E6E8362F29886B1100890B41 /* rss-feeds.html in Resources */,
 				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1160,7 +1141,6 @@
 				E6C32EE41F92CC610052DDE3 /* LDRStorageProvider.swift in Sources */,
 				E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */,
 				E6DFAF6625F1ECF000789E1C /* LDRCoreData3.xcmappingmodel in Sources */,
-				E6E836352988713700890B41 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
 				E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */,
 				E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */,
@@ -1209,7 +1189,6 @@
 				E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */,
 				E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */,
 				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
-				E6E8362D2988690000890B41 /* LDRRssFeed+RSSFeedTests.swift in Sources */,
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
@@ -1245,7 +1224,6 @@
 				E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */,
 				E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */,
 				E6518C402986F73100A4AE28 /* LDRError.swift in Sources */,
-				E6E83634298870F700890B41 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6518C41298701DC00A4AE28 /* LDRURLSession.swift in Sources */,
 				E6518C442987029F00A4AE28 /* HTTPCookieStorage+Cookie.swift in Sources */,
 			);

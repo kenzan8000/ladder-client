@@ -11,6 +11,7 @@ class LDRRSSFeedFinderViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    /*
     Task {
       do {
         let feeds = try await viewModel.loadRSSFeeds(extensionContext: extensionContext)
@@ -18,6 +19,7 @@ class LDRRSSFeedFinderViewController: UIViewController {
         print(error)
       }
     }
+    */
   }
 
 }
