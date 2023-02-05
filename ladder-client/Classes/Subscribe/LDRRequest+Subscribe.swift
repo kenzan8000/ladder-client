@@ -98,6 +98,13 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
     }
     let feeds = feedCandidates.nodes(matchingSelector: "li")
       .compactMap { (element: HTMLElement) -> LDRRSSFeed? in
+        let subsDeleteButton = element.nodes(matchingSelector: "button")
+          .first { button in button.attributes.contains { $0.key == "class" && $0.value == "subs_delete" } }
+        /*
+        let id = subsDeleteButton?.attributes
+          .first { $0.key == "id" && $0.value.hasPrefix("subs_") }
+          .map { UInt(String($0.value.dropLast("subs_".count))) }
+        */
         let subscribeList = element.nodes(matchingSelector: "a")
           .first { a in a.attributes.contains { $0.key == "class" && $0.value == "subscribe_list" } }
         let title = subscribeList?.textContent
