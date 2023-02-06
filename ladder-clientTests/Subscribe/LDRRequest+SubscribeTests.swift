@@ -4,7 +4,9 @@ import XCTest
 // MARK: - LDRRequestSubscribeTests
 class LDRRequestSubscribeTests: XCTestCase {
   // MARK: properties
+  
   private let folders: [LDRRSSFolder] = [
+    .init(id: 0, name: "Leave it uncategorized"),
     .init(id: 1, name: "company"),
     .init(id: 12, name: "news"),
     .init(id: 20, name: "jobs"),

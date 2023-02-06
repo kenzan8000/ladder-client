@@ -119,6 +119,21 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
     if feeds.isEmpty {
       throw LDRError.rssFeedNotFound
     }
-    return (LDRGetSubscribeResponse(feeds: feeds, folders: []), urlResponse)
+    let folderSelect = html.nodes(matchingSelector: "select")
+      .first { (element: HTMLElement) in
+        element.attributes.contains { $0.key == "id" && $0.value == "folder_id" }
+      }
+    let folders = folderSelect?.nodes(matchingSelector: "option")
+      .compactMap { (element: HTMLElement) -> LDRRSSFolder? in
+        let id = element.attributes
+          .first { $0.key == "value" }
+          .map { UInt($0.value) }
+        let name = element.textContent
+        guard let id, let id else {
+          return nil
+        }
+        return LDRRSSFolder(id: id, name: name)
+      } ?? []
+    return (LDRGetSubscribeResponse(feeds: feeds, folders: folders), urlResponse)
   }
 }
