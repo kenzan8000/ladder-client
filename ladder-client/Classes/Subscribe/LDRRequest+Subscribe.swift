@@ -19,13 +19,12 @@ extension LDRRequest where Response == LDRGetSubscribeResponse {
     cookie: String?
   ) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.subscribe)
-    var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    urlComponents?.queryItems = [URLQueryItem(name: "url", value: feedUrl.absoluteString)]
+    let queryItems = [URLQueryItem(name: "url", value: feedUrl.absoluteString)]
     let body = ["ApiKey": apiKey ?? ""].HTTPBodyValue()
     return LDRRequest(
-      url: urlComponents?.url ?? url,
-      method: .get([]),
-      headers: .defaultHeader(url: url, body: body, cookie: cookie)
+      url: url,
+      method: .get(queryItems),
+      headers: .defaultHTMLHeader(cookie: cookie)
     )
   }
 }

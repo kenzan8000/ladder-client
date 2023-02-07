@@ -60,6 +60,12 @@ extension LDRRequestHeader {
     ]
   }
   
+  static func defaultHTMLHeader(cookie: String?) -> LDRRequestHeader {
+    [
+      "Cookie": cookie ?? "",
+    ]
+  }
+  
   static func cookielessHeader(body: Data?) -> LDRRequestHeader {
     [
       "Content-Type": "application/json",
