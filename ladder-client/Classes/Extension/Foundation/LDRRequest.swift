@@ -72,4 +72,8 @@ extension LDRRequestHeader {
       "Content-Length": "\(String(describing: body?.count ?? 0))",
     ]
   }
+  
+  static func cookielessHTMLHeader() -> LDRRequestHeader {
+    [:]
+  }
 }

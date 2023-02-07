@@ -20,7 +20,6 @@ extension LDRRequest where Response == LDRGetSubscribeResponse {
   ) -> Self {
     let url = URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.subscribe)
     let queryItems = [URLQueryItem(name: "url", value: feedUrl.absoluteString)]
-    let body = ["ApiKey": apiKey ?? ""].HTTPBodyValue()
     return LDRRequest(
       url: url,
       method: .get(queryItems),

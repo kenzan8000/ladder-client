@@ -16,10 +16,11 @@ extension LDRRequest where Response == LDRLoginResponse {
       url: URL(ldrUrlString: ldrUrlString, ldrPath: LDRApi.login),
       method: .get(
         [
-          .init(name: "username", value: username),
-          .init(name: "password", value: password),
+          URLQueryItem(name: "username", value: username),
+          URLQueryItem(name: "password", value: password),
         ]
-      )
+      ),
+      headers: .cookielessHTMLHeader()
     )
   }
 }
@@ -69,7 +70,8 @@ struct LDRDefaultLoginURLSession: LDRLoginURLSession {
     for request: LDRRequest<LDRLoginResponse>,
     ldrUrlString: String?
   ) -> AnyPublisher<LDRSessionResponse, LDRError> {
-    urlSession.dataTaskPublisher(for: request.urlRequest)
+    let sessionUrlSession = LDRDefaultSessionURLSession(keychain: keychain)
+    return urlSession.dataTaskPublisher(for: request.urlRequest)
       .validate(statusCode: 200..<300)
       .mapError { urlError -> LDRError in
         let error = LDRError.networking(urlError)
@@ -84,7 +86,7 @@ struct LDRDefaultLoginURLSession: LDRLoginURLSession {
           username = queryItems.first { $0.name == "username" }?.value ?? ""
           password = queryItems.first { $0.name == "password" }?.value ?? ""
         }
-        return LDRDefaultSessionURLSession(keychain: keychain).publisher(
+        return sessionUrlSession.publisher(
           for: .session(ldrUrlString: ldrUrlString, username: username, password: password, authenticityToken: result.authencityToken)
         )
       }
