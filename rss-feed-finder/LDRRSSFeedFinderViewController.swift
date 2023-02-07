@@ -4,14 +4,14 @@ import UIKit
 class LDRRSSFeedFinderViewController: UIViewController {
   // MARK: property
   private let viewModel = LDRRSSFeedFinderViewModel(
-    keychain: LDRKeychainStore(service: LDR.service, group: LDR.group)
+    keychain: LDRKeychainStore(service: LDR.service, group: LDR.group),
+    rssFeedURLSession: LDRDefaultRSSFeedURLSession()
   )
 
   // MARK: life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    /*
     Task {
       do {
         let feeds = try await viewModel.loadRSSFeeds(extensionContext: extensionContext)
@@ -19,7 +19,6 @@ class LDRRSSFeedFinderViewController: UIViewController {
         print(error)
       }
     }
-    */
   }
 
 }

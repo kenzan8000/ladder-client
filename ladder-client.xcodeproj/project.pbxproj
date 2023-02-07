@@ -95,10 +95,11 @@
 		E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
 		E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */; };
 		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */; };
-		E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */; };
-		E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */; };
-		E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */; };
+		E69C614C2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C614B2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift */; };
+		E69C614D2992DFCA0077C2C5 /* LDRRequest+RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C614B2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift */; };
+		E69C614F2992E0280077C2C5 /* LDRRssFeed+RSSFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C614E2992E0280077C2C5 /* LDRRssFeed+RSSFeedTests.swift */; };
+		E69C61522992E1A20077C2C5 /* rss-feed-kenzan8000.org.html in Resources */ = {isa = PBXBuildFile; fileRef = E69C61502992E1A10077C2C5 /* rss-feed-kenzan8000.org.html */; };
+		E69C61532992E1A20077C2C5 /* rss-feed-google.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E69C61512992E1A10077C2C5 /* rss-feed-google.com.html */; };
 		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
 		E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */; };
 		E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */; };
@@ -110,8 +111,6 @@
 		E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */; };
 		E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */; };
 		E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
-		E6BEA242298878490067538F /* LDRRequest+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */; };
-		E6BEA243298878490067538F /* LDRRequest+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */; };
 		E6BEA244298880430067538F /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6BEA245298880590067538F /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
 		E6BEA246298880970067538F /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
@@ -289,10 +288,10 @@
 		E68CA3A825DC227A005E591D /* LDRURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRURLSession.swift; sourceTree = "<group>"; };
 		E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Login.swift"; sourceTree = "<group>"; };
 		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
-		E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SubscribeTests.swift"; sourceTree = "<group>"; };
-		E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-cnn.com.html"; sourceTree = "<group>"; };
-		E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-kenzan8000.org.html"; sourceTree = "<group>"; };
-		E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-github.com.html"; sourceTree = "<group>"; };
+		E69C614B2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+RSSFeed.swift"; sourceTree = "<group>"; };
+		E69C614E2992E0280077C2C5 /* LDRRssFeed+RSSFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRssFeed+RSSFeedTests.swift"; sourceTree = "<group>"; };
+		E69C61502992E1A10077C2C5 /* rss-feed-kenzan8000.org.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "rss-feed-kenzan8000.org.html"; sourceTree = "<group>"; };
+		E69C61512992E1A10077C2C5 /* rss-feed-google.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "rss-feed-google.com.html"; sourceTree = "<group>"; };
 		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
 		E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
 		E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewModel.swift; sourceTree = "<group>"; };
@@ -305,7 +304,6 @@
 		E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+TouchAll.swift"; sourceTree = "<group>"; };
 		E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Unread.swift"; sourceTree = "<group>"; };
 		E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPin.swift; sourceTree = "<group>"; };
-		E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Subscribe.swift"; sourceTree = "<group>"; };
 		E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRStorageProvider.swift; sourceTree = "<group>"; };
 		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
@@ -649,7 +647,7 @@
 		E6999E462990407A0037DEB9 /* Subscribe */ = {
 			isa = PBXGroup;
 			children = (
-				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
+				E69C614B2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift */,
 			);
 			path = Subscribe;
 			sourceTree = "<group>";
@@ -657,10 +655,9 @@
 		E6999E47299040E40037DEB9 /* Subscribe */ = {
 			isa = PBXGroup;
 			children = (
-				E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */,
-				E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */,
-				E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */,
-				E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */,
+				E69C614E2992E0280077C2C5 /* LDRRssFeed+RSSFeedTests.swift */,
+				E69C61502992E1A10077C2C5 /* rss-feed-kenzan8000.org.html */,
+				E69C61512992E1A10077C2C5 /* rss-feed-google.com.html */,
 			);
 			path = Subscribe;
 			sourceTree = "<group>";
@@ -1069,14 +1066,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */,
-				E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */,
 				E62A73D725EE61DE00E79F24 /* unread.json in Resources */,
+				E69C61532992E1A20077C2C5 /* rss-feed-google.com.html in Resources */,
 				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
 				E62A73C425EE606600E79F24 /* subs.json in Resources */,
 				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
 				E62A739125EE329600E79F24 /* session.html in Resources */,
-				E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */,
-				E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */,
+				E69C61522992E1A20077C2C5 /* rss-feed-kenzan8000.org.html in Resources */,
 				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
 				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
 			);
@@ -1184,11 +1180,11 @@
 				E6CC19F525F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel in Sources */,
 				E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */,
 				E67C464D24878F7700480D46 /* LDRLoginView+ViewModel.swift in Sources */,
-				E6BEA242298878490067538F /* LDRRequest+Subscribe.swift in Sources */,
 				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
 				E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */,
 				E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */,
 				E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */,
+				E69C614C2992DFBF0077C2C5 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */,
 				E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */,
 				E6522F8C24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift in Sources */,
@@ -1214,6 +1210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E69C614F2992E0280077C2C5 /* LDRRssFeed+RSSFeedTests.swift in Sources */,
 				E6FD73B726C2A23500551617 /* LDRFeedViewTests.swift in Sources */,
 				E64B6B4526C1779B00E9B39D /* LDRPinRowTests.swift in Sources */,
 				E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
@@ -1223,7 +1220,6 @@
 				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
 				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
 				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
-				E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */,
 				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
 				E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */,
 				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
@@ -1245,6 +1241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6BEA244298880430067538F /* Dictionary+HTTPBody.swift in Sources */,
+				E69C614D2992DFCA0077C2C5 /* LDRRequest+RSSFeed.swift in Sources */,
 				E6518C422987028100A4AE28 /* Logger+LDR.swift in Sources */,
 				E605CF4B2985C6BE0086681A /* LDRKeychain.swift in Sources */,
 				E6BEA246298880970067538F /* URL+LDR.swift in Sources */,
@@ -1252,7 +1249,6 @@
 				E6518C432987029500A4AE28 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,
 				E6BEA245298880590067538F /* LDRApi.swift in Sources */,
 				E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */,
-				E6BEA243298878490067538F /* LDRRequest+Subscribe.swift in Sources */,
 				E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */,
 				E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */,
 				E6518C402986F73100A4AE28 /* LDRError.swift in Sources */,
