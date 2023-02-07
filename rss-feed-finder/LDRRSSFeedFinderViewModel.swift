@@ -5,25 +5,24 @@ import UniformTypeIdentifiers
 struct LDRRSSFeedFinderViewModel {
   // MARK: property
   private let keychain: LDRKeychain
-  // private let rssFeedURLSession: LDRRSSFeedURLSession
+  private let urlSession: LDRSubscribeURLSession
   
   // MARK: initializer
   
   init(
-    keychain: LDRKeychain
-    // rssFeedURLSession: LDRRSSFeedURLSession = LDRDefaultRSSFeedURLSession()
+    keychain: LDRKeychain,
+    urlSession: LDRSubscribeURLSession = LDRDefaultSubscribeURLSession()
   ) {
     self.keychain = keychain
-    // self.rssFeedURLSession = rssFeedURLSession
+    self.urlSession = urlSession
   }
   
   // MARK: public api
   
-  /*
   /// Find RSS feeds from app extension's contenxt
   /// - Parameter extensionContext: app extension's context. if it has URL, search RSS feeds on the URL.
-  /// - Returns: `LDRRSSFeedResponse` RSS feeds information
-  func loadRSSFeeds(extensionContext: NSExtensionContext?) async throws -> LDRRSSFeedResponse {
+  /// - Returns: `LDRGetSubscribeResponse` RSS feeds information
+  func loadRSSFeeds(extensionContext: NSExtensionContext?) async throws -> LDRGetSubscribeResponse {
     guard let inputItems = extensionContext?.inputItems as? [NSExtensionItem] else {
       throw LDRError.others("") // TODO: add a new error for this
     }
@@ -36,8 +35,7 @@ struct LDRRSSFeedFinderViewModel {
     guard let url = item as? URL else {
       throw LDRError.others("") // TODO: add a new error for this
     }
-    let (response, _) = try await rssFeedURLSession.response(for: .rssFeed(url: url))
+    let (response, _) = try await urlSession.response(for: .getSubscribe(feedUrl: url, apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie))
     return response
   }
-  */
 }

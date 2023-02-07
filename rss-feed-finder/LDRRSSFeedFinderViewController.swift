@@ -10,11 +10,10 @@ class LDRRSSFeedFinderViewController: UIViewController {
   // MARK: life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     /*
     Task {
       do {
-        let feeds = try await viewModel.loadRSSFeeds(extensionContext: extensionContext)
+        let feedResponse = try await viewModel.loadRSSFeeds(extensionContext: extensionContext)
       } catch {
         print(error)
       }

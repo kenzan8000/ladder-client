@@ -16,6 +16,14 @@ class LDRRequestSubscribeTests: XCTestCase {
     .init(id: 4, name: "blogs"),
     .init(id: 23, name: "history/internationalism"),
   ]
+  private let rates: [LDRRSSRate] = [
+    .init(value: 0),
+    .init(value: 1),
+    .init(value: 2),
+    .init(value: 3),
+    .init(value: 4),
+    .init(value: 5),
+  ]
   
   // MARK: life cycle
   
@@ -29,7 +37,7 @@ class LDRRequestSubscribeTests: XCTestCase {
   
   // MARK: test
   
-  func testGetSusbscribeResponse_whenLoadingCNNFeedHTML_shouldReturnAFeedAndFolders() async throws {
+  func testGetSusbscribeResponse_whenLoadingCNNFeedHTML_shouldReturnAFeed() async throws {
     let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-cnn.com"))
     let keychain = LDRKeychainStub()
     let url = try XCTUnwrap(URL(string: "https://www.cnn.com"))
@@ -44,9 +52,10 @@ class LDRRequestSubscribeTests: XCTestCase {
     XCTAssertEqual(response.feeds.first?.title, "CNN.com - RSS Channel - App International Edition")
     XCTAssertEqual(response.feeds.first?.url, URL(string: "http://rss.cnn.com/rss/edition.rss"))
     XCTAssertEqual(response.folders, folders)
+    XCTAssertEqual(response.rates, rates)
   }
   
-  func testGetSusbscribeResponse_whenLoadingKenzan8000OrgHTML_shouldReturnTwoFeedsAndFolders() async throws {
+  func testGetSusbscribeResponse_whenLoadingKenzan8000OrgHTML_shouldReturnTwoFeeds() async throws {
     let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-kenzan8000.org"))
     let keychain = LDRKeychainStub()
     let url = try XCTUnwrap(URL(string: "https://kenzan8000.org"))
@@ -64,6 +73,7 @@ class LDRRequestSubscribeTests: XCTestCase {
     XCTAssertEqual(response.feeds.last?.title, "\n\tComments for Kenzan Hase\t")
     XCTAssertEqual(response.feeds.last?.url, URL(string: "https://kenzan8000.org/comments/feed/"))
     XCTAssertEqual(response.folders, folders)
+    XCTAssertEqual(response.rates, rates)
   }
   
   func testGetSusbscribeResponse_whenLoadingGithubComHTML_shouldRaiseError() async throws {

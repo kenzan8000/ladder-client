@@ -39,6 +39,9 @@ struct LDRGetSubscribeResponse: Codable, Equatable {
   
   /// available folders to assign to RSS feed
   let folders: [LDRRSSFolder]
+  
+  /// available ratings for RSS feed
+  let rates: [LDRRSSRate]
 }
 
 // MARK: - LDRRSSFeed
@@ -63,6 +66,12 @@ struct LDRRSSFolder: Codable, Equatable {
   // MARK: property
   let id: UInt
   let name: String
+}
+
+// MARK: - LDRRSSRate
+struct LDRRSSRate: Codable, Equatable {
+  // MARK: property
+  let value: UInt
 }
 
 // MARK: - LDRSubscribeURLSession
@@ -91,6 +100,15 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
   ) async throws -> (LDRGetSubscribeResponse, URLResponse) {
     let (data, urlResponse) = try await urlSession.data(for: request.urlRequest)
     let html = HTMLDocument(data: data, contentTypeHeader: "text/html")
+    let feeds = try getFeeds(html: html)
+    let folders = getFolders(html: html)
+    let rates = getRates(html: html)
+    return (LDRGetSubscribeResponse(feeds: feeds, folders: folders, rates: rates), urlResponse)
+  }
+  
+  // MARK: private api
+  
+  private func getFeeds(html: HTMLDocument) throws -> [LDRRSSFeed] {
     guard let feedCandidates = html.nodes(matchingSelector: "ul").first(where: { (element: HTMLElement) in
       element.attributes.contains { $0.key == "id" && $0.value == "feed_candidates" }
     }) else {
@@ -119,11 +137,15 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
     if feeds.isEmpty {
       throw LDRError.rssFeedNotFound
     }
+    return feeds
+  }
+  
+  private func getFolders(html: HTMLDocument) -> [LDRRSSFolder] {
     let folderSelect = html.nodes(matchingSelector: "select")
       .first { (element: HTMLElement) in
         element.attributes.contains { $0.key == "id" && $0.value == "folder_id" }
       }
-    let folders = folderSelect?.nodes(matchingSelector: "option")
+    return folderSelect?.nodes(matchingSelector: "option")
       .compactMap { (element: HTMLElement) -> LDRRSSFolder? in
         let id = element.attributes
           .first { $0.key == "value" }
@@ -134,6 +156,22 @@ class LDRDefaultSubscribeURLSession: LDRSubscribeURLSession {
         }
         return LDRRSSFolder(id: id, name: name)
       } ?? []
-    return (LDRGetSubscribeResponse(feeds: feeds, folders: folders), urlResponse)
+  }
+  
+  private func getRates(html: HTMLDocument) -> [LDRRSSRate] {
+    let folderSelect = html.nodes(matchingSelector: "select")
+      .first { (element: HTMLElement) in
+        element.attributes.contains { $0.key == "name" && $0.value == "rate" }
+      }
+    return folderSelect?.nodes(matchingSelector: "option")
+      .compactMap { (element: HTMLElement) -> LDRRSSRate? in
+        let value = element.attributes
+          .first { $0.key == "value" }
+          .map { UInt($0.value) }
+        guard let value, let value else {
+          return nil
+        }
+        return LDRRSSRate(value: value)
+      } ?? []
   }
 }
