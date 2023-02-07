@@ -37,7 +37,7 @@ class LDRRequestSubscribeTests: XCTestCase {
   
   // MARK: test
   
-  func testGetSusbscribeResponse_whenLoadingCNNFeedHTML_shouldReturnAFeed() async throws {
+  func testGetSusbscribeResponse_whenLoadingCNNDotComHTML_shouldReturnAFeed() async throws {
     let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-cnn.com"))
     let keychain = LDRKeychainStub()
     let url = try XCTUnwrap(URL(string: "https://www.cnn.com"))
@@ -48,6 +48,7 @@ class LDRRequestSubscribeTests: XCTestCase {
       cookie: keychain.cookie
     ))
     
+    XCTAssertEqual(response.feeds.count, 1)
     XCTAssertNil(response.feeds.first?.id)
     XCTAssertEqual(response.feeds.first?.title, "CNN.com - RSS Channel - App International Edition")
     XCTAssertEqual(response.feeds.first?.url, URL(string: "http://rss.cnn.com/rss/edition.rss"))
@@ -55,7 +56,7 @@ class LDRRequestSubscribeTests: XCTestCase {
     XCTAssertEqual(response.rates, rates)
   }
   
-  func testGetSusbscribeResponse_whenLoadingKenzan8000OrgHTML_shouldReturnTwoFeeds() async throws {
+  func testGetSusbscribeResponse_whenLoadingKenzan8000DotOrgHTML_shouldReturnTwoFeeds() async throws {
     let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-kenzan8000.org"))
     let keychain = LDRKeychainStub()
     let url = try XCTUnwrap(URL(string: "https://kenzan8000.org"))
@@ -66,6 +67,7 @@ class LDRRequestSubscribeTests: XCTestCase {
       cookie: keychain.cookie
     ))
     
+    XCTAssertEqual(response.feeds.count, 2)
     XCTAssertEqual(response.feeds.first?.id, 17)
     XCTAssertEqual(response.feeds.first?.title, "Kenzan Hase")
     XCTAssertEqual(response.feeds.first?.url, URL(string: "https://kenzan8000.org/feed/"))
@@ -76,10 +78,11 @@ class LDRRequestSubscribeTests: XCTestCase {
     XCTAssertEqual(response.rates, rates)
   }
   
-  func testGetSusbscribeResponse_whenLoadingGithubComHTML_shouldRaiseError() async throws {
+  func testGetSusbscribeResponse_whenLoadingGithubDotComHTML_shouldRaiseError() async throws {
     let sut = LDRDefaultSubscribeURLSession(urlSession: FakeURLSessoin(htmlFileName: "get-subscribe-github.com"))
     let keychain = LDRKeychainStub()
     let url = try XCTUnwrap(URL(string: "https://github.com"))
+    var raisedError: Error? = nil
     do {
       let (_, _) = try await sut.response(for: .getSubscribe(
         feedUrl: url,
@@ -88,8 +91,9 @@ class LDRRequestSubscribeTests: XCTestCase {
         cookie: keychain.cookie
       ))
     } catch {
-      XCTAssertNotNil(error)
+      raisedError = error
     }
+    XCTAssertNotNil(raisedError)
   }
 }
 
