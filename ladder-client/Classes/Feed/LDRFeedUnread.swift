@@ -2,30 +2,30 @@ import CoreData
 
 // MARK: - LDRFeedUnreadProtocol
 protocol LDRFeedUnreadProtocol {
-  // MARK: property
-  var id: Int { get }
-  var category: String { get }
-  var title: String { get }
-  var body: String { get }
-  var link: String { get }
+    // MARK: property
+    var id: Int { get }
+    var category: String { get }
+    var title: String { get }
+    var body: String { get }
+    var link: String { get }
 }
 
 // MARK: - LDRFeedUnread
 class LDRFeedUnread: NSManagedObject, LDRFeedUnreadProtocol {
-  
-  // MARK: property
-  @NSManaged var id: Int
-  @NSManaged var category: String
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var link: String
-  
-  @NSManaged var subsunread: LDRFeedSubsUnread
-  
-  var linkUrl: URL {
-    URL(string: link) ?? URL(fileURLWithPath: "")
-  }
-  
+    
+    // MARK: property
+    @NSManaged var id: Int
+    @NSManaged var category: String
+    @NSManaged var title: String
+    @NSManaged var body: String
+    @NSManaged var link: String
+    
+    @NSManaged var subsunread: LDRFeedSubsUnread
+    
+    var linkUrl: URL {
+        URL(string: link) ?? URL(fileURLWithPath: "")
+    }
+    
 }
 
 // MARK: - LDRFeedUnread + Identifiable
@@ -34,28 +34,28 @@ extension LDRFeedUnread: Identifiable {
 
 // MARK: - LDRStorageProvider + LDRFeedUnread
 extension LDRStorageProvider {
-  // MARK: public api
-  
-  /// Saves a unread record
-  /// - Parameters:
-  ///   - response: unread response
-  ///   - subsUnread: parent model
-  func saveUnread(by response: LDRUnreadResponse, subsUnread: LDRFeedSubsUnread) {
-    response.items.forEach {
-      let model = LDRFeedUnread(context: viewContext)
-      model.id = $0.id
-      model.body = $0.body
-      model.category = $0.category
-      model.link = $0.link
-      model.title = $0.title
-      model.subsunread = subsUnread
+    // MARK: public api
+    
+    /// Saves a unread record
+    /// - Parameters:
+    ///     - response: unread response
+    ///     - subsUnread: parent model
+    func saveUnread(by response: LDRUnreadResponse, subsUnread: LDRFeedSubsUnread) {
+        response.items.forEach {
+            let model = LDRFeedUnread(context: viewContext)
+            model.id = $0.id
+            model.body = $0.body
+            model.category = $0.category
+            model.link = $0.link
+            model.title = $0.title
+            model.subsunread = subsUnread
+        }
+        do {
+            try viewContext.save()
+        } catch {
+            viewContext.rollback()
+            logger.error("\(logger.prefix(), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
+        }
     }
-    do {
-      try viewContext.save()
-    } catch {
-      viewContext.rollback()
-      logger.error("\(logger.prefix(), privacy: .private)\(LDRError.saveModel.legibleDescription, privacy: .private)")
-    }
-  }
  
 }

@@ -3,223 +3,223 @@ import SwiftUI
 
 // MARK: - LDRFeedView + ViewModel
 extension LDRFeedView {
-  
-  // MARK: ViewModel
-  class ViewModel: ObservableObject {
-      
-    // MARK: property
-    var storageProvider: LDRStorageProvider
-    var keychain: LDRKeychain
-    private let urlSession: LDRURLSession
-    private let subsUnreadURLSession: LDRURLSession
-    @Published var segment: LDRFeedSubsUnreadSegment {
-      didSet { feedSubsUnreadSegment = segment }
-    }
-    /// selected segment control on feed view
-    private var feedSubsUnreadSegment: LDRFeedSubsUnreadSegment {
-      get { keychain.feedSubsUnreadSegmentString?.feedSubsUnreadSegmentValue ?? .rate }
-      set { keychain.feedSubsUnreadSegmentString = "\(newValue.rawValue)" }
-    }
-    let onAlertDismiss: () -> Void
-    @Published var rates: [String] = []
-    @Published var folders: [String] = []
-    var sections: [String] {
-      switch segment {
-      case .rate:
-        return rates
-      case .folder:
-        return folders
-      }
-    }
-    @Published var subsunreads: [LDRFeedSubsUnread]
-    @Published var subsunread: LDRFeedSubsUnread?
-    var isPresentingDetailView: Binding<Bool> {
-      Binding<Bool>(
-        get: { self.subsunread != nil },
-        set: { newValue in
-          guard !newValue else {
-            return
-          }
-          self.subsunread = nil
-        }
-      )
-    }
-    @Published var isPresentingLoginView = false
-    @Published var isLoading = false
-    @Published var alertToShow: Alert.ViewModel?
-    var unreadCount: Int {
-      subsunreads.filter { $0.state != .read }
-        .map { $0.unreadCount }
-        .reduce(0, +)
-    }
     
-    private var notificationCancellables = Set<AnyCancellable>()
-    private var subsCancellable: AnyCancellable?
-    private var touchAllCancellables = Set<AnyCancellable>()
-    private var unreadCancellables = Set<AnyCancellable>()
-    private let unreadOperationQueue: OperationQueue
-
-    // MARK: initializer
-    
-    /// Inits
-    /// - Parameters:
-    ///   - storageProvider: coredata storage
-    ///   - keychain: LDRKeychain
-    ///   - segment: LDRFeedSubsUnreadSegment
-    ///   - onAlertDismiss: @escaping () -> Void
-    init(
-      storageProvider: LDRStorageProvider,
-      keychain: LDRKeychain,
-      segment: LDRFeedSubsUnreadSegment,
-      onAlertDismiss: @escaping () -> Void = {}
-    ) {
-      self.storageProvider = storageProvider
-      self.keychain = keychain
-      self.segment = segment
-      self.onAlertDismiss = onAlertDismiss
-      let operationQueue = LDRFeedUnreadOperationQueue()
-      unreadOperationQueue = operationQueue
-      urlSession = LDRDefaultURLSession(keychain: keychain)
-      subsUnreadURLSession = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: .default, delegate: nil, delegateQueue: operationQueue))
-      subsunreads = storageProvider.fetchSubsUnreads(by: segment)
-      rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
-      folders = Array(Set(subsunreads.map { $0.folder })).sorted()
-      NotificationCenter.default.publisher(for: .ldrDidLogin)
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] _ in
-          self?.reloadUnreads()
-          self?.isPresentingLoginView = false
+    // MARK: ViewModel
+    class ViewModel: ObservableObject {
+            
+        // MARK: property
+        var storageProvider: LDRStorageProvider
+        var keychain: LDRKeychain
+        private let urlSession: LDRURLSession
+        private let subsUnreadURLSession: LDRURLSession
+        @Published var segment: LDRFeedSubsUnreadSegment {
+            didSet { feedSubsUnreadSegment = segment }
         }
-        .store(in: &notificationCancellables)
-      NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] _ in
-          if let self, self.keychain.reloadTimestampIsExpired {
-            self.reloadUnreads()
-          }
+        /// selected segment control on feed view
+        private var feedSubsUnreadSegment: LDRFeedSubsUnreadSegment {
+            get { keychain.feedSubsUnreadSegmentString?.feedSubsUnreadSegmentValue ?? .rate }
+            set { keychain.feedSubsUnreadSegmentString = "\(newValue.rawValue)" }
         }
-        .store(in: &notificationCancellables)
-      NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] _ in
-          self?.isPresentingLoginView = false
-        }
-        .store(in: &notificationCancellables)
-    }
-
-    // MARK: public api
-      
-    /// Load Feed from local DB
-    func loadFeedFromLocalDB() {
-      subsunreads = storageProvider.fetchSubsUnreads(by: segment)
-      rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
-      folders = Array(Set(subsunreads.map { $0.folder })).sorted()
-    }
-      
-    /// Load Feed from API
-    func loadFeedFromAPI() {
-      isLoading = true
-      unreadCancellables.forEach { $0.cancel() }
-      touchAllCancellables.forEach { $0.cancel() }
-      subsCancellable?.cancel()
-      
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      subsCancellable = urlSession.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie), using: decoder)
-        .receive(on: DispatchQueue.main)
-        .sink(
-          receiveCompletion: { [weak self] result in
-            self?.isLoading = false
-            if case let .failure(error) = result, let self = self {
-              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
-            } else {
-              self?.loadFeedFromLocalDB()
-              self?.loadUnreadsFromAPI()
+        let onAlertDismiss: () -> Void
+        @Published var rates: [String] = []
+        @Published var folders: [String] = []
+        var sections: [String] {
+            switch segment {
+            case .rate:
+                return rates
+            case .folder:
+                return folders
             }
-          },
-          receiveValue: { [weak self] response in
-            if let error = self?.storageProvider.deleteSubsUnreads(), let self = self {
-              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
-            } else if let error = self?.storageProvider.saveSubsUnreads(by: response), let self = self {
-              self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
-            }
-          }
-        )
-    }
-      
-    /// Request feed is touched (read)
-    /// - Parameter unread: this unread is already read
-    func touchAll(subsunread: LDRFeedSubsUnread) {
-      if subsunread.state != .unloaded {
-        self.subsunread = subsunread
-      }
-      if subsunread.state == .read {
-        return
-      }
-      storageProvider.updateSubsUnread(subsunread, state: .read)
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      urlSession.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: keychain.cookie), using: decoder)
-        .receive(on: DispatchQueue.main)
-        .sink(
-          receiveCompletion: { _ in },
-          receiveValue: { _ in }
-        )
-        .store(in: &touchAllCancellables)
-    }
-
-    /// Get subsuread models at section
-    /// - Parameter section: one of rates or folders
-    /// - Returns:subsuread models belonging to the section
-    func getSubsUnreads(at section: String) -> [LDRFeedSubsUnread] {
-      switch segment {
-      case .rate:
-        return subsunreads.filter { $0.rateString == section }.sorted { $0.title < $1.title }
-      case .folder:
-        return subsunreads.filter { $0.folder == section }.sorted { $0.title < $1.title }
-      }
-    }
-      
-    // MARK: private api
-      
-    /// Load Unreads from API
-    private func loadUnreadsFromAPI() {
-      isLoading = !subsunreads.isEmpty
-      
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      subsunreads.publisher
-        .compactMap { $0.state == .unloaded ? $0 : nil }
-        .compactMap { [weak self] subsunread in
-          self?.subsUnreadURLSession
-            .publisher(
-              for: LDRRequest.unread(apiKey: self?.keychain.apiKey, ldrUrlString: self?.keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: self?.keychain.cookie),
-              using: decoder
+        }
+        @Published var subsunreads: [LDRFeedSubsUnread]
+        @Published var subsunread: LDRFeedSubsUnread?
+        var isPresentingDetailView: Binding<Bool> {
+            Binding<Bool>(
+                get: { self.subsunread != nil },
+                set: { newValue in
+                    guard !newValue else {
+                        return
+                    }
+                    self.subsunread = nil
+                }
             )
         }
-        .flatMap { $0 }
-        .receive(on: DispatchQueue.main)
-        .sink(
-          receiveCompletion: { [weak self] _ in
-            self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
-          },
-          receiveValue: { [weak self] response in
-            if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == response.subscribeId }) {
-              self?.storageProvider.saveUnread(by: response, subsUnread: subsunread)
-              self?.storageProvider.updateSubsUnread(subsunread, state: .unread)
-              self?.loadFeedFromLocalDB()
+        @Published var isPresentingLoginView = false
+        @Published var isLoading = false
+        @Published var alertToShow: Alert.ViewModel?
+        var unreadCount: Int {
+            subsunreads.filter { $0.state != .read }
+                .map { $0.unreadCount }
+                .reduce(0, +)
+        }
+        
+        private var notificationCancellables = Set<AnyCancellable>()
+        private var subsCancellable: AnyCancellable?
+        private var touchAllCancellables = Set<AnyCancellable>()
+        private var unreadCancellables = Set<AnyCancellable>()
+        private let unreadOperationQueue: OperationQueue
+
+        // MARK: initializer
+        
+        /// Inits
+        /// - Parameters:
+        ///     - storageProvider: coredata storage
+        ///     - keychain: LDRKeychain
+        ///     - segment: LDRFeedSubsUnreadSegment
+        ///     - onAlertDismiss: @escaping () -> Void
+        init(
+            storageProvider: LDRStorageProvider,
+            keychain: LDRKeychain,
+            segment: LDRFeedSubsUnreadSegment,
+            onAlertDismiss: @escaping () -> Void = {}
+        ) {
+            self.storageProvider = storageProvider
+            self.keychain = keychain
+            self.segment = segment
+            self.onAlertDismiss = onAlertDismiss
+            let operationQueue = LDRFeedUnreadOperationQueue()
+            unreadOperationQueue = operationQueue
+            urlSession = LDRDefaultURLSession(keychain: keychain)
+            subsUnreadURLSession = LDRDefaultURLSession(keychain: keychain, urlSession: .init(configuration: .default, delegate: nil, delegateQueue: operationQueue))
+            subsunreads = storageProvider.fetchSubsUnreads(by: segment)
+            rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
+            folders = Array(Set(subsunreads.map { $0.folder })).sorted()
+            NotificationCenter.default.publisher(for: .ldrDidLogin)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.reloadUnreads()
+                    self?.isPresentingLoginView = false
+                }
+                .store(in: &notificationCancellables)
+            NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    if let self, self.keychain.reloadTimestampIsExpired {
+                        self.reloadUnreads()
+                    }
+                }
+                .store(in: &notificationCancellables)
+            NotificationCenter.default.publisher(for: .ldrWillCloseLoginView)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.isPresentingLoginView = false
+                }
+                .store(in: &notificationCancellables)
+        }
+
+        // MARK: public api
+            
+        /// Load Feed from local DB
+        func loadFeedFromLocalDB() {
+            subsunreads = storageProvider.fetchSubsUnreads(by: segment)
+            rates = Array(Set(subsunreads.map { $0.rateString })).sorted()
+            folders = Array(Set(subsunreads.map { $0.folder })).sorted()
+        }
+            
+        /// Load Feed from API
+        func loadFeedFromAPI() {
+            isLoading = true
+            unreadCancellables.forEach { $0.cancel() }
+            touchAllCancellables.forEach { $0.cancel() }
+            subsCancellable?.cancel()
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            subsCancellable = urlSession.publisher(for: .subs(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, cookie: keychain.cookie), using: decoder)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { [weak self] result in
+                        self?.isLoading = false
+                        if case let .failure(error) = result, let self = self {
+                            self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
+                        } else {
+                            self?.loadFeedFromLocalDB()
+                            self?.loadUnreadsFromAPI()
+                        }
+                    },
+                    receiveValue: { [weak self] response in
+                        if let error = self?.storageProvider.deleteSubsUnreads(), let self = self {
+                            self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
+                        } else if let error = self?.storageProvider.saveSubsUnreads(by: response), let self = self {
+                            self.alertToShow = .init(title: "", message: error.legibleDescription, buttonText: "OK", buttonAction: self.onAlertDismiss)
+                        }
+                    }
+                )
+        }
+            
+        /// Request feed is touched (read)
+        /// - Parameter unread: this unread is already read
+        func touchAll(subsunread: LDRFeedSubsUnread) {
+            if subsunread.state != .unloaded {
+                self.subsunread = subsunread
             }
-          }
-        )
-        .store(in: &unreadCancellables)
+            if subsunread.state == .read {
+                return
+            }
+            storageProvider.updateSubsUnread(subsunread, state: .read)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            urlSession.publisher(for: .touchAll(apiKey: keychain.apiKey, ldrUrlString: keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: keychain.cookie), using: decoder)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { _ in }
+                )
+                .store(in: &touchAllCancellables)
+        }
+
+        /// Get subsuread models at section
+        /// - Parameter section: one of rates or folders
+        /// - Returns:subsuread models belonging to the section
+        func getSubsUnreads(at section: String) -> [LDRFeedSubsUnread] {
+            switch segment {
+            case .rate:
+                return subsunreads.filter { $0.rateString == section }.sorted { $0.title < $1.title }
+            case .folder:
+                return subsunreads.filter { $0.folder == section }.sorted { $0.title < $1.title }
+            }
+        }
+            
+        // MARK: private api
+            
+        /// Load Unreads from API
+        private func loadUnreadsFromAPI() {
+            isLoading = !subsunreads.isEmpty
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            subsunreads.publisher
+                .compactMap { $0.state == .unloaded ? $0 : nil }
+                .compactMap { [weak self] subsunread in
+                    self?.subsUnreadURLSession
+                        .publisher(
+                            for: LDRRequest.unread(apiKey: self?.keychain.apiKey, ldrUrlString: self?.keychain.ldrUrlString, subscribeId: subsunread.subscribeId, cookie: self?.keychain.cookie),
+                            using: decoder
+                        )
+                }
+                .flatMap { $0 }
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { [weak self] _ in
+                        self?.isLoading = !(self?.unreadOperationQueue.operations.isEmpty ?? true)
+                    },
+                    receiveValue: { [weak self] response in
+                        if let subsunread = self?.subsunreads.first(where: { $0.subscribeId == response.subscribeId }) {
+                            self?.storageProvider.saveUnread(by: response, subsUnread: subsunread)
+                            self?.storageProvider.updateSubsUnread(subsunread, state: .unread)
+                            self?.loadFeedFromLocalDB()
+                        }
+                    }
+                )
+                .store(in: &unreadCancellables)
+        }
+        
+        /// Stops current loading and reloads unreads
+        private func reloadUnreads() {
+            subsCancellable?.cancel()
+            touchAllCancellables.forEach { $0.cancel() }
+            unreadCancellables.forEach { $0.cancel() }
+            loadFeedFromAPI()
+        }
     }
-    
-    /// Stops current loading and reloads unreads
-    private func reloadUnreads() {
-      subsCancellable?.cancel()
-      touchAllCancellables.forEach { $0.cancel() }
-      unreadCancellables.forEach { $0.cancel() }
-      loadFeedFromAPI()
-    }
-  }
 }

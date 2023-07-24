@@ -2,20 +2,20 @@ import XCTest
 
 final class LDRLaunchTimeTests: XCTestCase {
 
-  // MARK: life cycle
-  
-  override func setUpWithError() throws {
-    continueAfterFailure = false
-  }
-
-  override func tearDownWithError() throws {
-  }
-
-  // MARK: test
-
-  func test_whenInitialState_measureLaunchTime() throws {
-    measure(metrics: [XCTApplicationLaunchMetric(waitUntilResponsive: true)]) {
-      XCUIApplication().launch()
+    // MARK: life cycle
+    
+    override func setUpWithError() throws {
+        continueAfterFailure = false
     }
-  }
+
+    override func tearDownWithError() throws {
+    }
+
+    // MARK: test
+
+    func test_whenInitialState_measureLaunchTime() throws {
+        measure(metrics: [XCTApplicationLaunchMetric(waitUntilResponsive: true)]) {
+            XCUIApplication().launch()
+        }
+    }
 }

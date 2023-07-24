@@ -2,11 +2,11 @@
 
 // MARK: - LDRPinRowContent
 struct LDRPinRowContent: Pin, Hashable {
-  let title: String
-  
-  static func fixture(
-    title: String
-  ) -> LDRPinRowContent {
-    LDRPinRowContent(title: title)
-  }
+    let title: String
+    
+    static func fixture(
+        title: String
+    ) -> LDRPinRowContent {
+        LDRPinRowContent(title: title)
+    }
 }

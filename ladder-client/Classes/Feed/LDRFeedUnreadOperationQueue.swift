@@ -3,16 +3,16 @@ import Foundation
 // MARK: - LDRFeedUnreadOperationQueue
 class LDRFeedUnreadOperationQueue: OperationQueue {
 
-  // MARK: initializer
+    // MARK: initializer
 
-  override init() {
-    super.init()
-    maxConcurrentOperationCount = 5
-  }
+    override init() {
+        super.init()
+        maxConcurrentOperationCount = 5
+    }
 
-  // MARK: - destruction
+    // MARK: - destruction
 
-  deinit {
-    cancelAllOperations()
-  }
+    deinit {
+        cancelAllOperations()
+    }
 }

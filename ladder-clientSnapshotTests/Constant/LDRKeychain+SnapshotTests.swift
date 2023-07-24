@@ -3,5 +3,5 @@ import KeychainAccess
 
 // MARK: - Keychain + LDR
 extension Keychain {
-  static let test = Keychain(service: LDR.service, accessGroup: LDR.testGroup)
+    static let test = Keychain(service: LDR.service, accessGroup: LDR.testGroup)
 }

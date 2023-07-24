@@ -2,5 +2,5 @@
 
 // MARK: - LDR + SnapshotTests
 extension LDR {
-  static let testGroup = "group.org.kenzan8000.ladder-clientSnapshotTests"
+    static let testGroup = "group.org.kenzan8000.ladder-clientSnapshotTests"
 }
