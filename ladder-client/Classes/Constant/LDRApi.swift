@@ -10,6 +10,8 @@ enum LDRApi {
     static let pinAdd = "/api/pin/add"
     static let pinRemove = "/api/pin/remove"
     static let pinAll = "/api/pin/all"
+    static let feedSubscribe = "/api/feed/subscribe"
+    static let feedUnsubscribe = "/api/feed/unsubscribe"
   }
   static let cookieName = "_fastladder_session"
 }
