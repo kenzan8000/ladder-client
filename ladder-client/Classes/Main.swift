@@ -1,0 +1,35 @@
+import SwiftUI
+
+// MARK: - Main
+
+// swiftlint:disable convenience_type
+@main
+struct Main {
+    static func main() throws {
+        guard NSClassFromString("XCTestCase") == nil else {
+            TestApp.main()
+            return
+        }
+        LadderClientApp.main()
+    }
+}
+// swiftlint:enable convenience_type
+
+// MARK: - LadderClientApp
+
+struct LadderClientApp: App {
+    var body: some Scene {
+        WindowGroup {
+            RootTabView()
+        }
+    }
+}
+
+// MARK: - TestApp
+struct TestApp: App {
+    var body: some Scene {
+        WindowGroup {
+            Text("Running Tests")
+        }
+    }
+}

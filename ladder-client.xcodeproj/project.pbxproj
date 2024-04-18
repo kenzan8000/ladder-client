@@ -8,207 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
-		E605CF4B2985C6BE0086681A /* LDRKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */; };
-		E605CF4C2985C6C70086681A /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
-		E605CF4E2985C70F0086681A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E605CF4D2985C70F0086681A /* KeychainAccess */; };
-		E605CF502985C90F0086681A /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E605CF4F2985C90F0086681A /* HTMLReader */; };
-		E60BCF1C263D975700A22017 /* LDRKeychainStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */; };
-		E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */; };
-		E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */; };
-		E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */; };
-		E60EA5C2297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60EA5C1297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift */; };
-		E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
-		E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */; };
-		E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */; };
-		E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
-		E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */; };
-		E61E6568274A5A7800CCB483 /* LDRLaunchTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */; };
-		E62A739125EE329600E79F24 /* session.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A739025EE329600E79F24 /* session.html */; };
-		E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */; };
-		E62A73A425EE4E3500E79F24 /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = E62A73A325EE4E3500E79F24 /* login.html */; };
-		E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73B825EE53EC00E79F24 /* LDRRequest+PinAllTests.swift */; };
-		E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73BD25EE58F100E79F24 /* pinAll.json */; };
-		E62A73C425EE606600E79F24 /* subs.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73C325EE606600E79F24 /* subs.json */; };
-		E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */; };
-		E62A73D725EE61DE00E79F24 /* unread.json in Resources */ = {isa = PBXBuildFile; fileRef = E62A73D625EE61DE00E79F24 /* unread.json */; };
-		E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */; };
-		E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
-		E62F725825F267B100AC90D7 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
-		E62F725925F267B100AC90D7 /* LDRCoreData3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */; };
-		E62F725A25F267B100AC90D7 /* LDRCoreData2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6CC19F425F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel */; };
-		E62F725E25F267BB00AC90D7 /* LDRStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */; };
-		E62F726225F267C300AC90D7 /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
-		E62F726625F2687300AC90D7 /* LDRRequest+PinAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */; };
-		E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6365964248CD48600FA3908 /* ActivityIndicator.swift */; };
-		E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B44A42480FAA70055AC71 /* LDRLoginView.swift */; };
-		E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9A249F7A950051C402 /* LDRPinView.swift */; };
-		E63CAF9D249F83730051C402 /* LDRPinView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAF9C249F83730051C402 /* LDRPinView+ViewModel.swift */; };
-		E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63CAFA0249F8E240051C402 /* LDRPinRow.swift */; };
-		E648D5D226D383E10034CE8A /* Alert+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */; };
-		E64B6B3E26C1745600E9B39D /* LDRPinRow+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3D26C1745600E9B39D /* LDRPinRow+ViewModel.swift */; };
-		E64B6B4026C176B700E9B39D /* LDRPin+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */; };
-		E64B6B4126C176B700E9B39D /* LDRPin+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */; };
-		E64B6B4526C1779B00E9B39D /* LDRPinRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
-		E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
-		E6518C402986F73100A4AE28 /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
-		E6518C41298701DC00A4AE28 /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
-		E6518C422987028100A4AE28 /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
-		E6518C432987029500A4AE28 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */; };
-		E6518C442987029F00A4AE28 /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60EA5C1297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift */; };
-		E6522F8C24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6522F8B24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift */; };
-		E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652C02A24A3676400C744DE /* LDRFeedRow.swift */; };
-		E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
-		E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
-		E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */; };
-		E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
-		E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
-		E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DE225E77A4200C0F18C /* KeychainAccess */; };
-		E65A40DE297CAE9000CDD55E /* HTTPCookieStorage+Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60EA5C1297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift */; };
-		E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */; };
-		E65DBEFC25F9FE7C00F7D074 /* LDRPinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */; };
-		E65DBF0725FA29A000F7D074 /* LDRLoginViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */; };
-		E65DBF1125FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */; };
-		E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D1D25F7A3A200FFBA46 /* LDRPinRowTests.swift */; };
-		E65E9D3E25F7A3A300FFBA46 /* LDRFeedRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D2725F7A3A200FFBA46 /* LDRFeedRowTests.swift */; };
-		E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65E9D3625F7A3A300FFBA46 /* LDRTabViewTests.swift */; };
-		E65E9D6025F7A3DC00FFBA46 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E65E9D5F25F7A3DC00FFBA46 /* SnapshotTesting */; };
-		E665B48F2985BA0F0092CD9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E665B48E2985BA0F0092CD9A /* Assets.xcassets */; };
-		E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */; };
-		E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
-		E66AD21525E797A90099D5B4 /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
-		E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E66AD21A25E7CBAC0099D5B4 /* HTMLReader */; };
-		E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* LDRTabView.swift */; };
-		E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674AB411F94588D00348C98 /* LDRBlinkView.swift */; };
-		E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */; };
-		E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */; };
-		E67C464D24878F7700480D46 /* LDRLoginView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */; };
-		E68195D1277DFD5400168177 /* LDRTestURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68195D0277DFD5400168177 /* LDRTestURLProtocol.swift */; };
-		E68195D2277DFD5400168177 /* LDRTestURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68195D0277DFD5400168177 /* LDRTestURLProtocol.swift */; };
-		E6852FBC26441AC6005BAFFB /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
-		E6852FBD26441AC6005BAFFB /* Logger+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */; };
-		E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */; };
-		E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A025DC209F005E591D /* LDRRequest.swift */; };
-		E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3A825DC227A005E591D /* LDRURLSession.swift */; };
-		E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */; };
-		E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */; };
-		E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */; };
-		E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */; };
-		E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */ = {isa = PBXBuildFile; fileRef = E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */; };
-		E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */; };
-		E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */; };
-		E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */; };
-		E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */; };
-		E6A909BD297C72BC00BB6873 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */; };
-		E6A909C1297C72BC00BB6873 /* rss-feed-finder.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */; };
-		E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */; };
-		E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */; };
-		E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */; };
-		E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */; };
-		E6BEA242298878490067538F /* LDRRequest+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */; };
-		E6BEA243298878490067538F /* LDRRequest+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */; };
-		E6BEA244298880430067538F /* Dictionary+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */; };
-		E6BEA245298880590067538F /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
-		E6BEA246298880970067538F /* URL+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CA3BA25DC2991005E591D /* URL+LDR.swift */; };
-		E6C32EE41F92CC610052DDE3 /* LDRStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */; };
-		E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */; };
-		E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C8E62723E52460004F410D /* MainInterface.storyboard */; };
-		E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */; };
-		E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */; };
-		E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFE425E6456500F9F21E /* LDRError.swift */; };
-		E6C9FFEB25E646A800F9F21E /* LDRApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEA25E646A800F9F21E /* LDRApi.swift */; };
-		E6C9FFEF25E646D900F9F21E /* LDRKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */; };
-		E6CC19F525F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6CC19F425F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel */; };
-		E6D19BF025EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D19BEF25EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift */; };
-		E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D19BF725EFAD4B001FC76B /* LDRRequest+PinAddTests.swift */; };
-		E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D19BFF25EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift */; };
-		E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5903824A0DE0E003CCCBF /* SafariView.swift */; };
-		E6D8CD2B26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */; };
-		E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */; };
-		E6DFAF6625F1ECF000789E1C /* LDRCoreData3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */; };
-		E6E0776728E8CB9D00946B8F /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
-		E6E0776828E8CB9D00946B8F /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
-		E6E0776928E8CB9D00946B8F /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
-		E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */; };
-		E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */; };
-		E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */; };
-		E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */; };
-		E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127AE24A4BA22008627D5 /* WebView.swift */; };
-		E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */; };
-		E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */; };
-		E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
-		E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8D4B325F3C60200F71D10 /* LDR.swift */; };
-		E6EC083823E7800800929110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EC083723E7800800929110 /* Assets.xcassets */; };
-		E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */; };
-		E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */; };
-		E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */; };
-		E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE2E9824AB20EB0086590A /* LDRToastView.swift */; };
-		E6F07F042699F3CA00D5F3D4 /* Snapshotting+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F07F032699F3CA00D5F3D4 /* Snapshotting+Model.swift */; };
-		E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */; };
-		E6F25DDD24A2501F008C5E58 /* LDRFeedView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */; };
-		E6F8CDA826D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */; };
-		E6F8CDA926D731FF0033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */; };
-		E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* LadderClientApp.swift */; };
-		E6FD73B426C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
-		E6FD73B526C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */; };
-		E6FD73B726C2A23500551617 /* LDRFeedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */; };
+		E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66DFE1924A8B95000790F8B /* RootTabView.swift */; };
+		E6FA099424A8CBED00888F58 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* Main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E61E6561274A5A5800CCB483 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
-			remoteInfo = "ladder-client";
-		};
-		E65E9D0B25F7A37D00FFBA46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
-			remoteInfo = "ladder-client";
-		};
-		E65E9D5C25F7A3C000FFBA46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6C8E62023E52460004F410D;
-			remoteInfo = "app-extension";
-		};
 		E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E6690C4F1F5E537D0065B7B5;
 			remoteInfo = "ladder-client";
-		};
-		E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6C8E62023E52460004F410D;
-			remoteInfo = "app-extension";
-		};
-		E6A909BF297C72BC00BB6873 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6A909B6297C72BC00BB6873;
-			remoteInfo = "rss-feed-finder";
-		};
-		E6C8E62B23E52460004F410D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E6690C481F5E537D0065B7B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E6C8E62023E52460004F410D;
-			remoteInfo = "app-extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -219,8 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E6C8E62D23E52460004F410D /* Add the url to "read later"..appex in Embed Foundation Extensions */,
-				E6A909C1297C72BC00BB6873 /* rss-feed-finder.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,142 +40,16 @@
 
 /* Begin PBXFileReference section */
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRKeychainStub.swift; sourceTree = "<group>"; };
-		E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginFormValidation.swift; sourceTree = "<group>"; };
-		E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Session.swift"; sourceTree = "<group>"; };
-		E60EA5C1297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPCookieStorage+Cookie.swift"; sourceTree = "<group>"; };
-		E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAdd.swift"; sourceTree = "<group>"; };
-		E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemove.swift"; sourceTree = "<group>"; };
-		E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedRow+ViewModel.swift"; sourceTree = "<group>"; };
-		E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedSubsUnread+Fixture.swift"; sourceTree = "<group>"; };
-		E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLaunchTimeTests.swift; sourceTree = "<group>"; };
-		E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+HTTPBody.swift"; sourceTree = "<group>"; };
-		E62A739025EE329600E79F24 /* session.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = session.html; sourceTree = "<group>"; };
-		E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+LoginTests.swift"; sourceTree = "<group>"; };
-		E62A73A325EE4E3500E79F24 /* login.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = login.html; sourceTree = "<group>"; };
-		E62A73B825EE53EC00E79F24 /* LDRRequest+PinAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAllTests.swift"; sourceTree = "<group>"; };
-		E62A73BD25EE58F100E79F24 /* pinAll.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pinAll.json; sourceTree = "<group>"; };
-		E62A73C325EE606600E79F24 /* subs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = subs.json; sourceTree = "<group>"; };
-		E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SubsTests.swift"; sourceTree = "<group>"; };
-		E62A73D625EE61DE00E79F24 /* unread.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unread.json; sourceTree = "<group>"; };
-		E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+UnreadTests.swift"; sourceTree = "<group>"; };
-		E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAll.swift"; sourceTree = "<group>"; };
-		E6365964248CD48600FA3908 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		E63B44A42480FAA70055AC71 /* LDRLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginView.swift; sourceTree = "<group>"; };
-		E63CAF9A249F7A950051C402 /* LDRPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinView.swift; sourceTree = "<group>"; };
-		E63CAF9C249F83730051C402 /* LDRPinView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPinView+ViewModel.swift"; sourceTree = "<group>"; };
-		E63CAFA0249F8E240051C402 /* LDRPinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRow.swift; sourceTree = "<group>"; };
-		E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+ViewModel.swift"; sourceTree = "<group>"; };
-		E64B6B3D26C1745600E9B39D /* LDRPinRow+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPinRow+ViewModel.swift"; sourceTree = "<group>"; };
-		E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRPin+Fixture.swift"; sourceTree = "<group>"; };
-		E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
-		E64D046C25F0F8A800654902 /* LDRCoreData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "LDRCoreData 3.xcdatamodel"; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E6522F8B24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedDetailView+WebViewModel.swift"; sourceTree = "<group>"; };
-		E652C02A24A3676400C744DE /* LDRFeedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRow.swift; sourceTree = "<group>"; };
-		E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "rss-feed-finder.entitlements"; sourceTree = "<group>"; };
-		E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadTests.swift; sourceTree = "<group>"; };
-		E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinTests.swift; sourceTree = "<group>"; };
-		E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRLoginViewTests.swift; sourceTree = "<group>"; };
-		E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRKeychain+SnapshotTests.swift"; sourceTree = "<group>"; };
-		E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientSnapshotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E65E9D0A25F7A37D00FFBA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E65E9D1D25F7A3A200FFBA46 /* LDRPinRowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPinRowTests.swift; sourceTree = "<group>"; };
-		E65E9D2725F7A3A200FFBA46 /* LDRFeedRowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedRowTests.swift; sourceTree = "<group>"; };
-		E65E9D3625F7A3A300FFBA46 /* LDRTabViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRTabViewTests.swift; sourceTree = "<group>"; };
-		E665B48E2985BA0F0092CD9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E66DFE1924A8B95000790F8B /* LDRTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTabView.swift; sourceTree = "<group>"; };
-		E674AB411F94588D00348C98 /* LDRBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRBlinkView.swift; sourceTree = "<group>"; };
+		E66DFE1924A8B95000790F8B /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SessionTests.swift"; sourceTree = "<group>"; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+HTMLTitle.swift"; sourceTree = "<group>"; };
-		E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRLoginView+ViewModel.swift"; sourceTree = "<group>"; };
-		E68195D0277DFD5400168177 /* LDRTestURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRTestURLProtocol.swift; sourceTree = "<group>"; };
-		E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+LDR.swift"; sourceTree = "<group>"; };
-		E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRPinViewTests.swift; sourceTree = "<group>"; };
-		E68CA3A025DC209F005E591D /* LDRRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRequest.swift; sourceTree = "<group>"; };
-		E68CA3A825DC227A005E591D /* LDRURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRURLSession.swift; sourceTree = "<group>"; };
-		E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Login.swift"; sourceTree = "<group>"; };
-		E68CA3BA25DC2991005E591D /* URL+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDR.swift"; sourceTree = "<group>"; };
-		E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+SubscribeTests.swift"; sourceTree = "<group>"; };
-		E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-cnn.com.html"; sourceTree = "<group>"; };
-		E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-kenzan8000.org.html"; sourceTree = "<group>"; };
-		E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "get-subscribe-github.com.html"; sourceTree = "<group>"; };
-		E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedUnreadOperationQueue.swift; sourceTree = "<group>"; };
-		E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
-		E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewModel.swift; sourceTree = "<group>"; };
-		E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "rss-feed-finder.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRRSSFeedFinderViewController.swift; sourceTree = "<group>"; };
-		E6A909BC297C72BC00BB6873 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		E6A909BE297C72BC00BB6873 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedRowTests.swift; sourceTree = "<group>"; };
-		E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Subs.swift"; sourceTree = "<group>"; };
-		E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+TouchAll.swift"; sourceTree = "<group>"; };
-		E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Unread.swift"; sourceTree = "<group>"; };
-		E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRPin.swift; sourceTree = "<group>"; };
-		E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+Subscribe.swift"; sourceTree = "<group>"; };
-		E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRStorageProvider.swift; sourceTree = "<group>"; };
-		E6C8E62123E52460004F410D /* Add the url to "read later"..appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Add the url to \"read later\"..appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRAddPinViewController.swift; sourceTree = "<group>"; };
-		E6C8E62823E52460004F410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		E6C8E62A23E52460004F410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6C8E63223E524A5004F410D /* read-later.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "read-later.entitlements"; sourceTree = "<group>"; };
-		E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedUnread.swift; sourceTree = "<group>"; };
-		E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+LDR.swift"; sourceTree = "<group>"; };
-		E6C9FFE425E6456500F9F21E /* LDRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRError.swift; sourceTree = "<group>"; };
-		E6C9FFEA25E646A800F9F21E /* LDRApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRApi.swift; sourceTree = "<group>"; };
-		E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRKeychain.swift; sourceTree = "<group>"; };
-		E6CC19EB25F0C6F400D16D9C /* LDRCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "LDRCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
-		E6CC19F425F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LDRCoreData2.xcmappingmodel; sourceTree = "<group>"; };
-		E6D19BEF25EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+TouchAllTests.swift"; sourceTree = "<group>"; };
-		E6D19BF725EFAD4B001FC76B /* LDRRequest+PinAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinAddTests.swift"; sourceTree = "<group>"; };
-		E6D19BFF25EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRRequest+PinRemoveTests.swift"; sourceTree = "<group>"; };
-		E6D5903824A0DE0E003CCCBF /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailViewTests.swift; sourceTree = "<group>"; };
-		E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnread.swift; sourceTree = "<group>"; };
-		E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LDRCoreData3.xcmappingmodel; sourceTree = "<group>"; };
-		E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedDetailView.swift; sourceTree = "<group>"; };
-		E6E127AE24A4BA22008627D5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedDetailView+ViewModel.swift"; sourceTree = "<group>"; };
-		E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LDRCoreData.xcdatamodel; sourceTree = "<group>"; };
-		E6E8D4B325F3C60200F71D10 /* LDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDR.swift; sourceTree = "<group>"; };
-		E6EC083723E7800800929110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LDRCoreData.sqlite; sourceTree = "<group>"; };
-		E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LDRCoreData.sqlite-wal"; sourceTree = "<group>"; };
-		E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LDRCoreData.sqlite-shm"; sourceTree = "<group>"; };
-		E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDR+SnapshotTests.swift"; sourceTree = "<group>"; };
-		E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedSubsUnreadTests.swift; sourceTree = "<group>"; };
-		E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDR+Tests.swift"; sourceTree = "<group>"; };
-		E6EE2E9824AB20EB0086590A /* LDRToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRToastView.swift; sourceTree = "<group>"; };
-		E6F07F032699F3CA00D5F3D4 /* Snapshotting+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Snapshotting+Model.swift"; sourceTree = "<group>"; };
-		E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDRFeedView.swift; sourceTree = "<group>"; };
-		E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRFeedView+ViewModel.swift"; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
-		E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession.DataTaskPublisher+StatusCode.swift"; sourceTree = "<group>"; };
-		E6FA099324A8CBED00888F58 /* LadderClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadderClientApp.swift; sourceTree = "<group>"; };
-		E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LDRStorageProvider+Fixture.swift"; sourceTree = "<group>"; };
-		E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRFeedViewTests.swift; sourceTree = "<group>"; };
+		E6FA099324A8CBED00888F58 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E61E6558274A5A5800CCB483 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E65E9D0325F7A37D00FFBA46 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E65E9D6025F7A3DC00FFBA46 /* SnapshotTesting in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4D1F5E537D0065B7B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,51 +66,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E6A909B4297C72BC00BB6873 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E605CF502985C90F0086681A /* HTMLReader in Frameworks */,
-				E605CF4E2985C70F0086681A /* KeychainAccess in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6C8E61E23E52460004F410D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E66AD21B25E7CBAC0099D5B4 /* HTMLReader in Frameworks */,
-				E6572DE325E77A4200C0F18C /* KeychainAccess in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E601320C261F292C002FCD64 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E6BCD0171F944CA200B2E7E6 /* Foundation */,
-				E6852FBA26441AA4005BAFFB /* OS */,
-				E6365963248CD46600FA3908 /* SwiftUI */,
-				E674AB401F94588D00348C98 /* UIKit */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		E60230B61F5E54740052F762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E6FA099324A8CBED00888F58 /* LadderClientApp.swift */,
-				E66DFE1924A8B95000790F8B /* LDRTabView.swift */,
+				E6FA099324A8CBED00888F58 /* Main.swift */,
+				E66DFE1924A8B95000790F8B /* RootTabView.swift */,
 				E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */,
-				E6FFD6661F6DEB7900AD947E /* Feed */,
-				E6C7B3601F849286000EFCE6 /* Login */,
-				E6FFD6681F6DEB7900AD947E /* Pin */,
-				E6999E462990407A0037DEB9 /* Subscribe */,
-				E6C32EE01F92CC610052DDE3 /* CoreData */,
-				E6C9FFDB25E644ED00F9F21E /* Constant */,
-				E601320C261F292C002FCD64 /* Extension */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -438,158 +87,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E61E655C274A5A5800CCB483 /* ladder-clientUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E61E6567274A5A7800CCB483 /* LDRLaunchTimeTests.swift */,
-			);
-			path = "ladder-clientUITests";
-			sourceTree = "<group>";
-		};
-		E62A73AE25EE538900E79F24 /* Pin */ = {
-			isa = PBXGroup;
-			children = (
-				E6861C4326C41C1200B8BE6F /* LDRPinViewTests.swift */,
-				E65DBEFB25F9FE7C00F7D074 /* LDRPinTests.swift */,
-				E64B6B4426C1779B00E9B39D /* LDRPinRowTests.swift */,
-				E62A73B825EE53EC00E79F24 /* LDRRequest+PinAllTests.swift */,
-				E6D19BF725EFAD4B001FC76B /* LDRRequest+PinAddTests.swift */,
-				E6D19BFF25EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift */,
-				E62A73BD25EE58F100E79F24 /* pinAll.json */,
-			);
-			path = Pin;
-			sourceTree = "<group>";
-		};
-		E62A73C225EE5E5C00E79F24 /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				E6FD73B626C2A23500551617 /* LDRFeedViewTests.swift */,
-				E6AB015026C162EA005E92A2 /* LDRFeedRowTests.swift */,
-				E6EE202A25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift */,
-				E65DBEF125F9FB7700F7D074 /* LDRFeedUnreadTests.swift */,
-				E62A73CB25EE60A300E79F24 /* LDRRequest+SubsTests.swift */,
-				E62A73DB25EE646C00E79F24 /* LDRRequest+UnreadTests.swift */,
-				E6D19BEF25EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift */,
-				E62A73C325EE606600E79F24 /* subs.json */,
-				E62A73D625EE61DE00E79F24 /* unread.json */,
-				E6D8CD2926C2AE1700505F55 /* Detail */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
-		E6365963248CD46600FA3908 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				E6365964248CD48600FA3908 /* ActivityIndicator.swift */,
-				E648D5D126D383E10034CE8A /* Alert+ViewModel.swift */,
-				E6D5903824A0DE0E003CCCBF /* SafariView.swift */,
-				E6E127AE24A4BA22008627D5 /* WebView.swift */,
-			);
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
-		E64B6B4226C176BE00E9B39D /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				E61E46E926C15F6800EFF81B /* LDRFeedSubsUnread+Fixture.swift */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
-		E64B6B4326C176CA00E9B39D /* Pin */ = {
-			isa = PBXGroup;
-			children = (
-				E64B6B3F26C176B700E9B39D /* LDRPin+Fixture.swift */,
-			);
-			path = Pin;
-			sourceTree = "<group>";
-		};
-		E64B6B4726C1786600E9B39D /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E64B6B4826C1787500E9B39D /* Foundation */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		E64B6B4826C1787500E9B39D /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				E60BCF1B263D975700A22017 /* LDRKeychainStub.swift */,
-				E68195D0277DFD5400168177 /* LDRTestURLProtocol.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		E659BFF925EE1CF0005AAF87 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E659C00B25EE1FE9005AAF87 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E62A739825EE4B3E00E79F24 /* LDRRequest+LoginTests.swift */,
-				E678DECA25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift */,
-				E62A73A325EE4E3500E79F24 /* login.html */,
-				E62A739025EE329600E79F24 /* session.html */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		E65DBF0525FA298500F7D074 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E65DBF0625FA29A000F7D074 /* LDRLoginViewTests.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		E65E9D0725F7A37D00FFBA46 /* ladder-clientSnapshotTests */ = {
-			isa = PBXGroup;
-			children = (
-				E6F07F032699F3CA00D5F3D4 /* Snapshotting+Model.swift */,
-				E65E9D3625F7A3A300FFBA46 /* LDRTabViewTests.swift */,
-				E65E9D2625F7A3A200FFBA46 /* Feed */,
-				E65E9D1C25F7A3A200FFBA46 /* Pin */,
-				E65DBF0525FA298500F7D074 /* Login */,
-				E6EE200B25F8E7F000DBF887 /* Constant */,
-				E65E9D0A25F7A37D00FFBA46 /* Info.plist */,
-			);
-			path = "ladder-clientSnapshotTests";
-			sourceTree = "<group>";
-		};
-		E65E9D1C25F7A3A200FFBA46 /* Pin */ = {
-			isa = PBXGroup;
-			children = (
-				E65E9D1D25F7A3A200FFBA46 /* LDRPinRowTests.swift */,
-			);
-			path = Pin;
-			sourceTree = "<group>";
-		};
-		E65E9D2625F7A3A200FFBA46 /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				E65E9D2725F7A3A200FFBA46 /* LDRFeedRowTests.swift */,
-				E69CB81A25FE211C00682DD9 /* Detail */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
 		E6690C471F5E537D0065B7B5 = {
 			isa = PBXGroup;
 			children = (
 				E6690C521F5E537E0065B7B5 /* ladder-client */,
-				E6C8E62223E52460004F410D /* read-later */,
-				E6A909B8297C72BC00BB6873 /* rss-feed-finder */,
 				E678DEC925E8E2C6009C75E5 /* ladder-clientTests */,
-				E65E9D0725F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
-				E61E655C274A5A5800CCB483 /* ladder-clientUITests */,
-				E6EE1FE325F8E06F00DBF887 /* Tests */,
 				E6690C511F5E537E0065B7B5 /* Products */,
-				E659BFF925EE1CF0005AAF87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -597,11 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				E6690C501F5E537E0065B7B5 /* ladder-client.app */,
-				E6C8E62123E52460004F410D /* Add the url to "read later"..appex */,
 				E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */,
-				E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */,
-				E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */,
-				E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -616,270 +115,17 @@
 			path = "ladder-client";
 			sourceTree = "<group>";
 		};
-		E674AB401F94588D00348C98 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				E674AB411F94588D00348C98 /* LDRBlinkView.swift */,
-				E6EE2E9824AB20EB0086590A /* LDRToastView.swift */,
-			);
-			path = UIKit;
-			sourceTree = "<group>";
-		};
 		E678DEC925E8E2C6009C75E5 /* ladder-clientTests */ = {
 			isa = PBXGroup;
 			children = (
-				E62A73C225EE5E5C00E79F24 /* Feed */,
-				E659C00B25EE1FE9005AAF87 /* Login */,
-				E62A73AE25EE538900E79F24 /* Pin */,
-				E6999E47299040E40037DEB9 /* Subscribe */,
-				E6EE203025F8EF4200DBF887 /* Constant */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
 			sourceTree = "<group>";
 		};
-		E6852FBA26441AA4005BAFFB /* OS */ = {
-			isa = PBXGroup;
-			children = (
-				E6852FBB26441AC6005BAFFB /* Logger+LDR.swift */,
-			);
-			path = OS;
-			sourceTree = "<group>";
-		};
-		E6999E462990407A0037DEB9 /* Subscribe */ = {
-			isa = PBXGroup;
-			children = (
-				E6BEA241298878490067538F /* LDRRequest+Subscribe.swift */,
-			);
-			path = Subscribe;
-			sourceTree = "<group>";
-		};
-		E6999E47299040E40037DEB9 /* Subscribe */ = {
-			isa = PBXGroup;
-			children = (
-				E6999E48299041120037DEB9 /* LDRRequest+SubscribeTests.swift */,
-				E6999E4A299045210037DEB9 /* get-subscribe-cnn.com.html */,
-				E6999E4B299045210037DEB9 /* get-subscribe-kenzan8000.org.html */,
-				E6999E4E299047B60037DEB9 /* get-subscribe-github.com.html */,
-			);
-			path = Subscribe;
-			sourceTree = "<group>";
-		};
-		E69CB81A25FE211C00682DD9 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				E69CB80C25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
-		E6A909B8297C72BC00BB6873 /* rss-feed-finder */ = {
-			isa = PBXGroup;
-			children = (
-				E65A40E1297CB41F00CDD55E /* rss-feed-finder.entitlements */,
-				E6A909B9297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift */,
-				E69D4C5229871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift */,
-				E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */,
-				E6A909BE297C72BC00BB6873 /* Info.plist */,
-				E665B48E2985BA0F0092CD9A /* Assets.xcassets */,
-			);
-			path = "rss-feed-finder";
-			sourceTree = "<group>";
-		};
-		E6BCD0171F944CA200B2E7E6 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				E6241ECA1FA462C400DBA613 /* Dictionary+HTTPBody.swift */,
-				E60EA5C1297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift */,
-				E6C9FFEE25E646D900F9F21E /* LDRKeychain.swift */,
-				E68CA3A025DC209F005E591D /* LDRRequest.swift */,
-				E68CA3A825DC227A005E591D /* LDRURLSession.swift */,
-				E6C9FFDE25E6452200F9F21E /* Notification.Name+LDR.swift */,
-				E68CA3BA25DC2991005E591D /* URL+LDR.swift */,
-				E6F8CDA726D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		E6C32EE01F92CC610052DDE3 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				E6C32EE11F92CC610052DDE3 /* LDRStorageProvider.swift */,
-				E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */,
-				E6DFAF6525F1ECF000789E1C /* LDRCoreData3.xcmappingmodel */,
-				E6CC19F425F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		E6C7B3601F849286000EFCE6 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E63B44A42480FAA70055AC71 /* LDRLoginView.swift */,
-				E67C464C24878F7700480D46 /* LDRLoginView+ViewModel.swift */,
-				E60BD71425DE78F100AC16C9 /* LDRLoginFormValidation.swift */,
-				E68CA3B025DC26EC005E591D /* LDRRequest+Login.swift */,
-				E60CAE9625DD458600C6291B /* LDRRequest+Session.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		E6C8E62223E52460004F410D /* read-later */ = {
-			isa = PBXGroup;
-			children = (
-				E6C8E63223E524A5004F410D /* read-later.entitlements */,
-				E6C8E62523E52460004F410D /* LDRAddPinViewController.swift */,
-				E678DEDB25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift */,
-				E6C8E62723E52460004F410D /* MainInterface.storyboard */,
-				E6C8E62A23E52460004F410D /* Info.plist */,
-				E6EC083723E7800800929110 /* Assets.xcassets */,
-			);
-			path = "read-later";
-			sourceTree = "<group>";
-		};
-		E6C9FFDB25E644ED00F9F21E /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				E6C9FFE425E6456500F9F21E /* LDRError.swift */,
-				E6C9FFEA25E646A800F9F21E /* LDRApi.swift */,
-				E6E8D4B325F3C60200F71D10 /* LDR.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		E6D8CD2926C2AE1700505F55 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				E6D8CD2A26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
-		E6EE1FE325F8E06F00DBF887 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				E64B6B4226C176BE00E9B39D /* Feed */,
-				E64B6B4326C176CA00E9B39D /* Pin */,
-				E6FD73B226C29DA300551617 /* CoreData */,
-				E64B6B4726C1786600E9B39D /* Extension */,
-				E6EE1FC525F8D9E800DBF887 /* LDRCoreData.sqlite */,
-				E6EE1FD425F8DB2300DBF887 /* LDRCoreData.sqlite-shm */,
-				E6EE1FD325F8DB2300DBF887 /* LDRCoreData.sqlite-wal */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		E6EE200B25F8E7F000DBF887 /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				E6EE200C25F8E80E00DBF887 /* LDR+SnapshotTests.swift */,
-				E65DBF1025FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		E6EE203025F8EF4200DBF887 /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				E6EE203125F8EF5C00DBF887 /* LDR+Tests.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		E6F25DD924A24D5A008C5E58 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				E6E127AC24A4B6DE008627D5 /* LDRFeedDetailView.swift */,
-				E6E127B024A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift */,
-				E6522F8B24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
-		E6FD73B226C29DA300551617 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				E6FD73B326C29DC400551617 /* LDRStorageProvider+Fixture.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		E6FFD6661F6DEB7900AD947E /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				E6F25DDA24A24DB4008C5E58 /* LDRFeedView.swift */,
-				E6F25DDC24A2501F008C5E58 /* LDRFeedView+ViewModel.swift */,
-				E652C02A24A3676400C744DE /* LDRFeedRow.swift */,
-				E61E46E726C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift */,
-				E6D8DA531F92D2C1002CAD69 /* LDRFeedSubsUnread.swift */,
-				E6C9FFCF25E638D900F9F21E /* LDRFeedUnread.swift */,
-				E6BA93B025E4DC2A00B6291B /* LDRRequest+Subs.swift */,
-				E6BA93B625E4E4F700B6291B /* LDRRequest+TouchAll.swift */,
-				E6BA93C425E4F91600B6291B /* LDRRequest+Unread.swift */,
-				E69C865A1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift */,
-				E6F25DD924A24D5A008C5E58 /* Detail */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
-		E6FFD6681F6DEB7900AD947E /* Pin */ = {
-			isa = PBXGroup;
-			children = (
-				E63CAF9A249F7A950051C402 /* LDRPinView.swift */,
-				E63CAF9C249F83730051C402 /* LDRPinView+ViewModel.swift */,
-				E63CAFA0249F8E240051C402 /* LDRPinRow.swift */,
-				E64B6B3D26C1745600E9B39D /* LDRPinRow+ViewModel.swift */,
-				E6BC9A4B1F92D7FC006B3DEC /* LDRPin.swift */,
-				E62E667B25E1450400417D7B /* LDRRequest+PinAll.swift */,
-				E613D92C25E275E2003C6752 /* LDRRequest+PinAdd.swift */,
-				E613D93225E278CF003C6752 /* LDRRequest+PinRemove.swift */,
-			);
-			path = Pin;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E61E655A274A5A5800CCB483 /* ladder-clientUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E61E6566274A5A5800CCB483 /* Build configuration list for PBXNativeTarget "ladder-clientUITests" */;
-			buildPhases = (
-				E61E6557274A5A5800CCB483 /* Sources */,
-				E61E6558274A5A5800CCB483 /* Frameworks */,
-				E61E6559274A5A5800CCB483 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E61E6562274A5A5800CCB483 /* PBXTargetDependency */,
-			);
-			name = "ladder-clientUITests";
-			productName = "ladder-clientUITests";
-			productReference = E61E655B274A5A5800CCB483 /* ladder-clientUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		E65E9D0525F7A37D00FFBA46 /* ladder-clientSnapshotTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E65E9D0D25F7A37D00FFBA46 /* Build configuration list for PBXNativeTarget "ladder-clientSnapshotTests" */;
-			buildPhases = (
-				E65E9D0225F7A37D00FFBA46 /* Sources */,
-				E65E9D0325F7A37D00FFBA46 /* Frameworks */,
-				E65E9D0425F7A37D00FFBA46 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E65E9D5D25F7A3C000FFBA46 /* PBXTargetDependency */,
-				E65E9D0C25F7A37D00FFBA46 /* PBXTargetDependency */,
-			);
-			name = "ladder-clientSnapshotTests";
-			packageProductDependencies = (
-				E65E9D5F25F7A3DC00FFBA46 /* SnapshotTesting */,
-			);
-			productName = "ladder-clientSnapshotTests";
-			productReference = E65E9D0625F7A37D00FFBA46 /* ladder-clientSnapshotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E6690C4F1F5E537D0065B7B5 /* ladder-client */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6690C621F5E537E0065B7B5 /* Build configuration list for PBXNativeTarget "ladder-client" */;
@@ -893,8 +139,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E6C8E62C23E52460004F410D /* PBXTargetDependency */,
-				E6A909C0297C72BC00BB6873 /* PBXTargetDependency */,
 			);
 			name = "ladder-client";
 			packageProductDependencies = (
@@ -916,7 +160,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E678DF1125E907B1009C75E5 /* PBXTargetDependency */,
 				E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */,
 			);
 			name = "ladder-clientTests";
@@ -925,48 +168,6 @@
 			productName = "ladder-clientTests";
 			productReference = E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E6A909B6297C72BC00BB6873 /* rss-feed-finder */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E6A909C2297C72BC00BB6873 /* Build configuration list for PBXNativeTarget "rss-feed-finder" */;
-			buildPhases = (
-				E6A909B3297C72BC00BB6873 /* Sources */,
-				E6A909B4297C72BC00BB6873 /* Frameworks */,
-				E6A909B5297C72BC00BB6873 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "rss-feed-finder";
-			packageProductDependencies = (
-				E605CF4D2985C70F0086681A /* KeychainAccess */,
-				E605CF4F2985C90F0086681A /* HTMLReader */,
-			);
-			productName = "rss-feed-finder";
-			productReference = E6A909B7297C72BC00BB6873 /* rss-feed-finder.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		E6C8E62023E52460004F410D /* read-later */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "read-later" */;
-			buildPhases = (
-				E6C8E61D23E52460004F410D /* Sources */,
-				E6C8E61E23E52460004F410D /* Frameworks */,
-				E6C8E61F23E52460004F410D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "read-later";
-			packageProductDependencies = (
-				E6572DE225E77A4200C0F18C /* KeychainAccess */,
-				E66AD21A25E7CBAC0099D5B4 /* HTMLReader */,
-			);
-			productName = "app-extension";
-			productReference = E6C8E62123E52460004F410D /* Add the url to "read later"..appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -979,15 +180,6 @@
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = kenzan8000;
 				TargetAttributes = {
-					E61E655A274A5A5800CCB483 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = E6690C4F1F5E537D0065B7B5;
-					};
-					E65E9D0525F7A37D00FFBA46 = {
-						CreatedOnToolsVersion = 12.4;
-						LastSwiftMigration = 1240;
-						TestTargetID = E6690C4F1F5E537D0065B7B5;
-					};
 					E6690C4F1F5E537D0065B7B5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
@@ -1000,13 +192,6 @@
 					E678DEC725E8E2C6009C75E5 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = E6690C4F1F5E537D0065B7B5;
-					};
-					E6A909B6297C72BC00BB6873 = {
-						CreatedOnToolsVersion = 14.2;
-					};
-					E6C8E62023E52460004F410D = {
-						CreatedOnToolsVersion = 11.3.1;
-						DevelopmentTeam = 6RYZ4RB738;
 					};
 				};
 			};
@@ -1022,40 +207,18 @@
 			packageReferences = (
 				E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */,
 				E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				E65E9D5E25F7A3DC00FFBA46 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = E6690C511F5E537E0065B7B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E6690C4F1F5E537D0065B7B5 /* ladder-client */,
-				E6C8E62023E52460004F410D /* read-later */,
-				E6A909B6297C72BC00BB6873 /* rss-feed-finder */,
 				E678DEC725E8E2C6009C75E5 /* ladder-clientTests */,
-				E65E9D0525F7A37D00FFBA46 /* ladder-clientSnapshotTests */,
-				E61E655A274A5A5800CCB483 /* ladder-clientUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E61E6559274A5A5800CCB483 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E65E9D0425F7A37D00FFBA46 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6E0776928E8CB9D00946B8F /* LDRCoreData.sqlite-wal in Resources */,
-				E6E0776828E8CB9D00946B8F /* LDRCoreData.sqlite-shm in Resources */,
-				E6E0776728E8CB9D00946B8F /* LDRCoreData.sqlite in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4E1F5E537D0065B7B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1069,35 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E62A73BE25EE58F100E79F24 /* pinAll.json in Resources */,
-				E6999E4F299047B60037DEB9 /* get-subscribe-github.com.html in Resources */,
-				E62A73D725EE61DE00E79F24 /* unread.json in Resources */,
-				E62A73A425EE4E3500E79F24 /* login.html in Resources */,
-				E62A73C425EE606600E79F24 /* subs.json in Resources */,
-				E6E0776C28E8CB9E00946B8F /* LDRCoreData.sqlite-wal in Resources */,
-				E62A739125EE329600E79F24 /* session.html in Resources */,
-				E6999E4C299045210037DEB9 /* get-subscribe-cnn.com.html in Resources */,
-				E6999E4D299045210037DEB9 /* get-subscribe-kenzan8000.org.html in Resources */,
-				E6E0776B28E8CB9E00946B8F /* LDRCoreData.sqlite-shm in Resources */,
-				E6E0776A28E8CB9E00946B8F /* LDRCoreData.sqlite in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6A909B5297C72BC00BB6873 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E665B48F2985BA0F0092CD9A /* Assets.xcassets in Resources */,
-				E6A909BD297C72BC00BB6873 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6C8E61F23E52460004F410D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6EC083823E7800800929110 /* Assets.xcassets in Resources */,
-				E6C8E62923E52460004F410D /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,89 +259,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E61E6557274A5A5800CCB483 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E61E6568274A5A7800CCB483 /* LDRLaunchTimeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E65E9D0225F7A37D00FFBA46 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E60BCF1D263D975700A22017 /* LDRKeychainStub.swift in Sources */,
-				E6FD73B526C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */,
-				E65E9D4B25F7A3A300FFBA46 /* LDRTabViewTests.swift in Sources */,
-				E61E46EC26C15F6C00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
-				E65E9D3725F7A3A300FFBA46 /* LDRPinRowTests.swift in Sources */,
-				E6EE200D25F8E80E00DBF887 /* LDR+SnapshotTests.swift in Sources */,
-				E64B6B4126C176B700E9B39D /* LDRPin+Fixture.swift in Sources */,
-				E69CB80D25FE20DD00682DD9 /* LDRFeedDetailViewTests.swift in Sources */,
-				E65DBF0725FA29A000F7D074 /* LDRLoginViewTests.swift in Sources */,
-				E6F07F042699F3CA00D5F3D4 /* Snapshotting+Model.swift in Sources */,
-				E68195D2277DFD5400168177 /* LDRTestURLProtocol.swift in Sources */,
-				E65DBF1125FA2BC400F7D074 /* LDRKeychain+SnapshotTests.swift in Sources */,
-				E65E9D3E25F7A3A300FFBA46 /* LDRFeedRowTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6690C4C1F5E537D0065B7B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E62E667C25E1450400417D7B /* LDRRequest+PinAll.swift in Sources */,
-				E613D92D25E275E2003C6752 /* LDRRequest+PinAdd.swift in Sources */,
-				E68CA3A925DC227A005E591D /* LDRURLSession.swift in Sources */,
-				E648D5D226D383E10034CE8A /* Alert+ViewModel.swift in Sources */,
-				E6F8CDA826D72D990033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,
-				E6BA93B125E4DC2A00B6291B /* LDRRequest+Subs.swift in Sources */,
-				E6C9FFE525E6456500F9F21E /* LDRError.swift in Sources */,
-				E6BC9A4C1F92D7FC006B3DEC /* LDRPin.swift in Sources */,
-				E6C9FFEB25E646A800F9F21E /* LDRApi.swift in Sources */,
-				E6541CBA25E78E4900746F2E /* Dictionary+HTTPBody.swift in Sources */,
-				E63CAF9D249F83730051C402 /* LDRPinView+ViewModel.swift in Sources */,
-				E6F25DDB24A24DB4008C5E58 /* LDRFeedView.swift in Sources */,
-				E6365965248CD48600FA3908 /* ActivityIndicator.swift in Sources */,
-				E6C32EE41F92CC610052DDE3 /* LDRStorageProvider.swift in Sources */,
-				E6E127B124A4C3D9008627D5 /* LDRFeedDetailView+ViewModel.swift in Sources */,
-				E6DFAF6625F1ECF000789E1C /* LDRCoreData3.xcmappingmodel in Sources */,
-				E6E127AD24A4B6DE008627D5 /* LDRFeedDetailView.swift in Sources */,
-				E6C9FFD025E638D900F9F21E /* LDRFeedUnread.swift in Sources */,
-				E68CA3B125DC26EC005E591D /* LDRRequest+Login.swift in Sources */,
-				E6BA93B725E4E4F700B6291B /* LDRRequest+TouchAll.swift in Sources */,
-				E6D5903924A0DE0E003CCCBF /* SafariView.swift in Sources */,
-				E6EE2E9924AB20EB0086590A /* LDRToastView.swift in Sources */,
-				E6E8501F25ECD74800B98046 /* LDRCoreData.xcdatamodeld in Sources */,
-				E68CA3A125DC209F005E591D /* LDRRequest.swift in Sources */,
-				E6E127AF24A4BA22008627D5 /* WebView.swift in Sources */,
-				E6CC19F525F0C9C500D16D9C /* LDRCoreData2.xcmappingmodel in Sources */,
-				E66DFE1A24A8B95000790F8B /* LDRTabView.swift in Sources */,
-				E67C464D24878F7700480D46 /* LDRLoginView+ViewModel.swift in Sources */,
-				E6BEA242298878490067538F /* LDRRequest+Subscribe.swift in Sources */,
-				E6D8DA541F92D2C1002CAD69 /* LDRFeedSubsUnread.swift in Sources */,
-				E6E8D4B425F3C60200F71D10 /* LDR.swift in Sources */,
-				E60CAE9725DD458600C6291B /* LDRRequest+Session.swift in Sources */,
-				E63CAF9B249F7A950051C402 /* LDRPinView.swift in Sources */,
-				E6BA93C525E4F91600B6291B /* LDRRequest+Unread.swift in Sources */,
-				E61E46E826C15A8C00EFF81B /* LDRFeedRow+ViewModel.swift in Sources */,
-				E6522F8C24AC72B200E03434 /* LDRFeedDetailView+WebViewModel.swift in Sources */,
-				E6C9FFEF25E646D900F9F21E /* LDRKeychain.swift in Sources */,
-				E6C9FFDF25E6452200F9F21E /* Notification.Name+LDR.swift in Sources */,
-				E6F25DDD24A2501F008C5E58 /* LDRFeedView+ViewModel.swift in Sources */,
-				E6FA099424A8CBED00888F58 /* LadderClientApp.swift in Sources */,
-				E63CAFA1249F8E240051C402 /* LDRPinRow.swift in Sources */,
-				E652C02B24A3676400C744DE /* LDRFeedRow.swift in Sources */,
-				E60BD71525DE78F100AC16C9 /* LDRLoginFormValidation.swift in Sources */,
-				E674AB421F94588E00348C98 /* LDRBlinkView.swift in Sources */,
-				E68CA3BB25DC2991005E591D /* URL+LDR.swift in Sources */,
-				E6852FBC26441AC6005BAFFB /* Logger+LDR.swift in Sources */,
-				E64B6B3E26C1745600E9B39D /* LDRPinRow+ViewModel.swift in Sources */,
-				E63B44A52480FAA70055AC71 /* LDRLoginView.swift in Sources */,
-				E613D93325E278CF003C6752 /* LDRRequest+PinRemove.swift in Sources */,
-				E69C865B1F98670E00EF525B /* LDRFeedUnreadOperationQueue.swift in Sources */,
-				E60EA5C2297CAB5E00D17127 /* HTTPCookieStorage+Cookie.swift in Sources */,
+				E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */,
+				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,224 +272,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6FD73B726C2A23500551617 /* LDRFeedViewTests.swift in Sources */,
-				E64B6B4526C1779B00E9B39D /* LDRPinRowTests.swift in Sources */,
-				E61E46EB26C15F6B00EFF81B /* LDRFeedSubsUnread+Fixture.swift in Sources */,
-				E6AB015126C162EA005E92A2 /* LDRFeedRowTests.swift in Sources */,
-				E6D19C0025EFAEFE001FC76B /* LDRRequest+PinRemoveTests.swift in Sources */,
-				E62A73DC25EE646C00E79F24 /* LDRRequest+UnreadTests.swift in Sources */,
-				E6EE203225F8EF5C00DBF887 /* LDR+Tests.swift in Sources */,
-				E62A73B925EE53EC00E79F24 /* LDRRequest+PinAllTests.swift in Sources */,
-				E6861C4426C41C1200B8BE6F /* LDRPinViewTests.swift in Sources */,
-				E6999E49299041120037DEB9 /* LDRRequest+SubscribeTests.swift in Sources */,
-				E62A739925EE4B3E00E79F24 /* LDRRequest+LoginTests.swift in Sources */,
-				E65DBEF225F9FB7700F7D074 /* LDRFeedUnreadTests.swift in Sources */,
-				E678DECB25E8E2C6009C75E5 /* LDRRequest+SessionTests.swift in Sources */,
-				E6D19BF025EFA8F2001FC76B /* LDRRequest+TouchAllTests.swift in Sources */,
-				E64B6B4026C176B700E9B39D /* LDRPin+Fixture.swift in Sources */,
-				E65DBEFC25F9FE7C00F7D074 /* LDRPinTests.swift in Sources */,
-				E6D19BF825EFAD4B001FC76B /* LDRRequest+PinAddTests.swift in Sources */,
-				E6FD73B426C29DC400551617 /* LDRStorageProvider+Fixture.swift in Sources */,
-				E6EE202B25F8EEC200DBF887 /* LDRFeedSubsUnreadTests.swift in Sources */,
-				E68195D1277DFD5400168177 /* LDRTestURLProtocol.swift in Sources */,
-				E60BCF1C263D975700A22017 /* LDRKeychainStub.swift in Sources */,
-				E6D8CD2B26C2AE2D00505F55 /* LDRFeedDetailViewTests.swift in Sources */,
-				E62A73CC25EE60A300E79F24 /* LDRRequest+SubsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6A909B3297C72BC00BB6873 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6BEA244298880430067538F /* Dictionary+HTTPBody.swift in Sources */,
-				E6518C422987028100A4AE28 /* Logger+LDR.swift in Sources */,
-				E605CF4B2985C6BE0086681A /* LDRKeychain.swift in Sources */,
-				E6BEA246298880970067538F /* URL+LDR.swift in Sources */,
-				E605CF4C2985C6C70086681A /* LDR.swift in Sources */,
-				E6518C432987029500A4AE28 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,
-				E6BEA245298880590067538F /* LDRApi.swift in Sources */,
-				E69D4C5329871F6C005D9B74 /* LDRRSSFeedFinderViewModel.swift in Sources */,
-				E6BEA243298878490067538F /* LDRRequest+Subscribe.swift in Sources */,
-				E6518C3B2986F21A00A4AE28 /* LDRRequest.swift in Sources */,
-				E6A909BA297C72BC00BB6873 /* LDRRSSFeedFinderViewController.swift in Sources */,
-				E6518C402986F73100A4AE28 /* LDRError.swift in Sources */,
-				E6518C41298701DC00A4AE28 /* LDRURLSession.swift in Sources */,
-				E6518C442987029F00A4AE28 /* HTTPCookieStorage+Cookie.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6C8E61D23E52460004F410D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6E8D4B825F3C6C200F71D10 /* LDR.swift in Sources */,
-				E62F726625F2687300AC90D7 /* LDRRequest+PinAll.swift in Sources */,
-				E62F726225F267C300AC90D7 /* LDRPin.swift in Sources */,
-				E6852FBD26441AC6005BAFFB /* Logger+LDR.swift in Sources */,
-				E62F725E25F267BB00AC90D7 /* LDRStorageProvider.swift in Sources */,
-				E62F725825F267B100AC90D7 /* LDRCoreData.xcdatamodeld in Sources */,
-				E62F725925F267B100AC90D7 /* LDRCoreData3.xcmappingmodel in Sources */,
-				E62F725A25F267B100AC90D7 /* LDRCoreData2.xcmappingmodel in Sources */,
-				E66AD21525E797A90099D5B4 /* LDRURLSession.swift in Sources */,
-				E65A40DE297CAE9000CDD55E /* HTTPCookieStorage+Cookie.swift in Sources */,
-				E66AD21225E797990099D5B4 /* LDRRequest.swift in Sources */,
-				E66AD20F25E7977B0099D5B4 /* LDRRequest+PinAdd.swift in Sources */,
-				E6541CC225E78E5D00746F2E /* Dictionary+HTTPBody.swift in Sources */,
-				E6541CA025E78C8000746F2E /* URL+LDR.swift in Sources */,
-				E6F8CDA926D731FF0033F3D3 /* URLSession.DataTaskPublisher+StatusCode.swift in Sources */,
-				E6541C9B25E78C6800746F2E /* LDRError.swift in Sources */,
-				E6541C9C25E78C6800746F2E /* LDRApi.swift in Sources */,
-				E6541C9D25E78C6800746F2E /* LDRKeychain.swift in Sources */,
-				E678DEDC25E8EA8A009C75E5 /* LDRRequest+HTMLTitle.swift in Sources */,
-				E6C8E62623E52460004F410D /* LDRAddPinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E61E6562274A5A5800CCB483 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
-			targetProxy = E61E6561274A5A5800CCB483 /* PBXContainerItemProxy */;
-		};
-		E65E9D0C25F7A37D00FFBA46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
-			targetProxy = E65E9D0B25F7A37D00FFBA46 /* PBXContainerItemProxy */;
-		};
-		E65E9D5D25F7A3C000FFBA46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6C8E62023E52460004F410D /* read-later */;
-			targetProxy = E65E9D5C25F7A3C000FFBA46 /* PBXContainerItemProxy */;
-		};
 		E678DECE25E8E2C6009C75E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
 			target = E6690C4F1F5E537D0065B7B5 /* ladder-client */;
 			targetProxy = E678DECD25E8E2C6009C75E5 /* PBXContainerItemProxy */;
 		};
-		E678DF1125E907B1009C75E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = E6C8E62023E52460004F410D /* read-later */;
-			targetProxy = E678DF1025E907B1009C75E5 /* PBXContainerItemProxy */;
-		};
-		E6A909C0297C72BC00BB6873 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6A909B6297C72BC00BB6873 /* rss-feed-finder */;
-			targetProxy = E6A909BF297C72BC00BB6873 /* PBXContainerItemProxy */;
-		};
-		E6C8E62C23E52460004F410D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E6C8E62023E52460004F410D /* read-later */;
-			targetProxy = E6C8E62B23E52460004F410D /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		E6A909BB297C72BC00BB6873 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E6A909BC297C72BC00BB6873 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		E6C8E62723E52460004F410D /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E6C8E62823E52460004F410D /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		E61E6563274A5A5800CCB483 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "ladder-client";
-			};
-			name = Debug;
-		};
-		E61E6564274A5A5800CCB483 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "ladder-client";
-			};
-			name = Release;
-		};
-		E61E6565274A5A5800CCB483 /* adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "ladder-client";
-			};
-			name = adhoc;
-		};
 		E61EDA872600D3B200D8D4D3 /* adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1530,43 +384,6 @@
 			};
 			name = adhoc;
 		};
-		E61EDA892600D3B200D8D4D3 /* adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_CODE_COVERAGE = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
-				PRODUCT_NAME = "Add the url to \"read later\".";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.kenzan8000.ladder-client.app-extension";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore org.kenzan8000.ladder-client.app-extension";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-			};
-			name = adhoc;
-		};
 		E61EDA8A2600D3B200D8D4D3 /* adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1594,89 +411,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
 			};
 			name = adhoc;
-		};
-		E61EDA8B2600D3B200D8D4D3 /* adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "ladder-clientSnapshotTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientSnapshotTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
-			};
-			name = adhoc;
-		};
-		E65E9D0E25F7A37D00FFBA46 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "ladder-clientSnapshotTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientSnapshotTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
-			};
-			name = Debug;
-		};
-		E65E9D0F25F7A37D00FFBA46 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "ladder-clientSnapshotTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientSnapshotTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
-			};
-			name = Release;
 		};
 		E6690C601F5E537E0065B7B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1936,204 +670,9 @@
 			};
 			name = Release;
 		};
-		E6A909C3297C72BC00BB6873 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "rss-feed-finder/rss-feed-finder.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		E6A909C4297C72BC00BB6873 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "rss-feed-finder/rss-feed-finder.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		E6A909C5297C72BC00BB6873 /* adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "rss-feed-finder/rss-feed-finder.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "rss-feed-finder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Find RSS feeds";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 kenzan8000. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.rss-feed-finder";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = adhoc;
-		};
-		E6C8E62F23E52460004F410D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_CODE_COVERAGE = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
-				PRODUCT_NAME = "Add the url to \"read later\".";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-			};
-			name = Debug;
-		};
-		E6C8E63023E52460004F410D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_CODE_COVERAGE = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "read-later/read-later.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 6RYZ4RB738;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/read-later/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 3.0.8;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-client.app-extension";
-				PRODUCT_NAME = "Add the url to \"read later\".";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.kenzan8000.ladder-client.app-extension";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E61E6566274A5A5800CCB483 /* Build configuration list for PBXNativeTarget "ladder-clientUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E61E6563274A5A5800CCB483 /* Debug */,
-				E61E6564274A5A5800CCB483 /* Release */,
-				E61E6565274A5A5800CCB483 /* adhoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E65E9D0D25F7A37D00FFBA46 /* Build configuration list for PBXNativeTarget "ladder-clientSnapshotTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E65E9D0E25F7A37D00FFBA46 /* Debug */,
-				E65E9D0F25F7A37D00FFBA46 /* Release */,
-				E61EDA8B2600D3B200D8D4D3 /* adhoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E6690C4B1F5E537D0065B7B5 /* Build configuration list for PBXProject "ladder-client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2164,26 +703,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6A909C2297C72BC00BB6873 /* Build configuration list for PBXNativeTarget "rss-feed-finder" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E6A909C3297C72BC00BB6873 /* Debug */,
-				E6A909C4297C72BC00BB6873 /* Release */,
-				E6A909C5297C72BC00BB6873 /* adhoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E6C8E62E23E52460004F410D /* Build configuration list for PBXNativeTarget "read-later" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E6C8E62F23E52460004F410D /* Debug */,
-				E6C8E63023E52460004F410D /* Release */,
-				E61EDA892600D3B200D8D4D3 /* adhoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -2203,27 +722,9 @@
 				minimumVersion = 4.2.2;
 			};
 		};
-		E65E9D5E25F7A3DC00FFBA46 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.2;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E605CF4D2985C70F0086681A /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		E605CF4F2985C90F0086681A /* HTMLReader */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
-			productName = HTMLReader;
-		};
 		E6572DCE25E778C700C0F18C /* HTMLReader */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
@@ -2234,37 +735,7 @@
 			package = E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
-		E6572DE225E77A4200C0F18C /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6572DD225E778E200C0F18C /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		E65E9D5F25F7A3DC00FFBA46 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E65E9D5E25F7A3DC00FFBA46 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
-		};
-		E66AD21A25E7CBAC0099D5B4 /* HTMLReader */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E6572DCD25E778C700C0F18C /* XCRemoteSwiftPackageReference "HTMLReader" */;
-			productName = HTMLReader;
-		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		E6E8501D25ECD74800B98046 /* LDRCoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E64D046C25F0F8A800654902 /* LDRCoreData 3.xcdatamodel */,
-				E6CC19EB25F0C6F400D16D9C /* LDRCoreData 2.xcdatamodel */,
-				E6E8501E25ECD74800B98046 /* LDRCoreData.xcdatamodel */,
-			);
-			currentVersion = E64D046C25F0F8A800654902 /* LDRCoreData 3.xcdatamodel */;
-			path = LDRCoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E6690C481F5E537D0065B7B5 /* Project object */;
 }

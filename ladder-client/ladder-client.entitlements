@@ -10,7 +10,6 @@
 	<array>
 		<string>group.ladder-pin</string>
 		<string>group.org.kenzan8000.ladder-clientTests</string>
-		<string>group.org.kenzan8000.ladder-clientSnapshotTests</string>
 	</array>
 </dict>
 </plist>
