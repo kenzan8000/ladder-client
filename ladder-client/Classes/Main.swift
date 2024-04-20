@@ -20,7 +20,7 @@ struct Main {
 struct LadderClientApp: App {
     var body: some Scene {
         WindowGroup {
-            RootTabView()
+            RootTabView(selectedTab: .feeds)
         }
     }
 }
