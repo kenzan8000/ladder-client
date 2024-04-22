@@ -1,8 +1,8 @@
 import SwiftUI
 
-// MARK: - FeedsView
+// MARK: - FeedView
 
-struct FeedsView: View {
+struct FeedView: View {
     // MARK: - Public properties
 
     var body: some View {

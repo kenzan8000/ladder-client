@@ -1,8 +1,8 @@
 import SwiftUI
 
-// MARK: - PinsView
+// MARK: - PinView
 
-struct PinsView: View {
+struct PinView: View {
     // MARK: - Public properties
 
     var body: some View {

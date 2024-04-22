@@ -18,8 +18,8 @@ struct RootTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            FeedsView()
-            PinsView()
+            FeedView()
+            PinView()
         }
     }
     
