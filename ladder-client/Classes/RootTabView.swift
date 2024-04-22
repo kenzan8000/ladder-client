@@ -18,12 +18,10 @@ struct RootTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Feeds")
-            .tabItem {
-                Image(systemName: "wifi")
-                Text("Feeds")
+            FeedsView()
+            NavigationView {
+                Text("Read Later")
             }
-            Text("Read Later")
             .tabItem {
                 Image(systemName: "pin.fill")
                 Text("Read Later")
