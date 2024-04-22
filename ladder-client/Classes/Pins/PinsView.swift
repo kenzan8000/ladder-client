@@ -1,14 +1,14 @@
 import SwiftUI
 
-// MARK: - FeedsView
+// MARK: - PinsView
 
-struct FeedsView: View {
+struct PinsView: View {
     // MARK: - Public properties
 
     var body: some View {
         NavigationView {
             VStack {
-                Text("Feeds")
+                Text("Read Later")
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -40,8 +40,8 @@ struct FeedsView: View {
             }
         }
         .tabItem {
-            Image(systemName: "wifi")
-            Text("Feeds")
+            Image(systemName: "pin.fill")
+            Text("Read Later")
         }
     }
 }

@@ -19,13 +19,7 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             FeedsView()
-            NavigationView {
-                Text("Read Later")
-            }
-            .tabItem {
-                Image(systemName: "pin.fill")
-                Text("Read Later")
-            }
+            PinsView()
         }
     }
     
