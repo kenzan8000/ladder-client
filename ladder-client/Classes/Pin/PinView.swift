@@ -6,10 +6,12 @@ struct PinView: View {
     // MARK: - Public properties
 
     var body: some View {
-        RootNavigationView()
-            .tabItem {
-                Image(systemName: "pin.fill")
-                Text("Read Later")
-            }
+        RootNavigationView {
+            Text("Read Later")
+        }
+        .tabItem {
+            Image(systemName: "pin.fill")
+            Text("Read Later")
+        }
     }
 }

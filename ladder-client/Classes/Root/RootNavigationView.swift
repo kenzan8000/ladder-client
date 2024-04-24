@@ -2,41 +2,45 @@ import SwiftUI
 
 // MARK: - RootNavigationView
 
-struct RootNavigationView: View {
+struct RootNavigationView<Content>: View where Content: View {
+    // MARK: - Private properties
+
+    @State private var isSignInViewPresented = false
+    
+    private let content: () -> Content
+    
     // MARK: - Public properties
 
     var body: some View {
         NavigationView {
-            VStack {
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(
-                        action: {
-                        },
-                        label: {
-                            VStack {
-                                Image(systemName: "gearshape.fill")
-                                Text("Settings")
-                                    .font(.caption2)
+            VStack(content: content)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(
+                            action: { isSignInViewPresented.toggle() },
+                            label: {
+                                Image(systemName: "person.crop.circle")
+                                Text("Sign in")
                             }
-                        }
-                    )
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        action: {
-                        },
-                        label: {
-                            VStack {
-                                Image(systemName: "arrow.clockwise")
+                        )
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(
+                            action: { },
+                            label: {
                                 Text("Reload")
-                                    .font(.caption2)
+                                Image(systemName: "arrow.clockwise")
                             }
-                        }
-                    )
+                        )
+                    }
                 }
-            }
+                .sheet(isPresented: $isSignInViewPresented) { SignInView() }
         }
+    }
+    
+    // MARK: - Init
+
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
     }
 }

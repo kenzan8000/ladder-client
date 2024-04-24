@@ -6,10 +6,12 @@ struct FeedView: View {
     // MARK: - Public properties
 
     var body: some View {
-        RootNavigationView()
-            .tabItem {
-                Image(systemName: "wifi")
-                Text("Feeds")
-            }
+        RootNavigationView {
+            Text("Feeds")
+        }
+        .tabItem {
+            Image(systemName: "wifi")
+            Text("Feeds")
+        }
     }
 }
