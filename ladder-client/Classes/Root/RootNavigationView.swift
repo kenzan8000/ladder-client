@@ -34,7 +34,9 @@ struct RootNavigationView<Content>: View where Content: View {
                         )
                     }
                 }
-                .sheet(isPresented: $isSignInViewPresented) { SignInView() }
+                .sheet(isPresented: $isSignInViewPresented) {
+                    SignInNavigationView()
+                }
         }
     }
     
