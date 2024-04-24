@@ -13,8 +13,6 @@ struct SignInNavigationView: View {
     var body: some View {
         NavigationView {
             SignInView()
-                .navigationTitle("Sign in")
-                .navigationBarTitleDisplayMode(.large)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(

@@ -13,6 +13,10 @@ struct SignInView: View {
                 .environmentObject(SignInUsernameTextFieldViewModel())
             SignInPasswordTextFieldView()
                 .environmentObject(SignInPasswordTextFieldViewModel())
+            SignInButtonView()
+                .environmentObject(SignInButtonViewModel())
+            Spacer()
         }
+        .padding(.horizontal)
     }
 }
