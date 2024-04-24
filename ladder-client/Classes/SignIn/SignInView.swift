@@ -6,6 +6,9 @@ struct SignInView: View {
     // MARK: - Public properties
 
     var body: some View {
-        Text("Sign in")
+        VStack {
+            SignInDomainTextFieldView()
+                .environmentObject(SignInDomainTextFieldViewModel())
+        }
     }
 }
