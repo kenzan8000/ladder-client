@@ -5,5 +5,6 @@ import Foundation
 class SignInDomainTextFieldViewModel: ObservableObject {
     // MARK: - Public properties
 
-    @Published var rootURL = ""
+    /// Input domain and path on the textfield
+    @Published var domainAndPath = ""
 }

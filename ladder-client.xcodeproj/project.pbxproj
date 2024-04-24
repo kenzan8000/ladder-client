@@ -16,6 +16,8 @@
 		E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C52BD999280094FBA0 /* SignInNavigationView.swift */; };
 		E6C413C82BD9A0870094FBA0 /* SignInDomainTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C72BD9A0870094FBA0 /* SignInDomainTextFieldView.swift */; };
 		E6C413CA2BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */; };
+		E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */; };
+		E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */; };
 		E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE463D2BD6EDD300273094 /* FeedView.swift */; };
 		E6EE46412BD6EFB500273094 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46402BD6EFB500273094 /* PinView.swift */; };
 		E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46422BD6F38E00273094 /* RootNavigationView.swift */; };
@@ -56,6 +58,8 @@
 		E6C413C52BD999280094FBA0 /* SignInNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationView.swift; sourceTree = "<group>"; };
 		E6C413C72BD9A0870094FBA0 /* SignInDomainTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDomainTextFieldView.swift; sourceTree = "<group>"; };
 		E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDomainTextFieldViewModel.swift; sourceTree = "<group>"; };
+		E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameTextFieldView.swift; sourceTree = "<group>"; };
+		E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameTextFieldViewModel.swift; sourceTree = "<group>"; };
 		E6EE463D2BD6EDD300273094 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		E6EE46402BD6EFB500273094 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		E6EE46422BD6F38E00273094 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				E6C413C32BD9982F0094FBA0 /* SignInView.swift */,
 				E6C413C72BD9A0870094FBA0 /* SignInDomainTextFieldView.swift */,
 				E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */,
+				E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */,
+				E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
+				E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */,
 				E6C413CA2BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift in Sources */,
 				E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */,
 				E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */,
@@ -324,6 +331,7 @@
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
+				E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */,
 				E6C413C82BD9A0870094FBA0 /* SignInDomainTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

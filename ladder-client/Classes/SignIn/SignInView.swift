@@ -9,6 +9,8 @@ struct SignInView: View {
         VStack {
             SignInDomainTextFieldView()
                 .environmentObject(SignInDomainTextFieldViewModel())
+            SignInUsernameTextFieldView()
+                .environmentObject(SignInUsernameTextFieldViewModel())
         }
     }
 }
