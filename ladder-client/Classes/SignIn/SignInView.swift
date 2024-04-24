@@ -11,6 +11,8 @@ struct SignInView: View {
                 .environmentObject(SignInDomainTextFieldViewModel())
             SignInUsernameTextFieldView()
                 .environmentObject(SignInUsernameTextFieldViewModel())
+            SignInPasswordTextFieldView()
+                .environmentObject(SignInPasswordTextFieldViewModel())
         }
     }
 }

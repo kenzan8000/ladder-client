@@ -18,6 +18,8 @@
 		E6C413CA2BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */; };
 		E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */; };
 		E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */; };
+		E6C413D02BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CF2BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift */; };
+		E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */; };
 		E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE463D2BD6EDD300273094 /* FeedView.swift */; };
 		E6EE46412BD6EFB500273094 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46402BD6EFB500273094 /* PinView.swift */; };
 		E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46422BD6F38E00273094 /* RootNavigationView.swift */; };
@@ -60,6 +62,8 @@
 		E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDomainTextFieldViewModel.swift; sourceTree = "<group>"; };
 		E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameTextFieldView.swift; sourceTree = "<group>"; };
 		E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameTextFieldViewModel.swift; sourceTree = "<group>"; };
+		E6C413CF2BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordTextFieldView.swift; sourceTree = "<group>"; };
+		E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordTextFieldViewModel.swift; sourceTree = "<group>"; };
 		E6EE463D2BD6EDD300273094 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		E6EE46402BD6EFB500273094 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		E6EE46422BD6F38E00273094 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */,
 				E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */,
 				E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */,
+				E6C413CF2BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift */,
+				E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -322,7 +328,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */,
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
+				E6C413D02BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift in Sources */,
 				E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */,
 				E6C413CA2BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift in Sources */,
 				E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */,
