@@ -12,7 +12,19 @@ struct SignInButtonView: View {
     var body: some View {
         Button(
             action: { },
-            label: { Text("Sign in") }
+            label: {
+                VStack {
+                    Spacer().frame(height: Spacing.minimal)
+                    HStack {
+                        Spacer().frame(width: Spacing.double)
+                        Text("Sign in")
+                        Spacer().frame(width: Spacing.double)
+                    }
+                    Spacer().frame(height: Spacing.minimal)
+                }
+            }
         )
+        .buttonStyle(BorderedProminentButtonStyle())
+        .disabled(true)
     }
 }

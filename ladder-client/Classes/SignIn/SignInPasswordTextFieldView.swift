@@ -10,12 +10,20 @@ struct SignInPasswordTextFieldView: View {
     // MARK: - Public properties
 
     var body: some View {
-        TextField("Password", text: $viewModel.password)
+        HStack {
+            Spacer().frame(width: Spacing.default)
+            
+            SecureField(text: $viewModel.password) {
+                Text("Password")
+            }
             .keyboardType(.alphabet)
             .textContentType(.password)
             .textFieldStyle(.roundedBorder)
             .autocapitalization(.none)
             .autocorrectionDisabled()
             .submitLabel(.send)
+            
+            Spacer().frame(width: Spacing.default)
+        }
     }
 }

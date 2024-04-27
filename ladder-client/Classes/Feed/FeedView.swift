@@ -7,11 +7,11 @@ struct FeedView: View {
 
     var body: some View {
         RootNavigationView {
-            Text("Feeds")
+            Text("RSS Feeds")
         }
         .tabItem {
             Image(systemName: "wifi")
-            Text("Feeds")
+            Text("RSS Feeds")
         }
     }
 }

@@ -11,14 +11,23 @@ struct SignInDomainTextFieldView: View {
 
     var body: some View {
         HStack {
+            Spacer().frame(width: Spacing.default)
+
             Text("https://")
-            TextField("Fastladder root URL", text: $viewModel.domainAndPath)
-                .keyboardType(.URL)
-                .textContentType(.URL)
-                .textFieldStyle(.roundedBorder)
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
-                .submitLabel(.next)
+            
+            Spacer().frame(width: Spacing.tight)
+
+            TextField(text: $viewModel.domainAndPath) {
+                Text("Fastladder root URL")
+            }
+            .keyboardType(.URL)
+            .textContentType(.URL)
+            .textFieldStyle(.roundedBorder)
+            .autocapitalization(.none)
+            .autocorrectionDisabled()
+            .submitLabel(.next)
+
+            Spacer().frame(width: Spacing.default)
         }
     }
 }

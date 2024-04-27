@@ -10,12 +10,20 @@ struct SignInUsernameTextFieldView: View {
     // MARK: - Public properties
 
     var body: some View {
-        TextField("Username", text: $viewModel.username)
+        HStack {
+            Spacer().frame(width: Spacing.default)
+            
+            TextField(text: $viewModel.username) {
+                Text("Username")
+            }
             .keyboardType(.alphabet)
             .textContentType(.username)
             .textFieldStyle(.roundedBorder)
             .autocapitalization(.none)
             .autocorrectionDisabled()
             .submitLabel(.next)
+            
+            Spacer().frame(width: Spacing.default)
+        }
     }
 }
