@@ -4,6 +4,8 @@ import SwiftUI
 
 struct RootNavigationView<Content>: View where Content: View {
     // MARK: - Private properties
+    
+    @EnvironmentObject private var viewModel: RootNavigationViewModel
 
     @State private var isSignInViewPresented = false
     
@@ -36,6 +38,7 @@ struct RootNavigationView<Content>: View where Content: View {
                 }
                 .sheet(isPresented: $isSignInViewPresented) {
                     SignInNavigationView()
+                        .environmentObject(viewModel.makeSignInNavigationViewModel())
                 }
         }
     }

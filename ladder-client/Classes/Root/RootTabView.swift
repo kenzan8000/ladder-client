@@ -11,6 +11,8 @@ struct RootTabView: View {
     }
 
     // MARK: - Private properties
+    
+    @EnvironmentObject private var viewModel: RootTabViewModel
 
     @State private var selectedTab: Tab
     
@@ -19,7 +21,9 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             FeedView()
+                .environmentObject(viewModel.makeFeedViewModel())
             PinView()
+                .environmentObject(viewModel.makePinViewModel())
         }
     }
     

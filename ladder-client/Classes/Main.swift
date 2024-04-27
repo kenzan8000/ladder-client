@@ -1,3 +1,4 @@
+import KeychainAccess
 import SwiftUI
 
 // MARK: - Main
@@ -21,6 +22,7 @@ struct LadderClientApp: App {
     var body: some Scene {
         WindowGroup {
             RootTabView(selectedTab: .feeds)
+                .environmentObject(RootTabViewModel(keychain: Keychain(service: "org.kenzan8000.ladder-client", accessGroup: "group.ladder-client")))
         }
     }
 }

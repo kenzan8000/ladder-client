@@ -5,6 +5,8 @@ import SwiftUI
 struct SignInNavigationView: View {
     // MARK: - Private properties
 
+    @EnvironmentObject private var viewModel: SignInNavigationViewModel
+
     @Environment(\.dismiss)
     private var dismiss
 
@@ -21,6 +23,7 @@ struct SignInNavigationView: View {
                         )
                     }
                 }
+                .environmentObject(viewModel.makeSignInViewModel())
         }
     }
 }

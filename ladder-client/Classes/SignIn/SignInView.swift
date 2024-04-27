@@ -3,6 +3,10 @@ import SwiftUI
 // MARK: - SignInView
 
 struct SignInView: View {
+    // MARK: - Private properties
+
+    @EnvironmentObject private var viewModel: SignInViewModel
+
     // MARK: - Public properties
 
     var body: some View {

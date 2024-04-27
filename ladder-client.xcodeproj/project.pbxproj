@@ -25,6 +25,13 @@
 		E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE463D2BD6EDD300273094 /* FeedView.swift */; };
 		E6EE46412BD6EFB500273094 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46402BD6EFB500273094 /* PinView.swift */; };
 		E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE46422BD6F38E00273094 /* RootNavigationView.swift */; };
+		E6EF21B22BDD8A6400A81560 /* Keychain+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21B12BDD8A6400A81560 /* Keychain+Extensions.swift */; };
+		E6EF21B42BDD8B3B00A81560 /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21B32BDD8B3B00A81560 /* RootTabViewModel.swift */; };
+		E6EF21BC2BDD905800A81560 /* RootNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */; };
+		E6EF21BE2BDD90C300A81560 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21BD2BDD90C300A81560 /* FeedViewModel.swift */; };
+		E6EF21C02BDD911900A81560 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21BF2BDD911900A81560 /* PinViewModel.swift */; };
+		E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21C12BDD92C900A81560 /* SignInNavigationViewModel.swift */; };
+		E6EF21C42BDD934F00A81560 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF21C32BDD934F00A81560 /* SignInViewModel.swift */; };
 		E6F6DFDC2BDC4CF00058209B /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6DFDB2BDC4CF00058209B /* Spacing.swift */; };
 		E6FA099424A8CBED00888F58 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* Main.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +79,13 @@
 		E6EE463D2BD6EDD300273094 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		E6EE46402BD6EFB500273094 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		E6EE46422BD6F38E00273094 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		E6EF21B12BDD8A6400A81560 /* Keychain+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Extensions.swift"; sourceTree = "<group>"; };
+		E6EF21B32BDD8B3B00A81560 /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
+		E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewModel.swift; sourceTree = "<group>"; };
+		E6EF21BD2BDD90C300A81560 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		E6EF21BF2BDD911900A81560 /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
+		E6EF21C12BDD92C900A81560 /* SignInNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationViewModel.swift; sourceTree = "<group>"; };
+		E6EF21C32BDD934F00A81560 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
 		E6F6DFDB2BDC4CF00058209B /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -100,12 +114,13 @@
 		E60230B61F5E54740052F762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E6F6DFDA2BDC4CCB0058209B /* Common */,
+				E6EF21B72BDD8D8600A81560 /* Extensions */,
 				E6EE46442BD6F59100273094 /* Root */,
 				E6EE463C2BD6EDBE00273094 /* Feed */,
 				E6EE463F2BD6EEFB00273094 /* Pin */,
 				E6C413C22BD9980D0094FBA0 /* SignIn */,
 				E6FA099324A8CBED00888F58 /* Main.swift */,
+				E6F6DFDB2BDC4CF00058209B /* Spacing.swift */,
 				E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */,
 			);
 			path = Classes;
@@ -159,7 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				E6C413C52BD999280094FBA0 /* SignInNavigationView.swift */,
+				E6EF21C12BDD92C900A81560 /* SignInNavigationViewModel.swift */,
 				E6C413C32BD9982F0094FBA0 /* SignInView.swift */,
+				E6EF21C32BDD934F00A81560 /* SignInViewModel.swift */,
 				E6C413C72BD9A0870094FBA0 /* SignInDomainTextFieldView.swift */,
 				E6C413C92BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift */,
 				E6C413CB2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift */,
@@ -176,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E6EE463D2BD6EDD300273094 /* FeedView.swift */,
+				E6EF21BD2BDD90C300A81560 /* FeedViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -184,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				E6EE46402BD6EFB500273094 /* PinView.swift */,
+				E6EF21BF2BDD911900A81560 /* PinViewModel.swift */,
 			);
 			path = Pin;
 			sourceTree = "<group>";
@@ -192,17 +211,27 @@
 			isa = PBXGroup;
 			children = (
 				E66DFE1924A8B95000790F8B /* RootTabView.swift */,
+				E6EF21B32BDD8B3B00A81560 /* RootTabViewModel.swift */,
 				E6EE46422BD6F38E00273094 /* RootNavigationView.swift */,
+				E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
 		};
-		E6F6DFDA2BDC4CCB0058209B /* Common */ = {
+		E6EF21B72BDD8D8600A81560 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E6F6DFDB2BDC4CF00058209B /* Spacing.swift */,
+				E6EF21B82BDD8D8E00A81560 /* KeychainAccess */,
 			);
-			path = Common;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E6EF21B82BDD8D8E00A81560 /* KeychainAccess */ = {
+			isa = PBXGroup;
+			children = (
+				E6EF21B12BDD8A6400A81560 /* Keychain+Extensions.swift */,
+			);
+			path = KeychainAccess;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,19 +376,26 @@
 			files = (
 				E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */,
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
+				E6EF21B42BDD8B3B00A81560 /* RootTabViewModel.swift in Sources */,
+				E6EF21B22BDD8A6400A81560 /* Keychain+Extensions.swift in Sources */,
+				E6EF21C42BDD934F00A81560 /* SignInViewModel.swift in Sources */,
 				E6F6DFDC2BDC4CF00058209B /* Spacing.swift in Sources */,
+				E6EF21C02BDD911900A81560 /* PinViewModel.swift in Sources */,
 				E6C413D02BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift in Sources */,
 				E6DC985A2BD9B017002EDC02 /* SignInButtonView.swift in Sources */,
 				E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */,
 				E6C413CA2BD9A1970094FBA0 /* SignInDomainTextFieldViewModel.swift in Sources */,
 				E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */,
+				E6EF21BE2BDD90C300A81560 /* FeedViewModel.swift in Sources */,
 				E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */,
 				E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */,
 				E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */,
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
+				E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
 				E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */,
+				E6EF21BC2BDD905800A81560 /* RootNavigationViewModel.swift in Sources */,
 				E6C413C82BD9A0870094FBA0 /* SignInDomainTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

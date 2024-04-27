@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: - Spacing
+
 enum Spacing {
     static let minimal: CGFloat = 4
     static let tight: CGFloat = 8

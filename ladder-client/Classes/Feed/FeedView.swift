@@ -3,6 +3,10 @@ import SwiftUI
 // MARK: - FeedView
 
 struct FeedView: View {
+    // MARK: - Private properties
+    
+    @EnvironmentObject private var viewModel: FeedViewModel
+
     // MARK: - Public properties
 
     var body: some View {
@@ -13,5 +17,6 @@ struct FeedView: View {
             Image(systemName: "wifi")
             Text("RSS Feeds")
         }
+        .environmentObject(viewModel.makeRootNavigationViewModel())
     }
 }
