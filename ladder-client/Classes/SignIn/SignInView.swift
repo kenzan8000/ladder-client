@@ -13,8 +13,8 @@ struct SignInView: View {
         VStack {
             Spacer().frame(height: Spacing.default)
 
-            SignInDomainTextFieldView()
-                .environmentObject(SignInDomainTextFieldViewModel())
+            SignInRootURLTextFieldView()
+                .environmentObject(viewModel.makeSignInRootURLTextFieldViewModel())
 
             Spacer().frame(height: Spacing.tight)
 

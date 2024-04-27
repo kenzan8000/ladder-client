@@ -12,4 +12,10 @@ class SignInViewModel: ObservableObject {
     init(keychain: any KeychainProtocol) {
         self.keychain = keychain
     }
+    
+    // MARK: - Public methods
+    
+    func makeSignInRootURLTextFieldViewModel() -> SignInRootURLTextFieldViewModel {
+        SignInRootURLTextFieldViewModel(keychain: keychain)
+    }
 }

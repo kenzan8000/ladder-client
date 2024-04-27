@@ -2,10 +2,10 @@ import SwiftUI
 
 // MARK: - SignInDomainTextFieldView
 
-struct SignInDomainTextFieldView: View {
+struct SignInRootURLTextFieldView: View {
     // MARK: - Private properties
 
-    @EnvironmentObject private var viewModel: SignInDomainTextFieldViewModel
+    @EnvironmentObject private var viewModel: SignInRootURLTextFieldViewModel
     
     // MARK: - Public properties
 
@@ -13,8 +13,8 @@ struct SignInDomainTextFieldView: View {
         HStack {
             Spacer().frame(width: Spacing.default)
 
-            Text("https://")
-            
+            Text(viewModel.scheme)
+
             Spacer().frame(width: Spacing.tight)
 
             TextField(text: $viewModel.domainAndPath) {
