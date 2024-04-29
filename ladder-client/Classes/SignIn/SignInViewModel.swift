@@ -6,6 +6,37 @@ class SignInViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
+
+    // MARK: - Public properties
+    
+    private(set) lazy var rootURLTextFieldViewModel = SignInRootURLTextFieldViewModel(keychain: keychain)
+    
+    private(set) lazy var usernameTextFieldViewModel = SignInUsernameTextFieldViewModel()
+    
+    private(set) lazy var passwordTextFieldViewModel = SignInPasswordTextFieldViewModel()
+    
+    private(set) lazy var buttonViewModel = SignInButtonViewModel()
+
+    var focusedField: SignInView.Field? {
+        guard rootURLTextFieldViewModel.isURLValid else {
+            return .rootURL
+        }
+        guard usernameTextFieldViewModel.isUsernameValid else {
+            return .username
+        }
+        guard passwordTextFieldViewModel.isPasswordValid else {
+            return .password
+        }
+        return nil
+    }
+    
+    var isFormValid: Bool {
+        rootURLTextFieldViewModel.isURLValid &&
+        usernameTextFieldViewModel.isUsernameValid &&
+        passwordTextFieldViewModel.isPasswordValid
+    }
+    
+    private(set) var isSigningIn = false
     
     // MARK: - Init
     
@@ -15,7 +46,9 @@ class SignInViewModel: ObservableObject {
     
     // MARK: - Public methods
     
-    func makeSignInRootURLTextFieldViewModel() -> SignInRootURLTextFieldViewModel {
-        SignInRootURLTextFieldViewModel(keychain: keychain)
+    func signIn() {
+    }
+    
+    func cancelSigningIn() {
     }
 }

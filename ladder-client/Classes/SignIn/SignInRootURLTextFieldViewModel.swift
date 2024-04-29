@@ -6,6 +6,8 @@ class SignInRootURLTextFieldViewModel: ObservableObject {
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol
+    
+    private var rootURL: URL? { URL(string: scheme + domainAndPath) }
 
     // MARK: - Public properties
     
@@ -14,10 +16,11 @@ class SignInRootURLTextFieldViewModel: ObservableObject {
 
     /// Input domain and path on the textfield
     @Published var domainAndPath: String {
-        didSet {
-            keychain.rootURL = URL(string: scheme + domainAndPath)
-        }
+        didSet { keychain.rootURL = rootURL }
     }
+    
+    /// Is the input Fastladder URL valid?
+    var isURLValid: Bool { rootURL != nil }
     
     // MARK: - Init
     

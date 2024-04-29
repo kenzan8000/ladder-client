@@ -7,4 +7,7 @@ class SignInPasswordTextFieldViewModel: ObservableObject {
 
     /// Input password on the textfield
     @Published var password = ""
+    
+    /// Is the input password valid?
+    var isPasswordValid: Bool { !password.isEmpty }
 }

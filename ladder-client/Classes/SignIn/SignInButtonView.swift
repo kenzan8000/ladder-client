@@ -7,24 +7,29 @@ struct SignInButtonView: View {
 
     @EnvironmentObject private var viewModel: SignInButtonViewModel
     
+    private let action: () -> Void
+    
     // MARK: - Public properties
 
     var body: some View {
-        Button(
-            action: { },
-            label: {
-                VStack {
-                    Spacer().frame(height: Spacing.minimal)
-                    HStack {
-                        Spacer().frame(width: Spacing.double)
-                        Text("Sign in")
-                        Spacer().frame(width: Spacing.double)
-                    }
-                    Spacer().frame(height: Spacing.minimal)
+        Button(action: action) {
+            VStack {
+                Spacer().frame(height: Spacing.minimal)
+                HStack {
+                    Spacer().frame(width: Spacing.double)
+                    Text("Sign in")
+                    Spacer().frame(width: Spacing.double)
                 }
+                Spacer().frame(height: Spacing.minimal)
             }
-        )
-        .buttonStyle(BorderedProminentButtonStyle())
-        .disabled(true)
+        }
+        .buttonStyle(BorderedButtonStyle())
     }
+    
+    // MARK: - Init
+    
+    init(action: @escaping () -> Void) {
+        self.action = action
+    }
+
 }
