@@ -43,16 +43,14 @@ struct SignInView: View {
         }
         .padding(.horizontal)
         .onAppear { focusedField = viewModel.nextFocusedField }
-        .onDisappear { viewModel.cancelSigningIn() }
+        .onChange(of: focusedField) { viewModel.updateState(focusedField: focusedField) }
     }
     
     // MARK: - Public methods
     
     func signInIfNeeded() {
-        guard viewModel.isFormValid else {
-            focusedField = viewModel.nextFocusedField
-            return
-        }
+        focusedField = viewModel.nextFocusedField
         viewModel.signIn()
+        viewModel.updateState(focusedField: focusedField)
     }
 }

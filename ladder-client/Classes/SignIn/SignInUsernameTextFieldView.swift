@@ -22,10 +22,7 @@ struct SignInUsernameTextFieldView: View {
             .autocorrectionDisabled()
             .submitLabel(.next)
             .padding(Padding.textField)
-            .overlay(
-                RoundedRectangle(cornerRadius: CornerRadius.default)
-                    .stroke(Color.secondary, lineWidth: 1)
-            )
+            .modifier(SignInTextFieldStateModifier(publisher: viewModel.$state.eraseToAnyPublisher()))
 
             Spacer().frame(width: Spacing.default)
         }
