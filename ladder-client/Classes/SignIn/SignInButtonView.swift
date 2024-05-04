@@ -3,6 +3,13 @@ import SwiftUI
 // MARK: - SignInButtonView
 
 struct SignInButtonView: View {
+    // MARK: - Private enums
+    
+    private enum Constant {
+        static let minWidth: CGFloat = 128
+        static let minHeight: CGFloat = 32
+    }
+    
     // MARK: - Private properties
 
     @EnvironmentObject private var viewModel: SignInButtonViewModel
@@ -13,15 +20,8 @@ struct SignInButtonView: View {
 
     var body: some View {
         Button(action: action) {
-            VStack {
-                Spacer().frame(height: Spacing.minimal)
-                HStack {
-                    Spacer().frame(width: Spacing.double)
-                    Text("Sign in")
-                    Spacer().frame(width: Spacing.double)
-                }
-                Spacer().frame(height: Spacing.minimal)
-            }
+            Text("Sign in")
+                .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
         }
         .buttonStyle(BorderedButtonStyle())
     }

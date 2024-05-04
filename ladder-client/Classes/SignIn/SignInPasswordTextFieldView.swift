@@ -18,11 +18,15 @@ struct SignInPasswordTextFieldView: View {
             }
             .keyboardType(.alphabet)
             .textContentType(.password)
-            .textFieldStyle(.roundedBorder)
             .autocapitalization(.none)
             .autocorrectionDisabled()
-            .submitLabel(.send)
-            
+            .submitLabel(.done)
+            .padding(Padding.textField)
+            .overlay(
+                RoundedRectangle(cornerRadius: CornerRadius.default)
+                    .stroke(Color.secondary, lineWidth: 1)
+            )
+
             Spacer().frame(width: Spacing.default)
         }
     }

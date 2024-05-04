@@ -17,7 +17,7 @@ class SignInViewModel: ObservableObject {
     
     private(set) lazy var buttonViewModel = SignInButtonViewModel()
 
-    var focusedField: SignInView.Field? {
+    var nextFocusedField: SignInView.Field? {
         guard rootURLTextFieldViewModel.isURLValid else {
             return .rootURL
         }
@@ -47,6 +47,9 @@ class SignInViewModel: ObservableObject {
     // MARK: - Public methods
     
     func signIn() {
+        guard !isSigningIn else {
+            return
+        }
     }
     
     func cancelSigningIn() {

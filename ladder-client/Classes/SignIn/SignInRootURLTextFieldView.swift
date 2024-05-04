@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 // MARK: - SignInDomainTextFieldView
@@ -22,10 +23,14 @@ struct SignInRootURLTextFieldView: View {
             }
             .keyboardType(.URL)
             .textContentType(.URL)
-            .textFieldStyle(.roundedBorder)
             .autocapitalization(.none)
             .autocorrectionDisabled()
             .submitLabel(.next)
+            .padding(Padding.textField)
+            .overlay(
+                RoundedRectangle(cornerRadius: CornerRadius.default)
+                    .stroke(.secondary, lineWidth: 1)
+            )
 
             Spacer().frame(width: Spacing.default)
         }

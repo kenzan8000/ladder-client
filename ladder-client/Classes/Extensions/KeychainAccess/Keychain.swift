@@ -9,14 +9,6 @@ private enum KeychainKey {
     static let rootURL: String = "fastladder.root-url"
 }
 
-// MARK: - KeychainProtocol
-
-protocol KeychainProtocol {
-    var apiKey: String? { get set }
-    var cookie: String? { get set }
-    var rootURL: URL? { get set }
-}
-
 // MARK: - Keychain Extension
 
 extension Keychain: KeychainProtocol {

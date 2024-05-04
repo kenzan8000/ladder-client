@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 
 // MARK: - SignInRootURLTextFieldViewModel
@@ -6,11 +7,11 @@ class SignInRootURLTextFieldViewModel: ObservableObject {
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol
-    
+
     private var rootURL: URL? { URL(string: scheme + domainAndPath) }
 
     // MARK: - Public properties
-    
+
     /// Fastladder URL should always start with "https://" scheme
     let scheme: String = "https://"
 
@@ -18,12 +19,12 @@ class SignInRootURLTextFieldViewModel: ObservableObject {
     @Published var domainAndPath: String {
         didSet { keychain.rootURL = rootURL }
     }
-    
+
     /// Is the input Fastladder URL valid?
-    var isURLValid: Bool { rootURL != nil }
-    
+    var isURLValid: Bool { !domainAndPath.isEmpty }
+
     // MARK: - Init
-    
+
     init(keychain: any KeychainProtocol) {
         self.keychain = keychain
 
