@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - RootNavigationViewModel
 
-class RootNavigationViewModel: ObservableObject {
+final class RootNavigationViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

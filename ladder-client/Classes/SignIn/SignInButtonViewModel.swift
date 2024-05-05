@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - SignInButtonViewModel
 
-class SignInButtonViewModel: ObservableObject {
+final class SignInButtonViewModel: ObservableObject {
     // MARK: - Public properties
 
     let statePublisher: AnyPublisher<SignInButtonViewState, Never>

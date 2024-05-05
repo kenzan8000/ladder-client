@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - SignInNetworking
 
-class SignInNetworking: SignInNetworkingProtocol {
+final class SignInNetworking: SignInNetworkingProtocol {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

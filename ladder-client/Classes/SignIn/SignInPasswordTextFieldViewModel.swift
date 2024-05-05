@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - SignInPasswordTextFieldViewModel
 
-class SignInPasswordTextFieldViewModel: ObservableObject {
+final class SignInPasswordTextFieldViewModel: ObservableObject {
     // MARK: - Private properties
     
     private var isFocused = false

@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - SignInUsernameTextFieldViewModel
 
-class SignInUsernameTextFieldViewModel: ObservableObject {
+final class SignInUsernameTextFieldViewModel: ObservableObject {
     // MARK: - Private properties
     
     private var isFocused = false

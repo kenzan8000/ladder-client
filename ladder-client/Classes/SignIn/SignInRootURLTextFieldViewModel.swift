@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - SignInRootURLTextFieldViewModel
 
-class SignInRootURLTextFieldViewModel: ObservableObject {
+final class SignInRootURLTextFieldViewModel: ObservableObject {
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol

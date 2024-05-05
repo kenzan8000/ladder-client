@@ -4,7 +4,7 @@ import JavaScriptCore
 
 // MARK: - SignInService
 
-class SignInService: SignInServiceProtocol {
+final class SignInService: SignInServiceProtocol {
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol
@@ -64,8 +64,8 @@ class SignInService: SignInServiceProtocol {
                 }
                 return key
             }
-            .reduce("", +)
-        if apiKey.isEmpty {
+            .first
+        guard let apiKey else {
             throw NetworkingError.noAPIKey
         }
         keychain.apiKey = apiKey

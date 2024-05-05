@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - SignInNavigationViewModel
 
-class SignInNavigationViewModel: ObservableObject {
+final class SignInNavigationViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

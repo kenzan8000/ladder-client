@@ -19,14 +19,14 @@ struct CookieStorage: CookieStorageProtocol {
             return nil
         }
         return httpCookieStorage.cookies?
-            .compactMap { $0.domain.hasSuffix(host) ? $0 : nil }
+            .filter { $0.domain.hasSuffix(host) }
             .map { "\($0.name)=\($0.value);" }
             .reduce("", +)
     }
 
     func addCookies(urlResponse: URLResponse) {
         guard let response = urlResponse as? HTTPURLResponse,
-                    let responseUrl = response.url else {
+        let responseUrl = response.url else {
             return
         }
         var headerFields: [String: String] = [:]

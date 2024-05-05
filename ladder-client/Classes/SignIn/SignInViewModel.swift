@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - SignInViewModel
 
-class SignInViewModel: ObservableObject {
+final class SignInViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

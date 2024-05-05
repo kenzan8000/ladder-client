@@ -17,6 +17,10 @@
 		E67485DA2BE032E300DDE19C /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67485D92BE032E300DDE19C /* CornerRadius.swift */; };
 		E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67485DD2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift */; };
 		E67485E22BE6E8DE00DDE19C /* KeychainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */; };
+		E6794F0C2BE7F75200A52138 /* CookieStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */; };
+		E6794F0F2BE7F7E700A52138 /* KeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */; };
+		E6987DA32BE7ED1200B5BBC7 /* SignInServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6987DA22BE7ED1200B5BBC7 /* SignInServiceTests.swift */; };
+		E6987DA52BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6987DA42BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift */; };
 		E6AA1A5A2BE7BCAC00A240B5 /* ViewAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AA1A592BE7BCAC00A240B5 /* ViewAlertModifier.swift */; };
 		E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C32BD9982F0094FBA0 /* SignInView.swift */; };
 		E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413C52BD999280094FBA0 /* SignInNavigationView.swift */; };
@@ -84,6 +88,10 @@
 		E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainProtocol.swift; sourceTree = "<group>"; };
 		E678DEC825E8E2C6009C75E5 /* ladder-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ladder-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieStorageMock.swift; sourceTree = "<group>"; };
+		E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainMock.swift; sourceTree = "<group>"; };
+		E6987DA22BE7ED1200B5BBC7 /* SignInServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInServiceTests.swift; sourceTree = "<group>"; };
+		E6987DA42BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNetworkingMock.swift; sourceTree = "<group>"; };
 		E6AA1A592BE7BCAC00A240B5 /* ViewAlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAlertModifier.swift; sourceTree = "<group>"; };
 		E6C413C32BD9982F0094FBA0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E6C413C52BD999280094FBA0 /* SignInNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationView.swift; sourceTree = "<group>"; };
@@ -191,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				E6D1EFEA2BE7ABC4008AA020 /* Foundation */,
-				E6EF21B82BDD8D8E00A81560 /* KeychainAccess */,
 				E6D1EFE02BE798A7008AA020 /* Networking */,
 				E6AA1A582BE7BC9300A240B5 /* SwiftUI */,
 				E67485D32BE0320300DDE19C /* UI */,
@@ -212,9 +219,37 @@
 		E678DEC925E8E2C6009C75E5 /* ladder-clientTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6987DA62BE7F2F000B5BBC7 /* Utilities */,
+				E6987DA12BE7EC1200B5BBC7 /* SignIn */,
 				E678DECC25E8E2C6009C75E5 /* Info.plist */,
 			);
 			path = "ladder-clientTests";
+			sourceTree = "<group>";
+		};
+		E6794F092BE7F73C00A52138 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */,
+				E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		E6987DA12BE7EC1200B5BBC7 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				E6987DA22BE7ED1200B5BBC7 /* SignInServiceTests.swift */,
+				E6987DA42BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		E6987DA62BE7F2F000B5BBC7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E6794F092BE7F73C00A52138 /* Foundation */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		E6AA1A582BE7BC9300A240B5 /* SwiftUI */ = {
@@ -263,6 +298,8 @@
 			children = (
 				E6D1EFED2BE7AC5B008AA020 /* CookieStorageProtocol.swift */,
 				E6D1EFEB2BE7ABDF008AA020 /* CookieStorage.swift */,
+				E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */,
+				E6EF21B12BDD8A6400A81560 /* Keychain.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -294,15 +331,6 @@
 				E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		E6EF21B82BDD8D8E00A81560 /* KeychainAccess */ = {
-			isa = PBXGroup;
-			children = (
-				E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */,
-				E6EF21B12BDD8A6400A81560 /* Keychain.swift */,
-			);
-			path = KeychainAccess;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +401,7 @@
 					};
 					E678DEC725E8E2C6009C75E5 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1530;
 						TestTargetID = E6690C4F1F5E537D0065B7B5;
 					};
 				};
@@ -488,6 +517,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6794F0C2BE7F75200A52138 /* CookieStorageMock.swift in Sources */,
+				E6987DA32BE7ED1200B5BBC7 /* SignInServiceTests.swift in Sources */,
+				E6987DA52BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift in Sources */,
+				E6794F0F2BE7F7E700A52138 /* KeychainMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +639,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -835,6 +869,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -855,6 +890,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.kenzan8000.ladder-clientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ladder-client.app/ladder-client";
@@ -866,6 +902,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;

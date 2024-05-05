@@ -10,11 +10,11 @@ enum NetworkingError: Error {
     var localizedDescription: String {
         switch self {
         case .invalidURL:
-            return "Fastladder root URL is not definied yet or invalid. Please set it up from \"Sign in\"."
+            return "Fastladder root URL is not definied or invalid. Please set it up from the \"Sign in\" form."
         case .noAPIKey:
-            return "Failed to get Fastladder API key. Please sign in from \"Sign in\"."
+            return "Failed to get Fastladder API key. Please check if you fill the right information on the \"Sign in\" form."
         case .noAuthenticityToken:
-            return "Failed to get Fastladder authenticity token. Please confirm if you fill the right information on the sign-in form."
+            return "Failed to get Fastladder authenticity token. Please check if you fill the right information on the \"Sign in\" form."
         }
     }
 }

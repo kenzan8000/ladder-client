@@ -46,6 +46,7 @@ struct SignInView: View {
         }
         .padding(.horizontal)
         .onAppear { focusedField = viewModel.nextFocusedField }
+        .onDisappear { viewModel.cancelSigningIn() }
         .onChange(of: focusedField) { viewModel.updateState(focusedField: focusedField) }
         .modifier(ViewAlertModifier(publisher: viewModel.$error.eraseToAnyPublisher()))
     }
@@ -57,10 +58,10 @@ struct SignInView: View {
         focusedField = viewModel.nextFocusedField
         viewModel.updateState(focusedField: focusedField)
         Task { @MainActor in
-            let hasSignedIn = await self.viewModel.signIn()
-            if hasSignedIn {
-                dismiss()
+            guard await self.viewModel.signIn() else {
+                return
             }
+            dismiss()
         }
     }
 }

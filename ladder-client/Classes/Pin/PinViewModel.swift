@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - PinViewModel
 
-class PinViewModel: ObservableObject {
+final class PinViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

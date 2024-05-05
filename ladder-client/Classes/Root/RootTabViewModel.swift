@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - RootTabViewModel
 
-class RootTabViewModel: ObservableObject {
+final class RootTabViewModel: ObservableObject {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
