@@ -13,14 +13,17 @@ class SignInUsernameTextFieldViewModel: ObservableObject {
 
     /// Input username on the textfield
     @Published var username = "" {
-        didSet { updateState() }
+        didSet {
+            isValid = !username.isEmpty
+            updateState()
+        }
     }
+
+    /// Is the input username valid?
+    @Published var isValid = false
 
     /// State to define the text field design
     @Published private(set) var state: SignInTextFieldState = .notFocused
-
-    /// Is the input username valid?
-    var isValid: Bool { !username.isEmpty }
 
     // MARK: - Private methods
 

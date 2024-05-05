@@ -13,14 +13,17 @@ class SignInPasswordTextFieldViewModel: ObservableObject {
 
     /// Input password on the textfield
     @Published var password = "" {
-        didSet { updateState() }
+        didSet {
+            isValid = !password.isEmpty
+            updateState()
+        }
     }
+
+    /// Is the input password valid?
+    @Published var isValid = false
 
     /// State to define the text field design
     @Published private(set) var state: SignInTextFieldState = .notFocused
-
-    /// Is the input password valid?
-    var isValid: Bool { !password.isEmpty }
 
     // MARK: - Private methods
 

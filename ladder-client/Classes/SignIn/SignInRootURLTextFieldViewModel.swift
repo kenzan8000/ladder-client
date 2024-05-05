@@ -23,15 +23,16 @@ class SignInRootURLTextFieldViewModel: ObservableObject {
     @Published var domainAndPath: String {
         didSet {
             keychain.rootURL = rootURL
+            isValid = !domainAndPath.isEmpty
             updateState()
         }
     }
-    
+
+    /// Is the input Fastladder URL valid?
+    @Published private(set) var isValid = false
+
     /// State to define the text field design
     @Published private(set) var state: SignInTextFieldState = .notFocused
-    
-    /// Is the input Fastladder URL valid?
-    var isValid: Bool { !domainAndPath.isEmpty }
 
     // MARK: - Init
 
