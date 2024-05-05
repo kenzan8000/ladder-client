@@ -42,6 +42,7 @@ final class SignInRootURLTextFieldViewModel: ObservableObject {
         let range = scheme.startIndex..<scheme.endIndex
         let rootURLString = keychain.rootURL?.absoluteString ?? ""
         self.domainAndPath = rootURLString.starts(with: scheme) ? rootURLString.replacingCharacters(in: range, with: "") : ""
+        self.isValid = !domainAndPath.isEmpty
     }
 
     // MARK: - Private methods
