@@ -50,7 +50,10 @@ struct SignInView: View {
     
     func signInIfNeeded() {
         focusedField = viewModel.nextFocusedField
-        viewModel.signIn()
-        viewModel.updateState(focusedField: focusedField)
+        Task { @MainActor in
+            self.viewModel.hasAttemptedSigningIn = true
+            self.viewModel.updateState(focusedField: focusedField)
+            try await self.viewModel.signIn()
+        }
     }
 }

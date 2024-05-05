@@ -8,7 +8,7 @@ class SignInViewModel: ObservableObject {
 
     private let keychain: any KeychainProtocol
     
-    private var hasAttemptedSigningIn = false
+    private let service: any SignInServiceProtocol
 
     @Published private var isSigningIn = false
     
@@ -41,6 +41,8 @@ class SignInViewModel: ObservableObject {
 
     private(set) lazy var buttonViewModel = SignInButtonViewModel(statePublisher: buttonViewStatePublisher)
 
+    var hasAttemptedSigningIn = false
+
     var nextFocusedField: SignInView.Field? {
         guard rootURLTextFieldViewModel.isValid else {
             return .rootURL
@@ -56,14 +58,15 @@ class SignInViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(keychain: any KeychainProtocol) {
+    init(keychain: any KeychainProtocol, service: any SignInServiceProtocol) {
         self.keychain = keychain
+        self.service = service
     }
 
     // MARK: - Public methods
 
-    func signIn() {
-        hasAttemptedSigningIn = true
+    @MainActor
+    func signIn() async throws {
         guard rootURLTextFieldViewModel.isValid,
         usernameTextFieldViewModel.isValid,
         passwordTextFieldViewModel.isValid,
@@ -71,9 +74,13 @@ class SignInViewModel: ObservableObject {
             return
         }
         isSigningIn = true
+        try await service.signIn(username: usernameTextFieldViewModel.username, password: passwordTextFieldViewModel.password)
+        isSigningIn = false
     }
 
     func cancelSigningIn() {
+        service.cancel()
+        isSigningIn = false
     }
 
     func updateState(focusedField: SignInView.Field?) {

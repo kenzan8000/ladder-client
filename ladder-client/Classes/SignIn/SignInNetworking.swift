@@ -17,7 +17,7 @@ class SignInNetworking: SignInNetworkingProtocol {
 
     private lazy var urlSession: URLSession = {
         URLSession(
-            configuration: .background(withIdentifier: "org.kenzan8000.ladder-client.sign-in"),
+            configuration: .default,
             delegate: nil,
             delegateQueue: operationQueue
         )
@@ -43,21 +43,17 @@ class SignInNetworking: SignInNetworkingProtocol {
         var components = URLComponents(url: rootURL, resolvingAgainstBaseURL: false) else {
             throw NetworkingError.invalidURL
         }
+        components.path = path
         components.queryItems = queryItems
         guard let url = components.url else {
             throw NetworkingError.invalidURL
         }
         var request = URLRequest(url: url)
-        let contentLength: Int
-        if let body {
-            let httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
-            request.httpBody = httpBody
-            contentLength = httpBody.count
-        } else {
-            contentLength = 0
-        }
         request.httpMethod = method
-        request.allHTTPHeaderFields = header.merging(["Content-Length": "\(contentLength)"]) { _, new in new }
+        if let body {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        }
+        request.allHTTPHeaderFields = header.merging(["Content-Length": "\(request.httpBody?.count ?? 0)"]) { _, new in new }
         return request
     }
 
@@ -80,6 +76,7 @@ class SignInNetworking: SignInNetworkingProtocol {
         let body = [
             "username": username,
             "password": password,
+            "authenticity_token": authenticityToken,
         ]
         let request = try await makeRequest(
             method: "POST",

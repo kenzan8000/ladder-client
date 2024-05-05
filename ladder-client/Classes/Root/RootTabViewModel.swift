@@ -7,19 +7,22 @@ class RootTabViewModel: ObservableObject {
 
     private let keychain: any KeychainProtocol
     
+    private let signInService: any SignInServiceProtocol
+    
     // MARK: - Init
     
-    init(keychain: any KeychainProtocol) {
+    init(keychain: any KeychainProtocol, signInService: any SignInServiceProtocol) {
         self.keychain = keychain
+        self.signInService = signInService
     }
     
     // MARK: - Public methods
     
     func makeFeedViewModel() -> FeedViewModel {
-        FeedViewModel(keychain: keychain)
+        FeedViewModel(keychain: keychain, signInService: signInService)
     }
     
     func makePinViewModel() -> PinViewModel {
-        PinViewModel(keychain: keychain)
+        PinViewModel(keychain: keychain, signInService: signInService)
     }
 }
