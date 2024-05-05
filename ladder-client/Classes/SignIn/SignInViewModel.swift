@@ -56,6 +56,8 @@ class SignInViewModel: ObservableObject {
         return .none
     }
 
+    @Published private(set) var error: Error?
+
     // MARK: - Init
 
     init(keychain: any KeychainProtocol, service: any SignInServiceProtocol) {
@@ -66,16 +68,24 @@ class SignInViewModel: ObservableObject {
     // MARK: - Public methods
 
     @MainActor
-    func signIn() async throws {
+    func signIn() async -> Bool {
         guard rootURLTextFieldViewModel.isValid,
         usernameTextFieldViewModel.isValid,
         passwordTextFieldViewModel.isValid,
         !isSigningIn else {
-            return
+            return false
         }
         isSigningIn = true
-        try await service.signIn(username: usernameTextFieldViewModel.username, password: passwordTextFieldViewModel.password)
+        let hasSignedIn: Bool
+        do {
+            try await service.signIn(username: usernameTextFieldViewModel.username, password: passwordTextFieldViewModel.password)
+            hasSignedIn = true
+        } catch {
+            self.error = error
+            hasSignedIn = false
+        }
         isSigningIn = false
+        return hasSignedIn
     }
 
     func cancelSigningIn() {

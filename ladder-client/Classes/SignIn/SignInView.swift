@@ -12,6 +12,9 @@ struct SignInView: View {
     }
 
     // MARK: - Private properties
+    
+    @Environment(\.dismiss)
+    private var dismiss
 
     @EnvironmentObject private var viewModel: SignInViewModel
 
@@ -44,16 +47,20 @@ struct SignInView: View {
         .padding(.horizontal)
         .onAppear { focusedField = viewModel.nextFocusedField }
         .onChange(of: focusedField) { viewModel.updateState(focusedField: focusedField) }
+        .modifier(ViewAlertModifier(publisher: viewModel.$error.eraseToAnyPublisher()))
     }
     
     // MARK: - Public methods
     
     func signInIfNeeded() {
+        viewModel.hasAttemptedSigningIn = true
         focusedField = viewModel.nextFocusedField
+        viewModel.updateState(focusedField: focusedField)
         Task { @MainActor in
-            self.viewModel.hasAttemptedSigningIn = true
-            self.viewModel.updateState(focusedField: focusedField)
-            try await self.viewModel.signIn()
+            let hasSignedIn = await self.viewModel.signIn()
+            if hasSignedIn {
+                dismiss()
+            }
         }
     }
 }

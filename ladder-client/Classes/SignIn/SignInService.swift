@@ -43,7 +43,11 @@ class SignInService: SignInServiceProtocol {
         }
 
         // Call session endpoint with the "authenticity_token" and get apiKey from the response HTML
-        let (sessionData, sessionResponse) = try await networking.session(username: username, password: password, authenticityToken: authenticityToken)
+        let (sessionData, sessionResponse) = try await networking.session(
+            username: username,
+            password: password,
+            authenticityToken: authenticityToken
+        )
         let apiKey = HTMLDocument(data: sessionData, contentTypeHeader: nil)
             .nodes(matchingSelector: "script")
             .flatMap { $0.children }
