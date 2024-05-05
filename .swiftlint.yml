@@ -92,7 +92,7 @@ opt_in_rules:
   - convenience_type
   #- discouraged_object_literal
   - discouraged_optional_boolean
-  - discouraged_optional_collection
+  #- discouraged_optional_collection
   - empty_count
   - empty_string
   - empty_xctest_method

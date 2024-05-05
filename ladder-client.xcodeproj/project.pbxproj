@@ -25,6 +25,9 @@
 		E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */; };
 		E6C413D02BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413CF2BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift */; };
 		E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */; };
+		E6D1EFDD2BE78E80008AA020 /* SignInNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1EFDC2BE78E80008AA020 /* SignInNetworking.swift */; };
+		E6D1EFDF2BE78EA1008AA020 /* SignInNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1EFDE2BE78EA1008AA020 /* SignInNetworkingProtocol.swift */; };
+		E6D1EFE22BE798DA008AA020 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D1EFE12BE798DA008AA020 /* NetworkingError.swift */; };
 		E6DC985A2BD9B017002EDC02 /* SignInButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC98592BD9B017002EDC02 /* SignInButtonView.swift */; };
 		E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DC985B2BD9B021002EDC02 /* SignInButtonViewModel.swift */; };
 		E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE463D2BD6EDD300273094 /* FeedView.swift */; };
@@ -84,6 +87,9 @@
 		E6C413CD2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameTextFieldViewModel.swift; sourceTree = "<group>"; };
 		E6C413CF2BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordTextFieldView.swift; sourceTree = "<group>"; };
 		E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordTextFieldViewModel.swift; sourceTree = "<group>"; };
+		E6D1EFDC2BE78E80008AA020 /* SignInNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNetworking.swift; sourceTree = "<group>"; };
+		E6D1EFDE2BE78EA1008AA020 /* SignInNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNetworkingProtocol.swift; sourceTree = "<group>"; };
+		E6D1EFE12BE798DA008AA020 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		E6DC98592BD9B017002EDC02 /* SignInButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtonView.swift; sourceTree = "<group>"; };
 		E6DC985B2BD9B021002EDC02 /* SignInButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtonViewModel.swift; sourceTree = "<group>"; };
 		E6EE463D2BD6EDD300273094 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -124,7 +130,6 @@
 		E60230B61F5E54740052F762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E6EF21B72BDD8D8600A81560 /* Extensions */,
 				E67485D22BE031CE00DDE19C /* Utilities */,
 				E6EE46442BD6F59100273094 /* Root */,
 				E6EE463C2BD6EDBE00273094 /* Feed */,
@@ -175,6 +180,8 @@
 		E67485D22BE031CE00DDE19C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E6EF21B82BDD8D8E00A81560 /* KeychainAccess */,
+				E6D1EFE02BE798A7008AA020 /* Networking */,
 				E67485D32BE0320300DDE19C /* UI */,
 			);
 			path = Utilities;
@@ -215,8 +222,18 @@
 				E6DC985B2BD9B021002EDC02 /* SignInButtonViewModel.swift */,
 				E63522632BE705A700E02213 /* SignInButtonContentView.swift */,
 				E67485DD2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift */,
+				E6D1EFDE2BE78EA1008AA020 /* SignInNetworkingProtocol.swift */,
+				E6D1EFDC2BE78E80008AA020 /* SignInNetworking.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		E6D1EFE02BE798A7008AA020 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E6D1EFE12BE798DA008AA020 /* NetworkingError.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		E6EE463C2BD6EDBE00273094 /* Feed */ = {
@@ -246,14 +263,6 @@
 				E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		E6EF21B72BDD8D8600A81560 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E6EF21B82BDD8D8E00A81560 /* KeychainAccess */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E6EF21B82BDD8D8E00A81560 /* KeychainAccess */ = {
@@ -407,6 +416,7 @@
 			files = (
 				E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */,
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
+				E6D1EFDD2BE78E80008AA020 /* SignInNetworking.swift in Sources */,
 				E67485DA2BE032E300DDE19C /* CornerRadius.swift in Sources */,
 				E6EF21B42BDD8B3B00A81560 /* RootTabViewModel.swift in Sources */,
 				E6EF21B22BDD8A6400A81560 /* Keychain.swift in Sources */,
@@ -425,6 +435,7 @@
 				E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */,
 				E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */,
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
+				E6D1EFE22BE798DA008AA020 /* NetworkingError.swift in Sources */,
 				E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
@@ -433,6 +444,7 @@
 				E6C413C82BD9A0870094FBA0 /* SignInRootURLTextFieldView.swift in Sources */,
 				E63522642BE705A700E02213 /* SignInButtonContentView.swift in Sources */,
 				E67485D82BE0324200DDE19C /* Padding.swift in Sources */,
+				E6D1EFDF2BE78EA1008AA020 /* SignInNetworkingProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
