@@ -88,7 +88,6 @@ final class SignInNetworking: SignInNetworkingProtocol {
     }
 
     func cancel() {
-        urlSession.invalidateAndCancel()
         operationQueue.cancelAllOperations()
     }
 }
