@@ -31,13 +31,14 @@ class SignInNetworking: SignInNetworkingProtocol {
 
     // MARK: - Private methods
 
+    @MainActor
     private func makeRequest(
         method: String,
         path: String,
         header: [String: String],
         queryItems: [URLQueryItem]? = nil,
         body: [String: Any]? = nil
-    ) throws -> URLRequest {
+    ) async throws -> URLRequest {
         guard let rootURL = keychain.rootURL,
         var components = URLComponents(url: rootURL, resolvingAgainstBaseURL: false) else {
             throw NetworkingError.invalidURL
@@ -63,7 +64,7 @@ class SignInNetworking: SignInNetworkingProtocol {
     // MARK: - Public methods
 
     func signIn(username: String, password: String) async throws -> (Data, URLResponse) {
-        let request = try makeRequest(
+        let request = try await makeRequest(
             method: "GET",
             path: "/login",
             header: ["Content-Type": "text/html"],
@@ -80,7 +81,7 @@ class SignInNetworking: SignInNetworkingProtocol {
             "username": username,
             "password": password,
         ]
-        let request = try makeRequest(
+        let request = try await makeRequest(
             method: "POST",
             path: "/session",
             header: ["Content-Type": "application/json"],

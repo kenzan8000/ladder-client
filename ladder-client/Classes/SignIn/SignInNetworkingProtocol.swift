@@ -3,7 +3,6 @@ import Foundation
 // MARK: - SignInNetworkingProtocol
 
 protocol SignInNetworkingProtocol {
-    
     /// - Parameters:
     ///   - username: Fastladder username `String`
     ///   - password: Fastladder password `String`

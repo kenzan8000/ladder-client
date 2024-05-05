@@ -4,4 +4,6 @@ import Foundation
 
 enum NetworkingError: Error {
     case invalidURL
+    case noAPIKey
+    case noAuthenticityToken
 }
