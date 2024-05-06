@@ -3,6 +3,13 @@ import SwiftUI
 // MARK: - RootSignInView
 
 struct RootSignInView: View {
+    // MARK: - Private enums
+    
+    private enum Constant {
+        static let minWidth: CGFloat = 128
+        static let minHeight: CGFloat = 32
+    }
+
     // MARK: - Private properties
     
     @EnvironmentObject private var viewModel: RootSignInViewModel
@@ -12,8 +19,36 @@ struct RootSignInView: View {
     // MARK: - Public properties
 
     var body: some View {
-        VStack {
-            Text("")
+        HStack {
+            Spacer().frame(width: Spacing.default)
+            VStack {
+                Spacer().frame(height: Spacing.big)
+                VStack(alignment: .leading) {
+                    Text("Let's get started with Fastladder client!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
+                Spacer().frame(height: Spacing.big)
+                VStack(alignment: .leading) {
+                    Text("\"**[Fastladder](https://github.com/fastladder/fastladder)**\" is the best opensource RSS Reader for feed-hungry people to consume more RSS/Atom feeds. Please set up your Fastladder root URL and sign in to it.")
+                        .foregroundStyle(.secondary)
+                }
+                Spacer().frame(height: Spacing.big)
+                Spacer().frame(height: Spacing.big)
+                Button(
+                    action: { isSignInViewPresented.toggle() },
+                    label: {
+                        Text("Start")
+                            .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
+                    }
+                ).buttonStyle(BorderedButtonStyle())
+                Spacer()
+            }
+            Spacer().frame(width: Spacing.default)
+        }
+        .sheet(isPresented: $isSignInViewPresented) {
+            SignInNavigationView()
+                .environmentObject(viewModel.makeSignInNavigationViewModel())
         }
     }
 }

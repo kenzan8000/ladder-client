@@ -11,7 +11,8 @@ struct PinView: View {
 
     var body: some View {
         RootNavigationView {
-            Text("Read Later")
+            RootSignInView()
+                .environmentObject(viewModel.makeRootSignInViewModel())
         }
         .tabItem {
             Image(systemName: "bookmark.fill")
