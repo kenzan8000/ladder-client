@@ -10,9 +10,16 @@ final class SignInViewModel: ObservableObject {
     
     private let service: any SignInServiceProtocol
 
+    private var signUpURL: URL? {
+        guard let rootURLString = keychain.rootURL?.absoluteString else {
+            return nil
+        }
+        return URLComponents(string: rootURLString + "/signup")?.url
+    }
+
     @Published private var isSigningIn = false
     
-    private lazy var buttonViewStatePublisher: AnyPublisher<SignInButtonViewState, Never> = {
+    private lazy var signInButtonViewStatePublisher: AnyPublisher<SignInButtonViewState, Never> = {
         let isFormValid: AnyPublisher<Bool, Never> = Publishers.CombineLatest3(
             rootURLTextFieldViewModel.$isValid.eraseToAnyPublisher(),
             usernameTextFieldViewModel.$isValid.eraseToAnyPublisher(),
@@ -30,6 +37,12 @@ final class SignInViewModel: ObservableObject {
             return isFormValid ? .signIn : .invaildForm
         }.eraseToAnyPublisher()
     }()
+    
+    private lazy var signUpLinkViewStatePublisher: AnyPublisher<SignUpLinkViewState, Never> = {
+        rootURLTextFieldViewModel.$isValid.map { [weak self] (isValid: Bool) -> SignUpLinkViewState in
+            isValid ? .enabled(self?.signUpURL) : .disabled
+        }.eraseToAnyPublisher()
+    }()
 
     // MARK: - Public properties
 
@@ -39,7 +52,9 @@ final class SignInViewModel: ObservableObject {
 
     private(set) lazy var passwordTextFieldViewModel = SignInPasswordTextFieldViewModel()
 
-    private(set) lazy var buttonViewModel = SignInButtonViewModel(statePublisher: buttonViewStatePublisher)
+    private(set) lazy var signInButtonViewModel = SignInButtonViewModel(statePublisher: signInButtonViewStatePublisher)
+
+    private(set) lazy var signUpLinkViewModel = SignUpLinkViewModel(statePublisher: signUpLinkViewStatePublisher)
 
     var hasAttemptedSigningIn = false
 

@@ -41,7 +41,12 @@ struct SignInView: View {
                 .onSubmit { signInIfNeeded() }
             Spacer().frame(height: Spacing.double)
             SignInButtonView { signInIfNeeded() }
-                .environmentObject(viewModel.buttonViewModel)
+                .environmentObject(viewModel.signInButtonViewModel)
+            Spacer().frame(height: Spacing.default)
+            Divider()
+            Spacer().frame(height: Spacing.small)
+            SignUpLinkView()
+                .environmentObject(viewModel.signUpLinkViewModel)
             Spacer()
         }
         .padding(.horizontal)
