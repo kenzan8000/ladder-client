@@ -14,6 +14,15 @@ enum SignUpLinkViewState {
             return url
         }
     }
+
+    var opacity: CGFloat {
+        switch self {
+        case .disabled:
+            return 0.5
+        case .enabled:
+            return 1
+        }
+    }
 }
 
 // MARK: - SignUpLinkView
@@ -30,12 +39,13 @@ struct SignUpLinkView: View {
     var body: some View {
         if let url = $state.wrappedValue.url {
             Link("Sign up", destination: url)
+                .opacity($state.wrappedValue.opacity)
                 .onReceive(viewModel.statePublisher) { state in
                     self.state = state
                 }
         } else {
             Button("Sign up") { }
-                .disabled(true)
+                .opacity($state.wrappedValue.opacity)
                 .onReceive(viewModel.statePublisher) { state in
                     self.state = state
                 }
