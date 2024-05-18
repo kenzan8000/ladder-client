@@ -3,6 +3,13 @@ import SwiftUI
 // MARK: - PinView
 
 struct PinView: View {
+    // MARK: - Public enums
+    
+    enum ViewType {
+        case signIn
+        case list
+    }
+    
     // MARK: - Private properties
     
     @EnvironmentObject private var viewModel: PinViewModel
@@ -11,8 +18,12 @@ struct PinView: View {
 
     var body: some View {
         RootNavigationView {
+            /*
             RootSignInView()
                 .environmentObject(viewModel.makeRootSignInViewModel())
+            */
+            PinListView()
+                .environmentObject(viewModel.makePinListViewModel())
         }
         .tabItem {
             Image(systemName: "bookmark.fill")

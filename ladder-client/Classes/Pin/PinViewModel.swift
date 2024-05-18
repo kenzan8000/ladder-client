@@ -25,4 +25,8 @@ final class PinViewModel: ObservableObject {
     func makeRootSignInViewModel() -> RootSignInViewModel {
         RootSignInViewModel(keychain: keychain, signInService: signInService)
     }
+    
+    func makePinListViewModel() -> PinListViewModel {
+        PinListViewModel()
+    }
 }

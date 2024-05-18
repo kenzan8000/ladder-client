@@ -19,11 +19,17 @@ struct Main {
 // MARK: - LadderClientApp
 
 struct LadderClientApp: App {
+    // MARK: - Private properties
+    
     private let keychain = Keychain(service: "org.kenzan8000.ladder-client", accessGroup: "group.ladder-client")
+    
+    @State private var selectedTab: RootTabView.Tab = .feeds
+    
+    // MARK: - Public properties
 
     var body: some Scene {
         WindowGroup {
-            RootTabView(selectedTab: .feeds)
+            RootTabView(selectedTab: selectedTab)
                 .environmentObject(RootTabViewModel(
                     keychain: keychain,
                     signInService: SignInService(
@@ -38,6 +44,8 @@ struct LadderClientApp: App {
 
 // MARK: - TestApp
 struct TestApp: App {
+    // MARK: - Public properties
+    
     var body: some Scene {
         WindowGroup {
             Text("Running Tests")

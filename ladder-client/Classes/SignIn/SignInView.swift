@@ -42,9 +42,9 @@ struct SignInView: View {
             Spacer().frame(height: Spacing.double)
             SignInButtonView { signInIfNeeded() }
                 .environmentObject(viewModel.signInButtonViewModel)
-            Spacer().frame(height: Spacing.default)
-            SignInDividerView()
             Spacer().frame(height: Spacing.small)
+            SignInDividerView()
+            Spacer().frame(height: Spacing.tight)
             SignUpLinkView()
                 .environmentObject(viewModel.signUpLinkViewModel)
             Spacer()

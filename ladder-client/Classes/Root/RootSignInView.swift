@@ -22,19 +22,18 @@ struct RootSignInView: View {
         HStack {
             Spacer().frame(width: Spacing.default)
             VStack {
-                Spacer().frame(height: Spacing.big)
+                Spacer().frame(height: Spacing.double)
                 VStack(alignment: .leading) {
                     Text("Let's get started with Fastladder client!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 }
-                Spacer().frame(height: Spacing.big)
+                Spacer().frame(height: Spacing.default)
                 VStack(alignment: .leading) {
-                    Text("\"**[Fastladder](https://github.com/fastladder/fastladder)**\" is the best opensource RSS Reader for feed-hungry people to consume more RSS/Atom feeds. Please set up your Fastladder root URL and sign in to it.")
+                    Text("\"**[Fastladder](https://github.com/fastladder/fastladder)**\" is the best opensource RSS Reader for feed-hungry people to consume more articles from RSS/Atom feeds. Please set up your Fastladder settings.")
                         .foregroundStyle(.secondary)
                 }
-                Spacer().frame(height: Spacing.big)
-                Spacer().frame(height: Spacing.big)
+                Spacer().frame(height: Spacing.double)
                 Button(
                     action: { isSignInViewPresented.toggle() },
                     label: {
