@@ -15,18 +15,15 @@ struct RootSignInButtonView: View {
     // MARK: - Public properties
 
     var body: some View {
-        Button(
-            action: action,
-            label: {
-                if isSignedIn {
-                    Image(systemName: "person.crop.circle.badge.minus")
-                    Text("Sign out")
-                } else {
-                    Image(systemName: "person.crop.circle.badge.plus")
-                    Text("Sign in")
-                }
+        Button(action: action) {
+            if isSignedIn {
+                Image(systemName: "person.crop.circle.badge.minus")
+                Text("Sign out")
+            } else {
+                Image(systemName: "person.crop.circle.badge.plus")
+                Text("Sign in")
             }
-        )
+        }
         .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
     }
     

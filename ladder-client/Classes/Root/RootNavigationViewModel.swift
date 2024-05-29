@@ -31,6 +31,10 @@ final class RootNavigationViewModel: ObservableObject {
         RootSignInButtonViewModel(service: signInService)
     }
     
+    func makeRootLoadButtonViewModel() -> RootLoadButtonViewModel {
+        RootLoadButtonViewModel()
+    }
+    
     func signOut() {
         signInService.signOut()
     }

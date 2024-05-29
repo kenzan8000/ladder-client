@@ -31,13 +31,9 @@ struct RootNavigationView<Content>: View where Content: View {
                     }
                     if isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button(
-                                action: { },
-                                label: {
-                                    Text("Reload")
-                                    Image(systemName: "arrow.clockwise")
-                                }
-                            )
+                            RootLoadButtonView {
+                            }
+                            .environmentObject(viewModel.makeRootLoadButtonViewModel())
                         }
                     }
                 }
