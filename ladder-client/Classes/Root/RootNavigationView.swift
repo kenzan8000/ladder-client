@@ -20,24 +20,14 @@ struct RootNavigationView<Content>: View where Content: View {
             VStack(content: content)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button(
-                            action: {
-                                if isSignedIn {
-                                    viewModel.signOut()
-                                } else {
-                                    isSignInViewPresented.toggle()
-                                }
-                            },
-                            label: {
-                                if isSignedIn {
-                                    Image(systemName: "person.crop.circle.badge.minus")
-                                    Text("Sign out")
-                                } else {
-                                    Image(systemName: "person.crop.circle.badge.plus")
-                                    Text("Sign in")
-                                }
+                        RootSignInButtonView {
+                            if isSignedIn {
+                                viewModel.signOut()
+                            } else {
+                                isSignInViewPresented.toggle()
                             }
-                        )
+                        }
+                        .environmentObject(viewModel.makeRootSignInButtonViewModel())
                     }
                     if isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {

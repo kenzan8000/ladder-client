@@ -19,6 +19,8 @@
 		E67485E22BE6E8DE00DDE19C /* KeychainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */; };
 		E6794F0C2BE7F75200A52138 /* CookieStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */; };
 		E6794F0F2BE7F7E700A52138 /* KeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */; };
+		E69543F92C07D5B5003ED85E /* RootSignInButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */; };
+		E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */; };
 		E6987DA32BE7ED1200B5BBC7 /* SignInServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6987DA22BE7ED1200B5BBC7 /* SignInServiceTests.swift */; };
 		E6987DA52BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6987DA42BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift */; };
 		E6AA1A5A2BE7BCAC00A240B5 /* ViewAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AA1A592BE7BCAC00A240B5 /* ViewAlertModifier.swift */; };
@@ -98,6 +100,8 @@
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieStorageMock.swift; sourceTree = "<group>"; };
 		E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainMock.swift; sourceTree = "<group>"; };
+		E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonView.swift; sourceTree = "<group>"; };
+		E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonViewModel.swift; sourceTree = "<group>"; };
 		E6987DA22BE7ED1200B5BBC7 /* SignInServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInServiceTests.swift; sourceTree = "<group>"; };
 		E6987DA42BE7F1EF00B5BBC7 /* SignInNetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNetworkingMock.swift; sourceTree = "<group>"; };
 		E6AA1A592BE7BCAC00A240B5 /* ViewAlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAlertModifier.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 				E6EF21BB2BDD905800A81560 /* RootNavigationViewModel.swift */,
 				E6FA61B82BE960240073A043 /* RootSignInView.swift */,
 				E6FA61BA2BE960530073A043 /* RootSignInViewModel.swift */,
+				E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */,
+				E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */,
 				E6D1EFEE2BE7AC5B008AA020 /* CookieStorageProtocol.swift in Sources */,
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
+				E69543F92C07D5B5003ED85E /* RootSignInButtonView.swift in Sources */,
 				E6D1EFDD2BE78E80008AA020 /* SignInNetworking.swift in Sources */,
 				E67485DA2BE032E300DDE19C /* CornerRadius.swift in Sources */,
 				E6EF21B42BDD8B3B00A81560 /* RootTabViewModel.swift in Sources */,
@@ -530,6 +537,7 @@
 				E6AA1A5A2BE7BCAC00A240B5 /* ViewAlertModifier.swift in Sources */,
 				E6FA61C12BE966950073A043 /* SignUpLinkViewModel.swift in Sources */,
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
+				E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */,
 				E6D1EFE22BE798DA008AA020 /* NetworkingError.swift in Sources */,
 				E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */,
 				E6ACF07B2BF932420004036A /* PinListViewModel.swift in Sources */,

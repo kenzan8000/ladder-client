@@ -27,6 +27,10 @@ final class RootNavigationViewModel: ObservableObject {
         SignInNavigationViewModel(keychain: keychain, service: signInService)
     }
     
+    func makeRootSignInButtonViewModel() -> RootSignInButtonViewModel {
+        RootSignInButtonViewModel(service: signInService)
+    }
+    
     func signOut() {
         signInService.signOut()
     }
