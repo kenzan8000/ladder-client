@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 
 // MARK: - RootNavigationViewModel
@@ -8,6 +9,10 @@ final class RootNavigationViewModel: ObservableObject {
     private let keychain: any KeychainProtocol
 
     private let signInService: any SignInServiceProtocol
+    
+    // MARK: - Public properties
+    
+    lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = signInService.isSignedInPublisher
 
     // MARK: - Init
     
@@ -20,5 +25,9 @@ final class RootNavigationViewModel: ObservableObject {
     
     func makeSignInNavigationViewModel() -> SignInNavigationViewModel {
         SignInNavigationViewModel(keychain: keychain, service: signInService)
+    }
+    
+    func signOut() {
+        signInService.signOut()
     }
 }

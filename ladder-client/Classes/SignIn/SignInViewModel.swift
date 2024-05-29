@@ -98,6 +98,7 @@ final class SignInViewModel: ObservableObject {
         } catch {
             self.error = error
             hasSignedIn = false
+            service.signOut()
         }
         isSigningIn = false
         return hasSignedIn

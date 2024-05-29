@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import HTMLReader
 import JavaScriptCore
@@ -5,6 +6,12 @@ import JavaScriptCore
 // MARK: - SignInService
 
 final class SignInService: SignInServiceProtocol {
+    // MARK: - Private static methods
+    
+    private static func isSignedIn(keychain: KeychainProtocol) -> Bool {
+        keychain.rootURL != nil && keychain.apiKey != nil && keychain.cookie != nil
+    }
+    
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol
@@ -12,6 +19,12 @@ final class SignInService: SignInServiceProtocol {
     private let networking: any SignInNetworkingProtocol
 
     private let cookieStorage: any CookieStorageProtocol
+    
+    // MARK: - Public properties
+    
+    @Published private(set) var isSignedIn: Bool
+    
+    lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = $isSignedIn.eraseToAnyPublisher()
 
     // MARK: - Init
 
@@ -23,6 +36,7 @@ final class SignInService: SignInServiceProtocol {
         self.keychain = keychain
         self.networking = networking
         self.cookieStorage = cookieStorage
+        self.isSignedIn = SignInService.isSignedIn(keychain: keychain)
     }
 
     // MARK: - Public methods
@@ -71,6 +85,13 @@ final class SignInService: SignInServiceProtocol {
         keychain.apiKey = apiKey
         cookieStorage.addCookies(urlResponse: sessionResponse)
         keychain.cookie = cookieStorage.cookieString(host: sessionResponse.url?.host)
+        isSignedIn = SignInService.isSignedIn(keychain: keychain)
+    }
+    
+    func signOut() {
+        keychain.apiKey = nil
+        keychain.cookie = nil
+        isSignedIn = SignInService.isSignedIn(keychain: keychain)
     }
 
     func cancel() {

@@ -5,7 +5,54 @@ import XCTest
 
 final class SignInServiceTests: XCTestCase {
     // MARK: - Tests
-
+    
+    func testIsSignedIn_whenRootURLIsEqualToNil_shouldReturnFalse() {
+        let keychain = KeychainMock()
+        keychain.rootURL = nil
+        let service = SignInService(keychain: keychain, networking: makeNetworking(), cookieStorage: CookieStorageMock())
+        XCTAssertNil(keychain.rootURL)
+        XCTAssertFalse(service.isSignedIn)
+    }
+    
+    func testIsSignedIn_whenAPIKeyIsEqualToNil_shouldReturnFalse() {
+        let keychain = KeychainMock()
+        keychain.apiKey = nil
+        let service = SignInService(keychain: keychain, networking: makeNetworking(), cookieStorage: CookieStorageMock())
+        XCTAssertNil(keychain.apiKey)
+        XCTAssertFalse(service.isSignedIn)
+    }
+    
+    func testIsSignedIn_whenCookieIsEqualToNil_shouldReturnFalse() {
+        let keychain = KeychainMock()
+        keychain.cookie = nil
+        let service = SignInService(keychain: keychain, networking: makeNetworking(), cookieStorage: CookieStorageMock())
+        XCTAssertNil(keychain.cookie)
+        XCTAssertFalse(service.isSignedIn)
+    }
+    
+    func testIsSignedIn_whenRootURLIsNotEqualToNilAndAPIKeyIsNotEqualToNilAndCookieIsNotEqualToNil_shouldReturnTrue() throws {
+        let keychain = KeychainMock()
+        keychain.rootURL = try XCTUnwrap(URL(string: "https://test.com"))
+        keychain.apiKey = "api key"
+        keychain.cookie = "cookie"
+        let service = SignInService(keychain: keychain, networking: makeNetworking(), cookieStorage: CookieStorageMock())
+        XCTAssertNotNil(keychain.rootURL)
+        XCTAssertNotNil(keychain.apiKey)
+        XCTAssertNotNil(keychain.cookie)
+        XCTAssertTrue(service.isSignedIn)
+    }
+    
+    func testIsSignedIn_afterSignOut_shouldReturnFalse() throws {
+        let keychain = KeychainMock()
+        keychain.rootURL = try XCTUnwrap(URL(string: "https://test.com"))
+        keychain.apiKey = "api key"
+        keychain.cookie = "cookie"
+        let service = SignInService(keychain: keychain, networking: makeNetworking(), cookieStorage: CookieStorageMock())
+        XCTAssertTrue(service.isSignedIn)
+        service.signOut()
+        XCTAssertFalse(service.isSignedIn)
+    }
+    
     func testSignIn_whenSignInHTMLDoesNotHaveAuthenticityToken_shouldThrowNoAuthenticityTokenError() async throws {
         let networking = makeNetworking(signInHTMLData: Data())
         let service = SignInService(keychain: KeychainMock(), networking: networking, cookieStorage: CookieStorageMock())

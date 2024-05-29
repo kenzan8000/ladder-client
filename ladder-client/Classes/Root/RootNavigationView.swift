@@ -7,9 +7,11 @@ struct RootNavigationView<Content>: View where Content: View {
     
     @EnvironmentObject private var viewModel: RootNavigationViewModel
 
+    @State private var isSignedIn = false
+    
     @State private var isSignInViewPresented = false
     
-    private let content: () -> Content
+    @ViewBuilder private let content: () -> Content
     
     // MARK: - Public properties
 
@@ -19,27 +21,41 @@ struct RootNavigationView<Content>: View where Content: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(
-                            action: { isSignInViewPresented.toggle() },
+                            action: {
+                                if isSignedIn {
+                                    viewModel.signOut()
+                                } else {
+                                    isSignInViewPresented.toggle()
+                                }
+                            },
                             label: {
-                                Image(systemName: "person.crop.circle")
-                                Text("Sign in")
+                                if isSignedIn {
+                                    Image(systemName: "person.crop.circle.badge.minus")
+                                    Text("Sign out")
+                                } else {
+                                    Image(systemName: "person.crop.circle.badge.plus")
+                                    Text("Sign in")
+                                }
                             }
                         )
                     }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(
-                            action: { },
-                            label: {
-                                Text("Reload")
-                                Image(systemName: "arrow.clockwise")
-                            }
-                        )
+                    if isSignedIn {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(
+                                action: { },
+                                label: {
+                                    Text("Reload")
+                                    Image(systemName: "arrow.clockwise")
+                                }
+                            )
+                        }
                     }
                 }
                 .sheet(isPresented: $isSignInViewPresented) {
                     SignInNavigationView()
                         .environmentObject(viewModel.makeSignInNavigationViewModel())
                 }
+                .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
         }
     }
     
