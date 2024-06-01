@@ -2,18 +2,28 @@ import Foundation
 
 // MARK: - RootTabViewModel
 
-final class RootTabViewModel: ObservableObject {
+@Observable
+final class RootTabViewModel {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
     
     private let signInService: any SignInServiceProtocol
     
+    // MARK: - Public properties
+
+    var selectedTab: RootTabView.Tab
+
     // MARK: - Init
     
-    init(keychain: any KeychainProtocol, signInService: any SignInServiceProtocol) {
+    init(
+        keychain: any KeychainProtocol,
+        signInService: any SignInServiceProtocol,
+        selectedTab: RootTabView.Tab = .feeds
+    ) {
         self.keychain = keychain
         self.signInService = signInService
+        self.selectedTab = selectedTab
     }
     
     // MARK: - Public methods

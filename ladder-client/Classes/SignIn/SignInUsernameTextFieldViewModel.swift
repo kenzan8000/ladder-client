@@ -28,9 +28,8 @@ final class SignInUsernameTextFieldViewModel {
     
     /// Is the input username valid?
     private(set) var isValid: Bool {
-        didSet {
-            isValidSubject.send(isValid)
-        }
+        get { isValidSubject.value }
+        set { isValidSubject.send(newValue) }
     }
     
     let isValidPublisher: AnyPublisher<Bool, Never>
@@ -38,9 +37,7 @@ final class SignInUsernameTextFieldViewModel {
     // MARK: - Init
     
     init() {
-        let isValid = false
-        self.isValid = isValid
-        let isVaildSubject = CurrentValueSubject<Bool, Never>(isValid)
+        let isVaildSubject = CurrentValueSubject<Bool, Never>(false)
         self.isValidSubject = isVaildSubject
         self.isValidPublisher = isValidSubject.eraseToAnyPublisher()
     }

@@ -12,24 +12,25 @@ struct PinView: View {
     
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: PinViewModel
-    
-    @State private var isSignedIn = false
+    @State private var viewModel: PinViewModel
 
     var body: some View {
-        RootNavigationView {
-            if isSignedIn {
-                PinListView()
-                    .environmentObject(viewModel.makePinListViewModel())
+        RootNavigationView(viewModel: viewModel.makeRootNavigationViewModel()) {
+            if viewModel.isSignedIn {
+                PinListView(viewModel: viewModel.makePinListViewModel())
             } else {
-                RootSignInView()
-                    .environmentObject(viewModel.makeRootSignInViewModel())
+                RootSignInView(viewModel: viewModel.makeRootSignInViewModel())
             }
         }
         .tabItem {
             Image(systemName: "bookmark.fill")
             Text("Read Later")
         }
-        .environmentObject(viewModel.makeRootNavigationViewModel())
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: PinViewModel) {
+        self.viewModel = viewModel
     }
 }

@@ -2,8 +2,9 @@ import Foundation
 
 // MARK: - PinListViewModel
 
-final class PinListViewModel: ObservableObject {
+@Observable
+final class PinListViewModel {
     // MARK: - Public properties
     
-    @Published var pins: [Pin] = []
+    private(set) var pins: [Pin] = []
 }

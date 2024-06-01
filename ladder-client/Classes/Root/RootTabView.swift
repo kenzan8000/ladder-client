@@ -12,24 +12,20 @@ struct RootTabView: View {
 
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: RootTabViewModel
-
-    @State private var selectedTab: Tab
+    @State private var viewModel: RootTabViewModel
     
     // MARK: - Public properties
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            FeedView()
-                .environmentObject(viewModel.makeFeedViewModel())
-            PinView()
-                .environmentObject(viewModel.makePinViewModel())
+        TabView(selection: $viewModel.selectedTab) {
+            FeedView(viewModel: viewModel.makeFeedViewModel())
+            PinView(viewModel: viewModel.makePinViewModel())
         }
     }
     
     // MARK: - Init
     
-    init(selectedTab: Tab) {
-        self.selectedTab = selectedTab
+    init(viewModel: RootTabViewModel) {
+        self.viewModel = viewModel
     }
 }

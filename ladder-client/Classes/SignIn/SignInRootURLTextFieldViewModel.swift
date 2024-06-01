@@ -49,10 +49,11 @@ final class SignInRootURLTextFieldViewModel {
     /// State to define the text field design
     var state: SignInTextFieldState = .notFocused
     
-    private(set) var isValid = false {
-        didSet {
-            isValidSubject.send(isValid)
-            signUpLinkViewStateSubject.send(Self.signUpLinkViewState(isValid: isValid, keychain: keychain))
+    private(set) var isValid: Bool {
+        get { isValidSubject.value }
+        set {
+            isValidSubject.send(newValue)
+            signUpLinkViewStateSubject.send(Self.signUpLinkViewState(isValid: newValue, keychain: keychain))
         }
     }
     
@@ -71,8 +72,6 @@ final class SignInRootURLTextFieldViewModel {
         self.domainAndPath = domainAndPath
         
         let isValid = !domainAndPath.isEmpty
-        self.isValid = isValid
-        
         let isVaildSubject = CurrentValueSubject<Bool, Never>(isValid)
         self.isValidSubject = isVaildSubject
         self.isValidPublisher = isValidSubject.eraseToAnyPublisher()

@@ -5,18 +5,23 @@ import SwiftUI
 struct FeedView: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: FeedViewModel
+    @State private var viewModel: FeedViewModel
 
     // MARK: - Public properties
 
     var body: some View {
-        RootNavigationView {
+        RootNavigationView(viewModel: viewModel.makeRootNavigationViewModel()) {
             Text("RSS Feeds")
         }
         .tabItem {
             Image(systemName: "wifi")
             Text("RSS Feeds")
         }
-        .environmentObject(viewModel.makeRootNavigationViewModel())
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
     }
 }

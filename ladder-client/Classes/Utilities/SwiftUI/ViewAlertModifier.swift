@@ -10,7 +10,7 @@ struct ViewAlertModifier: ViewModifier {
     
     // MARK: - Public properties
     
-    @State var error: Error? {
+    @State private(set) var error: Error? {
         didSet { isPresented = (error != nil) }
     }
    

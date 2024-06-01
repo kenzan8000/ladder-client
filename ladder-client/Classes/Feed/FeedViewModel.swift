@@ -2,7 +2,8 @@ import Foundation
 
 // MARK: - FeedViewModel
 
-final class FeedViewModel: ObservableObject {
+@Observable
+final class FeedViewModel {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol

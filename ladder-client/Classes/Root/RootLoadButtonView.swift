@@ -1,11 +1,3 @@
-//
-//  RootLoadButtonView.swift
-//  ladder-client
-//
-//  Created by Kenzan Hase on 5/30/24.
-//  Copyright © 2024 kenzan8000. All rights reserved.
-//
-
 import SwiftUI
 
 // MARK: - RootLoadButtonView
@@ -13,9 +5,7 @@ import SwiftUI
 struct RootLoadButtonView: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: RootLoadButtonViewModel
-
-    @State private var isLoading = false
+    @State private var viewModel: RootLoadButtonViewModel
     
     /// Action when presenting sign in view
     private let action: () -> Void
@@ -23,7 +13,7 @@ struct RootLoadButtonView: View {
     // MARK: - Public properties
 
     var body: some View {
-        if isLoading {
+        if viewModel.isLoading {
             HStack {
                 Text("Loading")
                     .foregroundStyle(.secondary)
@@ -40,7 +30,11 @@ struct RootLoadButtonView: View {
     
     // MARK: - Init
     
-    init(action: @escaping () -> Void) {
+    init(
+        viewModel: RootLoadButtonViewModel,
+        action: @escaping () -> Void
+    ) {
+        self.viewModel = viewModel
         self.action = action
     }
 }

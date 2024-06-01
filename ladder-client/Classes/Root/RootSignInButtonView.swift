@@ -7,8 +7,6 @@ struct RootSignInButtonView: View {
     
     @State private var viewModel: RootSignInButtonViewModel
     
-    @State private var isSignedIn = false
-    
     /// Action when presenting sign in view
     private let action: () -> Void
     
@@ -16,7 +14,7 @@ struct RootSignInButtonView: View {
 
     var body: some View {
         Button(action: action) {
-            if isSignedIn {
+            if viewModel.isSignedIn {
                 Image(systemName: "person.crop.circle.badge.minus")
                 Text("Sign out")
             } else {
@@ -24,7 +22,6 @@ struct RootSignInButtonView: View {
                 Text("Sign in")
             }
         }
-        .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
     }
     
     // MARK: - Init

@@ -9,14 +9,20 @@ final class RootSignInButtonViewModel {
 
     private let service: any SignInServiceProtocol
     
+    private var cancellables: Set<AnyCancellable> = []
+
     // MARK: - Public properties
     
-    var isSignedInPublisher: AnyPublisher<Bool, Never>
+    private(set) var isSignedIn: Bool
 
     // MARK: - Init
     
     init(service: any SignInServiceProtocol) {
         self.service = service
-        self.isSignedInPublisher = service.isSignedInPublisher
+        self.isSignedIn = service.isSignedIn
+        service.isSignedInPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
+            .store(in: &self.cancellables)
     }
 }

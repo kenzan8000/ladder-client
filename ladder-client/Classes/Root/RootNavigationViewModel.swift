@@ -3,22 +3,35 @@ import Foundation
 
 // MARK: - RootNavigationViewModel
 
-final class RootNavigationViewModel: ObservableObject {
+@Observable
+final class RootNavigationViewModel {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
 
     private let signInService: any SignInServiceProtocol
     
+    private var cancellables: Set<AnyCancellable> = []
+    
     // MARK: - Public properties
     
-    lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = signInService.isSignedInPublisher
+    var isSignInViewPresented = false
+    
+    private(set) var isSignedIn: Bool
 
     // MARK: - Init
     
-    init(keychain: any KeychainProtocol, signInService: any SignInServiceProtocol) {
+    init(
+        keychain: any KeychainProtocol,
+        signInService: any SignInServiceProtocol
+    ) {
         self.keychain = keychain
         self.signInService = signInService
+        self.isSignedIn = signInService.isSignedIn
+        signInService.isSignedInPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
+            .store(in: &self.cancellables)
     }
     
     // MARK: - Public methods

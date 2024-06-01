@@ -5,11 +5,7 @@ import SwiftUI
 struct RootNavigationView<Content>: View where Content: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: RootNavigationViewModel
-
-    @State private var isSignedIn = false
-    
-    @State private var isSignInViewPresented = false
+    @State private var viewModel: RootNavigationViewModel
     
     @ViewBuilder private let content: () -> Content
     
@@ -21,32 +17,33 @@ struct RootNavigationView<Content>: View where Content: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         RootSignInButtonView(viewModel: viewModel.makeRootSignInButtonViewModel()) {
-                            if isSignedIn {
+                            if viewModel.isSignedIn {
                                 viewModel.signOut()
                             } else {
-                                isSignInViewPresented.toggle()
+                                viewModel.isSignInViewPresented.toggle()
                             }
                         }
                     }
-                    if isSignedIn {
+                    if viewModel.isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {
-                            RootLoadButtonView {
+                            RootLoadButtonView(viewModel: viewModel.makeRootLoadButtonViewModel()) {
                             }
-                            .environmentObject(viewModel.makeRootLoadButtonViewModel())
                         }
                     }
                 }
-                .sheet(isPresented: $isSignInViewPresented) {
-                    SignInNavigationView()
-                        .environmentObject(viewModel.makeSignInNavigationViewModel())
+                .sheet(isPresented: $viewModel.isSignInViewPresented) {
+                    SignInNavigationView(viewModel: viewModel.makeSignInNavigationViewModel())
                 }
-                .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
         }
     }
     
     // MARK: - Init
 
-    init(@ViewBuilder content: @escaping () -> Content) {
+    init(
+        viewModel: RootNavigationViewModel,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.viewModel = viewModel
         self.content = content
     }
 }

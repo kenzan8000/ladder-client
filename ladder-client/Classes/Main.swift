@@ -23,21 +23,20 @@ struct LadderClientApp: App {
     
     private let keychain = Keychain(service: "org.kenzan8000.ladder-client", accessGroup: "group.ladder-client")
     
-    @State private var selectedTab: RootTabView.Tab = .feeds
-    
     // MARK: - Public properties
 
     var body: some Scene {
         WindowGroup {
-            RootTabView(selectedTab: selectedTab)
-                .environmentObject(RootTabViewModel(
+            RootTabView(viewModel: RootTabViewModel(
+                keychain: keychain,
+                signInService: SignInService(
                     keychain: keychain,
-                    signInService: SignInService(
-                        keychain: keychain,
-                        networking: SignInNetworking(keychain: keychain),
-                        cookieStorage: CookieStorage()
-                    )
-                ))
+                    networking: SignInNetworking(keychain: keychain),
+                    cookieStorage: CookieStorage()
+                ),
+                selectedTab: .feeds
+            ))
+            
         }
     }
 }

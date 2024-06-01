@@ -5,7 +5,7 @@ import SwiftUI
 struct PinListView: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: PinListViewModel
+    @State private var viewModel: PinListViewModel
 
     // MARK: - Public properties
 
@@ -16,5 +16,11 @@ struct PinListView: View {
         .listStyle(.plain)
         .refreshable {
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: PinListViewModel) {
+        self.viewModel = viewModel
     }
 }

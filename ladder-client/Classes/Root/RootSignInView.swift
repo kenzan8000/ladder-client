@@ -12,9 +12,7 @@ struct RootSignInView: View {
 
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: RootSignInViewModel
-
-    @State private var isSignInViewPresented = false
+    @State private var viewModel: RootSignInViewModel
     
     // MARK: - Public properties
 
@@ -35,7 +33,7 @@ struct RootSignInView: View {
                 }
                 Spacer().frame(height: Spacing.double)
                 Button(
-                    action: { isSignInViewPresented.toggle() },
+                    action: { viewModel.isSignInViewPresented.toggle() },
                     label: {
                         Text("Start")
                             .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
@@ -45,9 +43,14 @@ struct RootSignInView: View {
             }
             Spacer().frame(width: Spacing.default)
         }
-        .sheet(isPresented: $isSignInViewPresented) {
-            SignInNavigationView()
-                .environmentObject(viewModel.makeSignInNavigationViewModel())
+        .sheet(isPresented: $viewModel.isSignInViewPresented) {
+            SignInNavigationView(viewModel: viewModel.makeSignInNavigationViewModel())
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: RootSignInViewModel) {
+        self.viewModel = viewModel
     }
 }

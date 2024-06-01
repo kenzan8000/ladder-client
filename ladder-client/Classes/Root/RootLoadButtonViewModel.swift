@@ -2,5 +2,9 @@ import Foundation
 
 // MARK: - RootLoadButtonViewModel
 
-final class RootLoadButtonViewModel: ObservableObject {
+@Observable
+final class RootLoadButtonViewModel {
+    // MARK: - Public properties
+    
+    private(set) var isLoading = false
 }

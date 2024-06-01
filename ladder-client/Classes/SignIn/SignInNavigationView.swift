@@ -5,7 +5,7 @@ import SwiftUI
 struct SignInNavigationView: View {
     // MARK: - Private properties
 
-    @EnvironmentObject private var viewModel: SignInNavigationViewModel
+    @State private var viewModel: SignInNavigationViewModel
 
     @Environment(\.dismiss)
     private var dismiss
@@ -24,5 +24,11 @@ struct SignInNavigationView: View {
                     }
                 }
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: SignInNavigationViewModel) {
+        self.viewModel = viewModel
     }
 }

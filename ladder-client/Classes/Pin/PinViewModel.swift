@@ -3,12 +3,19 @@ import Foundation
 
 // MARK: - PinViewModel
 
-final class PinViewModel: ObservableObject {
+@Observable
+final class PinViewModel {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
     
     private let signInService: any SignInServiceProtocol
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    // MARK: - Public properties
+    
+    private(set) var isSignedIn: Bool
     
     // MARK: - Init
     
@@ -18,6 +25,11 @@ final class PinViewModel: ObservableObject {
     ) {
         self.keychain = keychain
         self.signInService = signInService
+        self.isSignedIn = signInService.isSigningIn
+        signInService.isSignedInPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
+            .store(in: &self.cancellables)
     }
     
     // MARK: - Public methods
