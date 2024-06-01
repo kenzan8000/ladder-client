@@ -30,25 +30,23 @@ enum SignUpLinkViewState {
 struct SignUpLinkView: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: SignUpLinkViewModel
-
-    @State private var state: SignUpLinkViewState = .disabled
+    @State private var viewModel: SignUpLinkViewModel
     
     // MARK: - Public properties
 
     var body: some View {
-        if let url = $state.wrappedValue.url {
+        if let url = viewModel.state.url {
             Link("Sign up", destination: url)
-                .opacity($state.wrappedValue.opacity)
-                .onReceive(viewModel.statePublisher) { state in
-                    self.state = state
-                }
+                .opacity(viewModel.state.opacity)
         } else {
             Button("Sign up") { }
-                .opacity($state.wrappedValue.opacity)
-                .onReceive(viewModel.statePublisher) { state in
-                    self.state = state
-                }
+                .opacity(viewModel.state.opacity)
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: SignUpLinkViewModel) {
+        self.viewModel = viewModel
     }
 }

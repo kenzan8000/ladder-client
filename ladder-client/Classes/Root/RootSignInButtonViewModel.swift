@@ -3,18 +3,20 @@ import Foundation
 
 // MARK: - RootSignInButtonViewModel
 
-final class RootSignInButtonViewModel: ObservableObject {
+@Observable
+final class RootSignInButtonViewModel {
     // MARK: - Private properties
 
     private let service: any SignInServiceProtocol
     
     // MARK: - Public properties
     
-    lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = service.isSignedInPublisher
+    var isSignedInPublisher: AnyPublisher<Bool, Never>
 
     // MARK: - Init
     
     init(service: any SignInServiceProtocol) {
         self.service = service
+        self.isSignedInPublisher = service.isSignedInPublisher
     }
 }

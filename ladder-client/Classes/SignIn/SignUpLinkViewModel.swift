@@ -3,14 +3,26 @@ import Foundation
 
 // MARK: - SignUpLinkViewModel
 
-final class SignUpLinkViewModel: ObservableObject {
-    // MARK: - Public properties
+@Observable
+final class SignUpLinkViewModel {
+    // MARK: - Private properties
 
-    let statePublisher: AnyPublisher<SignUpLinkViewState, Never>
+    private let publisher: AnyPublisher<SignUpLinkViewState, Never>
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    // MARK: - Public properties
+    
+    private(set) var state: SignUpLinkViewState = .disabled
 
     // MARK: - Init
 
-    init(statePublisher: AnyPublisher<SignUpLinkViewState, Never>) {
-        self.statePublisher = statePublisher
+    init(publisher: AnyPublisher<SignUpLinkViewState, Never>) {
+        self.publisher = publisher
+        self.publisher.receive(on: RunLoop.main)
+            .sink { [weak self] (state: SignUpLinkViewState) in
+                self?.state = state
+            }
+            .store(in: &self.cancellables)
     }
 }

@@ -8,12 +8,12 @@ struct ViewAlertModifier: ViewModifier {
     
     @State private var isPresented = false
     
-    @State private var error: Error?
-    
     // MARK: - Public properties
     
-    let publisher: AnyPublisher<Error?, Never>
-    
+    @State var error: Error? {
+        didSet { isPresented = (error != nil) }
+    }
+   
     // MARK: Public methods
 
     func body(content: Content) -> some View {
@@ -22,10 +22,6 @@ struct ViewAlertModifier: ViewModifier {
                 Button("OK") {
                     self.isPresented = false
                 }
-            }
-            .onReceive(publisher) { error in
-                self.error = error
-                self.isPresented = error != nil
             }
     }
 }

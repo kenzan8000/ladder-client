@@ -1,60 +1,26 @@
-import Combine
 import Foundation
 
 // MARK: - SignInViewModel
 
-final class SignInViewModel: ObservableObject {
+@Observable
+final class SignInViewModel {
     // MARK: - Private properties
 
     private let keychain: any KeychainProtocol
     
     private let service: any SignInServiceProtocol
 
-    private var signUpURL: URL? {
-        guard let rootURLString = keychain.rootURL?.absoluteString else {
-            return nil
-        }
-        return URLComponents(string: rootURLString + "/signup")?.url
-    }
-
-    @Published private var isSigningIn = false
-    
-    private lazy var signInButtonViewStatePublisher: AnyPublisher<SignInButtonViewState, Never> = {
-        let isFormValid: AnyPublisher<Bool, Never> = Publishers.CombineLatest3(
-            rootURLTextFieldViewModel.$isValid.eraseToAnyPublisher(),
-            usernameTextFieldViewModel.$isValid.eraseToAnyPublisher(),
-            passwordTextFieldViewModel.$isValid.eraseToAnyPublisher()
-        ).map { v1, v2, v3 -> Bool in
-            v1 && v2 && v3
-        }.eraseToAnyPublisher()
-        return Publishers.CombineLatest(
-            $isSigningIn.eraseToAnyPublisher(),
-            isFormValid
-        ).map { isSigningIn, isFormValid -> SignInButtonViewState in
-            guard !isSigningIn else {
-                return .loading
-            }
-            return isFormValid ? .signIn : .invaildForm
-        }.eraseToAnyPublisher()
-    }()
-    
-    private lazy var signUpLinkViewStatePublisher: AnyPublisher<SignUpLinkViewState, Never> = {
-        rootURLTextFieldViewModel.$isValid.map { [weak self] (isValid: Bool) -> SignUpLinkViewState in
-            isValid ? .enabled(self?.signUpURL) : .disabled
-        }.eraseToAnyPublisher()
-    }()
-
     // MARK: - Public properties
 
-    private(set) lazy var rootURLTextFieldViewModel = SignInRootURLTextFieldViewModel(keychain: keychain)
+    private(set) var rootURLTextFieldViewModel: SignInRootURLTextFieldViewModel
 
-    private(set) lazy var usernameTextFieldViewModel = SignInUsernameTextFieldViewModel()
+    private(set) var usernameTextFieldViewModel: SignInUsernameTextFieldViewModel
 
-    private(set) lazy var passwordTextFieldViewModel = SignInPasswordTextFieldViewModel()
+    private(set) var passwordTextFieldViewModel: SignInPasswordTextFieldViewModel
 
-    private(set) lazy var signInButtonViewModel = SignInButtonViewModel(statePublisher: signInButtonViewStatePublisher)
+    private(set) var signInButtonViewModel: SignInButtonViewModel
 
-    private(set) lazy var signUpLinkViewModel = SignUpLinkViewModel(statePublisher: signUpLinkViewStatePublisher)
+    private(set) var signUpLinkViewModel: SignUpLinkViewModel
 
     var hasAttemptedSigningIn = false
 
@@ -71,13 +37,26 @@ final class SignInViewModel: ObservableObject {
         return .none
     }
 
-    @Published private(set) var error: Error?
+    private(set) var error: Error?
 
     // MARK: - Init
 
     init(keychain: any KeychainProtocol, service: any SignInServiceProtocol) {
         self.keychain = keychain
         self.service = service
+        let rootURLTextFieldViewModel = SignInRootURLTextFieldViewModel(keychain: keychain)
+        let usernameTextFieldViewModel = SignInUsernameTextFieldViewModel()
+        let passwordTextFieldViewModel = SignInPasswordTextFieldViewModel()
+        self.rootURLTextFieldViewModel = rootURLTextFieldViewModel
+        self.usernameTextFieldViewModel = usernameTextFieldViewModel
+        self.passwordTextFieldViewModel = passwordTextFieldViewModel
+        self.signInButtonViewModel = SignInButtonViewModel(
+            isRootURLTextFieldValidPublisher: rootURLTextFieldViewModel.isValidPublisher,
+            isUsernameTextFieldValidPublisher: usernameTextFieldViewModel.isValidPublisher,
+            isPasswordTextFieldValidPublisher: passwordTextFieldViewModel.isValidPublisher,
+            isSigningInPublisher: service.isSigningInPublisher
+        )
+        self.signUpLinkViewModel = SignUpLinkViewModel(publisher: rootURLTextFieldViewModel.signUpLinkViewStatePublisher)
     }
 
     // MARK: - Public methods
@@ -87,26 +66,26 @@ final class SignInViewModel: ObservableObject {
         guard rootURLTextFieldViewModel.isValid,
         usernameTextFieldViewModel.isValid,
         passwordTextFieldViewModel.isValid,
-        !isSigningIn else {
+        !service.isSigningIn else {
             return false
         }
-        isSigningIn = true
         let hasSignedIn: Bool
         do {
-            try await service.signIn(username: usernameTextFieldViewModel.username, password: passwordTextFieldViewModel.password)
+            try await service.signIn(
+                username: usernameTextFieldViewModel.username,
+                password: passwordTextFieldViewModel.password
+            )
             hasSignedIn = true
         } catch {
             self.error = error
             hasSignedIn = false
             service.signOut()
         }
-        isSigningIn = false
         return hasSignedIn
     }
 
     func cancelSigningIn() {
         service.cancel()
-        isSigningIn = false
     }
 
     func updateState(focusedField: SignInView.Field?) {

@@ -21,11 +21,9 @@ struct PinView: View {
             if isSignedIn {
                 PinListView()
                     .environmentObject(viewModel.makePinListViewModel())
-                    .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
             } else {
                 RootSignInView()
                     .environmentObject(viewModel.makeRootSignInViewModel())
-                    .onReceive(viewModel.isSignedInPublisher) { isSignedIn = $0 }
             }
         }
         .tabItem {

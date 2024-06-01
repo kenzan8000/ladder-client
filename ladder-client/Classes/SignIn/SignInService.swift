@@ -22,6 +22,10 @@ final class SignInService: SignInServiceProtocol {
     
     // MARK: - Public properties
     
+    @Published private(set) var isSigningIn: Bool
+    
+    lazy var isSigningInPublisher: AnyPublisher<Bool, Never> = $isSigningIn.eraseToAnyPublisher()
+    
     @Published private(set) var isSignedIn: Bool
     
     lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = $isSignedIn.eraseToAnyPublisher()
@@ -36,13 +40,15 @@ final class SignInService: SignInServiceProtocol {
         self.keychain = keychain
         self.networking = networking
         self.cookieStorage = cookieStorage
-        self.isSignedIn = SignInService.isSignedIn(keychain: keychain)
+        self.isSignedIn = Self.isSignedIn(keychain: keychain)
+        self.isSigningIn = false
     }
 
     // MARK: - Public methods
 
     @MainActor
     func signIn(username: String, password: String) async throws {
+        isSigningIn = true
         // Retrieve "authenticity_token" from signin page HTML
         let (signInData, _) = try await networking.signIn(username: username, password: password)
         let authenticityToken = HTMLDocument(data: signInData, contentTypeHeader: nil)
@@ -53,6 +59,7 @@ final class SignInService: SignInServiceProtocol {
             }
             .reduce("", +)
         guard let authenticityToken else {
+            isSigningIn = false
             throw NetworkingError.noAuthenticityToken
         }
 
@@ -80,21 +87,25 @@ final class SignInService: SignInServiceProtocol {
             }
             .first
         guard let apiKey else {
+            isSigningIn = false
             throw NetworkingError.noAPIKey
         }
         keychain.apiKey = apiKey
         cookieStorage.addCookies(urlResponse: sessionResponse)
         keychain.cookie = cookieStorage.cookieString(host: sessionResponse.url?.host)
-        isSignedIn = SignInService.isSignedIn(keychain: keychain)
+        isSignedIn = Self.isSignedIn(keychain: keychain)
+        isSigningIn = false
     }
     
     func signOut() {
         keychain.apiKey = nil
         keychain.cookie = nil
-        isSignedIn = SignInService.isSignedIn(keychain: keychain)
+        isSignedIn = Self.isSignedIn(keychain: keychain)
+        isSigningIn = false
     }
 
     func cancel() {
         networking.cancel()
+        isSigningIn = false
     }
 }

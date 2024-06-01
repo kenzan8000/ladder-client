@@ -20,10 +20,7 @@ struct SignInButtonView: View {
     
     // MARK: - Private properties
 
-    @EnvironmentObject private var viewModel: SignInButtonViewModel
-    
-    /// State to define the button's design and content
-    @State private var state: SignInButtonViewState = .signIn
+    @State private var viewModel: SignInButtonViewModel
 
     /// Action when clicking the button
     private let action: () -> Void
@@ -32,18 +29,30 @@ struct SignInButtonView: View {
 
     var body: some View {
         Button(action: action) {
-            SignInButtonContentView(state: $state)
-                .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
+            switch viewModel.state {
+            case .invaildForm:
+                Text("Sign in")
+                    .foregroundStyle(.secondary)
+                    .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
+            case .loading:
+                ProgressView()
+                    .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
+            case .signIn:
+                Text("Sign in")
+                    .foregroundStyle(.primary)
+                    .frame(minWidth: Constant.minWidth, minHeight: Constant.minHeight)
+            }
         }
         .buttonStyle(BorderedButtonStyle())
-        .onReceive(viewModel.statePublisher) { state in
-            self.state = state
-        }
     }
     
     // MARK: - Init
     
-    init(action: @escaping () -> Void) {
+    init(
+        viewModel: SignInButtonViewModel,
+        action: @escaping () -> Void
+    ) {
+        self.viewModel = viewModel
         self.action = action
     }
 }

@@ -3,7 +3,21 @@ import Foundation
 
 // MARK: - SignInRootURLTextFieldViewModel
 
-final class SignInRootURLTextFieldViewModel: ObservableObject {
+@Observable
+final class SignInRootURLTextFieldViewModel {
+    // MARK: - Private static methods
+    
+    private static func signUpURL(keychain: KeychainProtocol) -> URL? {
+        guard let rootURLString = keychain.rootURL?.absoluteString else {
+            return nil
+        }
+        return URLComponents(string: rootURLString + "/signup")?.url
+    }
+    
+    private static func signUpLinkViewState(isValid: Bool, keychain: KeychainProtocol) -> SignUpLinkViewState {
+        isValid ? .enabled(Self.signUpURL(keychain: keychain)) : .disabled
+    }
+    
     // MARK: - Private properties
 
     private var keychain: any KeychainProtocol
@@ -11,8 +25,12 @@ final class SignInRootURLTextFieldViewModel: ObservableObject {
     private var rootURL: URL? { URL(string: scheme + domainAndPath) }
     
     private var isFocused = false
-    
+
     private var hasAttemptedSigningIn = false
+    
+    private let isValidSubject: CurrentValueSubject<Bool, Never>
+    
+    private let signUpLinkViewStateSubject: CurrentValueSubject<SignUpLinkViewState, Never>
 
     // MARK: - Public properties
 
@@ -20,19 +38,27 @@ final class SignInRootURLTextFieldViewModel: ObservableObject {
     let scheme: String = "https://"
 
     /// Input domain and path on the textfield
-    @Published var domainAndPath: String {
+    var domainAndPath: String {
         didSet {
             keychain.rootURL = rootURL
             isValid = !domainAndPath.isEmpty
             updateState()
         }
     }
-
-    /// Is the input Fastladder URL valid?
-    @Published private(set) var isValid = false
-
+    
     /// State to define the text field design
-    @Published private(set) var state: SignInTextFieldState = .notFocused
+    var state: SignInTextFieldState = .notFocused
+    
+    private(set) var isValid = false {
+        didSet {
+            isValidSubject.send(isValid)
+            signUpLinkViewStateSubject.send(Self.signUpLinkViewState(isValid: isValid, keychain: keychain))
+        }
+    }
+    
+    let isValidPublisher: AnyPublisher<Bool, Never>
+
+    let signUpLinkViewStatePublisher: AnyPublisher<SignUpLinkViewState, Never>
 
     // MARK: - Init
 
@@ -41,8 +67,18 @@ final class SignInRootURLTextFieldViewModel: ObservableObject {
 
         let range = scheme.startIndex..<scheme.endIndex
         let rootURLString = keychain.rootURL?.absoluteString ?? ""
-        self.domainAndPath = rootURLString.starts(with: scheme) ? rootURLString.replacingCharacters(in: range, with: "") : ""
-        self.isValid = !domainAndPath.isEmpty
+        let domainAndPath = rootURLString.starts(with: scheme) ? rootURLString.replacingCharacters(in: range, with: "") : ""
+        self.domainAndPath = domainAndPath
+        
+        let isValid = !domainAndPath.isEmpty
+        self.isValid = isValid
+        
+        let isVaildSubject = CurrentValueSubject<Bool, Never>(isValid)
+        self.isValidSubject = isVaildSubject
+        self.isValidPublisher = isValidSubject.eraseToAnyPublisher()
+        let signUpLinkViewStateSubject = CurrentValueSubject<SignUpLinkViewState, Never>(Self.signUpLinkViewState(isValid: isValid, keychain: keychain))
+        self.signUpLinkViewStateSubject = signUpLinkViewStateSubject
+        self.signUpLinkViewStatePublisher = signUpLinkViewStateSubject.eraseToAnyPublisher()
     }
 
     // MARK: - Private methods

@@ -13,10 +13,10 @@ struct SignInView: View {
 
     // MARK: - Private properties
     
+    @State private var viewModel: SignInViewModel
+
     @Environment(\.dismiss)
     private var dismiss
-
-    @EnvironmentObject private var viewModel: SignInViewModel
 
     @FocusState private var focusedField: SignInView.Field?
     
@@ -25,35 +25,36 @@ struct SignInView: View {
     var body: some View {
         VStack {
             Spacer().frame(height: Spacing.default)
-            SignInRootURLTextFieldView()
-                .environmentObject(viewModel.rootURLTextFieldViewModel)
+            SignInRootURLTextFieldView(viewModel: viewModel.rootURLTextFieldViewModel)
                 .focused($focusedField, equals: .rootURL)
                 .onSubmit { focusedField = .username }
             Spacer().frame(height: Spacing.small)
-            SignInUsernameTextFieldView()
-                .environmentObject(viewModel.usernameTextFieldViewModel)
+            SignInUsernameTextFieldView(viewModel: viewModel.usernameTextFieldViewModel)
                 .focused($focusedField, equals: .username)
                 .onSubmit { focusedField = .password }
             Spacer().frame(height: Spacing.small)
-            SignInPasswordTextFieldView()
-                .environmentObject(viewModel.passwordTextFieldViewModel)
+            SignInPasswordTextFieldView(viewModel: viewModel.passwordTextFieldViewModel)
                 .focused($focusedField, equals: .password)
                 .onSubmit { signInIfNeeded() }
             Spacer().frame(height: Spacing.double)
-            SignInButtonView { signInIfNeeded() }
-                .environmentObject(viewModel.signInButtonViewModel)
+            SignInButtonView(viewModel: viewModel.signInButtonViewModel) { signInIfNeeded() }
             Spacer().frame(height: Spacing.small)
             SignInDividerView()
             Spacer().frame(height: Spacing.tight)
-            SignUpLinkView()
-                .environmentObject(viewModel.signUpLinkViewModel)
+            SignUpLinkView(viewModel: viewModel.signUpLinkViewModel)
             Spacer()
         }
         .padding(.horizontal)
         .onAppear { focusedField = viewModel.nextFocusedField }
         .onDisappear { viewModel.cancelSigningIn() }
         .onChange(of: focusedField) { viewModel.updateState(focusedField: focusedField) }
-        .modifier(ViewAlertModifier(publisher: viewModel.$error.eraseToAnyPublisher()))
+        .modifier(ViewAlertModifier(error: viewModel.error))
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: SignInViewModel) {
+        self.viewModel = viewModel
     }
     
     // MARK: - Public methods

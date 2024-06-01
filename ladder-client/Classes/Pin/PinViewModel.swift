@@ -10,13 +10,12 @@ final class PinViewModel: ObservableObject {
     
     private let signInService: any SignInServiceProtocol
     
-    // MARK: - Public properties
-    
-    lazy var isSignedInPublisher: AnyPublisher<Bool, Never> = signInService.isSignedInPublisher
-    
     // MARK: - Init
     
-    init(keychain: any KeychainProtocol, signInService: any SignInServiceProtocol) {
+    init(
+        keychain: any KeychainProtocol,
+        signInService: any SignInServiceProtocol
+    ) {
         self.keychain = keychain
         self.signInService = signInService
     }

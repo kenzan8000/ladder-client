@@ -5,8 +5,8 @@ import SwiftUI
 struct RootSignInButtonView: View {
     // MARK: - Private properties
     
-    @EnvironmentObject private var viewModel: RootSignInButtonViewModel
-
+    @State private var viewModel: RootSignInButtonViewModel
+    
     @State private var isSignedIn = false
     
     /// Action when presenting sign in view
@@ -29,7 +29,11 @@ struct RootSignInButtonView: View {
     
     // MARK: - Init
     
-    init(action: @escaping () -> Void) {
+    init(
+        viewModel: RootSignInButtonViewModel,
+        action: @escaping () -> Void
+    ) {
+        self.viewModel = viewModel
         self.action = action
     }
 }

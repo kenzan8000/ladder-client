@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
-		E63522642BE705A700E02213 /* SignInButtonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63522632BE705A700E02213 /* SignInButtonContentView.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
@@ -90,7 +89,6 @@
 
 /* Begin PBXFileReference section */
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E63522632BE705A700E02213 /* SignInButtonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtonContentView.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66DFE1924A8B95000790F8B /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 				E6C413D12BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift */,
 				E6DC98592BD9B017002EDC02 /* SignInButtonView.swift */,
 				E6DC985B2BD9B021002EDC02 /* SignInButtonViewModel.swift */,
-				E63522632BE705A700E02213 /* SignInButtonContentView.swift */,
 				E6FA61C22BE96C7E0073A043 /* SignInDividerView.swift */,
 				E6FA61BC2BE9624A0073A043 /* SignUpLinkView.swift */,
 				E6FA61C02BE966950073A043 /* SignUpLinkViewModel.swift */,
@@ -555,7 +552,6 @@
 				E6EF21BC2BDD905800A81560 /* RootNavigationViewModel.swift in Sources */,
 				E6C413C82BD9A0870094FBA0 /* SignInRootURLTextFieldView.swift in Sources */,
 				E6ACF0792BF932370004036A /* PinListView.swift in Sources */,
-				E63522642BE705A700E02213 /* SignInButtonContentView.swift in Sources */,
 				E67485D82BE0324200DDE19C /* Padding.swift in Sources */,
 				E6D1EFDF2BE78EA1008AA020 /* SignInNetworkingProtocol.swift in Sources */,
 			);

@@ -4,6 +4,12 @@ import Foundation
 // MARK: - SignInServiceProtocol
 
 protocol SignInServiceProtocol {
+    /// Wheteher is currently signing in or not
+    var isSigningIn: Bool { get }
+    
+    /// Publisher that indicates whether is currently signing in or not
+    var isSigningInPublisher: AnyPublisher<Bool, Never> { get }
+
     /// Whether is signed in or not
     var isSignedIn: Bool { get }
     

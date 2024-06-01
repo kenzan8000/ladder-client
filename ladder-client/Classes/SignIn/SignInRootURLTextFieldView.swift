@@ -6,7 +6,7 @@ import SwiftUI
 struct SignInRootURLTextFieldView: View {
     // MARK: - Private properties
 
-    @EnvironmentObject private var viewModel: SignInRootURLTextFieldViewModel
+    @State private var viewModel: SignInRootURLTextFieldViewModel
     
     // MARK: - Public properties
 
@@ -27,9 +27,15 @@ struct SignInRootURLTextFieldView: View {
             .autocorrectionDisabled()
             .submitLabel(.next)
             .padding(Padding.textField)
-            .modifier(SignInTextFieldStateModifier(publisher: viewModel.$state.eraseToAnyPublisher()))
+            .modifier(SignInTextFieldStateModifier(state: $viewModel.state))
 
             Spacer().frame(width: Spacing.default)
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: SignInRootURLTextFieldViewModel) {
+        self.viewModel = viewModel
     }
 }

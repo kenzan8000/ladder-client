@@ -20,14 +20,13 @@ struct RootNavigationView<Content>: View where Content: View {
             VStack(content: content)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        RootSignInButtonView {
+                        RootSignInButtonView(viewModel: viewModel.makeRootSignInButtonViewModel()) {
                             if isSignedIn {
                                 viewModel.signOut()
                             } else {
                                 isSignInViewPresented.toggle()
                             }
                         }
-                        .environmentObject(viewModel.makeRootSignInButtonViewModel())
                     }
                     if isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {

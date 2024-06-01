@@ -14,7 +14,7 @@ struct SignInNavigationView: View {
 
     var body: some View {
         NavigationView {
-            SignInView()
+            SignInView(viewModel: viewModel.makeSignInViewModel())
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(
@@ -23,7 +23,6 @@ struct SignInNavigationView: View {
                         )
                     }
                 }
-                .environmentObject(viewModel.makeSignInViewModel())
         }
     }
 }

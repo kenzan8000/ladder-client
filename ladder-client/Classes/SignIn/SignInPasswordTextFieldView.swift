@@ -5,7 +5,7 @@ import SwiftUI
 struct SignInPasswordTextFieldView: View {
     // MARK: - Private properties
 
-    @EnvironmentObject private var viewModel: SignInPasswordTextFieldViewModel
+    @State private var viewModel: SignInPasswordTextFieldViewModel
     
     // MARK: - Public properties
 
@@ -22,9 +22,15 @@ struct SignInPasswordTextFieldView: View {
             .autocorrectionDisabled()
             .submitLabel(.done)
             .padding(Padding.textField)
-            .modifier(SignInTextFieldStateModifier(publisher: viewModel.$state.eraseToAnyPublisher()))
+            .modifier(SignInTextFieldStateModifier(state: $viewModel.state))
 
             Spacer().frame(width: Spacing.default)
         }
+    }
+    
+    // MARK: - Init
+    
+    init(viewModel: SignInPasswordTextFieldViewModel) {
+        self.viewModel = viewModel
     }
 }
