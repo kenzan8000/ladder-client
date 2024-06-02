@@ -23,6 +23,8 @@ struct LadderClientApp: App {
     
     private let keychain = Keychain(service: "org.kenzan8000.ladder-client", accessGroup: "group.ladder-client")
     
+    private let cookieStorage = CookieStorage()
+    
     // MARK: - Public properties
 
     var body: some Scene {
@@ -32,11 +34,15 @@ struct LadderClientApp: App {
                 signInService: SignInService(
                     keychain: keychain,
                     networking: SignInNetworking(keychain: keychain),
-                    cookieStorage: CookieStorage()
+                    cookieStorage: cookieStorage
+                ),
+                pinService: PinService(
+                    keychain: keychain,
+                    networking: PinNetworking(keychain: keychain),
+                    cookieStorage: cookieStorage
                 ),
                 selectedTab: .feeds
             ))
-            
         }
     }
 }

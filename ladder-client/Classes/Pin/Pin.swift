@@ -7,18 +7,34 @@ struct Pin: Codable, Identifiable, Sendable {
     // MARK: - Private Enums
     
     private enum CodingKeys: String, CodingKey {
-        case createdAt = "created_on"
+        case cratedAtInUnixTimestamp = "created_on"
         case link = "link"
         case title = "title"
     }
     
+    // MARK: - Private properties
+    
+    private let cratedAtInUnixTimestamp: TimeInterval
+    
     // MARK: - Public properties
 
-    var id: String { link.absoluteString }
+    var id: String { link }
 
-    let createdAt: Date
+    var createdAt: Date { Date(timeIntervalSince1970: cratedAtInUnixTimestamp) }
     
-    let link: URL
+    let link: String
     
     let title: String
+    
+    // MARK: - Init
+    
+    init(
+        createdAt: Date,
+        link: String,
+        title: String
+    ) {
+        self.cratedAtInUnixTimestamp = createdAt.timeIntervalSince1970
+        self.link = link
+        self.title = title
+    }
 }

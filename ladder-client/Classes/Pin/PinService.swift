@@ -36,9 +36,15 @@ final class PinService: PinServiceProtocol {
     func getPins() async throws -> [Pin] {
         isGettingPins = true
         let (data, _) = try await networking.all()
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder.decode([Pin].self, from: data)
+        let pins: [Pin]
+        do {
+            pins = try JSONDecoder().decode([Pin].self, from: data)
+        } catch {
+            isGettingPins = false
+            throw error
+        }
+        isGettingPins = false
+        return pins
     }
 
     func cancel() {

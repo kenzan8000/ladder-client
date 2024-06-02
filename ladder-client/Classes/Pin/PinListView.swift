@@ -10,11 +10,12 @@ struct PinListView: View {
     // MARK: - Public properties
 
     var body: some View {
-        List(viewModel.pins) { _ in
-            Text("foo")
+        List(viewModel.pins) { pin in
+            Text(pin.title)
         }
         .listStyle(.plain)
-        .refreshable {
+        .refreshable { @MainActor in
+            await viewModel.loadPins()
         }
     }
     
