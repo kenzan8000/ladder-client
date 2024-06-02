@@ -16,5 +16,6 @@ protocol SignInNetworkingProtocol {
     /// - Returns: Response from `GET /session` edpoint
     func session(username: String, password: String, authenticityToken: String) async throws -> (Data, URLResponse)
 
+    /// Cancel all the requests
     func cancel()
 }
