@@ -58,6 +58,8 @@
 		E6F043832C0CFD4600034F33 /* PinNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F043822C0CFD4600034F33 /* PinNetworkingProtocol.swift */; };
 		E6F043852C0CFDE500034F33 /* PinNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F043842C0CFDE500034F33 /* PinNetworking.swift */; };
 		E6F043892C0D008100034F33 /* URLRequest+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F043882C0D008100034F33 /* URLRequest+Networking.swift */; };
+		E6F0438B2C0D037700034F33 /* PinServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F0438A2C0D037700034F33 /* PinServiceProtocol.swift */; };
+		E6F0438D2C0D044400034F33 /* PinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F0438C2C0D044400034F33 /* PinService.swift */; };
 		E6F6DFDC2BDC4CF00058209B /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F6DFDB2BDC4CF00058209B /* Spacing.swift */; };
 		E6FA099424A8CBED00888F58 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA099324A8CBED00888F58 /* Main.swift */; };
 		E6FA61B92BE960240073A043 /* RootSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FA61B82BE960240073A043 /* RootSignInView.swift */; };
@@ -143,6 +145,8 @@
 		E6F043822C0CFD4600034F33 /* PinNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNetworkingProtocol.swift; sourceTree = "<group>"; };
 		E6F043842C0CFDE500034F33 /* PinNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNetworking.swift; sourceTree = "<group>"; };
 		E6F043882C0D008100034F33 /* URLRequest+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Networking.swift"; sourceTree = "<group>"; };
+		E6F0438A2C0D037700034F33 /* PinServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinServiceProtocol.swift; sourceTree = "<group>"; };
+		E6F0438C2C0D044400034F33 /* PinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinService.swift; sourceTree = "<group>"; };
 		E6F5FA581FDB4B1800A6C713 /* ladder-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ladder-client.entitlements"; sourceTree = "<group>"; };
 		E6F6DFDB2BDC4CF00058209B /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		E6FA099324A8CBED00888F58 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 				E6EF21BF2BDD911900A81560 /* PinViewModel.swift */,
 				E6ACF0782BF932370004036A /* PinListView.swift */,
 				E6ACF07A2BF932420004036A /* PinListViewModel.swift */,
+				E6F0438A2C0D037700034F33 /* PinServiceProtocol.swift */,
+				E6F0438C2C0D044400034F33 /* PinService.swift */,
 				E6F043822C0CFD4600034F33 /* PinNetworkingProtocol.swift */,
 				E6F043842C0CFDE500034F33 /* PinNetworking.swift */,
 			);
@@ -536,8 +542,10 @@
 				E6DC985A2BD9B017002EDC02 /* SignInButtonView.swift in Sources */,
 				E6C413CE2BD9A8FC0094FBA0 /* SignInUsernameTextFieldViewModel.swift in Sources */,
 				E6FA61BB2BE960530073A043 /* RootSignInViewModel.swift in Sources */,
+				E6F0438B2C0D037700034F33 /* PinServiceProtocol.swift in Sources */,
 				E6FA61BD2BE9624A0073A043 /* SignUpLinkView.swift in Sources */,
 				E6C413CA2BD9A1970094FBA0 /* SignInRootURLTextFieldViewModel.swift in Sources */,
+				E6F0438D2C0D044400034F33 /* PinService.swift in Sources */,
 				E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
 				E6FA61C32BE96C7E0073A043 /* SignInDividerView.swift in Sources */,
