@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - PinServiceProtocol
 
-protocol PinServiceProtocol {
+protocol PinServiceProtocol: RootServiceProtocol {
     /// Wheteher is currently getting pins or not
     var isGettingPins: Bool { get }
     

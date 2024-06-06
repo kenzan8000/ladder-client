@@ -10,16 +10,27 @@ final class FeedViewModel {
     
     private let signInService: any SignInServiceProtocol
     
+    private let feedService: any FeedServiceProtocol
+    
     // MARK: - Init
     
-    init(keychain: any KeychainProtocol, signInService: any SignInServiceProtocol) {
+    init(
+        keychain: any KeychainProtocol,
+        signInService: any SignInServiceProtocol,
+        feedService: any FeedServiceProtocol
+    ) {
         self.keychain = keychain
         self.signInService = signInService
+        self.feedService = feedService
     }
     
     // MARK: - Public methods
     
     func makeRootNavigationViewModel() -> RootNavigationViewModel {
-        RootNavigationViewModel(keychain: keychain, signInService: signInService)
+        RootNavigationViewModel(
+            keychain: keychain,
+            signInService: signInService,
+            rootService: feedService
+        )
     }
 }

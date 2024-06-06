@@ -39,7 +39,11 @@ final class PinViewModel {
     // MARK: - Public methods
     
     func makeRootNavigationViewModel() -> RootNavigationViewModel {
-        RootNavigationViewModel(keychain: keychain, signInService: signInService)
+        RootNavigationViewModel(
+            keychain: keychain,
+            signInService: signInService,
+            rootService: pinService
+        )
     }
     
     func makeRootSignInViewModel() -> RootSignInViewModel {

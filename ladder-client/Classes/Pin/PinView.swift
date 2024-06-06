@@ -3,13 +3,6 @@ import SwiftUI
 // MARK: - PinView
 
 struct PinView: View {
-    // MARK: - Public enums
-    
-    enum ViewType {
-        case signIn
-        case list
-    }
-    
     // MARK: - Private properties
     
     @State private var viewModel: PinViewModel

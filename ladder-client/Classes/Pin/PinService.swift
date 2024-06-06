@@ -18,6 +18,10 @@ final class PinService: PinServiceProtocol {
     
     lazy var isGettingPinsPublisher: AnyPublisher<Bool, Never> = $isGettingPins.eraseToAnyPublisher()
 
+    var isLoading: Bool { isGettingPins }
+    
+    var isLoadingPublisher: AnyPublisher<Bool, Never> { isGettingPinsPublisher }
+
     // MARK: - Init
 
     init(

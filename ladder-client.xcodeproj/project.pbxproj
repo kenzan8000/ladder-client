@@ -10,6 +10,9 @@
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
 		E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595BB2C1235AF00DC7992 /* PinRowView.swift */; };
 		E60595BE2C12366400DC7992 /* PinRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595BD2C12366400DC7992 /* PinRowViewModel.swift */; };
+		E60595C02C123D7300DC7992 /* RootServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595BF2C123D7300DC7992 /* RootServiceProtocol.swift */; };
+		E60595C22C12406800DC7992 /* FeedServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595C12C12406700DC7992 /* FeedServiceProtocol.swift */; };
+		E60595C42C12408F00DC7992 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595C32C12408F00DC7992 /* FeedService.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
@@ -98,6 +101,9 @@
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E60595BB2C1235AF00DC7992 /* PinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinRowView.swift; sourceTree = "<group>"; };
 		E60595BD2C12366400DC7992 /* PinRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinRowViewModel.swift; sourceTree = "<group>"; };
+		E60595BF2C123D7300DC7992 /* RootServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootServiceProtocol.swift; sourceTree = "<group>"; };
+		E60595C12C12406700DC7992 /* FeedServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedServiceProtocol.swift; sourceTree = "<group>"; };
+		E60595C32C12408F00DC7992 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66DFE1924A8B95000790F8B /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -348,6 +354,8 @@
 			children = (
 				E6EE463D2BD6EDD300273094 /* FeedView.swift */,
 				E6EF21BD2BDD90C300A81560 /* FeedViewModel.swift */,
+				E60595C12C12406700DC7992 /* FeedServiceProtocol.swift */,
+				E60595C32C12408F00DC7992 /* FeedService.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -383,6 +391,7 @@
 				E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */,
 				E69543FC2C07D999003ED85E /* RootLoadButtonView.swift */,
 				E69543FE2C07DA64003ED85E /* RootLoadButtonViewModel.swift */,
+				E60595BF2C123D7300DC7992 /* RootServiceProtocol.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -555,6 +564,7 @@
 				E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */,
 				E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
+				E60595C22C12406800DC7992 /* FeedServiceProtocol.swift in Sources */,
 				E6FA61C32BE96C7E0073A043 /* SignInDividerView.swift in Sources */,
 				E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */,
 				E6EF21BE2BDD90C300A81560 /* FeedViewModel.swift in Sources */,
@@ -577,8 +587,10 @@
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
 				E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */,
+				E60595C02C123D7300DC7992 /* RootServiceProtocol.swift in Sources */,
 				E6EF21BC2BDD905800A81560 /* RootNavigationViewModel.swift in Sources */,
 				E6C413C82BD9A0870094FBA0 /* SignInRootURLTextFieldView.swift in Sources */,
+				E60595C42C12408F00DC7992 /* FeedService.swift in Sources */,
 				E6ACF0792BF932370004036A /* PinListView.swift in Sources */,
 				E67485D82BE0324200DDE19C /* Padding.swift in Sources */,
 				E6D1EFDF2BE78EA1008AA020 /* SignInNetworkingProtocol.swift in Sources */,

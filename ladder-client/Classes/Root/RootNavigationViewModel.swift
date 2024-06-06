@@ -11,6 +11,8 @@ final class RootNavigationViewModel {
 
     private let signInService: any SignInServiceProtocol
     
+    private let rootService: any RootServiceProtocol
+    
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Public properties
@@ -23,10 +25,12 @@ final class RootNavigationViewModel {
     
     init(
         keychain: any KeychainProtocol,
-        signInService: any SignInServiceProtocol
+        signInService: any SignInServiceProtocol,
+        rootService: any RootServiceProtocol
     ) {
         self.keychain = keychain
         self.signInService = signInService
+        self.rootService = rootService
         self.isSignedIn = signInService.isSignedIn
         signInService.isSignedInPublisher
             .receive(on: RunLoop.main)
@@ -45,7 +49,7 @@ final class RootNavigationViewModel {
     }
     
     func makeRootLoadButtonViewModel() -> RootLoadButtonViewModel {
-        RootLoadButtonViewModel()
+        RootLoadButtonViewModel(service: rootService)
     }
     
     func signOut() {
