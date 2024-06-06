@@ -10,8 +10,8 @@ protocol PinServiceProtocol: RootServiceProtocol {
     /// Publisher that indicates whether is currently signing in or not
     var isGettingPinsPublisher: AnyPublisher<Bool, Never> { get }
     
-    /// - Returns: All the pins the user has
-    func getPins() async throws -> [Pin]
+    /// Load pins
+    func loadPins()
 
     /// Cancel all the request
     func cancel()

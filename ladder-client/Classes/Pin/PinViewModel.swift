@@ -13,6 +13,8 @@ final class PinViewModel {
     
     private let pinService: any PinServiceProtocol
     
+    private let pinStorage: any PinStorageProtocol
+    
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Public properties
@@ -24,11 +26,13 @@ final class PinViewModel {
     init(
         keychain: any KeychainProtocol,
         signInService: any SignInServiceProtocol,
-        pinService: any PinServiceProtocol
+        pinService: any PinServiceProtocol,
+        pinStorage: any PinStorageProtocol
     ) {
         self.keychain = keychain
         self.signInService = signInService
         self.pinService = pinService
+        self.pinStorage = pinStorage
         self.isSignedIn = signInService.isSigningIn
         signInService.isSignedInPublisher
             .receive(on: RunLoop.main)
@@ -51,6 +55,6 @@ final class PinViewModel {
     }
     
     func makePinListViewModel() -> PinListViewModel {
-        PinListViewModel(service: pinService)
+        PinListViewModel(service: pinService, storage: pinStorage)
     }
 }

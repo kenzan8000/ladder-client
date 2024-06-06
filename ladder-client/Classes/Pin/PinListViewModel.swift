@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 
 // MARK: - PinListViewModel
@@ -8,14 +9,26 @@ final class PinListViewModel {
     
     private let service: any PinServiceProtocol
     
+    private let storage: any PinStorageProtocol
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
     // MARK: - Public properties
     
     private(set) var pins: [Pin] = []
     
     // MARK: - Init
     
-    init(service: any PinServiceProtocol) {
+    init(
+        service: any PinServiceProtocol,
+        storage: any PinStorageProtocol
+    ) {
         self.service = service
+        self.storage = storage
+        storage.get()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (pins: [Pin]) in self?.pins = pins }
+            .store(in: &self.cancellables)
     }
     
     // MARK: - Public methods
@@ -25,6 +38,6 @@ final class PinListViewModel {
         guard !service.isGettingPins else {
             return
         }
-        pins = (try? await service.getPins()) ?? []
+        service.loadPins()
     }
 }

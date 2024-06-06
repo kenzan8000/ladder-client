@@ -25,4 +25,10 @@ final class RootLoadButtonViewModel {
             .sink { [weak self] (isLoading: Bool) in self?.isLoading = isLoading }
             .store(in: &self.cancellables)
     }
+    
+    // MARK: - Public methods
+    
+    func reload() {
+        service.reload()
+    }
 }

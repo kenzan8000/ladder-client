@@ -26,8 +26,7 @@ struct RootNavigationView<Content>: View where Content: View {
                     }
                     if viewModel.isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {
-                            RootLoadButtonView(viewModel: viewModel.makeRootLoadButtonViewModel()) {
-                            }
+                            RootLoadButtonView(viewModel: viewModel.makeRootLoadButtonViewModel())
                         }
                     }
                 }

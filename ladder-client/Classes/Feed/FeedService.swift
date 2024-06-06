@@ -9,4 +9,9 @@ final class FeedService: FeedServiceProtocol {
     @Published private(set) var isLoading = false
     
     lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = $isLoading.eraseToAnyPublisher()
+    
+    // MARK: - Public methods
+    
+    func reload() {
+    }
 }

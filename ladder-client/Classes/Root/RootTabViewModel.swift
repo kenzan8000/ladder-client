@@ -14,6 +14,8 @@ final class RootTabViewModel {
     
     private let pinService: any PinServiceProtocol
     
+    private let pinStorage: any PinStorageProtocol
+    
     // MARK: - Public properties
 
     var selectedTab: RootTabView.Tab
@@ -25,12 +27,14 @@ final class RootTabViewModel {
         signInService: any SignInServiceProtocol,
         feedService: any FeedServiceProtocol,
         pinService: any PinServiceProtocol,
+        pinStorage: any PinStorageProtocol,
         selectedTab: RootTabView.Tab = .feeds
     ) {
         self.keychain = keychain
         self.signInService = signInService
         self.feedService = feedService
         self.pinService = pinService
+        self.pinStorage = pinStorage
         self.selectedTab = selectedTab
     }
     
@@ -48,7 +52,8 @@ final class RootTabViewModel {
         PinViewModel(
             keychain: keychain,
             signInService: signInService,
-            pinService: pinService
+            pinService: pinService,
+            pinStorage: pinStorage
         )
     }
 }

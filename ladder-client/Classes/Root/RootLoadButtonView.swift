@@ -7,9 +7,6 @@ struct RootLoadButtonView: View {
     
     @State private var viewModel: RootLoadButtonViewModel
     
-    /// Action when presenting sign in view
-    private let action: () -> Void
-    
     // MARK: - Public properties
 
     var body: some View {
@@ -21,20 +18,21 @@ struct RootLoadButtonView: View {
                 ProgressView()
             }
         } else {
-            Button(action: action) {
-                Text("Reload")
-                Image(systemName: "arrow.clockwise")
-            }
+            Button(
+                action: {
+                    viewModel.reload()
+                },
+                label: {
+                    Text("Reload")
+                    Image(systemName: "arrow.clockwise")
+                }
+            )
         }
     }
     
     // MARK: - Init
     
-    init(
-        viewModel: RootLoadButtonViewModel,
-        action: @escaping () -> Void
-    ) {
+    init(viewModel: RootLoadButtonViewModel) {
         self.viewModel = viewModel
-        self.action = action
     }
 }

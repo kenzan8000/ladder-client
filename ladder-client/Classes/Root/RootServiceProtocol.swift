@@ -9,4 +9,6 @@ protocol RootServiceProtocol {
     
     /// Publisher that indicates whether is currently loading or not
     var isLoadingPublisher: AnyPublisher<Bool, Never> { get }
+    
+    func reload()
 }
