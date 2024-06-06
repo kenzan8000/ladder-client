@@ -11,7 +11,8 @@ struct PinListView: View {
 
     var body: some View {
         List(viewModel.pins) { pin in
-            Text(pin.title)
+            PinRowView(viewModel: PinRowViewModel(pin: pin)) {
+            }
         }
         .listStyle(.plain)
         .refreshable { @MainActor in

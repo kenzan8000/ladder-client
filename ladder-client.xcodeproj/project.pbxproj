@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E60230C11F5E54860052F762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60230BE1F5E54860052F762 /* Assets.xcassets */; };
+		E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595BB2C1235AF00DC7992 /* PinRowView.swift */; };
+		E60595BE2C12366400DC7992 /* PinRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595BD2C12366400DC7992 /* PinRowViewModel.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
 		E6572DCF25E778C700C0F18C /* HTMLReader in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DCE25E778C700C0F18C /* HTMLReader */; };
 		E6572DD425E778E200C0F18C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E6572DD325E778E200C0F18C /* KeychainAccess */; };
@@ -94,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		E60230BE1F5E54860052F762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E60595BB2C1235AF00DC7992 /* PinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinRowView.swift; sourceTree = "<group>"; };
+		E60595BD2C12366400DC7992 /* PinRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinRowViewModel.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E6690C501F5E537E0065B7B5 /* ladder-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ladder-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E66DFE1924A8B95000790F8B /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 				E6EF21BF2BDD911900A81560 /* PinViewModel.swift */,
 				E6ACF0782BF932370004036A /* PinListView.swift */,
 				E6ACF07A2BF932420004036A /* PinListViewModel.swift */,
+				E60595BB2C1235AF00DC7992 /* PinRowView.swift */,
+				E60595BD2C12366400DC7992 /* PinRowViewModel.swift */,
 				E6F0438A2C0D037700034F33 /* PinServiceProtocol.swift */,
 				E6F0438C2C0D044400034F33 /* PinService.swift */,
 				E6F043822C0CFD4600034F33 /* PinNetworkingProtocol.swift */,
@@ -547,6 +553,7 @@
 				E6C413CA2BD9A1970094FBA0 /* SignInRootURLTextFieldViewModel.swift in Sources */,
 				E6F0438D2C0D044400034F33 /* PinService.swift in Sources */,
 				E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */,
+				E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
 				E6FA61C32BE96C7E0073A043 /* SignInDividerView.swift in Sources */,
 				E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */,
@@ -560,6 +567,7 @@
 				E6F043892C0D008100034F33 /* URLRequest+Networking.swift in Sources */,
 				E6AA1A5A2BE7BCAC00A240B5 /* ViewAlertModifier.swift in Sources */,
 				E6FA61C12BE966950073A043 /* SignUpLinkViewModel.swift in Sources */,
+				E60595BE2C12366400DC7992 /* PinRowViewModel.swift in Sources */,
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
 				E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */,
 				E6D1EFE22BE798DA008AA020 /* NetworkingError.swift in Sources */,

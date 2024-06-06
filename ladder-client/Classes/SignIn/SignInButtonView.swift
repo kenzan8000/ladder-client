@@ -22,7 +22,6 @@ struct SignInButtonView: View {
 
     @State private var viewModel: SignInButtonViewModel
 
-    /// Action when clicking the button
     private let action: () -> Void
     
     // MARK: - Public properties

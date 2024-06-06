@@ -1,6 +1,7 @@
 import Foundation
 
 // MARK: - URLRequest Extension
+
 extension URLRequest {
     static func networkingRequest(
         method: String,
