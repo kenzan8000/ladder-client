@@ -19,7 +19,7 @@ final class SignUpLinkViewModel {
 
     init(publisher: AnyPublisher<SignUpLinkViewState, Never>) {
         self.publisher = publisher
-        self.publisher.receive(on: RunLoop.main)
+        self.publisher.receive(on: DispatchQueue.main)
             .sink { [weak self] (state: SignUpLinkViewState) in
                 self?.state = state
             }

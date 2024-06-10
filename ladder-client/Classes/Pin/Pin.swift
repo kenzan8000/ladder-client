@@ -18,11 +18,11 @@ struct Pin: Codable, Identifiable, Sendable {
     
     // MARK: - Public properties
 
-    var id: String { link }
+    var id: String { link.absoluteString }
 
     var createdAt: Date { Date(timeIntervalSince1970: cratedAtInUnixTimestamp) }
     
-    let link: String
+    let link: URL
     
     let title: String
     
@@ -30,7 +30,7 @@ struct Pin: Codable, Identifiable, Sendable {
     
     init(
         createdAt: Date,
-        link: String,
+        link: URL,
         title: String
     ) {
         self.cratedAtInUnixTimestamp = createdAt.timeIntervalSince1970

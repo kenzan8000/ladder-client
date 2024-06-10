@@ -11,7 +11,7 @@ protocol PinServiceProtocol: RootServiceProtocol {
     var isGettingPinsPublisher: AnyPublisher<Bool, Never> { get }
     
     /// Load pins
-    func loadPins()
+    func loadPins() async
 
     /// Cancel all the request
     func cancel()

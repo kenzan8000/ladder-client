@@ -33,7 +33,7 @@ final class RootNavigationViewModel {
         self.rootService = rootService
         self.isSignedIn = signInService.isSignedIn
         signInService.isSignedInPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
             .store(in: &self.cancellables)
     }

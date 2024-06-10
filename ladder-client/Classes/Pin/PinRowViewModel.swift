@@ -10,7 +10,11 @@ final class PinRowViewModel {
     
     // MARK: - Public properties
     
-    var title: String { pin.title }
+    var text: String { pin.title }
+    
+    var link: URL { pin.link }
+    
+    var isWebViewPresented = false
     
     // MARK: - Init
     

@@ -40,20 +40,19 @@ final class PinService: PinServiceProtocol {
 
     // MARK: - Public methods
 
-    func loadPins() {
-        Task { @MainActor in
-            isGettingPins = true
-            do {
-                let (data, _) = try await networking.all()
-                let pins = try JSONDecoder().decode([Pin].self, from: data)
-                pinStorage.set(pins: pins)
-            } catch {
-                isGettingPins = false
-                pinStorage.set(pins: [])
-                throw error
-            }
+    @MainActor
+    func loadPins() async {
+        isGettingPins = true
+        do {
+            let (data, _) = try await networking.all()
+            let pins = try JSONDecoder().decode([Pin].self, from: data)
+            pinStorage.set(pins: pins)
+        } catch {
             isGettingPins = false
+            pinStorage.set(pins: [])
+            return
         }
+        isGettingPins = false
     }
 
     func cancel() {
@@ -63,6 +62,8 @@ final class PinService: PinServiceProtocol {
     
     func reload() {
         cancel()
-        loadPins()
+        Task { @MainActor in
+            await loadPins()
+        }
     }
 }

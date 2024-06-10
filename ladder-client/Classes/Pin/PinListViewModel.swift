@@ -26,7 +26,7 @@ final class PinListViewModel {
         self.service = service
         self.storage = storage
         storage.get()
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (pins: [Pin]) in self?.pins = pins }
             .store(in: &self.cancellables)
     }
@@ -38,6 +38,6 @@ final class PinListViewModel {
         guard !service.isGettingPins else {
             return
         }
-        service.loadPins()
+        await service.loadPins()
     }
 }

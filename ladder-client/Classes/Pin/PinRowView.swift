@@ -18,12 +18,21 @@ struct PinRowView: View {
     // MARK: - Public properties
 
     var body: some View {
-        Button(action: action) {
-            Text(viewModel.title)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: Constant.minHeight, alignment: .leading)
-                .lineLimit(Constant.lineLimit)
-                .truncationMode(.tail)
+        Button(
+            action: {
+                viewModel.isWebViewPresented.toggle()
+                action()
+            },
+            label: {
+                Text(viewModel.text)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: Constant.minHeight, alignment: .leading)
+                    .lineLimit(Constant.lineLimit)
+                    .truncationMode(.tail)
+            }
+        )
+        .sheet(isPresented: $viewModel.isWebViewPresented) {
+            SafariView(url: viewModel.link)
         }
     }
     

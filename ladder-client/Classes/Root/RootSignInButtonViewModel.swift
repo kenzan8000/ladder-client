@@ -21,7 +21,7 @@ final class RootSignInButtonViewModel {
         self.service = service
         self.isSignedIn = service.isSignedIn
         service.isSignedInPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
             .store(in: &self.cancellables)
     }

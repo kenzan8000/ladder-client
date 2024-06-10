@@ -21,7 +21,7 @@ final class RootLoadButtonViewModel {
         self.service = service
         self.isLoading = service.isLoading
         service.isLoadingPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (isLoading: Bool) in self?.isLoading = isLoading }
             .store(in: &self.cancellables)
     }

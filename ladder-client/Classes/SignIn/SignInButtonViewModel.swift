@@ -42,7 +42,7 @@ final class SignInButtonViewModel {
             return isFormValid ? .signIn : .invaildForm
         }.eraseToAnyPublisher()
         self.statePublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (state: SignInButtonViewState) in self?.state = state }
             .store(in: &self.cancellables)
     }

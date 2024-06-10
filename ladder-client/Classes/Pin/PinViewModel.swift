@@ -35,7 +35,7 @@ final class PinViewModel {
         self.pinStorage = pinStorage
         self.isSignedIn = signInService.isSigningIn
         signInService.isSignedInPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
             .store(in: &self.cancellables)
     }
