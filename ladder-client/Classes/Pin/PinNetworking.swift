@@ -44,6 +44,41 @@ final class PinNetworking: PinNetworkingProtocol {
         )
         return try await urlSession.data(for: request)
     }
+    
+    func add(title: String, link: URL) async throws -> (Data, URLResponse) {
+        let request = try URLRequest.networkingRequest(
+            method: "POST",
+            rootURL: keychain.rootURL,
+            path: "/api/pin/add",
+            header: [
+                "Content-Type": "application/json",
+                "Cookie": keychain.cookie ?? "",
+            ],
+            body: [
+                "ApiKey": keychain.apiKey ?? "",
+                "title": title,
+                "link": link.absoluteString
+            ]
+        )
+        return try await urlSession.data(for: request)
+    }
+    
+    func remove(link: URL) async throws -> (Data, URLResponse) {
+        let request = try URLRequest.networkingRequest(
+            method: "POST",
+            rootURL: keychain.rootURL,
+            path: "/api/pin/remove",
+            header: [
+                "Content-Type": "application/json",
+                "Cookie": keychain.cookie ?? "",
+            ],
+            body: [
+                "ApiKey": keychain.apiKey ?? "",
+                "link": link.absoluteString
+            ]
+        )
+        return try await urlSession.data(for: request)
+    }
 
     func cancel() {
         operationQueue.cancelAllOperations()

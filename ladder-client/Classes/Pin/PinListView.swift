@@ -12,6 +12,7 @@ struct PinListView: View {
     var body: some View {
         List(viewModel.pins) { pin in
             PinRowView(viewModel: PinRowViewModel(pin: pin)) {
+                viewModel.remove(pin: pin)
             }
         }
         .listStyle(.plain)

@@ -40,4 +40,14 @@ final class PinListViewModel {
         }
         await service.loadPins()
     }
+    
+    func remove(pin: Pin) {
+        Task { @MainActor in
+            let isSucceeded = await service.removePin(link: pin.link)
+            guard isSucceeded else {
+                return
+            }
+            pins.removeAll { (aPin: Pin) in aPin == pin }
+        }
+    }
 }

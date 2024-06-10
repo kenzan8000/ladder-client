@@ -54,12 +54,32 @@ final class PinService: PinServiceProtocol {
         }
         isGettingPins = false
     }
+    
+    @MainActor
+    func addPin(title: String, link: URL) async -> Bool {
+        guard let (data, _) = try? await networking.add(title: title, link: link),
+        let response = try? JSONDecoder().decode(NetworkingResponse.self, from: data) else {
+            return false
+        }
+        return response.isSucceeeded
+    }
+    
+    @MainActor
+    func removePin(link: URL) async -> Bool {
+        guard let (data, _) = try? await networking.remove(link: link),
+        let response = try? JSONDecoder().decode(NetworkingResponse.self, from: data) else {
+            return false
+        }
+        return response.isSucceeeded
+    }
 
+    @MainActor
     func cancel() {
         networking.cancel()
         isGettingPins = false
     }
     
+    @MainActor
     func reload() {
         cancel()
         Task { @MainActor in

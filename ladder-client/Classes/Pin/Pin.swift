@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Pin
 
 /// Model representing an article to read later. The article pin is usually added from subscribing Fastladder RSS feeds.
-struct Pin: Codable, Identifiable, Sendable {
+struct Pin: Codable, Equatable, Identifiable, Sendable {
     // MARK: - Private Enums
     
     private enum CodingKeys: String, CodingKey {
