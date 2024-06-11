@@ -12,6 +12,8 @@ final class RootTabViewModel {
     
     private let feedService: any FeedServiceProtocol
     
+    private let feedStorage: any FeedStorageProtocol
+    
     private let pinService: any PinServiceProtocol
     
     private let pinStorage: any PinStorageProtocol
@@ -26,6 +28,7 @@ final class RootTabViewModel {
         keychain: any KeychainProtocol,
         signInService: any SignInServiceProtocol,
         feedService: any FeedServiceProtocol,
+        feedStorage: any FeedStorageProtocol,
         pinService: any PinServiceProtocol,
         pinStorage: any PinStorageProtocol,
         selectedTab: RootTabView.Tab = .feeds
@@ -33,6 +36,7 @@ final class RootTabViewModel {
         self.keychain = keychain
         self.signInService = signInService
         self.feedService = feedService
+        self.feedStorage = feedStorage
         self.pinService = pinService
         self.pinStorage = pinStorage
         self.selectedTab = selectedTab
@@ -44,7 +48,8 @@ final class RootTabViewModel {
         FeedViewModel(
             keychain: keychain,
             signInService: signInService,
-            feedService: feedService
+            feedService: feedService,
+            feedStorage: feedStorage
         )
     }
     

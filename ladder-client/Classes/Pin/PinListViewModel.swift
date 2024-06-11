@@ -35,7 +35,7 @@ final class PinListViewModel {
     
     @MainActor
     func loadPins() async {
-        guard !service.isGettingPins else {
+        guard !service.isLoading else {
             return
         }
         await service.loadPins()

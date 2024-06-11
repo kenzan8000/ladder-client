@@ -27,6 +27,8 @@ struct LadderClientApp: App {
     
     private let pinStorage = PinStorage()
     
+    private let feedStorage = FeedStorage()
+    
     // MARK: - Public properties
 
     var body: some Scene {
@@ -39,12 +41,14 @@ struct LadderClientApp: App {
                     cookieStorage: cookieStorage,
                     pinStorage: pinStorage
                 ),
-                feedService: FeedService(),
+                feedService: FeedService(
+                    networking: FeedNetworking(keychain: keychain),
+                    storage: feedStorage
+                ),
+                feedStorage: feedStorage,
                 pinService: PinService(
-                    keychain: keychain,
                     networking: PinNetworking(keychain: keychain),
-                    pinStorage: pinStorage,
-                    cookieStorage: cookieStorage
+                    storage: pinStorage
                 ),
                 pinStorage: pinStorage,
                 selectedTab: .feeds

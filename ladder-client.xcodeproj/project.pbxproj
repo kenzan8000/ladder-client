@@ -29,6 +29,13 @@
 		E67485E22BE6E8DE00DDE19C /* KeychainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67485E12BE6E8DE00DDE19C /* KeychainProtocol.swift */; };
 		E6794F0C2BE7F75200A52138 /* CookieStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */; };
 		E6794F0F2BE7F7E700A52138 /* KeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */; };
+		E687EB722C18E1420093CDE0 /* FeedStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB712C18E1420093CDE0 /* FeedStorageProtocol.swift */; };
+		E687EB742C18E17B0093CDE0 /* FeedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB732C18E17B0093CDE0 /* FeedStorage.swift */; };
+		E687EB762C18E1B20093CDE0 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB752C18E1B20093CDE0 /* Feed.swift */; };
+		E687EB782C18E4510093CDE0 /* FeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB772C18E4510093CDE0 /* FeedListView.swift */; };
+		E687EB7A2C18E49F0093CDE0 /* FeedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB792C18E49F0093CDE0 /* FeedListViewModel.swift */; };
+		E687EB7C2C18E5170093CDE0 /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB7B2C18E5170093CDE0 /* FeedRowView.swift */; };
+		E687EB7E2C18E5700093CDE0 /* FeedRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB7D2C18E5700093CDE0 /* FeedRowViewModel.swift */; };
 		E69543F92C07D5B5003ED85E /* RootSignInButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */; };
 		E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */; };
 		E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543FC2C07D999003ED85E /* RootLoadButtonView.swift */; };
@@ -128,6 +135,13 @@
 		E678DECC25E8E2C6009C75E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6794F0B2BE7F75200A52138 /* CookieStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieStorageMock.swift; sourceTree = "<group>"; };
 		E6794F0E2BE7F7E700A52138 /* KeychainMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainMock.swift; sourceTree = "<group>"; };
+		E687EB712C18E1420093CDE0 /* FeedStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStorageProtocol.swift; sourceTree = "<group>"; };
+		E687EB732C18E17B0093CDE0 /* FeedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStorage.swift; sourceTree = "<group>"; };
+		E687EB752C18E1B20093CDE0 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		E687EB772C18E4510093CDE0 /* FeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListView.swift; sourceTree = "<group>"; };
+		E687EB792C18E49F0093CDE0 /* FeedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewModel.swift; sourceTree = "<group>"; };
+		E687EB7B2C18E5170093CDE0 /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
+		E687EB7D2C18E5700093CDE0 /* FeedRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowViewModel.swift; sourceTree = "<group>"; };
 		E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonView.swift; sourceTree = "<group>"; };
 		E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonViewModel.swift; sourceTree = "<group>"; };
 		E69543FC2C07D999003ED85E /* RootLoadButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootLoadButtonView.swift; sourceTree = "<group>"; };
@@ -377,10 +391,17 @@
 		E6EE463C2BD6EDBE00273094 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				E687EB752C18E1B20093CDE0 /* Feed.swift */,
 				E6EE463D2BD6EDD300273094 /* FeedView.swift */,
 				E6EF21BD2BDD90C300A81560 /* FeedViewModel.swift */,
+				E687EB772C18E4510093CDE0 /* FeedListView.swift */,
+				E687EB792C18E49F0093CDE0 /* FeedListViewModel.swift */,
+				E687EB7B2C18E5170093CDE0 /* FeedRowView.swift */,
+				E687EB7D2C18E5700093CDE0 /* FeedRowViewModel.swift */,
 				E60595C12C12406700DC7992 /* FeedServiceProtocol.swift */,
 				E60595C32C12408F00DC7992 /* FeedService.swift */,
+				E687EB712C18E1420093CDE0 /* FeedStorageProtocol.swift */,
+				E687EB732C18E17B0093CDE0 /* FeedStorage.swift */,
 				E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */,
 				E64469B22C18B85E0062363F /* FeedNetworking.swift */,
 			);
@@ -574,13 +595,16 @@
 				E6D1EFDD2BE78E80008AA020 /* SignInNetworking.swift in Sources */,
 				E67485DA2BE032E300DDE19C /* CornerRadius.swift in Sources */,
 				E6EF21B42BDD8B3B00A81560 /* RootTabViewModel.swift in Sources */,
+				E687EB782C18E4510093CDE0 /* FeedListView.swift in Sources */,
 				E6EF21B22BDD8A6400A81560 /* Keychain.swift in Sources */,
 				E6EF21C42BDD934F00A81560 /* SignInViewModel.swift in Sources */,
 				E6D1EFE92BE7A56F008AA020 /* SignInServiceProtocol.swift in Sources */,
 				E6D1EFE72BE7A562008AA020 /* SignInService.swift in Sources */,
+				E687EB742C18E17B0093CDE0 /* FeedStorage.swift in Sources */,
 				E6F6DFDC2BDC4CF00058209B /* Spacing.swift in Sources */,
 				E67485E22BE6E8DE00DDE19C /* KeychainProtocol.swift in Sources */,
 				E6EF21C02BDD911900A81560 /* PinViewModel.swift in Sources */,
+				E687EB722C18E1420093CDE0 /* FeedStorageProtocol.swift in Sources */,
 				E6C413D02BD9AA5F0094FBA0 /* SignInPasswordTextFieldView.swift in Sources */,
 				E6F043852C0CFDE500034F33 /* PinNetworking.swift in Sources */,
 				E6DC985A2BD9B017002EDC02 /* SignInButtonView.swift in Sources */,
@@ -593,6 +617,7 @@
 				E6C413CA2BD9A1970094FBA0 /* SignInRootURLTextFieldViewModel.swift in Sources */,
 				E6F0438D2C0D044400034F33 /* PinService.swift in Sources */,
 				E6DC985C2BD9B021002EDC02 /* SignInButtonViewModel.swift in Sources */,
+				E687EB7C2C18E5170093CDE0 /* FeedRowView.swift in Sources */,
 				E6632C202C179C7100E91C64 /* NetworkingResponse.swift in Sources */,
 				E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
@@ -601,9 +626,11 @@
 				E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */,
 				E6EF21BE2BDD90C300A81560 /* FeedViewModel.swift in Sources */,
 				E6ACF07D2BF933030004036A /* Pin.swift in Sources */,
+				E687EB762C18E1B20093CDE0 /* Feed.swift in Sources */,
 				E6D1EFEC2BE7ABDF008AA020 /* CookieStorage.swift in Sources */,
 				E66DFE1A24A8B95000790F8B /* RootTabView.swift in Sources */,
 				E6FA61B92BE960240073A043 /* RootSignInView.swift in Sources */,
+				E687EB7E2C18E5700093CDE0 /* FeedRowViewModel.swift in Sources */,
 				E6C413C62BD999280094FBA0 /* SignInNavigationView.swift in Sources */,
 				E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */,
 				E6F043892C0D008100034F33 /* URLRequest+Networking.swift in Sources */,
@@ -624,6 +651,7 @@
 				E60595C02C123D7300DC7992 /* RootServiceProtocol.swift in Sources */,
 				E6EF21BC2BDD905800A81560 /* RootNavigationViewModel.swift in Sources */,
 				E6C413C82BD9A0870094FBA0 /* SignInRootURLTextFieldView.swift in Sources */,
+				E687EB7A2C18E49F0093CDE0 /* FeedListViewModel.swift in Sources */,
 				E60595C42C12408F00DC7992 /* FeedService.swift in Sources */,
 				E6ACF0792BF932370004036A /* PinListView.swift in Sources */,
 				E67485D82BE0324200DDE19C /* Padding.swift in Sources */,

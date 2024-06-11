@@ -6,53 +6,41 @@ import Foundation
 final class PinService: PinServiceProtocol {
     // MARK: - Private properties
 
-    private var keychain: any KeychainProtocol
-
     private let networking: any PinNetworkingProtocol
     
-    private let pinStorage: any PinStorageProtocol
-
-    private let cookieStorage: any CookieStorageProtocol
+    private let storage: any PinStorageProtocol
     
     // MARK: - Public properties
     
-    @Published private(set) var isGettingPins = false
+    @Published private(set) var isLoading = false
     
-    lazy var isGettingPinsPublisher: AnyPublisher<Bool, Never> = $isGettingPins.eraseToAnyPublisher()
-
-    var isLoading: Bool { isGettingPins }
-    
-    var isLoadingPublisher: AnyPublisher<Bool, Never> { isGettingPinsPublisher }
+    lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = $isLoading.eraseToAnyPublisher()
 
     // MARK: - Init
 
     init(
-        keychain: any KeychainProtocol,
         networking: any PinNetworkingProtocol,
-        pinStorage: any PinStorageProtocol,
-        cookieStorage: any CookieStorageProtocol
+        storage: any PinStorageProtocol
     ) {
-        self.keychain = keychain
         self.networking = networking
-        self.pinStorage = pinStorage
-        self.cookieStorage = cookieStorage
+        self.storage = storage
     }
 
     // MARK: - Public methods
 
     @MainActor
     func loadPins() async {
-        isGettingPins = true
+        isLoading = true
         do {
             let (data, _) = try await networking.pins()
             let pins = try JSONDecoder().decode([Pin].self, from: data)
-            pinStorage.set(pins: pins)
+            storage.set(pins: pins)
         } catch {
-            isGettingPins = false
-            pinStorage.set(pins: [])
+            isLoading = false
+            storage.set(pins: [])
             return
         }
-        isGettingPins = false
+        isLoading = false
     }
     
     func addPin(title: String, link: URL) async -> Bool {
@@ -74,7 +62,7 @@ final class PinService: PinServiceProtocol {
     @MainActor
     func cancel() {
         networking.cancel()
-        isGettingPins = false
+        isLoading = false
     }
     
     @MainActor

@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Pin
 
-/// Model representing an article to read later. The article pin is usually added from subscribing Fastladder RSS feeds.
+/// Model representing an article to read later. The article model is called pin, and it's stored on Fastladder's DB.
 struct Pin: Codable, Equatable, Identifiable, Sendable {
     // MARK: - Private Enums
     

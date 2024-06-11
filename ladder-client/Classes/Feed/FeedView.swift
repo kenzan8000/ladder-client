@@ -11,7 +11,11 @@ struct FeedView: View {
 
     var body: some View {
         RootNavigationView(viewModel: viewModel.makeRootNavigationViewModel()) {
-            Text("RSS Feeds")
+            if viewModel.isSignedIn {
+                FeedListView(viewModel: viewModel.makeFeedListViewModel())
+            } else {
+                RootSignInView(viewModel: viewModel.makeRootSignInViewModel())
+            }
         }
         .tabItem {
             Image(systemName: "wifi")
