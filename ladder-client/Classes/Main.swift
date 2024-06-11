@@ -39,7 +39,8 @@ struct LadderClientApp: App {
                     keychain: keychain,
                     networking: SignInNetworking(keychain: keychain),
                     cookieStorage: cookieStorage,
-                    pinStorage: pinStorage
+                    pinStorage: pinStorage,
+                    feedStorage: feedStorage
                 ),
                 feedService: FeedService(
                     networking: FeedNetworking(keychain: keychain),

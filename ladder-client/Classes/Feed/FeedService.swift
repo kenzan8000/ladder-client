@@ -27,6 +27,13 @@ final class FeedService: FeedServiceProtocol {
         self.storage = storage
     }
     
+    // MARK: - Private methods
+    
+    private func resetStorage() {
+        storage.set(feeds: [])
+        storage.set(articleLists: [])
+    }
+    
     // MARK: - Public methods
     
     @MainActor
@@ -36,9 +43,14 @@ final class FeedService: FeedServiceProtocol {
             let (data, _) = try await networking.feeds()
             let feeds = try JSONDecoder().decode([Feed].self, from: data)
             storage.set(feeds: feeds)
+            for feed in feeds {
+                let (data, _) = try await networking.unreadArticles(feedId: feed.id)
+                let articleList = try JSONDecoder().decode(ArticleList.self, from: data)
+                storage.add(articleList: articleList)
+            }
         } catch {
             isLoading = false
-            storage.set(feeds: [])
+            resetStorage()
             return
         }
         isLoading = false
@@ -53,6 +65,7 @@ final class FeedService: FeedServiceProtocol {
     @MainActor
     func reload() {
         cancel()
+        resetStorage()
         Task { @MainActor in
             await loadFeeds()
         }

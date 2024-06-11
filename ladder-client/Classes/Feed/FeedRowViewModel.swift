@@ -6,15 +6,19 @@ import Foundation
 final class FeedRowViewModel {
     // MARK: - Private properties
     
-    private let feed: Feed
+    private let feed: ArticleFeed
     
     // MARK: - Public properties
     
-    var text: String { feed.title }
+    var title: String { feed.title }
+    
+    var numberOfUnreadArticles: String { "\(feed.numberOfUnreadArticles)" }
+    
+    var hasArticles: Bool { !feed.articles.isEmpty }
        
     // MARK: - Init
     
-    init(feed: Feed) {
+    init(feed: ArticleFeed) {
         self.feed = feed
     }
 }

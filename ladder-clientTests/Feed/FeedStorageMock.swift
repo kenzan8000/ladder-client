@@ -1,26 +1,22 @@
 import Combine
 import Foundation
+@testable import ladder_client
 
-final class FeedStorage: FeedStorageProtocol {
-    // MARK: - Private properties
+// MARK: - FeedStorageMock
+
+final class FeedStorageMock: FeedStorageProtocol {
+    @Published var feeds = [Feed]()
     
-    @Published private var feeds: [Feed] = []
-    
-    @Published private var articleLists: [ArticleList] = []
-    
-    // MARK: - Public methods
-    
-    @MainActor
+    @Published var articleLists = [ArticleList]()
+
     func set(feeds: [Feed]) {
         self.feeds = feeds
     }
     
-    @MainActor
     func set(articleLists: [ArticleList]) {
         self.articleLists = articleLists
     }
     
-    @MainActor
     func add(articleList: ArticleList) {
         self.articleLists.append(articleList)
     }
