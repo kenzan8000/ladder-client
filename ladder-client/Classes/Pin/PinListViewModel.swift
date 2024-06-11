@@ -47,7 +47,8 @@ final class PinListViewModel {
             guard isSucceeded else {
                 return
             }
-            pins.removeAll { (aPin: Pin) in aPin == pin }
+            let pins = pins.filter { (aPin: Pin) in aPin != pin }
+            storage.set(pins: pins)
         }
     }
 }

@@ -1,12 +1,11 @@
 import Combine
 import Foundation
+@testable import ladder_client
 
-final class PinStorage: PinStorageProtocol {
-    // MARK: - Private properties
-    
-    @Published private var pins: [Pin] = []
-    
-    // MARK: - Public methods
+// MARK: - PinStorageMock
+
+final class PinStorageMock: PinStorageProtocol {
+    @Published var pins = [Pin]()
     
     @MainActor
     func set(pins: [Pin]) {

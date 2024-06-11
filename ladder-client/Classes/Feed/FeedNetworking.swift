@@ -1,20 +1,21 @@
 import Foundation
 
-// MARK: - PinNetworking
+// MARK: - FeedNetworking
 
-final class PinNetworking: PinNetworkingProtocol {
+final class FeedNetworking: FeedNetworkingProtocol {
+    
     // MARK: - Private properties
-
+    
     private let keychain: any KeychainProtocol
-
+    
     private lazy var operationQueue: OperationQueue = {
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 3
-        operationQueue.name = "org.kenzan8000.ladder-client.pin-operation-queue"
+        operationQueue.name = "org.kenzan8000.ladder-client.feed-operation-queue"
         operationQueue.qualityOfService = .userInitiated
         return operationQueue
     }()
-
+    
     private lazy var urlSession: URLSession = {
         URLSession(
             configuration: .default,
@@ -22,64 +23,64 @@ final class PinNetworking: PinNetworkingProtocol {
             delegateQueue: operationQueue
         )
     }()
-
+    
     // MARK: - Init
-
+    
     init(keychain: any KeychainProtocol) {
         self.keychain = keychain
     }
-
-    // MARK: - Public methods
     
-    func pins() async throws -> (Data, URLResponse) {
+    // MARK: - Public methods
+
+    func feeds() async throws -> (Data, URLResponse) {
         let request = try URLRequest.networkingRequest(
             method: "POST",
             rootURL: keychain.rootURL,
-            path: "/api/pin/all",
+            path: "/api/subs",
             header: [
                 "Content-Type": "application/json",
                 "Cookie": keychain.cookie ?? "",
             ],
+            queryItems: [URLQueryItem(name: "unread", value: "1")],
             body: ["ApiKey": keychain.apiKey ?? ""]
         )
         return try await urlSession.data(for: request)
     }
     
-    func addPin(title: String, link: URL) async throws -> (Data, URLResponse) {
+    func unreadArticles(feedId: Int) async throws -> (Data, URLResponse) {
         let request = try URLRequest.networkingRequest(
             method: "POST",
             rootURL: keychain.rootURL,
-            path: "/api/pin/add",
+            path: "/api/unread",
             header: [
                 "Content-Type": "application/json",
                 "Cookie": keychain.cookie ?? "",
             ],
             body: [
                 "ApiKey": keychain.apiKey ?? "",
-                "title": title,
-                "link": link.absoluteString
+                "subscribe_id": "\(feedId)"
             ]
         )
         return try await urlSession.data(for: request)
     }
     
-    func removePin(link: URL) async throws -> (Data, URLResponse) {
+    func removeUnreadArticles(feedId: Int) async throws -> (Data, URLResponse) {
         let request = try URLRequest.networkingRequest(
             method: "POST",
             rootURL: keychain.rootURL,
-            path: "/api/pin/remove",
+            path: "/api/touch_all",
             header: [
                 "Content-Type": "application/json",
                 "Cookie": keychain.cookie ?? "",
             ],
             body: [
                 "ApiKey": keychain.apiKey ?? "",
-                "link": link.absoluteString
+                "subscribe_id": "\(feedId)"
             ]
         )
         return try await urlSession.data(for: request)
     }
-
+    
     func cancel() {
         operationQueue.cancelAllOperations()
     }

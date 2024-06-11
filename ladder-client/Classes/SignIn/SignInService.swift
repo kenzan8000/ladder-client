@@ -20,6 +20,8 @@ final class SignInService: SignInServiceProtocol {
 
     private let cookieStorage: any CookieStorageProtocol
     
+    private let pinStorage: any PinStorageProtocol
+    
     // MARK: - Public properties
     
     @Published private(set) var isSigningIn: Bool
@@ -35,11 +37,13 @@ final class SignInService: SignInServiceProtocol {
     init(
         keychain: any KeychainProtocol,
         networking: any SignInNetworkingProtocol,
-        cookieStorage: any CookieStorageProtocol
+        cookieStorage: any CookieStorageProtocol,
+        pinStorage: any PinStorageProtocol
     ) {
         self.keychain = keychain
         self.networking = networking
         self.cookieStorage = cookieStorage
+        self.pinStorage = pinStorage
         self.isSignedIn = Self.isSignedIn(keychain: keychain)
         self.isSigningIn = false
     }
@@ -100,6 +104,7 @@ final class SignInService: SignInServiceProtocol {
     func signOut() {
         keychain.apiKey = nil
         keychain.cookie = nil
+        pinStorage.set(pins: [])
         isSignedIn = Self.isSignedIn(keychain: keychain)
         isSigningIn = false
     }
