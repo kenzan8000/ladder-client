@@ -22,7 +22,7 @@ struct ArticleFeed: Equatable, Identifiable, Sendable {
     var folder: String { feed.folder }
     
     /// number of unread articles in the RSS feed
-    var numberOfUnreadArticles: Int { feed.numberOfUnreadArticles }
+    var numberOfArticles: Int { feed.numberOfUnreadArticles }
     
     /// rating 0-5. Fastladder allows user to rate the RSS feed
     var rating: Int { feed.rating }

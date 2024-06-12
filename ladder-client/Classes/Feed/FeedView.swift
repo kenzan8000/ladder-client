@@ -10,11 +10,11 @@ struct FeedView: View {
     // MARK: - Public properties
 
     var body: some View {
-        RootNavigationView(viewModel: viewModel.makeRootNavigationViewModel()) {
+        RootNavigationView(viewModel: viewModel.rootNavigationViewModel) {
             if viewModel.isSignedIn {
-                FeedListView(viewModel: viewModel.makeFeedListViewModel())
+                FeedListView(viewModel: viewModel.feedListViewModel)
             } else {
-                RootSignInView(viewModel: viewModel.makeRootSignInViewModel())
+                RootSignInView(viewModel: viewModel.rootSignInViewModel)
             }
         }
         .tabItem {

@@ -10,8 +10,8 @@ struct FeedListView: View {
     // MARK: - Public properties
 
     var body: some View {
-        List(viewModel.feeds) { feed in
-            FeedRowView(viewModel: FeedRowViewModel(feed: feed)) {
+        List(viewModel.articleFeeds) { (articleFeed: ArticleFeed) in
+            FeedRowView(viewModel: FeedRowViewModel(articleFeed: articleFeed)) {
             }
         }
         .listStyle(.plain)

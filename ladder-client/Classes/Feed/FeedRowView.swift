@@ -6,7 +6,7 @@ struct FeedRowView: View {
     
     private enum Constant {
         static let titleLineLimit = 2
-        static let numberOfUnreadArticlesLineLimit = 1
+        static let numberOfArticlesLineLimit = 1
         static let minHeight: CGFloat = 64
     }
     
@@ -25,8 +25,8 @@ struct FeedRowView: View {
                     .lineLimit(Constant.titleLineLimit)
                     .truncationMode(.tail)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                Text(viewModel.numberOfUnreadArticles)
-                    .lineLimit(Constant.numberOfUnreadArticlesLineLimit)
+                Text(viewModel.numberOfArticles)
+                    .lineLimit(Constant.numberOfArticlesLineLimit)
                     .frame(alignment: .trailing)
                 Image(systemName: "chevron.right")
                     .font(.title)

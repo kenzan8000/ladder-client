@@ -14,7 +14,7 @@ struct SignInNavigationView: View {
 
     var body: some View {
         NavigationView {
-            SignInView(viewModel: viewModel.makeSignInViewModel())
+            SignInView(viewModel: viewModel.signInViewModel)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(

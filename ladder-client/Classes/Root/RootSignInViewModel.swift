@@ -13,6 +13,8 @@ final class RootSignInViewModel {
     // MARK: - Public properties
     
     var isSignInViewPresented = false
+    
+    let signInNavigationViewModel: SignInNavigationViewModel
 
     // MARK: - Init
     
@@ -22,11 +24,6 @@ final class RootSignInViewModel {
     ) {
         self.keychain = keychain
         self.signInService = signInService
-    }
-    
-    // MARK: - Public methods
-    
-    func makeSignInNavigationViewModel() -> SignInNavigationViewModel {
-        SignInNavigationViewModel(keychain: keychain, service: signInService)
+        self.signInNavigationViewModel = SignInNavigationViewModel(keychain: keychain, service: signInService)
     }
 }

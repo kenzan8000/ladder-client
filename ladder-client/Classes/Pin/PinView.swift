@@ -8,11 +8,11 @@ struct PinView: View {
     @State private var viewModel: PinViewModel
 
     var body: some View {
-        RootNavigationView(viewModel: viewModel.makeRootNavigationViewModel()) {
+        RootNavigationView(viewModel: viewModel.rootNavigationViewModel) {
             if viewModel.isSignedIn {
-                PinListView(viewModel: viewModel.makePinListViewModel())
+                PinListView(viewModel: viewModel.pinListViewModel)
             } else {
-                RootSignInView(viewModel: viewModel.makeRootSignInViewModel())
+                RootSignInView(viewModel: viewModel.rootSignInViewModel)
             }
         }
         .tabItem {

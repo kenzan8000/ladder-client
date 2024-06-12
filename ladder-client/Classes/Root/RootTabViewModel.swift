@@ -21,6 +21,10 @@ final class RootTabViewModel {
     // MARK: - Public properties
 
     var selectedTab: RootTabView.Tab
+    
+    let feedViewModel: FeedViewModel
+    
+    let pinViewModel: PinViewModel
 
     // MARK: - Init
     
@@ -40,21 +44,13 @@ final class RootTabViewModel {
         self.pinService = pinService
         self.pinStorage = pinStorage
         self.selectedTab = selectedTab
-    }
-    
-    // MARK: - Public methods
-    
-    func makeFeedViewModel() -> FeedViewModel {
-        FeedViewModel(
+        self.feedViewModel = FeedViewModel(
             keychain: keychain,
             signInService: signInService,
             feedService: feedService,
             feedStorage: feedStorage
         )
-    }
-    
-    func makePinViewModel() -> PinViewModel {
-        PinViewModel(
+        self.pinViewModel = PinViewModel(
             keychain: keychain,
             signInService: signInService,
             pinService: pinService,

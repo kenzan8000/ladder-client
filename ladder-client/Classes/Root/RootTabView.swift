@@ -18,8 +18,8 @@ struct RootTabView: View {
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            FeedView(viewModel: viewModel.makeFeedViewModel())
-            PinView(viewModel: viewModel.makePinViewModel())
+            FeedView(viewModel: viewModel.feedViewModel)
+            PinView(viewModel: viewModel.pinViewModel)
         }
     }
     

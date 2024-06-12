@@ -19,7 +19,25 @@ final class PinViewModel {
     
     // MARK: - Public properties
     
-    private(set) var isSignedIn: Bool
+    private(set) var isSignedIn: Bool {
+        didSet {
+            let didSignIn = !oldValue && isSignedIn
+            if didSignIn {
+                pinService.reload()
+            }
+            let didSignOut = oldValue && !isSignedIn
+            if didSignOut {
+                pinService.cancel()
+                pinStorage.set(pins: [])
+            }
+        }
+    }
+    
+    let rootNavigationViewModel: RootNavigationViewModel
+    
+    let rootSignInViewModel: RootSignInViewModel
+    
+    let pinListViewModel: PinListViewModel
     
     // MARK: - Init
     
@@ -34,27 +52,16 @@ final class PinViewModel {
         self.pinService = pinService
         self.pinStorage = pinStorage
         self.isSignedIn = signInService.isSigningIn
-        signInService.isSignedInPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
-            .store(in: &self.cancellables)
-    }
-    
-    // MARK: - Public methods
-    
-    func makeRootNavigationViewModel() -> RootNavigationViewModel {
-        RootNavigationViewModel(
+        self.rootNavigationViewModel = RootNavigationViewModel(
             keychain: keychain,
             signInService: signInService,
             rootService: pinService
         )
-    }
-    
-    func makeRootSignInViewModel() -> RootSignInViewModel {
-        RootSignInViewModel(keychain: keychain, signInService: signInService)
-    }
-    
-    func makePinListViewModel() -> PinListViewModel {
-        PinListViewModel(service: pinService, storage: pinStorage)
+        self.rootSignInViewModel = RootSignInViewModel(keychain: keychain, signInService: signInService)
+        self.pinListViewModel = PinListViewModel(service: pinService, storage: pinStorage)
+        signInService.isSignedInPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
+            .store(in: &self.cancellables)
     }
 }

@@ -9,17 +9,16 @@ final class SignInNavigationViewModel {
     private let keychain: any KeychainProtocol
 
     private let service: any SignInServiceProtocol
+    
+    // MARK: - Public properties
+    
+    let signInViewModel: SignInViewModel
 
     // MARK: - Init
     
     init(keychain: any KeychainProtocol, service: any SignInServiceProtocol) {
         self.keychain = keychain
         self.service = service
-    }
-    
-    // MARK: - Public methods
-    
-    func makeSignInViewModel() -> SignInViewModel {
-        SignInViewModel(keychain: keychain, service: service)
+        self.signInViewModel = SignInViewModel(keychain: keychain, service: service)
     }
 }

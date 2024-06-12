@@ -19,7 +19,25 @@ final class FeedViewModel {
     
     // MARK: - Public properties
     
-    private(set) var isSignedIn: Bool
+    private(set) var isSignedIn: Bool {
+        didSet {
+            let didSignIn = !oldValue && isSignedIn
+            if didSignIn {
+                feedService.reload()
+            }
+            let didSignOut = oldValue && !isSignedIn
+            if didSignOut {
+                feedService.cancel()
+                feedStorage.set(feeds: [])
+            }
+        }
+    }
+    
+    let rootNavigationViewModel: RootNavigationViewModel
+    
+    let rootSignInViewModel: RootSignInViewModel
+    
+    let feedListViewModel: FeedListViewModel
     
     // MARK: - Init
     
@@ -34,27 +52,16 @@ final class FeedViewModel {
         self.feedService = feedService
         self.feedStorage = feedStorage
         self.isSignedIn = signInService.isSigningIn
-        signInService.isSignedInPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
-            .store(in: &self.cancellables)
-    }
-    
-    // MARK: - Public methods
-    
-    func makeRootNavigationViewModel() -> RootNavigationViewModel {
-        RootNavigationViewModel(
+        self.rootNavigationViewModel = RootNavigationViewModel(
             keychain: keychain,
             signInService: signInService,
             rootService: feedService
         )
-    }
-    
-    func makeRootSignInViewModel() -> RootSignInViewModel {
-        RootSignInViewModel(keychain: keychain, signInService: signInService)
-    }
-    
-    func makeFeedListViewModel() -> FeedListViewModel {
-        FeedListViewModel(service: feedService, storage: feedStorage)
+        self.rootSignInViewModel = RootSignInViewModel(keychain: keychain, signInService: signInService)
+        self.feedListViewModel = FeedListViewModel(service: feedService, storage: feedStorage)
+        signInService.isSignedInPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
+            .store(in: &self.cancellables)
     }
 }

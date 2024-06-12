@@ -16,7 +16,7 @@ struct RootNavigationView<Content>: View where Content: View {
             VStack(content: content)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        RootSignInButtonView(viewModel: viewModel.makeRootSignInButtonViewModel()) {
+                        RootSignInButtonView(viewModel: viewModel.rootSignInButtonViewModel) {
                             if viewModel.isSignedIn {
                                 viewModel.signOut()
                             } else {
@@ -26,12 +26,12 @@ struct RootNavigationView<Content>: View where Content: View {
                     }
                     if viewModel.isSignedIn {
                         ToolbarItem(placement: .topBarTrailing) {
-                            RootLoadButtonView(viewModel: viewModel.makeRootLoadButtonViewModel())
+                            RootLoadButtonView(viewModel: viewModel.rootLoadButtonViewModel)
                         }
                     }
                 }
                 .sheet(isPresented: $viewModel.isSignInViewPresented) {
-                    SignInNavigationView(viewModel: viewModel.makeSignInNavigationViewModel())
+                    SignInNavigationView(viewModel: viewModel.signInNavigationViewModel)
                 }
         }
     }

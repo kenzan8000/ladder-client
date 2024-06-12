@@ -4,32 +4,24 @@ import Foundation
 final class FeedStorage: FeedStorageProtocol {
     // MARK: - Private properties
     
-    @Published private var feeds: [Feed] = []
-    
-    @Published private var articleLists: [ArticleList] = []
+    @Published private var articleFeeds: [ArticleFeed] = []
     
     // MARK: - Public methods
     
     @MainActor
     func set(feeds: [Feed]) {
-        self.feeds = feeds
+        articleFeeds = feeds.map { (feed: Feed) in ArticleFeed(feed: feed, articles: []) }
     }
     
     @MainActor
-    func set(articleLists: [ArticleList]) {
-        self.articleLists = articleLists
+    func set(articleList: ArticleList) {
+        guard let index = articleFeeds.firstIndex(where: { (articleFeed: ArticleFeed) in articleFeed.feedId == articleList.feedId }) else {
+            return
+        }
+        articleFeeds[index] = articleFeeds[index].duplicate(articles: articleList.articles)
     }
     
-    @MainActor
-    func add(articleList: ArticleList) {
-        self.articleLists.append(articleList)
-    }
-    
-    func getFeeds() -> AnyPublisher<[Feed], Never> {
-        $feeds.eraseToAnyPublisher()
-    }
-    
-    func getArticleLists() -> AnyPublisher<[ArticleList], Never> {
-        $articleLists.eraseToAnyPublisher()
+    func getArticleFeeds() -> AnyPublisher<[ArticleFeed], Never> {
+        $articleFeeds.eraseToAnyPublisher()
     }
 }

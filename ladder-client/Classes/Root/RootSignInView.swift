@@ -44,7 +44,7 @@ struct RootSignInView: View {
             Spacer().frame(width: Spacing.default)
         }
         .sheet(isPresented: $viewModel.isSignInViewPresented) {
-            SignInNavigationView(viewModel: viewModel.makeSignInNavigationViewModel())
+            SignInNavigationView(viewModel: viewModel.signInNavigationViewModel)
         }
     }
     

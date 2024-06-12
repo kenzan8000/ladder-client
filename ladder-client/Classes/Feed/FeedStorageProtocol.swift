@@ -4,11 +4,7 @@ import Foundation
 protocol FeedStorageProtocol {
     func set(feeds: [Feed])
     
-    func set(articleLists: [ArticleList])
+    func set(articleList: ArticleList)
     
-    func add(articleList: ArticleList)
-    
-    func getFeeds() -> AnyPublisher<[Feed], Never>
-    
-    func getArticleLists() -> AnyPublisher<[ArticleList], Never>
+    func getArticleFeeds() -> AnyPublisher<[ArticleFeed], Never>
 }

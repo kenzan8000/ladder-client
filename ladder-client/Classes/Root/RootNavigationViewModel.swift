@@ -20,7 +20,13 @@ final class RootNavigationViewModel {
     var isSignInViewPresented = false
     
     private(set) var isSignedIn: Bool
-
+    
+    let signInNavigationViewModel: SignInNavigationViewModel
+    
+    let rootSignInButtonViewModel: RootSignInButtonViewModel
+    
+    let rootLoadButtonViewModel: RootLoadButtonViewModel
+    
     // MARK: - Init
     
     init(
@@ -32,6 +38,9 @@ final class RootNavigationViewModel {
         self.signInService = signInService
         self.rootService = rootService
         self.isSignedIn = signInService.isSignedIn
+        self.signInNavigationViewModel = SignInNavigationViewModel(keychain: keychain, service: signInService)
+        self.rootSignInButtonViewModel = RootSignInButtonViewModel(service: signInService)
+        self.rootLoadButtonViewModel = RootLoadButtonViewModel(service: rootService)
         signInService.isSignedInPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }
@@ -39,18 +48,6 @@ final class RootNavigationViewModel {
     }
     
     // MARK: - Public methods
-    
-    func makeSignInNavigationViewModel() -> SignInNavigationViewModel {
-        SignInNavigationViewModel(keychain: keychain, service: signInService)
-    }
-    
-    func makeRootSignInButtonViewModel() -> RootSignInButtonViewModel {
-        RootSignInButtonViewModel(service: signInService)
-    }
-    
-    func makeRootLoadButtonViewModel() -> RootLoadButtonViewModel {
-        RootLoadButtonViewModel(service: rootService)
-    }
     
     func signOut() {
         signInService.signOut()

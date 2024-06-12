@@ -5,27 +5,20 @@ import Foundation
 // MARK: - FeedStorageMock
 
 final class FeedStorageMock: FeedStorageProtocol {
-    @Published var feeds = [Feed]()
-    
-    @Published var articleLists = [ArticleList]()
+    @Published var articleFeeds = [ArticleFeed]()
 
     func set(feeds: [Feed]) {
-        self.feeds = feeds
+        articleFeeds = feeds.map { (feed: Feed) in ArticleFeed(feed: feed, articles: []) }
     }
     
-    func set(articleLists: [ArticleList]) {
-        self.articleLists = articleLists
+    func set(articleList: ArticleList) {
+        guard let index = articleFeeds.firstIndex(where: { (articleFeed: ArticleFeed) in articleFeed.feedId == articleList.feedId }) else {
+            return
+        }
+        articleFeeds[index] = articleFeeds[index].duplicate(articles: articleList.articles)
     }
     
-    func add(articleList: ArticleList) {
-        self.articleLists.append(articleList)
-    }
-    
-    func getFeeds() -> AnyPublisher<[Feed], Never> {
-        $feeds.eraseToAnyPublisher()
-    }
-    
-    func getArticleLists() -> AnyPublisher<[ArticleList], Never> {
-        $articleLists.eraseToAnyPublisher()
+    func getArticleFeeds() -> AnyPublisher<[ArticleFeed], Never> {
+        $articleFeeds.eraseToAnyPublisher()
     }
 }
