@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Feed
 
 /// Model representing an RSS feed and the articles in the RSS feed.
-struct ArticleFeed: Equatable, Identifiable, Sendable {
+struct ArticleFeed: Equatable, Hashable, Identifiable, Sendable {
     // MARK: - Private properties
     
     private let feed: Feed
@@ -35,6 +35,12 @@ struct ArticleFeed: Equatable, Identifiable, Sendable {
     init(feed: Feed, articles: [Article]) {
         self.feed = feed
         self.articles = articles
+    }
+    
+    // MARK: - Hashable
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     // MARK: - Public methods

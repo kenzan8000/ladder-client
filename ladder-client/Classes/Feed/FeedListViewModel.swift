@@ -17,6 +17,8 @@ final class FeedListViewModel {
     
     private(set) var articleFeeds: [ArticleFeed] = []
     
+    var selectedArticleFeed: ArticleFeed?
+    
     // MARK: - Init
     
     init(
@@ -41,5 +43,16 @@ final class FeedListViewModel {
             return
         }
         await service.loadFeeds()
+    }
+    
+    func setSelectedArticleFeedIfNeeded(_ articleFeed: ArticleFeed) {
+        guard !articleFeed.articles.isEmpty else {
+            return
+        }
+        selectedArticleFeed = articleFeed
+    }
+    
+    func makeArticleListViewModel(articles: [Article]) -> ArticleListViewModel {
+        ArticleListViewModel(articles: articles)
     }
 }

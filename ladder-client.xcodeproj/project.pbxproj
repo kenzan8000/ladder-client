@@ -40,6 +40,8 @@
 		E687EB832C18EFCB0093CDE0 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB822C18EFCB0093CDE0 /* ArticleList.swift */; };
 		E687EB852C18FA090093CDE0 /* ArticleFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB842C18FA090093CDE0 /* ArticleFeed.swift */; };
 		E687EB882C19075E0093CDE0 /* FeedStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E687EB872C19075E0093CDE0 /* FeedStorageMock.swift */; };
+		E68D9FE32C1A2C0100302475 /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68D9FE22C1A2C0100302475 /* ArticleListView.swift */; };
+		E68D9FE52C1A2C7D00302475 /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68D9FE42C1A2C7D00302475 /* ArticleListViewModel.swift */; };
 		E69543F92C07D5B5003ED85E /* RootSignInButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */; };
 		E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */; };
 		E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69543FC2C07D999003ED85E /* RootLoadButtonView.swift */; };
@@ -150,6 +152,8 @@
 		E687EB822C18EFCB0093CDE0 /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		E687EB842C18FA090093CDE0 /* ArticleFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleFeed.swift; sourceTree = "<group>"; };
 		E687EB872C19075E0093CDE0 /* FeedStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStorageMock.swift; sourceTree = "<group>"; };
+		E68D9FE22C1A2C0100302475 /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
+		E68D9FE42C1A2C7D00302475 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
 		E69543F82C07D5B5003ED85E /* RootSignInButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonView.swift; sourceTree = "<group>"; };
 		E69543FA2C07D695003ED85E /* RootSignInButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSignInButtonViewModel.swift; sourceTree = "<group>"; };
 		E69543FC2C07D999003ED85E /* RootLoadButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootLoadButtonView.swift; sourceTree = "<group>"; };
@@ -323,6 +327,17 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		E68D9FE12C1A2B6900302475 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				E687EB802C18EE980093CDE0 /* Article.swift */,
+				E687EB822C18EFCB0093CDE0 /* ArticleList.swift */,
+				E68D9FE22C1A2C0100302475 /* ArticleListView.swift */,
+				E68D9FE42C1A2C7D00302475 /* ArticleListViewModel.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
 		E6987DA12BE7EC1200B5BBC7 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,8 +423,6 @@
 		E6EE463C2BD6EDBE00273094 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				E687EB802C18EE980093CDE0 /* Article.swift */,
-				E687EB822C18EFCB0093CDE0 /* ArticleList.swift */,
 				E687EB842C18FA090093CDE0 /* ArticleFeed.swift */,
 				E687EB752C18E1B20093CDE0 /* Feed.swift */,
 				E6EE463D2BD6EDD300273094 /* FeedView.swift */,
@@ -424,6 +437,7 @@
 				E687EB732C18E17B0093CDE0 /* FeedStorage.swift */,
 				E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */,
 				E64469B22C18B85E0062363F /* FeedNetworking.swift */,
+				E68D9FE12C1A2B6900302475 /* Article */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -656,6 +670,8 @@
 				E6EE463E2BD6EDD300273094 /* FeedView.swift in Sources */,
 				E6F043892C0D008100034F33 /* URLRequest+Networking.swift in Sources */,
 				E6AA1A5A2BE7BCAC00A240B5 /* ViewAlertModifier.swift in Sources */,
+				E68D9FE52C1A2C7D00302475 /* ArticleListViewModel.swift in Sources */,
+				E68D9FE32C1A2C0100302475 /* ArticleListView.swift in Sources */,
 				E6FA61C12BE966950073A043 /* SignUpLinkViewModel.swift in Sources */,
 				E60595BE2C12366400DC7992 /* PinRowViewModel.swift in Sources */,
 				E64469B32C18B85E0062363F /* FeedNetworking.swift in Sources */,

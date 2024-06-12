@@ -17,9 +17,11 @@ struct RootTabView: View {
     // MARK: - Public properties
 
     var body: some View {
-        TabView(selection: $viewModel.selectedTab) {
-            FeedView(viewModel: viewModel.feedViewModel)
-            PinView(viewModel: viewModel.pinViewModel)
+        NavigationStack {
+            TabView(selection: $viewModel.selectedTab) {
+                FeedView(viewModel: viewModel.feedViewModel)
+                PinView(viewModel: viewModel.pinViewModel)
+            }
         }
     }
     
