@@ -15,6 +15,10 @@
 		E60595C42C12408F00DC7992 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595C32C12408F00DC7992 /* FeedService.swift */; };
 		E60595C62C12438000DC7992 /* PinStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595C52C12438000DC7992 /* PinStorageProtocol.swift */; };
 		E60595C82C1245A600DC7992 /* PinStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60595C72C1245A600DC7992 /* PinStorage.swift */; };
+		E6396B132C406B850082102D /* ArticleListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B122C406B850082102D /* ArticleListTitleView.swift */; };
+		E6396B152C406D4C0082102D /* ArticleListBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B142C406D4C0082102D /* ArticleListBodyView.swift */; };
+		E6396B172C406E180082102D /* ArticleListBottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */; };
+		E6396B192C406F9D0082102D /* ArticleListAddPinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */; };
 		E64469B12C18AFFD0062363F /* FeedNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */; };
 		E64469B32C18B85E0062363F /* FeedNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B22C18B85E0062363F /* FeedNetworking.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
@@ -126,6 +130,10 @@
 		E60595C32C12408F00DC7992 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		E60595C52C12438000DC7992 /* PinStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStorageProtocol.swift; sourceTree = "<group>"; };
 		E60595C72C1245A600DC7992 /* PinStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStorage.swift; sourceTree = "<group>"; };
+		E6396B122C406B850082102D /* ArticleListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListTitleView.swift; sourceTree = "<group>"; };
+		E6396B142C406D4C0082102D /* ArticleListBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBodyView.swift; sourceTree = "<group>"; };
+		E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBottomButtonView.swift; sourceTree = "<group>"; };
+		E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListAddPinButtonView.swift; sourceTree = "<group>"; };
 		E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworkingProtocol.swift; sourceTree = "<group>"; };
 		E64469B22C18B85E0062363F /* FeedNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworking.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -334,6 +342,10 @@
 				E687EB822C18EFCB0093CDE0 /* ArticleList.swift */,
 				E68D9FE22C1A2C0100302475 /* ArticleListView.swift */,
 				E68D9FE42C1A2C7D00302475 /* ArticleListViewModel.swift */,
+				E6396B122C406B850082102D /* ArticleListTitleView.swift */,
+				E6396B142C406D4C0082102D /* ArticleListBodyView.swift */,
+				E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */,
+				E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -623,6 +635,7 @@
 			files = (
 				E6C413D22BD9AA670094FBA0 /* SignInPasswordTextFieldViewModel.swift in Sources */,
 				E6D1EFEE2BE7AC5B008AA020 /* CookieStorageProtocol.swift in Sources */,
+				E6396B132C406B850082102D /* ArticleListTitleView.swift in Sources */,
 				E6C413C42BD9982F0094FBA0 /* SignInView.swift in Sources */,
 				E69543F92C07D5B5003ED85E /* RootSignInButtonView.swift in Sources */,
 				E69543FF2C07DA64003ED85E /* RootLoadButtonViewModel.swift in Sources */,
@@ -654,6 +667,7 @@
 				E687EB7C2C18E5170093CDE0 /* FeedRowView.swift in Sources */,
 				E6632C202C179C7100E91C64 /* NetworkingResponse.swift in Sources */,
 				E60595BC2C1235AF00DC7992 /* PinRowView.swift in Sources */,
+				E6396B172C406E180082102D /* ArticleListBottomButtonView.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
 				E60595C22C12406800DC7992 /* FeedServiceProtocol.swift in Sources */,
 				E6FA61C32BE96C7E0073A043 /* SignInDividerView.swift in Sources */,
@@ -676,6 +690,7 @@
 				E60595BE2C12366400DC7992 /* PinRowViewModel.swift in Sources */,
 				E64469B32C18B85E0062363F /* FeedNetworking.swift in Sources */,
 				E60595C62C12438000DC7992 /* PinStorageProtocol.swift in Sources */,
+				E6396B152C406D4C0082102D /* ArticleListBodyView.swift in Sources */,
 				E6EE46412BD6EFB500273094 /* PinView.swift in Sources */,
 				E687EB832C18EFCB0093CDE0 /* ArticleList.swift in Sources */,
 				E69543FB2C07D695003ED85E /* RootSignInButtonViewModel.swift in Sources */,
@@ -683,6 +698,7 @@
 				E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */,
 				E6ACF07B2BF932420004036A /* PinListViewModel.swift in Sources */,
 				E6F043832C0CFD4600034F33 /* PinNetworkingProtocol.swift in Sources */,
+				E6396B192C406F9D0082102D /* ArticleListAddPinButtonView.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
 				E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */,

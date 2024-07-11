@@ -18,7 +18,7 @@ struct ArticleFeed: Equatable, Hashable, Identifiable, Sendable {
     
     let articles: [Article]
 
-    /// name of the folder. Fastladder allows user to name folder name for the RSS feed
+    /// name of the folder. Fastladder allows user to name folder that RSS feed belongs to
     var folder: String { feed.folder }
     
     /// number of unread articles in the RSS feed
