@@ -19,6 +19,7 @@
 		E6396B152C406D4C0082102D /* ArticleListBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B142C406D4C0082102D /* ArticleListBodyView.swift */; };
 		E6396B172C406E180082102D /* ArticleListBottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */; };
 		E6396B192C406F9D0082102D /* ArticleListAddPinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */; };
+		E6396B1C2C4076BE0082102D /* BlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B1B2C4076BE0082102D /* BlinkView.swift */; };
 		E64469B12C18AFFD0062363F /* FeedNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */; };
 		E64469B32C18B85E0062363F /* FeedNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B22C18B85E0062363F /* FeedNetworking.swift */; };
 		E64F82D9234076C30054D0A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */; };
@@ -134,6 +135,7 @@
 		E6396B142C406D4C0082102D /* ArticleListBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBodyView.swift; sourceTree = "<group>"; };
 		E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBottomButtonView.swift; sourceTree = "<group>"; };
 		E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListAddPinButtonView.swift; sourceTree = "<group>"; };
+		E6396B1B2C4076BE0082102D /* BlinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkView.swift; sourceTree = "<group>"; };
 		E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworkingProtocol.swift; sourceTree = "<group>"; };
 		E64469B22C18B85E0062363F /* FeedNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworking.swift; sourceTree = "<group>"; };
 		E64F82D8234076C30054D0A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -257,6 +259,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E6396B1A2C4076AC0082102D /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E6396B1B2C4076BE0082102D /* BlinkView.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		E6690C471F5E537D0065B7B5 = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +301,7 @@
 				E6D1EFEA2BE7ABC4008AA020 /* Foundation */,
 				E6D1EFE02BE798A7008AA020 /* Networking */,
 				E6AA1A582BE7BC9300A240B5 /* SwiftUI */,
+				E6396B1A2C4076AC0082102D /* UIKit */,
 				E67485D32BE0320300DDE19C /* UI */,
 			);
 			path = Utilities;
@@ -670,6 +681,7 @@
 				E6396B172C406E180082102D /* ArticleListBottomButtonView.swift in Sources */,
 				E67485DE2BE6D46400DDE19C /* SignInTextFieldStateModifier.swift in Sources */,
 				E60595C22C12406800DC7992 /* FeedServiceProtocol.swift in Sources */,
+				E6396B1C2C4076BE0082102D /* BlinkView.swift in Sources */,
 				E6FA61C32BE96C7E0073A043 /* SignInDividerView.swift in Sources */,
 				E69543FD2C07D999003ED85E /* RootLoadButtonView.swift in Sources */,
 				E6EF21BE2BDD90C300A81560 /* FeedViewModel.swift in Sources */,

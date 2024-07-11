@@ -5,9 +5,9 @@ import SwiftUI
 struct ArticleListBottomButtonView: View {
     // MARK: - Private properties
     
-    private let canGoNext: Bool
-    
     private let canGoPrevious: Bool
+
+    private let canGoNext: Bool
     
     private var leadingButtonForegroundStyle: Color {
         canGoPrevious ? .blue : .secondary
@@ -53,13 +53,13 @@ struct ArticleListBottomButtonView: View {
     // MARK: - Init
     
     init(
-        canGoNext: Bool,
         canGoPrevious: Bool,
+        canGoNext: Bool,
         leadingButtonAction: @escaping () -> Void,
         trailingButtonAction: @escaping () -> Void
     ) {
-        self.canGoNext = canGoNext
         self.canGoPrevious = canGoPrevious
+        self.canGoNext = canGoNext
         self.leadingButtonAction = leadingButtonAction
         self.trailingButtonAction = trailingButtonAction
     }

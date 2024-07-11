@@ -6,7 +6,6 @@ struct ArticleListView: View {
     // MARK: - Private enums
     
     private enum Constant {
-        // static let titleLineLimit = 4
         static let buttonMinWidth: CGFloat = 128
         static let buttonMinHeight: CGFloat = 64
     }
@@ -14,6 +13,16 @@ struct ArticleListView: View {
     // MARK: - Private properties
     
     @State private var viewModel: ArticleListViewModel
+   
+    private var window: UIWindow? {
+        UIApplication.shared
+            .connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .windows
+            .first { $0.isKeyWindow }
+    }
     
     // MARK: - Public properties
     
@@ -28,10 +37,20 @@ struct ArticleListView: View {
                 Spacer()
                 Spacer().frame(height: Spacing.default)
                 ArticleListBottomButtonView(
-                    canGoNext: viewModel.canGoNext,
                     canGoPrevious: viewModel.canGoPrevious,
-                    leadingButtonAction: { viewModel.goPrevious() },
-                    trailingButtonAction: { viewModel.goNext() }
+                    canGoNext: viewModel.canGoNext,
+                    leadingButtonAction: {
+                        if !viewModel.canGoPrevious, let window {
+                            BlinkView().startAnimating(on: window)
+                        }
+                        viewModel.goPrevious()
+                    },
+                    trailingButtonAction: {
+                        if !viewModel.canGoNext, let window {
+                            BlinkView().startAnimating(on: window)
+                        }
+                        viewModel.goNext()
+                    }
                 )
             }
             Spacer().frame(width: Spacing.default)
