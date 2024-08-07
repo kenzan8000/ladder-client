@@ -6,6 +6,8 @@ import Foundation
 final class ArticleListViewModel {
     // MARK: - Private properties
     
+    private let pinService: any PinServiceProtocol
+
     private let articles: [Article]
     
     private var currentIndex: Int
@@ -23,9 +25,11 @@ final class ArticleListViewModel {
     // MARK: - Init
     
     init(
+        pinService: any PinServiceProtocol,
         articles: [Article],
         currentIndex: Int = 0
     ) {
+        self.pinService = pinService
         self.articles = articles
         self.currentIndex = currentIndex
     }
@@ -44,5 +48,15 @@ final class ArticleListViewModel {
             return
         }
         currentIndex -= 1
+    }
+    
+    func addPin() {
+        Task { @MainActor [weak self] in
+            guard let self, let link = self.articles[currentIndex].link else {
+                return
+            }
+            let title = self.articles[currentIndex].title
+            _ = await self.pinService.addPin(title: title, link: link)
+        }
     }
 }

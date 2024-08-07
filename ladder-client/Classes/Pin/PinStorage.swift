@@ -13,6 +13,11 @@ final class PinStorage: PinStorageProtocol {
         self.pins = pins
     }
     
+    @MainActor
+    func add(pin: Pin) {
+        pins.append(pin)
+    }
+    
     func get() -> AnyPublisher<[Pin], Never> {
         $pins.eraseToAnyPublisher()
     }

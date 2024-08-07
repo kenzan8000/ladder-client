@@ -37,4 +37,31 @@ struct Pin: Codable, Equatable, Identifiable, Sendable {
         self.link = link
         self.title = title
     }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        // Fastladder returns URL query with "&amp;" so replace them with "&"...
+        let absoluteString = try container.decode(String.self, forKey: .link)
+        guard let link = URL(string: absoluteString.replacingOccurrences(of: "&amp;", with: "&")) else {
+            throw PinDecodeError.link(absoluteString: absoluteString)
+        }
+        self.link = link
+        
+        self.cratedAtInUnixTimestamp = try container.decode(TimeInterval.self, forKey: .cratedAtInUnixTimestamp)
+        self.title = try container.decode(String.self, forKey: .title)
+    }
+}
+
+// MARK: - PinDecodeError
+
+enum PinDecodeError: Error {
+    case link(absoluteString: String)
+    
+    var localizedDescription: String {
+        switch self {
+        case let .link(absoluteString):
+            return "Failed to decode link \"\(absoluteString)\"."
+        }
+    }
 }

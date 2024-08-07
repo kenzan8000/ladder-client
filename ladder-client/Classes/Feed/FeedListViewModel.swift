@@ -7,9 +7,11 @@ import Foundation
 final class FeedListViewModel {
     // MARK: - Private properties
     
-    private let service: any FeedServiceProtocol
+    private let feedService: any FeedServiceProtocol
     
-    private let storage: any FeedStorageProtocol
+    private let feedStorage: any FeedStorageProtocol
+    
+    private let pinService: any PinServiceProtocol
     
     private var cancellables: Set<AnyCancellable> = []
 
@@ -22,12 +24,14 @@ final class FeedListViewModel {
     // MARK: - Init
     
     init(
-        service: any FeedServiceProtocol,
-        storage: any FeedStorageProtocol
+        feedService: any FeedServiceProtocol,
+        feedStorage: any FeedStorageProtocol,
+        pinService: any PinServiceProtocol
     ) {
-        self.service = service
-        self.storage = storage
-        storage.getArticleFeeds()
+        self.feedService = feedService
+        self.feedStorage = feedStorage
+        self.pinService = pinService
+        feedStorage.getArticleFeeds()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (articleFeeds: [ArticleFeed]) in
                 self?.articleFeeds = articleFeeds
@@ -39,10 +43,10 @@ final class FeedListViewModel {
     
     @MainActor
     func loadFeeds() async {
-        guard !service.isLoading else {
+        guard !feedService.isLoading else {
             return
         }
-        await service.loadFeeds()
+        await feedService.loadFeeds()
     }
     
     func setSelectedArticleFeedIfNeeded(_ articleFeed: ArticleFeed) {
@@ -53,6 +57,6 @@ final class FeedListViewModel {
     }
     
     func makeArticleListViewModel(articles: [Article]) -> ArticleListViewModel {
-        ArticleListViewModel(articles: articles)
+        ArticleListViewModel(pinService: pinService, articles: articles)
     }
 }
