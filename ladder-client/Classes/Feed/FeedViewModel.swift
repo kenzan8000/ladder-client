@@ -46,7 +46,8 @@ final class FeedViewModel {
         signInService: any SignInServiceProtocol,
         feedService: any FeedServiceProtocol,
         feedStorage: any FeedStorageProtocol,
-        pinService: any PinServiceProtocol
+        pinService: any PinServiceProtocol,
+        pinStorage: any PinStorageProtocol
     ) {
         self.keychain = keychain
         self.signInService = signInService
@@ -59,7 +60,7 @@ final class FeedViewModel {
             rootService: feedService
         )
         self.rootSignInViewModel = RootSignInViewModel(keychain: keychain, signInService: signInService)
-        self.feedListViewModel = FeedListViewModel(feedService: feedService, feedStorage: feedStorage, pinService: pinService)
+        self.feedListViewModel = FeedListViewModel(feedService: feedService, feedStorage: feedStorage, pinService: pinService, pinStorage: pinStorage)
         signInService.isSignedInPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (isSignedIn: Bool) in self?.isSignedIn = isSignedIn }

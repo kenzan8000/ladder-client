@@ -5,20 +5,23 @@ import SwiftUI
 struct ArticleListAddPinButtonView: View {
     // MARK: - Private properties
     
-    let action: () -> Void
+    private let isPinAdded: Bool
+    
+    private let action: () -> Void
     
     // MARK: - Public properties
     
     var body: some View {
         Button(action: action) {
-            Text("Read Later")
-            Image(systemName: "bookmark.fill")
+            Text(isPinAdded ? "Saved" : "Read Later")
+            Image(systemName: isPinAdded ? "bookmark.fill" : "bookmark")
         }
     }
     
     // MARK: - Init
     
-    init(action: @escaping () -> Void) {
+    init(isPinAdded: Bool, action: @escaping () -> Void) {
+        self.isPinAdded = isPinAdded
         self.action = action
     }
 }

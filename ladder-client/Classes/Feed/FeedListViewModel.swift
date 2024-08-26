@@ -13,6 +13,8 @@ final class FeedListViewModel {
     
     private let pinService: any PinServiceProtocol
     
+    private let pinStorage: any PinStorageProtocol
+    
     private var cancellables: Set<AnyCancellable> = []
 
     // MARK: - Public properties
@@ -26,11 +28,13 @@ final class FeedListViewModel {
     init(
         feedService: any FeedServiceProtocol,
         feedStorage: any FeedStorageProtocol,
-        pinService: any PinServiceProtocol
+        pinService: any PinServiceProtocol,
+        pinStorage: any PinStorageProtocol
     ) {
         self.feedService = feedService
         self.feedStorage = feedStorage
         self.pinService = pinService
+        self.pinStorage = pinStorage
         feedStorage.getArticleFeeds()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (articleFeeds: [ArticleFeed]) in
@@ -58,6 +62,6 @@ final class FeedListViewModel {
     }
     
     func makeArticleListViewModel(articles: [Article]) -> ArticleListViewModel {
-        ArticleListViewModel(pinService: pinService, articles: articles)
+        ArticleListViewModel(pinService: pinService, pinStorage: pinStorage, articles: articles)
     }
 }

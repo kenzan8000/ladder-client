@@ -12,6 +12,16 @@ final class PinStorageMock: PinStorageProtocol {
         self.pins = pins
     }
     
+    @MainActor
+    func add(pin: Pin) {
+        pins.append(pin)
+    }
+    
+    @MainActor
+    func hasPin(url: URL?) -> Bool {
+        pins.contains { (pin: Pin) in pin.link == url }
+    }
+    
     func get() -> AnyPublisher<[Pin], Never> {
         $pins.eraseToAnyPublisher()
     }

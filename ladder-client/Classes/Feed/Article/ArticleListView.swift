@@ -57,7 +57,9 @@ struct ArticleListView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ArticleListAddPinButtonView { viewModel.addPin() }
+                ArticleListAddPinButtonView(isPinAdded: viewModel.isPinAdded) {
+                    viewModel.addPin()
+                }
             }
         }
         .safeAreaPadding(.bottom)

@@ -6,5 +6,7 @@ protocol PinStorageProtocol {
     
     func add(pin: Pin)
     
+    func hasPin(url: URL?) -> Bool
+    
     func get() -> AnyPublisher<[Pin], Never>
 }

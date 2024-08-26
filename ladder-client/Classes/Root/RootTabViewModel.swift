@@ -49,7 +49,8 @@ final class RootTabViewModel {
             signInService: signInService,
             feedService: feedService,
             feedStorage: feedStorage,
-            pinService: pinService
+            pinService: pinService,
+            pinStorage: pinStorage
         )
         self.pinViewModel = PinViewModel(
             keychain: keychain,

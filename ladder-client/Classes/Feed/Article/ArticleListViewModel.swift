@@ -7,7 +7,9 @@ final class ArticleListViewModel {
     // MARK: - Private properties
     
     private let pinService: any PinServiceProtocol
-
+    
+    private let pinStorage: any PinStorageProtocol
+    
     private let articles: [Article]
     
     private var currentIndex: Int
@@ -22,14 +24,20 @@ final class ArticleListViewModel {
     
     var body: String { articles[currentIndex].body }
     
+    var isPinAdded: Bool {
+        pinStorage.hasPin(url: articles[currentIndex].link)
+    }
+    
     // MARK: - Init
     
     init(
         pinService: any PinServiceProtocol,
+        pinStorage: any PinStorageProtocol,
         articles: [Article],
         currentIndex: Int = 0
     ) {
         self.pinService = pinService
+        self.pinStorage = pinStorage
         self.articles = articles
         self.currentIndex = currentIndex
     }
@@ -57,6 +65,7 @@ final class ArticleListViewModel {
             }
             let title = self.articles[currentIndex].title
             _ = await self.pinService.addPin(title: title, link: link)
+            self.currentIndex = self.currentIndex
         }
     }
 }
