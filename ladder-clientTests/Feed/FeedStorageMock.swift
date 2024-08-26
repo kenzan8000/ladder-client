@@ -18,6 +18,15 @@ final class FeedStorageMock: FeedStorageProtocol {
         articleFeeds[index] = articleFeeds[index].duplicate(articles: articleList.articles)
     }
     
+    func markAsSeen(feedId: Int) {
+        guard let index = articleFeeds.firstIndex(where: { (articleFeed: ArticleFeed) in articleFeed.feedId == feedId }) else {
+            return
+        }
+        var articleFeed = articleFeeds[index]
+        articleFeed.markAsSeen()
+        articleFeeds[index] = articleFeed
+    }
+    
     func getArticleFeeds() -> AnyPublisher<[ArticleFeed], Never> {
         $articleFeeds.eraseToAnyPublisher()
     }

@@ -15,6 +15,8 @@ final class FeedRowViewModel {
     var numberOfArticles: String { "\(articleFeed.numberOfArticles)" }
     
     var hasArticles: Bool { !articleFeed.articles.isEmpty }
+    
+    var isMarkedAsSeen: Bool { articleFeed.isMarkedAsSeen }
        
     // MARK: - Init
     

@@ -6,5 +6,7 @@ protocol FeedStorageProtocol {
     
     func set(articleList: ArticleList)
     
+    func markAsSeen(feedId: Int)
+    
     func getArticleFeeds() -> AnyPublisher<[ArticleFeed], Never>
 }

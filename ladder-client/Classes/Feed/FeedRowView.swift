@@ -25,6 +25,7 @@ struct FeedRowView: View {
                     .lineLimit(Constant.titleLineLimit)
                     .truncationMode(.tail)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .strikethrough(viewModel.isMarkedAsSeen, color: Color.secondary)
                 Text(viewModel.numberOfArticles)
                     .lineLimit(Constant.numberOfArticlesLineLimit)
                     .frame(alignment: .trailing)
@@ -33,7 +34,11 @@ struct FeedRowView: View {
                     .frame(alignment: .trailing)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: Constant.minHeight, alignment: .leading)
-            .foregroundStyle(viewModel.hasArticles ? Color.blue : Color.secondary)
+            .foregroundStyle(
+                viewModel.hasArticles
+                ? (viewModel.isMarkedAsSeen ? Color.secondary : Color.blue)
+                : Color.secondary
+            )
         }
     }
     

@@ -11,7 +11,7 @@ struct ArticleFeed: Equatable, Hashable, Identifiable, Sendable {
     // MARK: - Public properties
     
     var id: String {
-        "feed id: \(feed.id), number of articles: \(articles.count)"
+        "feed id: \(feed.id), number of articles: \(articles.count), marked as seen: \(isMarkedAsSeen)"
     }
     
     var feedId: Int { feed.id }
@@ -30,6 +30,9 @@ struct ArticleFeed: Equatable, Hashable, Identifiable, Sendable {
     /// title of the RSS feed
     var title: String { feed.title }
     
+    /// whether the feed is already marked as seen
+    private(set) var isMarkedAsSeen = false
+    
     // MARK: - Init
     
     init(feed: Feed, articles: [Article]) {
@@ -47,5 +50,9 @@ struct ArticleFeed: Equatable, Hashable, Identifiable, Sendable {
     
     func duplicate(articles: [Article]) -> Self {
         Self(feed: feed, articles: articles)
+    }
+    
+    mutating func markAsSeen() {
+        isMarkedAsSeen = true
     }
 }

@@ -17,7 +17,7 @@ final class PinStorage: PinStorageProtocol {
     func add(pin: Pin) {
         pins.append(pin)
     }
-    
+
     func get() -> AnyPublisher<[Pin], Never> {
         $pins.eraseToAnyPublisher()
     }

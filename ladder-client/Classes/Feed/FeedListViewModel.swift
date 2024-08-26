@@ -49,11 +49,12 @@ final class FeedListViewModel {
         await feedService.loadFeeds()
     }
     
-    func setSelectedArticleFeedIfNeeded(_ articleFeed: ArticleFeed) {
+    func selectArticleFeedIfNeeded(_ articleFeed: ArticleFeed) {
         guard !articleFeed.articles.isEmpty else {
             return
         }
         selectedArticleFeed = articleFeed
+        feedService.markFeedAsSeen(feedId: articleFeed.feedId)
     }
     
     func makeArticleListViewModel(articles: [Article]) -> ArticleListViewModel {

@@ -12,7 +12,7 @@ struct FeedListView: View {
     var body: some View {
         List(viewModel.articleFeeds) { (articleFeed: ArticleFeed) in
             FeedRowView(viewModel: FeedRowViewModel(articleFeed: articleFeed)) {
-                viewModel.setSelectedArticleFeedIfNeeded(articleFeed)
+                viewModel.selectArticleFeedIfNeeded(articleFeed)
             }
         }
         .listStyle(.plain)

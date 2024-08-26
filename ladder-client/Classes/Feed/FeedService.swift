@@ -56,6 +56,14 @@ final class FeedService: FeedServiceProtocol {
     }
     
     @MainActor
+    func markFeedAsSeen(feedId: Int) {
+        storage.markAsSeen(feedId: feedId)
+        Task { @MainActor in
+            _ = try await networking.removeUnreadArticles(feedId: feedId)
+        }
+    }
+    
+    @MainActor
     func reload() {
         cancel()
         storage.set(feeds: [])
