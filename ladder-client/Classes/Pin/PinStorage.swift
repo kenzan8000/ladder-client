@@ -19,6 +19,11 @@ final class PinStorage: PinStorageProtocol {
     }
     
     @MainActor
+    func remove(url: URL) {
+        pins = pins.filter { (pin: Pin) in pin.link != url }
+    }
+    
+    @MainActor
     func hasPin(url: URL?) -> Bool {
         pins.contains { (pin: Pin) in pin.link == url }
     }

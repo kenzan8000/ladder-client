@@ -33,7 +33,9 @@ struct ArticleListView: View {
                 Spacer().frame(height: Spacing.default)
                 ArticleListTitleView(text: viewModel.title)
                 Spacer().frame(height: Spacing.default)
-                ArticleListBodyView(text: viewModel.body)
+                ScrollView {
+                    ArticleListBodyView(text: viewModel.body)
+                }
                 Spacer()
                 Spacer().frame(height: Spacing.default)
                 ArticleListBottomButtonView(
@@ -57,8 +59,8 @@ struct ArticleListView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ArticleListAddPinButtonView(isPinAdded: viewModel.isPinAdded) {
-                    viewModel.addPin()
+                ArticleListPinButtonView(isPinAdded: viewModel.isPinAdded) {
+                    viewModel.updatePin()
                 }
             }
         }

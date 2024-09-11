@@ -1,8 +1,8 @@
 import SwiftUI
 
-// MARK: - ArticleListAddPinButtonView
+// MARK: - ArticleListPinButtonView
 
-struct ArticleListAddPinButtonView: View {
+struct ArticleListPinButtonView: View {
     // MARK: - Private properties
     
     private let isPinAdded: Bool

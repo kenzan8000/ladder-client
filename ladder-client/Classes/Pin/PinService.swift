@@ -57,6 +57,7 @@ final class PinService: PinServiceProtocol {
         let response = try? JSONDecoder().decode(NetworkingResponse.self, from: data) else {
             return false
         }
+        storage.remove(url: link)
         return response.isSucceeeded
     }
 

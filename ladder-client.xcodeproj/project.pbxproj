@@ -18,7 +18,7 @@
 		E6396B132C406B850082102D /* ArticleListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B122C406B850082102D /* ArticleListTitleView.swift */; };
 		E6396B152C406D4C0082102D /* ArticleListBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B142C406D4C0082102D /* ArticleListBodyView.swift */; };
 		E6396B172C406E180082102D /* ArticleListBottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */; };
-		E6396B192C406F9D0082102D /* ArticleListAddPinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */; };
+		E6396B192C406F9D0082102D /* ArticleListPinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B182C406F9D0082102D /* ArticleListPinButtonView.swift */; };
 		E6396B1C2C4076BE0082102D /* BlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6396B1B2C4076BE0082102D /* BlinkView.swift */; };
 		E64469B12C18AFFD0062363F /* FeedNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */; };
 		E64469B32C18B85E0062363F /* FeedNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64469B22C18B85E0062363F /* FeedNetworking.swift */; };
@@ -134,7 +134,7 @@
 		E6396B122C406B850082102D /* ArticleListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListTitleView.swift; sourceTree = "<group>"; };
 		E6396B142C406D4C0082102D /* ArticleListBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBodyView.swift; sourceTree = "<group>"; };
 		E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListBottomButtonView.swift; sourceTree = "<group>"; };
-		E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListAddPinButtonView.swift; sourceTree = "<group>"; };
+		E6396B182C406F9D0082102D /* ArticleListPinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListPinButtonView.swift; sourceTree = "<group>"; };
 		E6396B1B2C4076BE0082102D /* BlinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkView.swift; sourceTree = "<group>"; };
 		E64469B02C18AFFD0062363F /* FeedNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworkingProtocol.swift; sourceTree = "<group>"; };
 		E64469B22C18B85E0062363F /* FeedNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNetworking.swift; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 				E6396B122C406B850082102D /* ArticleListTitleView.swift */,
 				E6396B142C406D4C0082102D /* ArticleListBodyView.swift */,
 				E6396B162C406E180082102D /* ArticleListBottomButtonView.swift */,
-				E6396B182C406F9D0082102D /* ArticleListAddPinButtonView.swift */,
+				E6396B182C406F9D0082102D /* ArticleListPinButtonView.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -710,7 +710,7 @@
 				E6EF21C22BDD92C900A81560 /* SignInNavigationViewModel.swift in Sources */,
 				E6ACF07B2BF932420004036A /* PinListViewModel.swift in Sources */,
 				E6F043832C0CFD4600034F33 /* PinNetworkingProtocol.swift in Sources */,
-				E6396B192C406F9D0082102D /* ArticleListAddPinButtonView.swift in Sources */,
+				E6396B192C406F9D0082102D /* ArticleListPinButtonView.swift in Sources */,
 				E6FA099424A8CBED00888F58 /* Main.swift in Sources */,
 				E6EE46432BD6F38E00273094 /* RootNavigationView.swift in Sources */,
 				E6C413CC2BD9A8D10094FBA0 /* SignInUsernameTextFieldView.swift in Sources */,

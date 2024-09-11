@@ -58,13 +58,17 @@ final class ArticleListViewModel {
         currentIndex -= 1
     }
     
-    func addPin() {
+    func updatePin() {
         Task { @MainActor [weak self] in
             guard let self, let link = self.articles[currentIndex].link else {
                 return
             }
-            let title = self.articles[currentIndex].title
-            _ = await self.pinService.addPin(title: title, link: link)
+            if self.isPinAdded {
+                _ = await self.pinService.removePin(link: link)
+            } else {
+                let title = self.articles[currentIndex].title
+                _ = await self.pinService.addPin(title: title, link: link)
+            }
             self.currentIndex = self.currentIndex
         }
     }
