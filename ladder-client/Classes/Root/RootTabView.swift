@@ -19,8 +19,12 @@ struct RootTabView: View {
     var body: some View {
         NavigationStack {
             TabView(selection: $viewModel.selectedTab) {
-                FeedView(viewModel: viewModel.feedViewModel)
-                PinView(viewModel: viewModel.pinViewModel)
+                SwiftUI.Tab("RSS Feeds", systemImage: "wifi", value: .feeds) {
+                    FeedView(viewModel: viewModel.feedViewModel)
+                }
+                SwiftUI.Tab("Read Later", systemImage: "bookmark.fill", value: .pins) {
+                    PinView(viewModel: viewModel.pinViewModel)
+                }
             }
         }
     }

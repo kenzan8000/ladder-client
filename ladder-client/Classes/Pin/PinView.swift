@@ -15,10 +15,6 @@ struct PinView: View {
                 RootSignInView(viewModel: viewModel.rootSignInViewModel)
             }
         }
-        .tabItem {
-            Image(systemName: "bookmark.fill")
-            Text("Read Later")
-        }
     }
     
     // MARK: - Init

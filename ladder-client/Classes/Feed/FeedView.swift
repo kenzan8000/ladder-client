@@ -17,10 +17,6 @@ struct FeedView: View {
                 RootSignInView(viewModel: viewModel.rootSignInViewModel)
             }
         }
-        .tabItem {
-            Image(systemName: "wifi")
-            Text("RSS Feeds")
-        }
     }
     
     // MARK: - Init
